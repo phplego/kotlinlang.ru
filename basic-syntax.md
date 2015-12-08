@@ -55,34 +55,38 @@ fun printSum(a: Int, b: Int): Unit {
 Тип возврата `Unit` может быть опущен: 
 
 ``` kotlin
-public fun printSum(a: Int, b: Int) {
+fun printSum(a: Int, b: Int) {
   print(a + b)
 }
 ```
 
 Смотри [Функции](functions.html).
 
-## Defining local variables
+## Определение локальных переменных
 
-Assign-once (read-only) local variable:
+<!-- Assign-once (read-only) local variable: -->
+Неизменяемая (только для чтения) локальная переменная:
 
 ``` kotlin
 val a: Int = 1
-val b = 1   // `Int` type is inferred
-val c: Int  // Type required when no initializer is provided
-c = 1       // definite assignment
+val b = 1   // Тип `Int` выведен автоматически
+val c: Int  // Тип обязателен, когда значение не инициализируется
+c = 1       // последующее присвоение
 ```
 
-Mutable variable:
+<!-- Mutable variable: -->
+Изменяемая переменная:
 
 ``` kotlin
-var x = 5 // `Int` type is inferred
+var x = 5 // Тип `Int` выведен автоматически
 x += 1
 ```
 
-See also [Properties And Fields](properties.html).
+Смотрите также [Свойства и поля](properties.html).
 
-## Using string templates
+## Использование строковых шаблонов
+
+Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -92,7 +96,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-See [String templates](basic-types.html#string-templates).
+Смотрите [Строковые шаблоны](basic-types.html#string-templates).
 
 ## Using conditional expressions
 
@@ -294,7 +298,7 @@ if (text in names) // names.contains(text) is called
   print("Yes")
 ```
 
-Using function literals to filter and map collections:
+Using lambda expressions to filter and map collections:
 
 ``` kotlin
 names

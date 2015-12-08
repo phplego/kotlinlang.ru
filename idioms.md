@@ -17,7 +17,7 @@ data class Customer(val name: String, val email: String)
 
 provides a `Customer` class with the following functionality:
 
-** getters (and setters in case of *var**<!--keyword-->'s) for all properties
+* getters (and setters in case of **var**<!--keyword-->'s) for all properties
 * `equals()`
 * `hashCode()`
 * `toString()`

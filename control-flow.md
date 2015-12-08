@@ -45,7 +45,7 @@ val max = if (a > b) {
 If you're using **if**<!--keyword--> as an expression rather than a statement (for example, returning its value or
 assigning it to a variable), the expression is required to have an `else` branch.
 
-See the [grammar for **if**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#if).
+See the [grammar for **if**<!--keyword-->](grammar.html#if).
 
 ## When Expression
 
@@ -61,7 +61,7 @@ when (x) {
 }
 ```
 
-**when**<!--keyword--> matches its argument against all branches consequently until some branch condition is satisfied.
+**when**<!--keyword--> matches its argument against all branches sequentially until some branch condition is satisfied.
 **when**<!--keyword--> can be used either as an expression or as a statement. If it is used as an expression, the value
 of the satisfied branch becomes the value of the overall expression. If it is used as a statement, the values of
 individual branches are ignored. (Just like with **if**<!--keyword-->, each branch can be a block, and its value
@@ -122,7 +122,7 @@ when {
 }
 ```
 
-See the [grammar for **when**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#when).
+See the [grammar for **when**<!--keyword-->](grammar.html#when).
 
 
 ## For Loops
@@ -167,7 +167,7 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-See the [grammar for **for**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#for).
+See the [grammar for **for**<!--keyword-->](grammar.html#for).
 
 ## While Loops
 
@@ -183,7 +183,7 @@ do {
 } while (y != null) // y is visible here!
 ```
 
-See the [grammar for **while**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#while).
+See the [grammar for **while**<!--keyword-->](grammar.html#while).
 
 ## Break and continue in loops
 

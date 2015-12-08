@@ -5,11 +5,11 @@ category: "Basics"
 title: "Базовый синтаксис"
 ---
       
-# Basic Syntax
+# Базовый синтаксис
 
-## Defining packages
+## Определение имени пакета
 
-Package specification should be at the top of the source file:
+Имя пакета указывается в начале исходного фала, так же как и в Java:
 
 ``` kotlin
 package my.demo
@@ -19,11 +19,12 @@ import java.util.*
 // ...
 ```
 
-It is not required to match directories and packages: source files can be placed arbitrarily in the file system.
+Но в отличие от Java нет необходимости, чтобы стуктура пакетов совпадала со структурой папок:
+исходные файлы могут располагаться в произвольном месте на диске.
 
-See [Packages](packages.html).
+Смотри [Пакеты](packages.html).
 
-## Defining functions
+## Декларация функций
 
 Function having two `Int` parameters with `Int` return type:
 

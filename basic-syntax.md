@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Basics"
-title: "Basic Syntax"
+title: "Базовый синтаксис"
 ---
       
 # Basic Syntax

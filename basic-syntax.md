@@ -26,7 +26,8 @@ import java.util.*
 
 ## Декларация функций
 
-Function having two `Int` parameters with `Int` return type:
+<!-- Function having two `Int` parameters with `Int` return type: -->
+Функция принимает два `Int` аргумента и возвращает `Int`: 
 
 ``` kotlin
 fun sum(a: Int, b: Int): Int {
@@ -34,13 +35,15 @@ fun sum(a: Int, b: Int): Int {
 }
 ```
 
-Function with an expression body and inferred return type:
+<!-- Function with an expression body and inferred return type: -->
+Функция с выражением в качестве тела и автоматически выведенным типом возврата:
 
 ``` kotlin
 fun sum(a: Int, b: Int) = a + b
 ```
 
-Function returning no meaningful value:
+<!-- Function returning no meaningful value: -->
+Функция не возвращающая никакого значения:
 
 ``` kotlin
 fun printSum(a: Int, b: Int): Unit {
@@ -48,7 +51,8 @@ fun printSum(a: Int, b: Int): Unit {
 }
 ```
 
-`Unit` return type can be omitted:
+<!-- `Unit` return type can be omitted: -->
+Тип возврата `Unit` может быть опущен: 
 
 ``` kotlin
 public fun printSum(a: Int, b: Int) {
@@ -56,7 +60,7 @@ public fun printSum(a: Int, b: Int) {
 }
 ```
 
-See [Functions](functions.html).
+Смотри [Функции](functions.html).
 
 ## Defining local variables
 
@@ -101,19 +105,19 @@ fun max(a: Int, b: Int): Int {
 }
 ```
 
-Using *if*{: .keyword } as an expression:
+Using **if** as an expression:
 
 ``` kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-See [*if*{: .keyword }-expressions](control-flow.html#if-expression).
+See [**if**<!--keyword-->-expressions](control-flow.html#if-expression).
 
-## Using nullable values and checking for *null*{: .keyword }
+## Using nullable values and checking for **null**<!--keyword-->
 
-A reference must be explicitly marked as nullable when *null*{: .keyword } value is possible.
+A reference must be explicitly marked as nullable when **null**<!--keyword--> value is possible.
 
-Return *null*{: .keyword } if `str` does not hold an integer:
+Return **null**<!--keyword--> if `str` does not hold an integer:
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -162,7 +166,7 @@ See [Null-safety](null-safety.html).
 
 ## Using type checks and automatic casts
 
-The *is*{: .keyword } operator checks if an expression is an instance of a type.
+The **is**<!--keyword--> operator checks if an expression is an instance of a type.
 If an immutable local variable or property is checked for a specific type, there's no need to cast it explicitly:
 
 ``` kotlin
@@ -251,7 +255,7 @@ See [when expression](control-flow.html#when-expression).
 
 ## Using ranges
 
-Check if a number is within a range using *in*{: .keyword } operator:
+Check if a number is within a range using **in**<!--keyword--> operator:
 
 ``` kotlin
 if (x in 1..y-1)
@@ -283,7 +287,7 @@ for (name in names)
   println(name)
 ```
 
-Checking if a collection contains an object using *in*{: .keyword } operator:
+Checking if a collection contains an object using **in**<!--keyword--> operator:
 
 ``` kotlin
 if (text in names) // names.contains(text) is called

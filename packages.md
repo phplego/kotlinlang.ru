@@ -27,7 +27,7 @@ If the package is not specified, the contents of such a file belong to "default"
 ## Imports
 
 Apart from the default imports, each file may contain its own import directives.
-Syntax for imports is described in the [grammar](grammar.html#imports).
+Syntax for imports is described in the [grammar](https://kotlinlang.org/docs/reference/grammar.html#imports).
 
 We can import either a single name, e.g.
 
@@ -41,7 +41,7 @@ or all the accessible contents of a scope (package, class, object etc):
 import foo.* // everything in 'foo' becomes accessible
 ```
 
-If there is a name clash, we can disambiguate by using *as*{: .keyword } keyword to locally rename the clashing entity:
+If there is a name clash, we can disambiguate by using **as**<!--keyword--> keyword to locally rename the clashing entity:
 
 ``` kotlin
 import foo.Bar // Bar is accessible
@@ -58,4 +58,4 @@ Unlike Java, Kotlin does not have a separate "import static" syntax; all of thes
 
 ## Visibility of Top-level Declarations
 
-If a top-level declaration is marked *private*{: .keyword }, it is private to the file it's declared in (see [Visibility Modifiers](visibility-modifiers.html)).
+If a top-level declaration is marked **private**<!--keyword-->, it is private to the file it's declared in (see [Visibility Modifiers](visibility-modifiers.html)).

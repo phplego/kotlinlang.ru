@@ -159,7 +159,7 @@ Like numbers, characters are boxed when a nullable reference is needed. Identity
 
 ## Booleans
 
-The type `Boolean` represents booleans, and has two values: *true*{: .keyword } and *false*{: .keyword }.
+The type `Boolean` represents booleans, and has two values: **true**<!--keyword--> and **false**<!--keyword-->.
 
 Booleans are boxed if a nullable reference is needed.
 
@@ -214,7 +214,7 @@ x[0] = x[1] + x[2]
 
 Strings are represented by the type `String`. Strings are immutable.
 Elements of a string are characters that can be accessed by the indexing operation: `s[i]`.
-A string can be iterated over with a *for*{: .keyword }-loop:
+A string can be iterated over with a **for**<!--keyword-->-loop:
 
 ``` kotlin
 for (c in str) {

@@ -9,8 +9,8 @@ title: "Control Flow"
 
 ## If Expression
 
-In Kotlin, *if*{: .keyword } is an expression, i.e. it returns a value.
-Therefore there is no ternary operator (condition ? then : else), because ordinary *if*{: .keyword } works fine in this role.
+In Kotlin, **if**<!--keyword--> is an expression, i.e. it returns a value.
+Therefore there is no ternary operator (condition ? then : else), because ordinary **if**<!--keyword--> works fine in this role.
 
 ``` kotlin
 // Traditional usage 
@@ -29,7 +29,7 @@ else
 val max = if (a > b) a else b
 ```
 
-*if*{: .keyword } branches can be blocks, and the last expression is the value of a block:
+**if**<!--keyword--> branches can be blocks, and the last expression is the value of a block:
 
 ``` kotlin
 val max = if (a > b) { 
@@ -42,14 +42,14 @@ val max = if (a > b) {
   }
 ```
 
-If you're using *if*{: .keyword } as an expression rather than a statement (for example, returning its value or
+If you're using **if**<!--keyword--> as an expression rather than a statement (for example, returning its value or
 assigning it to a variable), the expression is required to have an `else` branch.
 
-See the [grammar for *if*{: .keyword }](grammar.html#if).
+See the [grammar for **if**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#if).
 
 ## When Expression
 
-*when*{: .keyword } replaces the switch operator of C-like languages. In the simplest form it looks like this
+**when**<!--keyword--> replaces the switch operator of C-like languages. In the simplest form it looks like this
 
 ``` kotlin
 when (x) {
@@ -61,14 +61,14 @@ when (x) {
 }
 ```
 
-*when*{: .keyword } matches its argument against all branches consequently until some branch condition is satisfied.
-*when*{: .keyword } can be used either as an expression or as a statement. If it is used as an expression, the value
+**when**<!--keyword--> matches its argument against all branches consequently until some branch condition is satisfied.
+**when**<!--keyword--> can be used either as an expression or as a statement. If it is used as an expression, the value
 of the satisfied branch becomes the value of the overall expression. If it is used as a statement, the values of
-individual branches are ignored. (Just like with *if*{: .keyword }, each branch can be a block, and its value
+individual branches are ignored. (Just like with **if**<!--keyword-->, each branch can be a block, and its value
 is the value of the last expression in the block.)
 
-The *else*{: .keyword } branch is evaluated if none of the other branch conditions are satisfied.
-If *when*{: .keyword } is used as an expression, the *else*{: .keyword } branch is mandatory,
+The **else**<!--keyword--> branch is evaluated if none of the other branch conditions are satisfied.
+If **when**<!--keyword--> is used as an expression, the **else**<!--keyword--> branch is mandatory,
 unless the compiler can prove that all possible cases are covered with branch conditions.
 
 If many cases should be handled in the same way, the branch conditions may be combined with a comma:
@@ -89,7 +89,7 @@ when (x) {
 }
 ```
 
-We can also check a value for being *in*{: .keyword } or *!in*{: .keyword } a [range](ranges.html) or a collection:
+We can also check a value for being **in**<!--keyword--> or **!in**<!--keyword--> a [range](ranges.html) or a collection:
 
 ``` kotlin
 when (x) {
@@ -100,7 +100,7 @@ when (x) {
 }
 ```
 
-Another possibility is to check that a value *is*{: .keyword } or *!is*{: .keyword } of a particular type. Note that,
+Another possibility is to check that a value **is**<!--keyword--> or **!is**<!--keyword--> of a particular type. Note that,
 due to [smart casts](typecasts.html#smart-casts), you can access the methods and properties of the type without
 any extra checks.
 
@@ -111,7 +111,7 @@ val hasPrefix = when(x) {
 }
 ```
 
-*when*{: .keyword } can also be used as a replacement for an *if*{: .keyword }-*else*{: .keyword } *if*{: .keyword } chain.
+**when**<!--keyword--> can also be used as a replacement for an **if**<!--keyword-->-**else**<!--keyword--> **if**<!--keyword--> chain.
 If no argument is supplied, the branch conditions are simply boolean expressions, and a branch is executed when its condition is true:
 
 ``` kotlin
@@ -122,12 +122,12 @@ when {
 }
 ```
 
-See the [grammar for *when*{: .keyword }](grammar.html#when).
+See the [grammar for **when**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#when).
 
 
 ## For Loops
 
-*for*{: .keyword } loop iterates through anything that provides an iterator. The syntax is as follows:
+**for**<!--keyword--> loop iterates through anything that provides an iterator. The syntax is as follows:
 
 ``` kotlin
 for (item in collection)
@@ -142,7 +142,7 @@ for (item: Int in ints) {
 }
 ```
 
-As mentioned before, *for*{: .keyword } iterates through anything that provides an iterator, i.e.
+As mentioned before, **for**<!--keyword--> iterates through anything that provides an iterator, i.e.
 
 * has a member- or extension-function `iterator()`, whose return type
   * has a member- or extension-function `next()`, and
@@ -167,11 +167,11 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-See the [grammar for *for*{: .keyword }](grammar.html#for).
+See the [grammar for **for**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#for).
 
 ## While Loops
 
-*while*{: .keyword } and *do*{: .keyword }..*while*{: .keyword } work as usual
+**while**<!--keyword--> and **do**<!--keyword-->..**while**<!--keyword--> work as usual
 
 ``` kotlin
 while (x > 0) {
@@ -183,10 +183,10 @@ do {
 } while (y != null) // y is visible here!
 ```
 
-See the [grammar for *while*{: .keyword }](grammar.html#while).
+See the [grammar for **while**<!--keyword-->](https://kotlinlang.org/docs/reference/grammar.html#while).
 
 ## Break and continue in loops
 
-Kotlin supports traditional *break*{: .keyword } and *continue*{: .keyword } operators in loops. See [Returns and jumps](returns.html).
+Kotlin supports traditional **break**<!--keyword--> and **continue**<!--keyword--> operators in loops. See [Returns and jumps](returns.html).
 
 

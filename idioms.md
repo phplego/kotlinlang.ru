@@ -17,7 +17,7 @@ data class Customer(val name: String, val email: String)
 
 provides a `Customer` class with the following functionality:
 
-* getters (and setters in case of *var*{: .keyword }'s) for all properties
+** getters (and setters in case of *var**<!--keyword-->'s) for all properties
 * `equals()`
 * `hashCode()`
 * `toString()`
@@ -216,7 +216,7 @@ fun theAnswer(): Int {
 }
 ```
 
-This can be effectively combined with other idioms, leading to shorter code. E.g. with the *when*{: .keyword }-expression:
+This can be effectively combined with other idioms, leading to shorter code. E.g. with the **when**<!--keyword-->-expression:
 
 ``` kotlin
 fun transform(color: String): Int = when (color) {

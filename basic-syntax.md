@@ -98,7 +98,7 @@ fun main(args: Array<String>) {
 
 Смотрите [Строковые шаблоны](basic-types.html#string-templates).
 
-## Using conditional expressions
+## Использование условных выражений
 
 ``` kotlin
 fun max(a: Int, b: Int): Int {
@@ -108,20 +108,20 @@ fun max(a: Int, b: Int): Int {
     return b
 }
 ```
+Также **if** может быть использовано как выражение (т. е. **if** ... **else** возвращает значение):
 
-Using **if** as an expression:
 
 ``` kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-See [**if**<!--keyword-->-expressions](control-flow.html#if-expression).
+Смотрите [**if**<!--keyword-->-выражение](control-flow.html#if-expression).
 
-## Using nullable values and checking for **null**<!--keyword-->
+## Nullable значения и проверка на **null**<!--keyword-->
 
-A reference must be explicitly marked as nullable when **null**<!--keyword--> value is possible.
+Ссылка должна быть явно объявлена как nullable (символ `?`) когда она может принимать значение **null**.
 
-Return **null**<!--keyword--> if `str` does not hold an integer:
+Возвращает **null**<!--keyword--> если `str` не содержит числа:
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -129,44 +129,44 @@ fun parseInt(str: String): Int? {
 }
 ```
 
-Use a function returning nullable value:
+Использование функции возвращающей **null**:
 
 ``` kotlin
 fun main(args: Array<String>) {
   if (args.size < 2) {
-    print("Two integers expected")
+    print("Ожидается два целых числа")
     return
   }
 
   val x = parseInt(args[0])
   val y = parseInt(args[1])
 
-  // Using `x * y` yields error because they may hold nulls.
+  // Использование `x * y` приведет к ошибке, потомучто они могут содержать null
   if (x != null && y != null) {
-    // x and y are automatically cast to non-nullable after null check
+    // x и y автоматически приведены к не-nullable после проверки на null
     print(x * y)
   }
 }
 ```
 
-or
+или
 
 ``` kotlin
   // ...
   if (x == null) {
-    print("Wrong number format in '${args[0]}'")
+    print("Неверный формат числа у '${args[0]}'")
     return
   }
   if (y == null) {
-    print("Wrong number format in '${args[1]}'")
+    print("Неверный формат числа у '${args[1]}'")
     return
   }
 
-  // x and y are automatically cast to non-nullable after null check
+  // x и y автоматически приведены к не-nullable после проверки на null
   print(x * y)
 ```
 
-See [Null-safety](null-safety.html).
+Смотрите [Null-безопасность](null-safety.html).
 
 ## Using type checks and automatic casts
 

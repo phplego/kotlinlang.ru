@@ -187,7 +187,7 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-or
+или
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
@@ -199,7 +199,7 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-or even
+или даже
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
@@ -211,7 +211,7 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-See [Classes](classes.html) and [Type casts](typecasts.html).
+Смотрите [Классы](classes.html) и [Приведение типов](typecasts.html).
 
 ## Using a `for` loop
 

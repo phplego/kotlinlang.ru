@@ -168,10 +168,12 @@ fun main(args: Array<String>) {
 
 Смотрите [Null-безопасность](null-safety.html).
 
-## Using type checks and automatic casts
+<!-- ## Using type checks and automatic casts -->
+## Проверка типа и автоматическое приведение типов
 
-The **is**<!--keyword--> operator checks if an expression is an instance of a type.
-If an immutable local variable or property is checked for a specific type, there's no need to cast it explicitly:
+Оператор **is**<!--keyword--> проверяет, является ли выражение экземпляром заданного типа.
+Если неизменяемя локальная переменная или свойство уже проверены на определенный тип, то в дальнешйем коде нет небходимости
+явно приводить к этому типу:
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {

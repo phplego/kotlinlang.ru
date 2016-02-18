@@ -261,7 +261,7 @@ fun cases(obj: Any) {
 
 ## Использование диапазонов
 
-Check if a number is within a range using **in**<!--keyword--> operator:
+Проверка входит ли число в диапазон с помощью оператора **in**<!--keyword-->:
 
 ``` kotlin
 if (x in 1..y-1)
@@ -293,7 +293,7 @@ for (name in names)
   println(name)
 ```
 
-Checking if a collection contains an object using **in**<!--keyword--> operator:
+Проверка содержит ли коллекция данный объект с помощью оператора **in**<!--keyword-->:
 
 ``` kotlin
 if (text in names) // names.contains(text) is called

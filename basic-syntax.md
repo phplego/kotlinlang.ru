@@ -213,7 +213,7 @@ fun getStringLength(obj: Any): Int? {
 
 Смотрите [Классы](classes.html) и [Приведение типов](typecasts.html).
 
-## Using a `for` loop
+## Использование `for` цикла
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -222,16 +222,16 @@ fun main(args: Array<String>) {
 }
 ```
 
-or
+или
 
 ``` kotlin
 for (i in args.indices)
   print(args[i])
 ```
 
-See [for loop](control-flow.html#for-loops).
+Смотрите [цикл for](control-flow.html#for-loops).
 
-## Using a `while` loop
+## Использование `while` цикла
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -241,9 +241,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-See [while loop](control-flow.html#while-loops).
+Смотрите [цикл while](control-flow.html#while-loops).
 
-## Using `when` expression
+## Использование `when` выражения
 
 ``` kotlin
 fun cases(obj: Any) {
@@ -257,9 +257,9 @@ fun cases(obj: Any) {
 }
 ```
 
-See [when expression](control-flow.html#when-expression).
+Смотрите [when expression](control-flow.html#when-expression).
 
-## Using ranges
+## Использование диапазонов
 
 Check if a number is within a range using **in**<!--keyword--> operator:
 
@@ -268,25 +268,25 @@ if (x in 1..y-1)
   print("OK")
 ```
 
-Check if a number is out of range:
+Проверка числа на выход из диапазона:
 
 ``` kotlin
 if (x !in 0..array.lastIndex)
   print("Out")
 ```
 
-Iterating over a range:
+Итерация по диапазону:
 
 ``` kotlin
 for (x in 1..5)
   print(x)
 ```
 
-See [Ranges](ranges.html).
+Смотрите [Диапазоны](ranges.html).
 
-## Using collections
+## Использование коллекций
 
-Iterating over a collection:
+Итерация по коллекции:
 
 ``` kotlin
 for (name in names)
@@ -300,7 +300,7 @@ if (text in names) // names.contains(text) is called
   print("Yes")
 ```
 
-Using lambda expressions to filter and map collections:
+Используем лямбда выражение для фильтрации и создания карты коллекции:
 
 ``` kotlin
 names
@@ -310,5 +310,5 @@ names
     .forEach { print(it) }
 ```
 
-See [Higher-order functions and Lambdas](lambdas.html).
+Смотрите [Higher-order functions and Lambdas](lambdas.html).
 

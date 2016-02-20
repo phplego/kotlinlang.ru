@@ -5,33 +5,33 @@ category: "Basics"
 title: "Idioms"
 ---
 
-# Idioms
+# Идиомы
 
-A collection of random and frequently used idioms in Kotlin. If you have a favorite idiom, contribute it. Do a pull request.
+Набор различных часто используемых идиом в языке Kotlin. Если у вас есть любимая идиома, вы можете поделится ею здесь. Для этого нужно выполнить pull request.
 
-### Creating DTO's (POJO's/POCO's)
+### Создание DTO (он же POJO или POCO)
 
 ``` kotlin
 data class Customer(val name: String, val email: String)
 ```
 
-provides a `Customer` class with the following functionality:
+создаёт класс `Customer`, обладающий следующими возможностями:
 
-* getters (and setters in case of **var**<!--keyword-->'s) for all properties
-* `equals()`
-* `hashCode()`
-* `toString()`
-* `copy()`
-* `component1()`, `component2()`, ..., for all properties (see [Data classes](data-classes.html))
+* геттеры (и сеттеры в случае **var**<!--keyword-->'s) для всех свойств
+* метод `equals()`
+* метод `hashCode()`
+* метод `toString()`
+* метод `copy()`
+* методы `component1()`, `component2()`, и т.п. для всех свойств (см. [Data classes](data-classes.html))
 
 
-### Default values for function parameters
+### Значения по умолчанию для параметров функций
 
 ``` kotlin
 fun foo(a: Int = 0, b: String = "") { ... }
 ```
 
-### Filtering a list
+### Фильтрация списка
 
 ``` kotlin
 val positives = list.filter { x -> x > 0 }

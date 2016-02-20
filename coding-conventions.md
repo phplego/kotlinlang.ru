@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: Basics
-title: Стилистике кода
+title: Стилистика кода
 ---
 
 # Соглашение о стилистике кода

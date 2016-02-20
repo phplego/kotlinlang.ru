@@ -16,3 +16,4 @@ url: http://kotlin.su
 * [Официальный сайт языка Kotlin](https://kotlinlang.org) (англ.)
 * [Исходный код компилятора на GitHub](https://github.com/JetBrains/kotlin)
 * [Исходники англ. документации](https://github.com/JetBrains/kotlin-web-site/tree/master/docs/reference)
+* [Раздел на reddit.com, посвященный языку Kotlin](https://www.reddit.com/r/Kotlin)

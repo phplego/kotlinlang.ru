@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Basics"
-title: "Idioms"
+title: "Идиомы"
 ---
 
 # Идиомы

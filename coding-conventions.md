@@ -5,22 +5,22 @@ category: Basics
 title: Coding Conventions
 ---
 
-# Coding Conventions
+# Соглашение о стилистике кода
 
-This page contains the current coding style for the Kotlin language.
+Данная страница содержит описание текущего стиля написания кода на языке Kotlin.
 
-## Naming Style
-If in doubt default to the Java Coding Conventions such as:
+## Правила наименований
+При возникновении сомнений по умолчанию используется следующие правила Соглашение о стилистике кода для языка Java:
 
-* use of camelCase for names (and avoid underscore in names)
-* types start with upper case
-* methods and properties start with lower case
-* use 4 space indentation
-* public functions should have documentation such that it appears in Kotlin Doc
+* используйте camelCase в названиях (а также избегайте подчёркиваний)
+* названия типов пишутся с заглавной буквы
+* названия методов и свойств начинаются со строчной буквы
+* используйте отступ из 4 пробелов
+* функции, объявленный как public, желательно снабжать документацией в стиле документации языка Kotlin
 
-## Colon
+## Двоеточие
 
-There is a space before colon where colon separates type and supertype and there's no space where colon separates instance and type:
+В тех случаях, когда двоеточие разделяет тип и подтип, перед двоеточием ставится пробел. Если же двоеточие ставится между сущностью и типом, то пробел опускается:
 
 ``` kotlin
 interface Foo<out T : Any> : Bar {
@@ -28,24 +28,23 @@ interface Foo<out T : Any> : Bar {
 }
 ```
 
-## Lambdas
+## Лямбда-выражения
 
-In lambda expressions, spaces should be used around the curly braces, as well as around the arrow which separates the parameters
-from the body. Whenever possible, a lambda should be passed outside of parentheses.
+В лямбда-выражениях фигурные скобки, а также стрелка и параметры отделяются пробелами. Желательно передавать лямбду за пределами скобок.
 
 ``` kotlin
 list.filter { it > 10 }.map { element -> element * 2 }
 ```
 
-In lambdas which are short and not nested, it's recommended to use the `it` convention instead of declaring the parameter
-explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.
 
-## Unit
+В коротких лямбда-выражениях, не являющихся вложенными, рекомендуется использовать соглашение `it` вместо явного объявления параметра. Во вложенных лямбдах с параметрами последние всегда должны быть объявлены.
 
-If a function returns Unit, the return type should be omitted:
+## Тип Unit
+
+Если возвращаемым типом является Unit, то его можно явно не указывать:
 
 ``` kotlin
-fun foo() { // ": Unit" is omitted here
+fun foo() { // здесь пропущено ": Unit"
 
 }
 ```

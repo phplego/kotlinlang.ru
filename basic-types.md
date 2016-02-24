@@ -5,11 +5,11 @@ category: "Syntax"
 title: "Basic Types"
 ---
 
-# Basic Types
+# Основные типы
 
-In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable. Some types are built-in, because their implementation is optimized, but to the user they look like ordinary classes. In this section we describe most of these types: numbers, characters, booleans and arrays.
+В Kotlin всё является объектом, в том смысле, что пользователь может вызвать функцию или получить доступ к свойству любой переменной. Некоторые типы являются встроенными, т.к. их реализация оптимизирована, хотя для пользователя они выглядять как обычные классы. В данном разделе будут описаны большинство из этих типов: числа, символы, логические переменные и массивы.
 
-## Numbers
+## Числа
 
 Kotlin handles numbers in a way close to Java, but not exactly the same. For example, there are no implicit widening conversions for numbers, and literals are slightly different in some cases.
 

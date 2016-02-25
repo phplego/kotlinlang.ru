@@ -11,11 +11,11 @@ title: "Basic Types"
 
 ## Числа
 
-Kotlin handles numbers in a way close to Java, but not exactly the same. For example, there are no implicit widening conversions for numbers, and literals are slightly different in some cases.
+Kotlin обрабатывает численные типы примерно так же, как и Java, хотя некоторые различия всё же присутствуют. Например, отсутствует неявное расширяющее преобразование для чисел, а литералы в некоторых случаях немного отличаются.
 
-Kotlin provides the following built-in types representing numbers (this is close to Java):
+Для представления чисел в Kotlin используются следующие встроенные типы (это подобно Java):
 
-| Type	 | Bit width|
+| Тип	 | Количество бит|
 |--------|----------|
 | Double | 64       |
 | Float	 | 32       |
@@ -24,7 +24,7 @@ Kotlin provides the following built-in types representing numbers (this is close
 | Short	 | 16       |
 | Byte	 | 8        |
 
-Note that characters are not numbers in Kotlin.
+Обартите внимание, что символы (characters) не являются числами в Kotlin.
 
 ### Literal Constants
 

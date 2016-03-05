@@ -24,7 +24,7 @@ import java.util.*
 
 Смотри [Пакеты](packages.html).
 
-## Декларация функций
+## Объявление функций
 
 <!-- Function having two `Int` parameters with `Int` return type: -->
 Функция принимает два `Int` аргумента и возвращает `Int`: 
@@ -36,14 +36,14 @@ fun sum(a: Int, b: Int): Int {
 ```
 
 <!-- Function with an expression body and inferred return type: -->
-Функция с выражением в качестве тела и автоматически выведенным типом возврата:
+Функция с выражением в качестве тела и автоматически выведенным типом возвращаемого значения:
 
 ``` kotlin
 fun sum(a: Int, b: Int) = a + b
 ```
 
 <!-- Function returning no meaningful value: -->
-Функция не возвращающая никакого значения:
+Функция, не возвращающая никакого значения (аналог void в Java):
 
 ``` kotlin
 fun printSum(a: Int, b: Int): Unit {
@@ -129,7 +129,7 @@ fun parseInt(str: String): Int? {
 }
 ```
 
-Использование функции возвращающей **null**:
+Использование функции, возвращающей **null**:
 
 ``` kotlin
 fun main(args: Array<String>) {

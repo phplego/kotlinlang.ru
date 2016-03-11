@@ -67,19 +67,19 @@ val anotherBoxedA: Int? = a
 print(boxedA == anotherBoxedA) // Prints 'true'
 ```
 
-### Explicit Conversions
+### Явные преобразования
 
-Due to different representations, smaller types are not subtypes of bigger ones.
-If they were, we would have troubles of the following sort:
+Из-за разницы в представлениях меньшие типы не являются подтипами бОльших типов.
+В проивном случае, у нас возникли бы сложности:
 
 ``` kotlin
-// Hypothetical code, does not actually compile:
-val a: Int? = 1 // A boxed Int (java.lang.Integer)
-val b: Long? = a // implicit conversion yields a boxed Long (java.lang.Long)
-print(a == b) // Surprise! This prints "false" as Long's equals() check for other part to be Long as well
+// Возможный код, который на самом деле не скомпилируется:
+val a: Int? = 1 // "Обёрнутый" Int (java.lang.Integer)
+val b: Long? = a // неявное преобразование возвращает "обёрнутый" Long (java.lang.Long)
+print(a == b) // Нежданчик! Данное выражение выведет "false" т. к. метод equals() типа Long предполагает, что вторая часть выражения также имеет тип Long
 ```
 
-So not only identity, but even equality would have been lost silently all over the place.
+Таким образом, будет утрачена не только тождественность (равенсто по ссылке), но и равенство по значению.
 
 As a consequence, smaller types are NOT implicitly converted to bigger types.
 This means that we cannot assign a value of type `Byte` to an `Int` variable without an explicit conversion

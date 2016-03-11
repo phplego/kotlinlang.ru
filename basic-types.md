@@ -81,21 +81,21 @@ print(a == b) // Нежданчик! Данное выражение вывед�
 
 Таким образом, будет утрачена не только тождественность (равенсто по ссылке), но и равенство по значению.
 
-As a consequence, smaller types are NOT implicitly converted to bigger types.
-This means that we cannot assign a value of type `Byte` to an `Int` variable without an explicit conversion
+Как следствие, неявное преобразование меньших типов в большие НЕ происходит.
+Это значит, что мы не можем присвоить значение типа `Byte`переменной типа `Int` без явного преобразования:
 
 ``` kotlin
-val b: Byte = 1 // OK, literals are checked statically
-val i: Int = b // ERROR
+val b: Byte = 1 // порядок, литералы проверяются статически
+val i: Int = b // ОШИБКА
 ```
 
-We can use explicit conversions to widen numbers
+Мы можем использовать явное преобразование для "сужения" чисел
 
 ``` kotlin
-val i: Int = b.toInt() // OK: explicitly widened
+val i: Int = b.toInt() // порядок: число явно сужено
 ```
 
-Every number type supports the following conversions:
+Каждый численный тип поддерживает следующие преобразования:
 
 * `toByte(): Byte`
 * `toShort(): Short`
@@ -105,73 +105,73 @@ Every number type supports the following conversions:
 * `toDouble(): Double`
 * `toChar(): Char`
 
-Absence of implicit conversions is rarely noticeable because the type is inferred from the context, and arithmetical operations are overloaded for appropriate conversions, for example
+Отсутствие неявного преобразования редко просается в глаза, поскольку тип выводится из контекста, а арифметические действия перегружаются для подходящих преобразований, например:
 
 ``` kotlin
 val l = 1L + 3 // Long + Int => Long
 ```
 
-### Operations
+### Арифметические действия
 
-Kotlin supports the standard set of arithmetical operations over numbers, which are declared as members of appropriate classes (but the compiler optimizes the calls down to the corresponding instructions).
-See [Operator overloading](operator-overloading.html).
+Kotlin поддерживает обычный набор арифметических действий над числами, которые объявлены членами соответствующего класса (тем не менее, компилятор оптимизирует вызовы вплоть до соответствущих инструкций).
+См. [Перегрузка операторов](operator-overloading.html).
 
-As of bitwise operations, there're no special characters for them, but just named functions that can be called in infix form, for example:
+Что касается битовых операций, то вместо особых обозначений для них исползуются именованые функции, котоыре могут быть вызваны в инфиксной форме, к примеру:
 
 ``` kotlin
 val x = (1 shl 2) and 0x000FF000
 ```
 
-Here is the complete list of bitwise operations (available for `Int` and `Long` only):
+Ниже приведён полный список битовых операций (доступны только для типов `Int` и `Long`):
 
-* `shl(bits)` – signed shift left (Java's `<<`)
-* `shr(bits)` – signed shift right (Java's `>>`)
-* `ushr(bits)` – unsigned shift right (Java's `>>>`)
-* `and(bits)` – bitwise and
-* `or(bits)` – bitwise or
-* `xor(bits)` – bitwise xor
-* `inv()` – bitwise inversion
+* `shl(bits)` – сдвиг влево с учётом знака (`<<` в Java)
+* `shr(bits)` – сдвиг вправо с учётом знака (`>>` в Java)
+* `ushr(bits)` – сдвиг вправо без учёта знака (`>>>` в Java)
+* `and(bits)` – побитовое И
+* `or(bits)` – побитовое ИЛИ
+* `xor(bits)` – побитовое исключающее ИЛИ
+* `inv()` – побитовое отрицание
 
-## Characters
+## Символы
 
-Characters are represented by the type `Char`. They can not be treated directly as numbers
+Символы в Kotlin представлены типом `Char`. Напрямую они не могут рассматриваться в качестве чисел
 
 ``` kotlin
 fun check(c: Char) {
-  if (c == 1) { // ERROR: incompatible types
+  if (c == 1) { // ОШИБКА: несовместимый тип
     // ...
   }
 }
 ```
 
-Character literals go in single quotes: `'1'`, `'\n'`, `'\uFF00'`.
-We can explicitly convert a character to an `Int` number
+Символьные литералы записываются в одинарных кавычках: `'1'`, `'\n'`, `'\uFF00'`.
+Мы можем явно привести символ в число типа `Int`
 
 ``` kotlin
 fun decimalDigitValue(c: Char): Int {
   if (c !in '0'..'9')
-    throw IllegalArgumentException("Out of range")
-  return c.toInt() - '0'.toInt() // Explicit conversions to numbers
+    throw IllegalArgumentException("Вне диапазона")
+  return c.toInt() - '0'.toInt() // Явные преобразования в число
 }
 ```
 
-Like numbers, characters are boxed when a nullable reference is needed. Identity is not preserved by the boxing operation.
+Подобно числам, символы оборачиваются при необходимости использования nullable ссылки. При использовании обёрток тождественность (равенство по ссылке) не сохраняется.
 
-## Booleans
+## Логический тип
 
-The type `Boolean` represents booleans, and has two values: **true**<!--keyword--> and **false**<!--keyword-->.
+Тип `Boolean` представляет логический тип данных и принимает два значения: **true**<!--keyword--> и **false**<!--keyword-->.
 
-Booleans are boxed if a nullable reference is needed.
+При необходимости использования nullable ссылок логические переменные оборачиваются.
 
-Built-in operations on booleans include
+Встроенные действия над логическими переменными включают
 
-* `||` – lazy disjunction
-* `&&` – lazy conjunction
-* `!` - negation
+* `||` – ленивое логическое ИЛИ
+* `&&` – ленивое логическое И
+* `!` - отрицание
 
-## Arrays
+## Массивы
 
-Arrays in Kotlin are represented by the `Array` class, that has `get` and `set` functions (that turn into `[]` by operator overloading conventions), and `size` property, along with a few other useful member functions:
+Массивы в Kotlin представлены классом `Array`, обладающего функциями `get` и `set` (которые обозначаются `[]` согласно соглашению о перегрузке операторов), и свойством `size`, а также несколькими полезными встроенными функциями:
 
 ``` kotlin
 class Array<T> private constructor() {

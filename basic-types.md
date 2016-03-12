@@ -184,26 +184,23 @@ class Array<T> private constructor() {
 }
 ```
 
-To create an array, we can use a library function `arrayOf()` and pass the item values to it, so that `arrayOf(1, 2, 3)` creates an array [1, 2, 3].
-Alternatively, the `arrayOfNulls()` library function can be used to create an array of a given size filled with null elements.
+Для создания массива мы можем использовать библиотечную функцию `arrayOf()`, которой в качестве аргумента передаются элементы массива, т. е. выполнение `arrayOf(1, 2, 3)` создаёт массив [1, 2, 3].
+С другой стороны библиотечная функция `arrayOfNulls()` может быть использована для создания массива заданного размера, заполненного значениями null.
 
-Another option is to use a factory function that takes the array size and the function that can return the initial value
-of each array element given its index:
+Также для создания массива можно использовать фабричную функцию, которая принимает размер массива и функцию, возращающую начальное значение каждого элемента по его индексу:
 
 ``` kotlin
-// Creates an Array<String> with values ["0", "1", "4", "9", "16"]
+// создаёт массив типа Array<String> со значениями ["0", "1", "4", "9", "16"]
 val asc = Array(5, { i -> (i * i).toString() })
 ```
 
-As we said above, the `[]` operation stands for calls to member functions `get()` and `set()`.
+Как отмечено выше, оператор `[]` используется вместо вызовов встроенных функций `get()` и `set()`.
 
-Note: unlike Java, arrays in Kotlin are invariant. This means that Kotlin does not let us assign an `Array<String>`
-to an `Array<Any>`, which prevents a possible runtime failure (but you can use `Array<out Any>`, 
-see [Type Projections](generics.html#type-projections)).
+Обратите внимание: в отличие от Java массивы в Kotlin являются неизменяемыми. Это значит, что Kotlin запрещает нам присваивать значение `Array<String>` массиву типа `Array<Any>`, предотвращая такми образом возможный отказ во время исполнения (хот вы можете использовать `Array<out Any>`, 
+см. [Type Projections](generics.html#type-projections)).
 
-Kotlin also has specialized classes to represent arrays of primitive types without boxing overhead: `ByteArray`,
-`ShortArray`, `IntArray` and so on. These classes have no inheritance relation to the `Array` class, but they
-have the same set of methods and properties. Each of them also has a corresponding factory function:
+Также в Kotlin есть особые классы для представления массивов примитивных типов без дополнительных затрат на оборачивание: `ByteArray`,
+`ShortArray`, `IntArray` и т. д. Данные классы не наследуют класс `Array`, хотя и обладают тем же набором методов и свойств. У каждого из них есть соответствующая фабричная функция:
 
 ``` kotlin
 val x: IntArray = intArrayOf(1, 2, 3)

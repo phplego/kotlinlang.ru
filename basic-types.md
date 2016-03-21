@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Basic Types"
+title: "Основные типы"
 ---
 
 # Основные типы

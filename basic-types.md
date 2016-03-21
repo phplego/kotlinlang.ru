@@ -207,11 +207,11 @@ val x: IntArray = intArrayOf(1, 2, 3)
 x[0] = x[1] + x[2]
 ```
 
-## Strings
+## Строки
 
-Strings are represented by the type `String`. Strings are immutable.
-Elements of a string are characters that can be accessed by the indexing operation: `s[i]`.
-A string can be iterated over with a **for**<!--keyword-->-loop:
+Строки в Kotlin представлены типом `String`. Строки являются неизменяемыми.
+Строки состоят из символов, которые могут быть получены по порядковому номеру: `s[i]`.
+Проход по строке выполняется циклом **for**<!--keyword-->:
 
 ``` kotlin
 for (c in str) {
@@ -219,17 +219,17 @@ for (c in str) {
 }
 ```
 
-### String Literals
+### Строковые литералы
 
-Kotlin has two types of string literals: escaped strings that may have escaped characters in them and raw strings that can contain newlines and arbitrary text. An escaped string is very much like a Java string:
+В Kotlin представлены два типа строковых литералов: строки с экранированными символами и обычные строки, могущие содержать символы новой строки и произвольный текст. Экранированная строка очень похожа на строку в Java:
 
 ``` kotlin
 val s = "Hello, world!\n"
 ```
 
-Escaping is done in the conventional way, with a backslash.
+Экранирование выполняется общепринятым способом, а именно с помощью обратной косой черты.
 
-A raw string is delimited by a triple quote (`"""`), contains no escaping and can contain newlines and any other characters:
+Обычная строка выделена тройной кавычкой (`"""`), не содержит экранированных символов, но может содержать символы новой строки и любые другие символы:
 
 ``` kotlin
 val text = """
@@ -239,25 +239,25 @@ val text = """
 ```
 
 
-### String Templates
+### Строковые шаблоны
 
-Strings may contain template expressions, i.e. pieces of code that are evaluated and whose results are concatenated into the string.
-A template expression starts with a dollar sign ($) and consists of either a simple name:
+Строки могут содержать шаблонные выражение, т.е. участки кода, которые оцениваются, а полученный результат встраивается в строку.
+Шаблон начинается со знака доллара ($) и состоит либо из простого имени (например, переменной):
 
 ``` kotlin
 val i = 10
 val s = "i = $i" // evaluates to "i = 10"
 ```
 
-or an arbitrary expression in curly braces:
+либо из произвольного выражения в фигурных скобках:
 
 ``` kotlin
 val s = "abc"
 val str = "$s.length is ${s.length}" // evaluates to "abc.length is 3"
 ```
 
-Templates are supported both inside raw strings and inside escaped strings.
-If you need to represent a literal `$` character, you can use the following syntax:
+Шаблоны поддерживаются как в обычных, так и в экранированных строках.
+При необходимости символ `$` может быть представлен с помощью следующего синтаксиса:
 
 ``` kotlin
 val price = "${'$'}9.99"

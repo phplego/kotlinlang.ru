@@ -2,12 +2,12 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Packages"
+title: "Пакеты"
 ---
 
-# Packages
+# Пакеты
 
-A source file may start with a package declaration:
+Файл с исходным кодом может начинаться с объявления пакета:
 
 ``` kotlin
 package foo.bar
@@ -19,12 +19,13 @@ class Goo {}
 // ...
 ```
 
-All the contents (such as classes and functions) of the source file are contained by the package declared.
-So, in the example above, the full name of `baz()` is `foo.bar.baz`, and the full name of `Goo` is `foo.bar.Goo`. 
+Всё содержимое файла с исходниками (например, классы и функции) располагается в объявленном пакете.
+Таким образом, в приведённом выше примере полное имя функции `baz()` 
+So, in the example above, the full name of `baz()` is `foo.bar.baz`, а полное имя класса `Goo` - `foo.bar.Goo`. 
  
-If the package is not specified, the contents of such a file belong to "default" package that has no name.
+Если файл не содержит явного объявления пакета, то его содержимое находится в безымянном "пакете по умолчанию".
 
-## Imports
+## Импорт
 
 Apart from the default imports, each file may contain its own import directives.
 Syntax for imports is described in the [grammar](https://kotlinlang.org/docs/reference/grammar.html#imports).

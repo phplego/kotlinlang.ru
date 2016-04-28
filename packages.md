@@ -27,36 +27,36 @@ So, in the example above, the full name of `baz()` is `foo.bar.baz`, а полн
 
 ## Импорт
 
-Apart from the default imports, each file may contain its own import directives.
-Syntax for imports is described in the [grammar](https://kotlinlang.org/docs/reference/grammar.html#imports).
+Помимо импорта по умолчанию каждый файл может содержать свои собственные объявления импорта.
+Синтакс импорта описан а разделе [Грамматика](https://kotlinlang.org/docs/reference/grammar.html#imports).
 
-We can import either a single name, e.g.
+Мы можем импортировать одно имя, например
 
 ``` kotlin
 import foo.Bar // Bar is now accessible without qualification
 ```
 
-or all the accessible contents of a scope (package, class, object etc):
+или доступное содержимое пространства имён (пакет, класс, объект и т.д.):
 
 ``` kotlin
 import foo.* // everything in 'foo' becomes accessible
 ```
 
-If there is a name clash, we can disambiguate by using **as**<!--keyword--> keyword to locally rename the clashing entity:
+При совпадении имён мы можем разрешить коллизию используя ключевое слово **as**<!--keyword--> для локального переименования совпадающей сущности:
 
 ``` kotlin
-import foo.Bar // Bar is accessible
-import bar.Bar as bBar // bBar stands for 'bar.Bar'
+import foo.Bar // Bar доступен
+import bar.Bar as bBar // bBar заменяет имя 'bar.Bar'
 ```
 
-The `import` keyword is not restricted to importing classes; you can also use it to import other declarations:
+Ключевое слово `import` можно использовать не только с классами, но и с другими объявлениями:
 
-  * top-level functions and properties;
-  * functions and properties declared in [object declarations](object-declarations.html#object-declarations);
-  * [enum constants](enum-classes.html)
+  * функции и свойства верхнего уровня;
+  * функции и свойства объявленные в [объявлениях объектов](object-declarations.html#object-declarations);
+  * [пеерчислениях](enum-classes.html)
 
-Unlike Java, Kotlin does not have a separate "import static" syntax; all of these declarations are imported using the regular `import` keyword.
+В отличие от  Java, Kotlin не предоставляет отдельного объявления статического импорта "import static"; все подобные объявления испортируются ключевым словом `import`.
 
-## Visibility of Top-level Declarations
+## Область видимости объявлений верхнего уровня
 
-If a top-level declaration is marked **private**<!--keyword-->, it is private to the file it's declared in (see [Visibility Modifiers](visibility-modifiers.html)).
+Если объявление верхнего уровня отмечено как **private**<!--keyword-->, то оно является private в файле, в котором оно объявлено (см. [Модификаторы области видимости](visibility-modifiers.html)).

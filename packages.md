@@ -53,7 +53,7 @@ import bar.Bar as bBar // bBar заменяет имя 'bar.Bar'
 
   * функции и свойства верхнего уровня;
   * функции и свойства объявленные в [объявлениях объектов](object-declarations.html#object-declarations);
-  * [пеерчислениях](enum-classes.html)
+  * [перечислениях](enum-classes.html)
 
 В отличие от  Java, Kotlin не предоставляет отдельного объявления статического импорта "import static"; все подобные объявления испортируются ключевым словом `import`.
 

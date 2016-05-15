@@ -13,31 +13,31 @@ title: "Control Flow"
 Это позволяет отказаться от тернарного оператора (условие ? условие истинно : условие ложно), поскольку выражению **if**<!--keyword--> по силам его заменить.
 
 ``` kotlin
-// Traditional usage 
+// обычное использование 
 var max = a 
 if (a < b) 
   max = b 
  
-// With else 
+// с блоком else 
 var max: Int
 if (a > b) 
   max = a 
 else 
   max = b 
  
-// As expression 
+// в виде выражения 
 val max = if (a > b) a else b
 ```
 
-**if**<!--keyword--> branches can be blocks, and the last expression is the value of a block:
+"Ветви" выражения **if**<!--keyword--> могут содержать несколько строк кода, при этом при этом последнее выражение является значением блока:
 
 ``` kotlin
 val max = if (a > b) { 
-    print("Choose a") 
+    print("возвращаем a") 
     a 
   } 
   else { 
-    print("Choose b") 
+    print("возвращаем b") 
     b 
   }
 ```

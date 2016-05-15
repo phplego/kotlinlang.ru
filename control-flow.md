@@ -5,12 +5,12 @@ category: "Syntax"
 title: "Control Flow"
 ---
 
-# Control Flow
+# Управляющие инструкции
 
-## If Expression
+## Условное выражение If
 
-In Kotlin, **if**<!--keyword--> is an expression, i.e. it returns a value.
-Therefore there is no ternary operator (condition ? then : else), because ordinary **if**<!--keyword--> works fine in this role.
+В языке Kotlin, ключевое слово **if**<!--keyword--> является выражение, т.е. оно возвращает значение.
+Это позволяет отказаться от тернарного оператора (условие ? условие истинно : условие ложно), поскольку выражению **if**<!--keyword--> по силам его заменить.
 
 ``` kotlin
 // Traditional usage 

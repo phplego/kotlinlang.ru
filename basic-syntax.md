@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Basics"
-title: "Базовый синтаксис"
+title: "Основной синтаксис"
 ---
       
-# Базовый синтаксис
+# Основной синтаксис
 
 ## Определение имени пакета
 
@@ -22,12 +22,12 @@ import java.util.*
 Но в отличие от Java нет необходимости, чтобы стуктура пакетов совпадала со структурой папок:
 исходные файлы могут располагаться в произвольном месте на диске.
 
-Смотри [Пакеты](packages.html).
+См. [Пакеты](packages.html).
 
 ## Объявление функций
 
 <!-- Function having two `Int` parameters with `Int` return type: -->
-Функция принимает два `Int` аргумента и возвращает `Int`: 
+Функция принимает два аргумента `Int` и возвращает `Int`: 
 
 ``` kotlin
 fun sum(a: Int, b: Int): Int {
@@ -43,7 +43,7 @@ fun sum(a: Int, b: Int) = a + b
 ```
 
 <!-- Function returning no meaningful value: -->
-Функция, не возвращающая никакого значения (аналог void в Java):
+Функция, не возвращающая никакого значения (void в Java):
 
 ``` kotlin
 fun printSum(a: Int, b: Int): Unit {
@@ -52,7 +52,7 @@ fun printSum(a: Int, b: Int): Unit {
 ```
 
 <!-- `Unit` return type can be omitted: -->
-Тип возврата `Unit` может быть опущен: 
+Тип возвращаемого значения `Unit` может быть опущен: 
 
 ``` kotlin
 fun printSum(a: Int, b: Int) {
@@ -60,7 +60,7 @@ fun printSum(a: Int, b: Int) {
 }
 ```
 
-Смотри [Функции](functions.html).
+См. [Функции](functions.html).
 
 ## Определение локальных переменных
 
@@ -82,7 +82,7 @@ var x = 5 // Тип `Int` выведен автоматически
 x += 1
 ```
 
-Смотрите также [Свойства и поля](properties.html).
+См. [Свойства и поля](properties.html).
 
 ## Использование строковых шаблонов
 
@@ -96,7 +96,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-Смотрите [Строковые шаблоны](basic-types.html#string-templates).
+См. [Строковые шаблоны](basic-types.html#string-templates).
 
 ## Использование условных выражений
 
@@ -115,9 +115,9 @@ fun max(a: Int, b: Int): Int {
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-Смотрите [**if**<!--keyword-->-выражение](control-flow.html#if-expression).
+См. [Выражение **if**<!--keyword-->](control-flow.html#if-expression).
 
-## Nullable значения и проверка на **null**<!--keyword-->
+## Nullable-значения и проверка на **null**<!--keyword-->
 
 Ссылка должна быть явно объявлена как nullable (символ `?`) когда она может принимать значение **null**.
 
@@ -166,7 +166,7 @@ fun main(args: Array<String>) {
   print(x * y)
 ```
 
-Смотрите [Null-безопасность](null-safety.html).
+См. [Null-безопасность](null-safety.html).
 
 <!-- ## Using type checks and automatic casts -->
 ## Проверка типа и автоматическое приведение типов
@@ -211,9 +211,9 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-Смотрите [Классы](classes.html) и [Приведение типов](typecasts.html).
+См. [Классы](classes.html) и [Приведение типов](typecasts.html).
 
-## Использование `for` цикла
+## Использование цикла `for`
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -229,9 +229,9 @@ for (i in args.indices)
   print(args[i])
 ```
 
-Смотрите [цикл for](control-flow.html#for-loops).
+См. [цикл for](control-flow.html#for-loops).
 
-## Использование `while` цикла
+## Использование цикла `while`
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -241,9 +241,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-Смотрите [цикл while](control-flow.html#while-loops).
+См. [цикл while](control-flow.html#while-loops).
 
-## Использование `when` выражения
+## Использование выражения `when`
 
 ``` kotlin
 fun cases(obj: Any) {
@@ -257,7 +257,7 @@ fun cases(obj: Any) {
 }
 ```
 
-Смотрите [when expression](control-flow.html#when-expression).
+См. [выражение when](control-flow.html#when-expression).
 
 ## Использование диапазонов
 
@@ -275,14 +275,14 @@ if (x !in 0..array.lastIndex)
   print("Out")
 ```
 
-Итерация по диапазону:
+Проход по диапазону:
 
 ``` kotlin
 for (x in 1..5)
   print(x)
 ```
 
-Смотрите [Диапазоны](ranges.html).
+См. [Диапазоны](ranges.html).
 
 ## Использование коллекций
 
@@ -310,5 +310,5 @@ names
     .forEach { print(it) }
 ```
 
-Смотрите [Higher-order functions and Lambdas](lambdas.html).
+См. [Функции высшего порядка и лямбды](lambdas.html).
 

@@ -61,10 +61,7 @@ when (x) {
 ```
 
 Выражение **when**<!--keyword--> последовательно сравнивает аргумент со всеми указанными значениями до удовлетворения одного из условий.
-**when**<!--keyword--> can be used either as an expression or as a statement. If it is used as an expression, the value
-of the satisfied branch becomes the value of the overall expression. If it is used as a statement, the values of
-individual branches are ignored. (Just like with **if**<!--keyword-->, each branch can be a block, and its value
-is the value of the last expression in the block.)
+**when**<!--keyword--> можно использовать и как выражение, и как оператор. При использовании в виде выражения значение ветки, удовлетворяющей условию, становится значением всего выражения. При использовании в виде оператора, значения отдельных веток отбрасываются. (В точности как **if**<!--keyword-->: каждая ветвь может быть блоком и её значением является значение последнего выражения блока.)
 
 The **else**<!--keyword--> branch is evaluated if none of the other branch conditions are satisfied.
 If **when**<!--keyword--> is used as an expression, the **else**<!--keyword--> branch is mandatory,

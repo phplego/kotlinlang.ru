@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Control Flow"
+title: "Управляющие инструкции"
 ---
 
 # Управляющие инструкции
@@ -42,26 +42,25 @@ val max = if (a > b) {
   }
 ```
 
-If you're using **if**<!--keyword--> as an expression rather than a statement (for example, returning its value or
-assigning it to a variable), the expression is required to have an `else` branch.
+Если вы используете конструкцию **if**<!--keyword--> в качестве выражения (например, возвращая его значение или присваивая его переменной), то использование ветки `else` является обязательным.
 
-See the [grammar for **if**<!--keyword-->](grammar.html#if).
+См. [grammar for **if**<!--keyword-->](grammar.html#if).
 
-## When Expression
+## Условное выражение when
 
-**when**<!--keyword--> replaces the switch operator of C-like languages. In the simplest form it looks like this
+Ключевое слово **when**<!--keyword--> призвано заменить оператор switch, присутствующий в C-подобных языках. В простейшем виде его использование выглядит так
 
 ``` kotlin
 when (x) {
   1 -> print("x == 1")
   2 -> print("x == 2")
-  else -> { // Note the block
+  else -> { // обратите внимание на блок
     print("x is neither 1 nor 2")
   }
 }
 ```
 
-**when**<!--keyword--> matches its argument against all branches sequentially until some branch condition is satisfied.
+Выражение **when**<!--keyword--> последовательно сравнивает аргумент со всеми указанными значениями до удовлетворения одного из условий.
 **when**<!--keyword--> can be used either as an expression or as a statement. If it is used as an expression, the value
 of the satisfied branch becomes the value of the overall expression. If it is used as a statement, the values of
 individual branches are ignored. (Just like with **if**<!--keyword-->, each branch can be a block, and its value

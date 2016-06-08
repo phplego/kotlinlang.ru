@@ -63,11 +63,11 @@ when (x) {
 Выражение **when**<!--keyword--> последовательно сравнивает аргумент со всеми указанными значениями до удовлетворения одного из условий.
 **when**<!--keyword--> можно использовать и как выражение, и как оператор. При использовании в виде выражения значение ветки, удовлетворяющей условию, становится значением всего выражения. При использовании в виде оператора, значения отдельных веток отбрасываются. (В точности как **if**<!--keyword-->: каждая ветвь может быть блоком и её значением является значение последнего выражения блока.)
 
-The **else**<!--keyword--> branch is evaluated if none of the other branch conditions are satisfied.
-If **when**<!--keyword--> is used as an expression, the **else**<!--keyword--> branch is mandatory,
-unless the compiler can prove that all possible cases are covered with branch conditions.
+Значение ветки **else**<!--keyword--> вычисляется в том случае, когда ни одно из условий в других ветках не удовлетворено.
+Если **when**<!--keyword--> используется как выражение, то ветка **else**<!--keyword--> является обязательной, за исключением случаев, в которых компилятор может убедиться, что ветки покрывают все возможные значения. 
 
-If many cases should be handled in the same way, the branch conditions may be combined with a comma:
+
+Если для нескольких значений выполняется одно и тоже действие, то условия можно перечислять в одной ветке через запятую:
 
 ``` kotlin
 when (x) {
@@ -76,7 +76,7 @@ when (x) {
 }
 ```
 
-We can use arbitrary expressions (not only constants) as branch conditions
+Помимо констант в ветках можно использовать произвольные выражения
 
 ``` kotlin
 when (x) {
@@ -85,7 +85,7 @@ when (x) {
 }
 ```
 
-We can also check a value for being **in**<!--keyword--> or **!in**<!--keyword--> a [range](ranges.html) or a collection:
+Также можно проверять вхождение аргумента в [промежуток](ranges.html) **in**<!--keyword--> или **!in**<!--keyword--> или его наличие в коллекции:
 
 ``` kotlin
 when (x) {
@@ -96,9 +96,7 @@ when (x) {
 }
 ```
 
-Another possibility is to check that a value **is**<!--keyword--> or **!is**<!--keyword--> of a particular type. Note that,
-due to [smart casts](typecasts.html#smart-casts), you can access the methods and properties of the type without
-any extra checks.
+Помимо этого Кotlin позволяет с момощью **is**<!--keyword--> or **!is**<!--keyword--> проверить тип аргумента. Обратите внимание, что благодаря [smart casts](typecasts.html#smart-casts), вы можете получить доступ к методам и свойствам типа без дополнительной проверки.
 
 ```kotlin
 val hasPrefix = when(x) {
@@ -107,8 +105,7 @@ val hasPrefix = when(x) {
 }
 ```
 
-**when**<!--keyword--> can also be used as a replacement for an **if**<!--keyword-->-**else**<!--keyword--> **if**<!--keyword--> chain.
-If no argument is supplied, the branch conditions are simply boolean expressions, and a branch is executed when its condition is true:
+**when**<!--keyword--> удобно использовать вместо цепочки условий вида **if**<!--keyword-->-**else**<!--keyword--> **if**<!--keyword-->. При отстутствии аргумента, условия работают как простые логические выражения, а тело ветки выполняется при его истинности:
 
 ``` kotlin
 when {
@@ -118,12 +115,12 @@ when {
 }
 ```
 
-See the [grammar for **when**<!--keyword-->](grammar.html#when).
+См. [grammar for **when**<!--keyword-->](grammar.html#when).
 
 
-## For Loops
+## Циклы for
 
-**for**<!--keyword--> loop iterates through anything that provides an iterator. The syntax is as follows:
+Цикл **for**<!--keyword--> обеспечивает перебор всех значений, поставляеміх итератором. The syntax is as follows:
 
 ``` kotlin
 for (item in collection)

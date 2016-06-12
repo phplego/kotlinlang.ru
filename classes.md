@@ -13,7 +13,7 @@ related:
 
 ## Classes
 
-Classes in Kotlin are declared using the keyword *class*{: .keyword }:
+Classes in Kotlin are declared using the keyword **class**:
 
 ``` kotlin
 class Invoice {
@@ -39,7 +39,7 @@ class Person constructor(firstName: String) {
 }
 ```
 
-If the primary constructor does not have any annotations or visibility modifiers, the *constructor*{: .keyword }
+If the primary constructor does not have any annotations or visibility modifiers, the **constructor**
 keyword can be omitted:
 
 ``` kotlin
@@ -48,7 +48,7 @@ class Person(firstName: String) {
 ```
 
 The primary constructor cannot contain any code. Initialization code can be placed
-in **initializer blocks**, which are prefixed with the *init*{: .keyword } keyword:
+in **initializer blocks**, which are prefixed with the **init**keyword:
 
 ``` kotlin
 class Customer(name: String) {
@@ -77,9 +77,9 @@ class Person(val firstName: String, val lastName: String, var age: Int) {
 ```
 
 Much the same way as regular properties, the properties declared in the primary constructor can be
-mutable (*var*{: .keyword }) or read-only (*val*{: .keyword }).
+mutable (**var**) or read-only (**val**).
 
-If the constructor has annotations or visibility modifiers, the *constructor*{: .keyword } keyword is required, and
+If the constructor has annotations or visibility modifiers, the **constructor** keyword is required, and
 the modifiers go before it:
 
 ``` kotlin
@@ -91,7 +91,7 @@ For more details, see [Visibility Modifiers](visibility-modifiers.html#construct
 
 #### Secondary Constructors
 
-The class can also declare **secondary constructors**, which are prefixed with *constructor*{: .keyword }:
+The class can also declare **secondary constructors**, which are prefixed with **constructor**:
 
 ``` kotlin
 class Person {
@@ -103,7 +103,7 @@ class Person {
 
 If the class has a primary constructor, each secondary constructor needs to delegate to the primary constructor, either
 directly or indirectly through another secondary constructor(s). Delegation to another constructor of the same class
-is done using the *this*{: .keyword } keyword:
+is done using the **this** keyword:
 
 ``` kotlin
 class Person(val name: String) {
@@ -129,7 +129,7 @@ class DontCreateMe private constructor () {
 > ``` kotlin
 > class Customer(val customerName: String = "")
 > ```
-{:.info}
+
 
 ### Creating instances of classes
 
@@ -141,7 +141,7 @@ val invoice = Invoice()
 val customer = Customer("Joe Smith")
 ```
 
-Note that Kotlin does not have a *new*{: .keyword } keyword.
+Note that Kotlin does not have a **new** keyword.
 
 
 ### Class Members
@@ -178,7 +178,7 @@ If the class has a primary constructor, the base type can (and must) be initiali
 using the parameters of the primary constructor.
 
 If the class has no primary constructor, then each secondary constructor has to initialize the base type
-using the *super*{: .keyword } keyword, or to delegate to another constructor which does that.
+using the **super** keyword, or to delegate to another constructor which does that.
 Note that in this case different secondary constructors can call different constructors of the base type:
 
 ``` kotlin
@@ -191,7 +191,7 @@ class MyView : View {
 }
 ```
 
-The *open*{: .keyword } annotation on a class is the opposite of Java's *final*{: .keyword }: it allows others
+The **open** annotation on a class is the opposite of Java's **final**: it allows others
 to inherit from this class. By default, all classes in Kotlin are final, which
 corresponds to [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),
 Item 17: *Design and document for inheritance or else prohibit it*.
@@ -211,11 +211,11 @@ class Derived() : Base() {
 }
 ```
 
-The *override*{: .keyword } annotation is required for `Derived.v()`. If it were missing, the compiler would complain.
-If there is no *open*{: .keyword } annotation on a function, like `Base.nv()`, declaring a method with the same signature in a subclass is illegal,
-either with *override*{: .keyword } or without it. In a final class (e.g. a class with no *open*{: .keyword } annotation), open members are prohibited.
+The **override** annotation is required for `Derived.v()`. If it were missing, the compiler would complain.
+If there is no **open** annotation on a function, like `Base.nv()`, declaring a method with the same signature in a subclass is illegal,
+either with **override** or without it. In a final class (e.g. a class with no **open** annotation), open members are prohibited.
 
-A member marked *override*{: .keyword } is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use *final*{: .keyword }:
+A member marked **override** is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use **final**:
 
 ``` kotlin
 open class AnotherDerived() : Base() {
@@ -237,7 +237,7 @@ We think that this is not a disadvantage, for the following reasons:
 
 In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits many implementations of the same member from its immediate superclasses,
 it must override this member and provide its own implementation (perhaps, using one of the inherited ones).
-To denote the supertype from which the inherited implementation is taken, we use *super*{: .keyword } qualified by the supertype name in angle brackets, e.g. `super<Base>`:
+To denote the supertype from which the inherited implementation is taken, we use **super** qualified by the supertype name in angle brackets, e.g. `super<Base>`:
 
 ``` kotlin
 open class A {
@@ -265,7 +265,7 @@ and provide our own implementation that eliminates the ambiguity.
 
 ## Abstract Classes
 
-A class and some of its members may be declared *abstract*{: .keyword }.
+A class and some of its members may be declared **abstract**
 An abstract member does not have an implementation in its class.
 Note that we do not need to annotate an abstract class or function with open – it goes without saying.
 

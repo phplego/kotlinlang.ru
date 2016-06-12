@@ -1,0 +1,16 @@
+{
+  "Введение": [
+    "basic-syntax",
+    "idioms",
+    "coding-conventions"
+  ],
+  "Основы": [
+    "basic-types",
+    "packages",
+    "control-flow",
+    "returns"
+  ],
+  "Классы и объекты": [
+    "classes"
+  ]
+}

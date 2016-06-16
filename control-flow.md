@@ -120,14 +120,14 @@ when {
 
 ## Циклы for
 
-Цикл **for**<!--keyword--> обеспечивает перебор всех значений, поставляеміх итератором. The syntax is as follows:
+Цикл **for**<!--keyword--> обеспечивает перебор всех значений, поставляемых итератором. Для этого используется следующий синтаксис:
 
 ``` kotlin
 for (item in collection)
   print(item)
 ```
 
-The body can be a block.
+Телом цикла может быть блок кода:
 
 ``` kotlin
 for (item: Int in ints) {
@@ -135,15 +135,15 @@ for (item: Int in ints) {
 }
 ```
 
-As mentioned before, **for**<!--keyword--> iterates through anything that provides an iterator, i.e.
+Как отмечено выше, цикл **for**<!--keyword--> позволяет проходить по всем элементам объекта, имеющего итератор, например:
 
-* has a member- or extension-function `iterator()`, whose return type
-  * has a member- or extension-function `next()`, and
-  * has a member- or extension-function `hasNext()` that returns `Boolean`.
+* обладающего внутренней или внешней функцией `iterator()`, возвращаемый тип которой
+  * обладает внутренней или внешней функцией `next()`, и
+  * обладает внутренней или внешней функцией `hasNext()`, возвращающей `Boolean`.
 
-All of these three functions need to be marked as `operator`.
+Все три указанные функции должны быть объявлены как `operator`.
 
-If you want to iterate through an array or a list with an index, you can do it this way:
+Если при проходе по массиву или списку необходим порядковый номер элемента, используйте следующий подход:
 
 ``` kotlin
 for (i in array.indices)

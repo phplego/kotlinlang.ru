@@ -150,9 +150,9 @@ for (i in array.indices)
   print(array[i])
 ```
 
-Note that this "iteration through a range" is compiled down to optimal implementation with no extra objects created.
+Обратите внимание, что данная "итерация по ряду" компилируется в более производительный код без создания дополнительных объектов.
 
-Alternatively, you can use the `withIndex` library function:
+Также вы можете использовать библиотечную функцию `withIndex`:
 
 ``` kotlin
 for ((index, value) in array.withIndex()) {
@@ -160,11 +160,11 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-See the [grammar for **for**<!--keyword-->](grammar.html#for).
+См. [grammar for **for**<!--keyword-->](grammar.html#for).
 
-## While Loops
+## Циклы while
 
-**while**<!--keyword--> and **do**<!--keyword-->..**while**<!--keyword--> work as usual
+Ключевые слова **while**<!--keyword--> and **do**<!--keyword-->..**while**<!--keyword--> работают как обычно:
 
 ``` kotlin
 while (x > 0) {
@@ -176,10 +176,10 @@ do {
 } while (y != null) // y is visible here!
 ```
 
-See the [grammar for **while**<!--keyword-->](grammar.html#while).
+См. [grammar for **while**<!--keyword-->](grammar.html#while).
 
-## Break and continue in loops
+## Ключевые слова break и continue в циклах
 
-Kotlin supports traditional **break**<!--keyword--> and **continue**<!--keyword--> operators in loops. See [Returns and jumps](returns.html).
+Kotlin поддерживает обычные операторы **break**<!--keyword--> и **continue**<!--keyword--> в циклах. См. [Returns and jumps](returns.html).
 
 

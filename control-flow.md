@@ -44,7 +44,7 @@ val max = if (a > b) {
 
 Если вы используете конструкцию **if**<!--keyword--> в качестве выражения (например, возвращая его значение или присваивая его переменной), то использование ветки `else` является обязательным.
 
-См. [grammar for **if**<!--keyword-->](grammar.html#if).
+См. [использование **if**<!--keyword-->](grammar.html#if).
 
 ## Условное выражение when
 
@@ -115,7 +115,7 @@ when {
 }
 ```
 
-См. [grammar for **when**<!--keyword-->](grammar.html#when).
+См. [использование **when**<!--keyword-->](grammar.html#when).
 
 
 ## Циклы for
@@ -160,7 +160,7 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-См. [grammar for **for**<!--keyword-->](grammar.html#for).
+См. [использование **for**<!--keyword-->](grammar.html#for).
 
 ## Циклы while
 
@@ -176,7 +176,7 @@ do {
 } while (y != null) // y is visible here!
 ```
 
-См. [grammar for **while**<!--keyword-->](grammar.html#while).
+См. [использование **while**<!--keyword-->](grammar.html#while).
 
 ## Ключевые слова break и continue в циклах
 

@@ -2,6 +2,7 @@
 type: doc
 layout: reference
 title: "Создание новой статьи"
+site: www.kotlin.su
 ---
 
 ## Создание новой статьи

@@ -12,4 +12,3 @@ site: www.kotlin.su
 * Добавление пункта меню в файл `menu.json`. Отредактировать `menu.json` можно проследовав по ссылке: https://github.com/phplego/kotlin.su/edit/master/menu.json
 * Создание файла с соответствующим именем `<article-id>.md`
 
-### Добавление пункта меню

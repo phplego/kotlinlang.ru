@@ -7,8 +7,8 @@ site: www.kotlin.su
 
 ## Создание новой статьи
 
-Создание новой статьи сводится к двум основным действиям:
+Для создания новой статьи нужно выполнить два действия:
 
-* Добавление пункта меню в файл `menu.json`. Отредактировать `menu.json` можно проследовав по ссылке: https://github.com/phplego/kotlin.su/edit/master/menu.json
-* Создание файла с соответствующим именем `<article-id>.md`
+* Добавить пункт меню в файл `menu.json`. Отредактировать `menu.json`  https://github.com/phplego/kotlin.su/edit/master/menu.json
+* Создать файл с соответствующим именем `<article-id>.md`
 

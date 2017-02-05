@@ -13,6 +13,9 @@
   "Классы и объекты": [
     "classes"
   ],
+  "Функции и лямбды": [
+    "higher-order-functions"
+  ],
   "Редактору": [
     "how-to-edit",
     "add-new-article"

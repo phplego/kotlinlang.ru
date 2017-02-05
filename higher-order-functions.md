@@ -29,4 +29,23 @@ fun <T> lock(lock: Lock, body: ()-> T): T{
 внутри блока try, защищена lock, и её результат возвращается lock() функцией.
 
 Если мы хотим вызвать метод lock(), мы можем подать другую функцию в качестве входящего аргумента 
-(более подробно читайте <url>function references</url>)
+(более подробно читайте [function references](http://kotlinlang.org/docs/reference/reflection.html#function-references)
+
+``` kotlin
+fun toBeSynchronized() = sharedResource.operation()
+
+val result = lock (lock, ::toBeSynchronized)
+```
+
+Другой, наиболее удобный способ применения [лямбда-выражения](http://kotlinlang.org/docs/reference/lambdas.html#lambda-expressions-and-anonymous-functions):
+```kotlin
+val result = lock(lock, { sharedResource.operation() })
+```
+
+Лямбда-выражения более потробно описаны [здесь](http://kotlinlang.org/docs/reference/lambdas.html#lambda-expressions-and-anonymous-functions), но в целях продолжить этот раздел, давайте произведём краткий обзор:
+- Лямбда-выражения всегда заключены в круглые скобки.
+- Параметры этого выражения (если такие есть) объявлены до знака "->" (параметры могут быть опущены)
+- Тело выражения идёт после знака "->"
+
+
+

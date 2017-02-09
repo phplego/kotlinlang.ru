@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Higher-Order Functions and Lambdas
 title: "Функции высокого уровня и Лямбды."
+source url: http://kotlinlang.org/docs/reference/lambdas.html
 ---
 
 # Функции высокого уровня и Лямбды.
@@ -73,8 +74,8 @@ val doubled = ints.map { it -> it * 2 }
 Обратите внимание, что параметры могут быть проигнорированы при вызове, если лямбда является единственным аргументом
 для вызова функции.
 
-<!--it: implicit name of a single parameter>
-<!--http://kotlinlang.org/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter>
+<!--it: implicit name of a single parameter-->
+<!--http://kotlinlang.org/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter-->
 ## it: неявное имя единичного параметра
 
 Ещё одной полезной особенностью синтаксиса является возможность опустить объявление параметра функции в случае, если он
@@ -89,10 +90,171 @@ strings.filter { it.lenght == 5 }.sortBy { it }.map { it.toUpperCase() }
 ```
 
 ##Инлайн Функции
-Иногда необходима улучшить производительность высокоуровневых функций, исползуя [инлайн функции](http://kotlinlang.org/docs/reference/inline-functions.html)
+Иногда необходимо улучшить производительность высокоуровневых функций, исползуя [инлайн функции](http://kotlinlang.org/docs/reference/inline-functions.html)
 
+<!--Lambda Expressions and Anonymous Functions-->
 ##Лямбда-выражения и Анонимные Функции.
-<!--http://kotlinlang.org/docs/reference/inline-functions.html>
+
+<!--A lambda expression or an anonymous function is a "function literal", i.e. a function that is not declared, but passed immediately as an expression. Consider the following example:-->
+Лямбда-выражения или анонимные функции являются "функциональными константами"<i>(ориг. "functional literal")</i>, то есть функциями, которые не были объявлены, но сразу были передана в качестве выражения. Рассмотрим следующий пример: 
+``` kotlin
+max(strings, { a, b -> a.length < b.length })
+```
+
+<!--Function max is a higher-order function, i.e. it takes a function value as the second argument. This second argument is an expression that is itself a function, i.e. a function literal. As a function, it is equivalent to-->
+Функция `max` - высокоуровневая функция, так как она принимает другую функцию в качестве входного аргумента. Этот второй аргумент является выражением, которое само по себе представляет из себя функцию, то есть <i>functional literal</i>.
+``` kotlin
+fun compare(a: String, b: String): Boolean = a.length < b.length
+Function Types
+```
+
+<!--For a function to accept another function as a parameter, we have to specify a function type for that parameter. For example the abovementioned function max is defined as follows:-->
+Для того, чтобы функция принимала другую функцию в качестве входного параметра, нам необходимо её (входящей функции) тип. К примеру, вышеуказанная функция 'max' определена следующим образом:
+``` kotlin
+fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
+    var max: T? = null
+    for (it in collection)
+        if (max == null || less(max, it))
+            max = it
+    return max
+}
+```
+
+<!--The parameter less is of type (T, T) -> Boolean, i.e. a function that takes two parameters of type T and returns a Boolean: true if the first one is smaller than the second one.-->
+Параметр 'less' является '(T, T) -> Boolean' типом, то есть функцией, которая принимает два параметра типа 'T' и вовзвращает 'Boolean':'true', если первый параметр меньше, чем второй. 
+
+<!--In the body, line 4, less is used as a function: it is called by passing two arguments of type T.-->
+В теле функции, линия 4, 'less' используется в качестве функции: она вызывается путём передачи двух аргументов типа 'T'. 
+
+<!--A function type is written as above, or may have named parameters, if you want to document the meaning of each parameter.-->
+Типа функции можнт быть написан так, как указано выше, или же может иметь названные параметры, если вы хотите вести задокументировать значения каждого из параметров.
+``` kotlin
+val compare: (x: T, y: T) -> Int = ...
+```
+
+<!--##Lambda Expression Syntax-->
+##Синтаксис лямбда-выражений.
+
+<!--The full syntactic form of lambda expressions, i.e. literals of function types, is as follows:-->
+Полная синтаксическая форма лямбда-выражений, таких как <i>literals of function types</i>, может быть представлена следующим образом:
+``` kotlin
+val sum = { x: Int, y: Int -> x + y }
+```
+
+<!--A lambda expression is always surrounded by curly braces, parameter declarations in the full syntactic form go inside parentheses and have optional type annotations, the body goes after an -> sign. If the inferred return type of the lambda is not Unit, the last (or possibly single) expression inside the lambda body is treated as the return value.-->
+Лямбда-выражение всегда заключено в скобки '{...}', объявление параметров при таком синтаксисе происходит внутри этих скобок и может включать в себя  типов (опционально), тело функции начинается после знака '->'. Если тип возвращаемого значения не 'Unit', то в качестве возвращаемого типа принимается последнее (а возможно и единственное) выражение внутри тела лямбды. 
+
+<!--If we leave all the optional annotations out, what's left looks like this:-->
+Если мы вынесем все необязательные объявления, то, что останется, будет выглядеть следующим образом:
+``` kotlin
+val sum: (Int, Int) -> Int = { x, y -> x + y }
+```
+
+<!--It's very common that a lambda expression has only one parameter. If Kotlin can figure the signature out itself, it allows us not to declare the only parameter, and will implicitly declare it for us under the name it:-->
+Обычное дело, когда лямбда-выражение имеет только один параметр. Если <b>Kotlin</b> может определить сигнатуру метода сам, он позволит нам не объявлять этот единственный параметр, и объявит его сам под именем 'it':
+``` kotlin
+ints.filter { it > 0 } //Эта константа имеет тип '(it: Int) -> Boolean'
+```
+
+<!--We can explicitly return a value from the lambda using the qualified return syntax. Otherwise, the value of the last expression is implictly returned. Therefore, the two following snippets are equivalent:-->
+Мы можем явно вернуть значение из лямбды, используя [qualified return](http://kotlinlang.org/docs/reference/returns.html#return-at-labels) синтаксис. 
+``` kotlin
+ints.filter {
+    val shouldFilter = it > 0 
+    shouldFilter
+}
+
+ints.filter {
+    val shouldFilter = it > 0 
+    return@filter shouldFilter
+}
+```
+<!--Note that if a function takes another function as the last parameter, the lambda expression argument can be passed outside the parenthesized argument list. See the grammar for callSuffix.-->
+Обратите внимение, что функция принимает другую функцию в качестве своего последнего параметра, аргумент лямбда-выражения может быть принят за списком аргументов, заключённым в скобках. См. [callSuffix](http://kotlinlang.org/docs/reference/grammar.html#call-suffix)
+
+<!--##Anonymous Functions-->
+##Анонимные фурнции.
+
+<!--One thing missing from the lambda expression syntax presented above is the ability to specify the return type of the function. In most cases, this is unnecessary because the return type can be inferred automatically. However, if you do need to specify it explicitly, you can use an alternative syntax: an anonymous function.-->
+Единственной недостающей частью лямбда-выражений, упомянутых выше, является способность определять и назначать возвращаемый функцией тип. В большинстве случаев, в этом нет особой необходимости, потому что возвращаемый тип может быть вычеслен автоматически. Однако, если у вас есть такая потребность в определении возвращаемого типа, вы можете воспользоваться альтернативным синтаксисом:
+```kotlin
+fun(x: Int, y: Int): Int = x + y
+```
+<!--An anonymous function looks very much like a regular function declaration, except that its name is omitted. Its body can be either an expression (as shown above) or a block:-->
+Объявление анонимной функции выглядит очень похоже на обычное объявление функции, за исключением того, что её имя опущено. Тело такой функции может быть и выражением (как показано выше), и блоком:
+``` kotlin
+fun(x: Int, y: Int): Int {
+    return x + y
+}
+```
+
+<!--The parameters and the return type are specified in the same way as for regular functions, except that the parameter types can be omitted if they can be inferred from context:-->
+Параметры функции и возвращаемый тип обозначаются таким же образом, как в обычных функциях. Правда, тип параметра может быть опущен, если его значение следует из контекста.
+```kotlin
+ints.filter(fun(item) = item > 0)
+```
+
+<!--The return type inference for anonymous functions works just like for normal functions: the return type is inferred automatically for anonymous functions with an expression body and has to be specified explicitly (or is assumed to be Unit) for anonymous functions with a block body.-->
+Аналогично и с типом возвращаемого значения: он вычисляется автоматически для функций-выражений или же должен быть определён вручную (если не является типом `Unit`) для анонимных функций, которые имеют в себе блок.
+
+<!--Note that anonymous function parameters are always passed inside the parentheses. The shorthand syntax allowing to leave the function outside the parentheses works only for lambda expressions.-->
+Обратите внимание, что параметры анонимных функций всегда заключены в скобки `{...}`. Приём, позволяющий оставлять параметры вне скобок, работает только с лямбда-выражениями. 
+
+<!--One other difference between lambda expressions and anonymous functions is the behavior of non-local returns. A return statement without a label always returns from the function declared with the fun keyword. This means that a return inside a lambda expression will return from the enclosing function, whereas a return inside an anonymous function will return from the anonymous function itself.-->
+Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](http://kotlinlang.org/docs/reference/inline-functions.html#non-local-returns). Слово `return` , не имеющее метки (названия), всегда возвращается из функции, объявленной ключевым словом `fun`. Это означает, что `return` внутри лямбда-выражения возвратит выполнение к функции, включающей в себя это лямбда-выражение. Внутри анонимных функций, оператор 'return', в свою очередь, выйдет ,собственно, из анонимной функции.
+
+##Closures
+
+A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. Unlike Java, the variables captured in the closure can be modified:
+
+``` kotlin
+var sum = 0
+ints.filter { it > 0 }.forEach {
+    sum += it
+}
+print(sum)
+```
+
+##Function Literals with Receiver
+
+Kotlin provides the ability to call a function literal with a specified receiver object. Inside the body of the function literal, you can call methods on that receiver object without any additional qualifiers. This is similar to extension functions, which allow you to access members of the receiver object inside the body of the function. One of the most important examples of their usage is [Type-safe Groovy-style builders](http://kotlinlang.org/docs/reference/type-safe-builders.html).
+
+The type of such a function literal is a function type with receiver:
+
+``` kotlin
+sum : Int.(other: Int) -> Int
+```
+
+The function literal can be called as if it were a method on the receiver object:
+
+``` kotlin
+1.sum(2)
+```
+
+The anonymous function syntax allows you to specify the receiver type of a function literal directly. This can be useful if you need to declare a variable of a function type with receiver, and to use it later.
+
+``` koltin
+val sum = fun Int.(other: Int): Int = this + other
+```
+
+Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.
+
+``` koltin
+class HTML {
+    fun body() { ... }
+}
+
+fun html(init: HTML.() -> Unit): HTML {
+    val html = HTML()  // create the receiver object
+    html.init()        // pass the receiver object to the lambda
+    return html
+}
+
+
+html {       // lambda with receiver begins here
+    body()   // calling a method on the receiver object
+}
+```
 
 
 

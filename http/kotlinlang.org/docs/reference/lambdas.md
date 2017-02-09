@@ -1,9 +1,3 @@
----
-type: doc
-layout: reference
-category: "Higher-Order Functions and Lambdas
-title: "Функции высокого уровня и Лямбды."
----
 
 # Функции высокого уровня и Лямбды.
 

@@ -155,7 +155,9 @@ val sum: (Int, Int) -> Int = { x, y -> x + y }
 ``` kotlin
 ints.filter { it > 0 } //Эта константа имеет тип '(it: Int) -> Boolean'
 ```
+
 <!--We can explicitly return a value from the lambda using the qualified return syntax. Otherwise, the value of the last expression is implictly returned. Therefore, the two following snippets are equivalent:-->
+Мы можем явно вернуть значение из лямбды, используя [qualified return](http://kotlinlang.org/docs/reference/returns.html#return-at-labels) синтаксис. 
 ``` kotlin
 ints.filter {
     val shouldFilter = it > 0 
@@ -168,15 +170,18 @@ ints.filter {
 }
 ```
 <!--Note that if a function takes another function as the last parameter, the lambda expression argument can be passed outside the parenthesized argument list. See the grammar for callSuffix.-->
+Обратите внимение, что функция принимает другую функцию в качестве своего последнего параметра, аргумент лямбда-выражения может быть принят за списком аргументов, заключённым в скобках. См. [callSuffix](http://kotlinlang.org/docs/reference/grammar.html#call-suffix)
 
 <!--##Anonymous Functions-->
+##Анонимные фурнции.
 
 <!--One thing missing from the lambda expression syntax presented above is the ability to specify the return type of the function. In most cases, this is unnecessary because the return type can be inferred automatically. However, if you do need to specify it explicitly, you can use an alternative syntax: an anonymous function.-->
+Единственной недостающей частью лямбда-выражений, упомянутых выше, является способность определять и назначать возвращаемый функцией тип. В большинстве случаев, в этом нет особой необходимости, потому что возвращаемый тип может быть вычеслен автоматически. Однако, если у вас есть такая потребность в определении возвращаемого типа, вы можете воспользоваться альтернативным синтаксисом:
 ```kotlin
 fun(x: Int, y: Int): Int = x + y
 ```
 <!--An anonymous function looks very much like a regular function declaration, except that its name is omitted. Its body can be either an expression (as shown above) or a block:-->
-
+Объявление анонимной функции выглядит очень похоже на обычное объявление функции, за исключением того, что её имя опущено. Тело такой функции может быть и выражением (как показано выше), и блоком:
 ``` kotlin
 fun(x: Int, y: Int): Int {
     return x + y
@@ -184,16 +189,19 @@ fun(x: Int, y: Int): Int {
 ```
 
 <!--The parameters and the return type are specified in the same way as for regular functions, except that the parameter types can be omitted if they can be inferred from context:-->
-
+Параметры функции и возвращаемый тип обозначаются таким же образом, как в обычных функциях. Правда, тип параметра может быть опущен, если его значение следует из контекста.
 ```kotlin
 ints.filter(fun(item) = item > 0)
 ```
 
 <!--The return type inference for anonymous functions works just like for normal functions: the return type is inferred automatically for anonymous functions with an expression body and has to be specified explicitly (or is assumed to be Unit) for anonymous functions with a block body.-->
+Аналогично и с типом возвращаемого значения: он вычисляется автоматически для функций-выражений или же должен быть определён вручную (если не является типом 'Unit') для анонимных функций, которые имеют в себе блок.
 
 <!--Note that anonymous function parameters are always passed inside the parentheses. The shorthand syntax allowing to leave the function outside the parentheses works only for lambda expressions.-->
+Обратите внимание, что параметры анонимных функций всегда заключены в скобки '{...}'. Приём, позволяющий оставлять параметры вне скобок, работает только с лямбда-выражениями. 
 
 <!--One other difference between lambda expressions and anonymous functions is the behavior of non-local returns. A return statement without a label always returns from the function declared with the fun keyword. This means that a return inside a lambda expression will return from the enclosing function, whereas a return inside an anonymous function will return from the anonymous function itself.-->
+Одним из отличий лямбда-выражений от анонимных функций является поведение оператора 'return'. Слово 'return' , не имеющее метки (названия), всегда возвращается из функции, объявленной ключевым словом 'fun'. Это означает, что 'return' внутри лямбда-выражения возвратит выполнение к функции, которая включает в себя это лямбда-выражение. Внутри анонимных функций, оператор 'return',в свою очередь, выйдет ,собственно, из анонимной функции.
 
 <!--##Closures-->
 

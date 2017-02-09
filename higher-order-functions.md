@@ -102,14 +102,14 @@ max(strings, { a, b -> a.length < b.length })
 ```
 
 <!--Function max is a higher-order function, i.e. it takes a function value as the second argument. This second argument is an expression that is itself a function, i.e. a function literal. As a function, it is equivalent to-->
-Функция `max` - высокоуровневая функция, так как она принимает другую функцию в качестве входного аргумента. Этот второй аргумент является выражением, которое само по себе представляет из себя функцию, то есть <i>functional literal</i>
+Функция `max` - высокоуровневая функция, так как она принимает другую функцию в качестве входного аргумента. Этот второй аргумент является выражением, которое само по себе представляет из себя функцию, то есть <i>functional literal</i>.
 ``` kotlin
 fun compare(a: String, b: String): Boolean = a.length < b.length
 Function Types
 ```
 
 <!--For a function to accept another function as a parameter, we have to specify a function type for that parameter. For example the abovementioned function max is defined as follows:-->
-
+Для того, чтобы функция принимала другую функцию в качестве входного параметра, нам необходимо её (входящей функции) тип. К примеру, вышеуказанная функция 'max' определена следующим образом:
 ``` kotlin
 fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
     var max: T? = null
@@ -121,30 +121,39 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 ```
 
 <!--The parameter less is of type (T, T) -> Boolean, i.e. a function that takes two parameters of type T and returns a Boolean: true if the first one is smaller than the second one.-->
+Параметр 'less' является '(T, T) -> Boolean' типом, то есть функцией, которая принимает два параметра типа 'T' и вовзвращает 'Boolean':'true', если первый параметр меньше, чем второй. 
 
 <!--In the body, line 4, less is used as a function: it is called by passing two arguments of type T.-->
+В теле функции, линия 4, 'less' используется в качестве функции: она вызывается путём передачи двух аргументов типа 'T'. 
 
 <!--A function type is written as above, or may have named parameters, if you want to document the meaning of each parameter.-->
-
+Типа функции можнт быть написан так, как указано выше, или же может иметь названные параметры, если вы хотите вести задокументировать значения каждого из параметров.
 ``` kotlin
 val compare: (x: T, y: T) -> Int = ...
 ```
 
 <!--##Lambda Expression Syntax-->
+##Синтаксис лямбда-выражений.
 
 <!--The full syntactic form of lambda expressions, i.e. literals of function types, is as follows:-->
+Полная синтаксическая форма лямбда-выражений, таких как <i>literals of function types</i>, может быть представлена следующим образом:
 ``` kotlin
 val sum = { x: Int, y: Int -> x + y }
 ```
+
 <!--A lambda expression is always surrounded by curly braces, parameter declarations in the full syntactic form go inside parentheses and have optional type annotations, the body goes after an -> sign. If the inferred return type of the lambda is not Unit, the last (or possibly single) expression inside the lambda body is treated as the return value.-->
+Лямбда-выражение всегда заключено в скобки '{...}', объявление параметров при таком синтаксисе происходит внутри этих скобок и может включать в себя  типов (опционально), тело функции начинается после знака '->'. Если тип возвращаемого значения не 'Unit', то в качестве возвращаемого типа принимается последнее (а возможно и единственное) выражение внутри тела лямбды. 
 
 <!--If we leave all the optional annotations out, what's left looks like this:-->
+Если мы вынесем все необязательные объявления, то, что останется, будет выглядеть следующим образом:
 ``` kotlin
 val sum: (Int, Int) -> Int = { x, y -> x + y }
 ```
+
 <!--It's very common that a lambda expression has only one parameter. If Kotlin can figure the signature out itself, it allows us not to declare the only parameter, and will implicitly declare it for us under the name it:-->
+Обычное дело, когда лямбда-выражение имеет только один параметр. Если <b>Kotlin</b> может определить сигнатуру метода сам, он позволит нам не объявлять этот единственный параметр, и объявит его сам под именем 'it':
 ``` kotlin
-ints.filter { it > 0 } // this literal is of type '(it: Int) -> Boolean'
+ints.filter { it > 0 } //Эта константа имеет тип '(it: Int) -> Boolean'
 ```
 <!--We can explicitly return a value from the lambda using the qualified return syntax. Otherwise, the value of the last expression is implictly returned. Therefore, the two following snippets are equivalent:-->
 ``` kotlin

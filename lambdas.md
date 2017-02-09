@@ -7,7 +7,7 @@ title: "Высокоуровневые функции и лямбды."
 # Высокоуровневые функции и лямбды.
 
 ## Функции высокого уровня.
-Функция высокого уровня - это функция, которая принимает другую функцию в качестве входного аргумента,
+Высокоуровневая функция - это функция, которая принимает другую функцию в качестве входного аргумента,
 либо имеет функцию в качестве возвращаемого результата. Хорошим примером такой функции является `lock()`,
 которая берёт залоченный объект и функцию, применяет лок, выполняет функцию и отпускает `lock`:
 
@@ -74,7 +74,7 @@ val doubled = ints.map { it -> it * 2 }
 
 <!--it: implicit name of a single parameter-->
 <!--http://kotlinlang.org/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter-->
-## it: неявное имя единичного параметра
+## Ключевое слово `it`: неявное имя единичного параметра.
 
 Ещё одной полезной особенностью синтаксиса является возможность опустить объявление параметра функции в случае, если он
 единственный (вместе с `->`) и её имя будет `it`:
@@ -87,11 +87,11 @@ ints.map { it * 2 }
 strings.filter { it.lenght == 5 }.sortBy { it }.map { it.toUpperCase() }
 ```
 
-##Инлайн Функции
+## Инлайн функции.
 Иногда необходимо улучшить производительность высокоуровневых функций, используя [инлайн функции](http://kotlinlang.org/docs/reference/inline-functions.html)
 
 <!--Lambda Expressions and Anonymous Functions-->
-##Лямбда-выражения и Анонимные Функции.
+## Лямбда-выражения и анонимные функции.
 
 <!--A lambda expression or an anonymous function is a "function literal", i.e. a function that is not declared, but passed immediately as an expression. Consider the following example:-->
 Лямбда-выражения или анонимные функции являются "функциональными константами"<i>(ориг. "functional literal")</i>, то есть функциями, которые не были объявлены, но сразу были передана в качестве выражения. Рассмотрим следующий пример: 
@@ -130,7 +130,7 @@ val compare: (x: T, y: T) -> Int = ...
 ```
 
 <!--##Lambda Expression Syntax-->
-##Синтаксис лямбда-выражений.
+## Синтаксис лямбда-выражений.
 
 <!--The full syntactic form of lambda expressions, i.e. literals of function types, is as follows:-->
 Полная синтаксическая форма лямбда-выражений, таких как <i>literals of function types</i>, может быть представлена следующим образом:
@@ -170,7 +170,7 @@ ints.filter {
 Обратите внимение, что функция принимает другую функцию в качестве своего последнего параметра, аргумент лямбда-выражения в таком случае может быть принят вне списка аргументов, заключённого в скобках. См. [callSuffix](http://kotlinlang.org/docs/reference/grammar.html#call-suffix)
 
 <!--##Anonymous Functions-->
-##Анонимные фурнции.
+## Анонимные функции.
 
 <!--One thing missing from the lambda expression syntax presented above is the ability to specify the return type of the function. In most cases, this is unnecessary because the return type can be inferred automatically. However, if you do need to specify it explicitly, you can use an alternative syntax: an anonymous function.-->
 Единственной особенностью синтаксиса лямбда-выражений, о которой ещё не было сказано, является способность определять и назначать возвращаемый функцией тип. В большинстве случаев, в этом нет особой необходимости, потому что он может быть вычислен автоматически. Однако, если у вас есть потребность в определении возвращаемого типа, вы можете воспользоваться альтернативным синтаксисом:
@@ -200,7 +200,7 @@ ints.filter(fun(item) = item > 0)
 <!--One other difference between lambda expressions and anonymous functions is the behavior of non-local returns. A return statement without a label always returns from the function declared with the fun keyword. This means that a return inside a lambda expression will return from the enclosing function, whereas a return inside an anonymous function will return from the anonymous function itself.-->
 Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](http://kotlinlang.org/docs/reference/inline-functions.html#non-local-returns). Слово `return` , не имеющее метки (`@`), всегда возвращается из функции, объявленной ключевым словом `fun`. Это означает, что `return` внутри лямбда-выражения возвратит выполнение к функции, включающей в себя это лямбда-выражение. Внутри анонимных функций, оператор `return`, в свою очередь, выйдет ,собственно, из анонимной функции.
 
-##Closures
+## Closures
 
 A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. Unlike Java, the variables captured in the closure can be modified:
 
@@ -212,7 +212,7 @@ ints.filter { it > 0 }.forEach {
 print(sum)
 ```
 
-##Function Literals with Receiver
+## Function Literals with Receiver
 
 Kotlin provides the ability to call a function literal with a specified receiver object. Inside the body of the function literal, you can call methods on that receiver object without any additional qualifiers. This is similar to extension functions, which allow you to access members of the receiver object inside the body of the function. One of the most important examples of their usage is [Type-safe Groovy-style builders](http://kotlinlang.org/docs/reference/type-safe-builders.html).
 

@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Higher-Order Functions and Lambdas
 title: "Функции высокого уровня и Лямбды."
+source url: http://kotlinlang.org/docs/reference/lambdas.html
 ---
 
 # Функции высокого уровня и Лямбды.
@@ -89,17 +90,19 @@ strings.filter { it.lenght == 5 }.sortBy { it }.map { it.toUpperCase() }
 ```
 
 ##Инлайн Функции
-Иногда необходима улучшить производительность высокоуровневых функций, исползуя [инлайн функции](http://kotlinlang.org/docs/reference/inline-functions.html)
+Иногда необходимо улучшить производительность высокоуровневых функций, исползуя [инлайн функции](http://kotlinlang.org/docs/reference/inline-functions.html)
 
-##Лямбда-выражения и Анонимные Функции.
 <!--Lambda Expressions and Anonymous Functions-->
+##Лямбда-выражения и Анонимные Функции.
 
 <!--A lambda expression or an anonymous function is a "function literal", i.e. a function that is not declared, but passed immediately as an expression. Consider the following example:-->
-
+Лямбда-выражения или анонимные функции являются "функциональными константами"<i>(ориг. "functional literal")</i>, то есть функциями, которые не были объявлены, но сразу были передана в качестве выражения. Рассмотрим следующий пример: 
 ``` kotlin
 max(strings, { a, b -> a.length < b.length })
 ```
+
 <!--Function max is a higher-order function, i.e. it takes a function value as the second argument. This second argument is an expression that is itself a function, i.e. a function literal. As a function, it is equivalent to-->
+Функция `max` - высокоуровневая функция, так как она принимает другую функцию в качестве входного аргумента. Этот второй аргумент является выражением, которое само по себе представляет из себя функцию, то есть <i>functional literal</i>
 ``` kotlin
 fun compare(a: String, b: String): Boolean = a.length < b.length
 Function Types

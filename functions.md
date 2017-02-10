@@ -5,39 +5,49 @@ category: "Syntax"
 title: "Functions"
 ---
 
-# Functions
+<!--# Functions-->
+#Функции
 
-## Function Declarations
+<!--## Function Declarations-->
+## Объявление функций
 
-Functions in Kotlin are declared using the *fun*{: .keyword } keyword
+<!--Functions in Kotlin are declared using the *fun*{: .keyword } keyword-->
+В <b>Kotlin</b> функции объявляются с помощью ключевого слова *fun*.
 
 ``` kotlin
 fun double(x: Int): Int {
 }
 ```
 
-## Function Usage
+<!--## Function Usage-->
+## Применение функций
 
-Calling functions uses the traditional approach
+<!--Calling functions uses the traditional approach-->
+При вызове функции используется традиционный подход
 
 ``` kotlin
 val result = double(2)
 ```
 
-
-Calling member functions uses the dot notation
+<!--Calling member functions uses the dot notation-->
+Для вызова вложенной функции используется знак точки
 
 ``` kotlin
-Sample().foo() // create instance of class Sample and calls foo
+Sample().foo() //создаёт экземпляр класса Sample и вызывает foo
 ```
 
-### Infix notation
+<!--### Infix notation-->
+###Инфиксное обозначение
 
-Functions can also be called using infix notations when
+<!--Functions can also be called using infix notations when-->
+Функции так же могут быть вызваны при помощи использования инфиксных обозначений, когда:
 
-* They are member functions or [extension functions](extensions.html)
-* They have a single parameter
-* They are marked with the `infix` keyword
+<!--* They are member functions or [extension functions](extensions.html)-->
+* Они являются членом другой функции или [выражения](extensions.html)
+<!--* They have a single parameter-->
+* В них используется один параметр
+<!--* They are marked with the `infix` keyword-->
+* Когда они помечены ключевым словом `infix`
 
 ``` kotlin
 // Define extension to Int

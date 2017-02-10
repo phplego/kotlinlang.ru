@@ -78,7 +78,7 @@ fun powerOf(number: Int, exponent: Int) {
 ```
 
 <!--### Default Arguments-->
-### Аргументы по умолчанию.
+### Аргументы по умолчанию
 
 <!--Function parameters can have default values, which are used when a corresponding argument is omitted. This allows for a reduced number of overloads compared to
 other languages.-->
@@ -165,7 +165,7 @@ always preserve names of function parameters.-->
 
 
 <!--### Unit-returning functions-->
-### Функции с Unit-возвращаемым типом.
+### Функции с возвращаемым типом `Unit`
 
 <!--If a function does not return any useful value, its return type is `Unit`. `Unit` is a type with only one value - `Unit`. This
 value does not have to be returned explicitly-->
@@ -256,14 +256,18 @@ val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
 ```
 
-## Function Scope
+<!--## Function Scope-->
+## Область действия функций
 
-In Kotlin functions can be declared at top level in a file, meaning you do not need to create a class to hold a function, like languages such as Java, C# or Scala. In addition
-to top level functions, Kotlin functions can also be declared local, as member functions and extension functions.
+<!--In Kotlin functions can be declared at top level in a file, meaning you do not need to create a class to hold a function, like languages such as Java, C# or Scala. In addition
+to top level functions, Kotlin functions can also be declared local, as member functions and extension functions.-->
+В <b>Kotlin</b> функции могут быть объявлены в самом начале файла. Подразумевается, что вам не обязательно создавать оъект какого-либо класса, чтобы воспользоваться его функцией (как в <b>Java</b>, <b>C#</b> или <b>Scala</b>). В дополнение к этому, функции в языке <b>Kotlin</b> могут быть объявлены локально, как функции-члены (ориг. <i>"member functions"</i>) и функции-выражения (<i>"extension functions"</i>).
 
-### Local Functions
+<!--### Local Functions-->
+### Локальные функции 
 
-Kotlin supports local functions, i.e. a function inside another function
+<!--Kotlin supports local functions, i.e. a function inside another function-->
+<b>Koltin</b> поддерживает локальные функции. Например, функции, вложенные в другие функции
 
 ``` kotlin
 fun dfs(graph: Graph) {
@@ -277,7 +281,8 @@ fun dfs(graph: Graph) {
 }
 ```
 
-Local function can access local variables of outer functions (i.e. the closure), so in the case above, the *visited* can be a local variable
+<!--Local function can access local variables of outer functions (i.e. the closure), so in the case above, the *visited* can be a local variable-->
+Такие локальные функции могут иметь доступ к локальным переменным внешних по отношению к ним функций (типа *closure*). Таким образом, в примере, приведённом выше, *visited* может быть локальной переменной.
 
 ``` kotlin
 fun dfs(graph: Graph) {
@@ -292,9 +297,11 @@ fun dfs(graph: Graph) {
 }
 ```
 
-### Member Functions
+<!--### Member Functions-->
+### Функции-элементы
 
-A member function is a function that is defined inside a class or object
+<!--A member function is a function that is defined inside a class or object-->
+Функции-элементы - это функкции, объявленные внутри классов или объектов
 
 ``` kotlin
 class Sample() {
@@ -302,17 +309,21 @@ class Sample() {
 }
 ```
 
-Member functions are called with dot notation
+<!--Member functions are called with dot notation-->
+Функции-элементы вызываются с использованием точки
 
 ``` kotlin
-Sample().foo() // creates instance of class Sample and calls foo
+Sample().foo() // создаёт инстанс класса Sample и вызвает его функцию foo
 ```
 
-For more information on classes and overriding members see [Classes](classes.html) and [Inheritance](classes.html#inheritance)
+<!--For more information on classes and overriding members see [Classes](classes.html) and [Inheritance](classes.html#inheritance)-->
+Для более подробной информации о классах и их элементах см. [Классы](classes.md) 
 
-## Generic Functions
+<!--## Generic Functions-->
+Функции-обощения (<i>Generic Functions</i>)
 
-Functions can have generic parameters which are specified using angle brackets before the function name
+<!--Functions can have generic parameters which are specified using angle brackets before the function name-->
+Функции могут иметь обобщения в качестве параметров, которые задаются треугольными скобками и помещаются перед именем функции.
 
 ``` kotlin
 fun <T> singletonList(item: T): List<T> {
@@ -320,32 +331,44 @@ fun <T> singletonList(item: T): List<T> {
 }
 ```
 
-For more information on generic functions see [Generics](generics.html)
+<!--For more information on generic functions see [Generics](generics.html)-->
+Для более подробной информации об обобщениях см. [Обобщения](generics.md)
 
-## Inline Functions
+<!--## Inline Functions-->
+## Встроенные функции (<i>Inline Functions</i>)
 
-Inline functions are explained [here](inline-functions.html)
+<!--Inline functions are explained [here](inline-functions.html)-->
+О встроенных функциях рассказано [тут](inline-functions.md)
 
-## Extension Functions
+<!--## Extension Functions-->
+## Выражения (<i>Extension Functions</i>)
 
-Extension functions are explained in [their own section](extensions.html)
+<!--Extension functions are explained in [their own section](extensions.html)-->
+О выражениях подробно описано в их [отделе](extensions.md)
 
-## Higher-Order Functions and Lambdas
+<!--## Higher-Order Functions and Lambdas-->
+## Высокоуровневые функции и лямбды
 
-Higher-Order functions and Lambdas are explained in [their own section](lambdas.html)
+<!--Higher-Order functions and Lambdas are explained in [their own section](lambdas.html)-->
+Об этом [тут](higher-order-functions.md)
 
-## Tail recursive functions
+<!--## Tail recursive functions-->
+## Функции с хвостовой рекурсией
 
-Kotlin supports a style of functional programming known as [tail recursion](https://en.wikipedia.org/wiki/Tail_call).
+<!--Kotlin supports a style of functional programming known as [tail recursion](https://en.wikipedia.org/wiki/Tail_call).
 This allows some algorithms that would normally be written using loops to instead be written using a recursive function, but without the risk of stack overflow.
-When a function is marked with the `tailrec` modifier and meets the required form the compiler optimises out the recursion, leaving behind a fast and efficient loop based version instead.
+When a function is marked with the `tailrec` modifier and meets the required form the compiler optimises out the recursion, leaving behind a fast and efficient loop based version instead.-->
+<b>Kotlin</b> поддерживает такой стиль функционального рпограммирования, более известный как ["хвостовая рекурсия"](https://ru.wikipedia.org/wiki/%D0%A5%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D1%80%D0%B5%D0%BA%D1%83%D1%80%D1%81%D0%B8%D1%8F).
+Это позволяет использовать циклические алгоритмы вместо рекурсивных функции, но без риска переполнения стэка.
+Когда функция помечена модификатором `tailrec` и её форма отвечает требованиям компилятора, он оптимизирует рекурсию, оставляя вместо неё быстрое и эффективное решение этой задачи, основанное на циклах. 
 
 ``` kotlin
 tailrec fun findFixPoint(x: Double = 1.0): Double
         = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 ```
 
-This code calculates the fixpoint of cosine, which is a mathematical constant. It simply calls Math.cos repeatedly starting at 1.0 until the result doesn't change any more, yielding a result of 0.7390851332151607. The resulting code is equivalent to this more traditional style:
+<!--This code calculates the fixpoint of cosine, which is a mathematical constant. It simply calls Math.cos repeatedly starting at 1.0 until the result doesn't change any more, yielding a result of 0.7390851332151607. The resulting code is equivalent to this more traditional style:-->
+Этот код высчитывает `fixpoint` косинуса, который является математической константой. Он просто напросто постоянно вызывает Math.cos, начиная с 1.0 до тех пор, пока результат не изменится, приняв значение 0.7390851332151607. Получившийся код эквивалентен вот этому более традиционному стилю:
 
 ``` kotlin
 private fun findFixPoint(): Double {
@@ -358,4 +381,5 @@ private fun findFixPoint(): Double {
 }
 ```
 
-To be eligible for the `tailrec` modifier, a function must call itself as the last operation it performs. You cannot use tail recursion when there is more code after the recursive call, and you cannot use it within try/catch/finally blocks. Currently tail recursion is only supported in the JVM backend.
+<!--To be eligible for the `tailrec` modifier, a function must call itself as the last operation it performs. You cannot use tail recursion when there is more code after the recursive call, and you cannot use it within try/catch/finally blocks. Currently tail recursion is only supported in the JVM backend.-->
+Для соответствия требованиям модификатора `tailrec`, функция должна вызыват сама себя в качестве последней операции, которую она предпринимает. Вы не можете использовать хвостовую рекурсию, когда существует ещё какой-то код после вызова этой самой рекурсии. Также нельзя использовать её внутри блоков try/catch/finally. На данный момент, хвостовая рекурсия поддерживается только в backend виртуальной машины <b>Java</b>(<b>JVM</b>).

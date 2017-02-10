@@ -220,31 +220,36 @@ Kotlin does not infer return types for functions with block bodies because such 
 ### Нефиксированное число аргументов (Varargs)
 
 <!--A parameter of a function (normally the last one) may be marked with `vararg` modifier:-->
-Параметр функции (обчычно для этого используется последний) может быть помечен модификатором `vararg`:
+Параметр функции (обычно для этого используется последний) может быть помечен модификатором `vararg`:
 
 ``` kotlin
 fun <T> asList(vararg ts: T): List<T> {
     val result = ArrayList<T>()
-    for (t in ts) // ts is an Array
+    for (t in ts) // ts - это массив (Array)
         result.add(t)
     return result
 }
 ```
 
-allowing a variable number of arguments to be passed to the function:
+<!--allowing a variable number of arguments to be passed to the function:-->
+что позволит, тем самым, указать множество значений в качестве аргументов функции:
 
 ``` kotlin
 val list = asList(1, 2, 3)
 ```
 
-Inside a function a `vararg`-parameter of type `T` is visible as an array of `T`, i.e. the `ts` variable in the example above has type `Array<out T>`.
+<!--Inside a function a `vararg`-parameter of type `T` is visible as an array of `T`, i.e. the `ts` variable in the example above has type `Array<out T>`.-->
+Внутри функции параметр с меткой `vararg` и типом `T` виден как массив элементов `T`, таким образом переменная `ts` в вышеуказанном примере имеет тип `Array<out T>`.
 
-Only one parameter may be marked as `vararg`. If a `vararg` parameter is not the last one in the list, values for the
+<!--Only one parameter may be marked as `vararg`. If a `vararg` parameter is not the last one in the list, values for the
 following parameters can be passed using the named argument syntax, or, if the parameter has a function type, by passing
-a lambda outside parentheses.
+a lambda outside parentheses.-->
+Только один параметр может быть помечен меткой `vararg`. Если `vararg` параметр не стоит на последнем месте в списке аргументов,
+значения для соответствующих параметров могут быть переданы с использованием <i>named argument</i> синтаксиса, или, если парамтр является функцией, с помощью выноса лямбды за фигурные скобки.
 
-When we call a `vararg`-function, we can pass arguments one-by-one, e.g. `asList(1, 2, 3)`, or, if we already have an array
- and want to pass its contents to the function, we use the **spread** operator (prefix the array with `*`):
+<!--When we call a `vararg`-function, we can pass arguments one-by-one, e.g. `asList(1, 2, 3)`, or, if we already have an array
+ and want to pass its contents to the function, we use the **spread** operator (prefix the array with `*`):-->
+ При вызове `vararg` функции, мы можем передать аргументы один-за-одним, например `asList(1, 2, 3)`, или, если у нас уже есть необходимый массив элементов и мы хотим передать его содержимое в нашу функцию, использовать оператор *spread* (необходимо пометить массив знаком `*`):
 
 ```kotlin
 val a = arrayOf(1, 2, 3)

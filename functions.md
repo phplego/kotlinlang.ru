@@ -12,7 +12,7 @@ title: "Functions"
 ## Объявление функций
 
 <!--Functions in Kotlin are declared using the *fun*{: .keyword } keyword-->
-В <b>Kotlin</b> функции объявляются с помощью ключевого слова *fun*.
+В <b>Kotlin</b> функции объявляются с помощью ключевого слова *fun*
 
 ``` kotlin
 fun double(x: Int): Int {
@@ -50,23 +50,26 @@ Sample().foo() //создаёт экземпляр класса Sample и выз
 * Когда они помечены ключевым словом `infix`
 
 ``` kotlin
-// Define extension to Int
+// Определить выражение как Int
 infix fun Int.shl(x: Int): Int {
 ...
 }
 
-// call extension function using infix notation
+// вызвать выражение функции, используя infix
 
 1 shl 2
 
-// is the same as
+// то же самое, что
 
 1.shl(2)
 ```
 
-### Parameters
+<!--### Parameters-->
+### Параметры
 
-Function parameters are defined using Pascal notation, i.e. *name*: *type*. Parameters are separated using commas. Each parameter must be explicitly typed.
+<!--Function parameters are defined using Pascal notation, i.e. *name*: *type*. Parameters are separated using commas. Each parameter must be explicitly typed.-->
+Параметры функции записываются аналогично системе обозначений в языке Pascal, *имя*:*тип*. Параметры разделены запятыми. Каждый параметр
+должен быть явно указан.
 
 ``` kotlin
 fun powerOf(number: Int, exponent: Int) {
@@ -74,10 +77,12 @@ fun powerOf(number: Int, exponent: Int) {
 }
 ```
 
-### Default Arguments
+<!--### Default Arguments-->
+### Аргументы по умолчанию.
 
-Function parameters can have default values, which are used when a corresponding argument is omitted. This allows for a reduced number of overloads compared to
-other languages.
+<!--Function parameters can have default values, which are used when a corresponding argument is omitted. This allows for a reduced number of overloads compared to
+other languages.-->
+Параметры функции могут иметь значения по умолчаню, которые используются в случае, если аргумент функции опушен при её вызове. Это позволяет снизить уровень перегруженности кода в сравнении с другими языками.
 
 ``` kotlin
 fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
@@ -85,10 +90,12 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
 }
 ```
 
-Default values are defined using the **=** after type along with the value.
+<!--Default values are defined using the **=** after type along with the value.-->
+Значения по умолчанию указываются с помощью **=** после типа.
 
-Overriding methods always use the same default parameter values as the base method.
-When overriding a method with default parameters values, the default parameter values must be omitted from the signature:
+<!--Overriding methods always use the same default parameter values as the base method.
+When overriding a method with default parameters values, the default parameter values must be omitted from the signature:-->
+Переопределённый методы всегда используют те же самые значения по умолчанию, что их базовые методы. При переопределении методов с значениями по умолчанию, эти параметры должны быть опущены:
 
 ``` kotlin
 open class A {
@@ -96,15 +103,18 @@ open class A {
 }
 
 class B : A() {
-    override fun foo(i: Int) { ... }  // no default value allowed
+    override fun foo(i: Int) { ... }  // значение по умолчанию указать нельзя
 }
 ```
 
-### Named Arguments
+<!--### Named Arguments-->
+### Имена в названиях аргументов
 
-Function parameters can be named when calling functions. This is very convenient when a function has a high number of parameters or default ones.
+<!--Function parameters can be named when calling functions. This is very convenient when a function has a high number of parameters or default ones.-->
+Параметры функции могут быть названы в момент вызова функций. Это очень удобно, когда у функции большой список параметров, в том числе со значениями по умолчанию.
 
-Given the following function
+<!--Given the following function-->
+Рассмотрим такую функцию
 
 ``` kotlin
 fun reformat(str: String,
@@ -116,19 +126,22 @@ fun reformat(str: String,
 }
 ```
 
-we could call this using default arguments
+<!--we could call this using default arguments-->
+мы можем вызвать её, используя аргументы по умолчанию
 
 ``` kotlin
 reformat(str)
 ```
 
-However, when calling it with non-default, the call would look something like
+<!--However, when calling it with non-default, the call would look something like-->
+Однако, при вызове этой функции без аргументов по умолчанию, получится что-то вроде
 
 ``` kotlin
 reformat(str, true, true, false, '_')
 ```
 
-With named arguments we can make the code much more readable
+<!--With named arguments we can make the code much more readable-->
+С названными аргументами мы можем сделать код намного более читаемым
 
 ``` kotlin
 reformat(str,
@@ -139,14 +152,16 @@ reformat(str,
 )
 ```
 
-and if we do not need all arguments
+<!--and if we do not need all arguments-->
+а, если нам не нужны все эти аргументы
 
 ``` kotlin
 reformat(str, wordSeparator = '_')
 ```
 
-Note that the named argument syntax cannot be used when calling Java functions, because Java bytecode does not
-always preserve names of function parameters.
+<!--Note that the named argument syntax cannot be used when calling Java functions, because Java bytecode does not
+always preserve names of function parameters.-->
+Обратите внимание, что синтаксис названных аргументов не может быть использован при вызове <b>Java</b> функций, потому как байт-код <b>Java</b> всегда хранит имена параметров функции.
 
 
 ### Unit-returning functions

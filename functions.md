@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Functions"
+title: "Функции"
 ---
 
 <!--# Functions-->
@@ -37,7 +37,7 @@ Sample().foo() //создаёт экземпляр класса Sample и выз
 ```
 
 <!--### Infix notation-->
-###Инфиксное обозначение
+### Инфиксное обозначение
 
 <!--Functions can also be called using infix notations when-->
 Функции так же могут быть вызваны при помощи использования инфиксных обозначений, когда:

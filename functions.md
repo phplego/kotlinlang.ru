@@ -164,10 +164,13 @@ always preserve names of function parameters.-->
 Обратите внимание, что синтаксис названных аргументов не может быть использован при вызове <b>Java</b> функций, потому как байт-код <b>Java</b> всегда хранит имена параметров функции.
 
 
-### Unit-returning functions
+<!--### Unit-returning functions-->
+### Функции с Unit-возвращаемым типом.
 
-If a function does not return any useful value, its return type is `Unit`. `Unit` is a type with only one value - `Unit`. This
-value does not have to be returned explicitly
+<!--If a function does not return any useful value, its return type is `Unit`. `Unit` is a type with only one value - `Unit`. This
+value does not have to be returned explicitly-->
+Если функция не возвращает никакого полезного значения, её возвращаемый тип - `Unit` . `Unit` - тип только с одним значением - `Unit`. 
+Это вовзращаемое значение не нуждается в явном указании
 
 ``` kotlin
 fun printHello(name: String?): Unit {
@@ -175,11 +178,12 @@ fun printHello(name: String?): Unit {
         println("Hello ${name}")
     else
         println("Hi there!")
-    // `return Unit` or `return` is optional
+    // `return Unit` или `return` необязательны
 }
 ```
 
-The `Unit` return type declaration is also optional. The above code is equivalent to
+<!--The `Unit` return type declaration is also optional. The above code is equivalent to-->
+Указание типа `Unit` в качестве возвращаемого значения тоже является необязательныи. Код, написанный выше, совершенно идентичен с 
 
 ``` kotlin
 fun printHello(name: String?) {
@@ -187,30 +191,36 @@ fun printHello(name: String?) {
 }
 ```
 
-### Single-Expression functions
+<!--### Single-Expression functions-->
+### Функции с одним выражением
 
-When a function returns a single expression, the curly braces can be omitted and the body is specified after a **=** symbol
+<!--When a function returns a single expression, the curly braces can be omitted and the body is specified after a **=** symbol-->
+Когда функция возвращает одно-единственное выражение, круглые скобки `{ }` быть опущены и тело функции может быть описано после знака `=`
 
 ``` kotlin
 fun double(x: Int): Int = x * 2
 ```
 
-Explicitly declaring the return type is [optional](#explicit-return-types) when this can be inferred by the compiler
+<!--Explicitly declaring the return type is [optional](#explicit-return-types) when this can be inferred by the compiler-->
+Явное объявление типа возвращаемого значения также необязательно. В том случае, если компилятор в состоянии вычислить его сам.
 
 ``` kotlin
 fun double(x: Int) = x * 2
 ```
 
-### Explicit return types
+<!--### Explicit return types-->
+### Явные типы возвращаемых значений
 
-Functions with block body must always specify return types explicitly, unless it's intended for them to return `Unit`, [in which case it is optional](#unit-returning-functions).
-Kotlin does not infer return types for functions with block bodies because such functions may have complex control flow in the body, and the return
-type will be non-obvious to the reader (and sometimes even for the compiler). 
+<!--Functions with block body must always specify return types explicitly, unless it's intended for them to return `Unit`, [in which case it is optional](#unit-returning-functions).
+Kotlin does not infer return types for functions with block bodies because such functions may have complex control flow in the body, and the return type will be non-obvious to the reader (and sometimes even for the compiler). -->
+Функции, в которых есть тело, всегда должны указывать возвращаемый ими тип данных (если в этом качестве не указан тип `Unit`).
+<b>Kotlin</b> не вычисляет самостоятельно тип возвращаемого значения для функций с заключённым в них блоком кода потому, что подобные функции могут иметь сложную структуру и возвращаемый тип неочевиден для читающего этот код человека (иногда даже для компилятора).
 
+<!--### Variable number of arguments (Varargs)-->
+### Нефиксированное число аргументов (Varargs)
 
-### Variable number of arguments (Varargs)
-
-A parameter of a function (normally the last one) may be marked with `vararg` modifier:
+<!--A parameter of a function (normally the last one) may be marked with `vararg` modifier:-->
+Параметр функции (обчычно для этого используется последний) может быть помечен модификатором `vararg`:
 
 ``` kotlin
 fun <T> asList(vararg ts: T): List<T> {

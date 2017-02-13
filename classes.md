@@ -270,15 +270,17 @@ open class AnotherDerived() : Base() {
 <!--* Best practices say that you should not allow these hacks anyway
 * People successfully use other languages (C++, C#) that have similar approach
 * If people really want to hack, there still are ways: you can always write your hack in Java and call it from Kotlin (*see [Java Interop](java-interop.html)*), and Aspect frameworks always work for these purposes-->
-* Опыт поколений говорит о том, что в ,любом случае, лучше не позволять внедрять такие хаки
+* Опыт поколений говорит о том, что, в любом случае, лучше не позволять внедрять такие хаки
 * Люди успешно используют другие языки (<b>C++</b>, <b>C#</b>), которые имеют аналогичных подход к этому вопросу
 * Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его из-под <b>Kotlin</b> (см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html)
 
-### Overriding Rules
+<!--### Overriding Rules-->
+### Правила переопределения
 
-In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits many implementations of the same member from its immediate superclasses,
+<!--In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits many implementations of the same member from its immediate superclasses,
 it must override this member and provide its own implementation (perhaps, using one of the inherited ones).
-To denote the supertype from which the inherited implementation is taken, we use **super** qualified by the supertype name in angle brackets, e.g. `super<Base>`:
+To denote the supertype from which the inherited implementation is taken, we use **super** qualified by the supertype name in angle brackets, e.g. `super<Base>`:-->
+В <b>Kotlin</b> правила наследования имплементации определены следующим образом: если класс перенимает большое количество имплементаций одного и того члена от ближайших родителських классов, он должен переопределить этот член и обеспечить свою собственную имплементацию (возможно, используя одну из унаследованных). Для того, чтобы отметить супертип (родительский класс), от которого мы унаследовали данную имплементацию, мы используем ключевое слово **super**. Для уточнения имя родительского супертипа используются треугольные скобки, например `super<Base>`:
 
 ``` kotlin
 open class A {
@@ -300,11 +302,14 @@ class C() : A(), B {
 }
 ```
 
-It's fine to inherit from both `A` and `B`, and we have no problems with `a()` and `b()` since `C` inherits only one implementation of each of these functions.
+<!---It's fine to inherit from both `A` and `B`, and we have no problems with `a()` and `b()` since `C` inherits only one implementation of each of these functions.
 But for `f()` we have two implementations inherited by `C`, and thus we have to override `f()` in `C`
-and provide our own implementation that eliminates the ambiguity.
+and provide our own implementation that eliminates the ambiguity.-->
+Нормально наследоваться одновременно от `A` и `B`. У нас не возникнет никаких проблем с `a()` и `b()` в том случае, если `C` унаследует только одну имплементацию этих функций.
+Но для `f()` у нас есть две имплементации, унаследованные классом `C`, поэтому необходимо переопределить `f()` в `C` и обеспечить нашу собственную реализацию этого метода для устранения получившейся неоднозначности.
 
-## Abstract Classes
+<!--## Abstract Classes-->
+## Абстрактные классы
 
 A class and some of its members may be declared **abstract**
 An abstract member does not have an implementation in its class.

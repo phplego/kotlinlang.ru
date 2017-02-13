@@ -311,11 +311,15 @@ and provide our own implementation that eliminates the ambiguity.-->
 <!--## Abstract Classes-->
 ## Абстрактные классы
 
-A class and some of its members may be declared **abstract**
+<!--A class and some of its members may be declared **abstract**
 An abstract member does not have an implementation in its class.
-Note that we do not need to annotate an abstract class or function with open – it goes without saying.
+Note that we do not need to annotate an abstract class or function with open – it goes without saying.-->
+Класс и некоторые его члены могут быть объявлены как **abstract**
+Абстрактный член не имеет реализации в его классе.
+Обратите внимание, что нам не надо аннотировать абстрактный класс или функцию словом **open** - это подразумевается и так.
 
-We can override a non-abstract open member with an abstract one
+<!--We can override a non-abstract open member with an abstract one-->
+Можно переопределить не-абстрактный **open** член абстрактным
 
 ``` kotlin
 open class Base {
@@ -327,29 +331,37 @@ abstract class Derived : Base() {
 }
 ```
 
-## Companion Objects
+<!--## Companion Objects-->
+## Объекты-помощники
 
-In Kotlin, unlike Java or C#, classes do not have static methods. In most cases, it's recommended to simply use
-package-level functions instead.
+<!--In Kotlin, unlike Java or C#, classes do not have static methods. In most cases, it's recommended to simply use
+package-level functions instead.-->
+В <b>Kotlin</b>, в отличие от <b>Java</b> или <b>C#</b>, в классах не бывает статических методов. В большинстве случаев, рекомендуется использовать функции на уровне пакета (ориг.: _"package-level functions"_).
 
-If you need to write a function that can be called without having a class instance but needs access to the internals
+<!--If you need to write a function that can be called without having a class instance but needs access to the internals
 of a class (for example, a factory method), you can write it as a member of an [object declaration](object-declarations.html)
-inside that class.
+inside that class.-->
+Если вам нужно написать функцию, которая может быть использована без создания экземпляра класса, но имела бы доступ к данным внутри этого класса (к примеру, фабричный метод), вы можете написать её как член [объявления объекта](http://kotlinlang.org/docs/reference/object-declarations.html) внутри этого класса.
 
-Even more specifically, if you declare a [companion object](object-declarations.html#companion-objects) inside your class,
+<!--Even more specifically, if you declare a [companion object](object-declarations.html#companion-objects) inside your class,
 you'll be able to call its members with the same syntax as calling static methods in Java/C#, using only the class name
-as a qualifier.
+as a qualifier.-->
+В частности, если вы объявляете объект-помощник в своём классе, у вас появляется возможность обращаться к его членам, используя тот же синтаксис, как при использовании статических методов в <b>Java</b>/<b>C#</b> (указав название класса для доступа).
 
 
-## Sealed Classes
+<!--## Sealed Classes-->
+## Изолированные классы (ориг.: _"sealed classes")
 
-Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
+<!--Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
 limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
 for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
-of a sealed class can have multiple instances which can contain state.
+of a sealed class can have multiple instances which can contain state.-->
+Изолированные классы используется для того, чтобы представить закрытые классовые иерархии, когда переменная может принимать одно из значений ограниченного списка, но не может быть другого типа. Эти классы, в каком-то смысле, являются расширением **enum** классов:
+набор значений для типа **enum** также ограничен, но каждая **enum** константа существует как отдельный экземпляр класса, в то время, как класс, производный от изолированного (**sealed class**), может иметь несколько экземпляров со своими значениями.   
 
-To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
-subclasses, but all of them must be nested inside the declaration of the sealed class itself.
+<!--To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
+subclasses, but all of them must be nested inside the declaration of the sealed class itself.-->
+Для того, чтобы объявить изолированный **sealed** класс, необходимо указать модификатор `sealed` перед именем класса. Такой изолированный класс может иметь производные от него классы, но все они должны быть вложены в него самого.
 
 ``` kotlin
 sealed class Expr {
@@ -359,11 +371,13 @@ sealed class Expr {
 }
 ```
 
-Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside
-the declaration of the sealed class.
+<!--Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside
+the declaration of the sealed class.-->
+Обращаем ваше внимание на то, что классы, наследующиеся от дочерних классов **sealed** (опосредованные наследники), могут быть помещены в любом месте, необязательно в изолированном **sealed** классе. 
 
-The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible
-to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.
+<!--The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible
+to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.-->
+Ключевое преимущество использования изолированных **sealed** проявляется, когда применяется выражение [`when`](http://kotlinlang.org/docs/reference/control-flow.html#when-expression). Если есть возможность того, что утверждение покрывает все возможные варианты, то к нему нет необходимости добавлять оператор `else`.
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {

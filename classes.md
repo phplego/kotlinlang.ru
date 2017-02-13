@@ -139,14 +139,16 @@ class DontCreateMe private constructor () {
 ```
 
 > **Примечание**: В виртуальной машине JVM, компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
-> ``` kotlin
+>``` kotlin
 > class Customer(val customerName: String = "")
-> ```
+>```
+```
 
+<!--### Creating instances of classes-->
+### Создание экземпляров классов
 
-### Creating instances of classes
-
-To create an instance of a class, we call the constructor as if it were a regular function:
+<!--To create an instance of a class, we call the constructor as if it were a regular function:-->
+Для создания экземпляра класса конструктор вызывается так, как если бы он был обычной функцией:
 
 ``` kotlin
 val invoice = Invoice()
@@ -154,32 +156,44 @@ val invoice = Invoice()
 val customer = Customer("Joe Smith")
 ```
 
-Note that Kotlin does not have a **new** keyword.
+<!--Note that Kotlin does not have a **new** keyword.-->
+Обращаем ваше внимание на то, что в <b>Kotlin</b> не используется ключевое слово **new**.
 
 
-### Class Members
+<!--### Class Members-->
+### Члены класса
 
-Classes can contain
+<!--Classes can contain-->
+Классы могут содержать в себе:
 
-* Constructors and initializer blocks
+<!--* Constructors and initializer blocks
 * [Functions](functions.html)
 * [Properties](properties.html)
 * [Nested and Inner Classes](nested-classes.html)
-* [Object Declarations](object-declarations.html)
+* [Object Declarations](object-declarations.html)-->
+* Конструкторы и инициализирующие блоки
+* [Функции](functions.md)
+* [Свойства](http://kotlinlang.org/docs/reference/properties.html)
+* [Вложенные классы](http://kotlinlang.org/docs/reference/nested-classes.html)
+* [Объявления объектов](http://kotlinlang.org/docs/reference/object-declarations.html)
 
 
-## Inheritance
+<!--## Inheritance-->
+## Наследование
 
-All classes in Kotlin have a common superclass `Any`, that is a default super for a class with no supertypes declared:
+<!--All classes in Kotlin have a common superclass `Any`, that is a default super for a class with no supertypes declared:-->
+Для всех классов в языке <b>Koltin</b> родителським суперклассом является класс `Any`. Он также явлется родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
 
 ``` kotlin
 class Example // Implicitly inherits from Any
 ```
 
-`Any` is not `java.lang.Object`; in particular, it does not have any members other than `equals()`, `hashCode()` and `toString()`.
-Please consult the [Java interoperability](java-interop.html#object-methods) section for more details.
+<!--`Any` is not `java.lang.Object`; in particular, it does not have any members other than `equals()`, `hashCode()` and `toString()`.
+Please consult the [Java interoperability](java-interop.html#object-methods) section for more details.-->
+Класс `Any` не является аналогом `java.lang.Object`. В частности, у него нет никаких членов кроме методов: `equals()`, `hashCode()`, и `toString()`. Пожалуйста, ознакомьтесь с [совместимостью c Java](http://kotlinlang.org/docs/reference/java-interop.html#object-methods) для более подробной информации.
 
-To declare an explicit supertype, we place the type after a colon in the class header:
+<!--To declare an explicit supertype, we place the type after a colon in the class header:-->
+Для явного объявления суперкласса, мы помещаем его имя за знаком двоеточия в оглавлении класса:
 
 ``` kotlin
 open class Base(p: Int)
@@ -187,12 +201,15 @@ open class Base(p: Int)
 class Derived(p: Int) : Base(p)
 ```
 
-If the class has a primary constructor, the base type can (and must) be initialized right there,
-using the parameters of the primary constructor.
+<!--If the class has a primary constructor, the base type can (and must) be initialized right there,
+using the parameters of the primary constructor.-->
+Если у класса есть основной конструктор, базовый тип может (и должен) быть проинициализирован там же, с использованием параметров первичного конструктора.
 
-If the class has no primary constructor, then each secondary constructor has to initialize the base type
+<!--If the class has no primary constructor, then each secondary constructor has to initialize the base type
 using the **super** keyword, or to delegate to another constructor which does that.
-Note that in this case different secondary constructors can call different constructors of the base type:
+Note that in this case different secondary constructors can call different constructors of the base type:-->
+Если у класса нет первичного конструктора, тогда каждый последующий второстепенный коснтруктор должен включать в себя инициализацию базового типа с помощью ключевого слова **super** или давать отсылку на другой конструктор, который это делает.
+Примечательно, что любые вторичные конструкторы могут ссылаться на разные конструкторы базового типа. 
 
 ``` kotlin
 class MyView : View {
@@ -204,10 +221,11 @@ class MyView : View {
 }
 ```
 
-The **open** annotation on a class is the opposite of Java's **final**: it allows others
+<!--The **open** annotation on a class is the opposite of Java's **final**: it allows others
 to inherit from this class. By default, all classes in Kotlin are final, which
 corresponds to [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),
-Item 17: *Design and document for inheritance or else prohibit it*.
+Item 17: *Design and document for inheritance or else prohibit it*.-->
+Ключевое слово **open** является противоположностью слову **final** в <b>Java</b>: оно позволяет другим классам наследоваться от данного. По умолчанию, все классы в <b>Kotlin</b> имеют статус **final**, что отвечает [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Пункт 17: *Design and document for inheritance or else prohibit it*.
 
 ### Overriding Members
 

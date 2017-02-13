@@ -16,7 +16,7 @@ related:
 ## Классы
 
 <!--Classes in Kotlin are declared using the keyword **class**:-->
-Классы в <b>Kotlin</b> обявляются с помощью использования ключевого слова **class**:
+Классы в <b>Kotlin</b> объявляются с помощью использования ключевого слова **class**:
 
 ``` kotlin
 class Invoice {
@@ -26,7 +26,7 @@ class Invoice {
 <!--The class declaration consists of the class name, the class header (specifying its type parameters, the primary
 constructor etc.) and the class body, surrounded by curly braces. Both the header and the body are optional;
 if the class has no body, curly braces can be omitted.-->
-Объявление класса состоит из имени класса, заголовка (указания типов его параметром, первичного конструктора и т.п) и тела класса,
+Объявление класса состоит из имени класса, заголовка (указания типов его параметров, первичного конструктора и т.п) и тела класса,
 заключённого в фигурные скобки. И заголовок и тело класса являются необязательными составляющими: если у класса нет тела, фигурные скобки могут быть опущены.
 
 ``` kotlin
@@ -48,7 +48,7 @@ class Person constructor(firstName: String) {
 
 <!--If the primary constructor does not have any annotations or visibility modifiers, the **constructor**
 keyword can be omitted:-->
-Если у конструктора нет аннотаций и модивикаторов видимости, ключево слово **constructor** может быть опущено:
+Если у конструктора нет аннотаций и модификаторов видимости, ключево слово **constructor** может быть опущено:
 
 ``` kotlin
 class Person(firstName: String) {
@@ -141,7 +141,6 @@ class DontCreateMe private constructor () {
 > **Примечание**: В виртуальной машине JVM, компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
 >``` kotlin
 > class Customer(val customerName: String = "")
->```
 ```
 
 <!--### Creating instances of classes-->
@@ -225,12 +224,15 @@ class MyView : View {
 to inherit from this class. By default, all classes in Kotlin are final, which
 corresponds to [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),
 Item 17: *Design and document for inheritance or else prohibit it*.-->
-Ключевое слово **open** является противоположностью слову **final** в <b>Java</b>: оно позволяет другим классам наследоваться от данного. По умолчанию, все классы в <b>Kotlin</b> имеют статус **final**, что отвечает [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Пункт 17: *Design and document for inheritance or else prohibit it*.
+Ключевое слово **open** является противоположностью слову **final** в <b>Java</b>: оно позволяет другим классам наследоваться от данного. По умолчанию, все классы в <b>Kotlin</b> имеют статус **final**, что отвечает [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 17: *Design and document for inheritance or else prohibit it*.
 
-### Overriding Members
+<!--### Overriding Members-->
+### Переопределение членов класса
 
-As we mentioned before, we stick to making things explicit in Kotlin. And unlike Java, Kotlin requires explicit
-annotations for overridable members (we call them *open*) and for overrides:
+<!--As we mentioned before, we stick to making things explicit in Kotlin. And unlike Java, Kotlin requires explicit
+annotations for overridable members (we call them *open*) and for overrides:-->
+Как упоминалось ранее, мы придерживаемся идеи определённости и ясности в языке <b>Kotlin</b>. И, в отличие от <b>Java</b>, <b>Kotlin</b>
+требует чёткой аннотации и для членов, которые могут быть переопределены, и для самого переопределения:
 
 ``` kotlin
 open class Base {
@@ -242,11 +244,13 @@ class Derived() : Base() {
 }
 ```
 
-The **override** annotation is required for `Derived.v()`. If it were missing, the compiler would complain.
+<!--The **override** annotation is required for `Derived.v()`. If it were missing, the compiler would complain.
 If there is no **open** annotation on a function, like `Base.nv()`, declaring a method with the same signature in a subclass is illegal,
-either with **override** or without it. In a final class (e.g. a class with no **open** annotation), open members are prohibited.
+either with **override** or without it. In a final class (e.g. a class with no **open** annotation), open members are prohibited.-->
+Для `Derived.v()` необходима аннотация  **override**. В случае её отсутствия, компилятор выдаст ошибку. Если у функции типа `Base.nv()` нет аннотации **open**, объявление метода с такой же сигнатурой в производном классе невозможно, с **override** или без. В **final** классе (классе, без аннотации **open**),  запрещено использование аннотации **open** для его членов. 
 
-A member marked **override** is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use **final**:
+<!--A member marked **override** is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use **final**:-->
+Член класса, помеченный **override** является сам по себе **open**, таким образом он может быть переопределён в производных классах. Если вы хотите запретить возможность переопределения такого члена, используйте **final**:
 
 ``` kotlin
 open class AnotherDerived() : Base() {
@@ -254,15 +258,21 @@ open class AnotherDerived() : Base() {
 }
 ```
 
-#### Wait! How will I hack my libraries now?!
+<!--#### Wait! How will I hack my libraries now?!-->
+#### Стойте! Как мне теперь хакнуть свои библиотеки?
 
-One issue with our approach to overriding (classes and members final by default) is that it would be difficult to subclass something inside the libraries you use to override some method that was not intended for overriding by the library designer, and introduce some nasty hack there.
+<!--One issue with our approach to overriding (classes and members final by default) is that it would be difficult to subclass something inside the libraries you use to override some method that was not intended for overriding by the library designer, and introduce some nasty hack there.-->
+При нашем подходе к переопределению классов и их членов (которые по дефолту **final**) будет сложновато унаследоваться от чего-нибудь внутри используемых вами библиотек для того, чтобы переопределить не предназначенный для этого метод метод и внедрить туда свой гнусный хак.
 
-We think that this is not a disadvantage, for the following reasons:
+<!--We think that this is not a disadvantage, for the following reasons:-->
+Мы думаем, что это не является недостатком по следующим причинам:
 
-* Best practices say that you should not allow these hacks anyway
+<!--* Best practices say that you should not allow these hacks anyway
 * People successfully use other languages (C++, C#) that have similar approach
-* If people really want to hack, there still are ways: you can always write your hack in Java and call it from Kotlin (*see [Java Interop](java-interop.html)*), and Aspect frameworks always work for these purposes
+* If people really want to hack, there still are ways: you can always write your hack in Java and call it from Kotlin (*see [Java Interop](java-interop.html)*), and Aspect frameworks always work for these purposes-->
+* Опыт поколений говорит о том, что в ,любом случае, лучше не позволять внедрять такие хаки
+* Люди успешно используют другие языки (<b>C++</b>, <b>C#</b>), которые имеют аналогичных подход к этому вопросу
+* Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его из-под <b>Kotlin</b> (см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html)
 
 ### Overriding Rules
 

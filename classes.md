@@ -262,7 +262,7 @@ open class AnotherDerived() : Base() {
 #### Стойте! Как мне теперь хакнуть свои библиотеки?
 
 <!--One issue with our approach to overriding (classes and members final by default) is that it would be difficult to subclass something inside the libraries you use to override some method that was not intended for overriding by the library designer, and introduce some nasty hack there.-->
-При нашем подходе к переопределению классов и их членов (которые по дефолту **final**) будет сложновато унаследоваться от чего-нибудь внутри используемых вами библиотек для того, чтобы переопределить не предназначенный для этого метод метод и внедрить туда свой гнусный хак.
+При нашем подходе к переопределению классов и их членов (которые по дефолту **final**) будет сложновато унаследоваться от чего-нибудь внутри используемых вами библиотек для того, чтобы переопределить не предназначенный для этого метод и внедрить туда свой гнусный хак.
 
 <!--We think that this is not a disadvantage, for the following reasons:-->
 Мы думаем, что это не является недостатком по следующим причинам:
@@ -314,8 +314,7 @@ and provide our own implementation that eliminates the ambiguity.-->
 <!--A class and some of its members may be declared **abstract**
 An abstract member does not have an implementation in its class.
 Note that we do not need to annotate an abstract class or function with open – it goes without saying.-->
-Класс и некоторые его члены могут быть объявлены как **abstract**
-Абстрактный член не имеет реализации в его классе.
+Класс и некоторые его члены могут быть объявлены как **abstract**. Абстрактный член не имеет реализации в его классе.
 Обратите внимание, что нам не надо аннотировать абстрактный класс или функцию словом **open** - это подразумевается и так.
 
 <!--We can override a non-abstract open member with an abstract one-->
@@ -350,13 +349,13 @@ as a qualifier.-->
 
 
 <!--## Sealed Classes-->
-## Изолированные классы (ориг.: _"sealed classes")
+## Изолированные классы (ориг.: _"sealed classes"_)
 
 <!--Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
 limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
 for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
 of a sealed class can have multiple instances which can contain state.-->
-Изолированные классы используется для того, чтобы представить закрытые классовые иерархии, когда переменная может принимать одно из значений ограниченного списка, но не может быть другого типа. Эти классы, в каком-то смысле, являются расширением **enum** классов:
+Изолированные классы используются для того, чтобы представить закрытые классовые иерархии, когда переменная может принимать одно из значений ограниченного списка, но не может быть другого типа. Эти классы, в каком-то смысле, являются расширением **enum** классов:
 набор значений для типа **enum** также ограничен, но каждая **enum** константа существует как отдельный экземпляр класса, в то время, как класс, производный от изолированного (**sealed class**), может иметь несколько экземпляров со своими значениями.   
 
 <!--To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have

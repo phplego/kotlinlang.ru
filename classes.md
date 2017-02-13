@@ -48,7 +48,7 @@ class Person(firstName: String) {
 ```
 
 The primary constructor cannot contain any code. Initialization code can be placed
-in **initializer blocks**, which are prefixed with the **init**keyword:
+in **initializer blocks**, which are prefixed with the `init` keyword:
 
 ``` kotlin
 class Customer(name: String) {

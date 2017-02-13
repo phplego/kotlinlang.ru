@@ -2,53 +2,62 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Classes and Inheritance"
+title: "Классы и наследование"
 related:
     - functions.md
     - nested-classes.md
     - interfaces.md
 ---
 
-# Classes and Inheritance
+<!--# Classes and Inheritance-->
+# Классы и наследование
 
-## Classes
+<!--## Classes-->
+## Классы
 
-Classes in Kotlin are declared using the keyword **class**:
+<!--Classes in Kotlin are declared using the keyword **class**:-->
+Классы в <b>Kotlin</b> обявляются с помощью использования ключевого слова **class**:
 
 ``` kotlin
 class Invoice {
 }
 ```
 
-The class declaration consists of the class name, the class header (specifying its type parameters, the primary
+<!--The class declaration consists of the class name, the class header (specifying its type parameters, the primary
 constructor etc.) and the class body, surrounded by curly braces. Both the header and the body are optional;
-if the class has no body, curly braces can be omitted.
+if the class has no body, curly braces can be omitted.-->
+Объявление класса состоит из имени класса, заголовка (указания типов его параметром, первичного конструктора и т.п) и тела класса,
+заключённого в фигурные скобки. И заголовок и тело класса являются необязательными составляющими: если у класса нет тела, фигурные скобки могут быть опущены.
 
 ``` kotlin
 class Empty
 ```
 
 
-### Constructors
+<!--### Constructors-->
+### Конструкторы
 
-A class in Kotlin can have a **primary constructor** and one or more **secondary constructors**. The primary
-constructor is part of the class header: it goes after the class name (and optional type parameters).
+<!--A class in Kotlin can have a **primary constructor** and one or more **secondary constructors**. The primary
+constructor is part of the class header: it goes after the class name (and optional type parameters).-->
+Класс в <b>Kotlin</b> может иметь первичный конструктор (**primary constructor**) и один или более вторичный конструктор (**secondary constructors**). Первичный конструктор является частью заголовка класса, его объявление идёт сразу после имени класса (и необязательных параметров).
 
 ``` kotlin
 class Person constructor(firstName: String) {
 }
 ```
 
-If the primary constructor does not have any annotations or visibility modifiers, the **constructor**
-keyword can be omitted:
+<!--If the primary constructor does not have any annotations or visibility modifiers, the **constructor**
+keyword can be omitted:-->
+Если у конструктора нет аннотаций и модивикаторов видимости, ключево слово **constructor** может быть опущено:
 
 ``` kotlin
 class Person(firstName: String) {
 }
 ```
 
-The primary constructor cannot contain any code. Initialization code can be placed
-in **initializer blocks**, which are prefixed with the **init**keyword:
+<!--The primary constructor cannot contain any code. Initialization code can be placed
+in **initializer blocks**, which are prefixed with the **init**keyword:-->
+Первичный конструктор не может содержать в себе никакого исполняемого кода. Инициализирующий код может быть помещён в соответствующий блок (**initializers blocks**), который помечается словом **init**:
 
 ``` kotlin
 class Customer(name: String) {
@@ -58,8 +67,9 @@ class Customer(name: String) {
 }
 ```
 
-Note that parameters of the primary constructor can be used in the initializer blocks. They can also be used in
-property initializers declared in the class body:
+<!--Note that parameters of the primary constructor can be used in the initializer blocks. They can also be used in
+property initializers declared in the class body:-->
+Обратите внимание, что параметры первичного конструктора могут быть использованы в инициализирующем блоке. Они также могут быть использованы при инициализации свойств в теле класса:
 
 ``` kotlin
 class Customer(name: String) {
@@ -67,8 +77,8 @@ class Customer(name: String) {
 }
 ```
 
-In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:
-
+<!--In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:-->
+В действительности, для объявления и инициализации свойств первичного конструктора, в <b>Kotlin</b> есть лакониченое синтаксическое решение:
 
 ``` kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
@@ -76,22 +86,26 @@ class Person(val firstName: String, val lastName: String, var age: Int) {
 }
 ```
 
-Much the same way as regular properties, the properties declared in the primary constructor can be
-mutable (**var**) or read-only (**val**).
+<!--Much the same way as regular properties, the properties declared in the primary constructor can be
+mutable (**var**) or read-only (**val**).-->
+Свойства, объявленные в первичном коснтрукторе, могут быть изменяемые (**var**) и неизменяемые (**val**). 
 
-If the constructor has annotations or visibility modifiers, the **constructor** keyword is required, and
-the modifiers go before it:
+<!--If the constructor has annotations or visibility modifiers, the **constructor** keyword is required, and
+the modifiers go before it:-->
+Если у конструктора есть аннотации или модификаторы видимости, ключевое слово **constructor** обязательно, и модификаторы используются перед ним.
 
 ``` kotlin
 class Customer public @Inject constructor(name: String) { ... }
 ```
 
-For more details, see [Visibility Modifiers](visibility-modifiers.html#constructors).
+<!--For more details, see [Visibility Modifiers](visibility-modifiers.html#constructors).-->
+Для более подробной информации по данному вопросу, см. ["Модификаторы видимости"](http://kotlinlang.org/docs/reference/visibility-modifiers.html#constructors).
 
+<!--#### Secondary Constructors-->
+#### Второстепенные конструкторы 
 
-#### Secondary Constructors
-
-The class can also declare **secondary constructors**, which are prefixed with **constructor**:
+<!--The class can also declare **secondary constructors**, which are prefixed with **constructor**:-->
+В классах также могут быть объявлены дополнительные конструкторы (**secondary constructors**), перед которыми используется ключевое слово **constructor**:
 
 ``` kotlin
 class Person {
@@ -101,9 +115,10 @@ class Person {
 }
 ```
 
-If the class has a primary constructor, each secondary constructor needs to delegate to the primary constructor, either
+<!--If the class has a primary constructor, each secondary constructor needs to delegate to the primary constructor, either
 directly or indirectly through another secondary constructor(s). Delegation to another constructor of the same class
-is done using the **this** keyword:
+is done using the **this** keyword:-->
+Если у класса есть главный (первичный) конструктор, каждый последующий конструктор должен прямо или косвенно ссылаться (через другой(_ие_) конструктор(_ы_)) на первичный.
 
 ``` kotlin
 class Person(val name: String) {
@@ -113,19 +128,17 @@ class Person(val name: String) {
 }
 ```
 
-If a non-abstract class does not declare any constructors (primary or secondary), it will have a generated primary
+<!--If a non-abstract class does not declare any constructors (primary or secondary), it will have a generated primary
 constructor with no arguments. The visibility of the constructor will be public. If you do not want your class
-to have a public constructor, you need to declare an empty primary constructor with non-default visibility:
+to have a public constructor, you need to declare an empty primary constructor with non-default visibility:-->
+Если в абстрактном классе не объявлено никаких конструкторов (первичных или второстепенных), у этого класса автоматически сгенерируется пустой конструктор без параметров. Видимость этого конструктора будет **public**. Если вы не желаете иметь класс с открытым **public** конструктором, вам необходимо объявить пустой конструктор с соответствующим модификатором видимости:
 
 ``` kotlin
 class DontCreateMe private constructor () {
 }
 ```
 
-> **NOTE**: On the JVM, if all of the parameters of the primary constructor have default values, the compiler will
-> generate an additional parameterless constructor which will use the default values. This makes it easier to use
-> Kotlin with libraries such as Jackson or JPA that create class instances through parameterless constructors.
->
+> **Примечание**: В виртуальной машине JVM, компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
 > ``` kotlin
 > class Customer(val customerName: String = "")
 > ```

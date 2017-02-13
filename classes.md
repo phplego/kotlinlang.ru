@@ -53,11 +53,12 @@ keyword can be omitted:-->
 ``` kotlin
 class Person(firstName: String) {
 }
-```
+``
 
 <!--The primary constructor cannot contain any code. Initialization code can be placed
 in **initializer blocks**, which are prefixed with the **init**keyword:-->
 Первичный конструктор не может содержать в себе никакого исполняемого кода. Инициализирующий код может быть помещён в соответствующий блок (**initializers blocks**), который помечается словом **init**:
+
 
 ``` kotlin
 class Customer(name: String) {

@@ -53,7 +53,7 @@ keyword can be omitted:-->
 ``` kotlin
 class Person(firstName: String) {
 }
-``
+```
 
 <!--The primary constructor cannot contain any code. Initialization code can be placed
 in **initializer blocks**, which are prefixed with the **init**keyword:-->
@@ -138,11 +138,13 @@ to have a public constructor, you need to declare an empty primary constructor w
 class DontCreateMe private constructor () {
 }
 ```
+>
+ **Примечание**: В виртуальной машине JVM, компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
 
-> **Примечание**: В виртуальной машине JVM, компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
->``` kotlin
-> class Customer(val customerName: String = "")
->```
+``` kotlin
+class Customer(val customerName: String = "")
+```
+
 
 <!--### Creating instances of classes-->
 ### Создание экземпляров классов

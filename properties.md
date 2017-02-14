@@ -70,7 +70,7 @@ val inferredType = 1 // имеет тип Int и стандартный гетт
 ```
 
 <!--We can write custom accessors, very much like ordinary functions, right inside a property declaration. Here's an example of a custom getter:-->
-Мы можем использовать пользовательские способы доступа, как и обычные фуннкции, прямо внутри объявления свойств. Вот пример пользовательского геттера:
+Мы можем использовать пользовательские способы доступа, как и обычные функции, прямо при объявлении свойств. Вот пример пользовательского геттера:
 
 ``` kotlin
 val isEmpty: Boolean
@@ -89,11 +89,11 @@ var stringRepresentation: String
 ```
 
 <!--By convention, the name of the setter parameter is `value`, but you can choose a different name if you prefer.-->
-По договорённости, имя сеттера для параметра - `value`, но вы можете использовать любое другое на свой вкус.
+По договорённости, имя параметра для сеттера - `value`, но вы можете использовать любое другое на своё усмотрение.
 
 <!--If you need to change the visibility of an accessor or to annotate it, but don't need to change the default implementation,
 you can define the accessor without defining its body:-->
-Если вам нужно изменить область видимости для метод доступа к свойству или аннотировать его, но вам не надо вносить изменения в родную имплементацию, вы можете объявить метод доступа без объявления его тела:
+Если вам нужно изменить область видимости для метода доступа к свойству или аннотировать его, но не надо вносить изменения в родную имплементацию, вы можете объявить метод доступа без объявления его тела:
 
 ``` kotlin
 var setterVisibility: String = "abc"
@@ -120,7 +120,7 @@ var counter = 0 // значение при инициализации запис
 Идентификатор `field` может быть использован только в методах доступа к свойству.
 
 <!--A backing field will be generated for a property if it uses the default implementation of at least one of the accessors, or if a custom accessor references it through the `field` identifier.-->
-Такое _backing field_ будет сгенерировано для свойства, если оно использует стандартную имплементацию как минимум одного из методов доступа. Или в случае, когда пользовательский метод доступа ссылается на него через идентификатор `field`.
+Такое _backing field_ будет сгенерировано для свойства, если оно использует стандартную реализацию как минимум одного из методов доступа. Или в случае, когда пользовательский метод доступа ссылается на него через идентификатор `field`.
 
 <!--For example, in the following case there will be no backing field:-->
 Например, в нижестоящем примере не будет никакого _backing field_:
@@ -133,7 +133,7 @@ val isEmpty: Boolean
 ### _Backing Properties_
 
 <!--If you want to do something that does not fit into this "implicit backing field" scheme, you can always fall back to having a *backing property*:-->
-Если вы хотите предпринять что-то такое, что не вмещается в такую схему "неявного _backing field_", вы всегда можете отойти от неё и использовать _backing property_:
+Если вы хотите предпринять что-то такое, что выходит за рамки вышеуказанной схемы "неявного _backing field_", вы всегда можете использовать _backing property_:
 
 ``` kotlin
 private var _table: Map<String, Int>? = null
@@ -146,7 +146,7 @@ public val table: Map<String, Int>
     }
 ```
 
-_--In all respects, this is just the same as in Java since access to private properties with default getters and setters is optimized so that no function call overhead is introduced._
+_In all respects, this is just the same as in Java since access to private properties with default getters and setters is optimized so that no function call overhead is introduced._
 <!--Во всех отношениях, такой подход является ничем иным, как доступом к закрытым свойствам с стандартными геттерами и сеттерами, который мы использовали в  <b>Java</b>. Так как он был оптимизирован, отпала необходимость вызова-->
 
 <!--## Compile-Time Constants-->
@@ -177,7 +177,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 However, fairly often this is not convenient. For example, properties can be initialized through dependency injection,
 or in the setup method of a unit test. In this case, you cannot supply a non-null initializer in the constructor,
 but you still want to avoid null checks when referencing the property inside the body of a class.-->
-Обчычно свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неприемлемо. К примеру, свойства могут быть инициализированы через внедрение зависимостей или же в установочном методе (ориг.: _"setup method"_) юнит 
+Обычно свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неприемлемо. К примеру, свойства могут быть инициализированы через внедрение зависимостей или же в установочном методе (ориг.: _"setup method"_) юнит 
 теста. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе, но всё-равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству. 
 
 <!--To handle this case, you can mark the property with the `lateinit` modifier:-->
@@ -192,7 +192,7 @@ public class MyTest {
     }
 
     @Test fun test() {
-        subject.method()  // (ориг.: "dereference directly")
+        subject.method()  // тут я долго тупил и всё-равно не смог перевести (ориг.: "dereference directly")
     }
 }
 ```
@@ -218,9 +218,9 @@ being accessed and the fact that it hasn't been initialized.-->
 On the other hand, with custom getters and setters one can implement any behaviour of a property.
 Somewhere in between, there are certain common patterns of how a property may work. A few examples: lazy values,
 reading from a map by a given key, accessing a database, notifying listener on access, etc.-->
-Самый распространённый тип свойств просто считывает данные из (может, и записывает в) _backing field_.
+Самый распространённый тип свойств просто считывает данные из (а может и записывает в) _backing field_.
 С другой стороны, с пользовательскими геттерами и сеттерами мы можем реализрвать совершенно любое поведение свойства.
-Где-то посередине этих двух крайностей существуют общепринятые шаблоны того, как могут работать свойства. Несколько примеров:
+Где-то посередине от этих двух вариантов существуют общепринятые шаблоны того, как могут работать свойства. Несколько примеров:
 ленивые значения (ориг.: "_lazy values_"), которые читаются из коллекции map c помощью заданного ключа key, получают доступ в базе данных, оповещая при этом listener в момент доступа и т.п.
 
 

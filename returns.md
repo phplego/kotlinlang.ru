@@ -54,7 +54,7 @@ A **continue** proceeds to the next iteration of that loop.-->
 
 
 <!--## Return at Labels-->
-## Опертор **return** и метки
+## Возврат к меткам
 
 <!--With function literals, local functions and object expression, functions can be nested in Kotlin. 
 Qualified **return**s allow us to return from an outer function. 

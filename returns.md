@@ -20,7 +20,7 @@ title: "Операторы перехода"
 
 
 <!--## Break and Continue Labels-->
-Метки операторов **break** и **continue**
+## Метки операторов **break** и **continue**
 
 <!--Any expression in Kotlin may be marked with a **label**.
 Labels have the form of an identifier followed by the `@` sign, for example: `abc@`, `fooBar@` are valid labels (see the [grammar](grammar.html#label)).

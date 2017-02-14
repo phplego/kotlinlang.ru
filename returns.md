@@ -15,8 +15,8 @@ title: "Returns and Jumps"
 * **break**. Terminates the nearest enclosing loop.
 * **continue**. Proceeds to the next step of the nearest enclosing loop.-->
 * **return** по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions).
-* **break**. Завершает выполнение функции.
-* **continue**. Продолжает выполнение цикла с следующего его шага, без обработки оставшегося кода на данном.
+* **break** pавершает выполнение функции.
+* **continue** gродолжает выполнение цикла с следующего его шага, без обработки оставшегося кода текущей итерации.
 
 
 <!--## Break and Continue Labels-->
@@ -77,7 +77,7 @@ fun foo() {
 (Note that such non-local returns are supported only for lambda expressions passed to [inline functions](inline-functions.html).)
 If we need to return from a lambda expression, we have to label it and qualify the **return**:-->
 Опертор **return** возвращается из ближаейшей функции, в нашем случае `foo`.
-(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](http://kotlinlang.org/docs/reference/inline-functions.html).) Если нам надо вернуться из лямбда-выражения, оператору надо поставить метку и тем самым сделать уточнение для ключевого слова **return**:
+(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](http://kotlinlang.org/docs/reference/inline-functions.html).) Если нам надо вернуться из лямбда-выражения, оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
 
 ``` kotlin
 fun foo() {

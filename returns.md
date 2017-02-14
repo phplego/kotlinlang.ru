@@ -5,19 +5,29 @@ category: "Syntax"
 title: "Returns and Jumps"
 ---
 
-# Returns and Jumps
+<!--# Returns and Jumps-->
+# Операторы перехода
 
-Kotlin has three structural jump operators
+<!--Kotlin has three structural jump operators-->
+В <b>Kotlin</b> определены три оператора перехода
 
-* **return**<!--keyword-->. By default returns from the nearest enclosing function or [anonymous function](lambdas.html#anonymous-functions).
-* **break**<!--keyword-->. Terminates the nearest enclosing loop.
-* **continue**<!--keyword-->. Proceeds to the next step of the nearest enclosing loop.
+<!--* **return** By default returns from the nearest enclosing function or [anonymous function](lambdas.html#anonymous-functions).
+* **break**. Terminates the nearest enclosing loop.
+* **continue**. Proceeds to the next step of the nearest enclosing loop.-->
+* **return** по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions).
+* **break**. Завершает выполнение функции.
+* **continue**. Продолжает выполнение цикла с следующего его шага, без обработки оставшегося кода на данном.
 
-## Break and Continue Labels
 
-Any expression in Kotlin may be marked with a **label**<!--keyword-->.
+<!--## Break and Continue Labels-->
+Метки операторов **break** и **continue**
+
+<!--Any expression in Kotlin may be marked with a **label**.
 Labels have the form of an identifier followed by the `@` sign, for example: `abc@`, `fooBar@` are valid labels (see the [grammar](grammar.html#label)).
-To label an expression, we just put a label in front of it
+To label an expression, we just put a label in front of it-->
+Любое выражение в <b>Kotlin</b> может быть помечено меткой **label**.
+Метки имеют форму идентификатора, который сопровождается знаком `@`. Например: метки `abc@`, `fooBar@` являются корректными.
+(см. [грамматика](http://kotlinlang.org/docs/reference/grammar.html#label)). Для того, чтобы пометить выражение, мы просто ставим метку перед ним
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -25,7 +35,8 @@ loop@ for (i in 1..100) {
 }
 ```
 
-Now, we can qualify a **break**<!--keyword--> or a **continue**<!--keyword--> with a label:
+<!--Now, we can qualify a **break** or a **continue** with a label:-->
+Теперь мы можем уточнить значения операторов **break** или **continue** с помощью меток:
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -36,15 +47,22 @@ loop@ for (i in 1..100) {
 }
 ```
 
-A **break**<!--keyword--> qualified with a label jumps to the execution point right after the loop marked with that label.
-A **continue**<!--keyword--> proceeds to the next iteration of that loop.
+<!--A **break** qualified with a label jumps to the execution point right after the loop marked with that label.
+A **continue** proceeds to the next iteration of that loop.-->
+Оператор **break**, отмеченный `@loop`, переводит выполнение кода к той его части, которая находится сразу после соответствующей метки `loop@`.
+Оператор **continue** продолжает цикл со следующей его итерации.
 
 
-## Return at Labels
+<!--## Return at Labels-->
+## Опертор **return** и метки
 
-With function literals, local functions and object expression, functions can be nested in Kotlin. 
-Qualified **return**<!--keyword-->s allow us to return from an outer function. 
-The most important use case is returning from a lambda expression. Recall that when we write this:
+<!--With function literals, local functions and object expression, functions can be nested in Kotlin. 
+Qualified **return**s allow us to return from an outer function. 
+The most important use case is returning from a lambda expression. Recall that when we write this:-->
+_В языке <b>Kotlin</b> функции могут быть вложены с помощью локальных функций, выражений объекта и констант функций._
+(ориг.: With function literals, local functions and object expression, functions can be nested in Kotlin.)
+Подходящий **return** позволит вернуться из внешней функции.
+Одним из самых удачных применений этой синтаксической конструкции служит возврат из лямбда-выражения. Задумайтесь об этом, пока мы напишем:
 
 ``` kotlin
 fun foo() {
@@ -55,9 +73,11 @@ fun foo() {
 }
 ```
 
-The **return**<!--keyword-->-expression returns from the nearest enclosing function, i.e. `foo`.
+<!--The **return** expression returns from the nearest enclosing function, i.e. `foo`.
 (Note that such non-local returns are supported only for lambda expressions passed to [inline functions](inline-functions.html).)
-If we need to return from a lambda expression, we have to label it and qualify the **return**<!--keyword-->:
+If we need to return from a lambda expression, we have to label it and qualify the **return**:-->
+Опертор **return** возвращается из ближаейшей функции, в нашем случае `foo`.
+(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](http://kotlinlang.org/docs/reference/inline-functions.html).) Если нам надо вернуться из лямбда-выражения, оператору надо поставить метку и тем самым сделать уточнение для ключевого слова **return**:
 
 ``` kotlin
 fun foo() {
@@ -68,8 +88,9 @@ fun foo() {
 }
 ```
 
-Now, it returns only from the lambda expression. Oftentimes it is more convenient to use implicits labels:
-such a label has the same name as the function to which the lambda is passed.
+<!--Now, it returns only from the lambda expression. Oftentimes it is more convenient to use implicits labels:
+such a label has the same name as the function to which the lambda is passed.-->
+Теперь он возвращает только из лямда-выражения. Зачастую намного более удобно указывать метки неявно: такие метки имеют такое же имя, как и функция, к которой относится лямбда.  
 
 ``` kotlin
 fun foo() {
@@ -80,8 +101,9 @@ fun foo() {
 }
 ```
 
-Alternatively, we can replace the lambda expression with an [anonymous function](lambdas.html#anonymous-functions).
-A **return**<!--keyword--> statement in an anomymous function will return from the anonymous function itself.
+<!--Alternatively, we can replace the lambda expression with an [anonymous function](lambdas.html#anonymous-functions).
+A **return** statement in an anomymous function will return from the anonymous function itself.-->
+Возможно также использование [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions) в качестве альтернативы лямбда-выражениям. Оператор **return** вовзращается из самой анонимной функции.
 
 ``` kotlin
 fun foo() {
@@ -92,10 +114,12 @@ fun foo() {
 }
 ```
 
-When returning a value, the parser gives preference to the qualified return, i.e.
+<!--When returning a value, the parser gives preference to the qualified return, i.e.-->
+При возвращении значения парсер отдаёт предпочтение специализированному возврату, типа
 
 ``` kotlin
 return@a 1
 ```
 
-means "return `1` at label `@a`" and not "return a labeled expression `(@a 1)`".
+<!--means "return `1` at label `@a`" and not "return a labeled expression `(@a 1)`".-->
+что значит "верни `1` в метке `@a`, а не "верни выражение с меткой `(@a 1)`".

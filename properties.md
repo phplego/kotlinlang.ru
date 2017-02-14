@@ -5,12 +5,15 @@ category: "Syntax"
 title: "Properties and Fields"
 ---
 
-# Properties and Fields
+<!--# Properties and Fields-->
+# Свойства и поля
 
-## Declaring Properties
+<!--## Declaring Properties-->
+## Объявление свойств
 
-Classes in Kotlin can have properties.
-These can be declared as mutable, using the *var*{: .keyword } keyword or read-only using the *val*{: .keyword } keyword.
+<!--Classes in Kotlin can have properties.
+These can be declared as mutable, using the *var*{: .keyword } keyword or read-only using the *val*{: .keyword } keyword.-->
+Классы в <b>Kotlin</b> могу иметь свойства. Они могут быть изменяемыми (_mutable_) и неизменяемыми (_read-only_): **var** и **val** соответственно.
 
 ``` kotlin
 public class Address { 
@@ -22,7 +25,8 @@ public class Address {
 }
 ```
 
-To use a property, we simply refer to it by name, as if it were a field in Java:
+<!--To use a property, we simply refer to it by name, as if it were a field in Java:-->
+Для того, чтобы воспользоваться свойством, мы просто обращаемся к его имени (как в <b>Java</b>):
 
 ``` kotlin
 fun copyAddress(address: Address): Address {
@@ -34,9 +38,11 @@ fun copyAddress(address: Address): Address {
 }
 ```
 
-## Getters and Setters
+<!--## Getters and Setters-->
+## Геттеры и сеттеры
 
-The full syntax for declaring a property is
+<!--The full syntax for declaring a property is-->
+Полный синтаксис объявления свойства выглядит так
 
 ``` kotlin
 var <propertyName>: <PropertyType> [= <property_initializer>]
@@ -44,30 +50,35 @@ var <propertyName>: <PropertyType> [= <property_initializer>]
     [<setter>]
 ```
 
-The initializer, getter and setter are optional. Property type is optional if it can be inferred from the initializer or from the base class member being overridden.
+<!--The initializer, getter and setter are optional. Property type is optional if it can be inferred from the initializer or from the base class member being overridden.-->
+Инициализатор _property_initializer_, геттер и сеттер являются необязательными. Также необязательно указывать тип свойства, если он может быть вычислен из инициализатора или из переопределённого члена базового класса.
 
-Examples:
+<!--Examples:-->
+Примеры:
 
 ``` kotlin
 var allByDefault: Int? // error: explicit initializer required, default getter and setter implied
 var initialized = 1 // has type Int, default getter and setter
 ```
 
-The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with `val` instead of `var` and does not allow a setter:
+<!--The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with `val` instead of `var` and does not allow a setter:-->
+Синтаксис объявления неизменяемых свойств отличается от изменяемых в двух местах: объявление начинается с ключвого слова `val` вместо `var` и оно не позволяет использование сеттера:
 
 ``` kotlin
 val simple: Int? // has type Int, default getter, must be initialized in constructor
 val inferredType = 1 // has type Int and a default getter
 ```
 
-We can write custom accessors, very much like ordinary functions, right inside a property declaration. Here's an example of a custom getter:
+<!--We can write custom accessors, very much like ordinary functions, right inside a property declaration. Here's an example of a custom getter:-->
+Мы можем использовать пользовательские способы доступа, как и обычные фуннкции, прямо внутри объявления свойств. Вот пример пользовательского геттера:
 
 ``` kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
 
-A custom setter looks like this:
+<!--A custom setter looks like this:-->
+Пользовательский сеттер выглядит примерно так:
 
 ``` kotlin
 var stringRepresentation: String
@@ -77,10 +88,12 @@ var stringRepresentation: String
     }
 ```
 
-By convention, the name of the setter parameter is `value`, but you can choose a different name if you prefer.
+<!--By convention, the name of the setter parameter is `value`, but you can choose a different name if you prefer.-->
+По договорённости, имя сеттера для параметра - `value`, но вы можете использовать любое другое на свой вкус.
 
-If you need to change the visibility of an accessor or to annotate it, but don't need to change the default implementation,
-you can define the accessor without defining its body:
+<!--If you need to change the visibility of an accessor or to annotate it, but don't need to change the default implementation,
+you can define the accessor without defining its body:-->
+Если вам нужно изменить область видимости для метод доступа к свойству или аннотировать его, но вам не надо вносить изменения в родную имплементацию, вы можете объявить метод доступа без объявления его тела:
 
 ``` kotlin
 var setterVisibility: String = "abc"
@@ -90,10 +103,11 @@ var setterWithAnnotation: Any? = null
     @Inject set // annotate the setter with Inject
 ```
 
-### Backing Fields
+### _Backing Fields_
 
-Classes in Kotlin cannot have fields. However, sometimes it is necessary to have a backing field when using custom accessors. For these purposes, Kotlin provides
-an automatic backing field which can be accessed using the `field` identifier:
+<!--Classes in Kotlin cannot have fields. However, sometimes it is necessary to have a backing field when using custom accessors. For these purposes, Kotlin provides
+an automatic backing field which can be accessed using the `field` identifier:-->
+Классы в <b>Kotlin</b> не могут иметь полей. Однако, иногда необходимо иметь _backing field_ при использовании пользовательских методов доступа. Для этих целей <b>Kotlin</b> предоставляет автоматическое _backing field_, к которому можно обратиться с помощью идентификатора `field`:
 
 ``` kotlin
 var counter = 0 // the initializer value is written directly to the backing field
@@ -102,20 +116,24 @@ var counter = 0 // the initializer value is written directly to the backing fiel
     }
 ```
 
-The `field` identifier can only be used in the accessors of the property.
+<!--The `field` identifier can only be used in the accessors of the property.-->
+Идентификатор `field` может быть использован только в методах доступа к свойству.
 
-A backing field will be generated for a property if it uses the default implementation of at least one of the accessors, or if a custom accessor references it through the `field` identifier.
+<!--A backing field will be generated for a property if it uses the default implementation of at least one of the accessors, or if a custom accessor references it through the `field` identifier.-->
+Такое _backing field_ будет сгенерировано для свойства, если оно использует стандартную имплементацию как минимум одного из методов доступа. Или в случае, когда пользовательский метод доступа ссылается на него через идентификатор `field`.
 
-For example, in the following case there will be no backing field:
+<!--For example, in the following case there will be no backing field:-->
+Например, в нижестоящем примере не будет никакого _backing field_:
 
 ``` kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
 
-### Backing Properties
+### _Backing Properties_
 
-If you want to do something that does not fit into this "implicit backing field" scheme, you can always fall back to having a *backing property*:
+<!--If you want to do something that does not fit into this "implicit backing field" scheme, you can always fall back to having a *backing property*:-->
+Если вы хотите предпринять что-то такое, что не вмещается в такую схему "неявного _backing field_", вы всегда можете отойти от неё и использовать _backing property_:
 
 ``` kotlin
 private var _table: Map<String, Int>? = null
@@ -128,19 +146,26 @@ public val table: Map<String, Int>
     }
 ```
 
-In all respects, this is just the same as in Java since access to private properties with default getters and setters is optimized so that no function call overhead is introduced.
+_--In all respects, this is just the same as in Java since access to private properties with default getters and setters is optimized so that no function call overhead is introduced._
+<!--Во всех отношениях, такой подход является ничем иным, как доступом к закрытым свойствам с стандартными геттерами и сеттерами, который мы использовали в  <b>Java</b>. Так как он был оптимизирован, отпала необходимость вызова-->
 
+<!--## Compile-Time Constants-->
+## Константы времени компиляции
 
-## Compile-Time Constants
+<!--Properties the value of which is known at compile time can be marked as _compile time constants_ using the `const` modifier.
+Such properties need to fulfil the following requirements:-->
+Свойства, значение которых известно во время компиляции, могут быть помечены как _константы времени компиляции_. Для этого используется модификатор `const`. Такие свойства необходимо заполнять в соответствии с определёнными требованиями, они должны:
 
-Properties the value of which is known at compile time can be marked as _compile time constants_ using the `const` modifier.
-Such properties need to fulfil the following requirements:
-
-  * Top-level or member of an `object`
+  <!--* Top-level or member of an `object`
   * Initialized with a value of type `String` or a primitive type
-  * No custom getter
+  * No custom getter-->
+  
+  * Находится на самом высоком уровне или быть членом объекта `object`  
+  * Быть проинициализированы значинем типа `String` или значением примитивного типа
+  * Не иметь никаких геттеров
 
-Such properties can be used in annotations:
+<!--Such properties can be used in annotations:-->
+Такие свойства могут быть использованы в аннотациях:
 
 ``` kotlin
 const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
@@ -149,14 +174,18 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 ```
 
 
-## Late-Initialized Properties
+<!--## Late-Initialized Properties-->
+## Свойства с поздней инициализацией
 
-Normally, properties declared as having a non-null type must be initialized in the constructor.
+<!--Normally, properties declared as having a non-null type must be initialized in the constructor.
 However, fairly often this is not convenient. For example, properties can be initialized through dependency injection,
 or in the setup method of a unit test. In this case, you cannot supply a non-null initializer in the constructor,
-but you still want to avoid null checks when referencing the property inside the body of a class.
+but you still want to avoid null checks when referencing the property inside the body of a class.-->
+Обчычно свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неприемлемо. К примеру, свойства могут быть инициализированы через внедрение зависимостей или же в установочном методе (ориг.: _"setup method"_) юнит 
+теста. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе, но всё-равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству. 
 
-To handle this case, you can mark the property with the `lateinit` modifier:
+<!--To handle this case, you can mark the property with the `lateinit` modifier:-->
+Для того, чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`:
 
 ``` kotlin
 public class MyTest {
@@ -172,22 +201,31 @@ public class MyTest {
 }
 ```
 
-The modifier can only be used on `var` properties declared inside the body of a class (not in the primary constructor), and only
+<!--The modifier can only be used on `var` properties declared inside the body of a class (not in the primary constructor), and only
 when the property does not have a custom getter or setter. The type of the property must be non-null, and it must not be
-a primitive type.
+a primitive type.-->
+Такой модификатор может быть использован только с `var` свойствами, объявленными внутри тела класса (не в главном конструкторе). И только тогда, когда свойство не имеет пользовательских геттеров и сеттеров. Тип такого свойства должен быть non-null и не должен быть примитивным.
 
-Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
-being accessed and the fact that it hasn't been initialized.
+<!--Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
+being accessed and the fact that it hasn't been initialized.-->
+Доступ к `lateinit` сойству до того, как оно было проинициализировано, вызывает специальный эксепшн, который чётко обозначает, что к свойству был произведён доступ в то время, пока оно ещё не было проинициализировано.
 
-## Overriding Properties
+<!--## Overriding Properties-->
+## Переопределение свойств
 
-See [Overriding Properties](classes.html#overriding-properties)
+См. [переопределение свойств](http://kotlinlang.org/docs/reference/classes.html#overriding-properties)
 
-## Delegated Properties
+<!--## Delegated Properties-->
+## Передача свойств
   
-The most common kind of properties simply reads from (and maybe writes to) a backing field. 
+<!--The most common kind of properties simply reads from (and maybe writes to) a backing field. 
 On the other hand, with custom getters and setters one can implement any behaviour of a property.
 Somewhere in between, there are certain common patterns of how a property may work. A few examples: lazy values,
-reading from a map by a given key, accessing a database, notifying listener on access, etc.
+reading from a map by a given key, accessing a database, notifying listener on access, etc.-->
+Самый распространённый тип свойств просто считывает данные из (может, и записывает в) _backing field_.
+С другой стороны, с пользовательскими геттерами и сеттерами мы можем реализрвать совершенно любое поведение свойства.
+Где-то посередине этих двух крайностей существуют общепринятые шаблоны того, как могут работать свойства. Несколько примеров:
+ленивые значения (ориг.: "_lazy values_"), которые читаются из коллекции map c помощью заданного ключа key, получают доступ в базе данных, оповещая listener в момент доступа и т.п.
+
 
 Such common behaviours can be implemented as libraries using [_delegated properties_](delegated-properties.html).

@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Properties and Fields"
+title: "Свойства и поля"
 ---
 
 <!--# Properties and Fields-->
@@ -30,8 +30,8 @@ public class Address {
 
 ``` kotlin
 fun copyAddress(address: Address): Address {
-    val result = Address() // there's no 'new' keyword in Kotlin
-    result.name = address.name // accessors are called
+    val result = Address() // нет никакого слова `new`
+    result.name = address.name // вызов методов доступа
     result.street = address.street
     // ...
     return result
@@ -57,16 +57,16 @@ var <propertyName>: <PropertyType> [= <property_initializer>]
 Примеры:
 
 ``` kotlin
-var allByDefault: Int? // error: explicit initializer required, default getter and setter implied
-var initialized = 1 // has type Int, default getter and setter
+var allByDefault: Int? // ошибка: необходима явная инициализация, предусмотрены стандартные геттер и сеттер
+var initialized = 1 // имеет тип Int, стандартный геттер и сеттер
 ```
 
 <!--The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with `val` instead of `var` and does not allow a setter:-->
 Синтаксис объявления неизменяемых свойств отличается от изменяемых в двух местах: объявление начинается с ключвого слова `val` вместо `var` и оно не позволяет использование сеттера:
 
 ``` kotlin
-val simple: Int? // has type Int, default getter, must be initialized in constructor
-val inferredType = 1 // has type Int and a default getter
+val simple: Int? // имеет тип Int, стандартный геттер, должен быть инициализирован в конструкторе
+val inferredType = 1 // имеет тип Int и стандартный геттер
 ```
 
 <!--We can write custom accessors, very much like ordinary functions, right inside a property declaration. Here's an example of a custom getter:-->
@@ -84,7 +84,7 @@ val isEmpty: Boolean
 var stringRepresentation: String
     get() = this.toString()
     set(value) {
-        setDataFromString(value) // parses the string and assigns values to other properties
+        setDataFromString(value) // парсит строку и устанавливает значения для других свойств
     }
 ```
 
@@ -97,10 +97,10 @@ you can define the accessor without defining its body:-->
 
 ``` kotlin
 var setterVisibility: String = "abc"
-    private set // the setter is private and has the default implementation
+    private set // сеттер имеет private доступ и стандартную реализацию
 
 var setterWithAnnotation: Any? = null
-    @Inject set // annotate the setter with Inject
+    @Inject set // аннотирование сеттера с помщью Inject
 ```
 
 ### _Backing Fields_
@@ -110,7 +110,7 @@ an automatic backing field which can be accessed using the `field` identifier:--
 Классы в <b>Kotlin</b> не могут иметь полей. Однако, иногда необходимо иметь _backing field_ при использовании пользовательских методов доступа. Для этих целей <b>Kotlin</b> предоставляет автоматическое _backing field_, к которому можно обратиться с помощью идентификатора `field`:
 
 ``` kotlin
-var counter = 0 // the initializer value is written directly to the backing field
+var counter = 0 // значение при инициализации записывается прямиком в backing field
     set(value) {
         if (value >= 0) field = value
     }
@@ -140,7 +140,7 @@ private var _table: Map<String, Int>? = null
 public val table: Map<String, Int>
     get() {
         if (_table == null) {
-            _table = HashMap() // Type parameters are inferred
+            _table = HashMap() // параметры типа вычисляются автоматически (ориг.: "Type parameters are inferred")
         }
         return _table ?: throw AssertionError("Set to null by another thread")
     }
@@ -156,10 +156,6 @@ _--In all respects, this is just the same as in Java since access to private pro
 Such properties need to fulfil the following requirements:-->
 Свойства, значение которых известно во время компиляции, могут быть помечены как _константы времени компиляции_. Для этого используется модификатор `const`. Такие свойства необходимо заполнять в соответствии с определёнными требованиями, они должны:
 
-  <!--* Top-level or member of an `object`
-  * Initialized with a value of type `String` or a primitive type
-  * No custom getter-->
-  
   * Находится на самом высоком уровне или быть членом объекта `object`  
   * Быть проинициализированы значинем типа `String` или значением примитивного типа
   * Не иметь никаких геттеров
@@ -196,7 +192,7 @@ public class MyTest {
     }
 
     @Test fun test() {
-        subject.method()  // dereference directly
+        subject.method()  // (ориг.: "dereference directly")
     }
 }
 ```
@@ -216,7 +212,7 @@ being accessed and the fact that it hasn't been initialized.-->
 См. [переопределение свойств](http://kotlinlang.org/docs/reference/classes.html#overriding-properties)
 
 <!--## Delegated Properties-->
-## Передача свойств
+## _Delegated Properties_ (Переданные свойства)
   
 <!--The most common kind of properties simply reads from (and maybe writes to) a backing field. 
 On the other hand, with custom getters and setters one can implement any behaviour of a property.
@@ -225,7 +221,8 @@ reading from a map by a given key, accessing a database, notifying listener on a
 Самый распространённый тип свойств просто считывает данные из (может, и записывает в) _backing field_.
 С другой стороны, с пользовательскими геттерами и сеттерами мы можем реализрвать совершенно любое поведение свойства.
 Где-то посередине этих двух крайностей существуют общепринятые шаблоны того, как могут работать свойства. Несколько примеров:
-ленивые значения (ориг.: "_lazy values_"), которые читаются из коллекции map c помощью заданного ключа key, получают доступ в базе данных, оповещая listener в момент доступа и т.п.
+ленивые значения (ориг.: "_lazy values_"), которые читаются из коллекции map c помощью заданного ключа key, получают доступ в базе данных, оповещая при этом listener в момент доступа и т.п.
 
 
-Such common behaviours can be implemented as libraries using [_delegated properties_](delegated-properties.html).
+<!--Such common behaviours can be implemented as libraries using [_delegated properties_](delegated-properties.html).-->
+Такие распространённые приёмы могут быть реализованы в библиотеках с помощью [_delegated properties_](http://kotlinlang.org/docs/reference/delegated-properties.html)

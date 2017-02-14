@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Returns and Jumps"
+title: "Операторы перехода"
 ---
 
 <!--# Returns and Jumps-->

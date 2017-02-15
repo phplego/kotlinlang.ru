@@ -87,7 +87,7 @@ open class Outer {
     private val a = 1
     protected open val b = 2
     internal val c = 3
-    val d = 4  // public by default
+    val d = 4  // public по умолчанию
     
     protected class Nested {
         public val e: Int = 5
@@ -95,17 +95,17 @@ open class Outer {
 }
 
 class Subclass : Outer() {
-    // a is not visible
-    // b, c and d are visible
-    // Nested and e are visible
+    // a не видно
+    // b, c и d видно
+    // вложенные и e видно
 
-    override val b = 5   // 'b' is protected
+    override val b = 5   // 'b' - protected
 }
 
 class Unrelated(o: Outer) {
-    // o.a, o.b are not visible
-    // o.c and o.d are visible (same module)
-    // Outer.Nested is not visible, and Nested::e is not visible either 
+    // o.a, o.b не видно
+    // o.c и o.d видно (тот же модуль)
+    // Outer.Nested не видно, и Nested::e также не видно
 }
 ```
 

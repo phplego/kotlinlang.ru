@@ -138,10 +138,6 @@ visible within the same module).-->
 <!--The `internal` visibility modifier means that the member is visible with the same module. More specifically,
 a module is a set of Kotlin files compiled together:-->
 Видимость `internal` означает, что этот член видно в рамках его модуля. Модуль - это набор скомпилированных вместе <b>Kotlin</b> файлов:
-
-  <!--* an IntelliJ IDEA module;
-  * a Maven or Gradle project;
-  * a set of files compiled with one invocation of the <kotlinc> Ant task.-->
   
   * модуль в IntelliJ IDEA;
   * Maven или Gradle проект;

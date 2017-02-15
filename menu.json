@@ -13,7 +13,8 @@
   "Классы и объекты": [
     "classes",
     "properties",
-    "interfaces"
+    "interfaces",
+    "visibility-modifiers"
   ],
   "Функции и лямбды": [
     "functions",

@@ -2,18 +2,23 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Extensions"
+title: "Расширения (extensions)"
 ---
 
-# Extensions
+<!--# Extensions-->
+# Расширения (extensions)
 
-Kotlin, similar to C# and Gosu, provides the ability to extend a class with new functionality without having to inherit from the class or use any type of design pattern such as Decorator.
-This is done via special declarations called _extensions_. Kotlin supports _extension functions_ and _extension properties_.
+<!--Kotlin, similar to C# and Gosu, provides the ability to extend a class with new functionality without having to inherit from the class or use any type of design pattern such as Decorator.
+This is done via special declarations called _extensions_. Kotlin supports _extension functions_ and _extension properties_.-->
+<b>Kotlin</b>, так же как в <b>C#</b> и <b>Gosu</b>, позволяет расширять класс, добавляя новый функционал, без наследования от него или использования такого паттерна, как Декоратор.
+Это реализовано с помощью специальных выражений, называемых _расширения_. <b>Koltin</b> поддерживает _функции-расширения_ и _свойства-расширения_.
 
-## Extension Functions
+<!--## Extension Functions-->
+## Функции-расширения
 
-To declare an extension function, we need to prefix its name with a _receiver type_, i.e. the type being extended.
-The following adds a `swap` function to `MutableList<Int>`:
+<!--To declare an extension function, we need to prefix its name with a _receiver type_, i.e. the type being extended.
+The following adds a `swap` function to `MutableList<Int>`:-->
+Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве приставки _возвращаемый тип_, например тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`
 
 ``` kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {

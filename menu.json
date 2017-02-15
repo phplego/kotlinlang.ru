@@ -14,7 +14,8 @@
     "classes",
     "properties",
     "interfaces",
-    "visibility-modifiers"
+    "visibility-modifiers",
+    "extensions"
   ],
   "Функции и лямбды": [
     "functions",

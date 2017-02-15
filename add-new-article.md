@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: inner
 title: "Создание новой статьи"
 site: www.kotlin.su
 ---

@@ -117,49 +117,57 @@ fun C.foo(i: Int) { println("extension") }
 Обращение к `C().foo(1)` выведет на экран надпись "extension".
 
 
-## Nullable Receiver
+<!--## Nullable Receiver-->
+## Возвращаемое null значение
 
-Note that extensions can be defined with a nullable receiver type. Such extensions can be called on an object variable
+<!--Note that extensions can be defined with a nullable receiver type. Such extensions can be called on an object variable
 even if its value is null, and can check for `this == null` inside the body. This is what allows you
-to call toString() in Kotlin without checking for null: the check happens inside the extension function.
+to call toString() in Kotlin without checking for null: the check happens inside the extension function.-->
+Обратите внимание, что расширения могут быть объявлены с возможностью хапнуть null в качестве возврашаемого значения. Такие расширения могут быть вызваны переменными объекта, даже если их значение null. И проверяет `this == null` внутри тела функции. Это то, что позволяет вызывать toString() в <b>Koltin</b> без проверки на null: проверка происходит внутри функции-расширения.
 
 ``` kotlin
 fun Any?.toString(): String {
     if (this == null) return "null"
-    // after the null check, 'this' is autocast to a non-null type, so the toString() below
-    // resolves to the member function of the Any class
+    // после проверки на null, `this` автоматически кастуется к не-null типу, поэтому toString()
+    // обращается (ориг.: resloves) к функции-члену класса Any
     return toString()
 }
 ```
 
-## Extension Properties
+<!--## Extension Properties-->
+## Свойства-расширения
 
-Similarly to functions, Kotlin supports extension properties:
+<!--Similarly to functions, Kotlin supports extension properties:-->
+Аналогично функциям, <b>Koltin</b> поддерживает расширения свойств:
 
 ``` kotlin
 val <T> List<T>.lastIndex: Int
     get() = size - 1
 ```
 
-Note that, since extensions do not actually insert members into classes, there's no efficient way for an extension 
+<!--Note that, since extensions do not actually insert members into classes, there's no efficient way for an extension 
 property to have a [backing field](properties.html#backing-fields). This is why **initializers are not allowed for 
-extension properties**. Their behavior can only be defined by explicitly providing getters/setters.
+extension properties**. Their behavior can only be defined by explicitly providing getters/setters.-->
+Так как расширения на самом деле не добавляют никаких членов к классам, нет никакого эффективного способа для свойства иметь [_backing field_](http://kotlinlang.org/docs/reference/properties.html#backing-fields). Вот почему **запрещено использовать инициализаторы для свойств-расширений**. Их поведение может быть определено только явным образом, указывая геттеры/сеттеры.
 
-Example:
+<!--Example:-->
+Пример:
 
 ``` kotlin
-val Foo.bar = 1 // error: initializers are not allowed for extension properties
+val Foo.bar = 1 // ошибка: запрещено инициализировать значения в свойствах-расширениях
 ```
 
 
-## Companion Object Extensions
+<!--## Companion Object Extensions-->
+## Расширения вспомогательных объектов (ориг.: _companion object extensions_)
 
-If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
-functions and properties for the companion object:
+<!--If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
+functions and properties for the companion object:-->
+Если у класса есть [вспомогательный объект](http://kotlinlang.org/docs/reference/object-declarations.html#companion-objects), вы также можете определить функции и свойства для такого объекта:
 
 ``` kotlin
 class MyClass {
-    companion object { }  // will be called "Companion"
+    companion object { }  // будет назван "Companion"
 }
 
 fun MyClass.Companion.foo() {
@@ -167,7 +175,8 @@ fun MyClass.Companion.foo() {
 }
 ```
 
-Just like regular members of the companion object, they can be called using only the class name as the qualifier:
+<!--Just like regular members of the companion object, they can be called using only the class name as the qualifier:-->
+Так же, как и обычные члены вспомогательного объекта, они могут быть вызваны с помощью имени класса в качестве точки доступа:
 
 ``` kotlin
 MyClass.foo()

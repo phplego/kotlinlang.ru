@@ -29,7 +29,7 @@ interface MyInterface {
 ## Реализация интерфейсов
 
 <!--A class or object can implement one or more interfaces-->
-Класс или объект могут реализовать от одного и более интерфейсов
+Класс или объект могут реализовать любое количество
 
 ``` kotlin
 class Child : MyInterface {
@@ -45,7 +45,7 @@ class Child : MyInterface {
 <!--You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide
 implementations for accessors. Properties declared in interfaces can't have backing fields, and therefore accessors
 declared in interfaces can't reference them.-->
-Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь _backing fields_, соответственно, методы доступа таких свойств не могут к ним обращаться.
+Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь _backing fields_, соответственно, методы доступа к таким свойствам не могут обращаться к _backing fields_.
 
 ``` kotlin
 interface MyInterface {

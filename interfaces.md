@@ -20,7 +20,7 @@ properties but these need to be abstract or to provide accessor implementations.
 interface MyInterface {
     fun bar()
     fun foo() {
-      // optional body
+      // необязательное тело
     }
 }
 ```
@@ -49,7 +49,7 @@ declared in interfaces can't reference them.-->
 
 ``` kotlin
 interface MyInterface {
-    val prop: Int // абстрактное
+    val prop: Int // абстрактное свойство
 
     val propertyWithImplementation: String
         get() = "foo"

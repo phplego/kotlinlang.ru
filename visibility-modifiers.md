@@ -97,7 +97,7 @@ open class Outer {
 class Subclass : Outer() {
     // a не видно
     // b, c и d видно
-    // вложенные и e видно
+    // класс Nested и e видно
 
     override val b = 5   // 'b' - protected
 }

@@ -10,7 +10,7 @@ title: "Расширения (extensions)"
 
 <!--Kotlin, similar to C# and Gosu, provides the ability to extend a class with new functionality without having to inherit from the class or use any type of design pattern such as Decorator.
 This is done via special declarations called _extensions_. Kotlin supports _extension functions_ and _extension properties_.-->
-<b>Kotlin</b>, так же как в <b>C#</b> и <b>Gosu</b>, позволяет расширять класс, добавляя новый функционал, без наследования от него или использования такого паттерна, как Декоратор.
+<b>Kotlin</b>, так же как <b>C#</b> и <b>Gosu</b>, позволяет расширять класс, добавляя новый функционал, без наследования от него или использования такого паттерна, как Декоратор.
 Это реализовано с помощью специальных выражений, называемых _расширения_. <b>Kotlin</b> поддерживает _функции-расширения_ и _свойства-расширения_.
 
 <!--## Extension Functions-->
@@ -18,7 +18,7 @@ This is done via special declarations called _extensions_. Kotlin supports _exte
 
 <!--To declare an extension function, we need to prefix its name with a _receiver type_, i.e. the type being extended.
 The following adds a `swap` function to `MutableList<Int>`:-->
-Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве приставки _возвращаемый тип_, например тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
+Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве приставки _возвращаемый тип_, то есть тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
 
 ``` kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
@@ -30,7 +30,7 @@ fun MutableList<Int>.swap(index1: Int, index2: Int) {
 
 <!--The *this*{: .keyword } keyword inside an extension function corresponds to the receiver object (the one that is passed before the dot). 
 Now, we can call such a function on any `MutableList<Int>`:-->
-Ключевое слово *this* внутри функции-расширения соотносится с объектом-получателем (тем, что передаётся с помощью точки).
+Ключевое слово *this* внутри функции-расширения соотносится с получаемым объектом (который ставится перед точкой).
 Теперь мы можем вызывать такую функцию в любом `MutableList<Int>`:
 
 ``` kotlin
@@ -39,7 +39,7 @@ l.swap(0, 2) // 'this' внутри 'swap()' не будет содержать 
 ```
 
 <!--Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:-->
-Разумеется, этак функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой: 
+Разумеется, эта функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой: 
 
 ``` kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
@@ -51,7 +51,7 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 
 <!--We declare the generic type parameter before the function name for it to be available in the receiver type expression. 
 See [Generic functions](generics.html).-->
-Мы объявляем обобщённый тип-параметр перед именем функции для того, чтобы он был доступен в типе-выражении получателя.
+Мы объявляем обобщённый тип-параметр перед именем функции для того, чтобы он был доступен в получаемом типе-выражении.
 См. [обощённые функции](http://kotlinlang.org/docs/reference/generics.html).
 
 <!--## Extensions are resolved **statically**-->
@@ -89,7 +89,7 @@ parameter `c`, which is the `C` class.-->
 <!--If a class has a member function, and an extension function is defined which has the same receiver type, the same name
 and is applicable to given arguments, the **member always wins**.
 For example:-->
-Если в классе есть член в виде обычной функции и функция-расширение, которая имеет такой же возвращаемый тип, такое же имя и применяется к таким же аргументам, **обычная функция выигрывает**ю
+Если в классе есть член в виде обычной функции и функция-расширение, которая имеет такой же возвращаемый тип, такое же имя и применяется к таким же аргументам, **обычная функция выигрывает**.
 
 ``` kotlin
 class C {
@@ -114,7 +114,7 @@ fun C.foo(i: Int) { println("extension") }
 ```
 
 <!--The call to `C().foo(1)` will print "extension".-->
-Обращение к `C().foo(1)` выведет на экран надипись "extension".
+Обращение к `C().foo(1)` выведет на экран надпись "extension".
 
 
 ## Nullable Receiver

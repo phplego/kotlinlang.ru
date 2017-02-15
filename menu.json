@@ -12,7 +12,8 @@
   ],
   "Классы и объекты": [
     "classes",
-    "properties"
+    "properties",
+    "interfaces"
   ],
   "Функции и лямбды": [
     "functions",

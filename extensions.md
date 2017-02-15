@@ -11,7 +11,7 @@ title: "Расширения (extensions)"
 <!--Kotlin, similar to C# and Gosu, provides the ability to extend a class with new functionality without having to inherit from the class or use any type of design pattern such as Decorator.
 This is done via special declarations called _extensions_. Kotlin supports _extension functions_ and _extension properties_.-->
 <b>Kotlin</b>, так же как в <b>C#</b> и <b>Gosu</b>, позволяет расширять класс, добавляя новый функционал, без наследования от него или использования такого паттерна, как Декоратор.
-Это реализовано с помощью специальных выражений, называемых _расширения_. <b>Koltin</b> поддерживает _функции-расширения_ и _свойства-расширения_.
+Это реализовано с помощью специальных выражений, называемых _расширения_. <b>Kotlin</b> поддерживает _функции-расширения_ и _свойства-расширения_.
 
 <!--## Extension Functions-->
 ## Функции-расширения
@@ -51,16 +51,20 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 
 <!--We declare the generic type parameter before the function name for it to be available in the receiver type expression. 
 See [Generic functions](generics.html).-->
-Мы объявляем обобщённый параметр типа перед именем функции для того, чтобы она была доступна _в выражении типа-приёмника_ (ориг.: _reciever type expression_).
+Мы объявляем обобщённый тип-параметр перед именем функции для того, чтобы он был доступен в типе-выражении получателя.
+См. [обощённые функции](http://kotlinlang.org/docs/reference/generics.html).
 
-## Extensions are resolved **statically**
+<!--## Extensions are resolved **statically**-->
+## Статическое решение расширений
 
-Extensions do not actually modify classes they extend. By defining an extension, you do not insert new members into a class,
-but merely make new functions callable with the dot-notation on variables of this type.
+<!--Extensions do not actually modify classes they extend. By defining an extension, you do not insert new members into a class,
+but merely make new functions callable with the dot-notation on variables of this type.-->
+Расширения на самом деле не проводят никаких модификаций с классами, которые они расширяют. Определяя расширение, вы не добавляете никаких новых членов к классу, но только лишь создаёте новые функции, которые могут быть вызваны через точку, применимо к конкретному типу. 
 
-We would like to emphasize that extension functions are dispatched **statically**, i.e. they are not virtual by receiver type.
+<!--We would like to emphasize that extension functions are dispatched **statically**, i.e. they are not virtual by receiver type.
 This means that the extension function being called is determined by the type of the expression on which the function is invoked,
-not by the type of the result of evaluating that expression at runtime. For example:
+not by the type of the result of evaluating that expression at runtime. For example:-->
+Мы хотели бы подчеркнуть, что расширения запускаются **статически**, то есть фактически не являются получаемым типом. Это значит, что вызванная функция-расширение определена типом выражения, из которого она вызвана. А не типом результата, получаемым в ходе выполнения программы (в рантайме). К примеру:
 
 ``` kotlin
 open class C
@@ -78,12 +82,14 @@ fun printFoo(c: C) {
 printFoo(D())
 ```
 
-This example will print "c", because the extension function being called depends only on the declared type of the
-parameter `c`, which is the `C` class.
+<!--This example will print "c", because the extension function being called depends only on the declared type of the
+parameter `c`, which is the `C` class.-->
+Этот пример выведет нам "с" на экран, потому что вызванная функция-расширение зависит только от объявленного параметризованного типа `c`, который является `C` классом.
 
-If a class has a member function, and an extension function is defined which has the same receiver type, the same name
+<!--If a class has a member function, and an extension function is defined which has the same receiver type, the same name
 and is applicable to given arguments, the **member always wins**.
-For example:
+For example:-->
+Если в классе есть член в виде обычной функции и функция-расширение, которая имеет такой же возвращаемый тип, такое же имя и применяется к таким же аргументам, **обычная функция выигрывает**ю
 
 ``` kotlin
 class C {
@@ -93,9 +99,11 @@ class C {
 fun C.foo() { println("extension") }
 ```
 
-If we call `c.foo()` of any `c` of type `C`, it will print "member", not "extension".
+<!--If we call `c.foo()` of any `c` of type `C`, it will print "member", not "extension".-->
+Если мы вызовем `c.foo()` любого объекта `c` с типом `C`, на экран выведется "member", а не "extension".
 
-However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:
+<!--However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:-->
+Однако, для функций-расширений совершенно нормально перегружать функции-члены, которые имеют такое же имя, но другую сигнатуру:
 
 ``` kotlin
 class C {
@@ -105,7 +113,8 @@ class C {
 fun C.foo(i: Int) { println("extension") }
 ```
 
-The call to `C().foo(1)` will print "extension".
+<!--The call to `C().foo(1)` will print "extension".-->
+Обращение к `C().foo(1)` выведет на экран надипись "extension".
 
 
 ## Nullable Receiver

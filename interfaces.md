@@ -11,10 +11,10 @@ title: "Интерфейсы"
 <!--Interfaces in Kotlin are very similar to Java 8. They can contain declarations of abstract methods, as well as method
 implementations. What makes them different from abstract classes is that interfaces cannot store state. They can have
 properties but these need to be abstract or to provide accessor implementations.-->
-Интерфейсы в <b>Kotlin</b> очень похожи на интерфейсы в <b>Java 8</b>. Они могут содержать абстрактные методы, методы с реализацией. Ноавное отличие интерфейсов от абстрактных классов заключается в невозможности хранения переменных экземпляров. Они могут иметь свойства, но они должны быть либо абстрактными, либо предоставлять реализацию методов доступа. 
+Интерфейсы в <b>Kotlin</b> очень похожи на интерфейсы в <b>Java 8</b>. Они могут содержать абстрактные методы, методы с реализацией. Главное отличие интерфейсов от абстрактных классов заключается в невозможности хранения переменных экземпляров. Они могут иметь свойства, но те должны быть либо абстрактными, либо предоставлять реализацию методов доступа. 
 
 <!--An interface is defined using the keyword *interface*{: .keyword }-->
-Интерфейс определяется ключевым словом **interface**.
+Интерфейс определяется ключевым словом **interface**
 
 ``` kotlin
 interface MyInterface {
@@ -34,7 +34,7 @@ interface MyInterface {
 ``` kotlin
 class Child : MyInterface {
     override fun bar() {
-        // body
+        // тело
     }
 }
 ```
@@ -45,7 +45,7 @@ class Child : MyInterface {
 <!--You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide
 implementations for accessors. Properties declared in interfaces can't have backing fields, and therefore accessors
 declared in interfaces can't reference them.-->
-Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь _backing gields_, соответственно, методы доступа таких свойств не могут к ним обращаться.
+Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь _backing fields_, соответственно, методы доступа таких свойств не могут к ним обращаться.
 
 ``` kotlin
 interface MyInterface {
@@ -65,7 +65,7 @@ class Child : MyInterface {
 ```
 
 <!--## Resolving overriding conflicts-->
-## Решение противоречий при переопределении
+## Устранение противоречий при переопределении
 
 <!--When we declare many types in our supertype list, it may appear that we inherit more than one implementation of the same method. For example-->
 Когда мы объявлем большое количество типов в списке нашего супертипа, может так выйти, что мы допустим более одной реализации одного и того же метода. К примеру

@@ -18,36 +18,40 @@ This is done via special declarations called _extensions_. Kotlin supports _exte
 
 <!--To declare an extension function, we need to prefix its name with a _receiver type_, i.e. the type being extended.
 The following adds a `swap` function to `MutableList<Int>`:-->
-Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве приставки _возвращаемый тип_, например тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`
+Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве приставки _возвращаемый тип_, например тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
 
 ``` kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
-    val tmp = this[index1] // 'this' corresponds to the list
+    val tmp = this[index1] // 'this' даёт ссылку на Int
     this[index1] = this[index2]
     this[index2] = tmp
 }
 ```
 
-The *this*{: .keyword } keyword inside an extension function corresponds to the receiver object (the one that is passed before the dot). 
-Now, we can call such a function on any `MutableList<Int>`:
+<!--The *this*{: .keyword } keyword inside an extension function corresponds to the receiver object (the one that is passed before the dot). 
+Now, we can call such a function on any `MutableList<Int>`:-->
+Ключевое слово *this* внутри функции-расширения соотносится с объектом-получателем (тем, что передаётся с помощью точки).
+Теперь мы можем вызывать такую функцию в любом `MutableList<Int>`:
 
 ``` kotlin
 val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'l'
+l.swap(0, 2) // 'this' внутри 'swap()' не будет содержать значение 'l'
 ```
 
-Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:
+<!--Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:-->
+Разумеется, этак функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой: 
 
 ``` kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
-    val tmp = this[index1] // 'this' corresponds to the list
+    val tmp = this[index1] // 'this' относится к листу
     this[index1] = this[index2]
     this[index2] = tmp
 }
 ```
 
-We declare the generic type parameter before the function name for it to be available in the receiver type expression. 
-See [Generic functions](generics.html).
+<!--We declare the generic type parameter before the function name for it to be available in the receiver type expression. 
+See [Generic functions](generics.html).-->
+Мы объявляем обобщённый параметр типа перед именем функции для того, чтобы она была доступна _в выражении типа-приёмника_ (ориг.: _reciever type expression_).
 
 ## Extensions are resolved **statically**
 

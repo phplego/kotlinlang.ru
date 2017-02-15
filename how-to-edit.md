@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: inner
 title: "Редактирование статей"
 ---
 

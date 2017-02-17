@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: reference
-title: "Главная страница"
+title: "Документация по Kotlin на русском"
 url: http://kotlin.su
 ---
 

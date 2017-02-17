@@ -2,6 +2,7 @@
 type: doc
 layout: reference
 title: "Документация по Kotlin на русском"
+menuLabel: "Главная страница"
 url: http://kotlin.su
 ---
 

@@ -4,9 +4,9 @@ layout: reference
 title: "Высокоуровневые функции и лямбды"
 ---
 
-# Высокоуровневые функции и лямбды.
+# Высокоуровневые функции и лямбды
 
-## Функции высокого уровня.
+## Функции высокого уровня
 Высокоуровневая функция - это функция, которая принимает другую функцию в качестве входного аргумента,
 либо имеет функцию в качестве возвращаемого результата. Хорошим примером такой функции является `lock()`,
 которая берёт залоченный объект и функцию, применяет лок, выполняет функцию и отпускает `lock`:
@@ -74,7 +74,7 @@ val doubled = ints.map { it -> it * 2 }
 
 <!--it: implicit name of a single parameter-->
 <!--http://kotlinlang.org/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter-->
-## Ключевое слово `it`: неявное имя единичного параметра.
+## Ключевое слово `it`: неявное имя единичного параметра
 
 Ещё одной полезной особенностью синтаксиса является возможность опустить объявление параметра функции в случае, если он
 единственный (вместе с `->`) и её имя будет `it`:
@@ -91,7 +91,7 @@ strings.filter { it.lenght == 5 }.sortBy { it }.map { it.toUpperCase() }
 Иногда необходимо улучшить производительность высокоуровневых функций, используя [инлайн функции](http://kotlinlang.org/docs/reference/inline-functions.html)
 
 <!--Lambda Expressions and Anonymous Functions-->
-## Лямбда-выражения и анонимные функции.
+## Лямбда-выражения и анонимные функции
 
 <!--A lambda expression or an anonymous function is a "function literal", i.e. a function that is not declared, but passed immediately as an expression. Consider the following example:-->
 Лямбда-выражения или анонимные функции являются "функциональными константами"<i>(ориг. "functional literal")</i>, то есть функциями, которые не были объявлены, но сразу были передана в качестве выражения. Рассмотрим следующий пример: 
@@ -130,7 +130,7 @@ val compare: (x: T, y: T) -> Int = ...
 ```
 
 <!--##Lambda Expression Syntax-->
-## Синтаксис лямбда-выражений.
+## Синтаксис лямбда-выражений
 
 <!--The full syntactic form of lambda expressions, i.e. literals of function types, is as follows:-->
 Полная синтаксическая форма лямбда-выражений, таких как <i>literals of function types</i>, может быть представлена следующим образом:
@@ -170,7 +170,7 @@ ints.filter {
 Обратите внимение, что функция принимает другую функцию в качестве своего последнего параметра, аргумент лямбда-выражения в таком случае может быть принят вне списка аргументов, заключённого в скобках. См. [callSuffix](http://kotlinlang.org/docs/reference/grammar.html#call-suffix)
 
 <!--##Anonymous Functions-->
-## Анонимные функции.
+## Анонимные функции
 
 <!--One thing missing from the lambda expression syntax presented above is the ability to specify the return type of the function. In most cases, this is unnecessary because the return type can be inferred automatically. However, if you do need to specify it explicitly, you can use an alternative syntax: an anonymous function.-->
 Единственной особенностью синтаксиса лямбда-выражений, о которой ещё не было сказано, является способность определять и назначать возвращаемый функцией тип. В большинстве случаев, в этом нет особой необходимости, потому что он может быть вычислен автоматически. Однако, если у вас есть потребность в определении возвращаемого типа, вы можете воспользоваться альтернативным синтаксисом:

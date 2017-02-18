@@ -63,7 +63,7 @@ val olderJack = jack.copy(age = 2)
 <!--## Data Classes and Destructuring Declarations-->
 ## Классы данных и неструктурированные объявления (ориг.: _destructuring declarations_)
 
-<--_Component functions_ generated for data classes enable their use in [destructuring declarations](multi-declarations.html):-->
+<!--_Component functions_ generated for data classes enable their use in [destructuring declarations](multi-declarations.html):-->
 _Функции-компоненты_, сгенерированные в дата классах позволяют использовать их в неструктурированных объявлениях
 
 ``` kotlin

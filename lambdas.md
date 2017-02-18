@@ -198,11 +198,14 @@ ints.filter(fun(item) = item > 0)
 Обратите внимание, что параметры анонимных функций всегда заключены в скобки `{...}`. Приём, позволяющий оставлять параметры вне скобок, работает только с лямбда-выражениями. 
 
 <!--One other difference between lambda expressions and anonymous functions is the behavior of non-local returns. A return statement without a label always returns from the function declared with the fun keyword. This means that a return inside a lambda expression will return from the enclosing function, whereas a return inside an anonymous function will return from the anonymous function itself.-->
-Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](http://kotlinlang.org/docs/reference/inline-functions.html#non-local-returns). Слово `return` , не имеющее метки (`@`), всегда возвращается из функции, объявленной ключевым словом `fun`. Это означает, что `return` внутри лямбда-выражения возвратит выполнение к функции, включающей в себя это лямбда-выражение. Внутри анонимных функций, оператор `return`, в свою очередь, выйдет ,собственно, из анонимной функции.
+Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](http://kotlinlang.org/docs/reference/inline-functions.html#non-local-returns). Слово `return` , не имеющее метки (`@`), всегда возвращается из функции, объявленной ключевым словом `fun`. Это означает, что `return` внутри лямбда-выражения возвратит выполнение к функции, включающей в себя это лямбда-выражение. Внутри анонимных функций, оператор `return`, в свою очередь, выйдет, собственно, из анонимной функции.
 
-## Closures
+<!--## Closures-->
+## Замыкания
 
-A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. Unlike Java, the variables captured in the closure can be modified:
+<!--A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. Unlike Java, the variables captured in the closure can be modified: -->
+Лямбда-выражение или анонимная функция (так же как и [локальная функция](http://kotlinlang.org/docs/reference/functions.html#local-functions) или [объект-выражение](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) имеет доступ к своему замыканию,
+то есть переменным, объявленным во внешней области видимости и не являющиеся её параметрами. В отличае от Java, переменные, захваченные в замыкании, могут быть модифицированны:
 
 ``` kotlin
 var sum = 0
@@ -212,29 +215,35 @@ ints.filter { it > 0 }.forEach {
 print(sum)
 ```
 
-## Function Literals with Receiver
+<!--## Function Literals with Receiver-->
+## Литералы функции с Приёмником
 
-Kotlin provides the ability to call a function literal with a specified receiver object. Inside the body of the function literal, you can call methods on that receiver object without any additional qualifiers. This is similar to extension functions, which allow you to access members of the receiver object inside the body of the function. One of the most important examples of their usage is [Type-safe Groovy-style builders](http://kotlinlang.org/docs/reference/type-safe-builders.html).
+<!--Kotlin provides the ability to call a function literal with a specified receiver object. Inside the body of the function literal, you can call methods on that receiver object without any additional qualifiers. This is similar to extension functions, which allow you to access members of the receiver object inside the body of the function. One of the most important examples of their usage is [Type-safe Groovy-style builders](http://kotlinlang.org/docs/reference/type-safe-builders.html).-->
+Kotlin предоставляет возможность вызывать литерал функции с указанным объектом-приёмником. Внутри тела литерала, вы можете вызывать методы объекта-приёмника без дополнительных классификаторов. Это похоже на функцию-расширение, которая позволяет получить доступ к полям объекта внутри тела функции. Один из самых важных примеров их использования: [Type-safe Groovy-style builders](http://kotlinlang.org/docs/reference/type-safe-builders.html).
 
-The type of such a function literal is a function type with receiver:
+<!--The type of such a function literal is a function type with receiver:-->
+Тип такого литерала это тип функции с приёмником:
 
 ``` kotlin
 sum : Int.(other: Int) -> Int
 ```
 
-The function literal can be called as if it were a method on the receiver object:
+<!--The function literal can be called as if it were a method on the receiver object:-->
+Литерал функции может быть вызван так, как будто бы он является методом объекта-приёмника:
 
 ``` kotlin
 1.sum(2)
 ```
 
-The anonymous function syntax allows you to specify the receiver type of a function literal directly. This can be useful if you need to declare a variable of a function type with receiver, and to use it later.
+<!--The anonymous function syntax allows you to specify the receiver type of a function literal directly. This can be useful if you need to declare a variable of a function type with receiver, and to use it later.-->
+Синтакс анонимной функции позволяет вам указать приёмник литерала напрямую. Это может быть полезно если вам нужно объявить переменную типа функции с приёмником, и использовать её позже.
 
 ``` koltin
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
-Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.
+<!--Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.-->
+Лямбда-выражения могут быть использованны как литералы функции с приёмником, когда тип приёмника может зависить от контекста.
 
 ``` koltin
 class HTML {
@@ -252,8 +261,5 @@ html {       // lambda with receiver begins here
     body()   // calling a method on the receiver object
 }
 ```
-
-
-
 
 

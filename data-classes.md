@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Classes and Objects"
-title: "Data Classes"
+title: "Классы данных (data classes)"
 ---
 
-# Data Classes
+<!--# Data Classes-->
 
 We frequently create classes that do nothing but hold data. In such classes some functionality is often mechanically
 derivable from the data they hold. In Kotlin a class can be marked as `data`:

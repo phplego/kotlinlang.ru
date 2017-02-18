@@ -37,19 +37,21 @@ fun foo(a: Int = 0, b: String = "") { ... }
 val positives = list.filter { x -> x > 0 }
 ```
 
-Or alternatively, even shorter:
+Или короче:
 
 ``` kotlin
 val positives = list.filter { it > 0 }
 ```
 
-### String Interpolation
+<!--### String Interpolation-->
+### Форматирование строк
 
 ``` kotlin
 println("Name $name")
 ```
 
-### Instance Checks
+<!--### Instance Checks-->
+### Проверка объекта на принадлежность к определённому классу
 
 ``` kotlin
 when (x) {
@@ -58,8 +60,8 @@ when (x) {
     else   -> ...
 }
 ```
-
-### Traversing a map/list of pairs
+<!--### Traversing a map/list of pairs-->
+### Итерация по карте/списку пар
 
 ``` kotlin
 for ((k, v) in map) {
@@ -67,35 +69,41 @@ for ((k, v) in map) {
 }
 ```
 
-`k`, `v` can be called anything.
+<!--`k`, `v` can be called anything.-->
+Имена переменных `k` и `v` не имеют значения
 
-### Using ranges
+<!--### Using ranges-->
+### Использование последовательностей чисел 
 
 ``` kotlin
 for (i in 1..100) { ... }
 for (x in 2..10) { ... }
 ```
 
-### Read-only list
+<!--### Read-only list-->
+### Read-only список
 
 ``` kotlin
 val list = listOf("a", "b", "c")
 ```
 
-### Read-only map
+<!--### Read-only map-->
+### Read-only карта
 
 ``` kotlin
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 ```
 
-### Accessing a map
+<!--###Accessing a map-->
+### Обращение к карте
 
 ``` kotlin
 println(map["key"])
 map["key"] = value
 ```
 
-### Lazy property
+<!--### Lazy property-->
+### Ленивые свойства
 
 ``` kotlin
 val p: String by lazy {
@@ -103,7 +111,8 @@ val p: String by lazy {
 }
 ```
 
-### Extension Functions
+<!--### Extension Functions-->
+### Функции-расширения
 
 ``` kotlin
 fun String.spaceToCamelCase() { ... }
@@ -111,7 +120,8 @@ fun String.spaceToCamelCase() { ... }
 "Convert this to camelcase".spaceToCamelCase()
 ```
 
-### Creating a singleton
+<!--### Creating a singleton-->
+### Создание синглтона
 
 ``` kotlin
 object Resource {
@@ -119,7 +129,8 @@ object Resource {
 }
 ```
 
-### If not null shorthand
+<!--### If not null shorthand-->
+### Сокращение для "Если не null"
 
 ``` kotlin
 val files = File("Test").listFiles()
@@ -127,7 +138,8 @@ val files = File("Test").listFiles()
 println(files?.size)
 ```
 
-### If not null and else shorthand
+<!--### If not null and else shorthand-->
+### Сокращение для "Если не null, иначе" 
 
 ``` kotlin
 val files = File("Test").listFiles()
@@ -135,14 +147,16 @@ val files = File("Test").listFiles()
 println(files?.size ?: "empty")
 ```
 
-### Executing a statement if null
+<!--### Executing a statement if null-->
+### Вызов оператора при равенстве null
 
 ``` kotlin
 val data = ...
 val email = data["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
-### Execute if not null
+<!--### Execute if not null-->
+### Выполнение при неравенстве null
 
 ``` kotlin
 val data = ...
@@ -152,7 +166,8 @@ data?.let {
 }
 ```
 
-### Return on when statement
+<!--### Return on when statement-->
+### Return с оператором when
 
 ``` kotlin
 fun transform(color: String): Int {
@@ -165,7 +180,8 @@ fun transform(color: String): Int {
 }
 ```
 
-### 'try/catch' expression
+<!--### 'try/catch' expression-->
+### 'try/catch' как выражение
 
 ``` kotlin
 fun test() {
@@ -179,7 +195,8 @@ fun test() {
 }
 ```
 
-### 'if' expression
+<!--### 'if' expression-->
+### 'if' как выражение
 
 ``` kotlin
 fun foo(param: Int) {
@@ -193,7 +210,8 @@ fun foo(param: Int) {
 }
 ```
 
-### Builder-style usage of methods that return `Unit`
+<!--### Builder-style usage of methods that return `Unit`-->
+### Builder-style использование методов, возвращающих `Unit`
 
 ``` kotlin
 fun arrayOfMinusOnes(size: Int): IntArray {
@@ -202,13 +220,15 @@ fun arrayOfMinusOnes(size: Int): IntArray {
 ```
 
 
-### Single-expression functions
+<!--### Single-expression functions-->
+### Функции, состоящие из одного выражения
 
 ``` kotlin
 fun theAnswer() = 42
 ```
 
-This is equivalent to
+<!--This is equivalent to-->
+Что равносильно этому:
 
 ``` kotlin
 fun theAnswer(): Int {
@@ -216,7 +236,8 @@ fun theAnswer(): Int {
 }
 ```
 
-This can be effectively combined with other idioms, leading to shorter code. E.g. with the **when**<!--keyword-->-expression:
+<!--This can be effectively combined with other idioms, leading to shorter code. E.g. with the **when**-expression:-->
+Для сокращения кода, их можно эффективно совмещать с другими идиомами. Например с **when**<!--keyword-->:
 
 ``` kotlin
 fun transform(color: String): Int = when (color) {
@@ -227,7 +248,8 @@ fun transform(color: String): Int = when (color) {
 }
 ```
 
-### Calling multiple methods on an object instance ('with')
+<!--### Calling multiple methods on an object instance ('with')-->
+### Вызов нескольких методов объекта ('with')
 
 ``` kotlin
 class Turtle {
@@ -248,7 +270,8 @@ with(myTurtle) { //draw a 100 pix square
 }
 ```
 
-### Java 7's try with resources
+<!--### Java 7's try with resources-->
+### try with resources из Java 7
 
 ``` kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))

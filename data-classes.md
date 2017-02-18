@@ -7,36 +7,44 @@ title: "Классы данных (data classes)"
 
 <!--# Data Classes-->
 
-We frequently create classes that do nothing but hold data. In such classes some functionality is often mechanically
-derivable from the data they hold. In Kotlin a class can be marked as `data`:
+<!--We frequently create classes that do nothing but hold data. In such classes some functionality is often mechanically
+derivable from the data they hold. In Kotlin a class can be marked as `data`:-->
+Нередко мы создаём классы, которые ничего не делают, кроме как хранят данные. В подобного рода классах механика всего функционала продиктована данными, которые они содержат. В <b>Kotlin</b> класс может быть отмечен словом `data`:
  
 ``` kotlin
 data class User(val name: String, val age: Int)
 ```
 
-This is called a _data class_. The compiler automatically derives the following members from all properties declared in
-the primary constructor:
+<!--This is called a _data class_. The compiler automatically derives the following members from all properties declared in
+the primary constructor:-->
+Такой класс называется _дата классом_ (классом данных). Компилятор автоматически получает все члены данного класса из свойств, объявленных в его первичном конструкторе:
+    
+  * пара функций `equals()`/`hashCide()`,
+  * `toString()` в форме `"User(name=Jhon, age=42)"`,
+  * функции [`componentN()`](https://kotlinlang.org/docs/reference/multi-declarations.html), которые соответствуют свойствам, в зависимости от их порядка либо объявления,
+  * функция `copy()` (см. ниже)
   
-  * `equals()`/`hashCode()` pair, 
-  * `toString()` of the form `"User(name=John, age=42)"`,
-  * [`componentN()` functions](multi-declarations.html) corresponding to the properties in their order or declaration,
-  * `copy()` function (see below).
-  
-If any of these functions is explicitly defined in the class body or inherited from the base types, it will not be generated.
+<!--If any of these functions is explicitly defined in the class body or inherited from the base types, it will not be generated.-->
+В случае, если что-то из этого списка явно определено в теле класса или же унаследованно от родительского типа, компилятор не будет это генерировать.
 
-To ensure consistency and meaningful behavior of the generated code, data classes have to fulfil the following requirements:
+<!--To ensure consistency and meaningful behavior of the generated code, data classes have to fulfil the following requirements:-->
+Для того, чтобы предотвратить бесполезное поведение сгенерированного кода, дата классы должны быть заполнены в соответствии с определёнными требованиями:
 
   * The primary constructor needs to have at least one parameter;
   * All primary constructor parameters need to be marked as `val` or `var`;
   * Data classes cannot be abstract, open, sealed or inner;
   * Data classes may not extend other classes (but may implement interfaces).
   
-> On the JVM, if the generated class needs to have a parameterless constructor, default values for all properties have to be specified
-> (see [Constructors](classes.html#constructors)).
->
-> ``` kotlin
-> data class User(val name: String = "", val age: Int = 0)
-> ```
+  * Первичный конструктор должен иметь как минимум один параметр;
+  * Все параметры главного конструктора должны быть отмечены, как `val` или `var`;
+  * Классы данных не могут быть абстрактными, open, seales или inner;
+  * Дата классы не могут наследоваться от других классов (но могут реализовывать интерфейсы).
+  
+> В JVM, если сгенерированному классу нужен конструктор без параметров, должны быть указаны значения по умолчанию для всех свойств
+>(см. [Конструкторы](http://kotlin.su/docs/reference/classes.html#constructors))
+``` kotlin
+ data class User(val name: String = "", val age: Int = 0)
+ ```
 
 ## Copying
   

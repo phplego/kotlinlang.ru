@@ -1,7 +1,7 @@
 # kotlinlang.ru
 Документация Kotlin на русском.
 
-Для просмотра пройдите по адресу kotlinlang.ru (бывший www.kotlin.su)
+Для просмотра пройдите по адресу http://kotlinlang.ru (бывший http://kotlin.su)
 
 Для выгрузки изменений из этого репозитория на сайт www.kotlinlang.ru используйте ссылку http://kotlinlang.ru/update.php
 

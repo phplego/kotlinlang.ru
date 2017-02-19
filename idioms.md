@@ -22,7 +22,7 @@ data class Customer(val name: String, val email: String)
 * метод `hashCode()`
 * метод `toString()`
 * метод `copy()`
-* методы `component1()`, `component2()`, и т.п. для всех свойств (см. [Data classes](data-classes.html))
+* методы `component1()`, `component2()`, и т.п. для всех свойств (см. [Классы данных](data-classes.html))
 
 
 ### Значения по умолчанию для параметров функций
@@ -88,14 +88,14 @@ val list = listOf("a", "b", "c")
 ```
 
 <!--### Read-only map-->
-### Read-only карта
+### Read-only ассоциативный список (map)
 
 ``` kotlin
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 ```
 
 <!--###Accessing a map-->
-### Обращение к карте
+### Обращение к ассоциативному списку
 
 ``` kotlin
 println(map["key"])

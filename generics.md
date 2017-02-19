@@ -91,22 +91,23 @@ interface Collection<E> ... {
 <!-- The **wildcard type argument** `? extends T` indicates that this method accepts a collection of objects of *some subtype of* `T`, not `T` itself. -->
 **Специальный символ для аргумента** `? extends T` указвает на то, что это метод принимает коллекцию объектов *некого типа* `T`, а не сам по себе `T`.
 <!-- This means that we can safely **read** `T`'s from items (elements of this collection are instances of a subclass of T), but **cannot write** to -->
-Это значит, что мы можем безопасно **читать** `T` из содержимого (элементы коллекции являются экземплярами подкласса T), но **не можем их изменять**
 <!-- it since we do not know what objects comply to that unknown subtype of `T`. -->
-, потому что не знаем, какие объекты соответствуют этому неизвестному типу `T`.
 <!-- In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`. -->
+Это значит, что мы можем безопасно **читать** `T` из содержимого (элементы коллекции являются экземплярами подкласса T), но **не можем их изменять**, потому что не знаем, какие объекты соответствуют этому неизвестному типу `T`.
 Минуя это ограничение, мы достигаем желаемого результата: `Collection<String>`
 **является** подтипом `Collection<? extends Object>`.
  <!-- In "clever words", the wildcard with an **extends**\-bound (**upper** bound) makes the type **covariant**. -->
  Выражаясь более "умными словами", спец.символ с **extends**-связкой (**верхнее** связывание) делает тип ковариантным (ориг.: _covariant_).
 
-The key to understanding why this trick works is rather simple: if you can only **take** items from a collection, then using a collection of `String`s
-and reading `Object`s from it is fine. Conversely, if you can only _put_ items into the collection, it's OK to take a collection of
-`Object`s and put `String`s into it: in Java we have `List<? super String>` a **supertype** of `List<Object>`.
+<!-- The key to understanding why this trick works is rather simple: if you can only **take** items from a collection, then using a collection of `String`s -->
+<!-- and reading `Object`s from it is fine. Conversely, if you can only _put_ items into the collection, it's OK to take a collection of -->
+<!-- `Object`s and put `String`s into it: in Java we have `List<? super String>` a **supertype** of `List<Object>`. -->
+Ключом к пониманию, почему этот трюк работает, является довольно простая мысль: использование  `String`'ов и чтение из них `Object`ов - нормально только в случае, если  вы **берёте** элементы из коллекции. Наоборот, если вы только _вносите_ элементы в коллекцию, то нормально брать коллекцию `Object`'ов и помещать в неё `String`и: в <b>Java</b> есть `List<? super String>`, **супертип** `List<Object>`'a.
 
-The latter is called **contravariance**, and you can only call methods that take String as an argument on `List<? super String>`
-(e.g., you can call `add(String)` or `set(int, String)`), while
-if you call something that returns `T` in `List<T>`, you don't get a `String`, but an `Object`.
+<!-- The latter is called **contravariance**, and you can only call methods that take String as an argument on `List<? super String>` -->
+<!-- (e.g., you can call `add(String)` or `set(int, String)`), while -->
+<!-- if you call something that returns `T` in `List<T>`, you don't get a `String`, but an `Object`. -->
+Это назвается **контрварантностью**. В `List<? super String>` вы можете вызвать только те методы, которые принимают String в качестве аргумента (например, `add(String)` или `set(int, String)`). В случае, если вы вызываете из `List<T>` что-то c возвращаемым значением `T`, вы получаете не `String`, а `Object`.
 
 Joshua Bloch calls those objects you only **read** from **Producers**, and those you only **write** to **Consumers**. He recommends: "*For maximum flexibility, use wildcard types on input parameters that represent producers or consumers*", and proposes the following mnemonic:
 

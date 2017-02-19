@@ -21,7 +21,7 @@ url: http://kotlin.su
 * [Awesome Kotlin.link](http://kotlin.link)
 
 ## Сообщество
-* Telegram чат посвященный языку Kotlin и переводу документации [@KotlinHub](https://t.me/KotlinLangRu)
+* Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
   * Закончить перевод статьи [Идиомы](http://www.kotlin.su/docs/reference/idioms.html)

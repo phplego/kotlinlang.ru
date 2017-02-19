@@ -38,20 +38,24 @@ val box = Box(1) // 1 имеет тип Int, поэтому компилятор
 <!-- And Kotlin doesn't have any. Instead, it has two other things: declaration-site variance and type projections. -->
 А в <b>Kotlin</b> этого нет. Вместо этих костылей, у нас есть две другие штуки: _declaration-site variance_ и _type projections_.
 
-First, let's think about why Java needs those mysterious wildcards. The problem is explained in [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*.
-First, generic types in Java are **invariant**, meaning that `List<String>` is **not** a subtype of `List<Object>`.
-Why so? If List was not **invariant**, it would have been no
-better than Java's arrays, since the following code would have compiled and caused an exception at runtime:
+<!-- First, let's think about why Java needs those mysterious wildcards. The problem is explained in [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*. -->
+Для начала давайте подумаем на тему, зачем <b>Java</b> нужны эти странные спец. символы. Пробема описана в книге [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*.
+<!-- First, generic types in Java are **invariant**, meaning that `List<String>` is **not** a subtype of `List<Object>`. -->
+Обобщающие типы в <b>Java</b>, прежде всего, **неизменны**. Подразумевается, что `List<String>` *не является* подтипом `List<Object>`.
+<!-- Why so? If List was not **invariant**, it would have been no -->
+<!-- better than Java's arrays, since the following code would have compiled and caused an exception at runtime: -->
+Почему так? Если бы List был изменяемым, единственно лучшим решением для следующей задачи был бы массив, потому что после компиляции данный код вызвал бы ошибку в рантайме:
 
 ``` java
 // Java
 List<String> strs = new ArrayList<String>();
-List<Object> objs = strs; // !!! The cause of the upcoming problem sits here. Java prohibits this!
-objs.add(1); // Here we put an Integer into a list of Strings
-String s = strs.get(0); // !!! ClassCastException: Cannot cast Integer to String
+List<Object> objs = strs; // !!! Причина вышеуказанной проблемы заключена здесь, Java запрещает так делать
+objs.add(1); // Тут мы помещаем Integer в список String'ов
+String s = strs.get(0); // !!! ClassCastException: не можем кастовать Integer к String
 ```
-So, Java prohibits such things in order to guarantee run-time safety. But this has some implications. For example, consider the `addAll()` method from `Collection`
-interface. What's the signature of this method? Intuitively, we'd put it this way:
+<!-- So, Java prohibits such things in order to guarantee run-time safety. But this has some implications. For example, consider the `addAll()` method from `Collection` -->
+<!-- interface. What's the signature of this method? Intuitively, we'd put it this way: -->
+Таким образом, <b>Java</b> запрешает подобные вещи, гаранитируя тем самым безопасность в период выполнения кода. Но у такого подхода есть свои последствия. Рассмотрим, например, метод `addAll` интерфейса `Collection`. Какова сигнатура данного метода? Интуитивно мы бы указали её таким образом:
 
 ``` java
 // Java
@@ -60,20 +64,22 @@ interface Collection<E> ... {
 }
 ```
 
-But then, we would not be able to do the following simple thing (which is perfectly safe):
+<!-- But then, we would not be able to do the following simple thing (which is perfectly safe): -->
+Но тогда мы бы не могли выполнять следующую простую операция (которая является абсолютно безопасной):
 
 ``` java
 // Java
 void copyAll(Collection<Object> to, Collection<String> from) {
-  to.addAll(from); // !!! Would not compile with the naive declaration of addAll:
-                   //       Collection<String> is not a subtype of Collection<Object>
+  to.addAll(from); // !!! Не скомпилируется с нативным объявлением метода addAll:
+                   //       Collection<String> не является подтипом Collection<Object>
 }
 ```
 
-(In Java, we learned this lesson the hard way, see [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 25: *Prefer lists to arrays*)
+<!-- (In Java, we learned this lesson the hard way, see [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 25: *Prefer lists to arrays*) -->
+В <b>Java</b> нам этот урок дорого стоил, см. [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 25: *Prefer lists to arrays*.
 
-
-That's why the actual signature of `addAll()` is the following:
+<!-- That's why the actual signature of `addAll()` is the following: -->
+Вот почему сигнатура `addAll()` на самом деле такая:
 
 ``` java
 // Java
@@ -82,11 +88,17 @@ interface Collection<E> ... {
 }
 ```
 
-The **wildcard type argument** `? extends T` indicates that this method accepts a collection of objects of *some subtype of* `T`, not `T` itself.
-This means that we can safely **read** `T`'s from items (elements of this collection are instances of a subclass of T), but **cannot write** to
-it since we do not know what objects comply to that unknown subtype of `T`.
-In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`.
-In "clever words", the wildcard with an **extends**\-bound (**upper** bound) makes the type **covariant**.
+<!-- The **wildcard type argument** `? extends T` indicates that this method accepts a collection of objects of *some subtype of* `T`, not `T` itself. -->
+**Специальный символ для аргумента** `? extends T` указвает на то, что это метод принимает коллекцию объектов *некого типа* `T`, а не сам по себе `T`.
+<!-- This means that we can safely **read** `T`'s from items (elements of this collection are instances of a subclass of T), but **cannot write** to -->
+Это значит, что мы можем безопасно **читать** `T` из содержимого (элементы коллекции являются экземплярами подкласса T), но **не можем их изменять**
+<!-- it since we do not know what objects comply to that unknown subtype of `T`. -->
+, потому что не знаем, какие объекты соответствуют этому неизвестному типу `T`.
+<!-- In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`. -->
+Минуя это ограничение, мы достигаем желаемого результата: `Collection<String>`
+**является** подтипом `Collection<? extends Object>`.
+ <!-- In "clever words", the wildcard with an **extends**\-bound (**upper** bound) makes the type **covariant**. -->
+ Выражаясь более "умными словами", спец.символ с **extends**-связкой (**верхнее** связывание) делает тип ковариантным (ориг.: _covariant_).
 
 The key to understanding why this trick works is rather simple: if you can only **take** items from a collection, then using a collection of `String`s
 and reading `Object`s from it is fine. Conversely, if you can only _put_ items into the collection, it's OK to take a collection of

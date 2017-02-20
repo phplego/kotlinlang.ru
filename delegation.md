@@ -36,5 +36,4 @@ fun main(args: Array<String>) {
 
 <!--The *by*{: .keyword }-clause in the supertype list for `Derived` indicates that `b` will be stored internally in objects of `Derived`
 and the compiler will generate all the methods of `Base` that forward to `b`.-->
-Ключевое слово `by`, находящееся после объявления родителя `Derived`, говорит о том, что объект `b` типа `Base` будет храниться внутри экземпляра `Derived`,
-и компилятор сгенерирует у `Derived` соответствующие методы из `Base`, которые при вызове их у объекта `Derived`, будут вызваны у объекта `b`
+Ключевое слово `by` в оглавлении `Derived`, находящееся после типа делегируемого класса, говорит о том, что объект `b` типа `Base` будет храниться внутри экземпляра `Derived`, и компилятор сгенерирует у `Derived` соответствующие методы из `Base`, которые при вызове будут переданы объекту `b`

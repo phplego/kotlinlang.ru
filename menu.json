@@ -17,7 +17,8 @@
     "visibility-modifiers",
     "extensions",
     "data-classes",
-    "nested-classes"
+    "nested-classes",
+    "delegation"
   ],
   "Функции и лямбды": [
     "functions",

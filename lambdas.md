@@ -200,9 +200,11 @@ ints.filter(fun(item) = item > 0)
 <!--One other difference between lambda expressions and anonymous functions is the behavior of non-local returns. A return statement without a label always returns from the function declared with the fun keyword. This means that a return inside a lambda expression will return from the enclosing function, whereas a return inside an anonymous function will return from the anonymous function itself.-->
 Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](http://kotlinlang.org/docs/reference/inline-functions.html#non-local-returns). Слово `return` , не имеющее метки (`@`), всегда возвращается из функции, объявленной ключевым словом `fun`. Это означает, что `return` внутри лямбда-выражения возвратит выполнение к функции, включающей в себя это лямбда-выражение. Внутри анонимных функций, оператор `return`, в свою очередь, выйдет ,собственно, из анонимной функции.
 
-## Closures
+<!--## Closures-->
+## Замыкания
 
-A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. Unlike Java, the variables captured in the closure can be modified:
+<!--A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. Unlike Java, the variables captured in the closure can be modified:-->
+Лямбда-выражение или анонимная функция (также, как и [локальная функция](http://kotlinlang.org/docs/reference/functions.html#local-functions) или [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) имеет доступ к своему замыканию, то есть к переменным, объявленным вне этого выражения или функции. В отличае от Java, переменные, захваченные в замыкании могут быть изменены:
 
 ``` kotlin
 var sum = 0

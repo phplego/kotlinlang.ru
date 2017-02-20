@@ -2,17 +2,17 @@
 type: doc
 layout: reference
 category: "Classes and Objects"
-title: "Модификаторы видимости"
+title: "Модификаторы доступа"
 ---
 
 <!--# Visibility Modifiers-->
-# Модификаторы видимости
+# Модификаторы доступа
 
 <!--Classes, objects, interfaces, constructors, functions, properties and their setters can have _visibility modifiers_.
 (Getters always have the same visibility as the property.) 
 There are four visibility modifiers in Kotlin: `private`, `protected`, `internal` and `public`.
 The default visibility, used if there is no explicit modifier, is `public`.-->
-Классы, объекты, интерфейсы, конструкторы, функции, свойства и их сеттеры могут иметь _модификаторы видимости_ (у геттеров всегда такая же видимость, как у свойств, к которым они относятся). В <b>Kotlin</b> предусмотрено четыре модификатора видимости: `private`, `protected`, `internal` и `public`. Если явно не используется никакого модификатора видимости, то по умолчанию применяется `public`.
+Классы, объекты, интерфейсы, конструкторы, функции, свойства и их сеттеры могут иметь _модификаторы доступа_ (у геттеров всегда такая же видимость, как у свойств, к которым они относятся). В <b>Kotlin</b> предусмотрено четыре модификатора доступа: `private`, `protected`, `internal` и `public`. Если явно не используется никакого модификатора доступа, то по умолчанию применяется `public`.
 
 <!--Below please find explanations of these for different type of declaring scopes.-->
 Ниже вы найдёте описание всех возможных способов задавать область видимости.
@@ -37,7 +37,7 @@ visible everywhere;
 * If you mark it `internal`, it is visible everywhere in the same [module](#modules);
 * `protected` is not available for top-level declarations.-->
 
-* Если вы не укажете никакого модификатора видимости, будет использован `public`. Это значит, что весь код данного объявления будет виден из космоса;
+* Если вы не укажете никакого модификатора доступа, будет использован `public`. Это значит, что весь код данного объявления будет виден из космоса;
 * Если вы пометите объявление словом `private`, оно будет иметь видимость только внутри файла, где было объявлено;
 * Если вы используете `internal`, видимость будет распространяться на весь [модуль](http://kotlinlang.org/docs/reference/visibility-modifiers.html#modules);
 * `protected` запрещено использовать в объявлениях "высокого уровня".
@@ -77,7 +77,7 @@ internal val baz = 6    // имеет видимость внутри модул
 > *Примечание для джавистов:* в <b>Kotlin</b> внешний класс не видит `private` члены своих вложенных классов.
 
 <!--If you override a `protected` member and do not specify the visibility explicitly, the overriding member will also have `protected` visibility.-->
-Если вы переопределите `protected` член и явно не укажете его видимость, переопределённый элемент также будет иметь `protected` видимость.
+Если вы переопределите `protected` член и явно не укажете его видимость, переопределённый элемент также будет иметь модификатор доступа `protected`.
  
 <!--Examples:-->
 Примеры:
@@ -123,13 +123,13 @@ class C private constructor(a: Int) { ... }
 <!--Here the constructor is private. By default, all constructors are `public`, which effectively
 amounts to them being visible everywhere where the class is visible (i.e. a constructor of an `internal` class is only 
 visible within the same module).-->
-В этом примере конструктор является `private`. По умолчанию все конструкторы имеют `public` видимость, то есть видны везде, где виден сам класс (а вот конструктор `internal` класса видно только в том же модуле).
+В этом примере конструктор является `private`. По умолчанию все конструкторы имеют модификатор доступа `public`, то есть видны везде, где виден сам класс (а вот конструктор `internal` класса видно только в том же модуле).
      
 <!--### Local declarations-->
 ### Локальные объявления
      
 <!--Local variables, functions and classes can not have visibility modifiers.-->
-Локальные переменные, функции и классы не могут иметь модификаторов видимости. <!--rcd27: неожиданно...-->
+Локальные переменные, функции и классы не могут иметь модификаторов доступа. <!--rcd27: неожиданно...-->
 
 
 <!--## Modules-->
@@ -137,7 +137,7 @@ visible within the same module).-->
 
 <!--The `internal` visibility modifier means that the member is visible with the same module. More specifically,
 a module is a set of Kotlin files compiled together:-->
-Видимость `internal` означает, что этот член видно в рамках его модуля. Модуль - это набор скомпилированных вместе <b>Kotlin</b> файлов:
+Модификатор доступа `internal` означает, что этот член видно в рамках его модуля. Модуль - это набор скомпилированных вместе <b>Kotlin</b> файлов:
   
   * модуль в IntelliJ IDEA;
   * Maven или Gradle проект;

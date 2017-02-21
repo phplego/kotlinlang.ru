@@ -58,7 +58,7 @@ enum class ProtocolState {
 members, you need to separate the enum constant definitions from the member definitions with a semicolon, just like
 in Java.-->
 как с их собственными методами, так и с перегруженными методами базового класса. Следует заметить, что при объявлении 
-в enum-классе каких-либо членов, необходимо отделять их от списка констант точкой с запятой, также как и в Java.
+в enum-классе каких-либо членов, необходимо отделять их от списка констант точкой с запятой, так же как и в Java.
 
 <!--## Working with Enum Constants-->
 ## Работа с enum-константами
@@ -66,7 +66,7 @@ in Java.-->
 <!--Just like in Java, enum classes in Kotlin have synthetic methods allowing to list
 the defined enum constants and to get an enum constant by its name. The signatures
 of these methods are as follows (assuming the name of the enum class is `EnumClass`):-->
-Также как и в Java, enum-классы в Kotlin имеют стандартные методы для вывода списка объявленных констант и для получения enum-константы по её имени.
+Так же как и в Java, enum-классы в Kotlin имеют стандартные методы для вывода списка объявленных констант и для получения enum-константы по её имени.
 Ниже приведены сигнатуры этих методов: 
 
 ``` kotlin
@@ -79,12 +79,12 @@ not match any of the enum constants defined in the class.-->
 Метод `valueOf()` выбрасывает исключение `IllegalArgumentException`, если указанное имя не соответствует ни одной константе, объявленной в классе.
 
 <!--Every enum constant has properties to obtain its name and position in the enum class declaration:-->
-
+Каждая enum-константа имеет поля, в которых содержатся её имя и порядковый номер в enum-классе:
 
 ``` kotlin
 val name: String
 val ordinal: Int
 ```
 
-The enum constants also implement the [Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) interface,
-with the natural order being the order in which they are defined in the enum class.
+<!--The enum constants also implement the [Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) interface, with the natural order being the order in which they are defined in the enum class.-->
+Также, enum-константы реализуют интерфейс [Comparable](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html). Порядок сортировки соответствует порядку объявления.

@@ -18,11 +18,13 @@
     "extensions",
     "data-classes",
     "nested-classes",
+    "enum-classes",
     "delegation"
   ],
   "Функции и лямбды": [
     "functions",
-    "lambdas"
+    "lambdas",
+    "inline-functions"
   ],
   "Редактору": [
     "how-to-edit",

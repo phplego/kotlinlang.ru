@@ -109,17 +109,26 @@ interface Collection<E> ... {
 <!-- if you call something that returns `T` in `List<T>`, you don't get a `String`, but an `Object`. -->
 Это назвается **контрвариантностью**. В `List<? super String>` вы можете вызвать только те методы, которые принимают String в качестве аргумента (например, `add(String)` или `set(int, String)`). В случае, если вы вызываете из `List<T>` что-то c возвращаемым значением `T`, вы получаете не `String`, а `Object`.
 
-Joshua Bloch calls those objects you only **read** from **Producers**, and those you only **write** to **Consumers**. He recommends: "*For maximum flexibility, use wildcard types on input parameters that represent producers or consumers*", and proposes the following mnemonic:
+<!-- Joshua Bloch calls those objects you only **read** from **Producers**, and those you only **write** to **Consumers**. He recommends: "*For maximum flexibility, use wildcard types on input parameters that represent producers or consumers*", and proposes the following mnemonic: -->
+Джоуа Блок (Joshua Block) выделяет такие объекты:
+- **Производители** (ориг.:_producers_) из которых вы только **читаете**
+- **Потребители** (ориг.: _consumers_),в которые вы только **записываете**
 
-*PECS stands for Producer-Extends, Consumer-Super.*
+<!-- *PECS stands for Producer-Extends, Consumer-Super.* -->
+PECS настаивает на _Producer-Extends_, _Consumer-Super_.
 
-*NOTE*: if you use a producer-object, say, `List<? extends Foo>`, you are not allowed to call `add()` or `set()` on this object, but this does not mean
-that this object is **immutable**: for example, nothing prevents you from calling `clear()` to remove all items from the list, since `clear()`
-does not take any parameters at all. The only thing guaranteed by wildcards (or other types of variance) is **type safety**. Immutability is a completely different story.
+<!-- *NOTE*: if you use a producer-object, say, `List<? extends Foo>`, you are not allowed to call `add()` or `set()` on this object, but this does not mean -->
+<!-- that this object is **immutable**: for example, nothing prevents you from calling `clear()` to remove all items from the list, since `clear()` -->
+<!-- does not take any parameters at all. The only thing guaranteed by wildcards (or other types of variance) is **type safety**. Immutability is a completely different story. -->
 
-### Declaration-site variance
+>*Примечание*: если вы используете объект-производитель, предположим, `List<? extends Foo>`, вы не можете вызвать методы `add()` или `set()`, применительно к этому объекту. Но это не значит, что объект **неизменный** (immutable): ничто не мешает вам вызвать метод `clear()` для того, чтобы очистить список, так как `clear()` не имеет аргументов. Единственное, что гарантировано при использовании спец.символов - **безопасность типов**. Неизменяемость (ориг.: _immutability_) - совершенно другая история.
 
-Suppose we have a generic interface `Source<T>` that does not have any methods that take `T` as a parameter, only methods that return `T`:
+
+<!-- ### Declaration-site variance -->
+### Вариантность на уровне объявления
+
+<!-- Suppose we have a generic interface `Source<T>` that does not have any methods that take `T` as a parameter, only methods that return `T`: -->
+Допустим, у нас есть дженерик интерфейс `Source<T>`, у которого нет методов, принимающий `T` в качестве аргумента. Только методы, возвращающие `T`:
 
 ``` java
 // Java
@@ -128,7 +137,8 @@ interface Source<T> {
 }
 ```
 
-Then, it would be perfectly safe to store a reference to an instance of `Source<String>` in a variable of type `Source<Object>` -- there are no consumer-methods to call. But Java does not know this, and still prohibits it:
+<!-- Then, it would be perfectly safe to store a reference to an instance of `Source<String>` in a variable of type `Source<Object>` -- there are no consumer-methods to call. But Java does not know this, and still prohibits it: -->
+Тогда было бы наиболее безопасно хранить ссылки на экземляр `Source<String>` с вариантным типом `Source<Object>` -- для вызова нет никаких методов-потребителей.
 
 ``` java
 // Java

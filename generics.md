@@ -107,7 +107,7 @@ interface Collection<E> ... {
 <!-- The latter is called **contravariance**, and you can only call methods that take String as an argument on `List<? super String>` -->
 <!-- (e.g., you can call `add(String)` or `set(int, String)`), while -->
 <!-- if you call something that returns `T` in `List<T>`, you don't get a `String`, but an `Object`. -->
-Это назвается **контрварантностью**. В `List<? super String>` вы можете вызвать только те методы, которые принимают String в качестве аргумента (например, `add(String)` или `set(int, String)`). В случае, если вы вызываете из `List<T>` что-то c возвращаемым значением `T`, вы получаете не `String`, а `Object`.
+Это назвается **контрвариантностью**. В `List<? super String>` вы можете вызвать только те методы, которые принимают String в качестве аргумента (например, `add(String)` или `set(int, String)`). В случае, если вы вызываете из `List<T>` что-то c возвращаемым значением `T`, вы получаете не `String`, а `Object`.
 
 Joshua Bloch calls those objects you only **read** from **Producers**, and those you only **write** to **Consumers**. He recommends: "*For maximum flexibility, use wildcard types on input parameters that represent producers or consumers*", and proposes the following mnemonic:
 

@@ -138,7 +138,7 @@ fun Any?.toString(): String {
 ## Свойства-расширения
 
 <!--Similarly to functions, Kotlin supports extension properties:-->
-Аналогично функциям, <b>Koltin</b> поддерживает расширения свойств:
+Аналогично функциям, <b>Kotlin</b> поддерживает расширения свойств:
 
 ``` kotlin
 val <T> List<T>.lastIndex: Int
@@ -183,24 +183,27 @@ MyClass.foo()
 ```
 
 
-## Scope of Extensions
+<!-- ## Scope of Extensions -->
+## Область видимости расщирений
 
-Most of the time we define extensions on the top level, i.e. directly under packages:
- 
+<!-- Most of the time we define extensions on the top level, i.e. directly under packages: -->
+ Чаще всего мы объявляем расширения на самом верхнем уровне, то есть сразу под пакетами:
+
 ``` kotlin
 package foo.bar
  
 fun Baz.goo() { ... } 
 ``` 
 
-To use such an extension outside its declaring package, we need to import it at the call site:
+<!-- To use such an extension outside its declaring package, we need to import it at the call site: -->
+Для того, чтобы использовать такое расширение вне пакета, в котором оно было объявлено, нам надо импортировать его на стороне вызова:
 
 ``` kotlin
 package com.example.usage
 
-import foo.bar.goo // importing all extensions by name "goo"
-                   // or
-import foo.bar.*   // importing everything from "foo.bar"
+import foo.bar.goo // импортировать все расширения за именем "goo"
+                   // или
+import foo.bar.*   // импортировать все из "foo.bar"
 
 fun usage(baz: Baz) {
     baz.goo()
@@ -210,11 +213,13 @@ fun usage(baz: Baz) {
 
 See [Imports](packages.html#imports) for more information.
 
-## Declaring Extensions as Members
+<!-- ## Declaring Extensions as Members -->
+## Объявление расширений в качестве членов
 
-Inside a class, you can declare extensions for another class. Inside such an extension, there are multiple _implicit receivers_ -
-objects members of which can be accessed without a qualifier. The instance of the class in which the extension is declared is called
-_dispatch receiver_, and the instance of the receiver type of the extension method is called _extension receiver_.
+<!-- Inside a class, you can declare extensions for another class. Inside such an extension, there are multiple _implicit receivers_ - -->
+<!-- objects members of which can be accessed without a qualifier. The instance of the class in which the extension is declared is called -->
+<!-- _dispatch receiver_, and the instance of the receiver type of the extension method is called _extension receiver_. -->
+Внутри класса вы можете объявить расширение для другого класса. Внутри такого объявления существует несколько _неявных приёмников_ (ориг.:_implicit receivers_
 
 ``` kotlin
 class D {

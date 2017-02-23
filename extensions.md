@@ -314,7 +314,7 @@ swap(list, binarySearch(list, max(otherList)), max(list))
 ```
 
 <!-- This is a little better, but we have no or little help from the powerful code completion of the IDE. It would be so much better if we could say -->
-Уже лучше, но такой мощный инструмент IDE как _code completion_ не предоставляет нам сколь-нибудь серьёзную помощь в данном случае. Было бы намного лучше, если бы у нас было:
+Уже лучше, но такой мощный инструмент IDE, как автодополнение, не предоставляет нам сколь-нибудь серьёзную помощь в данном случае. Намного лучше, если бы у нас было:
 
 ``` java
 // Java
@@ -322,4 +322,4 @@ list.swap(list.binarySearch(otherList.max()), list.max())
 ```
 
 <!-- But we don't want to implement all the possible methods inside the class `List`, right? This is where extensions help us. -->
-Но мы же не хотим реазовывать все методы класса `List`, так? Вот для чего и нужны расширения.
+Но мы же не хотим реализовывать все методы класса `List`, так? Вот, для чего и нужны расширения.

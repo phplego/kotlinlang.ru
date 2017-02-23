@@ -25,6 +25,6 @@ url: http://kotlin.su
 
 ## Актуальные задачи
   * ~~Закончить перевод статьи [Идиомы](http://www.kotlin.su/docs/reference/idioms.html)~~
-  * Закончить перевод статьи [Расширения (extensions)](http://www.kotlin.su/docs/reference/extensions.html)
+  * ~~Закончить перевод статьи [Расширения (extensions)](http://www.kotlin.su/docs/reference/extensions.html)~~
   * Закончить перевод статьи [Лямбды](http://www.kotlin.su/docs/reference/lambdas.html)
   * Начать перевод других статей из раздела *Classes and Objects*

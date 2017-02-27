@@ -2,11 +2,12 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Встроенные функции"
+title: "Встроенные (inline) функции"
+menuLabel: "Встроенные функции"
 ---
 
 <!--# Inline Functions-->
-# Встроенные функции
+# Встроенные (inline) функции
 
 <!--Using [higher-order functions](lambdas.html) imposes certain runtime penalties: each function is an object, and it captures a closure,
 i.e. those variables that are accessed in the body of the function.

@@ -18,7 +18,7 @@ data class User(val name: String, val age: Int)
 
 <!--This is called a _data class_. The compiler automatically derives the following members from all properties declared in
 the primary constructor:-->
-Такой класс называется _дата классом_ (классом данных). Компилятор автоматически извлекает все члены данного класса из свойств, объявленных в его первичном конструкторе:
+Такой класс называется _дата-классом_ (классом данных). Компилятор автоматически извлекает все члены данного класса из свойств, объявленных в его главном конструкторе:
 
   * пара функций `equals()`/`hashCide()`,
   * `toString()` в форме `"User(name=Jhon, age=42)"`,
@@ -36,7 +36,7 @@ the primary constructor:-->
   * Классы данных не могут быть абстрактными, open, sealed или inner;
   * Дата-классы не могут наследоваться от других классов (но могут реализовывать интерфейсы).
 
-> В JVM, если сгенерированному классу нужен конструктор без параметров, должны быть указаны значения по умолчанию для всех свойств
+> Для того, чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
 >(см. [Конструкторы](http://kotlin.su/docs/reference/classes.html#constructors))
 ``` kotlin
  data class User(val name: String = "", val age: Int = 0)
@@ -47,7 +47,7 @@ the primary constructor:-->
 
 <!--It's often the case that we need to copy an object altering _some_ of its properties, but keeping the rest unchanged.
 This is what `copy()` function is generated for. For the `User` class above, its implementation would be as follows:-->
-Довольно часто нам приходиться копировать объект с изменением _некоторых_ его свойств. Для этой задачи генерируется функция `copy()`. Для написанного выше класса `User` такая реализация будет выглядеть следующим образом:
+Довольно часто нам приходиться копировать объект с изменением только _некоторых_ его свойств. Для этой задачи генерируется функция `copy()`. Для написанного выше класса `User` такая реализация будет выглядеть следующим образом:
 
 ``` kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)

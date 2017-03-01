@@ -2,11 +2,11 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Object Expressions and Declarations"
+title: "Анонимные объекты и объявление объектов"
 ---
 
 <!-- # Object Expressions and Declarations -->
-# Анонимные объекты и объявление объектов. (ориг.:_Object Expressions and Declarations_)
+# Анонимные объекты и объявление объектов
 
 <!-- Sometimes we need to create an object of a slight modification of some class, without explicitly declaring a new subclass for it. -->
 <!-- Java handles this case with *anonymous inner classes*. -->

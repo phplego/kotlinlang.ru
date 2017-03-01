@@ -6,3 +6,4 @@
 * implicit receivers (extensions.md) - неявные приёмники ?
 * dispatch receiver (extensions.md) - перевёл просто как "отсылка"
 * extension receiver (extensions.md) - назвал, как "принимающий расширение
+* companion object - переведено, как вспомогательный объект

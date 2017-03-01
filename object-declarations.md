@@ -6,7 +6,7 @@ title: "Object Expressions and Declarations"
 ---
 
 <!-- # Object Expressions and Declarations -->
-# Объявление объектов и объектные выражения (ориг.:_Object Expressions and Declarations_)
+# Анонимные объекты и объявление объектов. (ориг.:_Object Expressions and Declarations_)
 
 <!-- Sometimes we need to create an object of a slight modification of some class, without explicitly declaring a new subclass for it. -->
 <!-- Java handles this case with *anonymous inner classes*. -->
@@ -15,7 +15,7 @@ title: "Object Expressions and Declarations"
 <b>Kotlin</b> несколько улучшает данный подход.
 
 <!-- ## Object expressions -->
-## Объектные выражения (ориг.:_Object expressions_)
+## Анонимные объекты (ориг.:_Object expressions_)
 
 <!-- To create an object of an anonymous class that inherits from some type (or types), we write: -->
 Для того, чтобы создать объект анонимного класса, который наследуется от какого-то типа (типов), используется конструкция:
@@ -128,6 +128,7 @@ object DefaultListener : MouseAdapter() {
 ```
 
 <!-- **NOTE**: object declarations can't be local (i.e. be nested directly inside a function), but they can be nested into other object declarations or non-inner classes. -->
+
 >**ПРИМЕЧАНИЕ**: объявление объекта не может иметь локальный характер (т.е. быть вложенным непосредственно в функцию), но может быть вложено в объявление другого объекта или какого-либо невложенного класса.
 
 
@@ -190,7 +191,7 @@ class MyClass {
 
 
 <!-- ### Semantic difference between object expressions and declarations -->
-### Различие между объектным выражением и объявлением объекта.
+### Семантическое различие между анонимным объектом и декларируемым объектом.
 
 <!-- There is one important semantic difference between object expressions and object declarations: -->
 Существует только одно смысловое различие между этими двумя понятиями:
@@ -199,7 +200,7 @@ class MyClass {
 <!-- * object declarations are initialized **lazily**, when accessed for the first time -->
 <!-- * a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer -->
 
-* объектное выражение реализуется (и инициализируется) **сразу после того**, как было использовано
-* объявление объекта инициализируется **лениво**, в момент первого к нему доступа
+* анонимный объект инициализируется **сразу после того**, как был использован
+* декларированный объект инициализируется **лениво**, в момент первого к нему доступа
 * вспомогательный объект инициализируется в момент, когда класс, к которому он относится, загружен и семантически совпадает с статическим инициализатором <b>Java</b>
 

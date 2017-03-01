@@ -19,6 +19,7 @@
     "data-classes",
     "nested-classes",
     "enum-classes",
+    "object-declarations",
     "delegation"
   ],
   "Функции и лямбды": [

@@ -1,7 +1,7 @@
 <!--Данный файл создан для того, чтобы хранить все спорные переводы-->
 
 * backing fields (properties.md)
-* destructuring declarations (data-classes.md , multi-declarations.md)
+* destructuring declarations = мульти-декларации. *proved*
 * primary constructor = первичный конструктор / главный конструктор ?
 * implicit receivers (extensions.md) - неявные приёмники ?
 * dispatch receiver (extensions.md) - перевёл просто как "отсылка"

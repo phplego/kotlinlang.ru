@@ -6,7 +6,7 @@ title: "Коллекции"
 ---
 
 <!--# Collections-->
-Коллекции
+# Коллекции
 
 <!--Unlike many languages, Kotlin distinguishes between mutable and immutable collections (lists, sets, maps, etc). 
 Precise control over exactly when collections can be edited is useful for eliminating bugs, and for designing good APIs.

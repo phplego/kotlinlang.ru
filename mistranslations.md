@@ -1,3 +1,12 @@
+---
+type: doc
+layout: inner
+title: "Термины и выражения для перевода"
+menuLabel: "Глосарий"
+url: http://kotlinlang.ru/docs/reference/mistranslations.html
+---
+
+
 <!--Данный файл создан для того, чтобы хранить все спорные переводы-->
 
 * backing fields (properties.md)

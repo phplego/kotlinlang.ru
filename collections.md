@@ -73,7 +73,7 @@ it would allow for failures at runtime.-->
 Заметьте, что read-only типы ковариантны. Это значит, что вы можете взять `List<Rectangle>` (список прямоугольников) и присвоить его `List<Shape>` (списку фигур) предполагая, что Rectangle наследуется от Shape. Такое присвоение было бы запрещено с изменяемыми коллекциями, потому что в таком случае появляется риск возникновения ошибок времени исполнения.
 
 <!--Sometimes you want to return to the caller a snapshot of a collection at a particular point in time, one that's guaranteed to not change:-->
-Иногда вам необходимо вернуть состояние коллекции в определённый момент времени, который гарантированно не изменится:
+Иногда вам необходимо вернуть состояние коллекции в определённый момент времени:
 
 ``` kotlin
 class Controller {

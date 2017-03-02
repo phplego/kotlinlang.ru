@@ -2,7 +2,7 @@
 type: doc
 layout: inner
 title: "Создание новой статьи"
-site: www.kotlin.su
+site: www.kotlinlang.ru
 ---
 
 ## Создание новой статьи
@@ -18,7 +18,7 @@ https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
 Ну и конечно же после любых изменений нужно:
 * Сделать фиксацию изменений в git
 * Если вы работаете с локальной копией, то сделать push
-* Выгрузить файлы на сервер kotlin.su перейдя по урлу: http://kotlin.su/update.php
+* Выгрузить файлы на сервер kotlinlang.ru перейдя по урлу: http://kotlinlang.ru/update.php
 
 
 ### У меня нет доступа на редактирование, что делать?

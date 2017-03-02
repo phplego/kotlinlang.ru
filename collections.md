@@ -83,7 +83,7 @@ class Controller {
 ```
 
 <!--The `toList` extension method just duplicates the lists items, thus, the returned list is guaranteed to never change.-->
-[Расширение](extensions.html) `toList` просто копирует элементы списка, таким образом, возвращаемый список гарантированно не изменится.
+[Расширение](extensions.html) `toList` просто копирует элементы списка. Таким образом, возвращаемый список гарантированно не изменится.
 
 <!--There are various useful extension methods on lists and sets that are worth being familiar with:-->
 Существует несколько полезных расширений для списков и множеств, с которыми стоит познакомиться:

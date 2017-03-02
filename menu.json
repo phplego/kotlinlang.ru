@@ -28,7 +28,8 @@
     "inline-functions"
   ],
   "Прочее": [
-    "multi-declarations"
+    "multi-declarations",
+    "collections"
   ],
   "Редактору": [
     "how-to-edit",

@@ -27,6 +27,9 @@
     "lambdas",
     "inline-functions"
   ],
+  "Прочее": [
+    "multi-declarations"
+  ],
   "Редактору": [
     "how-to-edit",
     "add-new-article"

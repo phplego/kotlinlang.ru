@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Classes and Objects"
-title: "Классы данных (data classes)"
+title: "Классы данных"
 ---
 
 <!--# Data Classes-->
@@ -18,7 +18,7 @@ data class User(val name: String, val age: Int)
 
 <!--This is called a _data class_. The compiler automatically derives the following members from all properties declared in
 the primary constructor:-->
-Такой класс называется _дата-классом_ (классом данных). Компилятор автоматически извлекает все члены данного класса из свойств, объявленных в его главном конструкторе:
+Такой класс называется _классом данных_. Компилятор автоматически извлекает все члены данного класса из свойств, объявленных в первичном конструкторе:
 
   * пара функций `equals()`/`hashCide()`,
   * `toString()` в форме `"User(name=Jhon, age=42)"`,
@@ -29,10 +29,10 @@ the primary constructor:-->
 Если какая-либо из этих функций явно определена в теле класса (или унаследована от родительского класса), то генерироваться она не будет.
 
 <!--To ensure consistency and meaningful behavior of the generated code, data classes have to fulfil the following requirements:-->
-Для того, чтобы поведение генерируемого кода соответствовало здравому смыслу, дата-классы должны быть оформлены с соблюдением некоторых требований:
+Для того, чтобы поведение генерируемого кода соответствовало здравому смыслу, классы данных должны быть оформлены с соблюдением некоторых требований:
 
-  * Главный конструктор должен иметь как минимум один параметр;
-  * Все параметры главного конструктора должны быть отмечены, как `val` или `var`;
+  * Первичный конструктор должен иметь как минимум один параметр;
+  * Все параметры первичного конструктора должны быть отмечены, как `val` или `var`;
   * Классы данных не могут быть абстрактными, open, sealed или inner;
   * Дата-классы не могут наследоваться от других классов (но могут реализовывать интерфейсы).
 
@@ -62,10 +62,10 @@ val olderJack = jack.copy(age = 2)
 ```
 
 <!--## Data Classes and Destructuring Declarations-->
-## Классы данных и неструктурированные объявления (ориг.: _destructuring declarations_)
+## Классы данных и мульти-декларации
 
 <!--_Component functions_ generated for data classes enable their use in [destructuring declarations](multi-declarations.html):-->
-Сгенерированные для дата классов _составные функции_ позволяют использовать их в [неструктурированных объявлениях](https://kotlinlang.org/docs/reference/multi-declarations.html):
+Сгенерированные для классов данных _составные функции_ позволяют использовать их в [мульти-декларациях](https://kotlinlang.org/docs/reference/multi-declarations.html):
 
 ``` kotlin
 val jane = User("Jane", 35)
@@ -78,4 +78,6 @@ println("$name, $age years of age") // выводит "Jane, 35 years of age"
 
 <!--The standard library provides `Pair` and `Triple`. In most cases, though, named data classes are a better design choice,
 because they make the code more readable by providing meaningful names for properties.-->
-Стандартная библиотека предоставляет `Pair` и `Triple`. Однако, в большинстве случаев, проименованные дата классы являются лучшим решением, потому что делают код более читаемым, избегая малосодержательные имена для свойств.
+Стандартная библиотека предоставляет `Pair` и `Triple`. Однако, в большинстве случаев, проименованные классы данных являются лучшим решением, потому что делают код более читаемым, избегая малосодержательные имена для свойств.
+
+>[Статья на эту тему на Хабре](https://habrahabr.ru/company/JetBrains/blog/152126/)

@@ -63,14 +63,17 @@ A simple way to create such a collection is like this:-->
 val items = listOf(1, 2, 3)
 ```
 
-Currently, the `listOf` method is implemented using an array list, but in future more memory-efficient fully immutable 
-collection types could be returned that exploit the fact that they know they can't change.
+<!--Currently, the `listOf` method is implemented using an array list, but in future more memory-efficient fully immutable 
+collection types could be returned that exploit the fact that they know they can't change.-->
+В данный момент, метод `listOf` реализован с помощью ArrayList, но не исключено, что в будущем могут быть использованы другие типы коллекций, более эффективные по памяти за счёт своей неизменности.
 
-Note that the read only types are [covariant](generics.html#variance). That means, you can take a `List<Rectangle>` and assign 
+<!--Note that the read only types are [covariant](generics.html#variance). That means, you can take a `List<Rectangle>` and assign 
 it to `List<Shape>` assuming Rectangle inherits from Shape. This wouldn't be allowed with the mutable collection types because 
-it would allow for failures at runtime.
+it would allow for failures at runtime.-->
+Заметьте, что read-only типы ковариантны. Это значит, что вы можете взять `List<Rectangle>` (список прямоугольников) и присвоить его `List<Shape>` (списку фигур) предполагая, что Rectangle наследуется от Shape. Такое присвоение было бы запрещено с изменяемыми коллекциями, потому что в таком случае появляется риск возникновения ошибок времени исполнения.
 
-Sometimes you want to return to the caller a snapshot of a collection at a particular point in time, one that's guaranteed to not change:
+<!--Sometimes you want to return to the caller a snapshot of a collection at a particular point in time, one that's guaranteed to not change:-->
+Иногда вам необходимо вернуть состояние коллекции в определённый момент времени, который гарантированно не изменится:
 
 ``` kotlin
 class Controller {
@@ -79,28 +82,32 @@ class Controller {
 }
 ```
 
-The `toList` extension method just duplicates the lists items, thus, the returned list is guaranteed to never change.
+<!--The `toList` extension method just duplicates the lists items, thus, the returned list is guaranteed to never change.-->
+[Расширение](extensions.html) `toList` просто копирует элементы списка, таким образом, возвращаемый список гарантированно не изменится.
 
-There are various useful extension methods on lists and sets that are worth being familiar with:
+<!--There are various useful extension methods on lists and sets that are worth being familiar with:-->
+Существует несколько полезных расширений для списков и множеств, с которыми стоит познакомиться:
 
 ``` kotlin
 val items = listOf(1, 2, 3, 4)
 items.first() == 1
 items.last() == 4
-items.filter { it % 2 == 0 }   // returns [2, 4]
+items.filter { it % 2 == 0 }   // возвратит [2, 4]
 
 val rwList = mutableListOf(1, 2, 3)
-rwList.requireNoNulls()        // returns [1, 2, 3]
-if (rwList.none { it > 6 }) println("No items above 6")  // prints "No items above 6"
+rwList.requireNoNulls()        // возвратит [1, 2, 3]
+if (rwList.none { it > 6 }) println("Нет элементов больше 6")  // выведет "Нет элементов больше 6"
 val item = rwList.firstOrNull()
 ```
 
-... as well as all the utilities you would expect such as sort, zip, fold, reduce and so on.
+<!--... as well as all the utilities you would expect such as sort, zip, fold, reduce and so on.-->
+Также, обратите внимание на такие утилиты как `sort`, `zip`, `fold`, `reduce`.
 
-Maps follow the same pattern. They can be easily instantiated and accessed like this:
+<!--Maps follow the same pattern. They can be easily instantiated and accessed like this:-->
+Тоже самое происходит и с ассоциативными списками. Они могут быть с лёгкостью инициализированы и использованы следующим образом:
 
 ``` kotlin
 val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
-println(readWriteMap["foo"])  // prints "1"
+println(readWriteMap["foo"])  // выведет "1"
 val snapshot: Map<String, Int> = HashMap(readWriteMap)
 ```

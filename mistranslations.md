@@ -8,7 +8,7 @@ url: http://kotlinlang.ru/docs/reference/mistranslations.html
 
 ##Обсуждение терминов и выражений для перевода
 
-<!--Данный файл создан для того, чтобы хранить все спорные переводы-->
+Данный файл создан для того, чтобы хранить все спорные переводы
 
 * backing fields (properties.md)
 * destructuring declarations = ___мульти-декларации___. *proved*

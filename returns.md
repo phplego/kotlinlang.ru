@@ -15,8 +15,8 @@ title: "Операторы перехода"
 * **break**. Terminates the nearest enclosing loop.
 * **continue**. Proceeds to the next step of the nearest enclosing loop.-->
 * **return** по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions).
-* **break** pавершает выполнение функции.
-* **continue** gродолжает выполнение цикла с следующего его шага, без обработки оставшегося кода текущей итерации.
+* **break** завершает выполнение функции.
+* **continue** продолжает выполнение цикла со следующего его шага, без обработки оставшегося кода текущей итерации.
 
 
 <!--## Break and Continue Labels-->

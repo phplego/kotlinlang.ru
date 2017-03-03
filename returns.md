@@ -9,14 +9,14 @@ title: "Операторы перехода"
 # Операторы перехода
 
 <!--Kotlin has three structural jump operators-->
-В <b>Kotlin</b> определены три оператора перехода
+В <b>Kotlin</b> определено три оператора перехода
 
 <!--* **return** By default returns from the nearest enclosing function or [anonymous function](lambdas.html#anonymous-functions).
 * **break**. Terminates the nearest enclosing loop.
 * **continue**. Proceeds to the next step of the nearest enclosing loop.-->
-* **return** по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions).
-* **break** завершает выполнение функции.
-* **continue** продолжает выполнение цикла со следующего его шага, без обработки оставшегося кода текущей итерации.
+* **return** по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions)
+* **break** завершает выполнение функции
+* **continue** продолжает выполнение цикла со следующего его шага, без обработки оставшегося кода текущей итерации
 
 
 <!--## Break and Continue Labels-->
@@ -26,7 +26,7 @@ title: "Операторы перехода"
 Labels have the form of an identifier followed by the `@` sign, for example: `abc@`, `fooBar@` are valid labels (see the [grammar](grammar.html#label)).
 To label an expression, we just put a label in front of it-->
 Любое выражение в <b>Kotlin</b> может быть помечено меткой **label**.
-Метки имеют форму идентификатора, который сопровождается знаком `@`. Например: метки `abc@`, `fooBar@` являются корректными.
+Метки имеют идентификатор в виде знака `@`. Например: метки `abc@`, `fooBar@` являются корректными
 (см. [грамматика](http://kotlinlang.org/docs/reference/grammar.html#label)). Для того, чтобы пометить выражение, мы просто ставим метку перед ним
 
 ``` kotlin
@@ -59,10 +59,9 @@ A **continue** proceeds to the next iteration of that loop.-->
 <!--With function literals, local functions and object expression, functions can be nested in Kotlin. 
 Qualified **return**s allow us to return from an outer function. 
 The most important use case is returning from a lambda expression. Recall that when we write this:-->
-_В языке <b>Kotlin</b> функции могут быть вложены с помощью локальных функций, выражений объекта и констант функций._
-(ориг.: With function literals, local functions and object expression, functions can be nested in Kotlin.)
+В <b>Kotlin</b> функции могут быть вложены друг в друга с помощью анонимных объектов, локальных функций(ориг.:_local functions_) и _function literals_.
 Подходящий **return** позволит вернуться из внешней функции.
-Одним из самых удачных применений этой синтаксической конструкции служит возврат из лямбда-выражения. Задумайтесь об этом, пока мы напишем:
+Одним из самых удачных применений этой синтаксической конструкции служит возврат из лямбда-выражения. Подумайте над этим утверждением, читая данный пример:
 
 ``` kotlin
 fun foo() {
@@ -77,7 +76,7 @@ fun foo() {
 (Note that such non-local returns are supported only for lambda expressions passed to [inline functions](inline-functions.html).)
 If we need to return from a lambda expression, we have to label it and qualify the **return**:-->
 Опертор **return** возвращается из ближаейшей функции, в нашем случае `foo`.
-(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](http://kotlinlang.org/docs/reference/inline-functions.html).) Если нам надо вернуться из лямбда-выражения, оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
+(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](http://kotlinlang.org/docs/reference/inline-functions.html).) Если нам надо вернуться из лямбда-выражения, к оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
 
 ``` kotlin
 fun foo() {

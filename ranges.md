@@ -47,7 +47,7 @@ for (i in 4 downTo 1 step 2) print(i) // prints "42"
 ```
 
 <!-- To create a range which does not include its end element, you can use the `until` function: -->
-Для того, чтобы создать интервал, который не включает последний элемент перебора, используйте `until`:
+Для создания интервала, который не включает последний элемент перебора, используйте `until`:
 
 ``` kotlin
 for (i in 1 until 10) { // i in [1, 10), 10 is excluded

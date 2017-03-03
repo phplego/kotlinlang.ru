@@ -10,7 +10,7 @@ title: "Расширения (extensions)"
 
 <!--Kotlin, similar to C# and Gosu, provides the ability to extend a class with new functionality without having to inherit from the class or use any type of design pattern such as Decorator.
 This is done via special declarations called _extensions_. Kotlin supports _extension functions_ and _extension properties_.-->
-<b>Kotlin</b>, так же как <b>C#</b> и <b>Gosu</b>, позволяет расширять класс, добавляя новый функционал, без наследования от него или использования такого паттерна, как Декоратор.
+Аналогично таким языкам программирования, как <b>C#</b> и <b>Gosu</b>, <b>Kotlin</b> позволяет расширять класс путём добавления нового функционала. Не наследуясь от такого класса и не используя паттерн "Декоратор".
 Это реализовано с помощью специальных выражений, называемых _расширения_. <b>Kotlin</b> поддерживает _функции-расширения_ и _свойства-расширения_.
 
 <!--## Extension Functions-->

@@ -5,10 +5,13 @@ category: "Syntax"
 title: "Интервалы"
 ---
 
-# Ranges
+<!-- # Ranges -->
+# Интервалы
 
-Range expressions are formed with `rangeTo` functions that have the operator form `..` which is complemented by *in*{: .keyword } and *!in*{: .keyword }.
-Range is defined for any comparable type, but for integral primitive types it has an optimized implementation. Here are some examples of using ranges
+<!-- Range expressions are formed with `rangeTo` functions that have the operator form `..` which is complemented by *in*{: .keyword } and *!in*{: .keyword }. -->
+<!-- Range is defined for any comparable type, but for integral primitive types it has an optimized implementation. Here are some examples of using ranges -->
+Интервалы оформлены с помощью функций `rangeTo` и имеют оператор в виде `..`, который сочетается с *in* и *!in*.
+Они применимы ко всем сравниваемым (_comparable_) типам, но для целочисленных примитивов есть оптимизированная реализация. Вот несколько примеров применения интервалов.
 
 ``` kotlin
 if (i in 1..10) { // equivalent of 1 <= i && i <= 10
@@ -16,8 +19,10 @@ if (i in 1..10) { // equivalent of 1 <= i && i <= 10
 }
 ```
 
-Integral type ranges (`IntRange`, `LongRange`, `CharRange`) have an extra feature: they can be iterated over.
-The compiler takes care of converting this analogously to Java's indexed *for*{: .keyword }-loop, without extra overhead.
+<!-- Integral type ranges (`IntRange`, `LongRange`, `CharRange`) have an extra feature: they can be iterated over. -->
+<!-- The compiler takes care of converting this analogously to Java's indexed *for*{: .keyword }-loop, without extra overhead. -->
+Интервалы целочисленного типа (`IntRange`, `LongRange`, `CharRange`) имеют дополнительное преимущество: они могут иметь дополнительную итерацию.
+Компилятор конвертирует такие интервалы в аналогичные циклы *for* из языка <b>Java</b>.
 
 ``` kotlin
 for (i in 1..4) print(i) // prints "1234"
@@ -25,13 +30,15 @@ for (i in 1..4) print(i) // prints "1234"
 for (i in 4..1) print(i) // prints nothing
 ```
 
-What if you want to iterate over numbers in reverse order? It's simple. You can use the `downTo()` function defined in the standard library
+<!-- What if you want to iterate over numbers in reverse order? It's simple. You can use the `downTo()` function defined in the standard library -->
+А что, если вы хотите произвести итерацию в обратном порядке? Это просто. Можете использовать функцию `downTo()`, определённую в стандартной библиотеке.
 
 ``` kotlin
 for (i in 4 downTo 1) print(i) // prints "4321"
 ```
 
-Is it possible to iterate over numbers with arbitrary step, not equal to 1? Sure, the `step()` function will help you
+<!-- Is it possible to iterate over numbers with arbitrary step, not equal to 1? Sure, the `step()` function will help you -->
+А есть ли возможность производить итерацию с шагом, отличным от еденицы? Разумеется. В этом вам поможет функция `step()`:
 
 ``` kotlin
 for (i in 1..4 step 2) print(i) // prints "13"
@@ -39,7 +46,8 @@ for (i in 1..4 step 2) print(i) // prints "13"
 for (i in 4 downTo 1 step 2) print(i) // prints "42"
 ```
 
-To create a range which does not include its end element, you can use the `until` function:
+<!-- To create a range which does not include its end element, you can use the `until` function: -->
+Для того, чтобы создать интервал, который не включает последний элемент перебора, используйте `until`:
 
 ``` kotlin
 for (i in 1 until 10) { // i in [1, 10), 10 is excluded

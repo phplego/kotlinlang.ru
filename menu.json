@@ -29,7 +29,8 @@
   ],
   "Прочее": [
     "multi-declarations",
-    "collections"
+    "collections",
+    "typecasts"
   ],
   "Редактору": [
     "how-to-edit",

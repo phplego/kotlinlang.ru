@@ -55,20 +55,30 @@ for (i in 1 until 10) { // i in [1, 10), 10 is excluded
 }
 ```
 
-## How it works
+<!-- ## How it works -->
+## Как это работает
 
-Ranges implement a common interface in the library: `ClosedRange<T>`.
+<!-- Ranges implement a common interface in the library: `ClosedRange<T>`. -->
+Интервалы реализуют интерфейс `ClosedRange<T>`.
 
-`ClosedRange<T>` denotes a closed interval in the mathematical sense, defined for comparable types.
-It has two endpoints: `start` and `endInclusive`, which are included in the range.
-The main operation is `contains`, usually used in the form of *in*{: .keyword }/*!in*{: .keyword } operators.
+<!-- `ClosedRange<T>` denotes a closed interval in the mathematical sense, defined for comparable types. -->
+<!-- It has two endpoints: `start` and `endInclusive`, which are included in the range. -->
+<!-- The main operation is `contains`, usually used in the form of *in*{: .keyword }/*!in*{: .keyword } operators. -->
+Говоря математическим языком, интерфейс `ClosedRange<T>` обозначет ограниченный отрезок и предназначен для сравниваемых типов.
+У него есть две контрольные точки: `start` и `endInclusive`. Главной операцией является `contain`. Чаще всего она используется вместе с операторами **in**/**!in**.
 
-Integral type progressions (`IntProgression`, `LongProgression`, `CharProgression`) denote an arithmetic progression.
-Progressions are defined by the `first` element, the `last` element and a non-zero `increment`.
-The first element is `first`, subsequent elements are the previous element plus `increment`. The `last` element is always hit by iteration unless the progression is empty.
+<!-- Integral type progressions (`IntProgression`, `LongProgression`, `CharProgression`) denote an arithmetic progression. -->
+<!-- Progressions are defined by the `first` element, the `last` element and a non-zero `increment`. -->
+<!-- The first element is `first`, subsequent elements are the previous element plus `increment`. The `last` element is always hit by iteration unless the progression is empty. -->
+Целочисленные последовательности (`IntProgression`, `LongProgression`, `CharProgression`) являются арифметическими.
+Последовательности определены элементом `first`, элементом `last` и ненулевым значением `increment`.
+Элемент `first` является первым, последующими являются элементы, полученные при инкерементации предыдущего элемента с помощью `increment`. Если последовательность не
+ яаляется пустой, то элемент `last` всегда достигается в результате инкрементации.
 
-A progression is a subtype of `Iterable<N>`, where `N` is `Int`, `Long` or `Char` respectively, so it can be used in *for*{: .keyword }-loops and functions like `map`, `filter`, etc.
-Iteration over `Progression` is equivalent to an indexed *for*{: .keyword }-loop in Java/JavaScript:
+<!-- A progression is a subtype of `Iterable<N>`, where `N` is `Int`, `Long` or `Char` respectively, so it can be used in *for*{: .keyword }-loops and functions like `map`, `filter`, etc. -->
+<!-- Iteration over `Progression` is equivalent to an indexed *for*{: .keyword }-loop in Java/JavaScript: -->
+Последовательность является подтипом `Iterable<N>`, где `N` - это `Int`, `Long` или `Char`. Таким образом, её можно использовать в циклах **for** и функциях типа `map`, `filter` и т.п.
+Итерация `Progression` идентична проиндексованному циклу **for** в <b>Java<b>/<b>JavaScript</b>
 
 ``` java
 for (int i = first; i != last; i += increment) {
@@ -76,21 +86,29 @@ for (int i = first; i != last; i += increment) {
 }
 ```
 
-For integral types, the `..` operator creates an object which implements both `ClosedRange<T>` and `*Progression`.
-For example, `IntRange` implements `ClosedRange<Int>` and extends `IntProgression`, thus all operations defined for `IntProgression` are available for `IntRange` as well.
-The result of the `downTo()` and `step()` functions is always a `*Progression`.
+<!-- For integral types, the `..` operator creates an object which implements both `ClosedRange<T>` and `*Progression`. -->
+<!-- For example, `IntRange` implements `ClosedRange<Int>` and extends `IntProgression`, thus all operations defined for `IntProgression` are available for `IntRange` as well. -->
+<!-- The result of the `downTo()` and `step()` functions is always a `*Progression`. -->
+Для целочисленных типов, оператор `..` создаёт объект, который реализует в себе и `ClosedRange<T>`, и `*Progression*`.
+К примеру, `IntRange` наследуется от класса `IntProgression` и реализует интерфейс `ClosedRange<Int>`, поэтому все операторы, обозначенные для `IntProgression`, также доступны и для
+`IntRange`. Результатом функций `downTo()` и `step()` всегда будет `*Progression*`(перев.: _последовательность_).
 
-Progressions are constructed with the `fromClosedRange` function defined in their companion objects:
+
+<!-- Progressions are constructed with the `fromClosedRange` function defined in their companion objects: -->
+Последовательности спроектированы с использованием функции `fromClosedRange` в их вспомогательном объекте (_companion object_):
+
 
 ``` kotlin
     IntProgression.fromClosedRange(start, end, increment)
 ```
 
-The `last` element of the progression is calculated to find maximum value not greater than the `end` value for positive `increment` or minimum value not less than the `end` value for negative `increment` such that `(last - first) % increment == 0`.
+<!-- The `last` element of the progression is calculated to find maximum value not greater than the `end` value for positive `increment` or minimum value not less than the `end` value for negative `increment` such that `(last - first) % increment == 0`. -->
+Для нахождения максимального значения в прогрессии вычисляется элемент `last`. Для последовательности с положительным инкрементом этот элемент вычисляется так, чтобы он был не больше
+элемента `end`. Для тех последовательностей, где инкремент отрицательный - не меньше.
 
 
-
-## Utility functions
+<!-- ## Utility functions -->
+## Вспомогательные функции (ориг.: _Utility functions_)
 
 ### `rangeTo()`
 

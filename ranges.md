@@ -10,7 +10,7 @@ title: "Интервалы"
 
 <!-- Range expressions are formed with `rangeTo` functions that have the operator form `..` which is complemented by *in*{: .keyword } and *!in*{: .keyword }. -->
 <!-- Range is defined for any comparable type, but for integral primitive types it has an optimized implementation. Here are some examples of using ranges -->
-Интервалы оформлены с помощью функций `rangeTo` и имеют оператор в виде `..`, который сочетается с *in* и *!in*.
+Интервалы оформлены с помощью функций `rangeTo` и имеют оператор в виде `..`, который дополнятся  *in* и *!in*.
 Они применимы ко всем сравниваемым (_comparable_) типам, но для целочисленных примитивов есть оптимизированная реализация. Вот несколько примеров применения интервалов.
 
 ``` kotlin
@@ -21,7 +21,7 @@ if (i in 1..10) { // equivalent of 1 <= i && i <= 10
 
 <!-- Integral type ranges (`IntRange`, `LongRange`, `CharRange`) have an extra feature: they can be iterated over. -->
 <!-- The compiler takes care of converting this analogously to Java's indexed *for*{: .keyword }-loop, without extra overhead. -->
-Интервалы целочисленного типа (`IntRange`, `LongRange`, `CharRange`) имеют дополнительное преимущество: они могут иметь дополнительную итерацию.
+Интервалы целочисленного типа (`IntRange`, `LongRange`, `CharRange`) имеют определённое преимущество: они могут иметь дополнительную итерацию.
 Компилятор конвертирует такие интервалы в аналогичные циклы *for* из языка <b>Java</b>.
 
 ``` kotlin
@@ -64,15 +64,15 @@ for (i in 1 until 10) { // i in [1, 10), 10 is excluded
 <!-- `ClosedRange<T>` denotes a closed interval in the mathematical sense, defined for comparable types. -->
 <!-- It has two endpoints: `start` and `endInclusive`, which are included in the range. -->
 <!-- The main operation is `contains`, usually used in the form of *in*{: .keyword }/*!in*{: .keyword } operators. -->
-Говоря математическим языком, интерфейс `ClosedRange<T>` обозначет ограниченный отрезок и предназначен для сравниваемых типов.
+Говоря математическим языком, интерфейс `ClosedRange<T>` обозначет ограниченный отрезок и предназначен для типов, подлежащих сравнению.
 У него есть две контрольные точки: `start` и `endInclusive`. Главной операцией является `contain`. Чаще всего она используется вместе с операторами **in**/**!in**.
 
 <!-- Integral type progressions (`IntProgression`, `LongProgression`, `CharProgression`) denote an arithmetic progression. -->
 <!-- Progressions are defined by the `first` element, the `last` element and a non-zero `increment`. -->
 <!-- The first element is `first`, subsequent elements are the previous element plus `increment`. The `last` element is always hit by iteration unless the progression is empty. -->
 Целочисленные последовательности (`IntProgression`, `LongProgression`, `CharProgression`) являются арифметическими.
-Последовательности определены элементом `first`, элементом `last` и ненулевым значением `increment`.
-Элемент `first` является первым, последующими являются элементы, полученные при инкерементации предыдущего элемента с помощью `increment`. Если последовательность не
+Последовательности определены элементами `first`, `last` и ненулевым значением `increment`.
+Элемент `first` является первым, последующими являются элементы, полученные при инкрементации предыдущего элемента с помощью `increment`. Если последовательность не
  яаляется пустой, то элемент `last` всегда достигается в результате инкрементации.
 
 <!-- A progression is a subtype of `Iterable<N>`, where `N` is `Int`, `Long` or `Char` respectively, so it can be used in *for*{: .keyword }-loops and functions like `map`, `filter`, etc. -->
@@ -89,8 +89,8 @@ for (int i = first; i != last; i += increment) {
 <!-- For integral types, the `..` operator creates an object which implements both `ClosedRange<T>` and `*Progression`. -->
 <!-- For example, `IntRange` implements `ClosedRange<Int>` and extends `IntProgression`, thus all operations defined for `IntProgression` are available for `IntRange` as well. -->
 <!-- The result of the `downTo()` and `step()` functions is always a `*Progression`. -->
-Для целочисленных типов, оператор `..` создаёт объект, который реализует в себе и `ClosedRange<T>`, и `*Progression*`.
-К примеру, `IntRange` наследуется от класса `IntProgression` и реализует интерфейс `ClosedRange<Int>`, поэтому все операторы, обозначенные для `IntProgression`, также доступны и для
+Для целочисленных типов, оператор `..` создаёт объект, который реализует в себе  `ClosedRange<T>` и `*Progression*`.
+К примеру, `IntRange` наследуется от класса `IntProgression` и реализует интерфейс `ClosedRange<Int>`. Поэтому все операторы, обозначенные для `IntProgression`, также доступны и для
 `IntRange`. Результатом функций `downTo()` и `step()` всегда будет `*Progression*`(перев.: _последовательность_).
 
 
@@ -138,7 +138,7 @@ class Int {
 ### `downTo()`
 
 <!-- The `downTo()` extension function is defined for any pair of integral types, here are two examples: -->
-Экстеншн-функция `downTo()` определена для любой пары целочисленных типов, вот два примера:
+Экстеншн-функция `downTo()` задана для любой пары целочисленных типов, вот два примера:
 
 ``` kotlin
 fun Long.downTo(other: Int): LongProgression {
@@ -168,7 +168,7 @@ fun IntProgression.reversed(): IntProgression {
 <!-- The step value is required to be always positive, therefore this function never changes the direction of iteration. -->
 Функция-расширение `step()` также определена для классов `*Progression*`,
 возвращает последовательность с изменённым значением шага `step` (параметр функции).
-Значение шага всегда должно быть положительным числом для того, чтобы функция никогда не изменяла направления своей итерации.
+Значение шага всегда должно быть положительным числом для того, чтобы функция никогда не меняла направления своей итерации.
 
 ``` kotlin
 fun IntProgression.step(step: Int): IntProgression {

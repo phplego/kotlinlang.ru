@@ -78,7 +78,7 @@ for (i in 1 until 10) { // i in [1, 10), 10 is excluded
 <!-- A progression is a subtype of `Iterable<N>`, where `N` is `Int`, `Long` or `Char` respectively, so it can be used in *for*{: .keyword }-loops and functions like `map`, `filter`, etc. -->
 <!-- Iteration over `Progression` is equivalent to an indexed *for*{: .keyword }-loop in Java/JavaScript: -->
 Последовательность является подтипом `Iterable<N>`, где `N` - это `Int`, `Long` или `Char`. Таким образом, её можно использовать в циклах **for** и функциях типа `map`, `filter` и т.п.
-Итерация `Progression` идентична проиндексованному циклу **for** в <b>Java<b>/<b>JavaScript</b>
+Итерация `Progression` идентична проиндексованному циклу **for** в <b>Java</b>/<b>JavaScript</b>
 
 ``` java
 for (int i = first; i != last; i += increment) {
@@ -112,7 +112,8 @@ for (int i = first; i != last; i += increment) {
 
 ### `rangeTo()`
 
-The `rangeTo()` operators on integral types simply call the constructors of `*Range` classes, e.g.:
+<!-- The `rangeTo()` operators on integral types simply call the constructors of `*Range` classes, e.g.: -->
+Операторы `rangeTo()` для целочисленных типов просто вызывают конструктор класса `*Range*`:
 
 ``` kotlin
 class Int {
@@ -124,17 +125,20 @@ class Int {
 }
 ```
 
-Floating point numbers (`Double`, `Float`) do not define their `rangeTo` operator, and the one provided by the standard library for generic `Comparable` types is used instead:
+<!-- Floating point numbers (`Double`, `Float`) do not define their `rangeTo` operator, and the one provided by the standard library for generic `Comparable` types is used instead: -->
+Числа с плавающей точкой (`Double`, `Float`) не имеют своего оператора `rangeTo`. Такой оператор обозначен для них в дженериках типа `Comparable` стандартной библиотеки:
 
 ``` kotlin
     public operator fun <T: Comparable<T>> T.rangeTo(that: T): ClosedRange<T>
 ```
 
-The range returned by this function cannot be used for iteration.
+<!-- The range returned by this function cannot be used for iteration. -->
+Интервал, полученный с помощью такой функции, не может быть использован для итерации.
 
 ### `downTo()`
 
-The `downTo()` extension function is defined for any pair of integral types, here are two examples:
+<!-- The `downTo()` extension function is defined for any pair of integral types, here are two examples: -->
+Экстеншн-функция `downTo()` определена для любой пары целочисленных типов, вот два примера:
 
 ``` kotlin
 fun Long.downTo(other: Int): LongProgression {
@@ -148,7 +152,8 @@ fun Byte.downTo(other: Int): IntProgression {
 
 ### `reversed()`
 
-The `reversed()` extension functions are defined for each `*Progression` classes, and all of them return reversed progressions.
+<!-- The `reversed()` extension functions are defined for each `*Progression` classes, and all of them return reversed progressions. -->
+Функция `reversed()` расширяет класс `*Progression*` таким образом, что все экземпляры этого класса возвращают обратные последовательности при её вызове.
 
 ``` kotlin
 fun IntProgression.reversed(): IntProgression {
@@ -158,13 +163,16 @@ fun IntProgression.reversed(): IntProgression {
 
 ### `step()`
 
-`step()` extension functions are defined for `*Progression` classes,
-all of them return progressions with modified `step` values (function parameter).
-The step value is required to be always positive, therefore this function never changes the direction of iteration.
+<!-- `step()` extension functions are defined for `*Progression` classes, -->
+<!-- all of them return progressions with modified `step` values (function parameter). -->
+<!-- The step value is required to be always positive, therefore this function never changes the direction of iteration. -->
+Функция-расширение `step()` также определена для классов `*Progression*`,
+возвращает последовательность с изменённым значением шага `step` (параметр функции).
+Значение шага всегда должно быть положительным числом для того, чтобы функция никогда не изменяла направления своей итерации.
 
 ``` kotlin
 fun IntProgression.step(step: Int): IntProgression {
-    if (step <= 0) throw IllegalArgumentException("Step must be positive, was: $step")
+    if (step <= 0) throw IllegalArgumentException("Step must be positive, was: $step") //шаг должен быть положительным
     return IntProgression.fromClosedRange(first, last, if (increment > 0) step else -step)
 }
 
@@ -174,10 +182,12 @@ fun CharProgression.step(step: Int): CharProgression {
 }
 ```
 
-Note that the `last` value of the returned progression may become different from the `last` value of the original progression in order to preserve the invariant `(last - first) % increment == 0`. Here is an example:
+<!-- Note that the `last` value of the returned progression may become different from the `last` value of the original progression in order to preserve the invariant `(last - first) % increment == 0`. Here is an example: -->
+Обратите внимание, что значение элемента `last` в возвращенной последовательности может отличаться от значения `last` первоночальной последовательности с тем,
+чтобы предотвратить инвариант `(last - first) % increment == 0`. Вот пример:
 
 ``` kotlin
-    (1..12 step 2).last == 11  // progression with values [1, 3, 5, 7, 9, 11]
-    (1..12 step 3).last == 10  // progression with values [1, 4, 7, 10]
-    (1..12 step 4).last == 9   // progression with values [1, 5, 9]
+    (1..12 step 2).last == 11  // последовательность чисел со значениями [1, 3, 5, 7, 9, 11]
+    (1..12 step 3).last == 10  // последовательность чисел со значениями [1, 4, 7, 10]
+    (1..12 step 4).last == 9   // последовательность чисел со значениями [1, 5, 9]
 ```

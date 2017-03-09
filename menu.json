@@ -30,8 +30,9 @@
   "Прочее": [
     "multi-declarations",
     "collections",
-    "typecasts",
     "ranges"
+    "typecasts",
+    "this-expressions"
   ],
   "Редактору": [
     "how-to-edit",

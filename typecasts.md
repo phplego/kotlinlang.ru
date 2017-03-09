@@ -111,7 +111,7 @@ val x: String = y as String
 i.e. if `y` is null, the code above throws an exception.
 In order to match Java cast semantics we have to have nullable type at cast right hand side, like-->
 Заметьте, что *null* не может быть приведен к `String`, так как `String` не является [nullable](null-safety.html),
-т.е. если `y` - null, код выше выбросит исключение.
+т.е. если `y` - null, код выше выбросит исключение. Чтобы соответствовать семантике приведений в Java, нам нужно указать nullable тип в правой части приведения:
 
 ``` kotlin
 val x: String? = y as String?

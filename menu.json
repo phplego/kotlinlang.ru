@@ -32,7 +32,8 @@
     "collections",
     "ranges",
     "typecasts",
-    "this-expressions"
+    "this-expressions",
+    "equality"
   ],
   "Редактору": [
     "how-to-edit",

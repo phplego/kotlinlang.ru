@@ -30,7 +30,7 @@
   "Прочее": [
     "multi-declarations",
     "collections",
-    "ranges"
+    "ranges",
     "typecasts",
     "this-expressions"
   ],

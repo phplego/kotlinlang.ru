@@ -24,7 +24,4 @@ url: http://kotlin.su
 * Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
-  * ~~Закончить перевод статьи [Идиомы](http://www.kotlin.su/docs/reference/idioms.html)~~
-  * ~~Закончить перевод статьи [Расширения (extensions)](http://www.kotlin.su/docs/reference/extensions.html)~~
-  * Закончить перевод статьи [Лямбды](http://www.kotlin.su/docs/reference/lambdas.html)
-  * Начать перевод других статей из раздела *Classes and Objects*
+* [Перевод delegated-properties](http://kotlinlang.org/docs/reference/delegated-properties.html)

@@ -2,11 +2,13 @@
 type: doc
 layout: reference
 category: "Other"
-title: "Псевдонимы типов (с версии 1.1)"
+title: "Псевдонимы типов"
 ---
 
 <!--## Type aliases-->
 ## Псевдонимы типов
+
+_Примечание: Псевдонимы типов доступны в Kotlin начиная с версии 1.1_
 
 <!--Type aliases provide alternative names for existing types.
 If the type name is too long you can introduce a different shorter name and use the new one instead.-->

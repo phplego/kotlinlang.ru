@@ -24,3 +24,4 @@ url: http://kotlin.su
 
 ## Актуальные задачи
 * Перевод [delegated-properties](http://kotlinlang.org/docs/reference/delegated-properties.html)
+* Нужна помощь в переводе [статьи про Generics](/docs/reference/generics.html)

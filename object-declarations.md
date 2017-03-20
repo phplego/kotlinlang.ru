@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Анонимные объекты и объявление объектов"
+title: "Объекты"
 ---
 
 <!-- # Object Expressions and Declarations -->

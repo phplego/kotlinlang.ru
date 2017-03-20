@@ -17,6 +17,7 @@
     "visibility-modifiers",
     "extensions",
     "data-classes",
+    "generics",
     "nested-classes",
     "enum-classes",
     "object-declarations",

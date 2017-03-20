@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Расширения (extensions)"
+title: "Расширения"
 ---
 
 <!--# Extensions-->

@@ -35,9 +35,12 @@ the primary constructor:-->
   * Все параметры первичного конструктора должны быть отмечены, как `val` или `var`;
   * Классы данных не могут быть абстрактными, open, sealed или inner;
   * Дата-классы не могут наследоваться от других классов (но могут реализовывать интерфейсы).
+  
+<!-- Since 1.1, data classes may extend other classes (see Sealed classes for examples). -->
+Начиная с версии 1.1, классыд данных могут расширять другие класс (см. примеры в [Sealed classes](/docs/reference/sealed-classes.html#sealed-classes-and-data-classes))
 
 > Для того, чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
-> (см. [Конструкторы](http://kotlin.su/docs/reference/classes.html#constructors))
+> (см. [Конструкторы](/docs/reference/classes.html#constructors))
 ``` kotlin
  data class User(val name: String = "", val age: Int = 0)
  ```

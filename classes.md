@@ -7,6 +7,7 @@ related:
     - functions.md
     - nested-classes.md
     - interfaces.md
+url: https://kotlinlang.ru/docs/reference/classes.html
 ---
 
 <!--# Classes and Inheritance-->

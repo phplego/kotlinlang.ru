@@ -20,3 +20,4 @@ url: http://kotlinlang.ru/docs/reference/mistranslations.html
 * extension receiver (extensions.md) - назвал, как "принимающий расширение
 * companion object - переведено, как вспомогательный объект
 * progressions(ranges.md) - перевёл, как последовательность.
+* stack trace в exceptions.md - оставил просто так.

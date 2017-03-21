@@ -34,7 +34,7 @@ val box = Box(1) // 1 имеет тип Int, поэтому компилятор
 ## Variance
 
 <!-- One of the most tricky parts of Java's type system is wildcard types (see [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)). -->
-Одним из самых сложных мест в системе типов <b>Java</b> является использование специальных символов для различный типов (см. [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)).
+Одним из самых сложных мест в системе типов <b>Java</b> является использование специальных символов для различных типов (см. [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)).
 <!-- And Kotlin doesn't have any. Instead, it has two other things: declaration-site variance and type projections. -->
 А в <b>Kotlin</b> этого нет. Вместо этих костылей, у нас есть две другие штуки: _declaration-site variance_ и _type projections_.
 

@@ -1,4 +1,5 @@
 ---
+url: https://kotlinlang.ru/docs/reference/sealed-classes.html
 type: doc
 layout: reference
 category: "Classes and Objects"

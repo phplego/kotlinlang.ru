@@ -21,7 +21,8 @@
     "nested-classes",
     "enum-classes",
     "object-declarations",
-    "delegation"
+    "delegation",
+    "delegated-properties"
   ],
   "Функции и лямбды": [
     "functions",

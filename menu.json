@@ -33,7 +33,8 @@
     "ranges",
     "typecasts",
     "this-expressions",
-    "equality"
+    "equality",
+    "exceptions"
   ],
   "Редактору": [
     "how-to-edit",

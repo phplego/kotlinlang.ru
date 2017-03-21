@@ -74,7 +74,7 @@ internal val baz = 6    // имеет видимость внутри модул
 * `public` --- любой клиент, который видит объявленный класс, видит его `public` члены.
 
 <!--*NOTE* for Java users: outer class does not see private members of its inner classes in Kotlin.-->
-> *Примечание для джавистов:* в <b>Kotlin</b> внешний класс не видит `private` члены своих вложенных классов.
+> *Примечание для Java программистов:* в <b>Kotlin</b> внешний класс не видит `private` члены своих вложенных классов.
 
 <!--If you override a `protected` member and do not specify the visibility explicitly, the overriding member will also have `protected` visibility.-->
 Если вы переопределите `protected` член и явно не укажете его видимость, переопределённый элемент также будет иметь модификатор доступа `protected`.

@@ -37,7 +37,7 @@ the primary constructor:-->
   * Дата-классы не могут наследоваться от других классов (но могут реализовывать интерфейсы).
 
 > Для того, чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
->(см. [Конструкторы](http://kotlin.su/docs/reference/classes.html#constructors))
+> (см. [Конструкторы](http://kotlin.su/docs/reference/classes.html#constructors))
 ``` kotlin
  data class User(val name: String = "", val age: Int = 0)
  ```

@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Basics
 title: Стилистика кода
-url: kotlinlang.ru/docs/reference/coding-conventions.html
+url: https://kotlinlang.ru/docs/reference/coding-conventions.html
 ---
 
 # Соглашение о стилистике кода

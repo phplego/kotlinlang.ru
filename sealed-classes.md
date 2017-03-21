@@ -12,7 +12,8 @@ title: "Изолированные классы"
 limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
 for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
 of a sealed class can have multiple instances which can contain state.-->
-Изолированные классы используются для отражения ограниченных иерархий классов, когда значение может иметь тип только из ограниченного набора, и никакой другой. Они являются, по сути, расширением enum-классов: набор значений enum типа также ограничен, но каждое enum-значение существует только в единственном экземпляре, в то время как наследник изолированного класса может иметь множество экземпляров, которые могут нести в себе какое-то состояние.
+
+Изолированные классы используются для отражения ограниченных иерархий классов, когда значение может иметь тип только из ограниченного набора, и никакой другой. Они являются, по сути, расширением enum-классов: набор значений enum типа также ограничен, но каждая enum-константа существует только в единственном экземпляре, в то время как наследник изолированного класса может иметь множество экземпляров, которые могут нести в себе какое-то состояние.
 
 To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
 subclasses, but all of them must be nested inside the declaration of the sealed class itself.

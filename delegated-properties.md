@@ -307,6 +307,7 @@ class C {
 <!--### Providing a delegate (since 1.1)-->
 ### Предоставление делегата
 _Примечание: Предоставление делегата доступно в Kotlin начиная с версии 1.1_
+
 <!--By defining the `provideDelegate` operator you can extend the logic of creating the object to which the property implementation is delegated.
 If the object used on the right hand side of `by` defines `provideDelegate` as a member or extension function, that function will be
 called to create the property delegate instance.-->

@@ -43,7 +43,7 @@ fun eval(expr: Expr): Double = when(expr) {
     is Expr.Const -> expr.number
     is Expr.Sum -> eval(expr.e1) + eval(expr.e2)
     Expr.NotANumber -> Double.NaN
-    // `else` часть не требуется, потомучто мы покрыли все возможные случаи
+    // оператор `else` не требуется, потому что мы покрыли все возможные случаи
 }
 ```
 

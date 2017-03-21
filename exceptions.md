@@ -98,7 +98,8 @@ catch (IOException e) {
 
 <!-- > Examination of small programs leads to the conclusion that requiring exception specifications could both enhance developer productivity and enhance code quality, -->
  <!-- but experience with large software projects suggests a different result – decreased productivity and little or no increase in code quality. -->
-Анализ небольших программ показал, что обязательная обработка исключений может повысить производительность разработчика и улучшить качество кода.
+
+>Анализ небольших программ показал, что обязательная обработка исключений может повысить производительность разработчика и улучшить качество кода.
 Однако, изучение крупных проектов по разработке программного обеспечения позволяет сделать противоположный  вывод: происходит понижение продуктивности и сравнительно небольшое
 улучшение кода (а иногда и без всякого улучшения).
 

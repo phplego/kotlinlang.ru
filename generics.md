@@ -1,4 +1,5 @@
 ---
+url: https://kotlinlang.ru/docs/reference/generics.html
 type: doc
 layout: reference
 category: "Syntax"

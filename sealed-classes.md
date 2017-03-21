@@ -36,7 +36,7 @@ sealed class Expr {
 
 <!--The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.-->
 
-Ключевое преимущество от использования изолированных классов проявляется когда вы используете их в [выражении `when`](control-flow.html#when-expression). Если возможно проверить что выражение покрывает все случаи, то вам не нужно добавлять `else`.
+Ключевое преимущество от использования изолированных классов проявляется тогда, когда вы используете их в [выражении `when`](control-flow.html#when-expression). Если возможно проверить что выражение покрывает все случаи, то вам не нужно добавлять `else`.
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {

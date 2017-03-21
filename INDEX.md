@@ -23,5 +23,4 @@ url: http://kotlin.su
 * Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
-* Перевод [delegated-properties](http://kotlinlang.org/docs/reference/delegated-properties.html)
 * Нужна помощь в переводе [статьи про Generics](/docs/reference/generics.html)

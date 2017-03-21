@@ -9,6 +9,7 @@ title: "Делегированные свойства"
 <!--https://habrahabr.ru/company/JetBrains/blog/183444/-->
 # Делегированные свойства
 _За помощь в переводе спасибо [официальному блогу JetBrains на Хабрахабре](https://habrahabr.ru/company/JetBrains/blog/183444/)_
+
 <!--There are certain common kinds of properties, that, though we can implement them manually every time we need them, 
 would be very nice to implement once and for all, and put into a library. Examples include-->
 Существует несколько основных видов свойств, которые мы реализовываем каждый раз вручную в случае их надобности. Однако намного удобнее было бы реализовать их раз и навсегда и положить в какую-нибудь библиотеку. Примеры таких свойств:

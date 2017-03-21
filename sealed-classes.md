@@ -19,7 +19,7 @@ of a sealed class can have multiple instances which can contain state.-->
 <!--To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
 subclasses, but all of them must be nested inside the declaration of the sealed class itself.-->
 
-Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены внутри декларации данного изолированного класса (ограничение снято, начиная с версии 1.1 - прим. пер.) 
+Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены внутри декларации данного изолированного класса (ограничение снято, начиная с версии 1.1 &mdash; прим. пер.) 
 
 ``` kotlin
 sealed class Expr {

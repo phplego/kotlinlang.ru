@@ -1,4 +1,5 @@
 ---
+url: https://kotlinlang.ru/docs/reference/generics.html
 type: doc
 layout: reference
 category: "Syntax"
@@ -34,9 +35,9 @@ val box = Box(1) // 1 имеет тип Int, поэтому компилятор
 ## Variance
 
 <!-- One of the most tricky parts of Java's type system is wildcard types (see [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)). -->
-Одним из самых сложных мест в системе типов <b>Java</b> является использование специальных символов для различный типов (см. [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)).
+Одним из самых сложных мест в системе типов <b>Java</b> является использование специальных символов для различных типов (см. [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)).
 <!-- And Kotlin doesn't have any. Instead, it has two other things: declaration-site variance and type projections. -->
-А в <b>Kotlin</b> этого нет. Вместо этих костылей, у нас есть две другие штуки: _declaration-site variance_ и _type projections_.
+А в <b>Kotlin</b> этого нет. Вместо этого, у нас есть две другие вещи: _declaration-site variance_ и _type projections_.
 
 <!-- First, let's think about why Java needs those mysterious wildcards. The problem is explained in [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*. -->
 Для начала давайте подумаем на тему, зачем <b>Java</b> нужны эти странные спец. символы. Пробема описана в книге [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*.

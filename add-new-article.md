@@ -10,7 +10,7 @@ site: www.kotlinlang.ru
 Для создания новой статьи нужно выполнить два действия:
 
 * Добавить пункт меню в файл `menu.json`. То есть отредактировать `menu.json`  https://github.com/phplego/kotlin.su/edit/master/menu.json
-* Создать файл с соответствующим именем `<article-id>.md`. Или скопировать соответствующий файл из английской документации.
+* Создать файл с соответствующим именем `<article-id>.md`. Или скопировать соответствующий файл из [английской документации](https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference).
 
 Оригинальные тексты документации на английском находятся тут:
 https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
@@ -23,6 +23,6 @@ https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
 
 ### У меня нет доступа на редактирование, что делать?
 
-Тут есть два варианта:
+В этом случае есть два варианта:
 * Попросить доступ в чате https://telegram.me/KotlinLangRu
-* Сделать Pull Request ваших изменений, и мы их одобрим (или отклоним) в наиближайшее время
+* Сделать Pull Request ваших изменений, и мы их одобрим (или отклоним) в ближайшее время

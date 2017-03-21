@@ -18,10 +18,10 @@ url: http://kotlin.su
 * [Исходный код компилятора на GitHub](https://github.com/JetBrains/kotlin)
 * [Исходники англ. документации](https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference)
 * [Раздел на reddit.com, посвященный языку Kotlin](https://www.reddit.com/r/Kotlin)
-* [Awesome Kotlin.link](http://kotlin.link)
 
 ## Сообщество
 * Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
 * Перевод [delegated-properties](http://kotlinlang.org/docs/reference/delegated-properties.html)
+* Нужна помощь в переводе [статьи про Generics](/docs/reference/generics.html)

@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Приведение и проверка типов"
+url: https://kotlinlang.ru/docs/reference/typecasts.html
 ---
 
 <!--# Type Checks and Casts-->

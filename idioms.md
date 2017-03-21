@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Basics"
 title: "Идиомы"
+url: https://kotlinlang.ru/docs/reference/idioms.html
 ---
 
 # Идиомы

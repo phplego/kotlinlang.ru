@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Основные типы"
+url: https://kotlinlang.ru/docs/reference/basic-types.html
 ---
 
 # Основные типы

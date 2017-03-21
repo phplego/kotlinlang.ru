@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Делегированные свойства"
+url: https://kotlinlang.ru/docs/reference/delegated-properties.html
 ---
 
 <!--# Delegated Properties-->

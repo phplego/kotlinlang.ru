@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Расширения"
+url: https://kotlinlang.ru/docs/reference/extensions.html
 ---
 
 <!--# Extensions-->

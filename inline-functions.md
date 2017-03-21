@@ -4,6 +4,7 @@ layout: reference
 category: "Syntax"
 title: "Встроенные (inline) функции"
 menuLabel: "Встроенные функции"
+url: https://kotlinlang.ru/docs/reference/inline-functions.html
 ---
 
 <!--# Inline Functions-->

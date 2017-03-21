@@ -2,6 +2,7 @@
 type: doc
 layout: inner
 title: "Редактирование статей"
+url: https://kotlinlang.ru/docs/reference/how-to-edit.html
 ---
 
 ## Редактирование статей

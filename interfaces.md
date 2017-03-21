@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Интерфейсы"
+url: https://kotlinlang.ru/docs/reference/interfaces.html
 ---
 
 <!--# Interfaces-->

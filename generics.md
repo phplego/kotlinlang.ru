@@ -4,6 +4,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Обобщения (Generics)"
+url: https://kotlinlang.ru/docs/reference/generics.html
 ---
 
 <!-- # Generics -->

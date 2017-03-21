@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Classes and Objects"
 title: "Классы данных"
+url: https://kotlinlang.ru/docs/reference/data-classes.html
 ---
 
 <!--# Data Classes-->

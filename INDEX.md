@@ -3,7 +3,7 @@ type: doc
 layout: reference
 title: "Документация по Kotlin на русском"
 menuLabel: "Главная страница"
-url: http://kotlin.su
+url: https://kotlinlang.ru
 ---
 
 
@@ -24,3 +24,4 @@ url: http://kotlin.su
 
 ## Актуальные задачи
 * Нужна помощь в переводе [статьи про Generics](/docs/reference/generics.html)
+* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить <a name="xxx"></a> в соответствующих местах

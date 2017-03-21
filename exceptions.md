@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Исключения"
+url: https://kotlinlang.ru/docs/reference/exceptions.html
 ---
 
 <!-- # Exceptions -->

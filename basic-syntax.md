@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Basics"
 title: "Основной синтаксис"
+url: https://kotlinlang.ru/docs/reference/basic-syntax.html
 ---
       
 # Основной синтаксис

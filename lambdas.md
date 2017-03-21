@@ -2,6 +2,7 @@
 type: doc
 layout: reference
 title: "Лямбды"
+url: https://kotlinlang.ru/docs/reference/lambdas.html
 ---
 
 # Высокоуровневые функции и лямбды

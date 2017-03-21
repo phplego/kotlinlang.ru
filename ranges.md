@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Интервалы"
+url: https://kotlinlang.ru/docs/reference/ranges.html
 ---
 
 <!-- # Ranges -->

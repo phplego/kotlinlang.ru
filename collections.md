@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: Other
 title: "Коллекции"
+url: https://kotlinlang.ru/docs/reference/collections.html
 ---
 
 <!--# Collections-->

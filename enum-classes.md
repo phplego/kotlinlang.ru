@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Перечисления (enum)"
+url: https://kotlinlang.ru/docs/reference/enum-classes.html
 ---
 
 <!--# Enum Classes-->

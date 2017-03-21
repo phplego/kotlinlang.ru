@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Функции"
+url: https://kotlinlang.ru/docs/reference/functions.html
 ---
 
 <!--# Functions-->

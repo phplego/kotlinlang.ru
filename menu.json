@@ -17,6 +17,7 @@
     "visibility-modifiers",
     "extensions",
     "data-classes",
+    "sealed-classes",
     "generics",
     "nested-classes",
     "enum-classes",

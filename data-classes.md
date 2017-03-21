@@ -80,4 +80,4 @@ println("$name, $age years of age") // выводит "Jane, 35 years of age"
 because they make the code more readable by providing meaningful names for properties.-->
 Стандартная библиотека предоставляет `Pair` и `Triple`. Однако, в большинстве случаев, проименованные классы данных являются лучшим решением, потому что делают код более читаемым, избегая малосодержательные имена для свойств.
 
->[Статья на эту тему на Хабре](https://habrahabr.ru/company/JetBrains/blog/152126/)
+> [Статья на эту тему на Хабре](https://habrahabr.ru/company/JetBrains/blog/152126/)

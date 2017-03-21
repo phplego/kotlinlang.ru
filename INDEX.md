@@ -24,4 +24,4 @@ url: https://kotlinlang.ru
 
 ## Актуальные задачи
 * Нужна помощь в переводе [статьи про Generics](/docs/reference/generics.html)
-* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить <a name="xxx"></a> в соответствующих местах
+* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах

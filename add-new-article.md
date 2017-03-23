@@ -26,3 +26,5 @@ https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
 В этом случае есть два варианта:
 * Попросить доступ в чате https://telegram.me/KotlinLangRu
 * Сделать Pull Request ваших изменений, и мы их одобрим (или отклоним) в ближайшее время
+
+.

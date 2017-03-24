@@ -28,7 +28,8 @@
   "Функции и лямбды": [
     "functions",
     "lambdas",
-    "inline-functions"
+    "inline-functions",
+    "coroutines"
   ],
   "Прочее": [
     "multi-declarations",

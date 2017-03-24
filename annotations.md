@@ -19,6 +19,7 @@ annotation class Fancy
 
 <!--Additional attributes of the annotation can be specified by annotating the annotation class with meta-annotations:-->
 Дополнительные атрибуты аннотаций могут быть определены путём аннотации класса-аннотации мета-аннотациями:
+
 <!--
   * [`@Target`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html) specifies the possible kinds of
     elements which can be annotated with the annotation (classes, functions, properties, expressions etc.);

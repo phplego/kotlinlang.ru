@@ -36,6 +36,7 @@
     "ranges",
     "typecasts",
     "this-expressions",
+    "annotations.md",
     "equality",
     "exceptions",
     "type-aliases"

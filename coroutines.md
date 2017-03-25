@@ -13,7 +13,7 @@ url: https://kotlinlang.ru/docs/reference/coroutines.html
 <!-- > Coroutines are *experimental* in Kotlin 1.1. See details [below](#experimental-status-of-coroutines) 
  {:.note} -->
 
-> Сопрограммы *экспериментальная* возможность Kotlin 1.1. [Подробнее](#экспериментальный-статус-сопрограмм) 
+> Сопрограммы *экспериментальная* возможность Kotlin 1.1. [Подробнее](#experimental-status-of-coroutines) 
 {:.note}
 
 <!-- Some APIs initiate long-running operations (such as network IO, file IO, CPU- or GPU-intensive work, etc) and require the caller to block until they complete. Coroutines provide a way to avoid blocking a thread and replace it with a cheaper and more controllable operation: *suspension* of a coroutine.
@@ -22,11 +22,11 @@ url: https://kotlinlang.ru/docs/reference/coroutines.html
  
  Many asynchronous mechanisms available in other languages can be implemented as libraries using Kotlin coroutines. This includes [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) from C# and ECMAScript, [channels](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) and [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) from Go, and [generators/`yield`](#generators-api-in-kotlincoroutines) from C# and Python. See the description [below](#standard-apis) for libraries providing such constructs. -->
 
-Некоторые API запускают долгие операции (такие как взаимодействие по сети, операции с файлом, операции нагружающие CPU или GPU, и т.д.) и обязывают заблокировать вызывающий поток, пока они не будут завершены. Сопрограммы предоставляют способ избежать блокирование потока и заменить блокировку на более дешёвую и управляемую операцию: *приостановка (suspension)* сопрограммы.
+Некоторые API запускают долгие операции (такие как взаимодействие по сети, файловые операции, операции нагружающие CPU или GPU, и т.д.) и обязывают заблокировать вызывающий поток, пока они не будут завершены. Сопрограммы предоставляют способ избежать блокирование потока и заменить блокировку на более дешёвую и управляемую операцию: *приостановка (suspension)* сопрограммы.
 
 Сопрограммы упрощают асинхронное программирование скрывая все сложности в библиотеки. Логика в сопрограмме может быть изложена *последовательно*, а нижележащая библиотека решит для нас проблему с асинхронностью. Библиотека оборачивает соответствующие части пользовательского кода в коллбэки, подписывается на соответствующие события, планирует выполнение в разных потоках (или даже на разных машинах!), и код становится таким же простым как если бы он был выполнен последовательно.   
 
-Используя сопрограммы kotlin, многие механизмы асинхронности, доступные в других языках, могут быть реализованы как отдельные библиотеки. Такие механизмы как [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) из C# и ECMAScript, [`channels`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) и [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) из языка Go, и [`generators/yield`](#api-генераторов-в-kotlincoroutines) из C# и Python. [Подробнее](#стандартный-api) о библиотеках предоставляющих эти механизмы.
+Используя сопрограммы kotlin, многие механизмы асинхронности, доступные в других языках, могут быть реализованы как отдельные библиотеки. Такие механизмы как [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) из C# и ECMAScript, [`channels`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) и [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) из языка Go, и [`generators/yield`](#generators-api-in-kotlincoroutines) из C# и Python. [Подробнее](#standard-apis) о библиотеках предоставляющих эти механизмы.
 
 <!-- ## Blocking vs Suspending -->
 
@@ -38,9 +38,9 @@ url: https://kotlinlang.ru/docs/reference/coroutines.html
  
  Another difference is that coroutines can not be suspended at random instructions, but rather only at so called *suspension points*, which are calls to specially marked functions. -->
 
-По своей сути, сопрограммы это вычисления которые могут быть *приостановлены* без выполнения *блокирования потока*. Блокирование потока, зачастую очень дорогое, особенно при высокой нагрузке, потому что практичнее держать только относительно небольшое кол-во потоков, в таком случае, блокирование одного из них приводит к тому, что какая ни будь важная работа будет отложена.
+По своей сути, сопрограммы это вычисления которые могут быть *приостановлены* без *блокирования потока*. Блокирование потока зачастую очень дорогое, особенно при высокой нагрузке, потому что практичнее держать небольшое кол-во потоков и в этом случае блокирование одного из них приводит к тому, что какая-нибудь важная работа будет отложена.
  
-С другой стороны, приостановка сопрограммы почти бесплатная. Для приостановки не нужно переключения контекста или другого участия ОС. В добавок ко всему, приостановка, в значительной степени может управляться пользовательской библиотекой: как авторы библиотек, мы можем предпринять какие-либо действия при приостановке и оптимизировать/вывести в лог/перехватить в соответствии с нашими требованиями.     
+С другой стороны, приостановка сопрограммы почти бесплатная. Для приостановки нет нужды в переключении контекста или другом участии ОС. В добавок, приостановкой можно управлять из пользовательской библиотеки: приостановки предоставляют авторам библиотек возможность предпринять какие-либо действия (оптимизировать/вывести в лог/перехватить исключение).     
 
 Другое отличие это то, что сопрограммы не могут быть приостановлены в любом месте кода, а только в так называемых *точках приостановки*, которые требуют специально помеченных функций.  
 
@@ -60,7 +60,7 @@ suspend fun doSomething(foo: Foo): Bar {
 
 <!-- Such functions are called *suspending functions*, because calls to them may suspend a coroutine (the library can decide to proceed without suspension, if the result for the call in question is already available). Suspending functions can take parameters and return values in the same manner as regular functions, but they can only be called from coroutines and other suspending functions. In fact, to start a coroutine, there must be at least one suspending function, and it is usually anonymous (i.e. it is a suspending lambda). Let's look at an example, a simplified `async()` function (from the [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines) library): -->
 
-Такие функции называются *приостанавливающие функции*, потому что их вызов может приостановить сопрограмму (библиотека может решить действовать без приостановки, если результат вызова уже доступен). Приостанавливающие функции могут принимать параметры и возвращать значения так же как и обычные функции, но они могут быть вызваны только из сопрограмм и других приостанавливающих функций. На самом деле, для работы сопрограммы, нужна хотя бы одна приостанавливающая функция, и обычно это анонимная функция (т.е. приостанавливающая лямбда). Посмотрим на пример упрощённой функции `async()` (из библиотеки [`kotlinx.coroutines`](#api-генераторов-в-kotlincoroutines)):
+Такие функции называются *приостанавливающие функции*, потому что их вызов может приостановить сопрограмму (библиотека может решить действовать без приостановки, если результат вызова уже доступен). Приостанавливающие функции могут принимать параметры и возвращать значения так же как и обычные функции, но они могут быть вызваны только из сопрограмм и других приостанавливающих функций. На самом деле, для работы сопрограммы, нужна хотя бы одна приостанавливающая функция, и обычно это анонимная функция (т.е. приостанавливающая лямбда). Посмотрим на пример упрощённой функции `async()` (из библиотеки [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines)):
     
 ``` kotlin
 fun <T> async(block: suspend () -> T)
@@ -131,7 +131,7 @@ class Derived: Base {
 
 <!-- This is relevant in the _rare_ cases when every suspension is handled in a special way in the library. For example, when implementing generators through the [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) function described [below](#generators-api-in-kotlincoroutines), we need to make sure that any suspending call in the coroutine ends up calling either `yield()` or `yieldAll()` and not any other function. This is why [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) is annotated with `@RestrictsSuspension`: -->
 
-Это актуально в _редких_ случаях когда каждая приостановка в библиотеке обрабатывается специальным образом. Например, когда вы реализуете генератор через функцию [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) описанную [ниже](#api-генераторов-в-kotlincoroutines), нам нужно быть уверенным в том, что любой приостанавливающий вызов в сопрограмме заканчивается *только* вызовом либо `yield()` либо `yieldAll()`. Вот почему [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) помечен аннотацией `@RestrictsSuspension`:
+Это актуально в _редких_ случаях когда каждая приостановка в библиотеке обрабатывается специальным образом. Например, когда вы реализуете генератор через функцию [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) описанную [ниже](#generators-api-in-kotlincoroutines), нам нужно быть уверенным в том, что любой приостанавливающий вызов в сопрограмме заканчивается *только* вызовом либо `yield()` либо `yieldAll()`. Вот почему [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) помечен аннотацией `@RestrictsSuspension`:
 
 ``` kotlin
 @RestrictsSuspension
@@ -272,7 +272,7 @@ fun main(args: Array<String>) {
    
 <!-- To demonstrate the real laziness of such a sequence, let's print some debug output inside a call to `buildSequence()`: -->
 
-Что бы продемонстрировать факт "ленивости" такой последовательности, давайте выведем в консоль какую ни будь информацию внутри `buildSequence()`:
+Что бы продемонстрировать факт "ленивости" такой последовательности, давайте выведем в консоль какую-нибудь информацию внутри `buildSequence()`:
   
 <div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
@@ -331,7 +331,7 @@ fun main(args: Array<String>) {
 
 <!-- One can add custom yielding logic to `buildSequence()` by writing suspending extensions to the `SequenceBuilder` class (that bears the `@RestrictsSuspension` annotation described [above](#restrictssuspension-annotation)): -->
 
-Вы можете добавить свою логику для функции `buildSequence()` путём написания приостанавливающих функций расширения для класса `SequenceBuilder` (Он помечен аннотацией `@RestrictsSuspension` описанной [выше](#aннотация-restrictssuspension)):
+Вы можете добавить свою логику для функции `buildSequence()` путём написания приостанавливающих функций расширения для класса `SequenceBuilder` (Он помечен аннотацией `@RestrictsSuspension` описанной [выше](#restrictssuspension-annotation)):
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 

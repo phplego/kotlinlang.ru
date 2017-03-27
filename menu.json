@@ -36,11 +36,12 @@
     "ranges",
     "typecasts",
     "this-expressions",
-    "annotations",
     "equality",
+    "null-safety",
     "exceptions",
-    "type-aliases",
-    "null-safety"
+    "annotations",
+    "reflection",
+    "type-aliases"
   ],
   "Редактору": [
     "how-to-edit",

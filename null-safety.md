@@ -199,13 +199,13 @@ title: "Null безопасность"
 
 <!-- ## Safe Casts -->
 
-## Безопасные касты (ориг.: _Safe Casts_)
+## Безопасные приведения типов (ориг.: _Safe Casts_)
 
 <!-- Regular casts may result into a `ClassCastException` if the object is not of the target type. -->
 <!-- Another option is to use safe casts that return *null*{: .keyword } if the attempt was not successful: -->
 
-Обычные касты могут вызвать `ClassCastException` в случае, если объект имеет другой тип.
-Можно также использовать безопасный каст, который вернёт *null*, есои попытка не удалась:
+Обычное приведение типа может вызвать `ClassCastException` в случае, если объект имеет другой тип.
+Можно использовать безопасное приведение, которое вернёт *null*, если попытка не удалась:
 
  ``` kotlin
  val aInt: Int? = a as? Int

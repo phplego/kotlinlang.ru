@@ -21,3 +21,4 @@ url: http://kotlinlang.ru/docs/reference/mistranslations.html
 * companion object - переведено, как вспомогательный объект
 * progressions(ranges.md) - перевёл, как последовательность.
 * stack trace в exceptions.md - оставил просто так.
+* safe casts в null-safety

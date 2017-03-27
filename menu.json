@@ -39,7 +39,8 @@
     "annotations",
     "equality",
     "exceptions",
-    "type-aliases"
+    "type-aliases",
+    "null-safety"
   ],
   "Редактору": [
     "how-to-edit",

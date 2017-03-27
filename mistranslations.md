@@ -22,4 +22,4 @@ url: http://kotlinlang.ru/docs/reference/mistranslations.html
 * progressions(ranges.md) - перевёл, как последовательность.
 * stack trace в exceptions.md - оставил просто так.
 * safe casts в null-safety
-* bound class, bound function (reflection.md) - привязаный класс? привязаная функция?
+* bound class, bound function (reflection.md) - перевёл как привязанный класс, привязанная функция

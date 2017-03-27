@@ -39,10 +39,10 @@ title: "Null безопасность"
 К примеру, переменная часто используемого типа `String` не может быть *null*:
 
 
- ``` kotlin
+``` kotlin
  var a: String = "abc"
  a = null // ошибка компиляции
- ```
+```
 
 <!-- To allow nulls, we can declare a variable as nullable string, written `String?`: -->
 Для того, чтобы разрешить *null* значение, мы можем объявить эту строковую переменную, как `String?`:

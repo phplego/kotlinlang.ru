@@ -247,7 +247,7 @@ val sum = fun Int.(other: Int): Int = this + other
 <!--Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.-->
 Лямбда-выражения могут быть использованы как литералы функций с приёмником, когда тип приёмника может быть выведен из контекста.
 
-``` koltin
+``` kotlin
 class HTML {
     fun body() { ... }
 }

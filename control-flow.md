@@ -181,6 +181,6 @@ do {
 
 ## Ключевые слова break и continue в циклах
 
-Kotlin поддерживает обычные операторы **break**<!--keyword--> и **continue**<!--keyword--> в циклах. См. [Returns and jumps](returns.html).
+Kotlin поддерживает обычные операторы **break**<!--keyword--> и **continue**<!--keyword--> в циклах. См. [Операторы перехода](returns.html).
 
 

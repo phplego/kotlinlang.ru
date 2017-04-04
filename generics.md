@@ -169,16 +169,20 @@ fun demo(strs: Source<String>) {
 }
 ```
 
-The general rule is: when a type parameter `T` of a class `C` is declared **out**, it may occur only in **out**\-position in the members of `C`, but in return `C<Base>` can safely be a supertype of `C<Derived>`.
+<!--The general rule is: when a type parameter `T` of a class `C` is declared **out**, it may occur only in **out**\-position in the members of `C`, but in return `C<Base>` can safely be a supertype of `C<Derived>`.-->
+Общее правило таково: когда параметр `T` класса `С` объявлен как **out**, он может использоваться только в **out**-местах в членах `C`. Но зато, `C<Base>` может быть родителем `C<Derived>`, и это будет безопасно.
 
-In "clever words" they say that the class `C` is **covariant** in the parameter `T`, or that `T` is a **covariant** type parameter.
-You can think of `C` as being a **producer** of `T`'s, and NOT a **consumer** of `T`'s.
+<!--In "clever words" they say that the class `C` is **covariant** in the parameter `T`, or that `T` is a **covariant** type parameter.
+You can think of `C` as being a **producer** of `T`'s, and NOT a **consumer** of `T`'s.-->
+Говоря "умными словами", класс `C` **ковариантен** в параметре `T`; или: `T` является **ковариантным** параметризованным типом.
 
-The **out** modifier is called a **variance annotation**, and  since it is provided at the type parameter declaration site, we talk about **declaration-site variance**.
-This is in contrast with Java's **use-site variance** where wildcards in the type usages make the types covariant.
+<!--The **out** modifier is called a **variance annotation**, and  since it is provided at the type parameter declaration site, we talk about **declaration-site variance**.
+This is in contrast with Java's **use-site variance** where wildcards in the type usages make the types covariant.-->
+Модификатор **out** называют **вариативной аннотацией**, и так как он указывается на месте объявления типа параметра, речь идёт о **вариативности на месте объявления**. Эта концепция противопоставлена **вариативности на месте использования** из Java, где маски при использовании типа делают типы ковариантными.
 
-In addition to **out**, Kotlin provides a complementary variance annotation: **in**. It makes a type parameter **contravariant**: it can only be consumed and never
-produced. A good example of a contravariant class is `Comparable`:
+<!--In addition to **out**, Kotlin provides a complementary variance annotation: **in**. It makes a type parameter **contravariant**: it can only be consumed and never
+produced. A good example of a contravariant class is `Comparable`:-->
+В дополнении к **out**, Kotlin предоставляет дополнительную вариативную аннотацию **in**. Она делает параметризованный тип **контравариантным**: он может только потребляться, но не может производиться. `Comparable` является хорошим примером такого класса:
 
 ``` kotlin
 abstract class Comparable<in T> {
@@ -186,24 +190,27 @@ abstract class Comparable<in T> {
 }
 
 fun demo(x: Comparable<Number>) {
-    x.compareTo(1.0) // 1.0 has type Double, which is a subtype of Number
-    // Thus, we can assign x to a variable of type Comparable<Double>
+    x.compareTo(1.0) // 1.0 имеет тип Double, расширяющий Number
+    // Таким образом, мы можем присвоить значение x переменной типа Comparable<Double>
     val y: Comparable<Double> = x // OK!
 }
 ```
 
-We believe that the words **in** and **out** are self-explaining (as they were successfully used in C# for quite some time already),
-thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose:
+<!--We believe that the words **in** and **out** are self-explaining (as they were successfully used in C# for quite some time already),
+thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose:-->
+Мы верим, что слова **in** и **out** говорят сами за себя (так как они довольно успешно используются в C# уже долгое время), таким образом, мнемоника, приведённая выше не так уж и нужна, и её можно перефразировать следущим образом:
 
-**[The Existential](http://en.wikipedia.org/wiki/Existentialism) Transformation: Consumer in, Producer out\!** :-)
+**[Экзистенцианальная](https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D0%B7%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%BC) Трансформация: Consumer in, Producer out\!** :-)
 
-## Type projections
+<!--## Type projections-->
+## Проекции типов
 
-### Use-site variance: Type projections
+<!--### Use-site variance: Type projections-->
+### Вариативность на месте использования
 
-It is very convenient to declare a type parameter T as *out* and have no trouble with subtyping on the use site. Yes, it is, when the class in question **can** actually be restricted to only return `T`'s, but what if it can't?
-A good example of this is Array:
-
+<!--It is very convenient to declare a type parameter T as *out* and have no trouble with subtyping on the use site. Yes, it is, when the class in question **can** actually be restricted to only return `T`'s, but what if it can't?
+A good example of this is Array:-->
+Объявлять параметризованный тип `T` как **out** очень удобно: при его использовании не будет никаких проблем с подтипами. И это действительно так в случае с классами, которые могут быть ограничены на только возвращение `T`. А как быть с теми классами, которые ещё и принимают `T`? Пример: класс `Array`
 ``` kotlin
 class Array<T>(val size: Int) {
     fun get(index: Int): T { /* ... */ }
@@ -211,7 +218,8 @@ class Array<T>(val size: Int) {
 }
 ```
 
-This class cannot be either co\- or contravariant in `T`. And this imposes certain inflexibilities. Consider the following function:
+<!--This class cannot be either co\- or contravariant in `T`. And this imposes certain inflexibilities. Consider the following function:-->
+Этот класс не может быть ни ко-, ни контравариантным в `T`, что ведёт к некоторому снижению гибкости. Рассмотрим следующую функцию:
 
 ``` kotlin
 fun copy(from: Array<Any>, to: Array<Any>) {
@@ -221,19 +229,22 @@ fun copy(from: Array<Any>, to: Array<Any>) {
 }
 ```
 
-This function is supposed to copy items from one array to another. Let's try to apply it in practice:
+<!--This function is supposed to copy items from one array to another. Let's try to apply it in practice:-->
+По задумке, это функция должна копировать значения из одного массива в другой. Давате попробуем сделать это на практике:
 
 ``` kotlin
 val ints: Array<Int> = arrayOf(1, 2, 3)
 val any = Array<Any>(3)
-copy(ints, any) // Error: expects (Array<Any>, Array<Any>)
+copy(ints, any) // Ошибка: ожидалось (Array<Any>, Array<Any>)
 ```
 
-Here we run into the same familiar problem: `Array<T>` is **invariant** in `T`, thus neither of `Array<Int>` and `Array<Any>`
+<!--Here we run into the same familiar problem: `Array<T>` is **invariant** in `T`, thus neither of `Array<Int>` and `Array<Any>`
 is a subtype of the other. Why? Again, because copy **might** be doing bad things, i.e. it might attempt to **write**, say, a String to `from`,
-and if we actually passed an array of `Int` there, a `ClassCastException` would have been thrown sometime later.
+and if we actually passed an array of `Int` there, a `ClassCastException` would have been thrown sometime later.-->
+Здесь мы попадаем в уже знакомую нам проблему: `Array<T>` **инвариантен** в `T`, таким образом `Array<Int>` не является подтипом `Array<Any>`. Почему? Опять же, потому что копирование **может** сотворить плохие вещи, например может произойти попытка **записать**, скажем, значение типа `String` в `from`. И если мы на самом деле передадим туда массив `Int`, через некоторое время будет выборошен `ClassCastException`.
 
-Then, the only thing we want to ensure is that `copy()` does not do any bad things. We want to prohibit it from **writing** to `from`, and we can:
+<!--Then, the only thing we want to ensure is that `copy()` does not do any bad things. We want to prohibit it from **writing** to `from`, and we can:-->
+Тогда, единственная вещь, в которой мы хотим удостовериться, это то что `copy()` не сделает ничего плохого. Мы хотим запретить методу **записывать** в `from`, и мы можем это сделать:
 
 ``` kotlin
 fun copy(from: Array<out Any>, to: Array<Any>) {
@@ -241,11 +252,12 @@ fun copy(from: Array<out Any>, to: Array<Any>) {
 }
 ```
 
-What has happened here is called **type projection**: we said that `from` is not simply an array, but a restricted (**projected**) one: we can only call those methods that return the type parameter
-`T`, in this case it means that we can only call `get()`. This is our approach to **use-site variance**, and corresponds to Java's `Array<? extends Object>`,
-but in a slightly simpler way.
+<!--What has happened here is called **type projection**: we said that `from` is not simply an array, but a restricted (**projected**) one: we can only call those methods that return the type parameter
+`T`, in this case it means that we can only call `get()`. This is our approach to **use-site variance**, and corresponds to Java's `Array<? extends Object>`, but in a slightly simpler way.-->
+Произошедшее здесь наывается **проекция типов**: мы сказали, что `from` — не просто массив, а ограниченный (**спроецированный**): мы можем вызывать только те методы, которые возвращают параметризованный тип `T`, что в этом случае означает, что мы можем вызывать только `get()`. Таков наш подход к **вариативности на месте использования**, и он соответствует `Array<? extends Object>` из Java, но в более простом виде.
 
-You can project a type with **in** as well:
+<!--You can project a type with **in** as well:-->
+Вы так же можете проецировать тип с **in**:
 
 ``` kotlin
 fun fill(dest: Array<in String>, value: String) {
@@ -253,7 +265,8 @@ fun fill(dest: Array<in String>, value: String) {
 }
 ```
 
-`Array<in String>` corresponds to Java's `Array<? super String>`, i.e. you can pass an array of `CharSequence` or an array of `Object` to the `fill()` function.
+<!--`Array<in String>` corresponds to Java's `Array<? super String>`, i.e. you can pass an array of `CharSequence` or an array of `Object` to the `fill()` function.-->
+`Array<in String>` соответствует `Array<? super String>` из Java, то есть мы можем передать массив `CharSequence` или массив `Object` в функцию `fill()`.
 
 ### Star-projections
 

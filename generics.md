@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/reference/generics.html
 # Обобщения (Generics)
 
 <!-- As in Java, classes in Kotlin may have type parameters: -->
-Как и в <b>Java</b>, в <b>Kotlin</b> классы могут иметь параметризованные типы:
+Как и в <b>Java</b>, в <b>Kotlin</b> классы тоже могут иметь типовые типы:
 
 ``` kotlin
 class Box<T>(t: T) {
@@ -268,53 +268,77 @@ fun fill(dest: Array<in String>, value: String) {
 <!--`Array<in String>` corresponds to Java's `Array<? super String>`, i.e. you can pass an array of `CharSequence` or an array of `Object` to the `fill()` function.-->
 `Array<in String>` соответствует `Array<? super String>` из Java, то есть мы можем передать массив `CharSequence` или массив `Object` в функцию `fill()`.
 
-### Star-projections
 
-Sometimes you want to say that you know nothing about the type argument, but still want to use it in a safe way.
-The safe way here is to define such a projection of the generic type, that every concrete instantiation of that generic type would be a subtype of that projection.
+<!--### Star-projections-->
+### "Звёздные" проекции 
 
-Kotlin provides so called **star-projection** syntax for this:
+<!--Sometimes you want to say that you know nothing about the type argument, but still want to use it in a safe way.
+The safe way here is to define such a projection of the generic type, that every concrete instantiation of that generic type would be a subtype of that projection.-->
+Иногда возникает ситуация, когда вы ничего не знаете о типе аргумента, но всё равно хотите использовать его безопасным образом.
+Этой безопасности можно добиться путём определения такой проекции параметризованного типа, при которой его экземпляр будет подтипом этой проекции.
 
- - For `Foo<out T>`, where `T` is a covariant type parameter with the upper bound `TUpper`, `Foo<*>` is equivalent to `Foo<out TUpper>`. It means that when the `T` is unknown you can safely *read* values of `TUpper` from `Foo<*>`.
+<!--Kotlin provides so called **star-projection** syntax for this:-->
+Kotlin предоставляет так называемый **star-projection** синтаксис для этого:
+
+<!--
+- For `Foo<out T>`, where `T` is a covariant type parameter with the upper bound `TUpper`, `Foo<*>` is equivalent to `Foo<out TUpper>`. It means that when the `T` is unknown you can safely *read* values of `TUpper` from `Foo<*>`.
  - For `Foo<in T>`, where `T` is a contravariant type parameter, `Foo<*>` is equivalent to `Foo<in Nothing>`. It means there is nothing you can *write* to `Foo<*>` in a safe way when `T` is unknown.
  - For `Foo<T>`, where `T` is an invariant type parameter with the upper bound `TUpper`, `Foo<*>` is equivalent to `Foo<out TUpper>` for reading values and to `Foo<in Nothing>` for writing values.
+ -->
+ - Для `Foo<out T>`, где `T` — ковариантный параметризованный тип с верхней границей `TUpper`, `Foo<*>` является эквивалентом `Foo<out TUpper>`. Это значит, что когда `T` неизвестен, вы можете безопасно *читать* значения типа `TUpper` из `Foo<*>`.
+ - Для `Foo<in T>`, где `T` — ковариантный параметризованный тип, `Foo<*>` является эквивалентом `Foo<in Nothing>`. Это значит, что вы не можете безопасно *писать* в `Foo<*>` при неизвестном `T`.
+ - Для `Foo<T>`, где `T` — инвариантный параметризованный тип с верхней границей `TUpper`, `Foo<*>` является эквивалентом `Foo<out TUpper>` при чтении значений и `Foo<in Nothing>` при записи значений.
 
-If a generic type has several type parameters each of them can be projected independently.
-For example, if the type is declared as `interface Function<in T, out U>` we can imagine the following star-projections:
+<!--If a generic type has several type parameters each of them can be projected independently.
+For example, if the type is declared as `interface Function<in T, out U>` we can imagine the following star-projections:-->
+Если параметризованный тип имеет несколько параметров, каждый из них проецируется независимо.
+Например, если тип объявлен как `interface Function<in T, out U>`, мы можем представить следующую "звёздную" проекцию:
 
+<!--
  - `Function<*, String>` means `Function<in Nothing, String>`;
  - `Function<Int, *>` means `Function<Int, out Any?>`;
  - `Function<*, *>` means `Function<in Nothing, out Any?>`.
+ -->
+ - `Function<*, String>` означает `Function<in Nothing, String>`;
+ - `Function<Int, *>` означает `Function<Int, out Any?>`;
+ - `Function<*, *>` означает `Function<in Nothing, out Any?>`.
+<!--*Note*: star-projections are very much like Java's raw types, but safe.-->
+*Примечаение*: "звёздные" проекции очень похожи на сырые (raw) типы из Java, за тем исключением, что являются безопасными.
 
-*Note*: star-projections are very much like Java's raw types, but safe.
+<!--## Generic functions-->
+## Обощённые функции
 
-## Generic functions
-
-Not only classes can have type parameters. Functions can, too. Type parameters are placed before the name of the function:
+<!--Not only classes can have type parameters. Functions can, too. Type parameters are placed before the name of the function:-->
+Функции, как и классы, могут иметь типовые параметры. Типовые параметры помещаются перед именем функции:
 
 ``` kotlin
 fun <T> singletonList(item: T): List<T> {
     // ...
 }
 
-fun <T> T.basicToString() : String {  // extension function
+fun <T> T.basicToString() : String {  // функция-расширение
     // ...
 }
 ```
 
-To call a generic function, specify the type arguments at the call site **after** the name of the function:
+<!--To call a generic function, specify the type arguments at the call site **after** the name of the function:-->
+Для вызова обобщённой функции, укажите тип аргументов на месте вызова **после** имени функции:
 
 ``` kotlin
 val l = singletonList<Int>(1)
 ```
 
-## Generic constraints
+<!--## Generic constraints-->
+## Обобщённые ограничения
 
-The set of all possible types that can be substituted for a given type parameter may be restricted by **generic constraints**.
+<!--The set of all possible types that can be substituted for a given type parameter may be restricted by **generic constraints**.-->
+Набор всех возможных типов, которые могут быть переданы в качестве параметра может быть ограничен с помощью **обобщённых ограничений**. 
 
-### Upper bounds
+<!--### Upper bounds-->
+### Верхние границы
 
-The most common type of constraint is an **upper bound** that corresponds to Java's *extends* keyword:
+<!--The most common type of constraint is an **upper bound** that corresponds to Java's *extends* keyword:-->
+Самый распространённый тип ограничений это **верхняя граница**, которая соответствует ключевому слову *extends* из Java:
 
 ``` kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {
@@ -322,15 +346,18 @@ fun <T : Comparable<T>> sort(list: List<T>) {
 }
 ```
 
-The type specified after a colon is the **upper bound**: only a subtype of `Comparable<T>` may be substituted for `T`. For example
+<!--The type specified after a colon is the **upper bound**: only a subtype of `Comparable<T>` may be substituted for `T`. For example-->
+Тип, указанный после двоеточия является **верхней границей**: только подтип `Comparable<T>` может быть передан в `T`. Например:
 
 ``` kotlin
-sort(listOf(1, 2, 3)) // OK. Int is a subtype of Comparable<Int>
-sort(listOf(HashMap<Int, String>())) // Error: HashMap<Int, String> is not a subtype of Comparable<HashMap<Int, String>>
+sort(listOf(1, 2, 3)) // Всё в порядке. Int — подтип Comparable<Int>
+sort(listOf(HashMap<Int, String>())) // Ошибка: HashMap<Int, String> не является подтипом Comparable<HashMap<Int, String>>
 ```
 
-The default upper bound (if none specified) is `Any?`. Only one upper bound can be specified inside the angle brackets.
-If the same type parameter needs more than one upper bound, we need a separate **where**\-clause:
+<!--The default upper bound (if none specified) is `Any?`. Only one upper bound can be specified inside the angle brackets.
+If the same type parameter needs more than one upper bound, we need a separate **where**\-clause:-->
+По умолчанию (если не указана явно) верняя граница — `Any?`. Только одна верхняя граница может быть указана в угловых скобках.
+В случае, если один параметризованный тип требует больше чем одной верхней границы, нам нужно использовать разделяющее **where**-условие:
 
 ``` kotlin
 fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>

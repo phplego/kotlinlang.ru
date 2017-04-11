@@ -339,19 +339,19 @@ fun <T> singletonList(item: T): List<T> {
 ## Встроенные функции (<i>Inline Functions</i>)
 
 <!--Inline functions are explained [here](inline-functions.html)-->
-О встроенных функциях рассказано [тут](inline-functions.html)
+О встроенных функциях рассказано [здесь](inline-functions.html)
 
 <!--## Extension Functions-->
 ## Выражения (<i>Extension Functions</i>)
 
 <!--Extension functions are explained in [their own section](extensions.html)-->
-О выражениях подробно описано в их [отделе](extensions.html)
+О выражениях подробно описано в [отдельной статье](extensions.html)
 
 <!--## Higher-Order Functions and Lambdas-->
 ## Высокоуровневые функции и лямбды
 
 <!--Higher-Order functions and Lambdas are explained in [their own section](lambdas.html)-->
-Об этом [тут](lambdas.html)
+О лямбдах и высокоуровневых функциях см. раздел [Лямбды](lambdas.html)
 
 <!--## Tail recursive functions-->
 ## Функции с хвостовой рекурсией

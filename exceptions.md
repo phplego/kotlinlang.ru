@@ -16,7 +16,7 @@ url: https://kotlinlang.ru/docs/reference/exceptions.html
 <!-- Every exception has a message, stack trace and an optional cause. -->
 
 Все исключения в <b>Kotlin</b> являются наследниками класса `Throwable`.
-У каждого исключения есть сообщение,_stack trace_ а также причина, по которой
+У каждого исключения есть сообщение, трассировка стека а также причина, по которой
 это исключение вероятно было вызвано.
 
 <!-- To throw an exception object, use the *throw*{: .keyword }-expression -->

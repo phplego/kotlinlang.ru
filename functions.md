@@ -318,7 +318,7 @@ Sample().foo() // создаёт инстанс класса Sample и вызв�
 ```
 
 <!--For more information on classes and overriding members see [Classes](classes.html) and [Inheritance](classes.html#inheritance)-->
-Для более подробной информации о классах и их элементах см. [Классы](classes.md) 
+Для более подробной информации о классах и их элементах см. [Классы](classes.html) 
 
 <!--## Generic Functions-->
 Функции-обощения (<i>Generic Functions</i>)
@@ -333,25 +333,25 @@ fun <T> singletonList(item: T): List<T> {
 ```
 
 <!--For more information on generic functions see [Generics](generics.html)-->
-Для более подробной информации об обобщениях см. [Обобщения](generics.md)
+Для более подробной информации об обобщениях см. [Обобщения](generics.html)
 
 <!--## Inline Functions-->
 ## Встроенные функции (<i>Inline Functions</i>)
 
 <!--Inline functions are explained [here](inline-functions.html)-->
-О встроенных функциях рассказано [тут](inline-functions.md)
+О встроенных функциях рассказано [тут](inline-functions.html)
 
 <!--## Extension Functions-->
 ## Выражения (<i>Extension Functions</i>)
 
 <!--Extension functions are explained in [their own section](extensions.html)-->
-О выражениях подробно описано в их [отделе](extensions.md)
+О выражениях подробно описано в их [отделе](extensions.html)
 
 <!--## Higher-Order Functions and Lambdas-->
 ## Высокоуровневые функции и лямбды
 
 <!--Higher-Order functions and Lambdas are explained in [their own section](lambdas.html)-->
-Об этом [тут](higher-order-functions.md)
+Об этом [тут](lambdas.html)
 
 <!--## Tail recursive functions-->
 ## Функции с хвостовой рекурсией

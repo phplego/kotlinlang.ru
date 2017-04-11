@@ -342,10 +342,10 @@ fun <T> singletonList(item: T): List<T> {
 О встроенных функциях рассказано [здесь](inline-functions.html)
 
 <!--## Extension Functions-->
-## Выражения (<i>Extension Functions</i>)
+## Функции-расширения (<i>Extension Functions</i>)
 
 <!--Extension functions are explained in [their own section](extensions.html)-->
-О выражениях подробно описано в [отдельной статье](extensions.html)
+О расширениях подробно описано в [отдельной статье](extensions.html)
 
 <!--## Higher-Order Functions and Lambdas-->
 ## Высокоуровневые функции и лямбды

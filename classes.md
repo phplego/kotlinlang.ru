@@ -80,7 +80,7 @@ class Customer(name: String) {
 ```
 
 <!--In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:-->
-В действительности, для объявления и инициализации свойств первичного конструктора, в <b>Kotlin</b> есть лакониченое синтаксическое решение:
+В действительности, для объявления и инициализации свойств первичного конструктора, в <b>Kotlin</b> есть лаконичное синтаксическое решение:
 
 ``` kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
@@ -90,7 +90,7 @@ class Person(val firstName: String, val lastName: String, var age: Int) {
 
 <!--Much the same way as regular properties, the properties declared in the primary constructor can be
 mutable (**var**) or read-only (**val**).-->
-Свойства, объявленные в первичном коснтрукторе, могут быть изменяемые (**var**) и неизменяемые (**val**). 
+Свойства, объявленные в первичном конструкторе, могут быть изменяемые (**var**) и неизменяемые (**val**). 
 
 <!--If the constructor has annotations or visibility modifiers, the **constructor** keyword is required, and
 the modifiers go before it:-->

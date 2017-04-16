@@ -80,7 +80,7 @@ class Customer(name: String) {
 ```
 
 <!--In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:-->
-В действительности, для объявления и инициализации свойств первичного конструктора, в <b>Kotlin</b> есть лакониченое синтаксическое решение:
+В действительности, для объявления и инициализации свойств первичного конструктора, в <b>Kotlin</b> есть лаконичное синтаксическое решение:
 
 ``` kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
@@ -90,7 +90,7 @@ class Person(val firstName: String, val lastName: String, var age: Int) {
 
 <!--Much the same way as regular properties, the properties declared in the primary constructor can be
 mutable (**var**) or read-only (**val**).-->
-Свойства, объявленные в первичном коснтрукторе, могут быть изменяемые (**var**) и неизменяемые (**val**). 
+Свойства, объявленные в первичном конструкторе, могут быть изменяемые (**var**) и неизменяемые (**val**). 
 
 <!--If the constructor has annotations or visibility modifiers, the **constructor** keyword is required, and
 the modifiers go before it:-->
@@ -185,7 +185,7 @@ val customer = Customer("Joe Smith")
 ## Наследование
 
 <!--All classes in Kotlin have a common superclass `Any`, that is a default super for a class with no supertypes declared:-->
-Для всех классов в языке <b>Koltin</b> родителським суперклассом является класс `Any`. Он также явлется родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
+Для всех классов в языке <b>Koltin</b> родительским суперклассом является класс `Any`. Он также является родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
 
 ``` kotlin
 class Example // Implicitly inherits from Any
@@ -211,7 +211,7 @@ using the parameters of the primary constructor.-->
 <!--If the class has no primary constructor, then each secondary constructor has to initialize the base type
 using the **super** keyword, or to delegate to another constructor which does that.
 Note that in this case different secondary constructors can call different constructors of the base type:-->
-Если у класса нет первичного конструктора, тогда каждый последующий второстепенный коснтруктор должен включать в себя инициализацию базового типа с помощью ключевого слова **super** или давать отсылку на другой конструктор, который это делает.
+Если у класса нет первичного конструктора, тогда каждый последующий второстепенный конструктор должен включать в себя инициализацию базового типа с помощью ключевого слова **super** или давать отсылку на другой конструктор, который это делает.
 Примечательно, что любые вторичные конструкторы могут ссылаться на разные конструкторы базового типа. 
 
 ``` kotlin
@@ -284,7 +284,7 @@ open class AnotherDerived() : Base() {
 <!--In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits many implementations of the same member from its immediate superclasses,
 it must override this member and provide its own implementation (perhaps, using one of the inherited ones).
 To denote the supertype from which the inherited implementation is taken, we use **super** qualified by the supertype name in angle brackets, e.g. `super<Base>`:-->
-В <b>Kotlin</b> правила наследования имплементации определены следующим образом: если класс перенимает большое количество имплементаций одного и того члена от ближайших родителських классов, он должен переопределить этот член и обеспечить свою собственную имплементацию (возможно, используя одну из унаследованных). Для того, чтобы отметить супертип (родительский класс), от которого мы унаследовали данную имплементацию, мы используем ключевое слово **super**. Для уточнения имя родительского супертипа используются треугольные скобки, например `super<Base>`:
+В <b>Kotlin</b> правила наследования имплементации определены следующим образом: если класс перенимает большое количество имплементаций одного и того члена от ближайших родительских классов, он должен переопределить этот член и обеспечить свою собственную имплементацию (возможно, используя одну из унаследованных). Для того, чтобы отметить супертип (родительский класс), от которого мы унаследовали данную имплементацию, мы используем ключевое слово **super**. Для уточнения имя родительского супертипа используются треугольные скобки, например `super<Base>`:
 
 ``` kotlin
 open class A {

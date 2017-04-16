@@ -211,7 +211,7 @@ using the parameters of the primary constructor.-->
 <!--If the class has no primary constructor, then each secondary constructor has to initialize the base type
 using the **super** keyword, or to delegate to another constructor which does that.
 Note that in this case different secondary constructors can call different constructors of the base type:-->
-Если у класса нет первичного конструктора, тогда каждый последующий второстепенный коснтруктор должен включать в себя инициализацию базового типа с помощью ключевого слова **super** или давать отсылку на другой конструктор, который это делает.
+Если у класса нет первичного конструктора, тогда каждый последующий второстепенный конструктор должен включать в себя инициализацию базового типа с помощью ключевого слова **super** или давать отсылку на другой конструктор, который это делает.
 Примечательно, что любые вторичные конструкторы могут ссылаться на разные конструкторы базового типа. 
 
 ``` kotlin

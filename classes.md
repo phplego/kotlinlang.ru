@@ -185,7 +185,7 @@ val customer = Customer("Joe Smith")
 ## Наследование
 
 <!--All classes in Kotlin have a common superclass `Any`, that is a default super for a class with no supertypes declared:-->
-Для всех классов в языке <b>Koltin</b> родителським суперклассом является класс `Any`. Он также явлется родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
+Для всех классов в языке <b>Koltin</b> родительским суперклассом является класс `Any`. Он также является родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
 
 ``` kotlin
 class Example // Implicitly inherits from Any

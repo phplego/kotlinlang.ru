@@ -47,6 +47,8 @@ val max = if (a > b) {
 
 См. [использование <b class="keyword">if</b>](grammar.html#if).
 
+<a name="when-expression"></a>
+
 ## Условное выражение when
 
 Ключевое слово <b class="keyword">when</b> призвано заменить оператор switch, присутствующий в C-подобных языках. В простейшем виде его использование выглядит так

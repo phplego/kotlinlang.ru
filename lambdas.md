@@ -102,7 +102,6 @@ max(strings, { a, b -> a.length < b.length })
 
 <!--Function max is a higher-order function, i.e. it takes a function value as the second argument. This second argument is an expression that is itself a function, i.e. a function literal. As a function, it is equivalent to-->
 
->править отсюда ↓
 
 Функция `max` - высокоуровневая функция, так как она принимает другую функцию в качестве входного аргумента. Этот второй аргумент является выражением, которое само по себе представляет из себя функцию, то есть <i>functional literal</i>.
 ``` kotlin
@@ -172,6 +171,8 @@ ints.filter {
 ```
 <!--Note that if a function takes another function as the last parameter, the lambda expression argument can be passed outside the parenthesized argument list. See the grammar for callSuffix.-->
 Обратите внимение, что функция принимает другую функцию в качестве своего последнего параметра, аргумент лямбда-выражения в таком случае может быть принят вне списка аргументов, заключённого в скобках. См. [callSuffix](http://kotlinlang.org/docs/reference/grammar.html#call-suffix)
+
+<a name="anonymous-functions"></a>
 
 <!--##Anonymous Functions-->
 ## Анонимные функции

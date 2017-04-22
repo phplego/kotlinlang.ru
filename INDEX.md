@@ -25,5 +25,5 @@ url: https://kotlinlang.ru
 * Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
-* Нужна помощь в переводе [статьи про Generics](/docs/reference/generics.html)
 * Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
+* Пометить ключевые слова в тексте конструкцией `<b class="keyword">keyword-here</b>`

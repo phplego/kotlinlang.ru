@@ -26,4 +26,4 @@ url: https://kotlinlang.ru
 
 ## Актуальные задачи
 * Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
-* Пометить ключевые слова в тексте конструкцией `<b class="keyword">keyword-here</b>`
+* Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>`

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: index
 title: "Документация по Kotlin на русском"
 menuLabel: "Главная страница"
 url: https://kotlinlang.ru

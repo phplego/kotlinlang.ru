@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/reference/properties.html
 
 <!--Classes in Kotlin can have properties.
 These can be declared as mutable, using the *var*{: .keyword } keyword or read-only using the *val*{: .keyword } keyword.-->
-Классы в <b>Kotlin</b> могу иметь свойства. Они могут быть изменяемыми (_mutable_) и неизменяемыми (_read-only_): **var** и **val** соответственно.
+Классы в <b>Kotlin</b> могут иметь свойства: изменяемые (_mutable_) и неизменяемые (_read-only_) — **var** и **val** соответственно.
 
 ``` kotlin
 public class Address { 

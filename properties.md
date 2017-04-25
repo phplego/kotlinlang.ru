@@ -209,7 +209,7 @@ being accessed and the fact that it hasn't been initialized.-->
 <!--## Overriding Properties-->
 ## Переопределение свойств
 
-См. [переопределение свойств](http://kotlinlang.org/docs/reference/classes.html#overriding-properties)
+См. [Переопределение членов класса](http://kotlinlang.ru/docs/reference/classes.html#overriding-properties)
 
 <!--## Delegated Properties-->
 ## Делегированные свойства

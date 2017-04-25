@@ -231,6 +231,7 @@ Item 17: *Design and document for inheritance or else prohibit it*.-->
 Ключевое слово **open** является противоположностью слову **final** в <b>Java</b>: оно позволяет другим классам наследоваться от данного. По умолчанию, все классы в <b>Kotlin</b> имеют статус **final**, что отвечает [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 17: *Design and document for inheritance or else prohibit it*.
 
 <!--### Overriding Members-->
+<a name="overriding-properties"></a>
 ### Переопределение членов класса
 
 <!--As we mentioned before, we stick to making things explicit in Kotlin. And unlike Java, Kotlin requires explicit

@@ -28,3 +28,4 @@ url: https://kotlinlang.ru
 * Перевести статьи: [Coroutines](http://kotlinlang.org/docs/reference/coroutines.html), [Operator overloading](http://kotlinlang.org/docs/reference/operator-overloading.html), [Type-Safe Builders](http://kotlinlang.org/docs/reference/type-safe-builders.html)
 * Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>`
+* Прочие задачи (на платной основе) [@OtherWork](https://t.me/OtherWork)

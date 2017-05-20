@@ -85,6 +85,23 @@ x += 1
 
 См. [Свойства и поля](properties.html).
 
+## Комментарии
+<!--Just like Java and JavaScript, Kotlin supports end-of-line and block comments.-->
+Также, как Java и JavaScript, Kotlin поддерживает однострочные комментарии.
+
+``` kotlin
+// однострочные комментарий
+
+/* Блочный комментарий
+   из нескольких строк. */
+```
+
+<!--Unlike Java, block comments in Kotlin can be nested.-->
+В отличае от Java, блочные комментарии не могут быть вложенными.
+
+<!--See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.-->
+См. [Documenting Kotlin Code](http://kotlinlang.org/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
+
 ## Использование строковых шаблонов
 
 Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
@@ -179,11 +196,11 @@ fun main(args: Array<String>) {
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
   if (obj is String) {
-    // `obj` is automatically cast to `String` in this branch
+    // в это блоке `obj` автоматически преобразован в `String`
     return obj.length
   }
 
-  // `obj` is still of type `Any` outside of the type-checked branch
+  // `obj` имеет тип `Any` вне блока проверки типа
   return null
 }
 ```
@@ -195,7 +212,7 @@ fun getStringLength(obj: Any): Int? {
   if (obj !is String)
     return null
 
-  // `obj` is automatically cast to `String` in this branch
+  // в это блоке `obj` автоматически преобразован в `String`
   return obj.length
 }
 ```
@@ -204,7 +221,7 @@ fun getStringLength(obj: Any): Int? {
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
-  // `obj` is automatically cast to `String` on the right-hand side of `&&`
+  // `obj` автоматически преобразован в `String` справа от оператора `&&`
   if (obj is String && obj.length > 0)
     return obj.length
 
@@ -302,7 +319,7 @@ if (text in names) // names.contains(text) is called
 ```
 
 <!--Using lambda expressions to filter and map collections:-->
-Используем лямбда-выражения для фильтрации и модификации коллекции:
+Использование лямбда-выражения для фильтрации и модификации коллекции:
 
 ``` kotlin
 names

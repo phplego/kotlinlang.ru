@@ -16,7 +16,7 @@ url: https://kotlinlang.ru/docs/reference/returns.html
 * **break**. Terminates the nearest enclosing loop.
 * **continue**. Proceeds to the next step of the nearest enclosing loop.-->
 * **return** по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](lambdas.md#anonymous-functions)
-* **break** завершает выполнение функции
+* **break** завершает выполнение цикла
 * **continue** продолжает выполнение цикла со следующего его шага, без обработки оставшегося кода текущей итерации
 
 

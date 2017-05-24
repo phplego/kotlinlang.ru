@@ -101,7 +101,7 @@ class Customer public @Inject constructor(name: String) { ... }
 ```
 
 <!--For more details, see [Visibility Modifiers](visibility-modifiers.html#constructors).-->
-Для более подробной информации по данному вопросу, см. ["Модификаторы видимости"](http://kotlinlang.org/docs/reference/visibility-modifiers.html#constructors).
+Для более подробной информации по данному вопросу, см. ["Модификаторы доступа"](http://kotlinlang.ru/docs/reference/visibility-modifiers.html#constructors).
 
 <!--#### Secondary Constructors-->
 #### Второстепенные конструкторы 
@@ -175,10 +175,10 @@ val customer = Customer("Joe Smith")
 * [Nested and Inner Classes](nested-classes.html)
 * [Object Declarations](object-declarations.html)-->
 * Конструкторы и инициализирующие блоки
-* [Функции](functions.md)
-* [Свойства](http://kotlinlang.org/docs/reference/properties.html)
-* [Вложенные классы](http://kotlinlang.org/docs/reference/nested-classes.html)
-* [Объявления объектов](http://kotlinlang.org/docs/reference/object-declarations.html)
+* [Функции](http://kotlinlang.ru/docs/reference/functions.html)
+* [Свойства](http://kotlinlang.ru/docs/reference/properties.html)
+* [Вложенные классы](http://kotlinlang.ru/docs/reference/nested-classes.html)
+* [Объявления объектов](http://kotlinlang.ru/docs/reference/object-declarations.html)
 
 
 <!--## Inheritance-->
@@ -277,7 +277,7 @@ open class AnotherDerived() : Base() {
 * If people really want to hack, there still are ways: you can always write your hack in Java and call it from Kotlin (*see [Java Interop](java-interop.html)*), and Aspect frameworks always work for these purposes-->
 * Опыт поколений говорит о том, что, в любом случае, лучше не позволять внедрять такие хаки
 * Люди успешно используют другие языки (<b>C++</b>, <b>C#</b>), которые имеют аналогичных подход к этому вопросу
-* Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его из-под <b>Kotlin</b> (см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html)
+* Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его из-под <b>Kotlin</b> _(см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html)_
 
 <!--### Overriding Rules-->
 ### Правила переопределения
@@ -345,7 +345,7 @@ package-level functions instead.-->
 <!--If you need to write a function that can be called without having a class instance but needs access to the internals
 of a class (for example, a factory method), you can write it as a member of an [object declaration](object-declarations.html)
 inside that class.-->
-Если вам нужно написать функцию, которая может быть использована без создания экземпляра класса, но имела бы доступ к данным внутри этого класса (к примеру, фабричный метод), вы можете написать её как член [объявления объекта](http://kotlinlang.org/docs/reference/object-declarations.html) внутри этого класса.
+Если вам нужно написать функцию, которая может быть использована без создания экземпляра класса, но имела бы доступ к данным внутри этого класса (к примеру, фабричный метод), вы можете написать её как член [объявления объекта](http://kotlinlang.ru/docs/reference/object-declarations.html) внутри этого класса.
 
 <!--Even more specifically, if you declare a [companion object](object-declarations.html#companion-objects) inside your class,
 you'll be able to call its members with the same syntax as calling static methods in Java/C#, using only the class name
@@ -381,7 +381,7 @@ the declaration of the sealed class.-->
 
 <!--The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible
 to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.-->
-Ключевое преимущество использования изолированных **sealed** проявляется, когда применяется выражение [`when`](http://kotlinlang.org/docs/reference/control-flow.html#when-expression). Если есть возможность того, что утверждение покрывает все возможные варианты, то к нему нет необходимости добавлять оператор `else`.
+Ключевое преимущество использования изолированных **sealed** проявляется, когда применяется выражение [`when`](http://kotlinlang.ru/docs/reference/control-flow.html#when-expression). Если есть возможность того, что утверждение покрывает все возможные варианты, то к нему нет необходимости добавлять оператор `else`.
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {

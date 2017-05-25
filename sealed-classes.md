@@ -17,21 +17,30 @@ of a sealed class can have multiple instances which can contain state.-->
 Изолированные классы используются для отражения ограниченных иерархий классов, когда значение может иметь тип только из ограниченного набора, и никакой другой. Они являются, по сути, расширением enum-классов: набор значений enum типа также ограничен, но каждая enum-константа существует только в единственном экземпляре, в то время как наследник изолированного класса может иметь множество экземпляров, которые могут нести в себе какое-то состояние.
 
 <!--To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
-subclasses, but all of them must be nested inside the declaration of the sealed class itself.-->
+subclasses, but all of them must be declared in the same file as the sealed class itself. (Before Kotlin 1.1,
+the rules were even more strict: classes had to be nested inside the declaration of the sealed class). -->
 
-Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены внутри декларации данного изолированного класса (ограничение снято, начиная с версии 1.1 &mdash; прим. пер.) 
+Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены в том же файле, что и сам изолированный класс. (До версии Kotlin 1.1, правила были ещё более строгими: классы должны были быть вложены в объявлении изолированного класса). 
 
 ``` kotlin
-sealed class Expr {
-    class Const(val number: Double) : Expr()
-    class Sum(val e1: Expr, val e2: Expr) : Expr()
-    object NotANumber : Expr()
+sealed class Expr
+data class Const(val number: Double) : Expr()
+data class Sum(val e1: Expr, val e2: Expr) : Expr()
+object NotANumber : Expr()
+
+fun eval(expr: Expr): Double = when (expr) {
+    is Const -> expr.number
+    is Sum -> eval(expr.e1) + eval(expr.e2)
+    NotANumber -> Double.NaN
 }
 ```
 
-<!--Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside the declaration of the sealed class.-->
-
-Обратите внимание, что классы, которые расширяют наследников изолированного класса (непрямые наследники) могут быть помещены где угодно, не обязательно внутри декларации изолированного класса.
+<!--(The example above uses one additional new feature of Kotlin 1.1: the possibility for data classes to extend other
+classes, including sealed classes.)
+Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily in
+the same file.-->
+(Пример выше использует одну новую возможность Kotlin 1.1: расширение классов, включая изолированные, классами данных)
+Обратите внимание, что классы, которые расширяют наследников изолированного класса (непрямые наследники) могут быть помещены где угодно, не обязательно в том же файле.
 
 
 <!--The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.-->
@@ -44,30 +53,5 @@ fun eval(expr: Expr): Double = when(expr) {
     is Expr.Sum -> eval(expr.e1) + eval(expr.e2)
     Expr.NotANumber -> Double.NaN
     // оператор `else` не требуется, потому что мы покрыли все возможные случаи
-}
-```
-
-## Relaxed Rules for Sealed Classes (since 1.1)
-
-### Subclasses in the Same File
-
-Since 1.1 you can declare the subclasses of the `sealed` class on the top-level, with only restriction that they should be located in the same file as the parent class. 
-
-### Sealed Classes and Data Classes
-
-Data classes can extend other classes, including `sealed` classes, which makes the hierarchy more usable.
-
-With all the newly supported features, you can rewrite the `Expr` class hierarchy in the following way:
-
-``` kotlin
-sealed class Expr
-data class Const(val number: Double) : Expr()
-data class Sum(val e1: Expr, val e2: Expr) : Expr()
-object NotANumber : Expr()
-
-fun eval(expr: Expr): Double = when (expr) {
-    is Const -> expr.number
-    is Sum -> eval(expr.e1) + eval(expr.e2)
-    NotANumber -> Double.NaN
 }
 ```

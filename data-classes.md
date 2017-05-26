@@ -21,7 +21,7 @@ data class User(val name: String, val age: Int)
 the primary constructor:-->
 Такой класс называется _классом данных_. Компилятор автоматически извлекает все члены данного класса из свойств, объявленных в первичном конструкторе:
 
-  * пара функций `equals()`/`hashCide()`,
+  * пара функций `equals()`/`hashCode()`,
   * `toString()` в форме `"User(name=Jhon, age=42)"`,
   * функции [`componentN()`](https://kotlinlang.org/docs/reference/multi-declarations.html), которые соответствуют свойствам, в зависимости от их порядка либо объявления,
   * функция `copy()` (см. ниже)

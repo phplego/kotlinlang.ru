@@ -16,8 +16,13 @@ title: "Coroutines"
 
 Многие асинхронные механизмы, доступные в других языках программирования, могут быть реализованы в качестве библиотек, используя сопрограммы Kotlin. Это включает в себя [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) из C# и ECMAScript, [channels](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) и [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) из языка Go, и [generators/`yield`](#generators-api-in-kotlincoroutines) из C# или Python. См. описания ниже о библиотеках, реализующих такие конструкции.
 See the description [below](#standard-apis) for libraries providing such constructs.
-
 ## Блокирование против приостановки 
+
+Главным отличительным признаком является то, что сопрограммы являются вычислениями, которые могут быть приостановлены без блокирования потока (вытеснения средствами операционной системы). Блокирование потоков часто является весьма дорогостоящим, особенно при интенсивных нагрузках: только относительно небольшое число потоков из общего числа является активно выполняющимися, поэтому блокировка одного из них ведет к затягиванию какой-нибудь важной части итоговой работы.
+
+Приостановка сопрограмма, с другой стороны, практически обходится бесплатно. Не требуется никакого переключения контекста (потоков) или иного вовлечения механизмов операционной системы. И сверх этого, приостановка может гибко контролироваться пользовательской библиотекой во многих аспектах: в качестве авторов библиотеки, мы можем решать что происходит при приостановке и оптимизировать, журналировать или перехватывать в соответствии со своими потребностями.
+
+Еще одно отличие заключается в том, что сопрограммы не могут быть приостановлены на  произвольной инструкции, но только в так называемых точках остановки, которые вызываются в специально маркируемых функциях.
 
 Basically, coroutines are computations that can be *suspended* without *blocking a thread*. Blocking threads is often expensive, especially under high load, because only a relatively small number of threads is practical to keep around, so blocking one of them leads to some important work being delayed.
  

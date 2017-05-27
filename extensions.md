@@ -53,7 +53,7 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 <!--We declare the generic type parameter before the function name for it to be available in the receiver type expression. 
 See [Generic functions](generics.html).-->
 Мы объявляем обобщённый тип-параметр перед именем функции для того, чтобы он был доступен в получаемом типе-выражении.
-См. [Обобщения](http://kotlinlang.org/docs/reference/generics.html).
+См. [Обобщения](/docs/reference/generics.html).
 
 <!--## Extensions are resolved **statically**-->
 ## Расширения вычисляются статически

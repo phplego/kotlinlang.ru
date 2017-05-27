@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/reference/generics.html
 # Обобщения (Generics)
 
 <!-- As in Java, classes in Kotlin may have type parameters: -->
-Как и в <b>Java</b>, в <b>Kotlin</b> классы тоже могут иметь типовые типы:
+Как и в <b>Java</b>, в <b>Kotlin</b> классы тоже могут иметь generic типы:
 
 ``` kotlin
 class Box<T>(t: T) {
@@ -41,7 +41,7 @@ val box = Box(1) // 1 имеет тип Int, поэтому компилятор
 А в <b>Kotlin</b> этого нет. Вместо этого, у нас есть две другие вещи: _вариативность на уровне объявления_ и _проекции типов_.
 
 <!-- First, let's think about why Java needs those mysterious wildcards. The problem is explained in [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*. -->
-Для начала давайте подумаем на тему, зачем <b>Java</b> нужны эти странные маски. Пробема описана в книге [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*.
+Для начала давайте подумаем на тему, зачем <b>Java</b> нужны эти странные маски. Проблема описана в книге [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*.
 <!-- First, generic types in Java are **invariant**, meaning that `List<String>` is **not** a subtype of `List<Object>`. -->
 Обобщающие типы в <b>Java</b>, прежде всего, **неизменны**. Это значит, что `List<String>` *не является* подтипом `List<Object>`.
 <!-- Why so? If List was not **invariant**, it would have been no -->
@@ -112,7 +112,7 @@ interface Collection<E> ... {
 Это назвается **контрвариантностью**. В `List<? super String>` вы можете вызвать только те методы, которые принимают String в качестве аргумента (например, `add(String)` или `set(int, String)`). В случае, если вы вызываете из `List<T>` что-то c возвращаемым значением `T`, вы получаете не `String`, а `Object`.
 
 <!-- Joshua Bloch calls those objects you only **read** from **Producers**, and those you only **write** to **Consumers**. He recommends: "*For maximum flexibility, use wildcard types on input parameters that represent producers or consumers*", and proposes the following mnemonic: -->
-Джоуа Блок (Joshua Block) называет объекты:
+Джошуа Блок (Joshua Block) называет объекты:
 - **Производителями** (ориг.:_producers_), если из которых вы только **читаете**
 - **Потребителями** (ориг.: _consumers_), если вы только **записываете** в них
 Его рекомендация: "*Для максимальной гибкости, используйте маски (ориг. wildcards) на входных параметрах, которые представляют производителей или потребителей*"
@@ -131,7 +131,7 @@ interface Collection<E> ... {
 ### Вариантность на уровне объявления
 
 <!-- Suppose we have a generic interface `Source<T>` that does not have any methods that take `T` as a parameter, only methods that return `T`: -->
-Допустим, у нас есть дженерик интерфейс `Source<T>`, у которого нет методов, которые принимают `T` в качестве аргумента. Только методы, возвращающие `T`:
+Допустим, у нас есть generic интерфейс `Source<T>`, у которого нет методов, которые принимают `T` в качестве аргумента. Только методы, возвращающие `T`:
 
 ``` java
 // Java

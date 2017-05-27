@@ -5,18 +5,19 @@ category: "Syntax"
 title: "Coroutines"
 ---
 
-# Coroutines
+# Сопрограммы
 
 > Coroutines are *experimental* in Kotlin 1.1. See details [below](#experimental-status-of-coroutines) 
+> Сопрограммы являются *экспериментальной частью* в языке Kotlin 1.1. Детали см.[далее](#Экспериментальный статус сопрограмм) 
 
+Некоторые API инициируют долго протекающие операции (такие как сетевой ввод-вывод, файловый ввод-вывод, интенсивная обработка на CPU или GPU и др.), которые требуют вызывающий код блокироваться в ожидании завершения операций. Механизм сопрограмм обеспечивает способ избежать блокировки исполняющегося потока и заменить его на более дешевый и более комфортный: *приостановку* (suspend) сопрограммы.
 
-Some APIs initiate long-running operations (such as network IO, file IO, CPU- or GPU-intensive work, etc) and require the caller to block until they complete. Coroutines provide a way to avoid blocking a thread and replace it with a cheaper and more controllable operation: *suspension* of a coroutine.
+Сопрограммы упрощают асинхронное программирование, оставив все осложнения внутри библиотек. Логика программы может быть выражена *последовательно* в сопрограммах, а базовая библиотека будет её реализовывать асинхронно для нас. Библиотека может обернуть соответствующие части кода пользователя в обратные вызовы (callbacks), подписывающиеся на соответствующие события, диспетчировать исполнение на различные потоки (или даже на разные машины!), а код останется столь же простой, как если бы исполнялся строго  последовательно.
 
-Coroutines simplify asynchronous programming by putting the complications into libraries. The logic of the program can be expressed *sequentially* in a coroutine, and the underlying library will figure out the asynchrony for us. The library can wrap relevant parts of the user code into callbacks, subscribe to relevant events, schedule execution on different threads (or even different machines!), and the code remains as simple as if it was sequentially executed.   
+Многие асинхронные механизмы, доступные в других языках программирования, могут быть реализованы в качестве библиотек, используя сопрограммы Kotlin. Это включает в себя [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) из C# и ECMAScript, [channels](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) и [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) из языка Go, и [generators/`yield`](#generators-api-in-kotlincoroutines) из C# или Python. См. описания ниже о библиотеках, реализующих такие конструкции.
+See the description [below](#standard-apis) for libraries providing such constructs.
 
-Many asynchronous mechanisms available in other languages can be implemented as libraries using Kotlin coroutines. This includes [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) from C# and ECMAScript, [channels](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) and [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) from Go, and [generators/`yield`](#generators-api-in-kotlincoroutines) from C# and Python. See the description [below](#standard-apis) for libraries providing such constructs.
-
-## Blocking vs Suspending
+## Блокирование против приостановки 
 
 Basically, coroutines are computations that can be *suspended* without *blocking a thread*. Blocking threads is often expensive, especially under high load, because only a relatively small number of threads is practical to keep around, so blocking one of them leads to some important work being delayed.
  
@@ -24,7 +25,7 @@ Coroutine suspension is almost free, on the other hand. No context switch or any
 
 Another difference is that coroutines can not be suspended at random instructions, but rather only at so called *suspension points*, which are calls to specially marked functions.  
 
-## Suspending functions
+## Останавливаемые функции 
 
 A suspension happens when we call a function marked with the special modifier, `suspend`:
 
@@ -81,7 +82,7 @@ class Derived: Base {
 }
 ``` 
 
-### `@RestrictsSuspension` annotation
+### `@RestrictsSuspension` аннотация 
  
 Extension functions (and lambdas) can also be marked `suspend`, just like regular ones. This enables creation of [DSLs](type-safe-builders.html) and other APIs that users can extend. In some cases the library author needs to prevent the user from adding *new ways* of suspending a coroutine. 
 
@@ -98,7 +99,7 @@ public abstract class SequenceBuilder<in T> {
  
 See the sources [on Github](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt).   
 
-## The inner workings of coroutines
+## Внутреннее функционирование сопрограмм
 
 We are not trying here to give a complete explanation of how coroutines work under the hood, but a rough sense of what's going on is rather important.
 
@@ -108,7 +109,7 @@ A suspended coroutine can be stored and passed around as an object that keeps it
 
 More details on how coroutines work may be found in [this design document](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Similar descriptions of async/await in other languages (such as C# or ECMAScript 2016) are relevant here, although the language features they implement may not be as general as Kotlin coroutines. 
 
-## Experimental status of coroutines
+## Экспериментальный статус сопрограмм 
 
 The design of coroutines is [experimental](compatibility.html#experimental-features), which means that it may be changed in the upcoming releases. When compiling coroutines in Kotlin 1.1, a warning is reported by default: *The feature "coroutines" is experimental*. To remove the warning, you need to specify an [opt-in flag](/docs/diagnostics/experimental-coroutines.html).
 

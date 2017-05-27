@@ -33,8 +33,8 @@ suspend fun doSomething(foo: Foo): Bar {
 
 Такие функции называются *функциями остановки* (приостановки), поскольку вызовы их могут приостановить выполнение сопрограммы (библиотека может принять решение продолжать работу и без приостановки, если результат вызова уже доступен). Функции остановки могут иметь параметры и возвращать значения, точно так же как и все обычные функции, но они могут быть вызваны только из сопрограмм, или других функций остановки. В конечном итоге, при старте сопрограммы она должна содержать, как минимум, одну функцию остановки, и функция эта обычно анонимная (лямбда-функция остановки). Давайте взглянем, для примера, на упрощённую функцию `async()` (из библиотеки [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines)):
 
-<!—
-Such functions are called *suspending functions*, because calls to them may suspend a coroutine (the library can decide to proceed without suspension, if the result for the call in question is already available). Suspending functions can take parameters and return values in the same manner as regular functions, but they can only be called from coroutines and other suspending functions. In fact, to start a coroutine, there must be at least one suspending function, and it is usually anonymous (i.e. it is a suspending lambda). Let's look at an example, a simplified `async()` function (from the [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines) library): —>
+<!--
+Such functions are called *suspending functions*, because calls to them may suspend a coroutine (the library can decide to proceed without suspension, if the result for the call in question is already available). Suspending functions can take parameters and return values in the same manner as regular functions, but they can only be called from coroutines and other suspending functions. In fact, to start a coroutine, there must be at least one suspending function, and it is usually anonymous (i.e. it is a suspending lambda). Let's look at an example, a simplified `async()` function (from the [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines) library): -->
 
     
 ``` kotlin

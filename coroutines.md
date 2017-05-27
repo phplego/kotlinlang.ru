@@ -134,20 +134,36 @@ The design of coroutines is [experimental](compatibility.html#experimental-featu
 
 Due to its experimental status, the coroutine-related API in the Standard Library is put under the `kotlin.coroutines.experimental` package. When the design is finalized and the experimental status lifted, the final API will be moved to `kotlin.coroutines`, and the experimental package will be kept around (probably in a separate artifact) for backward compatibility. 
 
+Дизайн сопрограмм носит статус experimental, экспериментальный характер означает, что он может быть изменён в будущих релизах. Дизайн сопрограмм носит экспериментальный характер, что означает, что он может быть изменен в будущих релизах. При составлении сопрограммы в Kotlin 1.1, по умолчанию выводится предупреждение: The feature "coroutines" is experimental. 
+Чтобы убрать предупреждение, необходимо указать опцию opt-in flag. 
+Из-за экспериментального статуса сопрограмм, все связанные API собраны в стандартной библиотеке как пакет kotlin.coroutines.experimental. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет kotlin.coroutines, а экспериментальный пакет будет храниться в среде (возможно, как отдельный артефакт), в целях обеспечения обратной совместимости.
+
 **IMPORTANT NOTE**: We advise library authors to follow the same convention: add the "experimental" (e.g. `com.example.experimental`) suffix to your packages exposing coroutine-based APIs so that your library remains binary compatible. When the final API is released, follow these steps:
  * copy all the APIs to `com.example` (without the experimental suffix),
  * keep the experimental package around for backward compatibility. 
  
 This will minimize migration issues for your users. 
+Важное замечание: мы рекомендуем авторам библиотека следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, com.example.experimental), указывающий какой там используется сопрограммно совместимый API, таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
+- скопировать все API для com.example (без experimental суффикса);
+- сохранить экспериментальные вариант пакета для обратной совместимости.
+Это позволит минимизировать проблемы миграции для пользователей.
 
-## Standard APIs
- 
+<!--## Standard APIs-->
+## Стандартные API 
+
 Coroutines come in three main ingredients: 
  - language support (i.s. suspending functions, as described above),
  - low-level core API in the Kotlin Standard Library,
  - high-level APIs that can be used directly in the user code.
- 
+Сопрограммы представлены в трёх их главных ингредиентах:
+- языковая поддержка (функции остановки, как описывалось выше);
+- базовая API поддержка низкого уровня в стандартной библиотеке Kotlin;
+- API высокого уровня, которые могут быть использованы непосредственно в пользовательском коде;    
 ### Low-level API: `kotlin.coroutines` 
+
+Низкий уровень API: kotlin.coroutines 
+Низкоуровневый API относительно мал, и никогда не должен быть использован для создания библиотек высокого уровня. Он содержит два главных пакета:  
+kotlin.coroutines.experimental - главные типы и примитивы такие как:
 
 Low-level API is relatively small and should never be used other than for creating higher-level libraries. It consists of two main packages: 
 - [`kotlin.coroutines.experimental`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html) with main types and primitives such as
@@ -156,16 +172,25 @@ Low-level API is relatively small and should never be used other than for creati
   - [`suspendCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html)
 - [`kotlin.coroutines.experimental.intrinsics`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) with even lower-level intrinsics such as [`suspendCoroutineOrReturn`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)
  
+ kotlin.coroutines.experimental.intrinsics -  еще более низкого уровня встроенные функции, такие как:
+suspendCoroutineOrReturn
+Более детальная информация о использовании этих API может быть найдена здесь.
+ 
  More details about the usage of these APIs can be found [here](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md).
 
 ### Generators API in `kotlin.coroutines`
-  
+API генераторов в kotlin.coroutines 
+
 The only "application-level" functions in `kotlin.coroutines.experimental` are
 - [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html)
 - [`buildIterator()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html)
 
 These are shipped within `kotlin-stdlib` because they are related to sequences. In fact, these functions (and we can limit ourselves to `buildSequence()` alone here) implement _generators_, i.e. provide a way to cheaply build a lazy sequence:
- 
+
+Это функции исключительно «уровня приложения» в kotlin.coroutines.experimental:  
+buildSequence()
+buildIterator()
+Они перенесены в рамки kotlin-stdlib, поскольку они относятся к последовательностям. По сути, эти функции (и мы можем ограничиться здесь рассмотрением только buildSequence()) реализуют генераторы, т. е. предоставляют лёгкую возможность построить ленивые последовательности:
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -193,6 +218,8 @@ fun main(args: Array<String>) {
 }
 ```
 
+Это порождает ленивую, потенциально бесконечную последовательность Фибоначчи, путём создания сопрограмм, для создания последовательности чисел Фибоначчи вызовом функции yield(). При итерировании такой последовательности на каждом шаге итератор выполняет следующую часть сопрограммы, которая генерирует следующее число. Таким образом, мы можем взять любой конечный список чисел из этой последовательности, например fibonacciSeq.take(8).toList(), дающий в результате [1, 1, 2, 3, 5, 8, 13, 21]. И сопрограммы являются достаточно дешевым способом, чтобы осуществлять это на практике.
+Чтобы продемонстрировать реальную ленивость такой последовательности, давайте напечатаем некоторые отладочные результаты изнутри вызова buildSequence():
   
 This generates a lazy, potentially infinite Fibonacci sequence by creating a coroutine that yields consecutive Fibonacci numbers by calling the `yield()` function. When iterating over such a sequence every step of the iterator executes another portion of the coroutine that generates the next number. So, we can take any finite list of numbers out of this sequence, e.g. `fibonacciSeq.take(8).toList()` results in `[1, 1, 2, 3, 5, 8, 13, 21]`. And coroutines are cheap enough to make this practical. 
    
@@ -222,6 +249,9 @@ Run the code above to see that if we print the first three elements, the numbers
    
 To yield a collection (or sequence) of values at once, the `yieldAll()` function is available:
 
+Запустите приведенный выше код чтобы убедиться, что если мы будем печатать первые три элементов, цифры чередуются с STEP-ами по ветвям цикла. Это означает что вычисления действительно ленивые. Для печати 1 мы выполняем только до первого yield(i), и печатаем START ходу дела. Затем, для печати 2 нам необходимо переходить к следующему yield(i), и здесь печатать STEP. То же самое и для 3. И следующий STEP никогда не будет напечатан (точно так же как и END), поскольку мы никогда не запрашиваем дополнительных элементов последовательности.
+Чтобы сразу породить всю коллекцию (или последовательность) значений доступна функция yieldAll():
+
 ``` kotlin
 import kotlin.coroutines.experimental.*
 
@@ -236,6 +266,9 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
+
+Функция buildIterator() во всём подобна buildSequence(), но только возвращает ленивый итератор.
+Вы могли бы добавить собственную уступку логики выполнения функции buildSequence(), написав приостанавливаемое расширение класса SequenceBuilder (что порождается аннотацией @RestrictsSuspension как описывалось выше):
 
 The `buildIterator()` works similarly to `buildSequence()`, but returns a lazy iterator.
 
@@ -273,3 +306,16 @@ Most application-level APIs based on coroutines are released as a separate libra
  * Support for RxJava: `kotlinx-coroutines-rx`
  
 These libraries serve as both convenient APIs that make common tasks easy and end-to-end examples of how to build coroutine-based libraries. 
+
+
+Другие API высокого уровня: kotlinx.coroutines 
+Только базовые API относительно сопрограмм доступны непосредственно из стандартной библиотеки Kotlin. Они, главным образом, состоят из основных примитивов и интерфейсов, которые все библиотеки, основанные на сопрограммах, могут использовать.
+Большинство же API уровня приложений, основанные на сопрограммах, реализованы в отдельной библиотеке kotlinx.coroutines. Эта библиотека содержит в себе:    
+ Платформенно-зависимое асинхронное программирование с помощью kotlinx-coroutines-core :
+ этот модуль включает Go подобные каналы, которые поддерживают select и другие удачные примитивы;
+ исчерпывающее руководство по этой библиотеке, доступное здесь. 
+ API основанные на CompletableFuture из JDK 8: kotlinx-coroutines-jdk8
+ Неблокирующий ввод-вывод (NIO), основанный на API из JDK 7 и выше: kotlinx-coroutines-nio
+ Поддержка для Swing (kotlinx-coroutines-swing) and JavaFx (kotlinx-coroutines-javafx)
+ Поддержка для RxJava: kotlinx-coroutines-rx
+Эти библиотеки одновременно служат как удобными API, которые делают основные задачи простыми, и, также, содержат законченные примеры того как создавать библиотеки, построенные на сопрограммах.

@@ -178,8 +178,6 @@ This generates a lazy, potentially infinite Fibonacci sequence by creating a cor
    
 To demonstrate the real laziness of such a sequence, let's print some debug output inside a call to `buildSequence()`:
   
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
-
 ``` kotlin
 import kotlin.coroutines.experimental.*
 
@@ -200,13 +198,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>  
-   
 Run the code above to see that if we print the first three elements, the numbers are interleaved with the `STEP`s the generating loop. This means that the computation is lazy indeed. To print `1` we only execute until the first `yield(i)`, and print `START` along the way. Then, to print `2` we need to proceed to the next `yield(i)`, and this prints `STEP`. Same for `3`. And the next `STEP` never gets printed (as well as `END`), because we never requested further elements of the sequence.   
    
 To yield a collection (or sequence) of values at once, the `yieldAll()` function is available:
-
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -223,13 +217,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>  
-
 The `buildIterator()` works similarly to `buildSequence()`, but returns a lazy iterator.
 
 One can add custom yielding logic to `buildSequence()` by writing suspending extensions to the `SequenceBuilder` class (that bears the `@RestrictsSuspension` annotation described [above](#restrictssuspension-annotation)):
-
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -248,8 +238,6 @@ fun main(args: Array<String>) {
     lazySeq.forEach { print("$it ") }
 }
 ```
-
-</div>  
   
 ### Other high-level APIs: `kotlinx.coroutines`
 

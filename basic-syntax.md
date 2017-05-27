@@ -97,7 +97,7 @@ x += 1
 ```
 
 <!--Unlike Java, block comments in Kotlin can be nested.-->
-В отличае от Java, блочные комментарии не могут быть вложенными.
+В отличие от Java, блочные комментарии не могут быть вложенными.
 
 <!--See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.-->
 См. [Documenting Kotlin Code](http://kotlinlang.org/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
@@ -110,7 +110,7 @@ x += 1
 fun main(args: Array<String>) {
   if (args.size == 0) return
 
-  print("First argument: ${args[0]}")
+  print("Первый аргумент: ${args[0]}")
 }
 ```
 
@@ -159,7 +159,7 @@ fun main(args: Array<String>) {
   val x = parseInt(args[0])
   val y = parseInt(args[1])
 
-  // Использование `x * y` приведет к ошибке, потомучто они могут содержать null
+  // Использование `x * y` приведет к ошибке, потому что они могут содержать null
   if (x != null && y != null) {
     // x и y автоматически приведены к не-nullable после проверки на null
     print(x * y)
@@ -311,10 +311,10 @@ for (name in names)
   println(name)
 ```
 
-Проверка содержит ли коллекция данный объект с помощью оператора **in**:
+Проверка, содержит ли коллекция данный объект с помощью оператора **in**:
 
 ``` kotlin
-if (text in names) // names.contains(text) is called
+if (text in names) // names.contains(text) вызывается
   print("Yes")
 ```
 

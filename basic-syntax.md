@@ -126,20 +126,20 @@ fun max(a: Int, b: Int): Int {
     return b
 }
 ```
-Также **if** может быть использовано как выражение (т. е. **if** ... **else** возвращает значение):
+Также <b class="keyword">if</b> может быть использовано как выражение (т. е. <b class="keyword">if</b> ... <b class="keyword">else</b> возвращает значение):
 
 
 ``` kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-См. [Выражение **if**<!--keyword-->](control-flow.html#if-expression).
+См. [Выражение <b class="keyword">if</b>](control-flow.html#if-expression).
 
-## Nullable-значения и проверка на **null**<!--keyword-->
+## Nullable-значения и проверка на <b class="keyword">null</b>
 
-Ссылка должна быть явно объявлена как nullable (символ `?`) когда она может принимать значение **null**.
+Ссылка должна быть явно объявлена как nullable (символ `?`) когда она может принимать значение <b class="keyword">null</b>.
 
-Возвращает **null**<!--keyword--> если `str` не содержит числа:
+Возвращает <b class="keyword">null</b> если `str` не содержит числа:
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -147,7 +147,7 @@ fun parseInt(str: String): Int? {
 }
 ```
 
-Использование функции, возвращающей **null**:
+Использование функции, возвращающей <b class="keyword">null</b>:
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -189,7 +189,7 @@ fun main(args: Array<String>) {
 <!-- ## Using type checks and automatic casts -->
 ## Проверка типа и автоматическое приведение типов
 
-Оператор **is**<!--keyword--> проверяет, является ли выражение экземпляром заданного типа.
+Оператор <b class="keyword">is</b> проверяет, является ли выражение экземпляром заданного типа.
 Если неизменяемя внутренняя переменная или свойство уже проверены на определенный тип, то в дальнейшем нет небходимости
 явно приводить к этому типу:
 
@@ -277,30 +277,40 @@ fun cases(obj: Any) {
 
 См. [выражение when](control-flow.html#when-expression).
 
-## Использование диапазонов
+## Использование интервалов
 
-Проверка входит ли число в диапазон с помощью оператора **in**:
+Проверка на вхождение числа в интервал с помощью оператора <b class="keyword">in</b>:
 
 ``` kotlin
 if (x in 1..y-1)
   print("OK")
 ```
 
-Проверка числа на выход из диапазона:
+Проверка значения на выход за пределы интервала:
 
 ``` kotlin
 if (x !in 0..array.lastIndex)
   print("Out")
 ```
 
-Проход по диапазону:
+Итерация по интервалу:
 
 ``` kotlin
 for (x in 1..5)
   print(x)
 ```
+<!--or over a progression:-->
+Или по арифметической прогрессии:
+``` kotlin
+for (x in 1..10 step 2) {
+  print(x)
+}
+for (x in 9 downTo 0 step 3) {
+  print(x)
+}
+```
 
-См. [Диапазоны](ranges.html).
+См. [Интервалы](ranges.html).
 
 ## Использование коллекций
 
@@ -311,11 +321,14 @@ for (name in names)
   println(name)
 ```
 
-Проверка, содержит ли коллекция данный объект с помощью оператора **in**:
+Проверка, содержит ли коллекция данный объект, с помощью оператора <b class="keyword">in</b>:
 
 ``` kotlin
-if (text in names) // names.contains(text) вызывается
-  print("Yes")
+val items = setOf("apple", "banana", "kiwi")
+when {
+  "orange" in items -> println("juicy")
+  "apple" in items -> println("apple is fine too")
+}
 ```
 
 <!--Using lambda expressions to filter and map collections:-->

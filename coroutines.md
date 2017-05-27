@@ -41,7 +41,8 @@ Such functions are called *suspending functions*, because calls to them may susp
 fun <T> async(block: suspend () -> T)
 ``` 
 
-Here, `async()` is a regular function (not a suspending function), but the `block` parameter has a function type with the `suspend` modifier: `suspend () -> T`. So, when we pass a lambda to `async()`, it is a *suspending lambda*, and we can call a suspending function from it:
+<!--Here, `async()` is a regular function (not a suspending function), but the `block` parameter has a function type with the `suspend` modifier: `suspend () -> T`. So, when we pass a lambda to `async()`, it is a *suspending lambda*, and we can call a suspending function from it: -->
+Здесь `async()` является обычной функцией (не функцией остановки), но `block` параметр имеет функциональный тип с модификатором `suspend`:  `suspend() -> T`. Таким образом, когда передаём лямбда-функцию в `async()`, она является анонимной функцией остановки, и мы можем вызывать функцию остановки изнутри её:
    
 ``` kotlin
 async {
@@ -50,7 +51,8 @@ async {
 }
 ```
 
-To continue the analogy, `await()` can be a suspending function (hence also callable from within an `async {}` block) that suspends a coroutine until some computation is done and returns its result:
+<!--To continue the analogy, `await()` can be a suspending function (hence also callable from within an `async {}` block) that suspends a coroutine until some computation is done and returns its result: -->
+Продолжая аналогию, `await()` может быть функцией остановки (также может вызываться из блока `async {}`), которая приостанавливает сопрограмму до тех пор, пока некоторые вычисления не будут выполнены, и затем возвращает их результат:
 
 ``` kotlin
 async {
@@ -60,9 +62,11 @@ async {
 }
 ```
 
-More information on how actual `async/await` functions work in `kotlinx.coroutines` can be found [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions).
+<!-- More information on how actual `async/await` functions work in `kotlinx.coroutines` can be found [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions). -->
+Больше информации о том, как действительно работают функции `async/await` в  `kotlinx.coroutines` может быть найдено [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions). 
 
-Note that suspending functions `await()` and `doSomething()` can not be called from a regular function like `main()`:
+<!--Note that suspending functions `await()` and `doSomething()` can not be called from a regular function like `main()`: -->
+Отметим, что функции приостановки `await()` и `doSomething()` не могут быть вызваны из обыкновенных функций, подобных `main()`:
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -70,7 +74,8 @@ fun main(args: Array<String>) {
 }
 ```
 
-Also note that suspending functions can be virtual, and when overriding them, the `suspend` modifier has to be specified:
+<!--Also note that suspending functions can be virtual, and when overriding them, the `suspend` modifier has to be specified: -->
+Заметим также, что функции остановки могут быть виртуальными, и при переопределении их модификатор `suspend` должен быть указан:
  
 ``` kotlin
 interface Base {
@@ -83,12 +88,17 @@ class Derived: Base {
 ``` 
 
 ### `@RestrictsSuspension` аннотация 
- 
+<!-- 
 Extension functions (and lambdas) can also be marked `suspend`, just like regular ones. This enables creation of [DSLs](type-safe-builders.html) and other APIs that users can extend. In some cases the library author needs to prevent the user from adding *new ways* of suspending a coroutine. 
 
 To achieve this, the [`@RestrictsSuspension`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html) annotation may be used. When a receiver class or interface `R` is annotated with it, all suspending extensions are required to delegate to either members of `R` or other extensions to it. Since extensions can't delegate to each other indefinitely (the program would not terminate), this guarantees that all suspensions happen through calling members of `R` that the author of the library can fully control.
 
-This is relevant in the _rare_ cases when every suspension is handled in a special way in the library. For example, when implementing generators through the [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) function described [below](#generators-api-in-kotlincoroutines), we need to make sure that any suspending call in the coroutine ends up calling either `yield()` or `yieldAll()` and not any other function. This is why [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) is annotated with `@RestrictsSuspension`:
+This is relevant in the _rare_ cases when every suspension is handled in a special way in the library. For example, when implementing generators through the [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) function described [below](#generators-api-in-kotlincoroutines), we need to make sure that any suspending call in the coroutine ends up calling either `yield()` or `yieldAll()` and not any other function. This is why [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) is annotated with `@RestrictsSuspension`: -->
+Расширяющие функции (и анонимные функции) также могут быть маркированы как `suspend`, подобно всем остальным (регулярным) функциям. Это позволяет создавать [DSL](type-safe-builders.html) и другие API, которые пользователь может расширять. В некоторых случаях автор библиотеки должен быть в состоянии препятствовать пользователю в добавлении *новых путей* приостановки в сопрограмме.
+
+Чтобы осуществить это [`@RestrictsSuspension`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html) аннотация может быть использована. Когда целевой класс или интерфейс `R` аннотируется подобным образом, все расширения приостановки должны делегироваться либо из членов `R`, или из других расширений из него. Поскольку расширения не могут делегировать друг друга до бесконечности (иначе программа никогда не завершится), это гарантирует, что все приостановки пройдут посредством вызова члены `R`, так что автор библиотеки может полностью их контролировать.
+
+Это актуально в тех _редких_ случаях, когда каждая приостановка обрабатывается специальным образом в библиотеке. Например, при реализации генераторов через [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) функцию, описанную [ниже](#generators-api-in-kotlincoroutines), мы должны быть уверены, что любой приостанавливаемый вызовов в сопрограмма завершается вызовом либо `yield()`, либо `yieldAll()`, а не какой либо другой функции. Именно по этой причине [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) аннотирована с @RestrictsSuspension:
 
 ``` kotlin
 @RestrictsSuspension
@@ -97,17 +107,25 @@ public abstract class SequenceBuilder<in T> {
 }
 ```
  
-See the sources [on Github](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt).   
+<!-- See the sources [on Github](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt). -->
+См. исходники [на Github](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt).
 
 ## Внутреннее функционирование сопрограмм
-
-We are not trying here to give a complete explanation of how coroutines work under the hood, but a rough sense of what's going on is rather important.
+<!--We are not trying here to give a complete explanation of how coroutines work under the hood, but a rough sense of what's going on is rather important.
 
 Coroutines are completely implemented through a compilation technique (no support from the VM or OS side is required), and suspension works through code transformation. Basically, every suspending function (optimizations may apply, but we'll not go into this here) is transformed to a state machine where states correspond to suspending calls. Right before a suspension, the next state is stored in a field of a compiler-generated class along with relevant local variables, etc. Upon resumption of that coroutine, local variables are restored and the state machine proceeds from the state right after suspension.
      
 A suspended coroutine can be stored and passed around as an object that keeps its suspended state and locals. The type of such objects is `Continuation`, and the overall code transformation described here corresponds to the classical [Continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style). Consequently, suspending functions take an extra parameter of type `Continuation` under the hood.
 
-More details on how coroutines work may be found in [this design document](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Similar descriptions of async/await in other languages (such as C# or ECMAScript 2016) are relevant here, although the language features they implement may not be as general as Kotlin coroutines. 
+More details on how coroutines work may be found in [this design document](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Similar descriptions of async/await in other languages (such as C# or ECMAScript 2016) are relevant here, although the language features they implement may not be as general as Kotlin coroutines. --> 
+
+Мы не стремимся здесь дать полное объяснение того, как сопрограммы работают под капотом, но примерный смысл того что происходит очень важен.
+
+Сопрограммы являются полностью реализован с помощью технологии компиляции (никакой поддержки от языковой виртуальной машины, среды исполнения, или операционной системы не требуется), и приостановка работает через преобразование кода. В принципе, каждая функция приостановки (оптимизации могут применяться, но мы не будем вдаваться в эти подробности здесь) преобразуется в конечный автомат, где состояния соответствуют приостановленным вызовам. Прямо перед приостановкой, следующее состояние загружается в поле сгенерированного компилятором класса, вместе с сопутствующими локальным переменными т. д. После возобновления работы сопрограммы, восстанавливаются локальные переменные и состояние машина продолжается сразу после точки приостановки сопрограммы.
+
+Приостановленная сопрограмма можно сохраняться и передавать как объект, который хранит её приостановленное состояние и локальные переменные. Типом таких объектов является  Continuation, а, в целом, преобразование кода описанное здесь соответствует классическому [Continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style). Окончательно, приостановливаемые функции принимают дополнительный параметр типа `Continuation` (сохранённое состояние) под капотом. 
+
+Более детально о том, как работают сопрограммы, может быть найден в [этом документе разработчиков](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md): Coroutines for Kotlin (Revision 3.2). Похожие описания `async / await` в других языках (таких как C# или ECMAScript 2016) релевантные этим описаниям, хотя особенности их языковых реализаций могут существенно отличаться от сопрограмм Kotlin.
 
 <a name="experimental-status-of-coroutines"></a>
 ## Экспериментальный статус сопрограмм 

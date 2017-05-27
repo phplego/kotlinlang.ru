@@ -146,7 +146,6 @@ The only "application-level" functions in `kotlin.coroutines.experimental` are
 
 These are shipped within `kotlin-stdlib` because they are related to sequences. In fact, these functions (and we can limit ourselves to `buildSequence()` alone here) implement _generators_, i.e. provide a way to cheaply build a lazy sequence:
  
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -174,7 +173,6 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>
   
 This generates a lazy, potentially infinite Fibonacci sequence by creating a coroutine that yields consecutive Fibonacci numbers by calling the `yield()` function. When iterating over such a sequence every step of the iterator executes another portion of the coroutine that generates the next number. So, we can take any finite list of numbers out of this sequence, e.g. `fibonacciSeq.take(8).toList()` results in `[1, 1, 2, 3, 5, 8, 13, 21]`. And coroutines are cheap enough to make this practical. 
    

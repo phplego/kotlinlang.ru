@@ -87,7 +87,7 @@ class Derived: Base {
     override suspend fun foo() { ... }
 }
 ``` 
-### `@RestrictsSuspension` аннотация 
+### Aннотация @RestrictsSuspension
 <!-- 
 Extension functions (and lambdas) can also be marked `suspend`, just like regular ones. This enables creation of [DSLs](type-safe-builders.html) and other APIs that users can extend. In some cases the library author needs to prevent the user from adding *new ways* of suspending a coroutine. 
 

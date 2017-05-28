@@ -38,6 +38,7 @@
     "typecasts",
     "this-expressions",
     "equality",
+    "operator-overloading"
     "null-safety",
     "exceptions",
     "annotations",

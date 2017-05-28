@@ -166,8 +166,10 @@ This will minimize migration issues for your users.
 - языковая поддержка (функции остановки, как описывалось выше);
 - базовая API поддержка низкого уровня в стандартной библиотеке Kotlin;
 - API высокого уровня, которые могут быть использованы непосредственно в пользовательском коде;    
+
 <!--### Low-level API: `kotlin.coroutines` -->
-### Низкий уровень API: `kotlin.coroutines` 
+
+### Низкий уровень API: **kotlin.coroutines** 
 
 Низкоуровневый API относительно мал, и никогда не должен быть использован для создания библиотек высокого уровня. Он содержит два главных пакета:  
 <!--Low-level API is relatively small and should never be used other than for creating higher-level libraries. It consists of two main packages:--> 
@@ -179,7 +181,7 @@ This will minimize migration issues for your users.
  
 Более детальная информация о использовании этих API может быть найдена [здесь](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). <!-- More details about the usage of these APIs can be found [here]-->
 <!--### Generators API in `kotlin.coroutines` -->
-### API генераторов в `kotlin.coroutines` 
+### API генераторов в **kotlin.coroutines** 
 
 Это функции исключительно «уровня приложения» в `kotlin.coroutines.experimental`: 
 <!--The only "application-level" functions in `kotlin.coroutines.experimental` are -->
@@ -291,8 +293,11 @@ fun main(args: Array<String>) {
     lazySeq.forEach { print("$it ") }
 }
 ```
+
 <!--### Other high-level APIs: `kotlinx.coroutines`-->
-### Другие API высокого уровня: `kotlinx.coroutines` 
+
+### Другие API высокого уровня: **kotlinx.coroutines** 
+
 <!--
 Only core APIs related to coroutines are available from the Kotlin Standard Library. This mostly consists of core primitives and interfaces that all coroutine-based libraries are likely to use.   
 

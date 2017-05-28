@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: reference
-title: "Operator overloading"
+title: "Перегрузка операторов"
 category: "Syntax"
 ---
 

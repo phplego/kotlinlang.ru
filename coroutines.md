@@ -13,7 +13,7 @@ title: "Coroutines"
 Сопрограммы упрощают асинхронное программирование, оставив все осложнения внутри библиотек. Логика программы может быть выражена *последовательно* в сопрограммах, а базовая библиотека будет её реализовывать асинхронно для нас. Библиотека может обернуть соответствующие части кода пользователя в обратные вызовы (callbacks), подписывающиеся на соответствующие события, диспетчировать исполнение на различные потоки (или даже на разные машины!), а код останется столь же простой, как если бы исполнялся строго  последовательно.
 
 Многие асинхронные механизмы, доступные в других языках программирования, могут быть реализованы в качестве библиотек, используя сопрограммы Kotlin. Это включает в себя [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions) из C# и ECMAScript, [channels](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) и [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) из языка Go, и [generators /`yield`](#generators-api-in-kotlincoroutines) из C# или Python. См. описания [ниже](#standard-apis) о библиотеках, реализующих такие конструкции.
-See the description [below](#standard-apis) for libraries providing such constructs.
+<!--See the description [below](#standard-apis) for libraries providing such constructs.-->
 ## Блокирование против приостановки 
 
 Главным отличительным признаком является то, что сопрограммы являются вычислениями, которые могут быть *приостановлены* без *блокирования потока* (вытеснения средствами операционной системы). Блокирование потоков часто является весьма дорогостоящим, особенно при интенсивных нагрузках: только относительно небольшое число потоков из общего числа является активно выполняющимися, поэтому блокировка одного из них ведет к затягиванию какой-нибудь важной части итоговой работы.
@@ -142,8 +142,8 @@ Due to its experimental status, the coroutine-related API in the Standard Librar
  
 This will minimize migration issues for your users. --> 
 **Важное замечание**: мы рекомендуем авторам библиотека следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий какой там используется сопрограммно совместимый API, таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
- * скопировать все API для `com.example` (без experimental суффикса);*
- * сохранить экспериментальные вариант пакета для обратной совместимости.*
+ * скопировать все API для `com.example` (без experimental суффикса);
+ * сохранить экспериментальные вариант пакета для обратной совместимости.
 
 Это позволит минимизировать проблемы миграции для пользователей.
 <!--## Standard APIs-->
@@ -259,7 +259,7 @@ fun main(args: Array<String>) {
 
 Функция `buildIterator()` во всём подобна buildSequence(), но только возвращает ленивый итератор.
 
-Вы могли бы добавить собственную уступку логики выполнения функции `buildSequence()`, написав приостанавливаемое расширение класса `SequenceBuilder` (что порождается аннотацией @RestrictsSuspension как описывалось [выше](#restrictssuspension-annotation)):
+Вы могли бы добавить собственную уступку логики выполнения функции `buildSequence()`, написав приостанавливаемое расширение класса `SequenceBuilder` (что порождается аннотацией `@RestrictsSuspension` как описывалось [выше](#restrictssuspension-annotation)):
 <!--
 The `buildIterator()` works similarly to `buildSequence()`, but returns a lazy iterator.
 

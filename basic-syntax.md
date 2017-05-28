@@ -249,7 +249,7 @@ for (i in args.indices)
 
 См. [цикл for](control-flow.html#for-loops).
 
-## Использование цикла `while`
+## Использование цикла <b class="keyword">while</b>
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -261,7 +261,7 @@ fun main(args: Array<String>) {
 
 См. [цикл while](control-flow.html#while-loops).
 
-## Использование выражения `when`
+## Использование выражения <b class="keyword">when</b>
 
 ``` kotlin
 fun cases(obj: Any) {

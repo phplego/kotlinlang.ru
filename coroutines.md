@@ -137,11 +137,6 @@ Due to its experimental status, the coroutine-related API in the Standard Librar
 
 Из-за экспериментального статуса сопрограмм, все связанные API собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет будет храниться в среде (возможно, как отдельный артефакт), в целях обеспечения обратной совместимости.
 
-**Важное замечание**: мы рекомендуем авторам библиотека следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий какой там используется сопрограммно совместимый API, таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
- * скопировать все API для `com.example` (без experimental суффикса);
- * сохранить экспериментальные вариант пакета для обратной совместимости.
-
-Это позволит минимизировать проблемы миграции для пользователей.
 <!--
   **IMPORTANT NOTE**: We advise library authors to follow the same convention: add the "experimental" (e.g. `com.example.experimental`) suffix to your packages exposing coroutine-based APIs so that your library remains binary compatible. When the final API is released, follow these steps:
  * copy all the APIs to `com.example` (without the experimental suffix),
@@ -149,6 +144,13 @@ Due to its experimental status, the coroutine-related API in the Standard Librar
  
 This will minimize migration issues for your users. 
 --> 
+
+**Важное замечание**: мы рекомендуем авторам библиотека следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий какой там используется сопрограммно совместимый API, таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
+ * скопировать все API для `com.example` (без experimental суффикса);
+ * сохранить экспериментальные вариант пакета для обратной совместимости.
+
+Это позволит минимизировать проблемы миграции для пользователей.
+
 <!--## Standard APIs-->
 ## Стандартные API 
 

@@ -26,7 +26,7 @@ url: https://kotlinlang.ru
 
 ## Актуальные задачи
 * Перевести статьи: [Operator overloading](/docs/reference/operator-overloading.html), [Type-Safe Builders](/docs/reference/type-safe-builders.html)
-* Статьи требующие проверки: [Operator overloading](/docs/reference/coroutines.html)
+* Статьи требующие проверки: [Сопрограммы](/docs/reference/coroutines.html)
 * Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>`
 * Прочие задачи (на платной основе): [@OtherWork](https://t.me/OtherWork) . 

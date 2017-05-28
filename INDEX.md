@@ -25,7 +25,8 @@ url: https://kotlinlang.ru
 * Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
-* Перевести статьи: [Coroutines](http://kotlinlang.org/docs/reference/coroutines.html), [Operator overloading](http://kotlinlang.org/docs/reference/operator-overloading.html), [Type-Safe Builders](http://kotlinlang.org/docs/reference/type-safe-builders.html)
+* Перевести статьи: [Operator overloading](/docs/reference/operator-overloading.html), [Type-Safe Builders](/docs/reference/type-safe-builders.html)
+* Статьи требующие проверки: [Operator overloading](/docs/reference/coroutines.html)
 * Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>`
 * Прочие задачи (на платной основе): [@OtherWork](https://t.me/OtherWork) . 

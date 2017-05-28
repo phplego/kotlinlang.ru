@@ -8,7 +8,7 @@ url: https://kotlinlang.ru/docs/reference/control-flow.html
 
 # Управляющие инструкции
 
-## Условное выражение <div class="keyword">If</div>
+## Условное выражение <b class="keyword">If</b>
 
 В языке Kotlin, ключевое слово <b class="keyword">if</b> является выражением, т.е. оно возвращает значение.
 Это позволяет отказаться от тернарного оператора (условие ? условие истинно : условие ложно), поскольку выражению <b class="keyword">if</b> вполне по силам его заменить.
@@ -49,7 +49,7 @@ val max = if (a > b) {
 
 <a name="when-expression"></a>
 
-## Условное выражение <div class="keyword">when</div>
+## Условное выражение <b class="keyword">when</b>
 
 Ключевое слово <b class="keyword">when</b> призвано заменить оператор switch, присутствующий в C-подобных языках. В простейшем виде его использование выглядит так
 
@@ -122,7 +122,7 @@ when {
 
 <a name="for-loops"></a>
 
-## Циклы <div class="keyword">for</div>
+## Циклы <b class="keyword">for</b>
 
 Цикл <b class="keyword">for</b> обеспечивает перебор всех значений, поставляемых итератором. Для этого используется следующий синтаксис:
 
@@ -168,7 +168,7 @@ for ((index, value) in array.withIndex()) {
 
 <a name="while-loops"></a>
 
-## Циклы <div class="keyword">while</div>
+## Циклы <b class="keyword">while</b>
 
 Ключевые слова <b class="keyword">while</b> and <b class="keyword">do</b>..<b class="keyword">while</b> работают как обычно:
 
@@ -184,7 +184,7 @@ do {
 
 См. [использование <b class="keyword">while</b>](grammar.html#while).
 
-## Ключевые слова <div class="keyword">break</div> и <div class="keyword">continue</div> в циклах
+## Ключевые слова <b class="keyword">break</b> и <b class="keyword">continue</b> в циклах
 
 Kotlin поддерживает обычные операторы <b class="keyword">break</b> и <b class="keyword">continue</b> в циклах. См. [Операторы перехода](returns.html).
 

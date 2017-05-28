@@ -120,6 +120,7 @@ when {
 
 См. [использование <b class="keyword">when</b>](grammar.html#when).
 
+<a name="for-loops"></a>
 
 ## Циклы for
 
@@ -164,6 +165,8 @@ for ((index, value) in array.withIndex()) {
 ```
 
 См. [использование <b class="keyword">for</b>](grammar.html#for).
+
+<a name="while-loops"></a>
 
 ## Циклы while
 

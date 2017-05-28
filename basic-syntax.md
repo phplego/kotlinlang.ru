@@ -231,7 +231,7 @@ fun getStringLength(obj: Any): Int? {
 
 См. [Классы](classes.html) и [Приведение типов](typecasts.html).
 
-## Использование цикла `for`
+## Использование цикла <b class="keyword">for</b>
 
 ``` kotlin
 fun main(args: Array<String>) {

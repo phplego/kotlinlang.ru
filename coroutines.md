@@ -87,6 +87,7 @@ class Derived: Base {
     override suspend fun foo() { ... }
 }
 ``` 
+
 ### Aннотация @RestrictsSuspension
 <!-- 
 Extension functions (and lambdas) can also be marked `suspend`, just like regular ones. This enables creation of [DSLs](type-safe-builders.html) and other APIs that users can extend. In some cases the library author needs to prevent the user from adding *new ways* of suspending a coroutine. 
@@ -110,6 +111,8 @@ public abstract class SequenceBuilder<in T> {
  
 <!-- See the sources [on Github](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt). -->
 См. исходники [на Github](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt).
+
+
 ## Внутреннее функционирование сопрограмм
 <!--We are not trying here to give a complete explanation of how coroutines work under the hood, but a rough sense of what's going on is rather important.
 

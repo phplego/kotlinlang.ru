@@ -2,7 +2,8 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Coroutines"
+title: "Сопрограммы"
+url: "https://kotlinlang.ru/docs/reference/coroutines.html"
 ---
 
 # Сопрограммы

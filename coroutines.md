@@ -135,7 +135,7 @@ More details on how coroutines work may be found in [this design document](https
 
 Приостановленная сопрограмма можно сохраняться и передавать как объект, который хранит её приостановленное состояние и локальные переменные. Типом таких объектов является  Continuation, а, в целом, преобразование кода описанное здесь соответствует классическому [Continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style). Окончательно, приостановливаемые функции принимают дополнительный параметр типа `Continuation` (сохранённое состояние) под капотом. 
 
-Более детально о том, как работают сопрограммы, может быть найден в [этом документе разработчиков](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md): Coroutines for Kotlin (Revision 3.2). Похожие описания `async / await` в других языках (таких как C# или ECMAScript 2016) релевантные этим описаниям, хотя особенности их языковых реализаций могут существенно отличаться от сопрограмм Kotlin.
+Более детально о том, как работают сопрограммы, можно найти в [этом проектном документе](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Похожие описания `async / await` в других языках (таких как C# или ECMAScript 2016) релевантные этим описаниям, хотя особенности их языковых реализаций могут существенно отличаться от сопрограмм Kotlin.
 
 <a name="experimental-status-of-coroutines"></a>
 ## Экспериментальный статус сопрограмм 

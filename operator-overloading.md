@@ -5,18 +5,24 @@ title: "Перегрузка операторов"
 category: "Syntax"
 ---
 
-# Operator overloading
-
+<!-- # Operator overloading -->
+# Перегрузка операторов
+<!--
 Kotlin allows us to provide implementations for a predefined set of operators on our types. These operators have fixed symbolic representation
 (like `+` or `*`) and fixed [precedence](grammar.html#precedence). To implement an operator, we provide a [member function](functions.html#member-functions)
 or an [extension function](extensions.html) with a fixed name, for the corresponding type, i.e. left-hand side type for binary operations and argument type for unary ones.
 Functions that overload operators need to be marked with the `operator` modifier.
 
-Further we describe the conventions that regulate operator overloading for different operators.
+Further we describe the conventions that regulate operator overloading for different operators. -->
 
-## Unary operations
+Котлин позволяет нам реализовывать предопределённый набор операторов для наших типов. Эти операторы имеют фиксированное символическое представление (вроде `+` или `*`) и фиксированные [приоритеты](grammar.html#precedence). Для реализации оператора, мы предоставляем [функцию-член](functions.html#member-functions) или [функцию-расширение](extensions.html) с фиксированным именем, для соответствующего типа, т. е. левосторонний тип для бинарные тип аргумента для унарных оперций. Функции, которые перегружают операторы должны быть отмечены модификатором `operator`.
 
-### Unary prefix operators
+Далее мы опишем соглашения, которые регламентируют перегрузку операторов для разных типов операторов.
+
+<!-- ## Unary operations -->
+## Унарные оперраторы
+### Унарные префиксные операторы 
+<!-- ### Unary prefix operators -->
 
 | Expression | Translated to |
 |------------|---------------|

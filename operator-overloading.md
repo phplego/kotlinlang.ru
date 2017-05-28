@@ -15,7 +15,7 @@ Functions that overload operators need to be marked with the `operator` modifier
 
 Further we describe the conventions that regulate operator overloading for different operators. -->
 
-Котлин позволяет нам реализовывать предопределённый набор операторов для наших типов. Эти операторы имеют фиксированное символическое представление (вроде `+` или `*`) и фиксированные [приоритеты](grammar.html#precedence). Для реализации оператора, мы предоставляем [функцию-член](functions.html#member-functions) или [функцию-расширение](extensions.html) с фиксированным именем, для соответствующего типа, т. е. левосторонний тип для бинарные тип аргумента для унарных оперций. Функции, которые перегружают операторы должны быть отмечены модификатором `operator`.
+Язык Kotlin позволяет нам реализовывать предопределённый набор операторов для наших типов. Эти операторы имеют фиксированное символическое представление (вроде `+` или `*`) и фиксированные [приоритеты](grammar.html#precedence). Для реализации оператора, мы предоставляем [функцию-член](functions.html#member-functions) или [функцию-расширение](extensions.html) с фиксированным именем, для соответствующего типа, т. е. левосторонний тип для бинарные тип аргумента для унарных оперций. Функции, которые перегружают операторы должны быть отмечены модификатором `operator`.
 
 Далее мы опишем соглашения, которые регламентируют перегрузку операторов для разных типов операторов.
 
@@ -31,23 +31,31 @@ Further we describe the conventions that regulate operator overloading for diffe
 | `!a` | `a.not()` |
 
 <!--This table says that when the compiler processes, for example, an expression `+a`, it performs the following steps:-->
-Эта таблица демонстрирует, что когда компилятор обрабатывает,к примеру, выражение `+a`, он соуществляет следующие дейстрия:
-* Determines the type of `a`, let it be `T`.
+Эта таблица демонстрирует, что когда компилятор обрабатывает,к примеру, выражение `+a`, он оcуществляет следующие дейстрия:
+<!--* Determines the type of `a`, let it be `T`.
 * Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, i.e. a member function or an extension function.
 * If the function is absent or ambiguous, it is a compilation error.
-* If the function is present and its return type is `R`, the expression `+a` has type `R`.
+* If the function is present and its return type is `R`, the expression `+a` has type `R`. -->
+* Определяется тип `a`, пусть это будет `T`
+* Смотрится функция `unaryPlus()` с модификатором `operator` без параметров для приемника типа `Т`, т. е. функция-член или функция расширения.
+* Если функция отсутствует или неоднозная, то это ошибка компиляции.
+* Если функция присутствует и её возвращаемый тип есть `R`, выражение `+a` имеет Тип `R`.
 
-*Note* that these operations, as well as all the others, are optimized for [Basic types](basic-types.html) and do not introduce overhead of function calls for them.
+<!--*Note* that these operations, as well as all the others, are optimized for [Basic types](basic-types.html) and do not introduce overhead of function calls for them. -->
+*Примечание*, эти операции, как и все остальные, оптимизированы для [основных типов](basic-types.html) и не вносит накладных расходов на вызовы функций для них.
 
-### Increments and decrements
+<!--### Increments and decrements -->
+### Инкремент и декремент
 
 | Expression | Translated to |
 |------------|---------------|
 | `a++` | `a.inc()` + see below |
 | `a--` | `a.dec()` + see below |
 
-The `inc()` and `dec()` functions must return a value, which will be assigned to the variable on which the
-`++` or `--` operation was used. They shouldn't mutate the object on which the `inc` or `dec` was invoked.
+<!-- The `inc()` and `dec()` functions must return a value, which will be assigned to the variable on which the
+`++` or `--` operation was used. They shouldn't mutate the object on which the `inc` or `dec` was invoked. -->
+Функции `inc()` и `dec()` должны возвращать значение, которое будет присвоено переменной, к которой была применёна
+операция `++` или `--` . Они не должны изменять сам объект, для которого `inc` или `dec` были вызваны.
 
 The compiler performs the following steps for resolution of an operator in the *postfix* form, e.g. `a++`:
 

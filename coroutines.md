@@ -136,11 +136,14 @@ Due to its experimental status, the coroutine-related API in the Standard Librar
 Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features), экспериментальный характер означает, что он может быть изменён в будущих релизах. При составлении сопрограммы в Kotlin 1.1, по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](/docs/diagnostics/experimental-coroutines.html).
 
 Из-за экспериментального статуса сопрограмм, все связанные API собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет будет храниться в среде (возможно, как отдельный артефакт), в целях обеспечения обратной совместимости.
-<!--**IMPORTANT NOTE**: We advise library authors to follow the same convention: add the "experimental" (e.g. `com.example.experimental`) suffix to your packages exposing coroutine-based APIs so that your library remains binary compatible. When the final API is released, follow these steps:
+<!--
+**IMPORTANT NOTE**: We advise library authors to follow the same convention: add the "experimental" (e.g. `com.example.experimental`) suffix to your packages exposing coroutine-based APIs so that your library remains binary compatible. When the final API is released, follow these steps:
  * copy all the APIs to `com.example` (without the experimental suffix),
  * keep the experimental package around for backward compatibility. 
  
-This will minimize migration issues for your users. --> 
+This will minimize migration issues for your users. 
+--> 
+
 **Важное замечание**: мы рекомендуем авторам библиотека следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий какой там используется сопрограммно совместимый API, таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
  * скопировать все API для `com.example` (без experimental суффикса);
  * сохранить экспериментальные вариант пакета для обратной совместимости.

@@ -104,9 +104,9 @@ Further we describe the conventions that regulate operator overloading for diffe
 | `a - b` | `a.minus(b)` |
 | `a * b` | `a.times(b)` |
 | `a / b` | `a.div(b)` |
-<!--| `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |-->
 | `a % b` | `a.rem(b)`, `a.mod(b)` (устаревшее) |
 | `a..b ` | `a.rangeTo(b)` |
+
 
 <!--For the operations in this table, the compiler just resolves the expression in the *Translated to* column.-->
 Для перечисленных в таблице операций компилятор всего лишь разрешает выражение в вызов функции из колонки *Translated to*.

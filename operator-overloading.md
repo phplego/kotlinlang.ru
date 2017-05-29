@@ -3,7 +3,6 @@ type: doc
 layout: reference
 title: "Перегрузка операторов"
 category: "Syntax"
-url: https://kotlinlang.ru/docs/reference/operator-overloading.html
 ---
 
 <!-- # Operator overloading -->
@@ -21,8 +20,9 @@ Further we describe the conventions that regulate operator overloading for diffe
 Далее мы опишем соглашения, которые регламентируют перегрузку операторов для разных типов операторов.
 
 <!-- ## Unary operations -->
-## Унарные оперраторы
+## Унарные операторы
 ### Унарные префиксные операторы 
+
 <!-- ### Unary prefix operators -->
 
 | Expression | Translated to |
@@ -32,20 +32,19 @@ Further we describe the conventions that regulate operator overloading for diffe
 | `!a` | `a.not()` |
 
 <!--This table says that when the compiler processes, for example, an expression `+a`, it performs the following steps:-->
+
 Эта таблица демонстрирует, что когда компилятор обрабатывает, к примеру, выражение `+a`, он оcуществляет следующие дейстрия:
-<!-- 
- Determines the type of `a`, let it be `T`.
- Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, i.e. a member function or an extension function.
- If the function is absent or ambiguous, it is a compilation error.
- If the function is present and its return type is `R`, the expression `+a` has type `R`. 
--->
+<!--* Determines the type of `a`, let it be `T`.
+* Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, i.e. a member function or an extension function.
+* If the function is absent or ambiguous, it is a compilation error.
+* If the function is present and its return type is `R`, the expression `+a` has type `R`. -->
 * Определяется тип выражения `a`, пусть это будет `T`
 * Смотрится функция `unaryPlus()` с модификатором `operator` без параметров для приемника типа `Т`, т. е. функция-член или функция расширения.
 * Если функция отсутствует или неоднозная, то это ошибка компиляции.
 * Если функция присутствует и её возвращаемый тип есть `R`, выражение `+a` имеет Тип `R`.
 
 <!--*Note* that these operations, as well as all the others, are optimized for [Basic types](basic-types.html) and do not introduce overhead of function calls for them. -->
-*Примечание*, эти операции, как и все остальные, оптимизированы для [основных типов](basic-types.html) и не вносит накладных расходов на вызовы функций для них.
+*Примечание*, эти операции, как и все остальные, оптимизированы для [основных типов](basic-types.html) и не вносят накладных расходов на вызовы этих функций для них.
 
 <!--### Increments and decrements -->
 ### Инкремент и декремент
@@ -96,7 +95,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 
 <!-- ## Binary operations -->
 ## Бинарные операции
-<a name="arithmetic"></a>
+{:#arithmetic}
 
 <!--### Arithmetic operators  -->
 ### Арифметические операции
@@ -118,7 +117,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 in Kotlin 1.1.-->
 Отметим, что операция `rem` поддерживается только начиная с Kotlin 1.1. Kotlin 1.0 использует только операцию `mod`, которая отмечена как устаревшая в in Kotlin 1.1.
 
-<a name="in"></a>
+{:#in}
 
 <!--### 'In' operator -->
 ### Оператор in
@@ -131,7 +130,7 @@ in Kotlin 1.1.-->
 <!--For `in` and `!in` the procedure is the same, but the order of arguments is reversed.-->
 Для операций `in` и `!in` используется одна и та же процедура, только возвращаемый результат инвертируется.
 
-<a name="indexed"></a>
+{:#indexed}
 
 <!--### Indexed access operator-->
 ### Оператор доступа по индексу
@@ -148,7 +147,7 @@ in Kotlin 1.1.-->
 <!--Square brackets are translated to calls to `get` and `set` with appropriate numbers of arguments.-->
 Квадратные скобки транслируются в вызов `get` или `set` с соответствующим числом аргументов. 
 
-<a name="invoke"></a>
+{:#invoke}
 
 <!--### Invoke operator-->
 ### Оператор вызова
@@ -163,7 +162,7 @@ in Kotlin 1.1.-->
 <!--Parentheses are translated to calls to `invoke` with appropriate number of arguments.-->
 Оператора вызова (функции, метода) в круглых скобках транслируется в `invoke` с соответствующим числом аргументов. 
 
-<a name="assignments"></a>
+{:#assignments}
 
 <!--### Augmented assignments-->
 ### Присвоения с накоплением
@@ -193,7 +192,7 @@ in Kotlin 1.1.-->
 <!--*Note*: assignments are *NOT* expressions in Kotlin.-->
 *Отметим*: присвоение *НЕ ЯВЛЯЕТСЯ* выражением в Kotlin.
 
-<a name="equals"></a>
+{:#equals}
 
 <!--### Equality and inequality operators-->
 ### Операторы равенства и неравенства
@@ -211,7 +210,7 @@ in Kotlin 1.1.-->
 Операция `==` имеет специальный смысл: она транслируется в составное выражение, в котором экранируются значения `null`.
 `null == null` - это всегда истина, а `x == null` для ненулевых `x` - всегда ложь, и не должно расширяться в `x.equals()`.
 
-<a name="comparison"></a>
+{:#comparison}
 
 <!--### Comparison operators-->
 ### Операторы сравнений

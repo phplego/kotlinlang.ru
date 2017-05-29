@@ -36,7 +36,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 * Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, i.e. a member function or an extension function.
 * If the function is absent or ambiguous, it is a compilation error.
 * If the function is present and its return type is `R`, the expression `+a` has type `R`. -->
-* Определяется тип `a`, пусть это будет `T`
+* Определяется тип выражения `a`, пусть это будет `T`
 * Смотрится функция `unaryPlus()` с модификатором `operator` без параметров для приемника типа `Т`, т. е. функция-член или функция расширения.
 * Если функция отсутствует или неоднозная, то это ошибка компиляции.
 * Если функция присутствует и её возвращаемый тип есть `R`, выражение `+a` имеет Тип `R`.
@@ -55,32 +55,48 @@ Further we describe the conventions that regulate operator overloading for diffe
 <!-- The `inc()` and `dec()` functions must return a value, which will be assigned to the variable on which the
 `++` or `--` operation was used. They shouldn't mutate the object on which the `inc` or `dec` was invoked. -->
 Функции `inc()` и `dec()` должны возвращать значение, которое будет присвоено переменной, к которой была применёна
-операция `++` или `--` . Они не должны изменять сам объект, для которого `inc` или `dec` были вызваны.
+операция `++` или `--` . Они не должны пытаться изменять сам объект, для которого `inc` или `dec` были вызваны.
 
-The compiler performs the following steps for resolution of an operator in the *postfix* form, e.g. `a++`:
+<!--The compiler performs the following steps for resolution of an operator in the *postfix* form, e.g. `a++`:
 
 * Determines the type of `a`, let it be `T`.
 * Looks up a function `inc()` with the `operator` modifier and no parameters, applicable to the receiver of type `T`.
-* Checks that the return type of the function is a subtype of `T`.
+* Checks that the return type of the function is a subtype of `T`. -->
+Компилятор осуществляет следующие шаги для разрешения операторов в *постфиксной* форме, например для `a++`:
 
-The effect of computing the expression is:
+* Определяется тип переменной `a`, пусть это будет `T`
+* Смотрится функция `inc()` с модификатором `operator` без параметров, применимая для приемника типа `Т`.
+* Проверяется, что возвращаемый тип такой функции является подтипом `T`. 
+
+<!--The effect of computing the expression is:
 
 * Store the initial value of `a` to a temporary storage `a0`,
 * Assign the result of `a.inc()` to `a`,
-* Return `a0` as a result of the expression.
+* Return `a0` as a result of the expression. -->
+Эффектом вычисления будет:
 
-For `a--` the steps are completely analogous.
+* Загружается инициализирующее значение `a` во временную переменную `a0`,
+* Результат выполнения `a.inc()` to `a`,
+* Возвращается `a0` как результат вычисления выражения (т.е. значение до инкремента).
 
-For the *prefix* forms `++a` and `--a` resolution works the same way, and the effect is:
+<!-- For `a--` the steps are completely analogous. -->
+Для `a--` шаги выполнения полностью аналогичные.
+
+<!--For the *prefix* forms `++a` and `--a` resolution works the same way, and the effect is:
 
 * Assign the result of `a.inc()` to `a`,
-* Return the new value of `a` as a result of the expression.
+* Return the new value of `a` as a result of the expression. -->
+Для *префиксной* формы `++a` или `--a` разрешение работает подобно, но результатом будет:
 
-## Binary operations
+* Присвоение результата вычисления `a.inc()` непосредственно `a`,
+* Возвращается новое значение `a` как общий результат вычисления выражения.
 
+<!-- ## Binary operations -->
+## Бинарные операции
 {:#arithmetic}
 
-### Arithmetic operators 
+<!--### Arithmetic operators  -->
+### Арифметические операции
 
 | Expression | Translated to |
 | -----------|-------------- |

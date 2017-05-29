@@ -20,7 +20,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 Далее мы опишем соглашения, которые регламентируют перегрузку операторов для разных типов операторов.
 
 <!-- ## Unary operations -->
-## Унарные оперраторы
+## Унарные операторы
 ### Унарные префиксные операторы 
 <!-- ### Unary prefix operators -->
 

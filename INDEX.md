@@ -25,8 +25,9 @@ url: https://kotlinlang.ru
 * Telegram чат посвященный языку Kotlin и переводу документации [@KotlinLangRu](https://t.me/KotlinLangRu)
 
 ## Актуальные задачи
-* Перевести статьи: [Operator overloading](/docs/reference/operator-overloading.html), [Type-Safe Builders](/docs/reference/type-safe-builders.html)
-* Статьи требующие проверки: [Сопрограммы](/docs/reference/coroutines.html)
+* Перевести статьи из радела "FAQ": [FAQ](https://kotlinlang.org/docs/reference/faq.html), [Comparison to Java](https://kotlinlang.org/docs/reference/comparison-to-java.html)
+* Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.org/docs/reference/kapt.html), [Gradle](https://kotlinlang.org/docs/reference/using-gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html), [Ant](https://kotlinlang.org/docs/reference/using-ant.html), [OSGi](https://kotlinlang.org/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.org/docs/reference/compiler-plugins.html)
+* Статьи требующие проверки: [Сопрограммы](/docs/reference/coroutines.html), [Перегрузка операторов](https://kotlinlang.ru/docs/reference/operator-overloading.html)
 * Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>`
 * Прочие задачи (на платной основе): [@OtherWork](https://t.me/OtherWork) . 

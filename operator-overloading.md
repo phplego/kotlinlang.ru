@@ -34,10 +34,10 @@ Further we describe the conventions that regulate operator overloading for diffe
 <!--This table says that when the compiler processes, for example, an expression `+a`, it performs the following steps:-->
 Эта таблица демонстрирует, что когда компилятор обрабатывает, к примеру, выражение `+a`, он оcуществляет следующие дейстрия:
 <!-- 
-* Determines the type of `a`, let it be `T`.
-* Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, i.e. a member function or an extension function.
-* If the function is absent or ambiguous, it is a compilation error.
-* If the function is present and its return type is `R`, the expression `+a` has type `R`. 
+- Determines the type of `a`, let it be `T`.
+- Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, i.e. a member function or an extension function.
+- If the function is absent or ambiguous, it is a compilation error.
+- If the function is present and its return type is `R`, the expression `+a` has type `R`. 
 -->
 * Определяется тип выражения `a`, пусть это будет `T`
 * Смотрится функция `unaryPlus()` с модификатором `operator` без параметров для приемника типа `Т`, т. е. функция-член или функция расширения.

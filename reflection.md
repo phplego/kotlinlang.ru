@@ -59,6 +59,8 @@ assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 <!--You obtain the reference to an exact class of an object, for instance `GoodWidget` or `BadWidget`, despite the type of the receiver expression (`Widget`).  -->
 Вы получите ссылку на точный класс объекта, например `GoodWidget` или `BadWidget`, несмотря на тип объекта, участвующего в выражении (`Widget`).
 
+<a name="function-references"></a>
+
 <!--## Function References-->
 ## Ссылки на функции
 

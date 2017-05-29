@@ -29,7 +29,7 @@ fun <T> lock(lock: Lock, body: () -> T): T{
 внутри блока `try`, защищена `lock`, и её результат возвращается функцией `lock()`.
 
 Если мы хотим вызвать метод lock(), мы можем подать другую функцию в качестве входящего аргумента 
-(более подробно читайте [function references](reflection.html#function-references)
+(более подробно читайте [function references](reflection.html#function-references))
 
 ``` kotlin
 fun toBeSynchronized() = sharedResource.operation()
@@ -90,6 +90,8 @@ strings.filter { it.lenght == 5 }.sortBy { it }.map { it.toUpperCase() }
 
 ## Инлайн функции.
 Иногда необходимо улучшить производительность высокоуровневых функций, используя [инлайн функции](inline-functions.html)
+
+<a name="lambda-expressions-and-anonymous-functions"></a>
 
 <!--Lambda Expressions and Anonymous Functions-->
 ## Лямбда-выражения и анонимные функции

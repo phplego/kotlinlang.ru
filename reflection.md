@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Рефлексия"
+url: https://kotlinlang.ru/docs/reference/reflection.html
 ---
 
 <!--# Reflection-->

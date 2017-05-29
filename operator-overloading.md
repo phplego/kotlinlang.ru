@@ -101,6 +101,11 @@ Further we describe the conventions that regulate operator overloading for diffe
 | Expression | Translated to |
 | -----------|-------------- |
 | `a + b` | `a.plus(b)` |
+| `a - b` | `a.minus(b)` |
+| `a * b` | `a.times(b)` |
+| `a / b` | `a.div(b)` |
+| `a % b` | `a.rem(b)`, `a.mod(b)` (устаревшее) |
+| `a..b ` | `a.rangeTo(b)` |
 
 
 <!--For the operations in this table, the compiler just resolves the expression in the *Translated to* column.-->

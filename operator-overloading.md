@@ -3,6 +3,7 @@ type: doc
 layout: reference
 title: "Перегрузка операторов"
 category: "Syntax"
+url: https://kotlinlang.ru/docs/reference/operator-overloading.html
 ---
 
 <!-- # Operator overloading -->

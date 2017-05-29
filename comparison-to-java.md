@@ -14,8 +14,7 @@ url: "https://kotlinlang.ru/docs/reference/comparison-to-java.html"
 
 <!--Kotlin fixes a series of issues that Java suffers from-->
 Koltin решает целый ряд проблем, от которых страдает Java:
-<!--
-* Null references are [controlled by the type system](null-safety.html).
+<!--* Null references are [controlled by the type system](null-safety.html).
 * [No raw types](java-interop.html)
 * Arrays in Kotlin are [invariant](basic-types.html#arrays)
 * Kotlin has proper [function types](lambdas.html#function-types), as opposed to Java's SAM-conversions
@@ -31,8 +30,7 @@ Koltin решает целый ряд проблем, от которых стр
 
 <!--## What Java has that Kotlin does not-->
 ## Что есть в Java, но нет в Kotlin
-<!--
-* [Checked exceptions](exceptions.html)
+<!--* [Checked exceptions](exceptions.html)
 * [Primitive types](basic-types.html) that are not classes
 * [Static members](classes.html)
 * [Non-private fields](properties.html)

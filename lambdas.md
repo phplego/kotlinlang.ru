@@ -223,6 +223,7 @@ print(sum)
 
 
 <!--## Function Literals with Receiver-->
+<a name="function-literals-with-receiver"></a>
 ## Литералы функций с объектом-приёмником
 <!--Kotlin provides the ability to call a function literal with a specified receiver object. Inside the body of the function literal, you can call methods on that receiver object without any additional qualifiers. This is similar to extension functions, which allow you to access members of the receiver object inside the body of the function. One of the most important examples of their usage is [Type-safe Groovy-style builders](http://kotlinlang.org/docs/reference/type-safe-builders.html).-->
 Kotlin предоставляет возможность вызывать литерал функции с указаным объектом-приёмником. Внутри тела литерала вы можете вызывать методы объекта-приёмника без дополнительных определителей. Это схоже с принципом работы [расширений](extensions.html), которые позволяют получить доступ к членам объекта-приёмника внутри тела функции. Один из самых важных примеров использования литералов с объектом-приёмником это [Type-safe Groovy-style builders](type-safe-builders.html).

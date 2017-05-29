@@ -15,7 +15,7 @@ Functions that overload operators need to be marked with the `operator` modifier
 
 Further we describe the conventions that regulate operator overloading for different operators. -->
 
-Язык Kotlin позволяет нам реализовывать предопределённый набор операторов для наших типов. Эти операторы имеют фиксированное символическое представление (вроде `+` или `*`) и фиксированные [приоритеты](grammar.html#precedence). Для реализации оператора, мы предоставляем [функцию-член](functions.html#member-functions) или [функцию-расширение](extensions.html) с фиксированным именем, для соответствующего типа, т. е. левосторонний тип для бинарные тип аргумента для унарных оперций. Функции, которые перегружают операторы должны быть отмечены модификатором `operator`.
+Язык Kotlin позволяет нам реализовывать предопределённый набор операторов для наших типов. Эти операторы имеют фиксированное символическое представление (вроде `+` или `*`) и фиксированные [приоритеты](grammar.html#precedence). Для реализации оператора, мы предоставляем [функцию-член](functions.html#member-functions) или [функцию-расширение](extensions.html) с фиксированным именем и с соответствующим типом, т. е. левосторонним типом для бинарных операций или типом аргумента для унарных оперций. Функции, которые перегружают операторы должны быть отмечены модификатором `operator`.
 
 Далее мы опишем соглашения, которые регламентируют перегрузку операторов для разных типов операторов.
 
@@ -104,29 +104,34 @@ Further we describe the conventions that regulate operator overloading for diffe
 | `a - b` | `a.minus(b)` |
 | `a * b` | `a.times(b)` |
 | `a / b` | `a.div(b)` |
-| `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |
+<!--| `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |-->
+| `a % b` | `a.rem(b)`, `a.mod(b)` (устаревшее) |
 | `a..b ` | `a.rangeTo(b)` |
 
-For the operations in this table, the compiler just resolves the expression in the *Translated to* column.
+<!--For the operations in this table, the compiler just resolves the expression in the *Translated to* column.-->
+Для перечисленных в таблице операций компилятор всего лишь разрешает выражение в вызов функции из колонки *Translated to*.
 
-Note that the `rem` operator is supported since Kotlin 1.1. Kotlin 1.0 uses the `mod` operator, which is deprecated
-in Kotlin 1.1.
+<!--Note that the `rem` operator is supported since Kotlin 1.1. Kotlin 1.0 uses the `mod` operator, which is deprecated
+in Kotlin 1.1.-->
+Отметим, что операция `rem` поддерживается только начиная с Kotlin 1.1. Kotlin 1.0 использует только операцию `mod`, которая отмечена как устаревшая в in Kotlin 1.1.
 
 {:#in}
 
-### 'In' operator
-
+<!--### 'In' operator -->
+### Оператор in
 
 | Expression | Translated to |
 | -----------|-------------- |
 | `a in b` | `b.contains(a)` |
 | `a !in b` | `!b.contains(a)` |
 
-For `in` and `!in` the procedure is the same, but the order of arguments is reversed.
+<!--For `in` and `!in` the procedure is the same, but the order of arguments is reversed.-->
+Для операций `in` и `!in` используется одна и та же процедура, только возвращаемый результат инвертируется.
 
 {:#indexed}
 
-### Indexed access operator
+<!--### Indexed access operator-->
+### Оператор доступа по индексу
 
 | Expression | Translated to |
 | -------|-------------- |
@@ -137,11 +142,13 @@ For `in` and `!in` the procedure is the same, but the order of arguments is reve
 | `a[i, j] = b` | `a.set(i, j, b)` |
 | `a[i_1, ...,  i_n] = b` | `a.set(i_1, ..., i_n, b)` |
 
-Square brackets are translated to calls to `get` and `set` with appropriate numbers of arguments.
+<!--Square brackets are translated to calls to `get` and `set` with appropriate numbers of arguments.-->
+Квадратные скобки транслируются в вызов `get` или `set` с соответствующим числом аргументов. 
 
 {:#invoke}
 
 ### Invoke operator
+### Оператор вызова
 
 | Expression | Translated to |
 |--------|---------------|
@@ -150,11 +157,13 @@ Square brackets are translated to calls to `get` and `set` with appropriate numb
 | `a(i, j)`  | `a.invoke(i, j)` |
 | `a(i_1, ...,  i_n)`  | `a.invoke(i_1, ...,  i_n)` |
 
-Parentheses are translated to calls to `invoke` with appropriate number of arguments.
+<!--Parentheses are translated to calls to `invoke` with appropriate number of arguments.-->
+Оператора вызова (функции, метода) в круглых скобках транслируется в `invoke` с соответствующим числом аргументов. 
 
 {:#assignments}
 
 ### Augmented assignments
+### Присвоения с накоплением
 
 | Expression | Translated to |
 |------------|---------------|
@@ -164,33 +173,45 @@ Parentheses are translated to calls to `invoke` with appropriate number of argum
 | `a /= b` | `a.divAssign(b)` |
 | `a %= b` | `a.modAssign(b)` |
 
-For the assignment operations, e.g. `a += b`, the compiler performs the following steps:
+<!--For the assignment operations, e.g. `a += b`, the compiler performs the following steps:-->
+Для присваивающих операций, таких как `a += b`, компилятор осуществляет следующие шаги:
 
-* If the function from the right column is available
+<!--* If the function from the right column is available
   * If the corresponding binary function (i.e. `plus()` for `plusAssign()`) is available too, report error (ambiguity).
   * Make sure its return type is `Unit`, and report an error otherwise.
   * Generate code for `a.plusAssign(b)`
-* Otherwise, try to generate code for `a = a + b` (this includes a type check: the type of `a + b` must be a subtype of `a`).
+* Otherwise, try to generate code for `a = a + b` (this includes a type check: the type of `a + b` must be a subtype of `a`). -->
+* Если функция из правой колонки таблицы доступна
+  * Если соответствующая бинарная функция (т.е. `plus()` для `plusAssign()`) также доступна, то фиксируется ошибка  (неоднозначность).
+  * Проверяется, что возвращаемое значение функции `Unit`, в противном случае фиксируется ошибка.
+  * Генерируется код для `a.plusAssign(b)`
+* В противном случае, делается попытка сгенерировать код для `a = a + b` (при этом включается проверка типов: тип выражения `a + b` должен быть подтипом `a`).
 
-*Note*: assignments are *NOT* expressions in Kotlin.
+<!--*Note*: assignments are *NOT* expressions in Kotlin.-->
+*Отметим*: присвоение *НЕ ЯВЛЯЕТСЯ* выражением в Kotlin.
 
 {:#equals}
 
 ### Equality and inequality operators
+### Операторы равенства и неравенства
 
 | Expression | Translated to |
 |------------|---------------|
 | `a == b` | `a?.equals(b) ?: (b === null)` |
 | `a != b` | `!(a?.equals(b) ?: (b === null))` |
 
-*Note*: `===` and `!==` (identity checks) are not overloadable, so no conventions exist for them
+<!--*Note*: `===` and `!==` (identity checks) are not overloadable, so no conventions exist for them-->
+*Отметим*: операции `===` и `!==` (проверка идентичности) являются неперегружаемыми, поэтому не приводятся никакие соглашения для них.
 
-The `==` operation is special: it is translated to a complex expression that screens for `null`'s.
-`null == null` is always true, and `x == null` for a non-null `x` is always false and won't invoke `x.equals()`.
+<!--The `==` operation is special: it is translated to a complex expression that screens for `null`'s.
+`null == null` is always true, and `x == null` for a non-null `x` is always false and won't invoke `x.equals()`.-->
+Операция `==` имеет специальный смысл: она транслируется в составное выражение, в котором экранируются значения `null`.
+`null == null` - это всегда истина, а `x == null` для ненулевых `x` - всегда ложь, и не должно расширяться в `x.equals()`.
 
 {:#comparison}
 
 ### Comparison operators
+### Операторы сравнений
 
 | Expression | Translated to |
 |--------|---------------|
@@ -199,8 +220,12 @@ The `==` operation is special: it is translated to a complex expression that scr
 | `a >= b` | `a.compareTo(b) >= 0` |
 | `a <= b` | `a.compareTo(b) <= 0` |
 
-All comparisons are translated into calls to `compareTo`, that is required to return `Int`.
+<!--All comparisons are translated into calls to `compareTo`, that is required to return `Int`.-->
+Все сравения транслируются в вызовы `compareTo`, от которых требуется, чтобы они возвращали значение `Int`.
 
 ## Infix calls for named functions
+## Инфиксные вызовы именованных функций
 
-We can simulate custom infix operations by using [infix function calls](functions.html#infix-notation).
+<!--We can simulate custom infix operations by using [infix function calls](functions.html#infix-notation).-->
+Мы можем моделировать вручную инфиксные операции использованием [infix function calls](functions.html#infix-notation).
+

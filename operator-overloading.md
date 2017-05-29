@@ -147,7 +147,7 @@ in Kotlin 1.1.-->
 
 {:#invoke}
 
-### Invoke operator
+<!--### Invoke operator-->
 ### Оператор вызова
 
 | Expression | Translated to |
@@ -162,7 +162,7 @@ in Kotlin 1.1.-->
 
 {:#assignments}
 
-### Augmented assignments
+<!--### Augmented assignments-->
 ### Присвоения с накоплением
 
 | Expression | Translated to |
@@ -192,7 +192,7 @@ in Kotlin 1.1.-->
 
 {:#equals}
 
-### Equality and inequality operators
+<!--### Equality and inequality operators-->
 ### Операторы равенства и неравенства
 
 | Expression | Translated to |
@@ -210,7 +210,7 @@ in Kotlin 1.1.-->
 
 {:#comparison}
 
-### Comparison operators
+<!--### Comparison operators-->
 ### Операторы сравнений
 
 | Expression | Translated to |
@@ -223,7 +223,7 @@ in Kotlin 1.1.-->
 <!--All comparisons are translated into calls to `compareTo`, that is required to return `Int`.-->
 Все сравения транслируются в вызовы `compareTo`, от которых требуется, чтобы они возвращали значение `Int`.
 
-## Infix calls for named functions
+<!--## Infix calls for named functions-->
 ## Инфиксные вызовы именованных функций
 
 <!--We can simulate custom infix operations by using [infix function calls](functions.html#infix-notation).-->

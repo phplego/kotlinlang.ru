@@ -223,21 +223,25 @@ In the last section you can read through the full definition of this package.-->
 Всё это определено в пакете `com.example.html`, который импортирован в начале примера выше. 
 В последней секции вы можете прочитать полное описание определений в этом пакете.
 
-## Scope control: @DslMarker (since 1.1)
-
-When using DSLs, one might have come across the problem that too many functions can be called in the context. 
-We can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, like the tag `head` inside another `head`: 
+<!--## Scope control: @DslMarker (since 1.1)-->
+## Контроль области видимости: @DslMarker (с версии 1.1)
+<!--When using DSLs, one might have come across the problem that too many functions can be called in the context. 
+We can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, like the tag `head` inside another `head`: -->
+При использовании [DSL](https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE-%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA) 
+может возникнуть проблема, когда слишком много функций могут быть вызваны в определённом контексте.
+Мы можем вызывать методы каждого неявного приёмника внутри лямбды и, из-за этого, может возникать противоречивый результат, как, например, тэг `head` внутри другого тэга `head`:
 
 ``` kotlin
 html {
     head {
-        head {} // should be forbidden
+        head {} // должен быть запрещён
     }
     // ...
 }
 ```
 
-In this example only members of the nearest implicit receiver `this@head` must be available; `head()` is a member of the outer receiver `this@html`, so it must be illegal to call it.
+<!--In this example only members of the nearest implicit receiver `this@head` must be available; `head()` is a member of the outer receiver `this@html`, so it must be illegal to call it.-->
+В этом примере должны быть доступны только члены ближайшего неявного приёмника `this@head`; `head()` является членом другого приёмника — `this@html`, поэтому его вызов в другом контексте должен быть запрещён
 
 To address this problem, in Kotlin 1.1 a special mechanism to control receiver scope was introduced.
 
@@ -249,40 +253,45 @@ For instance, for HTML Builders we declare an annotation `@HTMLTagMarker`:
 annotation class HtmlTagMarker
 ```
 
-An annotation class is called a DSL marker if it is annotated with the `@DslMarker` annotation.
+<!--An annotation class is called a DSL marker if it is annotated with the `@DslMarker` annotation.-->
+Аннотированный класс называется DSL-маркер если он помечен аннотацией `@DslMarker`.
 
-In our DSL all the tag classes extend the same superclass `Tag`.
-It's enough to annotate only the superclass with `@HtmlTagMarker` and after that the Kotlin compiler will treat all the inherited classes as annotated:
-
+<!--In our DSL all the tag classes extend the same superclass `Tag`.
+It's enough to annotate only the superclass with `@HtmlTagMarker` and after that the Kotlin compiler will treat all the inherited classes as annotated:-->
+В нашем DSL все классы тэгов расширяют один и тот же суперкласс `Tag`.
+Нам достаточно аннотировать `@HtmlTagMarker` только суперкласс, и после этого компилятор Kotlin обработает все унаследованные классы в соответствии с аннотацией:
 ``` kotlin
 @HtmlTagMarker
 abstract class Tag(val name: String) { ... }
 ```
 
-We don't have to annotate the `HTML` or `Head` classes with `@HtmlTagMarker` because their superclass is already annotated:
+<!--We don't have to annotate the `HTML` or `Head` classes with `@HtmlTagMarker` because their superclass is already annotated:-->
+Нам не нужно помечать классы `HTML` или `Head` аннотацией `@HtmlTagMarker`, потому что их суперкласс уже аннотирован:
 
 ```
 class HTML() : Tag("html") { ... }
 class Head() : Tag("head") { ... }
 ```
 
-After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only: 
+<!--After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only: -->
+После добавления этой аннотации, компилятор Kotlin знает какие неявные приёмники являются частью того же DSL и разрешает обращаться только к членам ближайших приёмников:
 
 ``` kotlin
 html {
     head {
-        head { } // error: a member of outer receiver
+        head { } // ошибка: член внешнего приёмника
     }
     // ...
 }
 ```
 
-Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:
+<!--Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:-->
+Обратите внимание, что всё ещё возможно вызывать члены внешнего приёмника, но для этого вам нужно указать этот приёмник явно:
 
 ``` kotlin
 html {
     head {
-        this@html.head { } // possible
+        this@html.head { } // всё работает
     }
     // ...
 }

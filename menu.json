@@ -43,6 +43,7 @@
     "exceptions",
     "annotations",
     "reflection",
+    "type-safe-builders",
     "type-aliases"
   ],
   "Редактору": [

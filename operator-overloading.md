@@ -93,7 +93,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 
 <!-- ## Binary operations -->
 ## Бинарные операции
-{:#arithmetic}
+<a name="arithmetic"></a>
 
 <!--### Arithmetic operators  -->
 ### Арифметические операции
@@ -115,7 +115,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 in Kotlin 1.1.-->
 Отметим, что операция `rem` поддерживается только начиная с Kotlin 1.1. Kotlin 1.0 использует только операцию `mod`, которая отмечена как устаревшая в in Kotlin 1.1.
 
-{:#in}
+<a name="in"></a>
 
 <!--### 'In' operator -->
 ### Оператор in
@@ -128,7 +128,7 @@ in Kotlin 1.1.-->
 <!--For `in` and `!in` the procedure is the same, but the order of arguments is reversed.-->
 Для операций `in` и `!in` используется одна и та же процедура, только возвращаемый результат инвертируется.
 
-{:#indexed}
+<a name="indexed"></a>
 
 <!--### Indexed access operator-->
 ### Оператор доступа по индексу
@@ -145,7 +145,7 @@ in Kotlin 1.1.-->
 <!--Square brackets are translated to calls to `get` and `set` with appropriate numbers of arguments.-->
 Квадратные скобки транслируются в вызов `get` или `set` с соответствующим числом аргументов. 
 
-{:#invoke}
+<a name="invoke"></a>
 
 <!--### Invoke operator-->
 ### Оператор вызова
@@ -160,7 +160,7 @@ in Kotlin 1.1.-->
 <!--Parentheses are translated to calls to `invoke` with appropriate number of arguments.-->
 Оператора вызова (функции, метода) в круглых скобках транслируется в `invoke` с соответствующим числом аргументов. 
 
-{:#assignments}
+<a name="assignments"></a>
 
 <!--### Augmented assignments-->
 ### Присвоения с накоплением
@@ -190,7 +190,7 @@ in Kotlin 1.1.-->
 <!--*Note*: assignments are *NOT* expressions in Kotlin.-->
 *Отметим*: присвоение *НЕ ЯВЛЯЕТСЯ* выражением в Kotlin.
 
-{:#equals}
+<a name="equals"></a>
 
 <!--### Equality and inequality operators-->
 ### Операторы равенства и неравенства
@@ -208,7 +208,7 @@ in Kotlin 1.1.-->
 Операция `==` имеет специальный смысл: она транслируется в составное выражение, в котором экранируются значения `null`.
 `null == null` - это всегда истина, а `x == null` для ненулевых `x` - всегда ложь, и не должно расширяться в `x.equals()`.
 
-{:#comparison}
+<a name="comparison"></a>
 
 <!--### Comparison operators-->
 ### Операторы сравнений

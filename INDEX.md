@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: index
-title: "Документация по Kotlin на русском"
+title: "Язык программирования Kotlin"
 menuLabel: "Главная страница"
 url: https://kotlinlang.ru
 ---

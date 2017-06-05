@@ -266,7 +266,7 @@ class Tests {
 <!--Since the order of parameters for an annotation written in Java is not defined, you can't use a regular function
 call syntax for passing the arguments. Instead, you need to use the named argument syntax.-->
 Так как порядок параметров для Java-аннотаций не задан, вы не можете использовать обычный синтаксис вызова функции для передачи
-аргументов. Вместо этого, вам нужно именованные аргументы.
+аргументов. Вместо этого, вам нужно использовать именованные аргументы.
 
 ``` java
 // Java

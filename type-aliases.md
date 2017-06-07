@@ -28,7 +28,7 @@ typealias FileTable<K> = MutableMap<K, MutableList<File>>
 ```
 
 <!--You can provide different aliases for function types:-->
-Вы также можете предоставить псевдонимы для типов функций:
+Вы также можете объявить псевдонимы для функциональных типов:
 
 ``` kotlin
 typealias MyHandler = (Int, String, Any) -> Unit

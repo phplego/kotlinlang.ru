@@ -81,7 +81,7 @@ val (result, status) = function(...)
 
 <!--**NOTE**: we could also use the standard class `Pair` and have `function()` return `Pair<Int, Status>`, 
 but it's often better to have your data named properly.-->
-**ПРИМЕЧАНИЕ**: мы также могли использовать стандартный класс `Pair`, чтобы заствить функцию вернуть вернуть `Pair<Int, Status>`,
+**ПРИМЕЧАНИЕ**: мы также могли использовать стандартный класс `Pair`, чтобы заставить функцию вернуть `Pair<Int, Status>`,
 но правильнее будет именовать ваши данные должным образом.
 
 <!--## Example: Destructuring Declarations and Maps-->

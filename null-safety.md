@@ -35,7 +35,7 @@ title: "Null безопасность"
 
 <!-- In Kotlin, the type system distinguishes between references that can hold *null*{: .keyword } (nullable references) and those that can not (non-null references). -->
 <!-- For example, a regular variable of type `String` can not hold *null*{: .keyword }: -->
-Система типов <b>Kotlin</b> различает ссылки на те, которые могут иметь значение *null*(nullable ссылки) и те, которые таковыми быть не могут(nun-null ссылки).
+Система типов <b>Kotlin</b> различает ссылки на те, которые могут иметь значение *null*(nullable ссылки) и те, которые таковыми быть не могут(non-null ссылки).
 К примеру, переменная часто используемого типа `String` не может быть *null*:
 
 
@@ -60,7 +60,7 @@ title: "Null безопасность"
 ```
 
 <!-- But if you want to access the same property on `b`, that would not be safe, and the compiler reports an error: -->
-Но в случае, если вы захотите получить доступ к значению `b`, это будет небезопасно. Комппилятор предупредит об ошбибке:
+Но в случае, если вы захотите получить доступ к значению `b`, это будет небезопасно. Компилятор предупредит об ошибке:
 
 ``` kotlin
  val l = b.length // ошибка: переменная `b` может быть null

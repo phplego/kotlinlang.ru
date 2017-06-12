@@ -37,11 +37,13 @@ val result = double(2)
 Sample().foo() //создаёт экземпляр класса Sample и вызывает foo
 ```
 
-<!--### Infix notation-->
-### Инфиксное обозначение
+<a class="anchor" href="#infix-notation"></a>
+
+<!--### Infix notation-->   
+### Инфиксная запись
 
 <!--Functions can also be called using infix notations when-->
-Функции так же могут быть вызваны при помощи использования инфиксных обозначений, когда:
+Функции так же могут быть вызваны при помощи инфиксной записи, при условии, что:
 
 <!--* They are member functions or [extension functions](extensions.html)-->
 * Они являются членом другой функции или [расширения](http://kotlinlang.ru/docs/reference/extensions.html)
@@ -51,12 +53,12 @@ Sample().foo() //создаёт экземпляр класса Sample и выз
 * Когда они помечены ключевым словом `infix`
 
 ``` kotlin
-// Определить выражение как Int
+// Опередляем выражение как Int
 infix fun Int.shl(x: Int): Int {
 ...
 }
 
-// вызвать выражение функции, используя infix
+// вызываем функцию, используя инфиксную запись
 
 1 shl 2
 

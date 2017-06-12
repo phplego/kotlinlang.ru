@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Null безопасность"
+url: https://kotlinlang.ru/docs/reference/null-safety.html
 ---
 
 <!-- # Null Safety -->

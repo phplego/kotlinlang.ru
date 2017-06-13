@@ -22,8 +22,8 @@ url: https://kotlinlang.ru
 * [Раздел на reddit.com, посвященный языку Kotlin](https://www.reddit.com/r/Kotlin)
 
 ## Сообщество
-* [@kotlin_lang](https://t.me/kotlin_lang) - Сообщество разработчиков на Kotlin (>650 человек)
 * [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram чат посвященный языку Kotlin и переводу документации
+* [@kotlin_lang](https://t.me/kotlin_lang) - Сообщество разработчиков на Kotlin
  
  Локальные группы:
 * [@KotlinMoscow](https://t.me/KotlinMoscow) - Московская группа

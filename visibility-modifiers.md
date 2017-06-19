@@ -52,7 +52,7 @@ package foo
 
 private fun foo() {} // имеет видимость внутри example.kt
 
-public var bar: Int = 5 // свойство видно со дна Марианской Впадины
+public var bar: Int = 5 // свойство видно со дна Марианской впадины
     private set         // сеттер видно только внутри example.kt
     
 internal val baz = 6    // имеет видимость внутри модуля

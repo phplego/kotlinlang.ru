@@ -51,7 +51,7 @@ the primary constructor:-->
 
 <!--It's often the case that we need to copy an object altering _some_ of its properties, but keeping the rest unchanged.
 This is what `copy()` function is generated for. For the `User` class above, its implementation would be as follows:-->
-Довольно часто нам приходиться копировать объект с изменением только _некоторых_ его свойств. Для этой задачи генерируется функция `copy()`. Для написанного выше класса `User` такая реализация будет выглядеть следующим образом:
+Довольно часто нам приходится копировать объект с изменением только _некоторых_ его свойств. Для этой задачи генерируется функция `copy()`. Для написанного выше класса `User` такая реализация будет выглядеть следующим образом:
 
 ``` kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)

@@ -130,7 +130,7 @@ object DefaultListener : MouseAdapter() {
 
 <!-- **NOTE**: object declarations can't be local (i.e. be nested directly inside a function), but they can be nested into other object declarations or non-inner classes. -->
 
->**ПРИМЕЧАНИЕ**: объявление объекта не может иметь локальный характер (т.е. быть вложенным непосредственно в функцию), но может быть вложено в объявление другого объекта или какого-либо невложенного класса.
+**ПРИМЕЧАНИЕ**: объявление объекта не может иметь локальный характер (т.е. быть вложенным непосредственно в функцию), но может быть вложено в объявление другого объекта или какого-либо невложенного класса.
 
 
 <!-- ### Companion Objects -->
@@ -187,7 +187,7 @@ class MyClass {
 <!-- However, on the JVM you can have members of companion objects generated as real static methods and fields, if you use -->
 <!-- the `@JvmStatic` annotation. See the [Java interoperability](java-to-kotlin-interop.html#static-fields) section -->
 <!-- for more details. -->
-Однако, в <b>JVM</b>, вы можете статически генерировать методы вспомогательных объектов и полей, используя аннотацию `@JvmStatic@`.
+Однако в <b>JVM</b> вы можете статически генерировать методы вспомогательных объектов и полей, используя аннотацию `@JvmStatic@`.
 См. [Совместимость с Java](http://kotlinlang.org/docs/reference/java-to-kotlin-interop.html#static-fields).
 
 
@@ -203,5 +203,5 @@ class MyClass {
 
 * анонимный объект инициализируется **сразу после того**, как был использован
 * декларированный объект инициализируется **лениво**, в момент первого к нему доступа
-* вспомогательный объект инициализируется в момент, когда класс, к которому он относится, загружен и семантически совпадает с статическим инициализатором <b>Java</b>
+* вспомогательный объект инициализируется в момент, когда класс, к которому он относится, загружен и семантически совпадает со статическим инициализатором <b>Java</b>
 

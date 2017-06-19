@@ -20,7 +20,7 @@ of a sealed class can have multiple instances which can contain state.-->
 subclasses, but all of them must be declared in the same file as the sealed class itself. (Before Kotlin 1.1,
 the rules were even more strict: classes had to be nested inside the declaration of the sealed class). -->
 
-Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены в том же файле, что и сам изолированный класс. (До версии Kotlin 1.1, правила были ещё более строгими: классы должны были быть вложены в объявлении изолированного класса). 
+Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены в том же файле, что и сам изолированный класс. (До версии Kotlin 1.1 правила были ещё более строгими: классы должны были быть вложены в объявлении изолированного класса). 
 
 ``` kotlin
 sealed class Expr

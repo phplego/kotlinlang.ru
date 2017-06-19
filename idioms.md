@@ -238,7 +238,7 @@ fun theAnswer(): Int {
 ```
 
 <!--This can be effectively combined with other idioms, leading to shorter code. E.g. with the **when**-expression:-->
-Для сокращения кода, их можно эффективно совмещать с другими идиомами. Например с **when**<!--keyword-->:
+Для сокращения кода их можно эффективно совмещать с другими идиомами. Например с **when**<!--keyword-->:
 
 ``` kotlin
 fun transform(color: String): Int = when (color) {

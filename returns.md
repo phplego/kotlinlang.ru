@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/reference/returns.html
 # Операторы перехода
 
 <!--Kotlin has three structural jump operators-->
-В <b>Kotlin</b> определено три оператора перехода
+В <b>Kotlin</b> определено три оператора перехода:
 
 <!--* **return** By default returns from the nearest enclosing function or [anonymous function](lambdas.html#anonymous-functions).
 * **break**. Terminates the nearest enclosing loop.
@@ -28,7 +28,7 @@ Labels have the form of an identifier followed by the `@` sign, for example: `ab
 To label an expression, we just put a label in front of it-->
 Любое выражение в <b>Kotlin</b> может быть помечено меткой **label**.
 Метки имеют идентификатор в виде знака `@`. Например: метки `abc@`, `fooBar@` являются корректными
-(см. [грамматика](http://kotlinlang.org/docs/reference/grammar.html#label)). Для того, чтобы пометить выражение, мы просто ставим метку перед ним
+(см. [грамматика](http://kotlinlang.org/docs/reference/grammar.html#label)). Для того, чтобы пометить выражение, мы просто ставим метку перед ним:
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -60,7 +60,7 @@ A **continue** proceeds to the next iteration of that loop.-->
 <!--With function literals, local functions and object expression, functions can be nested in Kotlin. 
 Qualified **return**s allow us to return from an outer function. 
 The most important use case is returning from a lambda expression. Recall that when we write this:-->
-В <b>Kotlin</b> функции могут быть вложены друг в друга с помощью анонимных объектов, локальных функций(ориг.:_local functions_) и _function literals_.
+В <b>Kotlin</b> функции могут быть вложены друг в друга с помощью анонимных объектов, локальных функций (ориг.:_local functions_) и _function literals_.
 Подходящий **return** позволит вернуться из внешней функции.
 Одним из самых удачных применений этой синтаксической конструкции служит возврат из лямбда-выражения. Подумайте над этим утверждением, читая данный пример:
 
@@ -90,7 +90,7 @@ fun foo() {
 
 <!--Now, it returns only from the lambda expression. Oftentimes it is more convenient to use implicits labels:
 such a label has the same name as the function to which the lambda is passed.-->
-Теперь он возвращает только из лямда-выражения. Зачастую намного более удобно указывать метки неявно: такие метки имеют такое же имя, как и функция, к которой относится лямбда.  
+Теперь он возвращается только из лямда-выражения. Зачастую намного более удобно указывать метки неявно: такие метки имеют такое же имя, как и функция, к которой относится лямбда.  
 
 ``` kotlin
 fun foo() {

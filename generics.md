@@ -113,9 +113,9 @@ interface Collection<E> ... {
 
 <!-- Joshua Bloch calls those objects you only **read** from **Producers**, and those you only **write** to **Consumers**. He recommends: "*For maximum flexibility, use wildcard types on input parameters that represent producers or consumers*", and proposes the following mnemonic: -->
 Джошуа Блок (Joshua Block) называет объекты:
-- **Производителями** (ориг.:_producers_), если из которых вы только **читаете**
+- **Производителями** (ориг.:_producers_), если вы только **читаете** из них
 - **Потребителями** (ориг.: _consumers_), если вы только **записываете** в них
-Его рекомендация: "*Для максимальной гибкости, используйте маски (ориг. wildcards) на входных параметрах, которые представляют производителей или потребителей*"
+Его рекомендация: "*Для максимальной гибкости используйте маски (ориг. wildcards) на входных параметрах, которые представляют производителей или потребителей*"
 
 <!-- *PECS stands for Producer-Extends, Consumer-Super.* -->
 *PECS настаивает на Producer-Extends, Consumer-Super.*
@@ -170,7 +170,7 @@ fun demo(strs: Source<String>) {
 ```
 
 <!--The general rule is: when a type parameter `T` of a class `C` is declared **out**, it may occur only in **out**\-position in the members of `C`, but in return `C<Base>` can safely be a supertype of `C<Derived>`.-->
-Общее правило таково: когда параметр `T` класса `С` объявлен как **out**, он может использоваться только в **out**-местах в членах `C`. Но зато, `C<Base>` может быть родителем `C<Derived>`, и это будет безопасно.
+Общее правило таково: когда параметр `T` класса `С` объявлен как **out**, он может использоваться только в **out**-местах в членах `C`. Но зато `C<Base>` может быть родителем `C<Derived>`, и это будет безопасно.
 
 <!--In "clever words" they say that the class `C` is **covariant** in the parameter `T`, or that `T` is a **covariant** type parameter.
 You can think of `C` as being a **producer** of `T`'s, and NOT a **consumer** of `T`'s.-->
@@ -198,7 +198,7 @@ fun demo(x: Comparable<Number>) {
 
 <!--We believe that the words **in** and **out** are self-explaining (as they were successfully used in C# for quite some time already),
 thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose:-->
-Мы верим, что слова **in** и **out** говорят сами за себя (так как они довольно успешно используются в C# уже долгое время), таким образом, мнемоника, приведённая выше не так уж и нужна, и её можно перефразировать следущим образом:
+Мы верим, что слова **in** и **out** говорят сами за себя (так как они довольно успешно используются в C# уже долгое время), таким образом, мнемоника, приведённая выше, не так уж и нужна, и её можно перефразировать следущим образом:
 
 **[Экзистенцианальная](https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D0%B7%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%BC) Трансформация: Consumer in, Producer out\!** :-)
 
@@ -244,7 +244,7 @@ and if we actually passed an array of `Int` there, a `ClassCastException` would 
 Здесь мы попадаем в уже знакомую нам проблему: `Array<T>` **инвариантен** в `T`, таким образом `Array<Int>` не является подтипом `Array<Any>`. Почему? Опять же, потому что копирование **может** сотворить плохие вещи, например может произойти попытка **записать**, скажем, значение типа `String` в `from`. И если мы на самом деле передадим туда массив `Int`, через некоторое время будет выборошен `ClassCastException`.
 
 <!--Then, the only thing we want to ensure is that `copy()` does not do any bad things. We want to prohibit it from **writing** to `from`, and we can:-->
-Тогда, единственная вещь, в которой мы хотим удостовериться, это то что `copy()` не сделает ничего плохого. Мы хотим запретить методу **записывать** в `from`, и мы можем это сделать:
+Тогда единственная вещь, в которой мы хотим удостовериться, это то, что `copy()` не сделает ничего плохого. Мы хотим запретить методу **записывать** в `from`, и мы можем это сделать:
 
 ``` kotlin
 fun copy(from: Array<out Any>, to: Array<Any>) {
@@ -254,7 +254,7 @@ fun copy(from: Array<out Any>, to: Array<Any>) {
 
 <!--What has happened here is called **type projection**: we said that `from` is not simply an array, but a restricted (**projected**) one: we can only call those methods that return the type parameter
 `T`, in this case it means that we can only call `get()`. This is our approach to **use-site variance**, and corresponds to Java's `Array<? extends Object>`, but in a slightly simpler way.-->
-Произошедшее здесь наывается **проекция типов**: мы сказали, что `from` — не просто массив, а ограниченный (**спроецированный**): мы можем вызывать только те методы, которые возвращают параметризованный тип `T`, что в этом случае означает, что мы можем вызывать только `get()`. Таков наш подход к **вариативности на месте использования**, и он соответствует `Array<? extends Object>` из Java, но в более простом виде.
+Произошедшее здесь называется **проекция типов**: мы сказали, что `from` — не просто массив, а ограниченный (**спроецированный**): мы можем вызывать только те методы, которые возвращают параметризованный тип `T`, что в этом случае означает, что мы можем вызывать только `get()`. Таков наш подход к **вариативности на месте использования**, и он соответствует `Array<? extends Object>` из Java, но в более простом виде.
 
 <!--You can project a type with **in** as well:-->
 Вы так же можете проецировать тип с **in**:
@@ -306,7 +306,7 @@ For example, if the type is declared as `interface Function<in T, out U>` we can
 *Примечаение*: "звёздные" проекции очень похожи на сырые (raw) типы из Java, за тем исключением, что являются безопасными.
 
 <!--## Generic functions-->
-## Обощённые функции
+## Обобщённые функции
 
 <!--Not only classes can have type parameters. Functions can, too. Type parameters are placed before the name of the function:-->
 Функции, как и классы, могут иметь типовые параметры. Типовые параметры помещаются перед именем функции:
@@ -332,13 +332,13 @@ val l = singletonList<Int>(1)
 ## Обобщённые ограничения
 
 <!--The set of all possible types that can be substituted for a given type parameter may be restricted by **generic constraints**.-->
-Набор всех возможных типов, которые могут быть переданы в качестве параметра может быть ограничен с помощью **обобщённых ограничений**. 
+Набор всех возможных типов, которые могут быть переданы в качестве параметра, может быть ограничен с помощью **обобщённых ограничений**. 
 
 <!--### Upper bounds-->
 ### Верхние границы
 
 <!--The most common type of constraint is an **upper bound** that corresponds to Java's *extends* keyword:-->
-Самый распространённый тип ограничений это **верхняя граница**, которая соответствует ключевому слову *extends* из Java:
+Самый распространённый тип ограничений - **верхняя граница**, которая соответствует ключевому слову *extends* из Java:
 
 ``` kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {
@@ -347,7 +347,7 @@ fun <T : Comparable<T>> sort(list: List<T>) {
 ```
 
 <!--The type specified after a colon is the **upper bound**: only a subtype of `Comparable<T>` may be substituted for `T`. For example-->
-Тип, указанный после двоеточия является **верхней границей**: только подтип `Comparable<T>` может быть передан в `T`. Например:
+Тип, указанный после двоеточия, является **верхней границей**: только подтип `Comparable<T>` может быть передан в `T`. Например:
 
 ``` kotlin
 sort(listOf(1, 2, 3)) // Всё в порядке. Int — подтип Comparable<Int>

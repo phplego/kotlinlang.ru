@@ -28,7 +28,7 @@ class Invoice {
 constructor etc.) and the class body, surrounded by curly braces. Both the header and the body are optional;
 if the class has no body, curly braces can be omitted.-->
 Объявление класса состоит из имени класса, заголовка (указания типов его параметров, первичного конструктора и т.п) и тела класса,
-заключённого в фигурные скобки. И заголовок и тело класса являются необязательными составляющими: если у класса нет тела, фигурные скобки могут быть опущены.
+заключённого в фигурные скобки. И заголовок, и тело класса являются необязательными составляющими: если у класса нет тела, фигурные скобки могут быть опущены.
 
 ``` kotlin
 class Empty
@@ -40,7 +40,7 @@ class Empty
 
 <!--A class in Kotlin can have a **primary constructor** and one or more **secondary constructors**. The primary
 constructor is part of the class header: it goes after the class name (and optional type parameters).-->
-Класс в <b>Kotlin</b> может иметь первичный конструктор (**primary constructor**) и один или более вторичный конструктор (**secondary constructors**). Первичный конструктор является частью заголовка класса, его объявление идёт сразу после имени класса (и необязательных параметров).
+Класс в <b>Kotlin</b> может иметь первичный конструктор (**primary constructor**) и один или более вторичных конструкторов (**secondary constructors**). Первичный конструктор является частью заголовка класса, его объявление идёт сразу после имени класса (и необязательных параметров):
 
 ``` kotlin
 class Person constructor(firstName: String)
@@ -48,7 +48,7 @@ class Person constructor(firstName: String)
 
 <!--If the primary constructor does not have any annotations or visibility modifiers, the **constructor**
 keyword can be omitted:-->
-Если у конструктора нет аннотаций и модификаторов видимости, ключево слово **constructor** может быть опущено:
+Если у конструктора нет аннотаций и модификаторов видимости, ключевое слово **constructor** может быть опущено:
 
 ``` kotlin
 class Person(firstName: String)
@@ -56,7 +56,7 @@ class Person(firstName: String)
 
 <!--The primary constructor cannot contain any code. Initialization code can be placed
 in **initializer blocks**, which are prefixed with the **init**keyword:-->
-Первичный конструктор не может содержать в себе никакого исполняемого кода. Инициализирующий код может быть помещён в соответствующий блок (**initializers blocks**), который помечается словом **init**:
+Первичный конструктор не может содержать в себе исполняемого кода. Инициализирующий код может быть помещён в соответствующий блок (**initializers blocks**), который помечается словом **init**:
 
 
 ``` kotlin
@@ -78,7 +78,7 @@ class Customer(name: String) {
 ```
 
 <!--In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:-->
-В действительности, для объявления и инициализации свойств первичного конструктора, в <b>Kotlin</b> есть лаконичное синтаксическое решение:
+В действительности, для объявления и инициализации свойств первичного конструктора в <b>Kotlin</b> есть лаконичное синтаксическое решение:
 
 ``` kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
@@ -92,14 +92,14 @@ mutable (**var**) or read-only (**val**).-->
 
 <!--If the constructor has annotations or visibility modifiers, the **constructor** keyword is required, and
 the modifiers go before it:-->
-Если у конструктора есть аннотации или модификаторы видимости, ключевое слово **constructor** обязательно, и модификаторы используются перед ним.
+Если у конструктора есть аннотации или модификаторы видимости, ключевое слово **constructor** обязательно, и модификаторы используются перед ним:
 
 ``` kotlin
 class Customer public @Inject constructor(name: String) { ... }
 ```
 
 <!--For more details, see [Visibility Modifiers](visibility-modifiers.html#constructors).-->
-Для более подробной информации по данному вопросу, см. ["Модификаторы доступа"](visibility-modifiers.html#constructors).
+Для более подробной информации по данному вопросу см. ["Модификаторы доступа"](visibility-modifiers.html#constructors).
 
 <!--#### Secondary Constructors-->
 #### Второстепенные конструкторы 
@@ -118,7 +118,7 @@ class Person {
 <!--If the class has a primary constructor, each secondary constructor needs to delegate to the primary constructor, either
 directly or indirectly through another secondary constructor(s). Delegation to another constructor of the same class
 is done using the **this** keyword:-->
-Если у класса есть главный (первичный) конструктор, каждый последующий конструктор должен прямо или косвенно ссылаться (через другой(_ие_) конструктор(_ы_)) на первичный.
+Если у класса есть главный (первичный) конструктор, каждый последующий конструктор должен прямо или косвенно ссылаться (через другой(_ие_) конструктор(_ы_)) на первичный:
 
 ``` kotlin
 class Person(val name: String) {
@@ -138,7 +138,7 @@ class DontCreateMe private constructor () {
 }
 ```
 >
- **Примечание**: В виртуальной машине JVM, компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
+ **Примечание**: В виртуальной машине JVM компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры первичного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
 
 ``` kotlin
 class Customer(val customerName: String = "")
@@ -194,7 +194,7 @@ Please consult the [Java interoperability](java-interop.html#object-methods) sec
 Класс `Any` не является аналогом `java.lang.Object`. В частности, у него нет никаких членов кроме методов: `equals()`, `hashCode()`, и `toString()`. Пожалуйста, ознакомьтесь с [совместимостью c Java](http://kotlinlang.org/docs/reference/java-interop.html#object-methods) для более подробной информации.
 
 <!--To declare an explicit supertype, we place the type after a colon in the class header:-->
-Для явного объявления суперкласса, мы помещаем его имя за знаком двоеточия в оглавлении класса:
+Для явного объявления суперкласса мы помещаем его имя за знаком двоеточия в оглавлении класса:
 
 ``` kotlin
 open class Base(p: Int)
@@ -210,7 +210,7 @@ using the parameters of the primary constructor.-->
 using the **super** keyword, or to delegate to another constructor which does that.
 Note that in this case different secondary constructors can call different constructors of the base type:-->
 Если у класса нет первичного конструктора, тогда каждый последующий второстепенный конструктор должен включать в себя инициализацию базового типа с помощью ключевого слова **super** или давать отсылку на другой конструктор, который это делает.
-Примечательно, что любые вторичные конструкторы могут ссылаться на разные конструкторы базового типа. 
+Примечательно, что любые вторичные конструкторы могут ссылаться на разные конструкторы базового типа:
 
 ``` kotlin
 class MyView : View {
@@ -250,10 +250,10 @@ class Derived() : Base() {
 <!--The **override** annotation is required for `Derived.v()`. If it were missing, the compiler would complain.
 If there is no **open** annotation on a function, like `Base.nv()`, declaring a method with the same signature in a subclass is illegal,
 either with **override** or without it. In a final class (e.g. a class with no **open** annotation), open members are prohibited.-->
-Для `Derived.v()` необходима аннотация  **override**. В случае её отсутствия, компилятор выдаст ошибку. Если у функции типа `Base.nv()` нет аннотации **open**, объявление метода с такой же сигнатурой в производном классе невозможно, с **override** или без. В **final** классе (классе, без аннотации **open**),  запрещено использование аннотации **open** для его членов. 
+Для `Derived.v()` необходима аннотация  **override**. В случае её отсутствия компилятор выдаст ошибку. Если у функции типа `Base.nv()` нет аннотации **open**, объявление метода с такой же сигнатурой в производном классе невозможно, с **override** или без. В **final** классе (классе без аннотации **open**),  запрещено использование аннотации **open** для его членов. 
 
 <!--A member marked **override** is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use **final**:-->
-Член класса, помеченный **override** является сам по себе **open**, таким образом он может быть переопределён в производных классах. Если вы хотите запретить возможность переопределения такого члена, используйте **final**:
+Член класса, помеченный **override**, является сам по себе **open**, т.е. он может быть переопределён в производных классах. Если вы хотите запретить возможность переопределения такого члена, используйте **final**:
 
 ``` kotlin
 open class AnotherDerived() : Base() {
@@ -275,7 +275,7 @@ open class AnotherDerived() : Base() {
 * If people really want to hack, there still are ways: you can always write your hack in Java and call it from Kotlin (*see [Java Interop](java-interop.html)*), and Aspect frameworks always work for these purposes-->
 * Опыт поколений говорит о том, что, в любом случае, лучше не позволять внедрять такие хаки
 * Люди успешно используют другие языки (<b>C++</b>, <b>C#</b>), которые имеют аналогичных подход к этому вопросу
-* Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его в <b>Kotlin</b> _(см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html)_
+* Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его в <b>Kotlin</b> _(см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html))_
 
 <!--### Overriding Rules-->
 ### Правила переопределения
@@ -338,7 +338,7 @@ abstract class Derived : Base() {
 
 <!--In Kotlin, unlike Java or C#, classes do not have static methods. In most cases, it's recommended to simply use
 package-level functions instead.-->
-В <b>Kotlin</b>, в отличие от <b>Java</b> или <b>C#</b>, в классах не бывает статических методов. В большинстве случаев, рекомендуется использовать функции на уровне пакета (ориг.: _"package-level functions"_).
+В <b>Kotlin</b>, в отличие от <b>Java</b> или <b>C#</b>, в классах не бывает статических методов. В большинстве случаев рекомендуется использовать функции на уровне пакета (ориг.: _"package-level functions"_).
 
 <!--If you need to write a function that can be called without having a class instance but needs access to the internals
 of a class (for example, a factory method), you can write it as a member of an [object declaration](object-declarations.html)

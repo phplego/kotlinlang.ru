@@ -43,7 +43,7 @@ fun copyAddress(address: Address): Address {
 ## Геттеры и сеттеры
 
 <!--The full syntax for declaring a property is-->
-Полный синтаксис объявления свойства выглядит так
+Полный синтаксис объявления свойства выглядит так:
 
 ``` kotlin
 var <propertyName>: <PropertyType> [= <property_initializer>]
@@ -148,7 +148,7 @@ public val table: Map<String, Int>
 ```
 
 <!--In all respects, this is just the same as in Java since access to private properties with default getters and setters is optimized so that no function call overhead is introduced.-->
-Во всем отношениях, такой подход ничем не отличается подхода в Java, так как доступ к приватным свойствам со стандартными геттарами и сеттерами оптимизируется таким образом, что вызов функции не происходит.
+Такой подход ничем не отличается от подхода в Java, так как доступ к приватным свойствам со стандартными геттерами и сеттерами оптимизируется таким образом, что вызов функции не происходит.
 
 <!--## Compile-Time Constants-->
 ## Константы времени компиляции
@@ -157,8 +157,8 @@ public val table: Map<String, Int>
 Such properties need to fulfil the following requirements:-->
 Свойства, значение которых известно во время компиляции, могут быть помечены как _константы времени компиляции_. Для этого используется модификатор `const`. Такие свойства должны соответствовать следующим требованиям:
 
-  * Находится на самом высоком уровне или быть членом объекта `object`  
-  * Быть проинициализированы значением типа `String` или значением примитивного типа
+  * Находиться на самом высоком уровне или быть членом объекта `object`  
+  * Быть проинициализироваными значением типа `String` или значением примитивного типа
   * Не иметь переопределённого геттера
 
 <!--Such properties can be used in annotations:-->
@@ -178,7 +178,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 However, fairly often this is not convenient. For example, properties can be initialized through dependency injection,
 or in the setup method of a unit test. In this case, you cannot supply a non-null initializer in the constructor,
 but you still want to avoid null checks when referencing the property inside the body of a class.-->
-Обычно, свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неосуществимо. К примеру, свойства могут быть инициализированы через внедрение зависимостей, в установочном методе (ориг.: _"setup method"_) юнит-теста, или в методе `onCreate` в Android. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе, но всё равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству. 
+Обычно, свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неосуществимо. К примеру, свойства могут быть инициализированы через внедрение зависимостей, в установочном методе (ориг.: _"setup method"_) юнит-теста или в методе `onCreate` в Android. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе, но всё равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству. 
 
 <!--To handle this case, you can mark the property with the `lateinit` modifier:-->
 Для того, чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`:
@@ -229,4 +229,4 @@ reading from a map by a given key, accessing a database, notifying listener on a
 
 
 <!--Such common behaviours can be implemented as libraries using [_delegated properties_](delegated-properties.html).-->
-Такие распространённые поведения свойств могут быть реализованы в виде библиотек с помощью [_delegated properties_](https://kotlinlang.ru/docs/reference/delegated-properties.html)
+Такие распространённые поведения свойств могут быть реализованы в виде библиотек с помощью [_delegated properties_](https://kotlinlang.ru/docs/reference/delegated-properties.html).

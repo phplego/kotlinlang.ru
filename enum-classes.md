@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/reference/enum-classes.html
 # Перечисляемые типы
 
 <!--The most basic usage of enum classes is implementing type-safe enums-->
-Ниболее базовый пример использования enum — это реализация типобезопасных перечислений
+Наиболее базовый пример использования enum — это реализация типобезопасных перечислений
 
 ``` kotlin
 enum class Direction {
@@ -88,4 +88,4 @@ val ordinal: Int
 ```
 
 <!--The enum constants also implement the [Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) interface, with the natural order being the order in which they are defined in the enum class.-->
-Также, enum-константы реализуют интерфейс [Comparable](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html). Порядок сортировки соответствует порядку объявления.
+Также enum-константы реализуют интерфейс [Comparable](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html). Порядок сортировки соответствует порядку объявления.

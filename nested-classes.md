@@ -46,7 +46,7 @@ val demo = Outer().Inner().foo() // == 1
 <!--## Anonymous inner classes-->
 ## Анонимные внутренние классы
 <!--Anonymous inner class instances are created using an [object expression](object-declarations.html#object-expressions):-->
-Экземпляры анонимных классов создаются с помощью [object expression](https://kotlinlang.org/docs/reference/object-declarations.html#object-expressions):
+Экземпляры анонимных классов создаются с помощью [object expression](object-declarations.html#object-expressions):
 
 ``` kotlin
 window.addMouseListener(object: MouseAdapter() {

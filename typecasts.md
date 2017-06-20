@@ -69,7 +69,7 @@ fun demo(x: Any) {
 
 <!--Such _smart casts_ work for [*when*{: .keyword }-expressions](control-flow.html#when-expression)
 and [*while*{: .keyword }-loops](control-flow.html#while-loops) as well:-->
-Такие _умные приведения_  работают вместе с [*when*-выражениями](control-flow.html) и [циклами *while*](control-flow.html):
+Такие _умные приведения_  работают вместе с [*when*-выражениями](control-flow.html#when-expression) и [циклами *while*](control-flow.html#while-loops):
 
 ``` kotlin
 when (x) {
@@ -102,7 +102,7 @@ More specifically, smart casts are applicable according to the following rules:-
 <!--Usually, the cast operator throws an exception if the cast is not possible. Thus, we call it *unsafe*.
 The unsafe cast in Kotlin is done by the infix operator *as*{: .keyword } (see [operator precedence](grammar.html#precedence)):-->
 Обычно оператор приведения выбрасывает исключение, если приведение невозможно, поэтому мы называем его *небезопасным*.
-Небезопасное приведение в Kotlin выполняется с помощью инфиксного оператора *as*:
+Небезопасное приведение в Kotlin выполняется с помощью инфиксного оператора *as* (см. [приоритеты операторов](grammar.html#precedence)):
 
 ``` kotlin
 val x: String = y as String

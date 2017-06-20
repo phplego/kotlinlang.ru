@@ -151,7 +151,7 @@ val <T> List<T>.lastIndex: Int
 <!--Note that, since extensions do not actually insert members into classes, there's no efficient way for an extension 
 property to have a [backing field](properties.html#backing-fields). This is why **initializers are not allowed for 
 extension properties**. Their behavior can only be defined by explicitly providing getters/setters.-->
-Так как расширения на самом деле не добавляют никаких членов к классам, свойство-расширение не может иметь [_backing field_](http://kotlinlang.org/docs/reference/properties.html#backing-fields). Вот почему **запрещено использовать инициализаторы для свойств-расширений**. Их поведение может быть определено только явным образом, с указанием геттеров/сеттеров.
+Так как расширения на самом деле не добавляют никаких членов к классам, свойство-расширение не может иметь [_backing field_](properties.html#backing-fields). Вот почему **запрещено использовать инициализаторы для свойств-расширений**. Их поведение может быть определено только явным образом, с указанием геттеров/сеттеров.
 
 <!--Example:-->
 Пример:
@@ -166,7 +166,7 @@ val Foo.bar = 1 // ошибка: запрещено инициализирова
 
 <!--If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
 functions and properties for the companion object:-->
-Если у класса есть [вспомогательный объект](http://kotlinlang.org/docs/reference/object-declarations.html#companion-objects), вы также можете определить функции и свойства для такого объекта:
+Если у класса есть [вспомогательный объект](object-declarations.html#companion-objects), вы также можете определить функции и свойства для такого объекта:
 
 ``` kotlin
 class MyClass {
@@ -214,7 +214,7 @@ fun usage(baz: Baz) {
 
 ```
 
-_См. [Imports](packages.html#imports) для более подробной информации._
+_См. [Импорт](packages.html#imports) для более подробной информации._
 
 <!-- ## Declaring Extensions as Members -->
 ## Объявление расширений в качестве членов класса

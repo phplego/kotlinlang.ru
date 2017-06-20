@@ -15,8 +15,8 @@ url: https://kotlinlang.ru/docs/reference/this-expressions.html
 <!--* In a member of a [class](classes.html#inheritance), *this*{: .keyword } refers to the current object of that class
 * In an [extension function](extensions.html) or a [function literal with receiver](lambdas.html#function-literals-with-receiver),
 *this*{: .keyword } denotes the _receiver_ parameter that is passed on the left-hand side of a dot.-->
-* Внутри [класса](classes.html) ключевое слово *this* ссылается на объект этого класса
-* В [функциях-расширениях](extensions.html) или в [литерале функции с принимающим объектом](lambdas.html) *this* обозначает 
+* Внутри [класса](classes.html#inheritance) ключевое слово *this* ссылается на объект этого класса
+* В [функциях-расширениях](extensions.html) или в [литерале функции с принимающим объектом](lambdas.html#function-literals-with-receiver) *this* обозначает 
 _принимающий объект_, который передаётся слева от точки. 
 
 <!--If *this*{: .keyword } has no qualifiers, it refers to the _innermost enclosing scope_. 
@@ -33,7 +33,7 @@ or labeled [function literal with receiver](lambdas.html#function-literals-with-
 on the scope *this*{: .keyword } is meant to be from:-->
 
 Чтобы получить доступ к *this* из внешней области ([класса](classes.html), [функции-расширения](extensions.html),
-или именованных [литералов функций с принимающим объектом](lambdas.html)) мы пишем `this@label`, где `@label` - это [метка](returns.html) области, из которой нужно получить *this*:
+или именованных [литералов функций с принимающим объектом](lambdas.html#function-literals-with-receiver)) мы пишем `this@label`, где `@label` - это [метка](returns.html) области, из которой нужно получить *this*:
 
 ``` kotlin
 class A { // неявная метка @A

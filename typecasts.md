@@ -28,6 +28,8 @@ else {
 }
 ```
 
+<a name="smart-casts"></a>
+
 <!--## Smart Casts-->
 ## Умные приведения
 

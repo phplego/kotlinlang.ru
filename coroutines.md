@@ -9,7 +9,7 @@ url: "https://kotlinlang.ru/docs/reference/coroutines.html"
 # Сопрограммы
 > Сопрограммы являются *экспериментальными* в Kotlin 1.1. Детали см. [ниже](#experimental-status-of-coroutines) 
 
-Некоторые API инициируют долго протекающие операции (такие как сетевой ввод-вывод, файловый ввод-вывод, интенсивная обработка на CPU или GPU и др.), которые требуют вызывающий код блокироваться в ожидании завершения операций. Механизм сопрограмм обеспечивает способ избежать блокировки исполняющегося потока и заменить его на более дешевый и более комфортный: *приостановку* (suspend) сопрограммы.
+Некоторые API инициируют долго протекающие операции (такие как сетевой ввод-вывод, файловый ввод-вывод, интенсивная обработка на CPU или GPU и др.), которые требуют блокировки вызывающего кода в ожидании завершения операций. Механизм сопрограмм обеспечивает способ избегания блокировки исполняющегося потока и заменить его на более дешевый и более комфортный: *приостановку* (suspend) сопрограммы.
 
 Сопрограммы упрощают асинхронное программирование, оставив все осложнения внутри библиотек. Логика программы может быть выражена *последовательно* в сопрограммах, а базовая библиотека будет её реализовывать асинхронно для нас. Библиотека может обернуть соответствующие части кода пользователя в обратные вызовы (callbacks), подписывающиеся на соответствующие события, диспетчировать исполнение на различные потоки (или даже на разные машины!), а код останется столь же простой, как если бы исполнялся строго  последовательно.
 
@@ -21,7 +21,7 @@ url: "https://kotlinlang.ru/docs/reference/coroutines.html"
 
 Главным отличительным признаком является то, что сопрограммы являются вычислениями, которые могут быть *приостановлены* без *блокирования потока* (вытеснения средствами операционной системы). Блокирование потоков часто является весьма дорогостоящим, особенно при интенсивных нагрузках: только относительно небольшое число потоков из общего числа является активно выполняющимися, поэтому блокировка одного из них ведет к затягиванию какой-нибудь важной части итоговой работы.
 
-Приостановка сопрограмма, с другой стороны, практически обходится бесплатно. Не требуется никакого переключения контекста (потоков) или иного вовлечения механизмов операционной системы. И сверх этого, приостановка может гибко контролироваться пользовательской библиотекой во многих аспектах: в качестве авторов библиотеки, мы можем решать что происходит при приостановке и оптимизировать, журналировать или перехватывать в соответствии со своими потребностями.
+Приостановка сопрограммы, с другой стороны, обходится практически бесплатно. Не требуется никакого переключения контекста (потоков) или иного вовлечения механизмов операционной системы. И сверх этого, приостановка может гибко контролироваться пользовательской библиотекой во многих аспектах: в качестве авторов библиотеки, мы можем решать, что происходит при приостановке, и оптимизировать, журналировать или перехватывать в соответствии со своими потребностями.
 
 Еще одно отличие заключается в том, что сопрограммы не могут быть приостановлены на  произвольной инструкции, но только в так называемых *точках остановки* (приостановки), которые вызываются в специально маркируемых функциях.
 
@@ -35,7 +35,7 @@ suspend fun doSomething(foo: Foo): Bar {
 }
 ```
 
-Такие функции называются *функциями остановки* (приостановки), поскольку вызовы их могут приостановить выполнение сопрограммы (библиотека может принять решение продолжать работу и без приостановки, если результат вызова уже доступен). Функции остановки могут иметь параметры и возвращать значения, точно так же как и все обычные функции, но они могут быть вызваны только из сопрограмм, или других функций остановки. В конечном итоге, при старте сопрограммы она должна содержать, как минимум, одну функцию остановки, и функция эта обычно анонимная (лямбда-функция остановки). Давайте взглянем, для примера, на упрощённую функцию `async()` (из библиотеки [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines)):
+Такие функции называются *функциями остановки* (приостановки), поскольку вызовы их могут приостановить выполнение сопрограммы (библиотека может принять решение продолжать работу и без приостановки, если результат вызова уже доступен). Функции остановки могут иметь параметры и возвращать значения точно так же, как и все обычные функции, но они могут быть вызваны только из сопрограмм или других функций остановки. В конечном итоге, при старте сопрограммы она должна содержать как минимум одну функцию остановки, и функция эта обычно анонимная (лямбда-функция остановки). Давайте взглянем, для примера, на упрощённую функцию `async()` (из библиотеки [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines)):
 
 <!--
 Such functions are called *suspending functions*, because calls to them may suspend a coroutine (the library can decide to proceed without suspension, if the result for the call in question is already available). Suspending functions can take parameters and return values in the same manner as regular functions, but they can only be called from coroutines and other suspending functions. In fact, to start a coroutine, there must be at least one suspending function, and it is usually anonymous (i.e. it is a suspending lambda). Let's look at an example, a simplified `async()` function (from the [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines) library): -->
@@ -47,7 +47,7 @@ fun <T> async(block: suspend () -> T)
 
 <!--Here, `async()` is a regular function (not a suspending function), but the `block` parameter has a function type with the `suspend` modifier: `suspend () -> T`. So, when we pass a lambda to `async()`, it is a *suspending lambda*, and we can call a suspending function from it: -->
 
-Здесь `async()` является обычной функцией (не функцией остановки), но `block` параметр имеет функциональный тип с модификатором `suspend`:  `suspend() -> T`. Таким образом, когда передаём лямбда-функцию в `async()`, она является анонимной функцией остановки, и мы можем вызывать функцию остановки изнутри её:
+Здесь `async()` является обычной функцией (не функцией остановки), но параметр `block` имеет функциональный тип с модификатором `suspend`:  `suspend() -> T`. Таким образом, когда мы передаём лямбда-функцию в `async()`, она является анонимной функцией остановки, и мы можем вызывать функцию остановки изнутри её:
    
 ``` kotlin
 async {
@@ -70,7 +70,7 @@ async {
 
 <!-- More information on how actual `async/await` functions work in `kotlinx.coroutines` can be found [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions). -->
 
-Больше информации о том, как действительно работают функции `async/await` в  `kotlinx.coroutines` может быть найдено [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions). 
+Больше информации о том, как действительно работают функции `async/await` в  `kotlinx.coroutines`, может быть найдено [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions). 
 
 <!--Note that suspending functions `await()` and `doSomething()` can not be called from a regular function like `main()`: -->
 Отметим, что функции приостановки `await()` и `doSomething()` не могут быть вызваны из обыкновенных функций, подобных `main()`:
@@ -105,9 +105,9 @@ This is relevant in the _rare_ cases when every suspension is handled in a speci
 
 Расширяющие функции (и анонимные функции) также могут быть маркированы как `suspend`, подобно и всем остальным (регулярным) функциям. Это позволяет создавать [DSL](type-safe-builders.html) и другие API, которые пользователь может расширять. В некоторых случаях автор библиотеки должен быть в состоянии препятствовать пользователю в добавлении *новых путей* приостановки в сопрограмме.
 
-Чтобы осуществить это аннотация [`@RestrictsSuspension`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html) может быть использована. Когда целевой класс или интерфейс `R` аннотируется подобным образом, все расширения приостановки должны делегироваться либо из членов `R`, или из других расширений из него. Поскольку расширения не могут делегировать друг друга до бесконечности (иначе программа никогда не завершится), это гарантирует, что все приостановки пройдут посредством вызова члены `R`, так что автор библиотеки может полностью их контролировать.
+Чтобы осуществить это, можно использовать аннотацию [`@RestrictsSuspension`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html). Когда целевой класс или интерфейс `R` аннотируется подобным образом, все расширения приостановки должны делегироваться либо из членов `R`, либо из других расширений из него. Поскольку расширения не могут делегировать друг друга до бесконечности (иначе программа никогда не завершится), это гарантирует, что все приостановки пройдут посредством вызова члена `R`, так что автор библиотеки может полностью их контролировать.
 
-Это актуально в тех _редких_ случаях, когда каждая приостановка обрабатывается специальным образом в библиотеке. Например, при реализации генераторов через [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) функцию, описанную [ниже](#generators-api-in-kotlincoroutines), мы должны быть уверены, что любой приостанавливаемый вызовов в сопрограмма завершается вызовом либо `yield()`, либо `yieldAll()`, а не какой либо другой функции. Именно по этой причине [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) аннотирована с @RestrictsSuspension:
+Это актуально в тех _редких_ случаях, когда каждая приостановка обрабатывается специальным образом в библиотеке. Например, при реализации генераторов через [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) функцию, описанную [ниже](#generators-api-in-kotlincoroutines), мы должны быть уверены, что любой приостанавливаемый вызовов в сопрограмме завершается вызовом либо `yield()`, либо `yieldAll()`, а не какой-либо другой функции. Именно по этой причине [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) аннотирована с @RestrictsSuspension:
 
 ``` kotlin
 @RestrictsSuspension
@@ -129,13 +129,13 @@ A suspended coroutine can be stored and passed around as an object that keeps it
 
 More details on how coroutines work may be found in [this design document](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Similar descriptions of async/await in other languages (such as C# or ECMAScript 2016) are relevant here, although the language features they implement may not be as general as Kotlin coroutines. --> 
 
-Мы не стремимся здесь дать полное объяснение того, как сопрограммы работают под капотом, но примерный смысл того что происходит очень важен.
+Мы не стремимся здесь дать полное объяснение того, как сопрограммы работают под капотом, но примерный смысл того, что происходит, очень важен.
 
-Сопрограммы полностью реализованы с помощью технологии компиляции (никакой поддержки от языковой виртуальной машины, среды исполнения, или операционной системы не требуется), и приостановка работает через преобразование кода. В принципе, каждая функция приостановки (оптимизации могут применяться, но мы не будем вдаваться в эти подробности здесь) преобразуется в конечный автомат, где состояния соответствуют приостановленным вызовам. Прямо перед приостановкой, следующее состояние загружается в поле сгенерированного компилятором класса, вместе с сопутствующими локальным переменными т. д. После возобновления работы сопрограммы, восстанавливаются локальные переменные и состояние машина продолжается сразу после точки приостановки сопрограммы.
+Сопрограммы полностью реализованы с помощью технологии компиляции (никакой поддержки от языковой виртуальной машины, среды исполнения, или операционной системы не требуется), и приостановка работает через преобразование кода. В принципе, каждая функция приостановки (оптимизации могут применяться, но мы не будем вдаваться в эти подробности здесь) преобразуется в конечный автомат, где состояния соответствуют приостановленным вызовам. Прямо перед приостановкой следующее состояние загружается в поле сгенерированного компилятором класса вместе с сопутствующими локальным переменными т. д. После возобновления работы сопрограммы восстанавливаются локальные переменные и состояние, машина продолжается сразу после точки приостановки сопрограммы.
 
-Приостановленная сопрограмма можно сохраняться и передавать как объект, который хранит её приостановленное состояние и локальные переменные. Типом таких объектов является  Continuation, а, в целом, преобразование кода описанное здесь соответствует классическому [Continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style). Окончательно, приостановливаемые функции принимают дополнительный параметр типа `Continuation` (сохранённое состояние) под капотом. 
+Приостановленную сопрограмму можно сохранять и передавать как объект, который хранит её приостановленное состояние и локальные переменные. Типом таких объектов является  Continuation, а преобразование кода, описанное здесь, соответствует классическому [Continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style). Окончательно, приостановливаемые функции принимают дополнительный параметр типа `Continuation` (сохранённое состояние) под капотом. 
 
-Более детально о том, как работают сопрограммы, можно найти в [этом проектном документе](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Похожие описания `async / await` в других языках (таких как C# или ECMAScript 2016) релевантные этим описаниям, хотя особенности их языковых реализаций могут существенно отличаться от сопрограмм Kotlin.
+Более детально о том, как работают сопрограммы, можно узнать в [этом проектном документе](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Похожие описания `async / await` в других языках (таких как C# или ECMAScript 2016) релевантные этим описаниям, хотя особенности их языковых реализаций могут существенно отличаться от сопрограмм Kotlin.
 
 <a name="experimental-status-of-coroutines"></a>
 ## Экспериментальный статус сопрограмм 
@@ -144,9 +144,9 @@ More details on how coroutines work may be found in [this design document](https
 
 Due to its experimental status, the coroutine-related API in the Standard Library is put under the `kotlin.coroutines.experimental` package. When the design is finalized and the experimental status lifted, the final API will be moved to `kotlin.coroutines`, and the experimental package will be kept around (probably in a separate artifact) for backward compatibility. 
 -->
-Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features), экспериментальный характер означает, что он может быть изменён в будущих релизах. При составлении сопрограммы в Kotlin 1.1, по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](/docs/diagnostics/experimental-coroutines.html).
+Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features). Экспериментальный характер означает, что он может быть изменён в будущих релизах. При составлении сопрограммы в Kotlin 1.1 по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](/docs/diagnostics/experimental-coroutines.html).
 
-Из-за экспериментального статуса сопрограмм, все связанные API собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет будет храниться в среде (возможно, как отдельный артефакт), в целях обеспечения обратной совместимости.
+Из-за экспериментального статуса сопрограмм все связанные API собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет будет храниться в среде (возможно, как отдельный артефакт), в целях обеспечения обратной совместимости.
 
 <!--
   **IMPORTANT NOTE**: We advise library authors to follow the same convention: add the "experimental" (e.g. `com.example.experimental`) suffix to your packages exposing coroutine-based APIs so that your library remains binary compatible. When the final API is released, follow these steps:
@@ -156,7 +156,7 @@ Due to its experimental status, the coroutine-related API in the Standard Librar
 This will minimize migration issues for your users. 
 --> 
 
-**Важное замечание**: мы рекомендуем авторам библиотека следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий какой там используется сопрограммно совместимый API, таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
+**Важное замечание**: мы рекомендуем авторам библиотек следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий, какой там используется сопрограммно совместимый API. Таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
  * скопировать все API для `com.example` (без experimental суффикса);
  * сохранить экспериментальные вариант пакета для обратной совместимости.
 
@@ -170,9 +170,9 @@ This will minimize migration issues for your users.
  - low-level core API in the Kotlin Standard Library,
  - high-level APIs that can be used directly in the user code.-->
 Сопрограммы представлены в трёх их главных ингредиентах:
-- языковая поддержка (функции остановки, как описывалось выше);
-- базовая API поддержка низкого уровня в стандартной библиотеке Kotlin;
-- API высокого уровня, которые могут быть использованы непосредственно в пользовательском коде;    
+- языковая поддержка (функции остановки, как описывалось выше),
+- базовая API поддержка низкого уровня в стандартной библиотеке Kotlin,
+- API высокого уровня, которые могут быть использованы непосредственно в пользовательском коде.
 
 <!--### Low-level API: `kotlin.coroutines` -->
 
@@ -184,7 +184,7 @@ This will minimize migration issues for your users.
   - [`createCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html)
   - [`startCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html)
   - [`suspendCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html)
-- [`kotlin.coroutines.experimental.intrinsics`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) <!--with even lower-level intrinsics such as--> - еще более низкого уровня встроенные функции, такие как [`suspendCoroutineOrReturn`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)
+- [`kotlin.coroutines.experimental.intrinsics`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) <!--with even lower-level intrinsics such as--> - встроенные функции еще более низкого уровня, такие как [`suspendCoroutineOrReturn`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)
  
 Более детальная информация о использовании этих API может быть найдена [здесь](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). <!-- More details about the usage of these APIs can be found [here]-->
 <!--### Generators API in `kotlin.coroutines` -->
@@ -224,13 +224,12 @@ fun main(args: Array<String>) {
 }
 ```
 
-Это порождает ленивую, потенциально бесконечную последовательность Фибоначчи, путём создания сопрограмм, для создания последовательности чисел Фибоначчи вызовом функции `yield()`. При итерировании такой последовательности на каждом шаге итератор выполняет следующую часть сопрограммы, которая генерирует следующее число. Таким образом, мы можем взять любой конечный список чисел из этой последовательности, например `fibonacciSeq.take(8).toList()`, дающий в результате `[1, 1, 2, 3, 5, 8, 13, 21]`. И сопрограммы являются достаточно дешевым способом, чтобы осуществлять это на практике.
+Это создает ленивую, потенциально бесконечную последовательность Фибоначчи, создавая сопрограмму, которая дает последовательные числа Фибоначчи, вызывая функцию yield (). При итерировании такой последовательности на каждом шаге итератор выполняет следующую часть сопрограммы, которая генерирует следующее число. Таким образом, мы можем взять любой конечный список чисел из этой последовательности, например `fibonacciSeq.take(8).toList()`, дающий в результате `[1, 1, 2, 3, 5, 8, 13, 21]`. Сопрограммы являются достаточно дешевым способом, чтобы осуществлять это на практике.
 
 Чтобы продемонстрировать реальную ленивость такой последовательности, давайте напечатаем некоторые отладочные результаты изнутри вызова buildSequence():
-<!--  
-This generates a lazy, potentially infinite Fibonacci sequence by creating a coroutine that yields consecutive Fibonacci numbers by calling the `yield()` function. When iterating over such a sequence every step of the iterator executes another portion of the coroutine that generates the next number. So, we can take any finite list of numbers out of this sequence, e.g. `fibonacciSeq.take(8).toList()` results in `[1, 1, 2, 3, 5, 8, 13, 21]`. And coroutines are cheap enough to make this practical. 
+<!--This generates a lazy, potentially infinite Fibonacci sequence by creating a coroutine that yields consecutive Fibonacci numbers by calling the `yield()` function. When iterating over such a sequence every step of the iterator executes another portion of the coroutine that generates the next number. So, we can take any finite list of numbers out of this sequence, e.g. `fibonacciSeq.take(8).toList()` results in `[1, 1, 2, 3, 5, 8, 13, 21]`. And coroutines are cheap enough to make this practical. 
    
-To demonstrate the real laziness of such a sequence, let's print some debug output inside a call to `buildSequence()`:-->
+To demonstrate the real laziness of such a sequence, let's print some debug output inside a call to `buildSequence()`: -->
   
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -256,9 +255,9 @@ Run the code above to see that if we print the first three elements, the numbers
    
 To yield a collection (or sequence) of values at once, the `yieldAll()` function is available:-->
 
-Запустите приведенный выше код чтобы убедиться, что если мы будем печатать первые три элементов, цифры чередуются с `STEP`-ами по ветвям цикла. Это означает что вычисления действительно ленивые. Для печати `1` мы выполняем только до первого `yield(i)`, и печатаем `START` ходу дела. Затем, для печати `2` нам необходимо переходить к следующему `yield(i)`, и здесь печатать `STEP`. То же самое и для `3`. И следующий `STEP` никогда не будет напечатан (точно так же как и `END`), поскольку мы никогда не запрашиваем дополнительных элементов последовательности.
+Запустите приведенный выше код, чтобы убедиться, что если мы будем печатать первые три элемента, цифры чередуются со `STEP`-ами по ветвям цикла. Это означает, что вычисления действительно ленивые. Для печати `1` мы выполняем только до первого `yield(i)` и печатаем `START` ходу дела. Затем, для печати `2`, нам необходимо переходить к следующему `yield(i)`, и здесь печатать `STEP`. То же самое и для `3`. И следующий `STEP` никогда не будет напечатан (точно так же как и `END`), поскольку мы никогда не запрашиваем дополнительных элементов последовательности.
 
-Чтобы сразу породить всю коллекцию (или последовательность) значений доступна функция `yieldAll()`:
+Чтобы сразу породить всю коллекцию (или последовательность) значений, доступна функция `yieldAll()`:
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -277,11 +276,10 @@ fun main(args: Array<String>) {
 
 Функция `buildIterator()` во всём подобна buildSequence(), но только возвращает ленивый итератор.
 
-Вы могли бы добавить собственную уступку логики выполнения функции `buildSequence()`, написав приостанавливаемое расширение класса `SequenceBuilder` (что порождается аннотацией `@RestrictsSuspension` как описывалось [выше](#restrictssuspension-annotation)):
-<!--
-The `buildIterator()` works similarly to `buildSequence()`, but returns a lazy iterator.
+Вы могли бы добавить собственную уступку логики выполнения функции `buildSequence()`, написав приостанавливаемое расширение класса `SequenceBuilder` (что порождается аннотацией `@RestrictsSuspension`, как описывалось [выше](#restrictssuspension-annotation)):
+<!--The `buildIterator()` works similarly to `buildSequence()`, but returns a lazy iterator.
 
-One can add custom yielding logic to `buildSequence()` by writing suspending extensions to the `SequenceBuilder` class (that bears the `@RestrictsSuspension` annotation described [above](#restrictssuspension-annotation)):-->
+One can add custom yielding logic to `buildSequence()` by writing suspending extensions to the `SequenceBuilder` class (that bears the `@RestrictsSuspension` annotation described [above](#restrictssuspension-annotation)): -->
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -320,15 +318,15 @@ Most application-level APIs based on coroutines are released as a separate libra
 These libraries serve as both convenient APIs that make common tasks easy and end-to-end examples of how to build coroutine-based libraries. 
 -->
 
-Только базовые API относительно сопрограмм доступны непосредственно из стандартной библиотеки Kotlin. Они, главным образом, состоят из основных примитивов и интерфейсов, которые все библиотеки, основанные на сопрограммах, могут использовать.
+Только базовые API относительно сопрограмм доступны непосредственно из стандартной библиотеки Kotlin. Они главным образом состоят из основных примитивов и интерфейсов, которые все библиотеки, основанные на сопрограммах, могут использовать.
 
 Большинство API уровня приложений, основанные на сопрограммах, реализованы в отдельной библиотеке [`kotlinx.coroutines`](https://github.com/Kotlin/kotlinx.coroutines). Эта библиотека содержит в себе:
  * Платформенно-зависимое асинхронное программирование с помощью `kotlinx-coroutines-core` :
-   * этот модуль включает Go подобные каналы, которые поддерживают `select` и другие удачные примитивы;
+   * этот модуль включает Go-подобные каналы, которые поддерживают `select` и другие удачные примитивы;
    * исчерпывающее руководство по этой библиотеке, доступное [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md). 
- * API основанные на `CompletableFuture` из JDK 8: `kotlinx-coroutines-jdk8`
+ * API, основанные на `CompletableFuture` из JDK 8: `kotlinx-coroutines-jdk8`
  * Неблокирующий ввод-вывод (NIO), основанный на API из JDK 7 и выше: `kotlinx-coroutines-nio`
- * Поддержка для Swing (`kotlinx-coroutines-swing`) and JavaFx (`kotlinx-coroutines-javafx`)
+ * Поддержка для Swing (`kotlinx-coroutines-swing`) и JavaFx (`kotlinx-coroutines-javafx`)
  * Поддержка для RxJava: `kotlinx-coroutines-rx`
 
-Эти библиотеки одновременно служат как удобными API, которые делают основные задачи простыми, и, также, содержат законченные примеры того как создавать библиотеки, построенные на сопрограммах.
+Эти библиотеки являются удобными API, которые делают основные задачи простыми. Также они содержат законченные примеры того, как создавать библиотеки, построенные на сопрограммах.

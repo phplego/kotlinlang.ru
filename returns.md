@@ -53,6 +53,7 @@ A **continue** proceeds to the next iteration of that loop.-->
 Оператор **break**, отмеченный `@loop`, переводит выполнение кода к той его части, которая находится сразу после соответствующей метки `loop@`.
 Оператор **continue** продолжает цикл со следующей его итерации.
 
+<a name="return-at-labels"></a>
 
 <!--## Return at Labels-->
 ## Возврат к меткам

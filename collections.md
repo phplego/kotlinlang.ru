@@ -71,7 +71,7 @@ collection types could be returned that exploit the fact that they know they can
 <!--Note that the read only types are [covariant](generics.html#variance). That means, you can take a `List<Rectangle>` and assign 
 it to `List<Shape>` assuming Rectangle inherits from Shape. This wouldn't be allowed with the mutable collection types because 
 it would allow for failures at runtime.-->
-Заметьте, что read-only типы ковариантны. Это значит, что вы можете взять `List<Rectangle>` (список прямоугольников) и присвоить его `List<Shape>` (списку фигур) предполагая, что Rectangle наследуется от Shape. Такое присвоение было бы запрещено с изменяемыми коллекциями, потому что в таком случае появляется риск возникновения ошибок времени исполнения.
+Заметьте, что read-only типы [ковариантны](generics.html#variance). Это значит, что вы можете взять `List<Rectangle>` (список прямоугольников) и присвоить его `List<Shape>` (списку фигур) предполагая, что Rectangle наследуется от Shape. Такое присвоение было бы запрещено с изменяемыми коллекциями, потому что в таком случае появляется риск возникновения ошибок времени исполнения.
 
 <!--Sometimes you want to return to the caller a snapshot of a collection at a particular point in time, one that's guaranteed to not change:-->
 Иногда вам необходимо вернуть состояние коллекции в определённый момент времени:

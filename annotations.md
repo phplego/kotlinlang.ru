@@ -35,12 +35,12 @@ annotation class Fancy
  -->
   * [`@Target`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html) определяет возможные виды элементов, 
   которые могут быть помечены аннотацией (классы, функции, свойства, выражения и т.д.);
-  * [`@Retention`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html) определяет будет ли аннотация
+  * [`@Retention`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html) определяет, будет ли аннотация
   храниться в скомпилированном классе и будет ли видима через рефлексию (по умолчанию оба утверждения верны);
   * [`@Repeatable`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html) позволяет использовать одну 
   и ту же аннотацию на одном элементе несколько раз;
-  * [`@MustBeDocumented`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html) определяет что аннотация 
-  является частью публичного API и должна быть включена в сигнатуру класса или метода, попадающую в сгенерированную документацию;
+  * [`@MustBeDocumented`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html) определяет то, что аннотация 
+  является частью публичного API и должна быть включена в сигнатуру класса или метода, попадающую в сгенерированную документацию.
 
 ``` kotlin
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION,
@@ -64,7 +64,7 @@ annotation class Fancy
 <!--If you need to annotate the primary constructor of a class, you need to add the *constructor*{: .keyword} keyword
 to the constructor declaration, and add the annotations before it:-->
 Если вам нужно пометить аннотацией первичный конструктор класса, следует добавить ключевое слово *constructor*
-при объявлении конструктора и вставить аннотацию перед ним.
+при объявлении конструктора и вставить аннотацию перед ним:
 
 
 ``` kotlin
@@ -111,7 +111,7 @@ annotation class Special(val why: String)
   * классы (`Foo::class`);
   * перечисляемые типы;
   * другие аннотации;
-  * массивы, содержащие значения приведённых выше типов;
+  * массивы, содержащие значения приведённых выше типов.
   
 <!--Annotation parameters cannot have nullable types, because the JVM does not support storing `null` as a value
 of an annotation attribute.-->
@@ -169,7 +169,7 @@ generated from the corresponding Kotlin element, and therefore multiple possible
 the generated Java bytecode. To specify how exactly the annotation should be generated, use the following syntax:-->
 Когда вы помечаете свойство или первичный конструктор аннотацией, из соответствующего Kotlin-элемента генерируются 
 несколько Java-элементов, и поэтому в сгенерированном байт-коде элемент появляется в нескольких местах. Чтобы указать, в каком
-именно месте аннотация должна быть сгенерированна, используйте следующий синтаксис:
+именно месте аннотация должна быть сгенерирована, используйте следующий синтаксис:
 
 ``` kotlin
 class Example(@field:Ann val foo,    // аннотация для Java-поля
@@ -179,8 +179,8 @@ class Example(@field:Ann val foo,    // аннотация для Java-поля
 
 <!--The same syntax can be used to annotate the entire file. To do this, put an annotation with the target `file` at
 the top level of a file, before the package directive or before all imports if the file is in the default package:-->
-Тот же синтаксис может быть использован для аннотации целого файла. Для этого отметьте аннотацию словом `file`, и вставьте
-её в начале файла: перед указанием пакета или перед импортами, если файл находится в пакете по умолчанию.
+Тот же синтаксис может быть использован для аннотации целого файла. Для этого отметьте аннотацию словом `file` и вставьте
+её в начале файла: перед указанием пакета или перед импортами, если файл находится в пакете по умолчанию:
 
 ``` kotlin
 @file:JvmName("Foo")
@@ -217,13 +217,13 @@ class Example {
   * `field`
   * `get` (геттер)
   * `set` (сеттер)
-  * `receiver` (параметр-приемник [расширения](extensions.html))
+  * `receiver` (параметр-приёмник [расширения](extensions.html))
   * `param` (параметр конструктора)
   * `setparam` (параметр сеттера)
   * `delegate` (поле, которое хранит экземпляр делегата для [делегированного свойства](delegated-properties.html))
 
 <!--To annotate the receiver parameter of an extension function, use the following syntax:-->
-Чтобы пометить аннотацией параметр-приемник [расширения](extensions.html), используйте следующий синтаксис:
+Чтобы пометить аннотацией параметр-приёмник [расширения](extensions.html), используйте следующий синтаксис:
 
 ``` kotlin
 fun @receiver:Fancy String.myExtension() { }
@@ -266,7 +266,7 @@ class Tests {
 <!--Since the order of parameters for an annotation written in Java is not defined, you can't use a regular function
 call syntax for passing the arguments. Instead, you need to use the named argument syntax.-->
 Так как порядок параметров для Java-аннотаций не задан, вы не можете использовать обычный синтаксис вызова функции для передачи
-аргументов. Вместо этого, вам нужно использовать именованные аргументы.
+аргументов. Вместо этого вам нужно использовать именованные аргументы.
 
 ``` java
 // Java

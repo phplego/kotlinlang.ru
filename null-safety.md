@@ -36,7 +36,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 <!-- In Kotlin, the type system distinguishes between references that can hold *null*{: .keyword } (nullable references) and those that can not (non-null references). -->
 <!-- For example, a regular variable of type `String` can not hold *null*{: .keyword }: -->
-Система типов <b>Kotlin</b> различает ссылки на те, которые могут иметь значение *null*(nullable ссылки) и те, которые таковыми быть не могут(non-null ссылки).
+Система типов <b>Kotlin</b> различает ссылки на те, которые могут иметь значение *null* (nullable ссылки) и те, которые таковыми быть не могут (non-null ссылки).
 К примеру, переменная часто используемого типа `String` не может быть *null*:
 
 
@@ -46,7 +46,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 ```
 
 <!-- To allow nulls, we can declare a variable as nullable string, written `String?`: -->
-Для того, чтобы разрешить *null* значение, мы можем объявить эту строковую переменную, как `String?`:
+Для того, чтобы разрешить *null* значение, мы можем объявить эту строковую переменную как `String?`:
 
 ``` kotlin
  var b: String? = "abc"
@@ -74,7 +74,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 ## Проверка на *null*
 
 <!-- First, you can explicitly check if `b` is *null*{: .keyword }, and handle the two options separately: -->
-Первый способ. Вы можете явно проверить `b` на *null* значение и обработать два варианта по-отдельности:
+Первый способ. Вы можете явно проверить `b` на *null* значение и обработать два варианта по отдельности:
 
 ``` kotlin
  val l = if (b != null) b.length else -1
@@ -99,7 +99,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 Обратите внимание: это работает только в том случае, если `b` является неизменной переменной (ориг.: _immutable_). Например, если
 это локальная переменная, значение которой не изменяется в период между его проверкой и использованием. Также такой переменной может служить *val*.
-В противном случае, может так оказаться, что переменная `b` изменила своё значение на *null* после проверки.
+В противном случае может так оказаться, что переменная `b` изменила своё значение на *null* после проверки.
 
 <!-- ## Safe Calls -->
 
@@ -162,7 +162,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 <!-- If the expression to the left of `?:` is not null, the elvis operator returns it, otherwise it returns the expression to the right. -->
 <!-- Note that the right-hand side expression is evaluated only if the left-hand side is null. -->
 
-Если выражение, стоящее слева от Элвис-оператора, не является null, то элвис-оператор его вернёт. В противном случае, в качестве возврашаемого значения
+Если выражение, стоящее слева от Элвис-оператора, не является null, то элвис-оператор его вернёт. В противном случае, в качестве возвращаемого значения
 послужит то, что стоит справа.
 Обращаем ваше внимание на то, что часть кода, расположенная справа, выполняется ТОЛЬКО в случае, если слева получается null.
 

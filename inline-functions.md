@@ -145,6 +145,8 @@ inline fun f(crossinline body: () -> Unit) {
 <!-- `break` and `continue` are not yet available in inlined lambdas, but we are planning to support them too-->
 > `break` и `continue` пока что недоступны во встроенных лямбдах, но мы планируем добавить их поддержку
 
+<a name="параметры-вещественного-типа"></a>
+
 <!--## Reified type parameters-->
 ## Параметры вещественного типа
 

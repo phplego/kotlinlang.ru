@@ -257,7 +257,7 @@ data class Counter(val dayIndex: Int) {
 | `a <= b` | `a.compareTo(b) <= 0` |
 
 <!--All comparisons are translated into calls to `compareTo`, that is required to return `Int`.-->
-Все сравнения транслируются в вызовы `compareTo`, от которых требуется, чтобы они возвращали значение `Int`.
+Все сравнения транслируются в вызовы `compareTo`, от которых требуется возврат значения типа `Int`.
 
 <!--## Infix calls for named functions-->
 ## Инфиксные вызовы именованных функций

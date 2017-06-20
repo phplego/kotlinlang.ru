@@ -11,7 +11,7 @@ url: https://kotlinlang.ru/docs/reference/ranges.html
 
 <!-- Range expressions are formed with `rangeTo` functions that have the operator form `..` which is complemented by *in*{: .keyword } and *!in*{: .keyword }. -->
 <!-- Range is defined for any comparable type, but for integral primitive types it has an optimized implementation. Here are some examples of using ranges -->
-Интервалы оформлены с помощью функций `rangeTo` и имеют оператор в виде `..`, который дополнятся  *in* и *!in*.
+Интервалы оформлены с помощью функций `rangeTo` и имеют оператор в виде `..`, который дополняется  *in* и *!in*.
 Они применимы ко всем сравниваемым (_comparable_) типам, но для целочисленных примитивов есть оптимизированная реализация. Вот несколько примеров применения интервалов.
 
 ``` kotlin
@@ -32,14 +32,14 @@ for (i in 4..1) print(i) // prints nothing
 ```
 
 <!-- What if you want to iterate over numbers in reverse order? It's simple. You can use the `downTo()` function defined in the standard library -->
-А что, если вы хотите произвести итерацию в обратном порядке? Это просто. Можете использовать функцию `downTo()`, определённую в стандартной библиотеке.
+А что, если вы хотите произвести итерацию в обратном порядке? Это просто. Можете использовать функцию `downTo()`, определённую в стандартной библиотеке:
 
 ``` kotlin
 for (i in 4 downTo 1) print(i) // prints "4321"
 ```
 
 <!-- Is it possible to iterate over numbers with arbitrary step, not equal to 1? Sure, the `step()` function will help you -->
-А есть ли возможность производить итерацию с шагом, отличным от еденицы? Разумеется. В этом вам поможет функция `step()`:
+А есть ли возможность производить итерацию с шагом, отличным от единицы? Разумеется. В этом вам поможет функция `step()`:
 
 ``` kotlin
 for (i in 1..4 step 2) print(i) // prints "13"
@@ -74,12 +74,12 @@ for (i in 1 until 10) { // i in [1, 10), 10 is excluded
 Целочисленные последовательности (`IntProgression`, `LongProgression`, `CharProgression`) являются арифметическими.
 Последовательности определены элементами `first`, `last` и ненулевым значением `increment`.
 Элемент `first` является первым, последующими являются элементы, полученные при инкрементации предыдущего элемента с помощью `increment`. Если последовательность не
- яаляется пустой, то элемент `last` всегда достигается в результате инкрементации.
+ является пустой, то элемент `last` всегда достигается в результате инкрементации.
 
 <!-- A progression is a subtype of `Iterable<N>`, where `N` is `Int`, `Long` or `Char` respectively, so it can be used in *for*{: .keyword }-loops and functions like `map`, `filter`, etc. -->
 <!-- Iteration over `Progression` is equivalent to an indexed *for*{: .keyword }-loop in Java/JavaScript: -->
 Последовательность является подтипом `Iterable<N>`, где `N` - это `Int`, `Long` или `Char`. Таким образом, её можно использовать в циклах **for** и функциях типа `map`, `filter` и т.п.
-Итерация `Progression` идентична проиндексованному циклу **for** в <b>Java</b>/<b>JavaScript</b>
+Итерация `Progression` идентична индексируемому циклу **for** в <b>Java</b>/<b>JavaScript</b>
 
 ``` java
 for (int i = first; i != last; i += increment) {
@@ -90,7 +90,7 @@ for (int i = first; i != last; i += increment) {
 <!-- For integral types, the `..` operator creates an object which implements both `ClosedRange<T>` and `*Progression`. -->
 <!-- For example, `IntRange` implements `ClosedRange<Int>` and extends `IntProgression`, thus all operations defined for `IntProgression` are available for `IntRange` as well. -->
 <!-- The result of the `downTo()` and `step()` functions is always a `*Progression`. -->
-Для целочисленных типов, оператор `..` создаёт объект, который реализует в себе  `ClosedRange<T>` и `*Progression*`.
+Для целочисленных типов оператор `..` создаёт объект, который реализует в себе  `ClosedRange<T>` и `*Progression*`.
 К примеру, `IntRange` наследуется от класса `IntProgression` и реализует интерфейс `ClosedRange<Int>`. Поэтому все операторы, обозначенные для `IntProgression`, также доступны и для
 `IntRange`. Результатом функций `downTo()` и `step()` всегда будет `*Progression*`(перев.: _последовательность_).
 
@@ -167,8 +167,8 @@ fun IntProgression.reversed(): IntProgression {
 <!-- `step()` extension functions are defined for `*Progression` classes, -->
 <!-- all of them return progressions with modified `step` values (function parameter). -->
 <!-- The step value is required to be always positive, therefore this function never changes the direction of iteration. -->
-Функция-расширение `step()` также определена для классов `*Progression*`,
-возвращает последовательность с изменённым значением шага `step` (параметр функции).
+Функция-расширение `step()` также определена для классов `*Progression*`.
+Она возвращает последовательность с изменённым значением шага `step` (параметр функции).
 Значение шага всегда должно быть положительным числом для того, чтобы функция никогда не меняла направления своей итерации.
 
 ``` kotlin
@@ -184,7 +184,7 @@ fun CharProgression.step(step: Int): CharProgression {
 ```
 
 <!-- Note that the `last` value of the returned progression may become different from the `last` value of the original progression in order to preserve the invariant `(last - first) % increment == 0`. Here is an example: -->
-Обратите внимание, что значение элемента `last` в возвращенной последовательности может отличаться от значения `last` первоночальной последовательности с тем,
+Обратите внимание, что значение элемента `last` в возвращённой последовательности может отличаться от значения `last` первоначальной последовательности с тем,
 чтобы предотвратить инвариант `(last - first) % increment == 0`. Вот пример:
 
 ``` kotlin

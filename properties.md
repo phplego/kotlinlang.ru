@@ -104,7 +104,9 @@ var setterWithAnnotation: Any? = null
     @Inject set // аннотирование сеттера с помощью Inject
 ```
 
-### _Backing Fields_
+<a name="backing-fields"></a>
+
+### Backing Fields
 
 <!--Classes in Kotlin cannot have fields. However, sometimes it is necessary to have a backing field when using custom accessors. For these purposes, Kotlin provides
 an automatic backing field which can be accessed using the `field` identifier:-->
@@ -229,4 +231,4 @@ reading from a map by a given key, accessing a database, notifying listener on a
 
 
 <!--Such common behaviours can be implemented as libraries using [_delegated properties_](delegated-properties.html).-->
-Такие распространённые поведения свойств могут быть реализованы в виде библиотек с помощью [_delegated properties_](https://kotlinlang.ru/docs/reference/delegated-properties.html).
+Такие распространённые поведения свойств могут быть реализованы в виде библиотек с помощью [_делегированных свойств_](https://kotlinlang.ru/docs/reference/delegated-properties.html).

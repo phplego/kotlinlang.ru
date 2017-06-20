@@ -16,7 +16,7 @@ url: https://kotlinlang.ru/docs/reference/exceptions.html
 <!-- Every exception has a message, stack trace and an optional cause. -->
 
 Все исключения в <b>Kotlin</b> являются наследниками класса `Throwable`.
-У каждого исключения есть сообщение, трассировка стека а также причина, по которой
+У каждого исключения есть сообщение, трассировка стека, а также причина, по которой
 это исключение вероятно было вызвано.
 
 <!-- To throw an exception object, use the *throw*{: .keyword }-expression -->
@@ -113,9 +113,11 @@ catch (IOException e) {
 <!-- > Examination of small programs leads to the conclusion that requiring exception specifications could both enhance developer productivity and enhance code quality, -->
  <!-- but experience with large software projects suggests a different result – decreased productivity and little or no increase in code quality. -->
  
->Анализ небольших программ показал, что обязательная обработка исключений может повысить производительность разработчика и улучшить качество кода.
+```
+Анализ небольших программ показал, что обязательная обработка исключений может повысить производительность разработчика и улучшить качество кода.
 Однако, изучение крупных проектов по разработке программного обеспечения позволяет сделать противоположный  вывод: происходит понижение продуктивности и сравнительно небольшое
 улучшение кода (а иногда и без всякого улучшения).
+```
 
 
 <!-- Other citations of this sort: -->
@@ -141,7 +143,7 @@ val s = person.name ?: throw IllegalArgumentException("Name required")
 <!-- The type has no values and is used to mark code locations that can never be reached. -->
 <!-- In your own code, you can use `Nothing` to mark a function that never returns: -->
 
-Типом выражения `throw` является специалный тип под названием `Nothing`.
+Типом выражения `throw` является специальный тип под названием `Nothing`.
 У этого типа нет никаких значений, он используетя для того, чтобы обозначить те участки кода, которые могут быть не достигнуты никогда.
 В своём коде вы можете использовать `Nothing` для того, чтобы отметить функцию, чей результат никогда не будет возвращён:
 

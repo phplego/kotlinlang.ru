@@ -88,6 +88,8 @@ for (x in 2..10) { ... }
 val list = listOf("a", "b", "c")
 ```
 
+<a name="Read-only-ассоциативный-список"></a>
+
 <!--### Read-only map-->
 ### Read-only ассоциативный список (map)
 

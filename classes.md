@@ -178,6 +178,7 @@ val customer = Customer("Joe Smith")
 * [Вложенные классы](nested-classes.html)
 * [Объявления объектов](object-declarations.html)
 
+<a name="inheritance"></a>
 
 <!--## Inheritance-->
 ## Наследование
@@ -348,7 +349,7 @@ inside that class.-->
 <!--Even more specifically, if you declare a [companion object](object-declarations.html#companion-objects) inside your class,
 you'll be able to call its members with the same syntax as calling static methods in Java/C#, using only the class name
 as a qualifier.-->
-В частности, если вы объявляете объект-помощник в своём классе, у вас появляется возможность обращаться к его членам, используя тот же синтаксис, как при использовании статических методов в <b>Java</b>/<b>C#</b> (указав название класса для доступа).
+В частности, если вы объявляете [объект-помощник](object-declarations.html#companion-objects) в своём классе, у вас появляется возможность обращаться к его членам, используя тот же синтаксис, как при использовании статических методов в <b>Java</b>/<b>C#</b> (указав название класса для доступа).
 
 
 ## Прочие классы

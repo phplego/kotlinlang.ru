@@ -95,6 +95,8 @@ class Derived: Base {
 }
 ``` 
 
+<a name="restrictssuspension-annotation"></a>
+
 ### Aннотация @RestrictsSuspension
 <!-- 
 Extension functions (and lambdas) can also be marked `suspend`, just like regular ones. This enables creation of [DSLs](type-safe-builders.html) and other APIs that users can extend. In some cases the library author needs to prevent the user from adding *new ways* of suspending a coroutine. 
@@ -144,7 +146,7 @@ More details on how coroutines work may be found in [this design document](https
 
 Due to its experimental status, the coroutine-related API in the Standard Library is put under the `kotlin.coroutines.experimental` package. When the design is finalized and the experimental status lifted, the final API will be moved to `kotlin.coroutines`, and the experimental package will be kept around (probably in a separate artifact) for backward compatibility. 
 -->
-Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features), из чего следует возможность его изменения в будущих релизах. При составлении сопрограммы в Kotlin 1.1 по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](/docs/diagnostics/experimental-coroutines.html).
+Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features), из чего следует возможность его изменения в будущих релизах. При составлении сопрограммы в Kotlin 1.1 по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](https://kotlinlang.org/docs/diagnostics/experimental-coroutines.html).
 
 Из-за экспериментального статуса сопрограмм все связанные API собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет будет храниться (возможно, как отдельный артефакт) в целях обеспечения обратной совместимости.
 
@@ -161,6 +163,8 @@ This will minimize migration issues for your users.
  * сохраните экспериментальный вариант пакета для обратной совместимости.
 
 Это позволит минимизировать проблемы миграции для пользователей.
+
+<a name="standard-apis"></a>
 
 <!--## Standard APIs-->
 ## Стандартные API 

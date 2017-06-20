@@ -84,6 +84,8 @@ but `noinline` ones can be manipulated in any way we like: stored in fields, pas
  very unlikely to be beneficial (you can suppress the warning if you are sure the inlining is needed).-->
 Заметьте, что если inline-функция не имеет ни inline параметров, ни [параметров вещественного типа](#параметры-вещественного-типа), компилятор выдаст предупреждение, так как встраивание такой функции вряд ли принесёт пользу (вы можете скрыть предупреждение, если уверены, что встраивание необходимо).
 
+<a name="non-local-returns"></a>
+
 <!--## Non-local returns-->
 ## Нелокальные return
 

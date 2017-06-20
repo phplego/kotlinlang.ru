@@ -19,8 +19,8 @@ val (name, age) = person
 
 <!--This syntax is called a _destructuring declaration_. A destructuring declaration creates multiple variables at once.
 We have declared two new variables: `name` and `age`, and can use them independently:-->
-Этот синтаксис называется _деструкторизирующее присваение_. Он позволяет присвоить объект сразу нескольким 
-переменным, разбив его на части. Мы объявили две переменные: `name` и `age` и теперь можем использовать их по отдельности.
+Этот синтаксис называется _деструктуризирующее присваивание_. Он позволяет присвоить объект сразу нескольким 
+переменным, разбив его на части. Мы объявили две переменные: `name` и `age`, и теперь можем использовать их по отдельности:
  
 ``` kotlin
 println(name)
@@ -44,10 +44,10 @@ And, of course, there can be `component3()` and `component4()` and so on.-->
 
 <!--Note that the `componentN()` functions need to be marked with the `operator` 
 keyword to allow using them in a destructuring declaration.-->
-Заметьте, что функции `componentN()` нужно отмечать ключевым словом `operator`, чтобы позволить их использование в деструкторизирующем присваивании.
+Заметьте, что функции `componentN()` нужно отмечать ключевым словом `operator`, чтобы позволить их использование в деструктуризирующем присваивании.
 
 <!--Destructuring declarations also work in *for*{: .keyword }-loops: when you say-->
-Деструкторизирующие присваивания также работают в циклах `for`:
+Деструктуризирующие присваивания также работают в циклах `for`:
 
 ``` kotlin
 for ((a, b) in collection) { ... }
@@ -62,7 +62,7 @@ for ((a, b) in collection) { ... }
 <!--Let's say we need to return two things from a function. For example, a result object and a status of some sort.
 A compact way of doing this in Kotlin is to declare a [_data class_](data-classes.html) and return its instance:-->
 Предположим, нам нужно вернуть два значения из функции. Например, результат вычисления и какой-нибудь статус.
-Компактный способ достичь этого — объявление `data`-класса и возвращение его экземпляря:
+Компактный способ достичь этого — объявление `data`-класса и возвращение его экземпляра:
 
 ``` kotlin
 data class Result(val result: Int, val status: Status)
@@ -72,7 +72,7 @@ fun function(...): Result {
     return Result(result, status)
 }
 
-// Теперь мы можем использовать деструкторизирующее присваивание:
+// Теперь мы можем использовать деструктуризирующее присваивание:
 val (result, status) = function(...)
 ```
 
@@ -101,8 +101,8 @@ for ((key, value) in map) {
 
 <!--* present the map as a sequence of values by providing an `iterator()` function,
 * present each of the elements as a pair by providing functions `component1()` and `component2()`.-->
-* представить ассоциативный список как последовательность значений, предоставив функцию `iterator()`
-* представить каждый элемент как пару с помощью функций `component1()` и `component2()`
+* представить ассоциативный список как последовательность значений, предоставив функцию `iterator()`,
+* представить каждый элемент как пару с помощью функций `component1()` и `component2()`.
   
 <!--And indeed, the standard library provides such extensions:-->
 И да, стандартная библиотека предоставляет такие расширения:
@@ -114,4 +114,4 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 ```  
   
 <!--So you can freely use destructuring declarations in *for*{: .keyword }-loops with maps (as well as collections of data class instances etc).-->
-Так что вы можете свободно использовать мульти-декларации в циклах `for` с ассоциативными списками (так же как и с коллекциями экземпляров `data`-классов)
+Так что вы можете свободно использовать мульти-декларации в циклах `for` с ассоциативными списками (так же как и с коллекциями экземпляров `data`-классов).

@@ -32,6 +32,6 @@ url: https://kotlinlang.ru
 ## Актуальные задачи
 * Перевести статьи из радела "FAQ": [FAQ](https://kotlinlang.org/docs/reference/faq.html)
 * Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.org/docs/reference/kapt.html), [Gradle](https://kotlinlang.org/docs/reference/using-gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html), [Ant](https://kotlinlang.org/docs/reference/using-ant.html), [OSGi](https://kotlinlang.org/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.org/docs/reference/compiler-plugins.html)
-* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>` 
 <!--* Статьи требующие проверки: -->
+<!--* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах-->

@@ -21,7 +21,7 @@ a type of a property or function at runtime) is closely intertwined with simply 
 JAR file (`kotlin-reflect.jar`). This is done to reduce the required size of the runtime library for applications
 that do not use reflection features. If you do use reflection, please make sure that the .jar file is added to the
 classpath of your project.-->
-> На платформе Java, библиотека для использования рефлексии находится в отдельном JAR-файле (`kotlin-reflect.jar`).
+> На платформе Java библиотека для использования рефлексии находится в отдельном JAR-файле (`kotlin-reflect.jar`).
 Это было сделано для уменьшения требуемого размера runtime-библиотеки для приложений, которые не используют рефлексию.
 Если вы используете рефлексию, удостоверьтесь, что этот .jar файл добавлен в classpath вашего проекта.
 
@@ -38,7 +38,7 @@ val c = MyClass::class
 ```
 
 <!--The reference is a value of type [KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html).-->
-Ссылка на класс имеет тип [KClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)
+Ссылка на класс имеет тип [KClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html).
 
 <!--Note that a Kotlin class reference is not the same as a Java class reference. To obtain a Java class reference,
 use the `.java` property on a `KClass` instance.-->
@@ -50,7 +50,7 @@ use the `.java` property on a `KClass` instance.-->
 _Примечание: доступно с версии Kotlin 1.1_
 
 <!--You can get the reference to a class of a specific object with the same `::class` syntax by using the object as a receiver:-->
-Вы можете получить ссылку на класс определённого объекта с помощью уже известного вам синтаксиса, вызвав `::class` у нужного объекта.
+Вы можете получить ссылку на класс определённого объекта с помощью уже известного вам синтаксиса, вызвав `::class` у нужного объекта:
 
 ``` kotlin
 val widget: Widget = ...
@@ -99,7 +99,7 @@ println(numbers.filter(::isOdd)) // ссылается на isOdd(x: Int)
 ```
 
 <!--Alternatively, you can provide the necessary context by storing the method reference in a variable with an explicitly specified type:-->
-Также, вместо этого вы можете указать нужный контекст путём сохранения ссылки на функцию в переменной, тип которой задан явно:
+Также вместо этого вы можете указать нужный контекст путём сохранения ссылки на функцию в переменной, тип которой задан явно:
 
 ``` kotlin
 val predicate: (String) -> Boolean = ::isOdd   // ссылается на isOdd(x: String)
@@ -140,7 +140,7 @@ println(strings.filter(oddLength)) // выведет "[a, abc]"
 ## Ссылки на свойства
 
 <!--To access properties as first-class objects in Kotlin, we can also use the `::` operator:-->
-Для доступа к свойствам как первичным объектам в Kotlin, мы по-прежнему использовать оператор `::`:
+Для доступа к свойствам как первичным объектам в Kotlin мы по-прежнему можем использовать оператор `::`:
 
 ``` kotlin
 var x = 1
@@ -155,14 +155,14 @@ fun main(args: Array<String>) {
 <!--The expression `::x` evaluates to a property object of type `KProperty<Int>`, which allows us to read its
 value using `get()` or retrieve the property name using the `name` property. For more information, please refer to
 the [docs on the `KProperty` class](/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html).-->
-Выражение `::x` возвращает объект свойства типа `KProperty<Int>`, который позволяет нам читать его значение с помощью `get()`,
-или получать имя свойства при помощи обращения к свойству `name`. Для более подробной информации, 
+Выражение `::x` возвращает объект свойства типа `KProperty<Int>`, который позволяет нам читать его значение с помощью `get()`
+или получать имя свойства при помощи обращения к свойству `name`. Для получения более подробной информации 
 обратитесь к [документации класса `KProperty`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html).
 
 <!--For a mutable property, e.g. `var y = 1`, `::y` returns a value of type [`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html),
 which has a `set()` method.-->
-Для изменяемых свойства, например `var y = 1`, `::y` возвращает значение типа 
-[`KMutableProperty<Int>`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html),
+Для изменяемых свойств, например `var y = 1`, `::y` возвращает значение типа 
+[`KMutableProperty<Int>`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html).
 
 <!--A property reference can be used where a function with no parameters is expected:-->
 Ссылка на свойство может быть использована там, где ожидается функция без параметров:
@@ -202,7 +202,7 @@ fun main(args: Array<String>) {
 <!--On the Java platform, standard library contains extensions for reflection classes that provide a mapping to and from Java
   reflection objects (see package `kotlin.reflect.jvm`).
 For example, to find a backing field or a Java method that serves as a getter for a Kotlin property, you can say something like this:-->
-На платформе Java, стандартная библиотека Kotlin содержит [расширения](extensions.html), 
+На платформе Java стандартная библиотека Kotlin содержит [расширения](extensions.html), 
 которые сопоставляют расширяемые ими объекты рефлексии Kotlin с объектами рефлексии Java (см. пакет `kotlin.reflect.jvm`).
 К примеру, для нахождения поля или метода, который служит геттером для Kotlin-свойства, вы можете написать что-то вроде этого:
 
@@ -231,7 +231,7 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 is expected that takes the same parameters as the constructor and returns an object of the appropriate type. 
 Constructors are referenced by using the `::` operator and adding the class name. Consider the following function 
 that expects a function parameter with no parameters and return type `Foo`:-->
-К конструкторам можно обратиться так же как и к методам или свойствам. Они могут быть использованы везде, где ожидается 
+К конструкторам можно обратиться так же, как и к методам или свойствам. Они могут быть использованы везде, где ожидается 
 объект функционального типа. Обращение к конструкторам происходит с помощью оператора `::` и имени класса. 
 Рассмотрим функцию, которая принимает функциональный параметр без параметров и возвращает `Foo`:
 
@@ -266,7 +266,7 @@ println(isNumber("29")) // выведет "true"
 <!--Instead of calling the method `matches` directly we are storing a reference to it.
 Such reference is bound to its receiver.
 It can be called directly (like in the example above) or used whenever an expression of function type is expected:-->
-Вместо вызова метода `matches` напрямую, мы храним ссылку на него. Такие ссылки привязаны к объектам, к которым относятся.
+Вместо вызова метода `matches` напрямую, мы храним ссылку на него. Такие ссылки привязаны к объектам, к которым относятся:
 
 ``` kotlin
 val strings = listOf("abc", "124", "a70")
@@ -275,8 +275,8 @@ println(strings.filter(numberRegex::matches)) // выведет "[124]"
 
 <!--Compare the types of bound and the corresponding unbound references.
 Bound callable reference has its receiver "attached" to it, so the type of the receiver is no longer a parameter:-->
-Сравним типы привязанных и соответствующих непривязанных ссылок. Объект-приемник "прикреплён" к привязанной ссылке, поэтому тип
-приемника больше не является параметром:
+Сравним типы привязанных и соответствующих непривязанных ссылок. Объект-приёмник "прикреплён" к привязанной ссылке, поэтому тип
+приёмника больше не является параметром:
 
 ``` kotlin
 val isNumber: (CharSequence) -> Boolean = numberRegex::matches

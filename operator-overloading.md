@@ -50,6 +50,18 @@ Further we describe the conventions that regulate operator overloading for diffe
 <!--*Note* that these operations, as well as all the others, are optimized for [Basic types](basic-types.html) and do not introduce overhead of function calls for them. -->
 *Примечание*: эти операции, как и все остальные, оптимизированы для [основных типов](basic-types.html) и не вносят накладных расходов на вызовы этих функций для них.
 
+<!--As an example, here's how you can overload the unary minus operator:-->
+Например, вы можете перегрузить оператор унарного минуса:
+
+``` kotlin
+data class Point(val x: Int, val y: Int)
+
+operator fun Point.unaryMinus() = Point(-x, -y)
+
+val point = Point(10, 20)
+println(-point)  // выведет "(-10, -20)"
+```
+
 <!--### Increments and decrements -->
 ### Инкремент и декремент
 
@@ -120,6 +132,21 @@ Further we describe the conventions that regulate operator overloading for diffe
 <!--Note that the `rem` operator is supported since Kotlin 1.1. Kotlin 1.0 uses the `mod` operator, which is deprecated
 in Kotlin 1.1.-->
 Отметим, что операция `rem` поддерживается только начиная с Kotlin 1.1. Kotlin 1.0 использует только операцию `mod`, которая отмечена как устаревшая в Kotlin 1.1.
+
+<!--#### Example-->
+#### Пример
+
+<!--Below is an example Counter class that starts at a given value and can be incremented using the overloaded `+` operator.-->
+Ниже приведен пример класса Counter, начинающего счёт с заданного значения, которое может быть увеличено с помощью перегруженного оператора `+`.
+
+``` kotlin
+data class Counter(val dayIndex: Int) {
+    operator fun plus(increment: Int): Counter {
+        return Counter(dayIndex + increment)
+    }
+}
+```
+
 
 <a name="in"></a>
 

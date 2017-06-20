@@ -227,6 +227,7 @@ fun main(args: Array<String>) {
 Это создает ленивую, потенциально бесконечную последовательность Фибоначчи, создавая сопрограмму, которая дает последовательные числа Фибоначчи, вызывая функцию yield (). При итерировании такой последовательности на каждом шаге итератор выполняет следующую часть сопрограммы, которая генерирует следующее число. Таким образом, мы можем взять любой конечный список чисел из этой последовательности, например `fibonacciSeq.take(8).toList()`, дающий в результате `[1, 1, 2, 3, 5, 8, 13, 21]`. Сопрограммы являются достаточно дешевым способом, чтобы осуществлять это на практике.
 
 Чтобы продемонстрировать реальную ленивость такой последовательности, давайте напечатаем некоторые отладочные результаты изнутри вызова buildSequence():
+
 <!--
 This generates a lazy, potentially infinite Fibonacci sequence by creating a coroutine that yields consecutive Fibonacci numbers by calling the `yield()` function. When iterating over such a sequence every step of the iterator executes another portion of the coroutine that generates the next number. So, we can take any finite list of numbers out of this sequence, e.g. `fibonacciSeq.take(8).toList()` results in `[1, 1, 2, 3, 5, 8, 13, 21]`. And coroutines are cheap enough to make this practical. 
    
@@ -278,6 +279,7 @@ fun main(args: Array<String>) {
 Функция `buildIterator()` во всём подобна buildSequence(), но только возвращает ленивый итератор.
 
 Вы могли бы добавить собственную уступку логики выполнения функции `buildSequence()`, написав приостанавливаемое расширение класса `SequenceBuilder` (что порождается аннотацией `@RestrictsSuspension`, как описывалось [выше](#restrictssuspension-annotation)):
+
 <!--The `buildIterator()` works similarly to `buildSequence()`, but returns a lazy iterator.
 
 One can add custom yielding logic to `buildSequence()` by writing suspending extensions to the `SequenceBuilder` class (that bears the `@RestrictsSuspension` annotation described [above](#restrictssuspension-annotation)): -->

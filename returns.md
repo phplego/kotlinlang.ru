@@ -78,7 +78,7 @@ fun foo() {
 (Note that such non-local returns are supported only for lambda expressions passed to [inline functions](inline-functions.html).)
 If we need to return from a lambda expression, we have to label it and qualify the **return**:-->
 Опертор **return** возвращается из ближаейшей функции, в нашем случае `foo`.
-(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](http://kotlinlang.org/docs/reference/inline-functions.html).) Если нам надо вернуться из лямбда-выражения, к оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
+(Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](inline-functions.html).) Если нам надо вернуться из лямбда-выражения, к оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
 
 ``` kotlin
 fun foo() {
@@ -104,7 +104,7 @@ fun foo() {
 
 <!--Alternatively, we can replace the lambda expression with an [anonymous function](lambdas.html#anonymous-functions).
 A **return** statement in an anomymous function will return from the anonymous function itself.-->
-Возможно также использование [анонимной функции](http://kotlinlang.org/docs/reference/lambdas.html#anonymous-functions) в качестве альтернативы лямбда-выражениям. Оператор **return** вовзращается из самой анонимной функции.
+Возможно также использование [анонимной функции](lambdas.html#anonymous-functions) в качестве альтернативы лямбда-выражениям. Оператор **return** вовзращается из самой анонимной функции.
 
 ``` kotlin
 fun foo() {

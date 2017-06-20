@@ -110,6 +110,8 @@ class Unrelated(o: Outer) {
 }
 ```
 
+<a name="constructors"></a>
+
 <!--### Constructors-->
 ### Конструкторы
 
@@ -132,6 +134,7 @@ visible within the same module).-->
 <!--Local variables, functions and classes can not have visibility modifiers.-->
 Локальные переменные, функции и классы не могут иметь модификаторов доступа. <!--rcd27: неожиданно...-->
 
+<a name="modules"></a>
 
 <!--## Modules-->
 ## Модули

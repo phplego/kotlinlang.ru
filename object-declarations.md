@@ -15,6 +15,8 @@ url: https://kotlinlang.ru/docs/reference/object-declarations.html
 Иногда нам необходимо получить экземпляр некоторого класса с незначительной модификацией, желательно без написания нового подкласса. <b>Java</b> справляется с этим с помощью _вложенных анонимных классов_.
 <b>Kotlin</b> несколько улучшает данный подход.
 
+<a name="object-expressions"></a>
+
 <!-- ## Object expressions -->
 ## Анонимные объекты (ориг.:_Object expressions_)
 
@@ -84,6 +86,8 @@ fun countClicks(window: JComponent) {
 }
 ```
 
+<a name="object-declarations"></a>
+
 <!-- ## Object declarations -->
 ## Объявления объектов (ориг.:_Object declarations_)
 
@@ -132,6 +136,7 @@ object DefaultListener : MouseAdapter() {
 
 **ПРИМЕЧАНИЕ**: объявление объекта не может иметь локальный характер (т.е. быть вложенным непосредственно в функцию), но может быть вложено в объявление другого объекта или какого-либо невложенного класса.
 
+<a name="companion-objects"></a>
 
 <!-- ### Companion Objects -->
 ### Вспомогательные объекты

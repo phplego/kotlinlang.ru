@@ -32,6 +32,8 @@ val box: Box<Int> = Box<Int>(1)
 val box = Box(1) // 1 имеет тип Int, поэтому компилятор отмечает для себя, что у переменной box тип — Box<Int>
 ```
 
+<a name="variance"></a>
+
 <!--## Variance-->
 ## Вариативность
 

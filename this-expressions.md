@@ -33,7 +33,7 @@ or labeled [function literal with receiver](lambdas.html#function-literals-with-
 on the scope *this*{: .keyword } is meant to be from:-->
 
 Чтобы получить доступ к *this* из внешней области ([класса](classes.html), [функции-расширения](extensions.html),
-или именованных [литералов функций с принимающим объектом](lambdas.html)) мы пишем `this@label`, где `@label` это [метка](returns.html) области, из которой нужно получить *this*
+или именованных [литералов функций с принимающим объектом](lambdas.html)) мы пишем `this@label`, где `@label` - это [метка](returns.html) области, из которой нужно получить *this*:
 
 ``` kotlin
 class A { // неявная метка @A

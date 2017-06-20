@@ -266,6 +266,8 @@ val list = asList(-1, 0, *a, 4)
 to top level functions, Kotlin functions can also be declared local, as member functions and extension functions.-->
 В <b>Kotlin</b> функции могут быть объявлены в самом начале файла. Подразумевается, что вам не обязательно создавать объект какого-либо класса, чтобы воспользоваться его функцией (как в <b>Java</b>, <b>C#</b> или <b>Scala</b>). В дополнение к этому, функции в языке <b>Kotlin</b> могут быть объявлены локально, как функции-члены (ориг. <i>"member functions"</i>) и функции-расширения (<i>"extension functions"</i>).
 
+<a name="local-functions"></a>
+
 <!--### Local Functions-->
 ### Локальные функции 
 

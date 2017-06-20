@@ -8,6 +8,8 @@ url: https://kotlinlang.ru/docs/reference/control-flow.html
 
 # Управляющие инструкции
 
+<a name="if-expression"></a>
+
 ## Условное выражение <b class="keyword">if</b>
 
 В языке Kotlin ключевое слово <b class="keyword">if</b> является выражением, т.е. оно возвращает значение.

@@ -66,7 +66,7 @@ it will pay off in performance, especially at "megamorphic" call-sites inside lo
 
 <!--In case you want only some of the lambdas passed to an inline function to be inlined, you can mark some of your function
 parameters with the `noinline` modifier:-->
-В случае, если вы хотите, чтобы только некоторые лямбды, переданные inline-функции были встроены, 
+В случае, если вы хотите, чтобы только некоторые лямбды, переданные inline-функции, были встроены, 
 вам необходимо отметить модификатором `noinline` те функции-параметры, которые встроены не будут:
 
 ``` kotlin
@@ -77,7 +77,7 @@ inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
 
 <!--Inlinable lambdas can only be called inside the inline functions or passed as inlinable arguments,
 but `noinline` ones can be manipulated in any way we like: stored in fields, passed around etc.-->
-Когда как встраиваемые лямбды только могут быть вызваны внутри inline-функций, или переданы в качестве встраиваемых аргументов, с `noinline`-функциями можно работать без ограничений: хранить внутри полей, передавать куда-либо и т.д.
+Когда как встраиваемые лямбды могут быть вызваны только внутри inline-функций или переданы в качестве встраиваемых аргументов, с `noinline`-функциями можно работать без ограничений: хранить внутри полей, передавать куда-либо и т.д.
 
 <!--Note that if an inline function has no inlinable function parameters and no
 [reified type parameters](#reified-type-parameters), the compiler will issue a warning, since inlining such functions is
@@ -101,7 +101,7 @@ fun foo() {
 ```
 
 <!--But if the function the lambda is passed to is inlined, the return can be inlined as well, so it is allowed:-->
-Но если функция, в которую передана лямбда встроена, то `return` также будет встроен, поэтому так делать можно:
+Но если функция, в которую передана лямбда, встроена, то `return` также будет встроен, поэтому так делать можно:
 
 ``` kotlin
 fun foo() {
@@ -140,7 +140,7 @@ inline fun f(crossinline body: () -> Unit) {
 ```
 
 
-<!--> `break` and `continue` are not yet available in inlined lambdas, but we are planning to support them too-->
+<!-- `break` and `continue` are not yet available in inlined lambdas, but we are planning to support them too-->
 > `break` и `continue` пока что недоступны во встроенных лямбдах, но мы планируем добавить их поддержку
 
 <!--## Reified type parameters-->
@@ -211,6 +211,6 @@ can not be used as an argument for a reified type parameter.
 For a low-level description, see the [spec document](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md.-->
 
 Обычная функция (не отмеченная как встроенная) не может иметь параметры вещественного типа.
-Тип, который не имеет представление во времени исполнения (например, параметр невещественного или фиктивного типа вроде `Nothing`) не может использоваться в качестве аргумента для параметра вещественного типа.
+Тип, который не имеет представление во времени исполнения (например, параметр невещественного или фиктивного типа вроде `Nothing`), не может использоваться в качестве аргумента для параметра вещественного типа.
 
-Для низкоуровневого описания см. [спецификацию](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md)
+Для низкоуровневого описания см. [спецификацию](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md).

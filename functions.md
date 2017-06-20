@@ -37,7 +37,7 @@ val result = double(2)
 Sample().foo() //создаёт экземпляр класса Sample и вызывает foo
 ```
 
-<a class="anchor" href="#infix-notation"></a>
+<a name="infix-notation"></a>
 
 <!--### Infix notation-->   
 ### Инфиксная запись
@@ -300,6 +300,7 @@ fun dfs(graph: Graph) {
 }
 ```
 
+<a name="member-functions"></a>
 <!--### Member Functions-->
 ### Функции-элементы
 

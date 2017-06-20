@@ -84,7 +84,7 @@ NEW было присвоено значению ‘p’ в Example@33a17727.
 ```
 
 <!--The specification of the requirements to the delegated object can be found [below](delegated-properties.html#property-delegate-requirements).-->
-Спецификация требований к делегированным свойствам может быть найдена снизу, или в [официальной документации](delegated-properties.html#property-delegate-requirements).
+Спецификация требований к делегированным свойствам может быть найдена [ниже](delegated-properties.html#property-delegate-requirements).
 
 <!--Note that since Kotlin 1.1 you can declare a delegated property inside a function or code block, it shouldn't necessarily be a member of a class.
 Below you can find [the example](delegated-properties.html#local-delegated-properties-since-11).-->
@@ -231,6 +231,8 @@ fun example(computeFoo: () -> Foo) {
 If `someCondition` fails, the variable won't be computed at all.-->
 Переменная `memoizedFoo` будет вычислена только при первом обращении к ней.
 Если условие `someCondition` будет ложно, значение переменной не будет вычислено вовсе.
+
+<a name="property-delegate-requirements"></a>
 
 <!--## Property Delegate Requirements-->
 ## Требования к делегированным свойствам

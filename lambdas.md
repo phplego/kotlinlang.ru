@@ -29,7 +29,7 @@ fun <T> lock(lock: Lock, body: () -> T): T{
 внутри блока `try`, защищена `lock`, и её результат возвращается функцией `lock()`.
 
 Если мы хотим вызвать метод lock(), мы можем подать другую функцию в качестве входящего аргумента 
-(более подробно читайте [function references](reflection.html#function-references)):
+(более подробно читайте [Ссылки на функции](reflection.html#function-references)):
 
 ``` kotlin
 fun toBeSynchronized() = sharedResource.operation()

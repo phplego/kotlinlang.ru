@@ -41,12 +41,12 @@ val demo = Outer().Inner().foo() // == 1
 ```
 
 <!--See [Qualified *this*{: .keyword } expressions](this-expressions.html) to learn about disambiguation of *this*{: .keyword } in inner classes.-->
-Подробнее об использовании `this` во внутренних классах: [Qualified `this` expressions](http://kotlinlang.org/docs/reference/this-expressions.html)
+Подробнее об использовании `this` во внутренних классах: [Qualified `this` expressions](this-expressions.html)
 
 <!--## Anonymous inner classes-->
 ## Анонимные внутренние классы
 <!--Anonymous inner class instances are created using an [object expression](object-declarations.html#object-expressions):-->
-Экземпляры анонимных классов создаются с помощью [object expression](object-declarations.html#object-expressions):
+Анонимные внутренние экземпляры классов создаются с помощью [object expression](object-declarations.html#object-expressions):
 
 ``` kotlin
 window.addMouseListener(object: MouseAdapter() {

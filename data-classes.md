@@ -23,7 +23,7 @@ the primary constructor:-->
 
   * пара функций `equals()`/`hashCode()`,
   * `toString()` в форме `"User(name=Jhon, age=42)"`,
-  * функции [`componentN()`](https://kotlinlang.org/docs/reference/multi-declarations.html), которые соответствуют свойствам, в зависимости от их порядка либо объявления,
+  * функции [componentN()](multi-declarations.html), которые соответствуют свойствам, в зависимости от их порядка либо объявления,
   * функция `copy()` (см. ниже)
 
 <!--If any of these functions is explicitly defined in the class body or inherited from the base types, it will not be generated.-->
@@ -38,10 +38,10 @@ the primary constructor:-->
   * Дата-классы не могут наследоваться от других классов (но могут реализовывать интерфейсы).
   
 <!-- Since 1.1, data classes may extend other classes (see Sealed classes for examples). -->
-Начиная с версии 1.1, классы данных могут расширять другие классы (см. примеры в [Sealed classes](/docs/reference/sealed-classes.html#sealed-classes-and-data-classes))
+Начиная с версии 1.1, классы данных могут расширять другие классы (см. примеры в [Sealed classes](sealed-classes.html#sealed-classes-and-data-classes))
 
 > Для того, чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
-> (см. [Конструкторы](/docs/reference/classes.html#constructors))
+> (см. [Конструкторы](classes.html#constructors))
 ``` kotlin
  data class User(val name: String = "", val age: Int = 0)
  ```
@@ -69,7 +69,7 @@ val olderJack = jack.copy(age = 2)
 ## Классы данных и мульти-декларации
 
 <!--_Component functions_ generated for data classes enable their use in [destructuring declarations](multi-declarations.html):-->
-Сгенерированные для классов данных _составные функции_ позволяют использовать их в [мульти-декларациях](https://kotlinlang.org/docs/reference/multi-declarations.html):
+Сгенерированные для классов данных _составные функции_ позволяют использовать их в [мульти-декларациях](multi-declarations.html):
 
 ``` kotlin
 val jane = User("Jane", 35)

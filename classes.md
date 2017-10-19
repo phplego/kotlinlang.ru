@@ -276,7 +276,7 @@ open class AnotherDerived() : Base() {
 * People successfully use other languages (C++, C#) that have similar approach
 * If people really want to hack, there still are ways: you can always write your hack in Java and call it from Kotlin (*see [Java Interop](java-interop.html)*), and Aspect frameworks always work for these purposes-->
 * Опыт поколений говорит о том, что, в любом случае, лучше не позволять внедрять такие хаки
-* Люди успешно используют другие языки (<b>C++</b>, <b>C#</b>), которые имеют аналогичных подход к этому вопросу
+* Люди успешно используют другие языки (<b>C++</b>, <b>C#</b>), которые имеют аналогичный подход к этому вопросу
 * Если кто-то действительно хочет хакнуть, пусть напишет свой код на <b>Java</b> и вызовет его в <b>Kotlin</b> _(см. [Java-совместимость](http://kotlinlang.org/docs/reference/java-interop.html))_
 
 <!--### Overriding Rules-->

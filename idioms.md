@@ -274,7 +274,7 @@ with(myTurtle) { //draw a 100 pix square
 ```
 
 <!--### Java 7's try with resources-->
-### try with resources из Java 7
+### попробуйте из ресурсов из Java 7
 
 ``` kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))

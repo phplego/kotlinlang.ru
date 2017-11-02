@@ -69,7 +69,7 @@ interface Collection<E> ... {
 ```
 
 <!-- But then, we would not be able to do the following simple thing (which is perfectly safe): -->
-Но тогда мы бы не могли выполнять следующую простую операция (которая является абсолютно безопасной):
+Но тогда мы бы не могли выполнять следующую простую операцию (которая является абсолютно безопасной):
 
 ``` java
 // Java

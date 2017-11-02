@@ -290,7 +290,7 @@ Kotlin предоставляет так называемый **star-projection*
  - For `Foo<T>`, where `T` is an invariant type parameter with the upper bound `TUpper`, `Foo<*>` is equivalent to `Foo<out TUpper>` for reading values and to `Foo<in Nothing>` for writing values.
  -->
  - Для `Foo<out T>`, где `T` — ковариантный параметризованный тип с верхней границей `TUpper`, `Foo<*>` является эквивалентом `Foo<out TUpper>`. Это значит, что когда `T` неизвестен, вы можете безопасно *читать* значения типа `TUpper` из `Foo<*>`.
- - Для `Foo<in T>`, где `T` — ковариантный параметризованный тип, `Foo<*>` является эквивалентом `Foo<in Nothing>`. Это значит, что вы не можете безопасно *писать* в `Foo<*>` при неизвестном `T`.
+ - Для `Foo<in T>`, где `T` — контравариантный параметризованный тип, `Foo<*>` является эквивалентом `Foo<in Nothing>`. Это значит, что вы не можете безопасно *писать* в `Foo<*>` при неизвестном `T`.
  - Для `Foo<T>`, где `T` — инвариантный параметризованный тип с верхней границей `TUpper`, `Foo<*>` является эквивалентом `Foo<out TUpper>` при чтении значений и `Foo<in Nothing>` при записи значений.
 
 <!--If a generic type has several type parameters each of them can be projected independently.

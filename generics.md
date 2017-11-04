@@ -92,12 +92,12 @@ interface Collection<E> ... {
 }
 ```
 
-<!-- The **wildcard type argument** `? extends T` indicates that this method accepts a collection of objects of *some subtype of* `T`, not `T` itself. -->
-**Маска для аргумента** `? extends T` указвает на то, что это метод принимает коллекцию объектов *некого типа* `T`, а не сам `T`.
-<!-- This means that we can safely **read** `T`'s from items (elements of this collection are instances of a subclass of T), but **cannot write** to -->
-<!-- it since we do not know what objects comply to that unknown subtype of `T`. -->
+<!-- The **wildcard type argument** `? extends E` indicates that this method accepts a collection of objects of `E` *or some subtype of* `E`, not just `E` itself. -->
+**Маска для аргумента** `? extends E` указвает на то, что это метод принимает коллекцию объектов E *или некого типа унаследованного от* `E`, а не сам `E`.
+<!-- This means that we can safely **read** `E`'s from items (elements of this collection are instances of a subclass of E), but **cannot write** to -->
+<!-- it since we do not know what objects comply to that unknown subtype of `E`. -->
 <!-- In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`. -->
-Это значит, что мы можем безопасно **читать** объекты типа `T` из содержимого (элементы коллекции являются экземплярами подкласса T), но **не можем их изменять**, потому что не знаем, какие объекты соответствуют этому неизвестному типу `T`.
+Это значит, что мы можем безопасно **читать** объекты типа `E` из содержимого (элементы коллекции являются экземплярами подкласса E), но **не можем их изменять**, потому что не знаем, какие объекты соответствуют этому неизвестному подтипу от `E`.
 Минуя это ограничение, мы достигаем желаемого результата: `Collection<String>`
 **является** подтипом `Collection<? extends Object>`.
  <!-- In "clever words", the wildcard with an **extends**\-bound (**upper** bound) makes the type **covariant**. -->

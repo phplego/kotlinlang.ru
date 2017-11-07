@@ -217,7 +217,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 <!-- If you have a collection of elements of a nullable type and want to filter non-null elements, you can do so by using `filterNotNull`. -->
 
-Если у вас есть коллекция nullable элементов и вы хотите отфильтровать все non-null элементы, используйте фунуцию `filterNotNull`.
+Если у вас есть коллекция nullable элементов и вы хотите отфильтровать все non-null элементы, используйте функцию `filterNotNull`.
 
 ``` kotlin
  val nullableList: List<Int?> = listOf(1, 2, null, 4)

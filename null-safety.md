@@ -82,7 +82,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 <!-- The compiler tracks the information about the check you performed, and allows the call to `length` inside the *if*{: .keyword }. -->
 <!-- More complex conditions are supported as well: -->
-Компилятор отслеживает информацию о проведённой вами проверке и позволяет вызывать `lenght` внутри блока *if*.
+Компилятор отслеживает информацию о проведённой вами проверке и позволяет вызывать `length` внутри блока *if*.
 Также поддерживаются более сложные конструкции:
 
 ``` kotlin
@@ -114,7 +114,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
  ```
 <!-- This returns `b.length` if `b` is not null, and *null*{: .keyword } otherwise. The type of this expression is `Int?`. -->
 
-Этот код возвращает `b.lenght` в том, случае, если `b` не имеет значение *null*. Иначе он возвращает *null*. Типом этого выражения будет `Int?`.
+Этот код возвращает `b.length` в том, случае, если `b` не имеет значение *null*. Иначе он возвращает *null*. Типом этого выражения будет `Int?`.
 
 <!-- Safe calls are useful in chains. For example, if Bob, an Employee, may be assigned to a Department (or not), -->
 <!-- that in turn may have another Employee as a department head, then to obtain the name of Bob's department head (if any), we write the following: -->

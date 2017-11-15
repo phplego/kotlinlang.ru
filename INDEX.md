@@ -23,11 +23,14 @@ url: https://kotlinlang.ru
 
 ## Сообщество
 * [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram чат посвященный языку Kotlin и переводу документации
+
+<!--
 * [@kotlin_lang](https://t.me/kotlin_lang) - Сообщество разработчиков на Kotlin
- 
  Локальные группы:
 * [@KotlinMoscow](https://t.me/KotlinMoscow) - Московская группа
 * [@KotlinKrasnodar](https://t.me/KotlinKrasnodar) - Краснодарская группа
+-->
+
 
 ## Актуальные задачи
 * Перевести статьи из радела "Java Interop": [Calling Java from Kotlin](https://kotlinlang.org/docs/reference/java-interop.html), [Calling Kotlin from Java](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html)

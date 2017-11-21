@@ -37,7 +37,7 @@ fun sum(a: Int, b: Int): Int {
 ```
 
 <!-- Function with an expression body and inferred return type: -->
-Функция с выражением в качестве тела и автоматически выведенным типом возвращаемого значения:
+Функция с выражением в качестве тела и автоматически определенным типом возвращаемого значения:
 
 ``` kotlin
 fun sum(a: Int, b: Int) = a + b
@@ -83,6 +83,19 @@ var x = 5 // Тип `Int` выведен автоматически
 x += 1
 ```
 
+<!-- Top-level vaiables: -->
+Глобальные переменные:
+
+``` kotlin
+val PI = 3.14
+var x = 0
+
+fun incrementX() { 
+    x += 1 
+}
+```
+
+
 См. [Свойства и поля](properties.html).
 
 ## Комментарии
@@ -97,7 +110,7 @@ x += 1
 ```
 
 <!--Unlike Java, block comments in Kotlin can be nested.-->
-В отличие от Java, блочные комментарии не могут быть вложенными.
+В отличие от Java, блочные комментарии могут быть вложенными.
 
 <!--See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.-->
 См. [Documenting Kotlin Code](http://kotlinlang.org/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
@@ -113,6 +126,22 @@ fun main(args: Array<String>) {
   print("Первый аргумент: ${args[0]}")
 }
 ```
+
+```
+var a = 1
+// просто имя переменной в шаблоне:
+val s1 = "a is $a" 
+
+a = 2
+// произвольное выражение в шаблоне:
+val s2 = "${s1.replace("is", "was")}, but now is $a"
+
+/*
+  Результат работы программы:
+  a was 1, but now is 2
+*/
+```
+
 
 См. [Строковые шаблоны](basic-types.html#string-templates).
 
@@ -293,7 +322,7 @@ if (x !in 0..array.lastIndex)
   print("Out")
 ```
 
-Итерация по интервалу:
+Перебор значений в заданном интервале:
 
 ``` kotlin
 for (x in 1..5)
@@ -343,4 +372,16 @@ names
 ```
 
 См. [Функции высшего порядка и лямбды](lambdas.html).
+
+
+<!--Creating basic classes and their instances:-->
+Создание базовых классов и их экземпляров
+
+``` kotlin
+val rectangle = Rectangle(5.0, 2.0) //не требуется ключевое слово 'new'
+val triangle = Triangle(3.0, 4.0, 5.0)
+```
+
+См. [Классы](classes.html) и [Объявление экземпляров класса](object-declarations.html).
+
 

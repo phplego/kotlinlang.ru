@@ -11,8 +11,9 @@ title: "Мультиплатформенные проекты"
 здесь возможности языка могут претерпеть изменения в последующих версиях Kotlin.
 {:.note}
 
-A Kotlin multiplatform project allows you to compile the same code to multiple target
-platforms. At this time supported target platforms are the JVM and JS, with Native to be added later.
+Мультиплатформенные проекты Kotlin позволяют вам компилировать один и тот же код для многих целвых
+платформ. На данный момент поддерживаемыми целевыми платформами являются JVM и JS, с добавлением Native
+в перспективе.
 
 ## Структура мультиплатформенного проекта
 

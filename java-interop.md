@@ -24,7 +24,7 @@ fun demo(source: List<Int>) {
     }
     // Operator conventions work as well:
     for (i in 0..source.size - 1) {
-        list[i] = source[i] // get and set are called
+        list[i] = source[i] // вызваны get и set
     }
 }
 ```
@@ -52,7 +52,8 @@ fun calendarDemo() {
 }
 ```
 
-Note that, if the Java class only has a setter, it will not be visible as a property in Kotlin, because Kotlin does not support set-only properties at this time.
+Имейте в виду, что если класс Java имеет только сеттер, он не будет виден как свойство в Kotlin, потому что Kotlin
+не поддерживает set-only свойства на данный момент.
 
 ## Методы возвращающие void
 
@@ -62,9 +63,10 @@ since the value itself is known in advance (being `Unit`).
 
 ## Escaping for Java identifiers that are keywords in Kotlin
 
-Some of the Kotlin keywords are valid identifiers in Java: *in*{: .keyword }, *object*{: .keyword }, *is*{: .keyword }, etc.
-If a Java library uses a Kotlin keyword for a method, you can still call the method
-escaping it with the backtick (`) character:
+Некоторые из ключевых слов Kotlin являются валидными идентификаторами в Java: *in*{: .keyword },
+*object*{: .keyword }, *is*{: .keyword }, и т.д.
+Если Java-библиотека использует ключевые слова Kotlin в названиях методов, вы все еще можете вызывать метод
+используя экранирование с помощью обратной кавычки (`):
 
 ``` kotlin
 foo.`is`(bar)

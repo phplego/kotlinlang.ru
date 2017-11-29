@@ -74,8 +74,10 @@ foo.`is`(bar)
 
 ## Null-безопасность и платформенные типы
 
-Any reference in Java may be *null*{: .keyword }, which makes Kotlin's requirements of strict null-safety impractical for objects coming from Java.
-Types of Java declarations are treated specially in Kotlin and called *platform types*. Null-checks are relaxed for such types,
+Любая ссылка в Java может прнимать значение *null*{: .keyword }, что делает требования Kotlin по null-safety
+непрактичными для объектов приходящих из Java.
+Типы, декларируемые в Java обрабатываются по-особому в Kotlin и называются *платформенными типами*. Null-проверки
+для таких типов являются менее строгими,
 so that safety guarantees for them are the same as in Java (see more [below](#mapped-types)).
 
 Consider the following examples:

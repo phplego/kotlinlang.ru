@@ -2,21 +2,21 @@
 type: doc
 layout: reference
 category: "Other"
-title: "Multiplatform Projects"
+title: "Мультиплатформенные проекты"
 ---
 
-# Multiplatform Projects
+# Мультиплатформенные проекты
 
-> Multiplatform projects are a new experimental feature in Kotlin 1.2. All of the language
-and tooling features described in this document are subject to change in future Kotlin versions.
+> Мультиплатформенные проекты - это новая экспериментальная возможность Kotlin 1.2. Все описываемые
+здесь возможности языка могут претерпеть изменения в последующих версиях Kotlin.
 {:.note}
 
 A Kotlin multiplatform project allows you to compile the same code to multiple target
 platforms. At this time supported target platforms are the JVM and JS, with Native to be added later.
 
-## Multiplatform Project Structure
+## Структура мультиплатформенного проекта
 
-A multiplatform project consists of three types of modules:
+Мультиплатформенный проект состоит из трех типов модулей:
 
   * A _common_ module contains code that is not specific to any platform, as well as declarations
     without implementation of platform-dependent APIs. Those declarations allow common code to depend on 

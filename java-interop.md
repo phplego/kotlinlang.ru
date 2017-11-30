@@ -58,8 +58,8 @@ fun calendarDemo() {
 ## Методы возвращающие void
 
 Если метод Java возвращает void, он вернет `Unit` при вызове из Kotlin.
-If, by any chance, someone uses that return value, it will be assigned at the call site by the Kotlin compiler,
-since the value itself is known in advance (being `Unit`).
+Если по какой-либо причине кто-либо использует данный тип в своих целях, it will be assigned at the call site
+by the Kotlin compiler, так как значение само по себе известно заранее (являясь `Unit`).
 
 ## Escaping for Java identifiers that are keywords in Kotlin
 

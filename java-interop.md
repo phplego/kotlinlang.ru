@@ -61,7 +61,7 @@ fun calendarDemo() {
 Если по какой-либо причине кто-либо использует данный тип в своих целях, it will be assigned at the call site
 by the Kotlin compiler, так как значение само по себе известно заранее (являясь `Unit`).
 
-## Escaping for Java identifiers that are keywords in Kotlin
+## Экранирование идентификаторов Java совпадающих с ключевыми словами Kotlin
 
 Некоторые из ключевых слов Kotlin являются валидными идентификаторами в Java: *in*{: .keyword },
 *object*{: .keyword }, *is*{: .keyword }, и т.д.
@@ -77,18 +77,20 @@ foo.`is`(bar)
 Любая ссылка в Java может прнимать значение *null*{: .keyword }, что делает требования Kotlin по null-safety
 непрактичными для объектов приходящих из Java.
 Типы, декларируемые в Java обрабатываются по-особому в Kotlin и называются *платформенными типами*. Null-проверки
-для таких типов являются менее строгими,
-so that safety guarantees for them are the same as in Java (see more [below](#mapped-types)).
+для таких типов являются менее строгими, таким образом безопасность для них гарантирована таким же образом, как
+и в Java (подробнее смотрите [ниже](#mapped-types)).
 
-Consider the following examples:
+Рассмотрим следующие примеры:
 
 ``` kotlin
-val list = ArrayList<String>() // non-null (constructor result)
+val list = ArrayList<String>() // non-null (результат выполнения конструктора)
 list.add("Item")
-val size = list.size // non-null (primitive int)
-val item = list[0] // platform type inferred (ordinary Java object)
+val size = list.size // non-null (примитив int)
+val item = list[0] // подразумевается платформенный тип (обычный объект Java)
 ```
 
+Когда мы вызываем методы на переменных платформенных типов, Kotlin не обрабатывает ошибки отсутствия значения
+во время компиляции, но работа этих методов может вызвать ошибки на рантайме
 When we call methods on variables of platform types, Kotlin does not issue nullability errors at compile time,
 but the call may fail at runtime, because of a null-pointer exception or an assertion that Kotlin generates to
 prevent nulls from propagating:

@@ -93,7 +93,7 @@ interface Collection<E> ... {
 ```
 
 <!-- The **wildcard type argument** `? extends E` indicates that this method accepts a collection of objects of `E` *or some subtype of* `E`, not just `E` itself. -->
-**Маска для аргумента** `? extends E` указвает на то, что это метод принимает коллекцию объектов E *или некого типа унаследованного от* `E`, а не сам `E`.
+**Маска для аргумента** `? extends E` указвает на то, что этот метод принимает коллекцию объектов E *или некого типа унаследованного от* `E`, а не сам `E`.
 <!-- This means that we can safely **read** `E`'s from items (elements of this collection are instances of a subclass of E), but **cannot write** to -->
 <!-- it since we do not know what objects comply to that unknown subtype of `E`. -->
 <!-- In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`. -->

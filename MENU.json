@@ -44,7 +44,11 @@
     "annotations",
     "reflection",
     "type-safe-builders",
-    "type-aliases"
+    "type-aliases",
+    "multiplatform"
+  ],
+  "Совместимость с Java": [
+    "java-interop"
   ],
   "ЧаВо": [
     "comparison-to-java"

@@ -58,8 +58,8 @@ fun calendarDemo() {
 ## Методы возвращающие void
 
 Если метод Java возвращает void, он вернет `Unit` при вызове из Kotlin.
-Если по какой-либо причине кто-либо использует данный тип в своих целях, it will be assigned at the call site
-by the Kotlin compiler, так как значение само по себе известно заранее (являясь `Unit`).
+Если по какой-либо причине кто-либо использует данный тип в своих целях, он будет присвоен в месте вызова
+компилятором Kotlin, так как значение само по себе известно заранее (являясь `Unit`).
 
 ## Экранирование идентификаторов Java совпадающих с ключевыми словами Kotlin
 
@@ -90,22 +90,21 @@ val item = list[0] // подразумевается платформенный 
 ```
 
 Когда мы вызываем методы на переменных платформенных типов, Kotlin не обрабатывает ошибки отсутствия значения
-во время компиляции, но работа этих методов может вызвать ошибки на рантайме
-When we call methods on variables of platform types, Kotlin does not issue nullability errors at compile time,
-but the call may fail at runtime, because of a null-pointer exception or an assertion that Kotlin generates to
-prevent nulls from propagating:
+во время компиляции, но работа этих методов может вызвать ошибки на рантайме по причине NPE либо ассершена,
+генерируемого Kotlin для предотвращения всплытия null значений:
 
 ``` kotlin
-item.substring(1) // allowed, may throw an exception if item == null
+item.substring(1) // разрешается, может выбросить исключение, если item == null
 ```
 
-Platform types are *non-denotable*, meaning that one can not write them down explicitly in the language.
-When a platform value is assigned to a Kotlin variable, we can rely on type inference (the variable will have an inferred platform type then,
- as `item` has in the example above), or we can choose the type that we expect (both nullable and non-null types are allowed):
+Платформенные типы являются *необозначаемыми*, что значит, что их нельзя объявить непосредственно в языке.
+Когда платформенное значение присваивается переменной в Kotlin, мы можем полагаться на автоматическое
+определение типа (переменная получит подразумеваемый платформенный тип, так же как `item` приведенная в примерах выше),
+или же мы можем сами выбрать ожидаемый тип (разрешаются как nullable, так и  non-null типы):
 
 ``` kotlin
-val nullable: String? = item // allowed, always works
-val notNull: String = item // allowed, may fail at runtime
+val nullable: String? = item // разрешается, всегда работает
+val notNull: String = item // разрешается, может вызвать ошибку на рантайме
 ```
 
 If we choose a non-null type, the compiler will emit an assertion upon assignment. This prevents Kotlin's non-null variables from holding
@@ -119,7 +118,7 @@ As mentioned above, platform types cannot be mentioned explicitly in the program
 Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a
 mnemonic notation for them:
 
-* `T!` means "`T` or `T?`",
+* `T!` означает "`T` или `T?`",
 * `(Mutable)Collection<T>!` means "Java collection of `T` may be mutable or not, may be nullable or not",
 * `Array<(out) T>!` means "Java array of `T` (or a subtype of `T`), nullable or not"
 

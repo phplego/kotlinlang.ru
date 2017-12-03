@@ -360,7 +360,7 @@ sort(listOf(HashMap<Int, String>())) // Ошибка: HashMap<Int, String> не 
 
 <!--The default upper bound (if none specified) is `Any?`. Only one upper bound can be specified inside the angle brackets.
 If the same type parameter needs more than one upper bound, we need a separate **where**\-clause:-->
-По умолчанию (если не указана явно) верняя граница — `Any?`. Только одна верхняя граница может быть указана в угловых скобках.
+По умолчанию (если не указана явно) верхняя граница — `Any?`. Только одна верхняя граница может быть указана в угловых скобках.
 В случае, если один параметризованный тип требует больше чем одной верхней границы, нам нужно использовать разделяющее **where**-условие:
 
 ``` kotlin

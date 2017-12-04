@@ -59,7 +59,7 @@ String s = strs.get(0); // !!! ClassCastException: не можем кастов�
 ```
 <!-- So, Java prohibits such things in order to guarantee run-time safety. But this has some implications. For example, consider the `addAll()` method from `Collection` -->
 <!-- interface. What's the signature of this method? Intuitively, we'd put it this way: -->
-Таким образом, <b>Java</b> запрешает подобные вещи, гаранитируя тем самым безопасность в период выполнения кода. Но у такого подхода есть свои последствия. Рассмотрим, например, метод `addAll` интерфейса `Collection`. Какова сигнатура данного метода? Интуитивно мы бы указали её таким образом:
+Таким образом, <b>Java</b> запрещает подобные вещи, гаранитируя тем самым безопасность в период выполнения кода. Но у такого подхода есть свои последствия. Рассмотрим, например, метод `addAll` интерфейса `Collection`. Какова сигнатура данного метода? Интуитивно мы бы указали её таким образом:
 
 ``` java
 // Java
@@ -93,7 +93,7 @@ interface Collection<E> ... {
 ```
 
 <!-- The **wildcard type argument** `? extends E` indicates that this method accepts a collection of objects of `E` *or some subtype of* `E`, not just `E` itself. -->
-**Маска для аргумента** `? extends E` указвает на то, что этот метод принимает коллекцию объектов E *или некого типа унаследованного от* `E`, а не сам `E`.
+**Маска для аргумента** `? extends E` указывает на то, что этот метод принимает коллекцию объектов E *или некоего типа унаследованного от* `E`, а не сам `E`.
 <!-- This means that we can safely **read** `E`'s from items (elements of this collection are instances of a subclass of E), but **cannot write** to -->
 <!-- it since we do not know what objects comply to that unknown subtype of `E`. -->
 <!-- In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`. -->

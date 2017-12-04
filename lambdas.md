@@ -85,7 +85,7 @@ ints.map { it * 2 }
 
 Эти конвенции позволяют писать код в стиле [LINQ](http://msdn.microsoft.com/en-us/library/bb308959.aspx):
 ``` kotlin
-strings.filter { it.lenght == 5 }.sortBy { it }.map { it.toUpperCase() }
+strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
 ```
 
 ### Символ подчеркивания для неиспользуемых переменных (since 1.1)

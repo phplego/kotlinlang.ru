@@ -107,12 +107,13 @@ val nullable: String? = item // разрешается, всегда работ�
 val notNull: String = item // разрешается, может вызвать ошибку на рантайме
 ```
 
-If we choose a non-null type, the compiler will emit an assertion upon assignment. This prevents Kotlin's non-null variables from holding
-nulls. Assertions are also emitted when we pass platform values to Kotlin functions expecting non-null values etc.
+Если мы выбираем non-null тип, компилятор выбросит ассершен при присвоении значения. Это предотвратит non-null
+переменные Kotlin от хранения null-значений.
+Assertions are also emitted when we pass platform values to Kotlin functions expecting non-null values etc.
 Overall, the compiler does its best to prevent nulls from propagating far through the program (although sometimes this is
 impossible to eliminate entirely, because of generics).
 
-### Notation for Platform Types
+### Нотации для платформенных типов
 
 As mentioned above, platform types cannot be mentioned explicitly in the program, so there's no syntax for them in the language.
 Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a

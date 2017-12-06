@@ -116,16 +116,13 @@ val notNull: String = item // разрешается, может вызвать 
 
 Как упоминалось выше, платформенные типы не могут быть явно указаны в программе, так что не существует синтаксиса для
 их обозначения в языке. И все же иногда компилятору и IDE нужно их обозначать (в сообщениях об ошибках, информации о параметрах,
-и т.д.)
-As mentioned above, platform types cannot be mentioned explicitly in the program, so there's no syntax for them in the language.
-Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a
-mnemonic notation for them:
+и т.д.). Для подобных случаев у нас имеется мнемоническая нотация для них:
 
 * `T!` означает "`T` или `T?`",
-* `(Mutable)Collection<T>!` means "Java collection of `T` may be mutable or not, may be nullable or not",
-* `Array<(out) T>!` means "Java array of `T` (or a subtype of `T`), nullable or not"
+* `(Mutable)Collection<T>!` означает "коллекция Java типа `T` может быть (не)изменяемой, может быть nullable или нет",
+* `Array<(out) T>!` означает "массив Java типа `T` (или подтипа `T`), nullable или нет"
 
-### Nullability annotations
+### Аннотации допустимости null значений
 
 Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
 Kotlin types. The compiler supports several flavors of nullability annotations, including:

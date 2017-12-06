@@ -108,13 +108,15 @@ val notNull: String = item // разрешается, может вызвать 
 ```
 
 Если мы выбираем non-null тип, компилятор выбросит ассершен при присвоении значения. Это предотвратит non-null
-переменные Kotlin от хранения null-значений.
-Assertions are also emitted when we pass platform values to Kotlin functions expecting non-null values etc.
-Overall, the compiler does its best to prevent nulls from propagating far through the program (although sometimes this is
-impossible to eliminate entirely, because of generics).
+переменные Kotlin от хранения null-значений. Ассершены так же выбрасываются, когда мы передаем платформенные
+значения в функции Kotlin, ожидающие non-null значения. В целом, компилятор делает все возможное для предотвращения
+всплытия null-значений в глубине программы (и все же иногда возникают проблемы при использовании дженериков).
 
 ### Нотации для платформенных типов
 
+Как упоминалось выше, платформенные типы не могут быть явно указаны в программе, так что не существует синтаксиса для
+их обозначения в языке. И все же иногда компилятору и IDE нужно их обозначать (в сообщениях об ошибках, информации о параметрах,
+и т.д.)
 As mentioned above, platform types cannot be mentioned explicitly in the program, so there's no syntax for them in the language.
 Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a
 mnemonic notation for them:
@@ -311,7 +313,7 @@ Kotlin treats some Java types specially. Such types are not loaded from Java "as
 The mapping only matters at compile time, the runtime representation remains unchanged.
  Java's primitive types are mapped to corresponding Kotlin types (keeping [platform types](#null-safety-and-platform-types) in mind):
 
-| **Java type** | **Kotlin type**  |
+| **Тип Java** | **Тип Kotlin**  |
 |---------------|------------------|
 | `byte`        | `kotlin.Byte`    |
 | `short`       | `kotlin.Short`   |
@@ -325,7 +327,7 @@ The mapping only matters at compile time, the runtime representation remains unc
 
 Some non-primitive built-in classes are also mapped:
 
-| **Java type** | **Kotlin type**  |
+| **Тип Java** | **Тип Kotlin**  |
 |---------------|------------------|
 | `java.lang.Object`       | `kotlin.Any!`    |
 | `java.lang.Cloneable`    | `kotlin.Cloneable!`    |
@@ -418,7 +420,7 @@ Suppose there is a Java method that accepts an int array of indices:
 public class JavaArrayExample {
 
     public void removeIndices(int[] indices) {
-        // code here...
+        // здесь ваш код...
     }
 }
 ```
@@ -431,12 +433,13 @@ val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndices(array)  // passes int[] to method
 ```
 
-When compiling to JVM byte codes, the compiler optimizes access to arrays so that there's no overhead introduced:
+При компиляции в байт-код JVM, компилятор оптимизирует доступ к массивам, таким образом, что отсутствуют
+какие-либо накладные расходы:
 
 ``` kotlin
 val array = arrayOf(1, 2, 3, 4)
 array[x] = array[x] * 2 // no actual calls to get() and set() generated
-for (x in array) { // no iterator created
+for (x in array) { // не создается итератор
     print(x)
 }
 ```
@@ -444,7 +447,7 @@ for (x in array) { // no iterator created
 Even when we navigate with an index, it does not introduce any overhead:
 
 ``` kotlin
-for (i in array.indices) { // no iterator created
+for (i in array.indices) { // не создается итератор
     array[i] += 2
 }
 ```
@@ -465,7 +468,7 @@ Java classes sometimes use a method declaration for the indices with a variable 
 public class JavaArrayExample {
 
     public void removeIndicesVarArg(int... indices) {
-        // code here...
+        // здесь ваш код...
     }
 }
 ```

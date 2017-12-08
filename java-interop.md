@@ -124,23 +124,23 @@ val notNull: String = item // разрешается, может вызвать 
 
 ### Аннотации допустимости null значений
 
-Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
-Kotlin types. The compiler supports several flavors of nullability annotations, including:
+Типы Java, которые имеют аннотации допустимости null-значений представлены не как платформенные типы, а как реальные
+nullable или non-null типы Kotlin. Компилятор поддерживает несколько стандартов аннотаций, включая:
 
   * [JetBrains](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
-(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package)
-  * Android (`com.android.annotations` and `android.support.annotations`)
-  * JSR-305 (`javax.annotation`, more details below)
+(`@Nullable` и `@NotNull` из пакета `org.jetbrains.annotations`)
+  * Android (`com.android.annotations` и `android.support.annotations`)
+  * JSR-305 (`javax.annotation`, подробности смотрите ниже)
   * FindBugs (`edu.umd.cs.findbugs.annotations`)
   * Eclipse (`org.eclipse.jdt.annotation`)
   * Lombok (`lombok.NonNull`).
 
-You can find the full list in the [Kotlin compiler source code](https://github.com/JetBrains/kotlin/blob/master/core/descriptors.jvm/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt).
+Вы можете найти полный список в [Исходных текстах компилятора Kotlin](https://github.com/JetBrains/kotlin/blob/master/core/descriptors.jvm/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt).
 
-### JSR-305 Support
+### Поддержка JSR-305
 
-The [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html) annotation defined 
-in [JSR-305](https://jcp.org/en/jsr/detail?id=305) is supported for denoting nullability of Java types.
+Аннотация [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html) объявленная 
+в [JSR-305](https://jcp.org/en/jsr/detail?id=305) поддерживается для использования с типами Java.
 
 If the `@Nonnull(when = ...)` value is `When.ALWAYS`, the annotated type is treated as non-null; `When.MAYBE` and 
 `When.NEVER` denote a nullable type; and `When.UNKNOWN` forces the type to be [platform one](#null-safety-and-platform-types).
@@ -149,7 +149,7 @@ A library can be compiled against the JSR-305 annotations, but there's no need t
 a compile dependency for the library consumers. The Kotlin compiler can read the JSR-305 annotations from a library without the annotations 
 present on the classpath.
 
-Since Kotlin 1.1.50, 
+Начиная с версии Kotlin 1.1.50, 
 [custom nullability qualifiers (KEEP-79)](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md) 
 are also supported (see below).
 

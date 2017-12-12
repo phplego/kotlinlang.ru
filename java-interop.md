@@ -58,10 +58,10 @@ fun calendarDemo() {
 ## Методы возвращающие void
 
 Если метод Java возвращает void, он вернет `Unit` при вызове из Kotlin.
-Если по какой-либо причине кто-либо использует данный тип в своих целях, it will be assigned at the call site
-by the Kotlin compiler, так как значение само по себе известно заранее (являясь `Unit`).
+Если по какой-либо причине кто-либо использует данный тип в своих целях, он будет присвоен в месте вызова
+компилятором Kotlin, так как значение само по себе известно заранее (являясь `Unit`).
 
-## Escaping for Java identifiers that are keywords in Kotlin
+## Экранирование идентификаторов Java совпадающих с ключевыми словами Kotlin
 
 Некоторые из ключевых слов Kotlin являются валидными идентификаторами в Java: *in*{: .keyword },
 *object*{: .keyword }, *is*{: .keyword }, и т.д.
@@ -77,69 +77,70 @@ foo.`is`(bar)
 Любая ссылка в Java может прнимать значение *null*{: .keyword }, что делает требования Kotlin по null-safety
 непрактичными для объектов приходящих из Java.
 Типы, декларируемые в Java обрабатываются по-особому в Kotlin и называются *платформенными типами*. Null-проверки
-для таких типов являются менее строгими,
-so that safety guarantees for them are the same as in Java (see more [below](#mapped-types)).
+для таких типов являются менее строгими, таким образом безопасность для них гарантирована таким же образом, как
+и в Java (подробнее смотрите [ниже](#mapped-types)).
 
-Consider the following examples:
+Рассмотрим следующие примеры:
 
 ``` kotlin
-val list = ArrayList<String>() // non-null (constructor result)
+val list = ArrayList<String>() // non-null (результат выполнения конструктора)
 list.add("Item")
-val size = list.size // non-null (primitive int)
-val item = list[0] // platform type inferred (ordinary Java object)
+val size = list.size // non-null (примитив int)
+val item = list[0] // подразумевается платформенный тип (обычный объект Java)
 ```
 
-When we call methods on variables of platform types, Kotlin does not issue nullability errors at compile time,
-but the call may fail at runtime, because of a null-pointer exception or an assertion that Kotlin generates to
-prevent nulls from propagating:
+Когда мы вызываем методы на переменных платформенных типов, Kotlin не обрабатывает ошибки отсутствия значения
+во время компиляции, но работа этих методов может вызвать ошибки на рантайме по причине NPE либо ассершена,
+генерируемого Kotlin для предотвращения всплытия null значений:
 
 ``` kotlin
-item.substring(1) // allowed, may throw an exception if item == null
+item.substring(1) // разрешается, может выбросить исключение, если item == null
 ```
 
-Platform types are *non-denotable*, meaning that one can not write them down explicitly in the language.
-When a platform value is assigned to a Kotlin variable, we can rely on type inference (the variable will have an inferred platform type then,
- as `item` has in the example above), or we can choose the type that we expect (both nullable and non-null types are allowed):
+Платформенные типы являются *необозначаемыми*, что значит, что их нельзя объявить непосредственно в языке.
+Когда платформенное значение присваивается переменной в Kotlin, мы можем полагаться на автоматическое
+определение типа (переменная получит подразумеваемый платформенный тип, так же как `item` приведенная в примерах выше),
+или же мы можем сами выбрать ожидаемый тип (разрешаются как nullable, так и  non-null типы):
 
 ``` kotlin
-val nullable: String? = item // allowed, always works
-val notNull: String = item // allowed, may fail at runtime
+val nullable: String? = item // разрешается, всегда работает
+val notNull: String = item // разрешается, может вызвать ошибку на рантайме
 ```
 
-If we choose a non-null type, the compiler will emit an assertion upon assignment. This prevents Kotlin's non-null variables from holding
-nulls. Assertions are also emitted when we pass platform values to Kotlin functions expecting non-null values etc.
-Overall, the compiler does its best to prevent nulls from propagating far through the program (although sometimes this is
-impossible to eliminate entirely, because of generics).
+Если мы выбираем non-null тип, компилятор выбросит ассершен при присвоении значения. Это предотвратит non-null
+переменные Kotlin от хранения null-значений. Ассершены так же выбрасываются, когда мы передаем платформенные
+значения в функции Kotlin, ожидающие non-null значения. В целом, компилятор делает все возможное для предотвращения
+всплытия null-значений в глубине программы (и все же иногда возникают проблемы при использовании дженериков).
 
-### Notation for Platform Types
+### Нотации для платформенных типов
 
-As mentioned above, platform types cannot be mentioned explicitly in the program, so there's no syntax for them in the language.
-Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a
-mnemonic notation for them:
+Как упоминалось выше, платформенные типы не могут быть явно указаны в программе, так что не существует синтаксиса для
+их обозначения в языке. И все же иногда компилятору и IDE нужно их обозначать (в сообщениях об ошибках, информации о параметрах,
+и т.д.). Для подобных случаев у нас имеется мнемоническая нотация для них:
 
-* `T!` means "`T` or `T?`",
-* `(Mutable)Collection<T>!` means "Java collection of `T` may be mutable or not, may be nullable or not",
-* `Array<(out) T>!` means "Java array of `T` (or a subtype of `T`), nullable or not"
+* `T!` означает "`T` или `T?`",
+* `(Mutable)Collection<T>!` означает "коллекция Java типа `T` может быть (не)изменяемой, может быть nullable или нет",
+* `Array<(out) T>!` означает "массив Java типа `T` (или подтипа `T`), nullable или нет"
 
-### Nullability annotations
+### Аннотации допустимости null значений
 
-Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
-Kotlin types. The compiler supports several flavors of nullability annotations, including:
+Типы Java, которые имеют аннотации допустимости null-значений представлены не как платформенные типы, а как реальные
+nullable или non-null типы Kotlin. Компилятор поддерживает несколько стандартов аннотаций, включая:
 
   * [JetBrains](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
-(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package)
-  * Android (`com.android.annotations` and `android.support.annotations`)
-  * JSR-305 (`javax.annotation`, more details below)
+(`@Nullable` и `@NotNull` из пакета `org.jetbrains.annotations`)
+  * Android (`com.android.annotations` и `android.support.annotations`)
+  * JSR-305 (`javax.annotation`, подробности смотрите ниже)
   * FindBugs (`edu.umd.cs.findbugs.annotations`)
   * Eclipse (`org.eclipse.jdt.annotation`)
   * Lombok (`lombok.NonNull`).
 
-You can find the full list in the [Kotlin compiler source code](https://github.com/JetBrains/kotlin/blob/master/core/descriptors.jvm/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt).
+Вы можете найти полный список в [Исходных текстах компилятора Kotlin](https://github.com/JetBrains/kotlin/blob/master/core/descriptors.jvm/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt).
 
-### JSR-305 Support
+### Поддержка JSR-305
 
-The [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html) annotation defined 
-in [JSR-305](https://jcp.org/en/jsr/detail?id=305) is supported for denoting nullability of Java types.
+Аннотация [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html) объявленная 
+в [JSR-305](https://jcp.org/en/jsr/detail?id=305) поддерживается для использования с типами Java.
 
 If the `@Nonnull(when = ...)` value is `When.ALWAYS`, the annotated type is treated as non-null; `When.MAYBE` and 
 `When.NEVER` denote a nullable type; and `When.UNKNOWN` forces the type to be [platform one](#null-safety-and-platform-types).
@@ -148,7 +149,7 @@ A library can be compiled against the JSR-305 annotations, but there's no need t
 a compile dependency for the library consumers. The Kotlin compiler can read the JSR-305 annotations from a library without the annotations 
 present on the classpath.
 
-Since Kotlin 1.1.50, 
+Начиная с версии Kotlin 1.1.50, 
 [custom nullability qualifiers (KEEP-79)](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md) 
 are also supported (see below).
 
@@ -309,7 +310,7 @@ Kotlin treats some Java types specially. Such types are not loaded from Java "as
 The mapping only matters at compile time, the runtime representation remains unchanged.
  Java's primitive types are mapped to corresponding Kotlin types (keeping [platform types](#null-safety-and-platform-types) in mind):
 
-| **Java type** | **Kotlin type**  |
+| **Тип Java** | **Тип Kotlin**  |
 |---------------|------------------|
 | `byte`        | `kotlin.Byte`    |
 | `short`       | `kotlin.Short`   |
@@ -323,7 +324,7 @@ The mapping only matters at compile time, the runtime representation remains unc
 
 Some non-primitive built-in classes are also mapped:
 
-| **Java type** | **Kotlin type**  |
+| **Тип Java** | **Тип Kotlin**  |
 |---------------|------------------|
 | `java.lang.Object`       | `kotlin.Any!`    |
 | `java.lang.Cloneable`    | `kotlin.Cloneable!`    |
@@ -416,7 +417,7 @@ Suppose there is a Java method that accepts an int array of indices:
 public class JavaArrayExample {
 
     public void removeIndices(int[] indices) {
-        // code here...
+        // здесь ваш код...
     }
 }
 ```
@@ -429,12 +430,13 @@ val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndices(array)  // passes int[] to method
 ```
 
-When compiling to JVM byte codes, the compiler optimizes access to arrays so that there's no overhead introduced:
+При компиляции в байт-код JVM, компилятор оптимизирует доступ к массивам, таким образом, что отсутствуют
+какие-либо накладные расходы:
 
 ``` kotlin
 val array = arrayOf(1, 2, 3, 4)
 array[x] = array[x] * 2 // no actual calls to get() and set() generated
-for (x in array) { // no iterator created
+for (x in array) { // не создается итератор
     print(x)
 }
 ```
@@ -442,7 +444,7 @@ for (x in array) { // no iterator created
 Even when we navigate with an index, it does not introduce any overhead:
 
 ``` kotlin
-for (i in array.indices) { // no iterator created
+for (i in array.indices) { // не создается итератор
     array[i] += 2
 }
 ```
@@ -463,7 +465,7 @@ Java classes sometimes use a method declaration for the indices with a variable 
 public class JavaArrayExample {
 
     public void removeIndicesVarArg(int... indices) {
-        // code here...
+        // здесь ваш код...
     }
 }
 ```

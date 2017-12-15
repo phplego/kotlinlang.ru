@@ -311,7 +311,7 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 | languageVersion | kotlin.compiler.languageVersion | Обеспечить совместимость исходного кода с указанной языковой версией | "1.0", "1.1" | "1.1"
 | apiVersion | kotlin.compiler.apiVersion | Разрешить использование объявлений только из указанной версии связанных библиотек | "1.0", "1.1" | "1.1"
 | sourceDirs | | Директории с исходными файлами для компиляции | | Каталоги с исходным кодом проекта
-| compilerPlugins | | Enabled [compiler plugins](https://kotlinlang.org/docs/reference/compiler-plugins.html)  | | []
+| compilerPlugins | | Включить [плагины компилятора](https://kotlinlang.org/docs/reference/compiler-plugins.html)  | | []
 | pluginOptions | | Параметры плагина компиляции  | | []
 | args | | Дополнительные аргументы компилятора | | []
 

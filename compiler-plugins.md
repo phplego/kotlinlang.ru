@@ -14,7 +14,7 @@ title: "Плагины для компилятора"
 
 Поддержка  *Аll-open* обеспечена для сборщиков Gradle и Maven в тесной интеграции с IDE. 
 
-:point_up: Для Spring вы также можете использовать плагин `kotlin-spring`([подробнее](compiler-plugins.html#spring-support)).
+:point_up: Для Spring вы также можете использовать плагин `kotlin-spring`([подробнее](compiler-plugins.html#Поддержка Spring)).
 
 ### Использование с Gradle
 

@@ -158,7 +158,7 @@ Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotli
 
 ## Обработка аннотаций
 
-См. Описание [Инструмент обработки аннотации Kotlin] (kapt.html) (`kapt`).
+См. Описание [Инструмент обработки аннотации Kotlin] (https://kotlinlang.org/docs/reference/kapt.html) (`kapt`).
 
 ## Поддержка корутинов
 

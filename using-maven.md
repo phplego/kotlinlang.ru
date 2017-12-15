@@ -79,8 +79,6 @@ Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotli
 
 ## Компиляция исходных кодов на Kotlin и Java
 
-In maven terms that means kotlin-maven-plugin should be run before maven-compiler-plugin using the following method, making sure that the kotlin plugin is above the maven-compiler-plugin in your pom.xml file:
-
 Для компиляции исходных кодов на Kotlin и Java, компилятор языка Kotlin должен быть использован перед компилятором языка Java.
 Согласно правилам разметки Maven, kotlin-maven-plugin должен запускаться до maven-compiler-plugin. Для этого расположите kotlin plugin до maven-compiler-plugin в файле pom.xml:
 

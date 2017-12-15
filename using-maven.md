@@ -162,7 +162,7 @@ Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotli
 
 ## Поддержка сопрограмм
 
-[Сопрограммы](coroutines.html) экспериментально поддерживаются в Kotlin 1.2, поэтому компилятор Kotlin выдает предупреждения, когда находит использование корутинов в вашем проекте.
+[Сопрограммы](https://kotlinlang.ru/docs/reference/coroutines.html) экспериментально поддерживаются в Kotlin 1.2, поэтому компилятор Kotlin выдает предупреждения, когда находит использование корутинов в вашем проекте.
 Чтобы отключить предупреждения, добавьте следующий тег в ваш файл `pom.xml`:
 
 ``` xml
@@ -172,9 +172,6 @@ Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotli
 ```
 
 ## Jar файлы
-
-To create a small Jar file containing just the code from your module, include the following under `build->plugins` in your Maven pom.xml file,
-where `main.class` is defined as a property and points to the main Kotlin or Java class:
 
 Для создания небольшого Jar файла, содержащего код вашего модуля, необходимо включить в раздел `build->plugins` файла pom.xml следующий код,
 где свойство mainClass указывает на основной класс Kotlin или Java:

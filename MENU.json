@@ -47,6 +47,9 @@
     "type-aliases",
     "multiplatform"
   ],
+   "Инструменты": [
+    "using-maven"
+  ],
   "Совместимость с Java": [
     "java-interop"
   ],

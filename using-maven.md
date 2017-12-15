@@ -42,7 +42,7 @@ Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotli
 
 ## Компиляция только исходного кода Kotlin
 
-Для компиляции исходного кода на Kotlin укажите компилируемые каталоги в теге <build>:
+Для компиляции исходного кода на Kotlin укажите компилируемые каталоги в тэге <build>:
 
 ``` xml
 <build>

@@ -597,7 +597,7 @@ val executor = ThreadPoolExecutor()
 executor.execute { println("This runs in a thread pool") }
 ```
 
-Если Java класс имеет несколько методов, принимающих функциональные интерфейсы, Вы можете выбрать тот, который Вам нужен используя адаптер функции, который преобразует лямбду в необходимый SAM тип. Эти адаптеры также генерируются компилятором, когда это необходимо:
+Если Java класс имеет несколько методов, принимающих функциональные интерфейсы, Вы можете выбрать тот, который Вам нужен, используя адаптер функции, который преобразует лямбду в необходимый SAM тип. Эти адаптеры также генерируются компилятором, когда это необходимо:
 
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
@@ -605,8 +605,7 @@ executor.execute(Runnable { println("This runs in a thread pool") })
 
 Обратите внимание, что SAM преобразования работают только для интерфейсов, не для абстрактных классов, даже если у них всего один абстрактный метод.
 
-Also note that this feature works only for Java interop; since Kotlin has proper function types, automatic conversion
-of functions into implementations of Kotlin interfaces is unnecessary and therefore unsupported.
+Также обратите внимание, что SAM преобразования работают только для Java совместимости; поскольку в Kotlin есть функциональные типы, автоматическое преобразование функий в реализацию Kotlin интерфейсов не требуется, поэтому не поддерживается.
 
 ## Using JNI with Kotlin
 

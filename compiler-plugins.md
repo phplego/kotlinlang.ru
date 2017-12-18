@@ -137,7 +137,7 @@ plugins {
 
 ### Использование в CLI
 
-JAR-файл с плагином all-open доступен в бинарном дистрибутиве компилятора Kotlin. Вы можете подключить плагин, указав путь к его JAR-файлу с помощью опции «Xplugin` в kotlinc:
+JAR-файл с плагином all-open доступен в бинарном дистрибутиве компилятора Kotlin. Вы можете подключить плагин, указав путь к его JAR-файлу с помощью опции "Xplugin" в kotlinc:
 
 ```bash
 -Xplugin=$KOTLIN_HOME/lib/allopen-compiler-plugin.jar

@@ -579,19 +579,17 @@ Java reflection works on Kotlin classes and vice versa. As mentioned above, you 
 
 Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, a `KProperty` for a Java field, a Java method or constructor for a `KFunction` and vice versa.
 
-## SAM Conversions
+## SAM Преобразования
 
-Just like Java 8, Kotlin supports SAM conversions. This means that Kotlin function literals can be automatically converted
-into implementations of Java interfaces with a single non-default method, as long as the parameter types of the interface
-method match the parameter types of the Kotlin function.
+Как и Java 8, Kotlin поддерживает SAM (Single Abstract Method) преобразования. Это означает, что литералы функций в Kotlin могут быть автоматически преобразованы к реализации Java интерфейсов с одним абстрактным методом, если типы параметров функции в Kotlin совпадают с типами параметров метода интерфеса.
 
-You can use this for creating instances of SAM interfaces:
+Вы можете использовать это для создания объектов SAM интерфейсов:
 
 ``` kotlin
 val runnable = Runnable { println("This runs in a runnable") }
 ```
 
-...and in method calls:
+...и в вызовах метода:
 
 ``` kotlin
 val executor = ThreadPoolExecutor()
@@ -599,19 +597,15 @@ val executor = ThreadPoolExecutor()
 executor.execute { println("This runs in a thread pool") }
 ```
 
-If the Java class has multiple methods taking functional interfaces, you can choose the one you need to call by
-using an adapter function that converts a lambda to a specific SAM type. Those adapter functions are also generated
-by the compiler when needed:
+Если Java класс имеет несколько методов, принимающих функциональные интерфейсы, Вы можете выбрать тот, который Вам нужен, используя адаптер функции, который преобразует лямбду в необходимый SAM тип. Эти адаптеры также генерируются компилятором, когда это необходимо:
 
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
 ```
 
-Note that SAM conversions only work for interfaces, not for abstract classes, even if those also have just a single
-abstract method.
+Обратите внимание, что SAM преобразования работают только для интерфейсов, не для абстрактных классов, даже если у них всего один абстрактный метод.
 
-Also note that this feature works only for Java interop; since Kotlin has proper function types, automatic conversion
-of functions into implementations of Kotlin interfaces is unnecessary and therefore unsupported.
+Также обратите внимание, что SAM преобразования работают только для Java совместимости; поскольку в Kotlin есть функциональные типы, автоматическое преобразование функий в реализацию Kotlin интерфейсов не требуется, поэтому не поддерживается.
 
 ## Использование JNI в Kotlin
 

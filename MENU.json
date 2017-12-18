@@ -48,7 +48,8 @@
     "multiplatform"
   ],
    "Инструменты": [
-    "using-maven"
+    "using-maven",
+    "compiler-plugins"
   ],
   "Совместимость с Java": [
     "java-interop"

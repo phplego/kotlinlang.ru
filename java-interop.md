@@ -487,15 +487,15 @@ Java methods with the right name and signature as operator overloads and other c
 Calling Java methods using the infix call syntax is not allowed.
 
 
-## Checked Exceptions
+## Проверяемые (checked) исключения
 
-In Kotlin, all exceptions are unchecked, meaning that the compiler does not force you to catch any of them.
-So, when you call a Java method that declares a checked exception, Kotlin does not force you to do anything:
+В Kotlin все исключения непроверяемые (unchecked), это значит, что компилятор не будет заставлять Вас их обрабатывать.
+Так, когда Вы вызываете Java метод, который может выбросить проверяемое (checked) исключение, Kotlin не заставит Вас его обработать:
 
 ``` kotlin
 fun render(list: List<*>, to: Appendable) {
     for (item in list) {
-        to.append(item.toString()) // Java would require us to catch IOException here
+        to.append(item.toString()) // Java потребует здесь обработки IOException
     }
 }
 ```

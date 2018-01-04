@@ -9,7 +9,6 @@ title: "Мультиплатформенные проекты"
 
 > Мультиплатформенные проекты - это новая экспериментальная возможность Kotlin 1.2. Все описываемые
 здесь возможности языка могут претерпеть изменения в последующих версиях Kotlin.
-{:.note}
 
 Мультиплатформенные проекты Kotlin позволяют вам компилировать один и тот же код для многих целевых
 платформ. На данный момент поддерживаемыми целевыми платформами являются JVM и JS, с добавлением Native
@@ -19,51 +18,49 @@ title: "Мультиплатформенные проекты"
 
 Мультиплатформенный проект состоит из трех типов модулей:
 
-  * A _common_ module contains code that is not specific to any platform, as well as declarations
-    without implementation of platform-dependent APIs. Those declarations allow common code to depend on 
-    platform-specific implementations.
-  * A _platform_ module contains implementations of platform-dependent declarations in the common module
-    for a specific platform, as well as other platform-dependent code. A platform module is always
-    an implementation of a single common module.
-  * A regular module. Such modules target a specific platform and can either be dependencies of
-    platform modules or depend on platform modules.
-    
-A common module can depend only on other common modules and libraries, including the common
-version of the Kotlin standard library (`kotlin-stdlib-common`). Common modules contain only Kotlin
-code, and not code in any other languages.
+  * _Общий_ модуль содержит код, который не свойствен какой-либо определённой платформе, а также обьявления
+    для реализации в платформо-зависимых API. Эти обьявления позволяют общему коду быть зависимостью для
+    реализаций для конкретных платформ.
+  * _Платформенный_ модуль содержит реализации платформо-зависимых обьявлений из общего модуля
+    для конкретной платформы и другой платформенный код. Платформенный модуль всегда
+    является реализацией одного общего модуля.
+  * Обычный модуль. Такие модули базируются на определённой платформе и могут либо быть зависимостью
+    платформенных модулей, либо зависеть от них.
 
-A platform module can depend on any modules and libraries available on the given platform
-(including Java libraries in case of Kotlin/JVM and JS libraries for Kotlin/JS). Platform modules
-targeting Kotlin/JVM can also contain code in Java and other JVM languages.
+Общий модуль может зависеть только от других общих модулей и библиотек, включая общую
+версию стандартной библиотеки Kotlin (`kotlin-stdlib-common`). Общие модули содержат только код на Kotlin
+и ни на каких иных языках.
 
-Compiling a common module produces a special _metadata_ file containing all the declarations in the
-module. Compiling a platform module produces target-specific code (JVM bytecode or JS source code)
-for the code in the platform module as well as the common module that it implements.
+Платформенный модуль можеть зависеть от любых модулей и библиотек для заданной платформы
+(включая библиотеки Java в случае с Kotlin/JVM и библиотеки JavaScript для Kotlin/JS). Платформенные модули
+для Kotlin/JVM также могут содержать код на Java и других языках для JVM.
 
-Therefore, each multiplatform library needs to be distributed as a set of artifacts - a common
-.jar containing the metadata for common code, as well as platform specific .jars containing the
-compiled implementation code for each platform.
+Результат компиляции общего модуля - специальный файл _метаданных_, содержащий все обьявления
+в этом модуле. Результат компиляции платформенного модуля - код для заданной платформы
+(байт-код JVM или исходный код JS) для исходного кода Kotlin как в платформенном, так и в реализуемом общем модуле.
+
+Следовательно, каждую мультиплатформенную библиотеку необходимо распространять как набор артефактов - .jar с метаданными
+для общего кода и несколько .jar для каждого платформенного модуля.
 
 
-## Setting Up a Multiplatform Project
+## Подготовка мультиплатформенного проекта
 
-As of Kotlin 1.2, multiplatform projects have to be built with Gradle; other build systems
-are not supported.
+Kotlin 1.2 поддерживает сборку мультиплатформенных проектов только с Gradle; другие системы сборки не поддерживаются.
 
-To create a new multiplatform project in the IDE, select the "Kotlin (Multiplatform)" option
-under "Kotlin" in the New Project dialog. This will create a project with three modules, a common one
-and two platform ones for JVM and JS. To add additional modules, select one of the "Kotlin (Multiplatform)"
-options under "Gradle" in the New Module dialog.
+Для создания нового мультиплатформенного проекта в IDE откройте окно создания проекта и выберите опцию
+"Kotlin (Multiplatform)" во вкладке "Kotlin". IDE создаст проект с тремя модулями: общий
+и два платформенных для JVM и JS. Для добавления дополнительных модулей откройте окно создания модуля и выберите одну
+из опций "Kotlin (Multiplatform)" во вкладке "Gradle".
 
-If you need to configure the project manually, use the following steps:
+Если вам необходимо настроить проект вручную:
 
-  * Add the Kotlin Gradle plugin to the buildscript classpath: `classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"`
-  * Apply the `kotlin-platform-common` plugin to the common module
-  * Add the `kotlin-stdlib-common` dependency to the common module
-  * Apply the `kotlin-platform-jvm` and `kotlin-platform-js` plugins to the platform modules for JVM and JS
-  * Add dependencies with `expectedBy` scope from the platform modules to the common module
-  
-The following example demonstrates a complete `build.gradle` file for a common module with Kotlin 1.2-Beta:
+  1. Добавьте плагин Kotlin для Gradle в classpath скрипта сборки: `classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"`
+  2. Примените плагин `kotlin-platform-common` к общему модулю
+  3. Добавьте зависимость `kotlin-stdlib-common` к общему модулю
+  4. Примените плагины `kotlin-platform-jvm` и `kotlin-platform-js` для соответствующих платформенных модулей
+  5. Добавьте зависимости с областью `expectedBy` от платформенных модулей к общему
+
+Пример файла `build.gradle` для общего модуля с Kotlin 1.2-Beta:
 
 ``` groovy
 buildscript {
@@ -89,8 +86,7 @@ dependencies {
 }
 ```
 
-And the example below shows a complete `build.gradle` for a JVM module. Pay special
-attention to the `expectedBy` line in the `dependencies` block:
+Пример файла `build.gradle` для платформенного модуля JVM. Обратите внимание на `expectedBy` в блоке `dependencies`:
 
 ``` groovy
 buildscript {
@@ -120,20 +116,19 @@ dependencies {
 ```
 
 
-## Platform-Specific Declarations
+## Платформо-зависимые обьявления
 
-One of the key capabilities of Kotlin's multiplatform code is a way for common code to
-depend on platform-specific declarations. In other languages, this can often be accomplished
-by building a set of interfaces in the common code and implementing these interfaces in platform-specific
-modules. However, this approach is not ideal in cases when you have a library on one of the platforms
-that implements the functionality you need, and you'd like to use the API of this library directly
-without extra wrappers. Also, it requires common declarations to be expressed as interfaces, which
-doesn't cover all possible cases.
+Одна из ключевых возможностей мультиплатформенного кода Kotlin - способ организации зависимости
+общего кода от платформенного. В других языках используется методика создания набора интерфейсов в общем коде и их
+реализация в платформенном. Однако, этот подход не идеален в тех случаях, когда у вас есть библиотека
+для целевой платформы, имеющая нужную вам функциональность, и вы хотите использовать API этой библиотеки напрямую,
+без дополнительных обёрток. Также, вы будете вынуждены представлять все общие обьявления в виде интерфейсов,
+что не всегда применимо.
 
-As an alternative, Kotlin provides a mechanism of _expected and actual declarations_.
-With this mechanism, a common module can define _expected declarations_, and a platform module
-can provide _actual declarations_ corresponding to the expected ones. 
-To see how this works, let's look at an example first. This code is part of a common module:
+Kotlin же имеет механизм _ожидаемых и актуальных обьявлений_.
+С этим механизмом общий модуль может иметь _ожидаемые обьявления_, а платформенный модуль - _актуальные обьявления_,
+соответствующие ожидаемым.
+Чтобы понять, как это работает, взглянем на пример. Отрывок кода общего модуля:
 
 ``` kotlin
 package org.jetbrains.foo
@@ -147,7 +142,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-And this is the corresponding JVM module:
+Код соответствующего платформенного JVM-модуля:
 
 ``` kotlin
 package org.jetbrains.foo
@@ -159,23 +154,21 @@ actual class Foo actual constructor(val bar: String) {
 }
 ```
 
-This illustrates several important points:
+Пример описывает несколько важных моментов:
 
-  * An expected declaration in the common module and its actual counterparts always
-    have exactly the same fully qualified name.
-  * An expected declaration is marked with the `expect` keyword; the actual declaration
-    is marked with the `actual` keyword.
-  * All actual declarations that match any part of an expected declaration need to be marked
-    as `actual`.
-  * Expected declarations never contain any implementation code.
+  * Ожидаемые обьявления в общих модулях и соответствующие им актуальные обьявления всегда имеют абсолютно одинаковые
+    имена.
+  * Ожидаемые обьявления помечены ключевым словом `expect`, а актуальные - `actual`.
+  * Все актуальные обьявления, соответствующие любому ожидаемому обьявлению,
+    должны быть помечены ключевым словом `actual`.
+  * Ожидаемые обьявления никогда не реализуются в общем модуле.
 
-Note that expected declarations are not restricted to interfaces and interface members.
-In this example, the expected class has a constructor and can be created directly from common code.
-You can apply the `expect` modifier to other declarations as well, including top-level declarations and
-annotations:
+Заметьте, что не только интерфейсы и их члены могут быть помечены как ожидаемые.
+В этом примере ожидаемый класс имеет конструктор, и его обьекты могут быть созданы прямо из общего кода.
+Вы также можете применять модификатор `expect` к обьявлениям на верхнем уровне и аннотациям:
 
 ``` kotlin
-// Common
+// Общий код
 expect fun formatString(source: String, vararg args: Any): String
 
 expect annotation class Test
@@ -183,36 +176,35 @@ expect annotation class Test
 // JVM
 actual fun formatString(source: String, vararg args: Any) =
     String.format(source, args)
-    
+
 actual typealias Test = org.junit.Test
 ```
 
-The compiler ensures that every expected declaration has actual declarations in all platform
-modules that implement the corresponding common module, and reports an error if any actual declarations are 
-missing. The IDE provides tools that help you create the missing actual declarations.
+Компилятор следит за тем, чтобы каждое ожидаемое обьявление имело соответствующее актуальное обьявление
+во всех платформенных модулях, реализующих соответствующий общий модуль, и сообщает об ошибке если какие-либо
+актуальные обьявления отсутствуют. IDE имеет средства, которые могут помочь создать отсутствующие ожидаемые обьявления.
 
-If you have a platform-specific library that you want to use in common code while providing your own
-implementation for another platform, you can provide a typealias to an existing class as the actual
-declaration:
+Если у вас есть платформенная библиотека, которую вы хотите использовать в общем коде и одновременно иметь собственную
+реализацию для другой платформы, вы можете создать псевдоним для существующего класса как актуальное обьявление:
 
 ``` kotlin
 expect class AtomicRef<V>(value: V) {
-  fun get(): V
-  fun set(value: V)
-  fun getAndSet(value: V): V
-  fun compareAndSet(expect: V, update: V): Boolean
+    fun get(): V
+    fun set(value: V)
+    fun getAndSet(value: V): V
+    fun compareAndSet(expect: V, update: V): Boolean
 }
 
 actual typealias AtomicRef<V> = java.util.concurrent.atomic.AtomicReference<V>
 ```
 
-## Multiplatform tests
+## Мультиплатформенные тесты
 
-It is possible to write tests in a common project so that they will be compiled and run in each platform project. 
-There are 4 annotations provided in `kotlin.test` package to markup tests in common code: `@Test`, `@Ignore`, 
-`@BeforeTest` and `@AfterTest`.
-In JVM platform these annotations are mapped to the corresponding JUnit 4 annotations, and in JS they are already 
-available since 1.1.4 to support JS unit testing.
+Вы можете иметь тесты в общем проекте, которые будут скомпилированы и запущены в каждом платформенном проекте.
+Для этого в пакете `kotlin.test` есть 4 аннотации дя пометки тестов в общем коде: `@Test`, `@Ignore`,
+`@BeforeTest` и `@AfterTest`.
+На платформе JVM эти аннотации соответствуют аннотациям JUnit 4, а в модуле для JS они уже доступны
+с версии Kotlin 1.1.4 для поддержки модульного тестирования кода JS.
 
-In order to use them you need to add a dependency on `kotlin-test-annotations-common` to your common module, on 
-`kotlin-test-junit` to your JVM module, and on `kotlin-test-js` to the JS module.
+Для их использования добавьте зависимость `kotlin-test-annotations-common` к общему модулю,
+`kotlin-test-junit` к платформенному модулю JVM и `kotlin-test-js` к модулю для JS.

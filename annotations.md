@@ -322,6 +322,9 @@ public @interface AnnWithArrayMethod {
 ```
 
 ``` kotlin
+// Kotlin 1.2+:
+@AnnWithArrayMethod(names = ["abc", "foo", "bar"])  class C
+
 // Kotlin
 @AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
 ```

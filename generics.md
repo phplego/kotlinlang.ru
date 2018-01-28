@@ -26,7 +26,7 @@ val box: Box<Int> = Box<Int>(1)
 ```
 
 <!-- But if the parameters may be inferred, e.g. from the constructor arguments or by some other means, one is allowed to omit the type arguments: -->
-Но если параметры могут выведены из контекста (в аргументах конструктора или в некоторых других случаях), можно опустить указание типа:
+Но если параметры могут быть выведены из контекста (в аргументах конструктора или в некоторых других случаях), можно опустить указание типа:
 
 ``` kotlin
 val box = Box(1) // 1 имеет тип Int, поэтому компилятор отмечает для себя, что у переменной box тип — Box<Int>

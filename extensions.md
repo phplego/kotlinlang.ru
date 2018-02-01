@@ -132,7 +132,7 @@ to call toString() in Kotlin without checking for null: the check happens inside
 fun Any?.toString(): String {
     if (this == null) return "null"
     // после проверки на null, `this` автоматически кастуется к не-null типу, поэтому toString()
-    // обращается (ориг.: resloves) к функции-члену класса Any
+    // обращается (ориг.: resolves) к функции-члену класса Any
     return toString()
 }
 ```
@@ -245,7 +245,7 @@ class C {
 
 <!-- In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes -->
 <!-- precedence. To refer to the member of the dispatch receiver you can use the [qualified `this` syntax](this-expressions.html#qualified). -->
-В случае конфликта имён между членами класса, к которому отсылается расширение, и членами класса, в котором оно вызывается, в приоритете будут именна класса, принимающего расширение.
+В случае конфликта имён между членами класса, к которому отсылается расширение, и членами класса, в котором оно вызывается, в приоритете будут имена класса, принимающего расширение. Чтобы обратиться к члену класса, к которому отсылается расширение, можно использовать [синтаксис this с определителем](http://kotlinlang.ru/docs/reference/this-expressions.html#qualified).
 
 ``` kotlin
 class C {

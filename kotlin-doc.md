@@ -1,8 +1,9 @@
 ---
 type: doc
 layout: reference
-category: "Tools"
-title: "Documenting Kotlin Code"
+category: Other
+title: "Документация Kotlin кода"
+url: "https://kotlinlang.ru/docs/reference/kotlin-doc.html"
 ---
 
 # Документация Kotlin кода

@@ -45,7 +45,7 @@ val box = Box(1) // 1 имеет тип Int, поэтому компилятор
 <!-- First, let's think about why Java needs those mysterious wildcards. The problem is explained in [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*. -->
 Для начала давайте подумаем на тему, зачем <b>Java</b> нужны эти странные маски. Проблема описана в книге [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*.
 <!-- First, generic types in Java are **invariant**, meaning that `List<String>` is **not** a subtype of `List<Object>`. -->
-Обобщающие типы в <b>Java</b>, прежде всего, **неизменны**. Это значит, что `List<String>` *не является* подтипом `List<Object>`.
+Прежде всего, обобщающие типы в <b>Java</b> являются **инвариантными** (ориг. invariant). Это означает, что `List<String>` **не является** подтипом `List<Object>`.
 <!-- Why so? If List was not **invariant**, it would have been no -->
 <!-- better than Java's arrays, since the following code would have compiled and caused an exception at runtime: -->
 Почему так? Если бы List был изменяемым, единственно лучшим решением для следующей задачи был бы массив, потому что после компиляции данный код вызвал бы ошибку в рантайме:
@@ -101,7 +101,7 @@ interface Collection<E> ... {
 Минуя это ограничение, мы достигаем желаемого результата: `Collection<String>`
 **является** подтипом `Collection<? extends Object>`.
  <!-- In "clever words", the wildcard with an **extends**\-bound (**upper** bound) makes the type **covariant**. -->
- Выражаясь более "умными словами", маска с **extends**-связкой (**верхнее** связывание) делает тип ковариантным (ориг. covariant).
+ Выражаясь более "умными словами", маска с **extends**-связкой (**верхнее** связывание) делает тип **ковариантным** (ориг. covariant).
 
 <!-- The key to understanding why this trick works is rather simple: if you can only **take** items from a collection, then using a collection of `String`s -->
 <!-- and reading `Object`s from it is fine. Conversely, if you can only _put_ items into the collection, it's OK to take a collection of -->

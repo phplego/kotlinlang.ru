@@ -48,6 +48,7 @@
     "multiplatform"
   ],
    "Инструменты": [
+    "kotlin-doc",
     "using-maven",
     "compiler-plugins"
   ],

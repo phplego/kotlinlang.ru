@@ -49,7 +49,8 @@
   ],
    "Инструменты": [
     "using-maven",
-    "compiler-plugins"
+    "compiler-plugins",
+    "using-gradle"
   ],
   "Совместимость с Java": [
     "java-interop"

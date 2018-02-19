@@ -31,10 +31,10 @@ url: https://kotlinlang.ru
 
 
 ## Актуальные задачи
-* Перевести статьи из радела "Java Interop": [Calling Java from Kotlin](https://kotlinlang.org/docs/reference/java-interop.html), [Calling Kotlin from Java](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html)
-* Перевести статьи из радела "FAQ": [FAQ](https://kotlinlang.org/docs/reference/faq.html)
-* Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.org/docs/reference/kapt.html), [Gradle](https://kotlinlang.org/docs/reference/using-gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html), [Ant](https://kotlinlang.org/docs/reference/using-ant.html), [OSGi](https://kotlinlang.org/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.org/docs/reference/compiler-plugins.html)
+* Перевести статьи из радела "Java Interop": [Calling Java from Kotlin](https://kotlinlang.ru/docs/reference/java-interop.html), [Calling Kotlin from Java](https://kotlinlang.ru/docs/reference/java-to-kotlin-interop.html)
+* Перевести статьи из радела "FAQ": [FAQ](https://kotlinlang.ru/docs/reference/faq.html)
+* Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.ru/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.org/docs/reference/kapt.html), [Gradle](https://kotlinlang.ru/docs/reference/using-gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html), [Ant](https://kotlinlang.ru/docs/reference/using-ant.html), [OSGi](https://kotlinlang.org/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.ru/docs/reference/compiler-plugins.html)
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>` 
-* Доработать движок [manuscript](https://github.com/phplego/manuscript), на котором работает данный сайт, таким образом, чтобы можно было безопасно редактировать меню, без риска положить весь сайт (требуется знание Yii2 Framework)
+
 <!--* Статьи требующие проверки: -->
 <!--* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах-->

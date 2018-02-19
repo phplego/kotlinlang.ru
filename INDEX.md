@@ -33,7 +33,7 @@ url: https://kotlinlang.ru
 ## Актуальные задачи
 * Перевести статьи из радела "Java Interop": [Calling Java from Kotlin](https://kotlinlang.ru/docs/reference/java-interop.html), [Calling Kotlin from Java](https://kotlinlang.ru/docs/reference/java-to-kotlin-interop.html)
 * Перевести статьи из радела "FAQ": [FAQ](https://kotlinlang.ru/docs/reference/faq.html)
-* Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.ru/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.org/docs/reference/kapt.html), [Gradle](https://kotlinlang.ru/docs/reference/using-gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html), [Ant](https://kotlinlang.ru/docs/reference/using-ant.html), [OSGi](https://kotlinlang.org/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.ru/docs/reference/compiler-plugins.html)
+* Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.ru/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.ru/docs/reference/kapt.html), [Gradle](https://kotlinlang.ru/docs/reference/using-gradle.html), [Maven](https://kotlinlang.ru/docs/reference/using-maven.html), [Ant](https://kotlinlang.ru/docs/reference/using-ant.html), [OSGi](https://kotlinlang.ru/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.ru/docs/reference/compiler-plugins.html)
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>` 
 
 <!--* Статьи требующие проверки: -->

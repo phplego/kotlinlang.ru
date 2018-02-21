@@ -17,7 +17,7 @@ These can be declared as mutable, using the *var*{: .keyword } keyword or read-o
 Классы в <b>Kotlin</b> могут иметь свойства: изменяемые (_mutable_) и неизменяемые (_read-only_) — **var** и **val** соответственно.
 
 ``` kotlin
-public class Address { 
+public class Address {
     public var name: String = ...
     public var street: String = ...
     public var city: String = ...
@@ -113,7 +113,7 @@ an automatic backing field which can be accessed using the `field` identifier:--
 Классы в <b>Kotlin</b> не могут иметь полей. Т.е. переменные, которые вы объявляете внутри класса только выглядят и ведут себя как поля из Java, хотя на самом деле являются _свойствами_, т.к. для них неявно реализуются методы get и set. А сама переменная, в которой находится значение свойства, называется **backing field**. Однако, иногда, при использовании пользовательских методов доступа, необходимо иметь доступ к _backing field_. Для этих целей <b>Kotlin</b> предоставляет автоматическое _backing field_, к которому можно обратиться с помощью идентификатора `field`:
 
 ``` kotlin
-var counter = 0 
+var counter = 0
     set(value) {
         if (value >= 0) field = value // значение при инициализации записывается прямиком в backing field
     }
@@ -180,7 +180,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 However, fairly often this is not convenient. For example, properties can be initialized through dependency injection,
 or in the setup method of a unit test. In this case, you cannot supply a non-null initializer in the constructor,
 but you still want to avoid null checks when referencing the property inside the body of a class.-->
-Обычно, свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неосуществимо. К примеру, свойства могут быть инициализированы через внедрение зависимостей, в установочном методе (ориг.: _"setup method"_) юнит-теста или в методе `onCreate` в Android. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе, но всё равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству. 
+Обычно, свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе. Однако, довольно часто это неосуществимо. К примеру, свойства могут быть инициализированы через внедрение зависимостей, в установочном методе (ориг.: _"setup method"_) юнит-теста или в методе `onCreate` в Android. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе, но всё равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству.
 
 <!--To handle this case, you can mark the property with the `lateinit` modifier:-->
 Для того, чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`:
@@ -198,15 +198,33 @@ public class MyTest {
     }
 }
 ```
-
-<!--The modifier can only be used on `var` properties declared inside the body of a class (not in the primary constructor), and only
-when the property does not have a custom getter or setter. The type of the property must be non-null, and it must not be
-a primitive type.-->
-Такой модификатор может быть использован только с `var` свойствами, объявленными внутри тела класса (не в главном конструкторе). И только тогда, когда свойство не имеет пользовательских геттеров и сеттеров. Тип такого свойства должен быть non-null и не должен быть примитивным.
+<!--
+The modifier can be used on `var` properties declared inside the body of a class (not in the primary constructor, and only
+when the property does not have a custom getter or setter) and, since Kotlin 1.2, for top-level properties and
+local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
+-->
+Такой модификатор может быть использован только с `var` свойствами, объявленными внутри тела класса (не в главном конструкторе, и только тогда, когда свойство не имеет пользовательских геттеров и сеттеров) и, начиная с Kotlin 1.2, со свойствами, расположенными на верхнем уровне, и локальными переменными. Тип такого свойства должен быть non-null и не должен быть примитивным.
 
 <!--Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
 being accessed and the fact that it hasn't been initialized.-->
 Доступ к `lateinit` свойству до того, как оно проинициализировано, выбрасывает специальное исключение, которое чётко обозначает, что свойство не было определено.
+
+<!--### Checking whether a lateinit var is initialized (since 1.2) -->
+### Проверка инициализации lateinit var (начиная с версии 1.2)
+
+<!--To check whether a `lateinit var` has already been initialized, use `.isInitialized` on
+the [reference to that property](reflection.html#property-references):-->
+Чтобы проверить, была ли проинициализировано `lateinit var` свойство, используйте `.isInitialized` метод [ссылки на это свойство](reflection.html#property-references):
+
+```kotlin
+if (foo::bar.isInitialized) {
+    println(foo.bar)
+}
+```
+
+<!--This check is only available for the properties that are lexically accessible, i.e. declared in the same type or in one of
+the outer types, or at top level in the same file.-->
+Эта проверка возможна только для лексически доступных свойств, то есть объявленных в том же типе, или в одном из внешних типов, или расположенных на верхнем того же файла.
 
 <!--## Overriding Properties-->
 ## Переопределение свойств
@@ -215,8 +233,8 @@ being accessed and the fact that it hasn't been initialized.-->
 
 <!--## Delegated Properties-->
 ## Делегированные свойства
-  
-<!--The most common kind of properties simply reads from (and maybe writes to) a backing field. 
+
+<!--The most common kind of properties simply reads from (and maybe writes to) a backing field.
 On the other hand, with custom getters and setters one can implement any behaviour of a property.
 Somewhere in between, there are certain common patterns of how a property may work. A few examples: lazy values,
 reading from a map by a given key, accessing a database, notifying listener on access, etc.-->
@@ -226,7 +244,7 @@ reading from a map by a given key, accessing a database, notifying listener on a
 * Вычисление значения свойства при первом доступе к нему (ленивые свойства)
 * Чтение из ассоциативного списка с помощью заданного ключа
 * Доступ к базе данных
-* Оповещение listener'а в момент доступа 
+* Оповещение listener'а в момент доступа
 и т.п.
 
 

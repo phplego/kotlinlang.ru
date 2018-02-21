@@ -284,7 +284,7 @@ stream.buffered().reader().use { reader ->
 ```
 
 <!-- ### Convenient form for a generic function that requires the generic type information -->
-### Удобная форма generic-функций, требующий информацию о generic-типе
+### Удобная форма generic-функций, требующих информацию о generic-типе
 
 ``` kotlin
 //  public final class Gson {

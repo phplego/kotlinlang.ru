@@ -253,7 +253,7 @@ function(::Foo)
 <!--## Bound Function and Property References (since 1.1)-->
 ## Привязанные функции 
 <!--You can refer to an instance method of a particular object.-->
-Вы можете сослаться на экземпляр метода конкретного объекта.
+Вы можете сослаться на метод экземпляра конкретного объекта.
 
 ``` kotlin 
 val numberRegex = "\\d+".toRegex()

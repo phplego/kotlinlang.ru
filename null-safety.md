@@ -187,7 +187,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 <!-- The third option is for NPE-lovers. We can write `b!!`, and this will return a non-null value of `b` -->
 <!-- (e.g., a `String` in our example) or throw an NPE if `b` is null: -->
 
-Для любителей NPE сушествует ещё один способ. Мы можем написать `b!!` и это вернёт нам либо non-null значение `b`
+Для любителей NPE существует ещё один способ. Мы можем написать `b!!` и это вернёт нам либо non-null значение `b`
 (в нашем примере вернётся `String`), либо выкинет NPE:
 
 ``` kotlin

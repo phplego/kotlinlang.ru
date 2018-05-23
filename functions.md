@@ -17,6 +17,7 @@ url: https://kotlinlang.ru/docs/reference/functions.html
 
 ``` kotlin
 fun double(x: Int): Int {
+...
 }
 ```
 

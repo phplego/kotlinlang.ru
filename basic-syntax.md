@@ -113,7 +113,7 @@ fun incrementX() {
 В отличие от Java, блочные комментарии могут быть вложенными.
 
 <!--See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.-->
-См. [Documenting Kotlin Code](http://kotlinlang.org/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
+См. [Документация Kotlin кода](https://kotlinlang.ru/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
 
 ## Использование строковых шаблонов
 

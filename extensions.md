@@ -36,7 +36,7 @@ Now, we can call such a function on any `MutableList<Int>`:-->
 
 ``` kotlin
 val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'this' внутри 'swap()' не будет содержать значение 'l'
+l.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'l'
 ```
 
 <!--Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:-->

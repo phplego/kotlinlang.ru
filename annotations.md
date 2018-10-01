@@ -190,7 +190,7 @@ package org.jetbrains.demo
 
 <!--If you have multiple annotations with the same target, you can avoid repeating the target by adding brackets after the
 target and putting all the annotations inside the brackets:-->
-Если вы помечаете аннотацией несколько элементов, вы можете избежать повторения путём указания всех аннотаций в квадратных скобках:
+Если вы помечаете несколькими аннотациями одно указание, вы можете избежать повторения путём указания всех аннотаций в квадратных скобках:
 
 ``` kotlin
 class Example {

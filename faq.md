@@ -119,7 +119,7 @@ Kotlin похож на Java, C#, JavaScript, Scala и Groovy. Мы пытали�
 
 ### Какие компании используют Kotlin?
 
-Kotlin используют множество компаний. Из числа тех, что обьявили об использовании языка: [Square](https://medium.com/square-corner-blog/square-open-source-loves-kotlin-c57c21710a17), [Pinterest](https://www.youtube.com/watch?v=mDpnc45WwlI) и [Basecamp](https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12).
+Kotlin используют множество компаний. Из числа тех, что обьявили об использовании языка: [Square](https://medium.com/square-corner-blog/square-open-source-loves-kotlin-c57c21710a17), [Pinterest](https://www.youtube.com/watch?v=mDpnc45WwlI), [Basecamp](https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12) и [Corda](https://docs.corda.net/releases/release-M9.2/further-notes-on-kotlin.html).
 
 ### Кто разрабатывает Kotlin?
 

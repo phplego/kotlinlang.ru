@@ -19,7 +19,6 @@ A Kotlin property is compiled to the following Java elements:
 
 For example, `var firstName: String` gets compiled to the following Java declarations:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ``` java
 private String firstName;
 
@@ -31,7 +30,6 @@ public void setFirstName(String firstName) {
     this.firstName = firstName;
 }
 ```
-</div>
 
 If the name of the property starts with `is`, a different name mapping rule is used: the name of the getter will be
 the same as the property name, and the name of the setter will be obtained by replacing `is` with `set`.

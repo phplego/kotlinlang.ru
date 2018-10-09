@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Java Interop"
-title: "Calling Kotlin from Java"
+title: "Вызов кода Kotlin из Java"
 ---
 
-# Calling Kotlin from Java
+# Вызов кода Kotlin из Java
 
 Kotlin code can be called from Java easily.
 

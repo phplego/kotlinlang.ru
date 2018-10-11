@@ -47,7 +47,10 @@
     "type-aliases",
     "multiplatform"
   ],
-   "Инструменты": [
+  "Справочник": [
+    "keyword-reference"
+  ]
+  "Инструменты": [
     "kotlin-doc",
     "using-maven",
     "compiler-plugins",

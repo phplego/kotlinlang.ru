@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Tools"
-title: "Keywords and Operators"
+title: "Ключевые слова и операторы"
 ---
 
-# Keywords and Operators
+# Ключевые слова и операторы
 
 ## Hard Keywords
 

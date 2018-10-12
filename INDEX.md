@@ -9,7 +9,9 @@ url: https://kotlinlang.ru
 
 ## Руководство по языку Kotlin
 
-Здесь мы собираем ресурсы по Котлину и переводим документацию. Сообщество открыто для новых участников - любого кто может переводить и проверять перевод. Редактирование текста происходит похожим на википедию образом, с той лишь разницей, что тексты и структура меню хранятся в [GIT](https://github.com/phplego/kotlinlang.ru).
+Здесь мы собираем ресурсы по Котлину и переводим документацию. Сообщество открыто для новых участников - любого кто может переводить и проверять перевод. Редактирование текста происходит похожим на википедию образом, с той лишь разницей, что тексты и структура меню хранятся в [Git](https://github.com/phplego/kotlinlang.ru).
+
+> ***Внимание.*** Данный сайт (kotlinlang.ru) поддерживается усилиями энтузиастов и не является официальным сайтом языка Kotlin. 
 
 
 ## Источники
@@ -31,9 +33,11 @@ url: https://kotlinlang.ru
 
 
 ## Актуальные задачи
-* Перевести статьи из радела "Java Interop": [Calling Java from Kotlin](https://kotlinlang.org/docs/reference/java-interop.html), [Calling Kotlin from Java](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html)
-* Перевести статьи из радела "FAQ": [FAQ](https://kotlinlang.org/docs/reference/faq.html)
-* Перевести статьи из раздела "Tools": [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html), [Kapt](https://kotlinlang.org/docs/reference/kapt.html), [Gradle](https://kotlinlang.org/docs/reference/using-gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html), [Ant](https://kotlinlang.org/docs/reference/using-ant.html), [OSGi](https://kotlinlang.org/docs/reference/kotlin-osgi.html), [Compiler Plugins](https://kotlinlang.org/docs/reference/compiler-plugins.html)
+
+* Перевести статьи из радела "Reference": [Keywords and Operators](https://kotlinlang.ru/docs/reference/keyword-reference.html)
+* Перевести статьи из радела "Java Interop": [Calling Kotlin from Java](https://kotlinlang.ru/docs/reference/java-to-kotlin-interop.html)
+* Перевести статьи из раздела "Tools": [Kapt](https://kotlinlang.ru/docs/reference/kapt.html), [Ant](https://kotlinlang.ru/docs/reference/using-ant.html), [OSGi](https://kotlinlang.ru/docs/reference/kotlin-osgi.html)
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>` 
+
 <!--* Статьи требующие проверки: -->
 <!--* Выявить нерабочие якоря (типа [control-flow.html#when-expression](/docs/reference/control-flow.html#when-expression)) и проставить `<a name="xxx"></a>` в соответствующих местах-->

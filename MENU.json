@@ -47,14 +47,20 @@
     "type-aliases",
     "multiplatform"
   ],
-   "Инструменты": [
+  "Справочник": [
+    "keyword-reference"
+  ],
+  "Инструменты": [
+    "kotlin-doc",
     "using-maven",
-    "compiler-plugins"
+    "compiler-plugins",
+    "using-gradle"
   ],
   "Совместимость с Java": [
     "java-interop"
   ],
   "ЧаВо": [
+    "faq",
     "comparison-to-java"
   ],
   "Редактору": [

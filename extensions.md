@@ -36,7 +36,7 @@ Now, we can call such a function on any `MutableList<Int>`:-->
 
 ``` kotlin
 val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'this' внутри 'swap()' не будет содержать значение 'l'
+l.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'l'
 ```
 
 <!--Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:-->
@@ -67,7 +67,7 @@ This means that the extension function being called is determined by the type of
 not by the type of the result of evaluating that expression at runtime. For example:-->
 <!--Мы хотели бы подчеркнуть, что расширения запускаются **статически**, то есть фактически не являются получаемым типом. Это значит, что вызванная функция-расширение определена типом выражения, из которого она вызвана. А не типом результата, получаемым в ходе выполнения программы (в рантайме). К примеру:-->
 
-Мы хотели бы подчеркнуть, что расширения имеют статическую реализацию: это значит, что вызванная функция-расширение определена типом вызывающего её выражения, а не типом результата, который получается в ходе выполнения программы. К примеру:
+Мы хотели бы подчеркнуть, что расширения имеют статическую диспетчеризацию: это значит, что вызванная функция-расширение определяется типом её выражения во время компиляции, а не типом выражения, вычисленным в ходе выполнения программы, как при вызове виртуальных функций. К примеру:
 
 ``` kotlin
 open class C
@@ -92,7 +92,7 @@ parameter `c`, which is the `C` class.-->
 <!--If a class has a member function, and an extension function is defined which has the same receiver type, the same name
 and is applicable to given arguments, the **member always wins**.
 For example:-->
-Если в классе есть и член в виде обычной функции, и функция-расширение с тем же возвращаемым типом, таким же именем и применяется с такими же аргументами, то **обычная функция в приоритете**. К примеру:
+Если в классе есть и член в виде обычной функции, и функция-расширение с тем же возвращаемым типом, таким же именем и применяется с такими же аргументами, то **обычная функция имеет более высокий приоритет**. К примеру:
 
 ``` kotlin
 class C {
@@ -132,7 +132,7 @@ to call toString() in Kotlin without checking for null: the check happens inside
 fun Any?.toString(): String {
     if (this == null) return "null"
     // после проверки на null, `this` автоматически кастуется к не-null типу, поэтому toString()
-    // обращается (ориг.: resloves) к функции-члену класса Any
+    // обращается (ориг.: resolves) к функции-члену класса Any
     return toString()
 }
 ```
@@ -162,7 +162,7 @@ val Foo.bar = 1 // ошибка: запрещено инициализирова
 
 
 <!--## Companion Object Extensions-->
-## Расширения вспомогательных объектов (ориг.: _companion object extensions_)
+## Расширения для вспомогательных объектов (ориг.: _companion object extensions_)
 
 <!--If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
 functions and properties for the companion object:-->
@@ -179,7 +179,7 @@ fun MyClass.Companion.foo() {
 ```
 
 <!--Just like regular members of the companion object, they can be called using only the class name as the qualifier:-->
-Как и обычные члены вспомогательного объекта, они могут быть вызваны с помощью имени класса в качестве точки доступа:
+Как и для остальных членов вспомогательного объекта, для вызова функции расширения достаточно указания имени класса:
 
 ``` kotlin
 MyClass.foo()
@@ -245,7 +245,7 @@ class C {
 
 <!-- In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes -->
 <!-- precedence. To refer to the member of the dispatch receiver you can use the [qualified `this` syntax](this-expressions.html#qualified). -->
-В случае конфликта имён между членами класса, к которому отсылается расширение, и членами класса, в котором оно вызывается, в приоритете будут именна класса, принимающего расширение.
+В случае конфликта имён между членами класса, к которому отсылается расширение, и членами класса, в котором оно вызывается, в приоритете будут имена класса, принимающего расширение. Чтобы обратиться к члену класса, к которому отсылается расширение, можно использовать [синтаксис this с определителем](http://kotlinlang.ru/docs/reference/this-expressions.html#qualified).
 
 ``` kotlin
 class C {

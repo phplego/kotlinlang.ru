@@ -282,3 +282,27 @@ stream.buffered().reader().use { reader ->
     println(reader.readText())
 }
 ```
+
+<!-- ### Convenient form for a generic function that requires the generic type information -->
+### Удобная форма generic-функций, требующих информацию о generic-типе
+
+``` kotlin
+//  public final class Gson {
+//     ...
+//     public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
+//     ...
+
+inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
+```
+
+<!-- ### Consuming a nullable Boolean -->
+### Обработка nullable Boolean
+
+``` kotlin
+val b: Boolean? = ...
+if (b == true) {
+    ...
+} else {
+    // `b` is false or null
+}
+```

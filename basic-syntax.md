@@ -113,8 +113,9 @@ fun incrementX() {
 В отличие от Java, блочные комментарии могут быть вложенными.
 
 <!--See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.-->
-См. [Documenting Kotlin Code](http://kotlinlang.org/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
+См. [Документация Kotlin кода](https://kotlinlang.ru/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
 
+<a name="using-string-templates"></a>
 ## Использование строковых шаблонов
 
 Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
@@ -130,15 +131,15 @@ fun main(args: Array<String>) {
 ```
 var a = 1
 // просто имя переменной в шаблоне:
-val s1 = "a is $a" 
+val s1 = "a равно $a" 
 
 a = 2
 // произвольное выражение в шаблоне:
-val s2 = "${s1.replace("is", "was")}, but now is $a"
+val s2 = "${s1.replace("равно", "было равно")}, но теперь равно $a"
 
 /*
   Результат работы программы:
-  a was 1, but now is 2
+  a было равно 1, но теперь равно 2
 */
 ```
 

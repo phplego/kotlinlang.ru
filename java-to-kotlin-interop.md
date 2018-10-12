@@ -484,6 +484,7 @@ making its getter and setter methods be static members in that object or the cla
 * `protected` остаются `protected` (обратите внимание, что java разрешает доступ  к защищенным членам из других классов в том же пакете, а Kotlin-нет, поэтому классы Java будут иметь более широкий доступ к коду);
 * `internal`  объявления становятся `public` в JAVA. Члены `internal` классов проходят через искажение имен,  чтобы усложнить случайное использование их из Java и позволить перегрузку для чле
 * `public` остаются `public`.
+
 <!--
 ## Visibility
 The Kotlin visibilities are mapped to Java in the following way:

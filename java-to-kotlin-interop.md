@@ -8,6 +8,7 @@ title: "Вызов Kotlin из Java"
 # Вызов кода Kotlin из Java
 
 Код Kotlin может быть вызван из JAVA просто.
+
 <!--Kotlin code can be called from Java easily.-->
 
 ## Свойства (Properties)
@@ -36,6 +37,7 @@ public void setFirstName (String firstName) {
 именем свойства, а имя метода setter будет получено путем замены `is` на `set`. Например, для свойства `isOpen`, getter будет
 называться `isOpen()` и setter будет называться `setOpen()`. 
 Это правило применяется к свойствам любого типа, а не только к `Boolean`.
+
 <!--
 ## Properties 
 A Kotlin property is compiled to the following Java elements:
@@ -139,6 +141,7 @@ fun bar() { ... }
 demo.Utils.foo();
 demo.Utils.bar();
 ```
+
 <!--
 ## Package-Level Functions
 All the functions and properties declared in a file `example.kt` inside a package `org.foo.bar`, including extension functions,
@@ -190,6 +193,7 @@ demo.Utils.foo();
 demo.Utils.bar();
 ```
 -->
+
 ## Поля экземпляра (Instance Fields)
 
 Если вам нужно представить свойство Котлина в качестве поля в Java, вам нужно добавить к нему аннотацию `@JvmField`.
@@ -216,6 +220,7 @@ class JavaClient {
 
 Свойства с [поздней инициализацией](properties.html#late-initialized-properties-and-variables) также отображаются как поля.
 Видимость поля будет такой же, как видимость сеттера свойства с поздней инициализацией.
+
 <!--
 ## Instance Fields
 If you need to expose a Kotlin property as a field in Java, you need to annotate it with the `@JvmField` annotation.
@@ -325,6 +330,7 @@ Usually these fields are private but they can be exposed in one of the following
  - `lateinit` modifier;
  - `const` modifier.
 Annotating such a property with `@JvmField` makes it a static field with the same visibility as the property itself.
+
 ``` kotlin
 class Key(val value: Int) {
     companion object {
@@ -333,24 +339,29 @@ class Key(val value: Int) {
     }
 }
 ```
+
 ``` java
 // Java
 Key.COMPARATOR.compare(key1, key2);
 // public static final field in Key class
 ```
+
 A [late-initialized](properties.html#late-initialized-properties-and-variables) property in an object or a companion object
 has a static backing field with the same visibility as the property setter.
+
 ``` kotlin
 object Singleton {
     lateinit var provider: Provider
 }
 ```
+
 ``` java
 // Java
 Singleton.provider = new Provider();
 // public static non-final field in Singleton class
 ```
 Properties annotated with `const` (in classes as well as at the top level) are turned into static fields in Java:
+
 ``` kotlin
 // file example.kt
 object Obj {
@@ -363,7 +374,9 @@ class C {
 }
 const val MAX = 239
 ```
+
 In Java:
+
 ``` java
 int c = Obj.CONST;
 int d = ExampleKt.MAX;
@@ -493,6 +506,7 @@ each other according to Kotlin rules;
 ```kotlin
 kotlin.jvm.JvmClassMappingKt.getKotlinClass(MainView.class)
 ```
+
 <!--
 ## KClass
 Sometimes you need to call a Kotlin method with a parameter of type `KClass`.
@@ -550,6 +564,7 @@ fun getX() = 10
 @set:JvmName("changeX")
 var x: Int = 23
 ```
+
 <!--
 ## Handling signature clashes with @JvmName
 Sometimes we have a named function in Kotlin, for which we need a different JVM name the byte code.
@@ -615,6 +630,7 @@ void f(String a) { }
 Обратите внимание, как описаны [вторичные конструкторы](classes.html#secondary-constructors), если класс имеет значения по
 умолчанию для всех параметров конструктора, то для него будет создан открытый конструктор без аргументов. Это работает, 
 даже если не указана аннотация `@JvmOverloads`.
+
 <!--
 ## Overloads Generation
 Normally, if you write a Kotlin function with default parameter values, it will be visible in Java only as a full
@@ -685,6 +701,7 @@ fun foo() {
     throw IOException()
 }
 ```
+
 <!--
 ## Checked Exceptions
 As we mentioned above, Kotlin does not have checked exceptions.
@@ -723,6 +740,7 @@ fun foo() {
 При вызове Kotlin функций из Java никто не мешает нам передавать *null*{: .keyword} в качестве ненулевого параметра. 
 Вот почему Kotlin генерирует проверки времени выполнения для всех публичных функций, которые ожидают непустые значения. 
 Таким образом, мы немедленно получаем исключение `NullPointerException` в Java-коде.
+
 <!--
 ## Null-safety
 When calling Kotlin functions from Java, nobody prevents us from passing *null*{: .keyword } as a non-null parameter.
@@ -807,6 +825,7 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 
 
 ПРИМЕЧАНИЕ. `@JvmSuppressWildcards` можно использовать не только для индивидуальных аргументов типа, но и для всех объявлений, таких как функции или классы, что приводит к подавлению всех подстановочных знаков внутри них.
+
 <!--
 ## Variant generics
 When Kotlin classes make use of [declaration-site variance](generics.html#declaration-site-variance), there are two 
@@ -872,6 +891,7 @@ fun emptyList(): List<Nothing> = listOf()
 // is translated to
 // List emptyList() { ... }
 ```
+
 <!--
 ### Translation of type Nothing
 The type [`Nothing`](exceptions.html#the-nothing-type) is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including

@@ -57,7 +57,8 @@
     "using-gradle"
   ],
   "Совместимость с Java": [
-    "java-interop"
+    "java-interop",
+    "java-to-kotlin-interop"
   ],
   "ЧаВо": [
     "faq",

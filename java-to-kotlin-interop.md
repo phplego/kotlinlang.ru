@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Java Interop"
-title: "Вызов кода Kotlin из Java"
+title: "Вызов Kotlin из Java"
 ---
 
 # Вызов кода Kotlin из Java

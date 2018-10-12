@@ -115,7 +115,7 @@ fun incrementX() {
 <!--See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.-->
 См. [Документация Kotlin кода](https://kotlinlang.ru/docs/reference/kotlin-doc.html) для информации о документации в комментариях.
 
-## Использование строковых шаблонов
+## Использование строковых шаблонов <a class="anchor" href="#using-string-templates"></a>
 
 Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
 

@@ -436,6 +436,7 @@ Obj.INSTANCE.foo(); // works too
 
 
 Аннотацию `@JvmStatic` можно также применить к свойству объекта или объекта-помощника, сделав его методы getter и setter статическими элементами в этом объекте или классе, содержащем объект-помощник.
+
 <!--
 ## Static Methods
 As mentioned above, Kotlin represents package-level functions as static methods.

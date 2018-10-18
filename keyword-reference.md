@@ -7,10 +7,65 @@ title: "Ключевые слова и операторы"
 
 # Ключевые слова и операторы
 
+## Жесткие ключевые слова (Hard Keywords)
+
+Следующие слова всегда интерпретируются как ключевые и не могут использоваться в качестве идентификаторов:
+
+ * `as` 
+      - используется для [приведения типов](/docs/reference/typecasts.html#unsafe-cast-operator)
+      - задает [альтернативное имя для импорта](/docs/reference/packages.html#imports)
+ * `as?` используется для [безопасного приведения типов](/docs/reference/typecasts.html#safe-nullable-cast-operator)  
+ * `break` [завершает выполнение цикла](http://kotlinlang.org/docs/reference/returns.html)
+ * `class` объявляет [класс](/docs/reference/classes.html)
+ * `continue` [переходит к следующему шагу ближайшего вложенного цикла](/docs/reference/returns.html) 
+ * `do` начинает цикл [do/while loop](/docs/reference/control-flow.html#while-loops) (цикл с постусловием)
+ * `else` определяет ветвь [выражения if](/docs/reference/control-flow.html#if-expression), которое выполняется, когда условие ложно
+ * `false` указывает значение 'false' типа [Boolean](/docs/reference/basic-types.html#booleans)
+ * `for` начинает цикл [for](/docs/reference/control-flow.html#for-loops)
+ * `fun` объявляет [функцию](/docs/reference/functions.html) 
+ * `if` начинает условное [выражение if](/docs/reference/control-flow.html#if-expression)
+ * `in`
+     - указывает объект, который перебирается в [цикле for](/docs/reference/control-flow.html#for-loops)
+     - используется как инфиксный оператор для проверки того, что значение принадлежит 
+        [диапазону](/docs/reference/ranges.html), 
+        коллекции или другого объекта, 
+        который [определяет метод 'contains'](/docs/reference/operator-overloading.html#in)
+     - используется в [выражениях when](/docs/reference/control-flow.html#when-expression) с той же целью
+     - отмечает параметр типа как [контравариантный](/docs/reference/generics.html#declaration-site-variance)
+ * `!in`
+     - используется в качестве оператора для проверки того, что значение не принадлежит [диапазону](/docs/reference/ranges.html), 
+       коллекции или другой объекта, который [определяет метод 'contains'](/docs/reference/operator-overloading.html#in)
+     - используется в [выражениях when](/docs/reference/control-flow.html#when-expression) с той же целью
+ * `interface` объявляет [интерфейс](/docs/reference/interfaces.html)
+ * `is` 
+     - проверяет, что [значение имеет определенный тип](/docs/reference/typecasts.html#is-and-is-operators)
+     - используется в [выражениях when](/docs/reference/control-flow.html#when-expression) с той же целью
+ * `!is`
+     - проверяет, что [значение не имеет определенный тип](/docs/reference/typecasts.html#is-and-is-operators)
+     - используется в [выражениях when](/docs/reference/control-flow.html#when-expression) с той же целью
+ * `null` константа, представляющая ссылку на объект, которая не указывает ни на один объект
+ * `object` объявляет [класс и его экземпляр одновременно](/docs/reference/object-declarations.html)
+ * `package` указывает [пакет для текущего файла](/docs/reference/packages.html)
+ * `return` [по умолчанию производит возврат из ближайшей окружающей его функции или анонимной функции](/docs/reference/returns.html)  
+ * `super` 
+     - [ссылается на реализацию суперкласса метода или свойства](/docs/reference/classes.html#calling-the-superclass-implementation)
+     - [вызывает конструктор суперкласса из вторичного конструктора](/docs/reference/classes.html#inheritance)
+ * `this` 
+     - относится к [текущему приемнику](/docs/reference/this-expressions.html)
+     - [вызывает другой конструктор того же класса из вторичного конструктор](http://kotlinlang.org/docs/reference/classes.html#constructors)
+ * `throw` [вызывает исключение](/docs/reference/exceptions.html)
+ * `true` задает значение 'true' типа [Boolean](/docs/reference/basic-types.html#booleans)
+ * `try` [начинает блок обработки исключений](/docs/reference/exceptions.html)
+ * `typealias` объявляет [псевдоним типа](/docs/reference/type-aliases.html)
+ * `val` объявляет [свойство](/docs/reference/properties.html)только для чтения или [локальную переменную](/docs/reference/basic-syntax.html#defining-variables)
+ * `var` объявляет изменяемое [свойство](/docs/reference/properties.html) или [локальную переменную](/docs/reference/basic-syntax.html#defining-variables)
+ * `when` начинает [выражение when](/docs/reference/control-flow.html#when-expression) (выполняет одну из заданных ветвей)
+ * `while` начинает [цикл while](/docs/reference/control-flow.html#while-loops) (цикл с предусловием)
+
+
+<!--
 ## Hard Keywords
-
 The following tokens are always interpreted as keywords and cannot be used as identifiers:
-
  * `as` 
       - is used for [type casts](/docs/reference/typecasts.html#unsafe-cast-operator)
       - specifies an [alias for an import](/docs/reference/packages.html#imports)
@@ -59,12 +114,41 @@ The following tokens are always interpreted as keywords and cannot be used as id
  * `var` declares a mutable [property](/docs/reference/properties.html) or [local variable](/docs/reference/basic-syntax.html#defining-variables)
  * `when` begins a [when expression](/docs/reference/control-flow.html#when-expression) (executes one of the given branches)
  * `while` begins a [while loop](/docs/reference/control-flow.html#while-loops) (loop with precondition)
+-->
 
+## Мягкие Ключевые Слова (Soft Keywords)
+
+Следующие слова действуют как ключевые в контексте, когда они применимы и могут использоваться как идентификаторы в других контекстах:
+
+ * `by`
+     - [делегирует реализацию интерфейса другому объекту](/docs/reference/delegation.html)
+     - [делегирует реализацию методов доступа для свойства другому объекту](/docs/reference/delegated-properties.html)
+ * `catch` начинает блок, который [обрабатывает определенный тип исключения](/docs/reference/exceptions.html)
+ * `constructor` объявляет [первичный или вторичный конструктор](/docs/reference/classes.html#constructors)
+ * `delegate` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets) 
+ * `dynamic` ссылается на [динамический тип](/docs/reference/dynamic-type.html) в Kotlin/JS коде
+ * `field` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `file` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `finally` начинает блок, который [всегда выполняется при выходе из блока try](/docs/reference/exceptions.html)
+ * `get`
+     - объявляет [геттер свойства](/docs/reference/properties.html#getters-and-setters)
+     - используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `import` [импортирует объявление из другого пакета в текущий файл](/docs/reference/packages.html)
+ * `init` начинает [блок инициализации](/docs/reference/classes.html#constructors)
+ * `param` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `property` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `receiver`используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `set`
+     - объявляет [сеттер свойства](/docs/reference/properties.html#getters-and-setters)
+     - используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `setparam` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `where` задает [ограничения для параметра универсального типа](/docs/reference/generics.html#upper-bounds)
+
+
+<!--
 ## Soft Keywords
-
 The following tokens act as keywords in the context when they are applicable and can be used
 as identifiers in other contexts:
-
  * `by`
      - [delegates the implementation of an interface to another object](/docs/reference/delegation.html)
      - [delegates the implementation of accessors for a property to another object](/docs/reference/delegated-properties.html)
@@ -88,12 +172,47 @@ as identifiers in other contexts:
      - is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
  * `setparam` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
  * `where` specifies [constraints for a generic type parameter](/docs/reference/generics.html#upper-bounds)
- 
-## Modifier Keywords
+-->
 
+## Модификаторы (Modifier Keywords)
+
+Следующие слова действуют как ключевые в списках модификаторов объявлений и могут использоваться как идентификаторы в других контекстах:
+
+ * `actual` означает реализацию Платформы в [мультиплатформенных проектах](/docs/reference/multiplatform.html)
+ * `abstract` обозначает класс или элемент как [абстрактный](/docs/reference/classes.html#abstract-classes)
+ * `annotation` объявляет [класс аннотации](/docs/reference/annotations.html)
+ * `companion` объявляет [объект-компаньон](/docs/reference/object-declarations.html#companion-objects)
+ * `const` помечает свойство как [константу времени компиляции](/docs/reference/properties.html#compile-time-constants)
+ * `crossinline` запрещает [нелокальные возвраты в лямбде, передаваемом встроенной функции](/docs/reference/inline-functions.html#non-local-returns) 
+ * `data` указывает компилятору [генерировать канонические элементы для класса](/docs/reference/data-classes.html)
+ * `enum` объявляет [перечисление](/docs/reference/enum-classes.html)
+ * `expect` отмечает объявление как [платформенное](/docs/reference/multiplatform.html), ожидая реализации в модулях платформы.
+ * `external` отмечает объявление как реализованное не в Kotlin (доступное через [JNI](/docs/reference/java-interop.html#using-jni-with-kotlin) или [JavaScript](/docs/reference/js-interop.html#external-modifier)) 
+ * `final` запрещает [переопределение элемента](/docs/reference/classes.html#overriding-methods)
+ * `infix` позволяет вызывать функцию в [инфиксной записи](/docs/reference/functions.html#infix-notation)
+ * `inline` указывает компилятору [встроить функцию и лямбда-выражение на стороне вызова](/docs/reference/inline-functions.html)
+ * `inner` позволяет ссылаться на экземпляр внешнего класса из [вложенного класса](/docs/reference/nested-classes.html)
+ * `internal` помечает объявление как [видимое в текущем модуле](/docs/reference/visibility-modifiers.html)
+ * `lateinit` позволяет инициализацировать [не-null свойство вне конструктора](/docs/reference/properties.html#late-initialized-properties-and-variables)
+ * `noinline` отключает [подстановку лямбды, переданной во встроенную функцию](/docs/reference/inline-functions.html#noinline)
+ * `open` позволяет [создавать подклассы класса или переопределять элемент](/docs/reference/classes.html#inheritance)
+ * `operator` обозначает функцию как [перегрузку оператора или реализацию соглашения](/docs/reference/operator-overloading.html)
+ * `out` обозначает тип параметра как [ковариантный](/docs/reference/generics.html#declaration-site-variance)
+ * `override` помечает элемент как [переопределение элемента суперкласса](/docs/reference/classes.html#overriding-methods)
+ * `private` помечает объявление как [видимое в текущем классе или файле](/docs/reference/visibility-modifiers.html) 
+ * `protected` помечает объявление как [видимое в текущем классе и его подклассах](/docs/reference/visibility-modifiers.html)
+ * `public` помечает декларацию как [видимую в любом месте](/docs/reference/visibility-modifiers.html)
+ * `reified` обозначает параметр типа встроенной функции, как [доступная во время выполнения](/docs/reference/inline-functions.html#reified-type-parameters)
+ * `sealed` объявляет [изолированный класс](/docs/reference/sealed-classes.html) (класс с ограниченным подклассом)
+ * `suspend` обозначает функцию или лямбда как приостанавливаемую (используется как [сопрограмма](/docs/reference/coroutines.html))
+ * `tailrec` отмечает функцию как [с хвостовой рекурсией](/docs/reference/functions.html#tail-recursive-functions) (позволяя компилятору заменить рекурсию итерацией)
+ * `vararg` позволяет [передавать нефиксированное число аргументов для параметра](/docs/reference/functions.html#variable-number-of-arguments-varargs)
+
+
+<!--
+## Modifier Keywords
 The following tokens act as keywords in modifier lists of declarations and can be used as identifiers
 in other contexts:
-
  * `actual` denotes a platform-specific implementation in [multiplatform projects](/docs/reference/multiplatform.html)
  * `abstract` marks a class or member as [abstract](/docs/reference/classes.html#abstract-classes)
  * `annotation` declares an [annotation class](/docs/reference/annotations.html)
@@ -123,20 +242,67 @@ in other contexts:
  * `suspend` marks a function or lambda as suspending (usable as a [coroutine](/docs/reference/coroutines.html))
  * `tailrec` marks a function as [tail-recursive](/docs/reference/functions.html#tail-recursive-functions) (allowing the compiler to replace recursion with iteration)
  * `vararg` allows [passing a variable number of arguments for a parameter](/docs/reference/functions.html#variable-number-of-arguments-varargs)
+-->
 
+## Специальные идентификаторы (Special Identifiers)
+
+Следующие идентификаторы определяются компилятором в определенных контекстах и могут использоваться как обычные идентификаторы в других контекстах:
+
+ * `field` используется внутри метода доступа свойства для ссылки на [backing field свойства](/docs/reference/properties.html#backing-fields)
+ * `it` используется внутри лямбды, чтобы [косвенно ссылаться на ее параметр](/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter)
+
+
+<!--
 ## Special Identifiers
-
 The following identifiers are defined by the compiler in specific contexts and can be used as regular
 identifiers in other contexts:
-
  * `field` is used inside a property accessor to refer to the [backing field of the property](/docs/reference/properties.html#backing-fields)
  * `it` is used inside a lambda to [refer to its parameter implicitly](/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter)
- 
- 
+ -->
+
+## Операторы и специальные символы (Operators and Special Symbols)
+
+Котлин поддерживает следующие операторы и специальные символы:
+
+ * `+`, `-`, `*`, `/`, `%` - математические операторы
+     - `*` также используется [для передачи массива в параметр vararg](/docs/reference/functions.html#variable-number-of-arguments-varargs)
+ * `=`
+     - оператор присваивания
+     - используется для [указания значений по умолчанию для параметров](/docs/reference/functions.html#default-arguments) 
+ * `+=`, `-=`, `*=`, `/=`, `%=` - [расширенные операторы присваивания](/docs/reference/operator-overloading.html#assignments)
+ * `++`, `--` - [операторы инкремента и декремента](/docs/reference/operator-overloading.html#increments-and-decrements)
+ * `&&`, `||`, `!` - логические операторы 'и', 'или', 'не' (для побитовых операций используют соответствующие [инфиксные функции](/docs/reference/basic-types.html#operations))
+ * `==`, `!=` - [операторы равенства](/docs/reference/operator-overloading.html#equals) (переведенные на вызовы `equals()` для не-примитивных типов) 
+ * `===`, `!==` - [операторы ссылочного равенства](/docs/reference/equality.html#referential-equality)
+ * `<`, `>`, `<=`, `>=` - [операторы сравнения](/docs/reference/operator-overloading.html#comparison) (переведенные на вызовы `compareTo()` для не-примитивных типов)
+ * `[`, `]` - [оператор индексированного доступа](/docs/reference/operator-overloading.html#indexed) (переведенный на вызовы `get` и `set`)
+ * `!!` [утверждает, что выражение не равно нулю](/docs/reference/null-safety.html#the--operator)
+ * `?.` выполняет [безопасный вызов](/docs/reference/null-safety.html#safe-calls) (вызывает метод или обращается к свойству, если получатель не имеет значения null)
+ * `?:` принимает правое значение, если левое значение равно нулю ([Элвис оператор](http://kotlinlang.org/docs/reference/null-safety.html#elvis-operator))
+ * `::` создает [ссылку на элемент](/docs/reference/reflection.html#function-references)  или [ссылку на класс](/docs/reference/reflection.html#class-references)
+ * `..` создает [диапазон](/docs/reference/ranges.html) 
+ * `:` отделяет имя от типа в объявлениях
+ * `?` отмечает тип с [нулевым значением](/docs/reference/null-safety.html#nullable-types-and-non-null-types) 
+ * `->`
+     - разделяет параметры и тело [лямбда-выражения](/docs/reference/lambdas.html#lambda-expression-syntax)
+     - разделяет параметры и тип возвращаемого значения [при объявлении лямбды](/docs/reference/lambdas.html#function-types)
+     - разделяет условие итело ветви [выражения when](http://kotlinlang.org/docs/reference/control-flow.html#when-expression)
+ * `@`
+    - вводит [аннотацию](/docs/reference/annotations.html#usage)
+    - вводит или ссылается на [метку цикла](/docs/reference/returns.html#break-and-continue-labels) 
+    - вводит или ссылается на [лямбда-метку](/docs/reference/returns.html#return-at-labels)
+    - ссылается на [выражение 'this' из внешней области](/docs/reference/this-expressions.html#qualified)
+    - ссылается на [внешний суперкласс](/docs/reference/classes.html#calling-the-superclass-implementation)
+ * `;` разделяет несколько операторов на одной строке 
+ * `$` ссылается на переменную или выражение в [строковом шаблоне](/docs/reference/basic-types.html#string-templates)    
+ * `_`
+     - заменяет неиспользуемый параметр в [лямбда выражении](/docs/reference/lambdas.html#underscore-for-unused-variables-since-11)
+     - заменяет неиспользуемый параметр в [деструктуризирующем присваивании](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)
+     
+
+ <!--
 ## Operators and Special Symbols
-
 Kotlin supports the following operators and special symbols:
-
  * `+`, `-`, `*`, `/`, `%` - mathematical operators
      - `*` is also used to [pass an array to a vararg parameter](/docs/reference/functions.html#variable-number-of-arguments-varargs)
  * `=`
@@ -170,5 +336,6 @@ Kotlin supports the following operators and special symbols:
  * `$` references a variable or expression in a [string template](/docs/reference/basic-types.html#string-templates)    
  * `_`
      - substitutes an unused parameter in a [lambda expression](/docs/reference/lambdas.html#underscore-for-unused-variables-since-11)
-     - substitutes an unused parameter in a [destructuring declaration](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)
-     
+     - substitutes an unused parameter in a [destructuring declaration](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)   
+-->
+

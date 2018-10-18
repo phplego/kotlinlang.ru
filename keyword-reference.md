@@ -258,7 +258,7 @@ The following identifiers are defined by the compiler in specific contexts and c
 identifiers in other contexts:
  * `field` is used inside a property accessor to refer to the [backing field of the property](/docs/reference/properties.html#backing-fields)
  * `it` is used inside a lambda to [refer to its parameter implicitly](/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter)
- -->
+-->
 
 ## Операторы и специальные символы (Operators and Special Symbols)
 
@@ -300,7 +300,7 @@ identifiers in other contexts:
      - заменяет неиспользуемый параметр в [деструктуризирующем присваивании](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)
      
 
- <!--
+<!--
 ## Operators and Special Symbols
 Kotlin supports the following operators and special symbols:
  * `+`, `-`, `*`, `/`, `%` - mathematical operators

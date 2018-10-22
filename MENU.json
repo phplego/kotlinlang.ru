@@ -54,6 +54,7 @@
     "kotlin-doc",
     "kapt",
     "using-maven",
+    "using-ant",
     "compiler-plugins",
     "using-gradle"
   ],

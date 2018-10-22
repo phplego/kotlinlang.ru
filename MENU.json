@@ -52,6 +52,7 @@
   ],
   "Инструменты": [
     "kotlin-doc",
+    "kapt",
     "using-maven",
     "compiler-plugins",
     "using-gradle"

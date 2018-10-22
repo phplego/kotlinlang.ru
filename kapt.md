@@ -1,7 +1,6 @@
 ---
 type: doc
 layout: reference
-category: Other
 title: "Использование kapt"
 url: "https://kotlinlang.ru/docs/reference/kapt.html"
 ---

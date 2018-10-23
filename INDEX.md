@@ -34,9 +34,9 @@ url: https://kotlinlang.ru
 
 ## Актуальные задачи
 
-* Перевести статьи из радела "Reference": [Keywords and Operators](https://kotlinlang.ru/docs/reference/keyword-reference.html)
-* Перевести статьи из радела "Java Interop": [Calling Kotlin from Java](https://kotlinlang.ru/docs/reference/java-to-kotlin-interop.html)
-* Перевести статьи из раздела "Tools": [Kapt](https://kotlinlang.ru/docs/reference/kapt.html), [Ant](https://kotlinlang.ru/docs/reference/using-ant.html), [OSGi](https://kotlinlang.ru/docs/reference/kotlin-osgi.html)
+* Перевести статьи из радела "Reference": [Grammar](https://kotlinlang.ru/docs/reference/grammar.html)
+* Перевести статьи из радела "JavaScript": [Calling JavaScript from Kotlin](https://kotlinlang.ru/docs/reference/js-interop.html) и все остальные
+* Перевести статьи из раздела "Tools": [OSGi](https://kotlinlang.ru/docs/reference/kotlin-osgi.html)
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>` 
 
 <!--* Статьи требующие проверки: -->

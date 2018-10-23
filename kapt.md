@@ -17,32 +17,23 @@ url: "https://kotlinlang.ru/docs/reference/kapt.html"
 
 Применим плагин `kotlin-kapt` в Gradle:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ```groovy
 apply plugin: 'kotlin-kapt'
 ```
-</div>
-
 Или с помощью плагинов предметно-ориентированного языка:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ```groovy
 plugins {
     id "org.jetbrains.kotlin.kapt" version "{{ site.data.releases.latest.version }}"
 }
 ```
-</div>
-
 Затем добавим соответствующие зависимости, используя конфигурацию `kapt` в нашем блоке `dependencies`:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
-``` groovy
+```groovy
 dependencies {
     kapt 'groupId:artifactId:version'
 }
 ```
-</div>
-
 Если для обработчиков аннотаций ранее использовался [Android support](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config), то необходимо заменить  `annotationProcessor` на `kapt`. Если наш проект содержит классы Java, `kapt` также позаботится и о них.
 
 Если обработчики аннотаций использовались для исходного кода `androidTest` или `test`, конфигурации `kapt` будут называться соответственно `kaptAndroidTest` и `kaptTest`. Обратите внимание на то, что `kaptAndroidTest` и `kaptTest` расширяют `kapt`, поэтому достаточно предоставить только зависимость `kapt`, и она будет доступна как для исходного кода, так и для тестов.
@@ -51,7 +42,6 @@ dependencies {
 
 Используем блок `arguments {}` для передачи аргументов обработчикам аннотаций:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ``` groovy
 kapt {
     arguments {
@@ -59,14 +49,11 @@ kapt {
     }
 }
 ```
-</div>
-
 ## Параметры компилятора Java
 
 Kapt использует компилятор Java для запуска обработчиков аннотаций. 
 Так можно передавать произвольные параметры в javac:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ``` groovy
 kapt {
     javacOptions {
@@ -76,19 +63,16 @@ kapt {
     }
 }
 ```
-</div>
 
 ## Коррекция несуществующего типа
 
 Некоторые обработчики аннотаций (например, `AutoFactory`) полагаются на известные типы в объявлениях сигнатур. По умолчанию Kapt заменяет каждый неизвестный тип (включая типы для сгенерированных классов) на `NonExistentClass`, но это поведение можно изменить. Добавим в `build.gradle` дополнительный флаг для включения данного типа ошибки в заглушки:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ``` groovy
 kapt {
     correctErrorTypes = true
 }
 ```
-</div>
 
 ## Использование в Maven
 
@@ -179,7 +163,6 @@ Kapt может генерировать исходный код Kotlin. Про�
 Параметры интерфейса командной строки `apoptions` и `javacArguments` принимают кодированные пары "ключ-значение" параметров.  
 Так можно кодировать параметры самостоятельно:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ```kotlin
 fun encodeList(options: Map<String, String>): String {
     val os = ByteArrayOutputStream()
@@ -195,4 +178,3 @@ fun encodeList(options: Map<String, String>): String {
     return Base64.getEncoder().encodeToString(os.toByteArray())
 }
 ```
-</div>

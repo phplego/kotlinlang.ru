@@ -31,6 +31,9 @@
     "inline-functions",
     "coroutines"
   ],
+  "Мультиплаформенное программирование": [
+    "multiplatform"
+    ],  
   "Прочее": [
     "multi-declarations",
     "collections",
@@ -44,8 +47,7 @@
     "annotations",
     "reflection",
     "type-safe-builders",
-    "type-aliases",
-    "multiplatform"
+    "type-aliases"    
   ],
   "Справочник": [
     "keyword-reference"

@@ -36,6 +36,7 @@ url: https://kotlinlang.ru
 
 * Перевести статьи из радела "Reference": [Grammar](https://kotlinlang.ru/docs/reference/grammar.html)
 * Перевести статьи из радела "JavaScript": [Calling JavaScript from Kotlin](https://kotlinlang.ru/docs/reference/js-interop.html) и все остальные
+* Заново первести статью [Корутины](https://kotlinlang.ru/docs/reference/coroutines.html) ввиду низкого качества
 * Перевести статьи из раздела "Tools": [OSGi](https://kotlinlang.ru/docs/reference/kotlin-osgi.html)
 * Пометить <b class="keyword">ключевые слова</b> конструкцией `<b class="keyword">keyword-here</b>` 
 

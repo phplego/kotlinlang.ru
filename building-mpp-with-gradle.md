@@ -117,26 +117,23 @@ platform libraries go to the source sets of the specific targets. -->
 
 Представленные по умолчанию имена наборов исходных кодов предназначены для основных и тестовых исходных кодов, указанных выше. Наборы `commonMain` и `commonTest`
 включаются в основную и тестовую компиляции, соответственно, для всех целевых платформ. Обратите внимание на то, что зависимости для общих наборов исходных кодов
-`commonMain` и `commonTest` являются общими артефактами, а библиотеки платформ идут на наборы исходных кодов для конкретных платформ.
+`commonMain` и `commonTest` общие, а библиотеки платформ идут для конкретных платформ.
 
 Подробные сведения о структуре проекта и DSL можно найти в следующих разделах.
 
-## Gradle Plugin
+## Плагин Gradle
 
-To setup a multiplatform project from scratch, first, apply the `kotlin-multiplatform` plugin to the project by adding the following to the
-`build.gradle` file:
+<!-- To setup a multiplatform project from scratch, first, apply the `kotlin-multiplatform` plugin to the project by adding the following to the `build.gradle` file: -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
-
+Для создания мультиплатформенного проекта с нуля применим к проекту плагин `kotlin-multiplatform` путем добавления следующего кода в 
+`build.gradle`
 ```groovy
 plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '{{ site.data.releases.latest.version }}'
 }
 ```
-
-</div>
-
-This creates the `kotlin` extension at the top level. You can then access it in the build script for:
+<!-- This creates the `kotlin` extension at the top level. You can then access it in the build script for: -->
+Так создается расширение `kotlin` на верхнем уровне. Можно получить к нему доступ в скрипте сборки:
 
 * [setting up the targets](#setting-up-targets) for multiple platforms (no targets are created by default);
 * [configuring the source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies);

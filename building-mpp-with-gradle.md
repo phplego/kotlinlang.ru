@@ -38,7 +38,7 @@ New Project dialog under the "Kotlin" section. -->
 for the JVM, one for JS, and one for the Native platform that you are using. These are configured in the `build.gradle`
 script in the following way: -->
 
-Например, если выбран «Kotlin (Multiplatform Library)», то создается проект библиотеки, ориентированный на 3 платформы: JVM, JS и используемую Native платформу. 
+Например, если выбран «Kotlin (Multiplatform Library)», то создается проект библиотеки, ориентированный на 3 цели: JVM, JS и используемую Native платформу. 
 Они сконфигурированы в сценарии `build.gradle` следующим образом:
 
 ```groovy
@@ -64,8 +64,8 @@ kotlin {
 <!-- The three targets are created from the presets that provide some [default configuration](#default-project-layout). 
 There are presets for each of the [supported platforms](#supported-platforms). -->
 
-Три платформы создаются из пресетов, которые предоставляют некоторую конфигурацию по умолчанию. 
-Вот пресеты для каждой поддерживаемой платформы.
+Три цели создаются из предустановок, которые предоставляют некоторую конфигурацию по умолчанию. 
+Здесь приведены предустановки для каждой поддерживаемой платформы.
 
 <!-- The [source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies) are then configured as follows: -->
 
@@ -138,16 +138,18 @@ plugins {
 * [setting up the targets](#setting-up-targets) for multiple platforms (no targets are created by default);
 * [configuring the source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies);
 
-## Setting up Targets
+## Настройка целей
 
-A target is a part of the build responsible for compiling, testing, and packaging a piece of software aimed for
-one of the [supported platforms](#supported-platforms).
+<!-- A target is a part of the build responsible for compiling, testing, and packaging a piece of software aimed for
+one of the [supported platforms](#supported-platforms). -->
 
-As the platforms are different, targets are built in different ways as well and have various platform-specific 
+Цель - часть сборки, отвечающей за компиляцию, тестирование и упаковку части программного обеспечения, предназначенного для одной из поддерживаемых платформ .
+
+<!-- As the platforms are different, targets are built in different ways as well and have various platform-specific 
 settings. The Gradle plugin bundles a number of presets for the supported platforms. A preset can be used to 
-create a target by just providing a name as follows:
+create a target by just providing a name as follows: -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Поскольку платформы различны, цели также построены по-разному и имеют разные настройки для конкретной платформы. Плагин Gradle объединяет ряд предустановок для поддерживаемых платформ. Предустановку можно использовать для создания цели, просто указывая имя, следующим образом:
 
 ``` groovy
 kotlin {
@@ -160,13 +162,12 @@ kotlin {
     }
 }
 ``` 
-</div>
 
-Building a target requires compiling Kotlin once or multiple times. Each Kotlin compilation of a target may serve a 
+<!-- Building a target requires compiling Kotlin once or multiple times. Each Kotlin compilation of a target may serve a 
 different purpose (e.g. production code, tests) and incorporate different [source sets](#configuring-source-sets). The compilations
-of a target may be accessed in the DSL, for example, to get the task names, dependency files and compilation outputs:
+of a target may be accessed in the DSL, for example, to get the task names, dependency files and compilation outputs: -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Создание цели требует компиляции Kotlin один или несколько раз. Каждая компиляция цели Kotlin может служить другой цели (например, производственный код, тесты) и включать различные наборы исходных кодов. К компиляциям цели можно обратиться в DSL, например, чтобы получить имена задач, файлы зависимостей и выходы компиляции:
 
 ```groovy
 kotlin {
@@ -180,19 +181,55 @@ kotlin {
 }
 ```
 
-</div>
+Для изменения параметров компиляции компилятора Kotlin следует использовать задачу компиляции, которая может быть найдена по ее имени:
 
-All of the targets may share some of the sources and may have platform-specific sources in their compilations as well. 
-See [Configuring source sets](#configuring-source-sets) for details.
+```groovy
+kotlin {
+    targets {
+        fromPreset(presets.jvm, 'jvm8') {
+            // Configure a single target's compilations (main and test)
+            compilations.all {
+                tasks[compileKotlinTaskName].kotlinOptions { 
+                    jvmTarget = '1.8'
+                }
+            }
+        }
+        
+        /* ... */
+        
+        // Configure all compilations of all targets:
+        all { 
+            compilations.all {
+                tasks[compileKotlinTaskName].kotlinOptions {
+                    allWarningsAsErrors = true
+                }
+            }
+        }
+    }
+}
+```
 
-Some targets may require additional configuration. For Android and iOS examples, see the [Multiplatform Project: iOS and Android](/docs/tutorials/native/mpp-ios-android.html) tutorial.
+<!-- All of the targets may share some of the sources and may have platform-specific sources in their compilations as well. 
+See [Configuring source sets](#configuring-source-sets) for details. -->
 
-### Supported platforms
+Все цели могут совместно использовать некоторые источники и также могут иметь специфические для каждой платформы исходные коды в своих компиляциях. Подробнее см. Настройка наборов источников .
 
-There are target presets that one can apply using `fromPreset(presets.<presetName>, '<targetName>')`, as described above, for the
-following target platforms:
+<!-- Some targets may require additional configuration. For Android and iOS examples, see the [Multiplatform Project: iOS and Android](/docs/tutorials/native/mpp-ios-android.html) tutorial. -->
 
-* `jvm` for Kotlin/JVM. Note: `jvm` targets do not compile Java;
+Для некоторых целей может потребоваться дополнительная настройка. Примеры для Android и iOS см. в руководстве «Мультиплатформенный проект: iOS и Android» .
+
+### Поддерживаемые платформы
+
+<!-- There are target presets that one can apply using `fromPreset(presets.<presetName>, '<targetName>')`, as described above, for the
+following target platforms: -->
+
+Существуют предустановки целей, которые можно применять fromPreset(presets.<presetName>, '<targetName>'), как описано выше, для следующих целевых платформ:
+
+<!-- * `jvm` for Kotlin/JVM. Note: `jvm` targets do not compile Java; -->
+
+* `jvm` for Kotlin/JVM. Примечание. цели `jvm` не скомпилируют Java;
+
+
 * `js` for Kotlin/JS;
 * `android` for Android applications and libraries. Note that one of the Android Gradle 
    plugins should be applied as well;

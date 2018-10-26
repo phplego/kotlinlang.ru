@@ -240,7 +240,7 @@ following target platforms: -->
   
 <!-- *  Kotlin/Native target presets (see the [notes](#using-kotlinnative-targets) below): -->
 
-* Kotlin/Native целевые пресеты (см. Примечания ниже):
+* Целевые предустановки Kotlin/Native (см. Примечания ниже):
     * `androidNativeArm32` и `androidNativeArm64` для Android NDK;
     * `iosArm32`, `iosArm64`, `iosX64` для iOS;
     * `linuxArm32Hfp`, `linuxMips32`, `linuxMipsel32`, `linuxX64` для Linux
@@ -251,16 +251,20 @@ following target platforms: -->
     
     Обратите внимание на то, что некоторые из целей Kotlin / Native требуют создания [соответствующей хост-машины](#using-kotlinnative-targets).
     
-## Configuring source sets
+## Конфигурирование наборов исходных кодов
 
-A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings, 
-which may take part in Kotlin compilations of one or more [targets](#setting-up-targets).
+<!-- A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings, 
+which may take part in Kotlin compilations of one or more [targets](#setting-up-targets). -->
 
-If you apply a target preset, some source sets are created and configured by default. See [Default Project Layout](#default-project-layout).
+Набор исходных кодов Kotlin - это коллекция исходных кодов Kotlin, а также их ресурсы, зависимости и языковые настройки, которые могут принимать участие в компиляции одной или нескольких целей Kotlin.
 
-The source sets are configured within a `sourceSets { ... }` block of the `kotlin { ... }` extension:
+<!-- If you apply a target preset, some source sets are created and configured by default. See [Default Project Layout](#default-project-layout). -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Если применяются целевые предустановки, то некоторые наборы исходных кодов создаются и настраиваются по умолчанию. См. « Макет проекта по умолчанию» .
+
+<!-- The source sets are configured within a `sourceSets { ... }` block of the `kotlin { ... }` extension: -->
+
+Наборы источников настраиваются внутри блока sourceSets { ... } расширения kotlin { ... }:
 
 ```groovy
 kotlin { 
@@ -272,20 +276,24 @@ kotlin {
     }
 }
 ``` 
-</div>
 
-> Note: creating a source set does not link it to any target. Some source sets are [predefined](#default-project-layout) 
+<!-- > Note: creating a source set does not link it to any target. Some source sets are [predefined](#default-project-layout) 
 and thus compiled by default. However, custom source sets always need to be explicitly directed to the compilations. 
-See: [Connecting source sets](#connecting-source-sets). 
-{:.note}
+See: [Connecting source sets](#connecting-source-sets). {:.note} -->
 
-A source set by itself is platform-agnostic, but
+> Примечание: создание набора исходных кодов не связывает его с какой-либо целью. Некоторые наборы исходных кодов предопределены и, таким образом, уже скомпилированы по умолчанию. Однако настраиваемые наборы исходных кодов всегда должны быть явно направлены на компиляцию. См. [Подключение источников](###подключение-наборов-исходных-кодов).
+
+Имена наборов исходных кодов чувствительны к регистру. При обращении к набору исходных кодов по умолчанию убедитесь, что префикс имени совпадает с именем цели, например, источником, заданным iosX64Mainдля цели iosX64.
+
+<!--A source set by itself is platform-agnostic, but
 it can be considered platform-specific if it is only compiled for a single platform. A source set can, therefore, contain either
-common code shared between the platforms or platform-specific code.
+common code shared between the platforms or platform-specific code. -->
 
-To add Kotlin source directories and resources to a source set, use its `kotlin` and `resources` `SourceDirectorySet`s:
+Набор исходных кодов сам по себе является платформенно-независимым, но его можно рассматривать в качестве специфичного для платформы, если он скомпилирован только для одной этой платформы. Поэтому исходный набор может содержать либо общий код, разделяемый между платформами, либо код, специфичный для платформы.
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+<!-- To add Kotlin source directories and resources to a source set, use its `kotlin` and `resources` `SourceDirectorySet`s: -->
+
+Чтобы добавить исходные каталоги и ресурсы Kotlin в исходный набор, используйте его `SourceDirectorySet`ы `kotlin` и `resources`:
 
 ```groovy
 kotlin { 
@@ -298,9 +306,7 @@ kotlin {
 }
 ``` 
 
-</div>
-
-### Connecting source sets
+### Подключение наборов исходных кодов
 
 Kotlin source sets may be connected with the 'depends on' relation, so that if a source set `foo`  depends on a source set `bar` then:
 

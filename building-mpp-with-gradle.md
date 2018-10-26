@@ -281,7 +281,7 @@ kotlin {
 and thus compiled by default. However, custom source sets always need to be explicitly directed to the compilations. 
 See: [Connecting source sets](#connecting-source-sets). {:.note} -->
 
-> Примечание: создание набора исходных кодов не связывает его с какой-либо целью. Некоторые наборы исходных кодов предопределены и, таким образом, уже скомпилированы по умолчанию. Однако настраиваемые наборы исходных кодов всегда должны быть явно направлены на компиляцию. См. [Подключение источников](###подключение-наборов-исходных-кодов).
+> Примечание: создание набора исходных кодов не связывает его с какой-либо целью. Некоторые наборы исходных кодов предопределены и, таким образом, уже скомпилированы по умолчанию. Однако настраиваемые наборы исходных кодов всегда должны быть явно направлены на компиляцию. См. [Подключение наборов исходных кодов](#подключение-наборов-исходных-кодов).
 
 Имена наборов исходных кодов чувствительны к регистру. При обращении к набору исходных кодов по умолчанию убедитесь, что префикс имени совпадает с именем цели, например, источником, заданным iosX64Mainдля цели iosX64.
 
@@ -308,15 +308,23 @@ kotlin {
 
 ### Подключение наборов исходных кодов
 
-Kotlin source sets may be connected with the 'depends on' relation, so that if a source set `foo`  depends on a source set `bar` then:
+<!-- Kotlin source sets may be connected with the 'depends on' relation, so that if a source set `foo`  depends on a source set `bar` then: -->
 
-* whenever `foo` is compiled for a certain target, `bar` takes part in that compilation as well and is also compiled 
-into the same target binary form, such as JVM class files or JS code;
+Наборы исходных кодов Kotlin могут быть связаны с отношением 'зависит от', поэтому, если набор исходных кодов 'foo' зависит от набора исходных кодов 'bar', тогда:
 
-* the resources of `bar` are always processed and copied along with the resources of `foo`;
+<!-- * whenever `foo` is compiled for a certain target, `bar` takes part in that compilation as well and is also compiled 
+into the same target binary form, such as JVM class files or JS code; -->
 
-* sources of `foo` 'see' the declarations of `bar`, including the `internal` ones, and the [dependencies](#adding-dependencies) of `bar`, even those
- specified as `implementation` dependencies;
+* всякий раз, когда `foo` компилируется для определенной цели, `bar` также участвует в этой компиляции и также скомпилируется в одну и ту же целевую двоичную форму, такую как файлы классов JVM или JS-код;
+
+<!-- * the resources of `bar` are always processed and copied along with the resources of `foo`; -->
+
+* ресурсы `bar` всегда обрабатываются и копируются вместе с ресурсами `foo`;
+
+<!-- * sources of `foo` 'see' the declarations of `bar`, including the `internal` ones, and the [dependencies](#adding-dependencies) of `bar`, even those
+ specified as `implementation` dependencies; -->
+ 
+ * исходный код `foo` «видит» объявления `bar`, в том числе и `внутренние`, а также [зависимости](#adding-dependencies) от `bar`, даже те, которые указаны в качестве зависимостей `implementation`;
   
 * `foo` may contain [platform-specific implementations](platform-specific-declarations.html) for the expected declarations of `bar`;
 

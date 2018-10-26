@@ -326,15 +326,21 @@ into the same target binary form, such as JVM class files or JS code; -->
  
  * исходный код `foo` «видит» объявления `bar`, в том числе и `внутренние`, а также [зависимости](#adding-dependencies) от `bar`, даже те, которые указаны в качестве зависимостей `implementation`;
   
-* `foo` may contain [platform-specific implementations](platform-specific-declarations.html) for the expected declarations of `bar`;
+<!--* `foo` may contain [platform-specific implementations](platform-specific-declarations.html) for the expected declarations of `bar`; -->
 
-* the [language settings](#language-settings) of `foo` and `bar` should be consistent;
+* `foo` может содержать реализации, специфичные для платформы, для ожидаемых объявлений `bar`;
 
-Circular source set dependencies are prohibited.
+<!-- * the [language settings](#language-settings) of `foo` and `bar` should be consistent; -->
 
-The source sets DSL can be used to define these connections between the source sets:
+* Языковые настройки `foo` и `bar` должны быть согласованы;
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+<!-- Circular source set dependencies are prohibited. -->
+
+Рекурсивные зависимости в наборах исходных кодов запрещены.
+
+<!-- The source sets DSL can be used to define these connections between the source sets: -->
+
+DSL наборов исходных кодов может использоваться для определения соединений между наборами исходных кодов:
 
 ```groovy
  kotlin { 
@@ -347,8 +353,6 @@ The source sets DSL can be used to define these connections between the source s
      }
  }
 ```
-
-</div>
 
 Custom source sets created in addition to the [default ones](#default-project-layout) should be explicitly included into the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part in compilations. 
 Most often, they need a `dependsOn commonMain` or `dependsOn commonTest` statement, and some of the default platform-specific source sets should depend on the custom ones, directly or indirectly:

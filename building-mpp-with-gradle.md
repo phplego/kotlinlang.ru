@@ -135,8 +135,11 @@ plugins {
 <!-- This creates the `kotlin` extension at the top level. You can then access it in the build script for: -->
 Так создается расширение `kotlin` на верхнем уровне. Можно получить к нему доступ в скрипте сборки:
 
-* [setting up the targets](#setting-up-targets) for multiple platforms (no targets are created by default);
-* [configuring the source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies);
+<!-- * [setting up the targets](#setting-up-targets) for multiple platforms (no targets are created by default);
+* [configuring the source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies); -->
+
+* [Настройка целей](#setting-up-targets) для нескольких платформ (по умолчанию не создается ни одной цели);
+* [Конфигурирование наборов исходных кодов] (#configuring-source-sets) и их [зависимостей](#adding-dependencies);
 
 ## Настройка целей
 
@@ -227,22 +230,26 @@ following target platforms: -->
 
 <!-- * `jvm` for Kotlin/JVM. Note: `jvm` targets do not compile Java; -->
 
-* `jvm` for Kotlin/JVM. Примечание. цели `jvm` не скомпилируют Java;
+* `jvm` для Kotlin/JVM. Примечание. цели `jvm` не скомпилируют Java;
 
+* `js` для Kotlin/JS;
+<!-- * `android` for Android applications and libraries. Note that one of the Android Gradle 
+   plugins should be applied as well; -->
+   
+* `android` для приложений и библиотек Android. Обратите внимание на то, что также должен применяться один из плагинов Android Gradle;
+  
+<!-- *  Kotlin/Native target presets (see the [notes](#using-kotlinnative-targets) below): -->
 
-* `js` for Kotlin/JS;
-* `android` for Android applications and libraries. Note that one of the Android Gradle 
-   plugins should be applied as well;
-  
-*  Kotlin/Native target presets (see the [notes](#using-kotlinnative-targets) below):
-  
-    * `androidNativeArm32` and `androidNativeArm64` for Android NDK;
-    * `iosArm32`, `iosArm64`, `iosX64` for iOS;
-    * `linuxArm32Hfp`, `linuxMips32`, `linuxMipsel32`, `linuxX64` for Linux
-    * `macosX64` for MacOS
-    * `mingwX64` for Windows
+* Kotlin/Native целевые пресеты (см. Примечания ниже):
+    * `androidNativeArm32` и `androidNativeArm64` для Android NDK;
+    * `iosArm32`, `iosArm64`, `iosX64` для iOS;
+    * `linuxArm32Hfp`, `linuxMips32`, `linuxMipsel32`, `linuxX64` для Linux
+    * `macosX64` для MacOS
+    * `mingwX64` для Windows
     
-    Note that some of the Kotlin/Native targets require an [appropriate host machine](#using-kotlinnative-targets) to build on.
+    <!-- Note that some of the Kotlin/Native targets require an [appropriate host machine](#using-kotlinnative-targets) to build on. -->
+    
+    Обратите внимание на то, что некоторые из целей Kotlin / Native требуют создания [соответствующей хост-машины](#using-kotlinnative-targets).
     
 ## Configuring source sets
 

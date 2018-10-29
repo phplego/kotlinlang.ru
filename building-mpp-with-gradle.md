@@ -522,7 +522,7 @@ shared between all of the target platforms. These source sets are added to each 
 
 По умолчанию каждый проект содержит два набора источников `commonMain` и `commonTest`, где можно разместить весь код, который должен быть общим для всех целевых платформ. Эти наборы исходных кодов добавляются, соответственно, к каждой сборке и тестовой компиляции.
 
-< -- Then, once a target is added, default compilations are created for it:
+<!-- Then, once a target is added, default compilations are created for it:
 * `main` and `test` compilations for JVM, JS, and Native targets;
 * a compilation per Android variant, for Android targets; -->
 
@@ -637,19 +637,20 @@ kotlin {
  
 Экспериментальный режим публикации и зависимости может быть включен путем добавления `enableFeaturePreview('GRADLE_METADATA')` в файл `settings.gradle`. При включении метаданных Gradle добавляется дополнительная публикация, которая ссылается на целевые публикации в качестве ее вариантов. Идентификатор артефакта этой публикации соответствует имени проекта.
  
-> Gradle metadata publishing is an experimental Gradle feature which is not guaranteed to be backward-compatible. 
+<!-- > Gradle metadata publishing is an experimental Gradle feature which is not guaranteed to be backward-compatible. 
 Future Gradle versions may fail to resolve a dependency to a library published with current versions of Gradle metadata.
 Library authors are recommended to use it to publish experimental versions of the library alongside with the stable publishing mechanism
-until the feature is considered stable. 
-{:.note}
+until the feature is considered stable. -->
+
+> Публикация метаданных Gradle - это экспериментальная функция Gradle, не гарантирующая обратную совместимость. Будущие версии Gradle могут не разрешить зависимость от библиотеки, опубликованной с текущими версиями метаданных Gradle. Авторы библиотек рекомендуют использовать его для публикации экспериментальных версий библиотеки наряду со стабильным механизмом публикации до тех пор, пока эта функция не будет считаться стабильной.
  
-If a library is published with Gradle metadata enabled and a consumer enables the metadata as well, the consumer may specify a
+<!-- If a library is published with Gradle metadata enabled and a consumer enables the metadata as well, the consumer may specify a
  single dependency on the library in a common source set, and a corresponding platform-specific variant will be chosen, if available, 
  for each of the compilations. Consider a `sample-lib` library built for the JVM and JS and published with experimental Gradle metadata.
- Then it is enough for the consumers to add `enableFeaturePreview('GRADLE_METADATA)` and specify a single dependency:
+ Then it is enough for the consumers to add `enableFeaturePreview('GRADLE_METADATA)` and specify a single dependency: -->
  
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
-
+Если библиотека опубликована с включенными метаданными Gradle, а потребитель также включает метаданные, то потребитель может указать одну зависимость от библиотеки в общем наборе исходных кодов, и будет выбран соответствующий вариант для конкретной платформы для каждой из компиляций. Рассмотрим библиотеку `sample-lib`, созданную для JVM и JS, и опубликованную с экспериментальными метаданными Gradle. Тогда для потребителей достаточно добавить `enableFeaturePreview('GRADLE_METADATA)` и указать одну зависимость:
+ 
 ```groovy
 kotlin {
     targets {
@@ -667,50 +668,52 @@ kotlin {
 }
 ```
 
-</div>    
+### Неоднозначные цели
 
-### Disambiguating Targets
-
-It is possible to have more than one target for a single platform in a multiplatform library. For example, these targets
+<!-- It is possible to have more than one target for a single platform in a multiplatform library. For example, these targets
 may provide the same API and differ in the libraries they cooperate with at runtime, like testing frameworks or logging solutions. 
+However, dependencies on such a multiplatform library may be ambiguous and may thus fail to resolve under certain conditions: -->
 
-However, dependencies on such a multiplatform library may be ambiguous and may thus fail to resolve under certain conditions:
+В многоплатформенной библиотеке возможно иметь более одной цели для одной платформы. Например, эти цели могут предоставлять один и тот же API и различать библиотеки, с которыми они взаимодействуют во время выполнения, например, тестирование фреймворков или логирование.
 
-* A `project('...')` dependency on a multiplatform library is used. Replace it with a `project(path: '...', configuration: '...')` dependency. 
-  Use the appropriate target's runtime elements configuration, such as `jvm6RuntimeElements`. Due to the current limitations, this dependency should
-  be placed in a top-level `dependencies { ... }` block rather than in a source set's dependencies.
+Однако зависимости от такой многоплатформенной библиотеки могут быть неоднозначными и, таким образом, не могут быть разрешены при определенных условиях:
+
+<!-- * A `project('...')` dependency on a multiplatform library is used. Replace it with a `project(path: '...', configuration: '...')` dependency. 
+Use the appropriate target's runtime elements configuration, such as `jvm6RuntimeElements`. Due to the current limitations, this dependency should   be placed in a top-level `dependencies { ... }` block rather than in a source set's dependencies. -->
+
+* Используется зависимость `project('...')` от многоплатформенной библиотеки. Заменим его зависимостью `project(path: '...', configuration: '...')`. Используем соответствующую настройку элементов времени выполнения, например `jvm6RuntimeElements`. Из-за существующих ограничений эта зависимость должна быть помещена в блок верхнего уровня `dependencies { ... }`, а не в зависимости от набора исходных кодов.
   
-* A published library dependency is used. If a library is published with experimental Gradle metadata, one can still replace the single dependency with
-  unambiguous dependencies on its separate target modules, as if it had no experimental Gradle metadata.   
+<!-- * A published library dependency is used. If a library is published with experimental Gradle metadata, one can still replace the single dependency with unambiguous dependencies on its separate target modules, as if it had no experimental Gradle metadata. -->
+
+* Используется опубликованная библиотечная зависимость. Если библиотека опубликована с экспериментальными метаданными Gradle, все равно можно заменить одну зависимость однозначными зависимостями на отдельные целевые модули, как если бы у нее отсутствовали экспериментальные метаданные Gradle.
   
-* In both of the cases above, another solution is to mark the targets with a custom attribute. This, however, must be done on both the library author
- and the consumer sides, and it's the library author's responsibility to communicate the attribute and its values to the consumers;
+<!-- * In both of the cases above, another solution is to mark the targets with a custom attribute. This, however, must be done on both the library author  and the consumer sides, and it's the library author's responsibility to communicate the attribute and its values to the consumers; -->
+
+* В обоих вышеописанных случаях другое решение заключается в том, чтобы пометить целевые объекты настраиваемым атрибутом. Это, однако, должно быть сделано как со стороны автора библиотеки, так и для сторон потребителей. Ответственность автора библиотеки заключается в том, чтобы сообщать об этом атрибуту и его значениям потребителям;
  
-     Add the following symmetrically, to both the library and the consumer projects. The consumer may only need to mark 
-     a single target with the attribute:
-     
-     <div class="sample" markdown="1" theme="idea" mode='groovy'>
-     
-     ```groovy
-     def testFrameworkAttribute = Attribute.of('com.example.testFramework', String)
+<!-- Add the following symmetrically, to both the library and the consumer projects. The consumer may only need to mark 
+a single target with the attribute: -->
+
+Добавим следующий код и к библиотеке, и к потребительским проектам. Потребителю может потребоваться только отметить одну цель с атрибутом:
+
+```groovy
+def testFrameworkAttribute = Attribute.of('com.example.testFramework', String)
       
-     kotlin {
-         targets {
-             fromPreset(presets.jvm, 'junit') {
-                 attributes {
-                     attribute(testingFrameworkAttribute, 'junit')
-                 }
+kotlin {
+     targets {
+         fromPreset(presets.jvm, 'junit') {
+             attributes {
+                 attribute(testingFrameworkAttribute, 'junit')
              }
-             fromPreset(presets.jvm, 'testng') {
-                 attributes {
-                     attribute(testingFrameworkAttribute, 'testng')
-                 }
+         }
+         fromPreset(presets.jvm, 'testng') {
+             attributes {
+                 attribute(testingFrameworkAttribute, 'testng')
              }
          }
      }
-     ```
-     
-     </div>
+ }
+ ```
 
 ## Using Kotlin/Native Targets
 

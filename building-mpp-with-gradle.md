@@ -715,33 +715,46 @@ kotlin {
  }
  ```
 
-## Using Kotlin/Native Targets
+## Использование целей Kotlin/Native
 
-It is important to note that some of the [Kotlin/Native targets](#supported-platforms) may only be built with an appropriate host machine:
-
+<!-- It is important to note that some of the [Kotlin/Native targets](#supported-platforms) may only be built with an appropriate host machine:
 * Linux targets may only be built on a Linux host;
 * Windows targets require a Windows host;
 * macOS and iOS targets can only be built on a macOS host;
-* Android Native targets require a Linux or macOS host; 
+* Android Native targets require a Linux or macOS host; -->
 
-A target that is not supported by the current host is ignored during build and therefore not published. A library author may want to set up
-builds and publishing from different hosts as required by the library target platforms.
+Важно отметить, что некоторые из целей [Kotlin/Native](#supported-platforms) могут быть созданы только с помощью соответствующей хост-машины:
 
-### Kotlin/Native output kinds
+* Цели Linux могут быть построены только на хосте Linux;
+* Для целей Windows требуется хост Windows;
+* Цели macOS и iOS могут быть созданы только на хосте macOS;
+* Для мобильных целей Android требуется хост Linux или macOS;
 
-By default, a Kotlin/Native target is compiled down to a `*.klib` library artifact, which can be consumed by Kotlin/Native itself as a dependency but
-cannot be run or used as a native library.
+<!-- A target that is not supported by the current host is ignored during build and therefore not published. A library author may want to set up builds and publishing from different hosts as required by the library target platforms. -->
 
+Цель,не поддерживаемая текущим хостом, игнорируется во время сборки и поэтому не публикуется. Автор библиотеки может захотеть настроить сборку и публикацию с разных хостов в соответствии с требованиями целевых платформ библиотеки.
+
+### Виды выходных данных Kotlin/Native
+
+<!-- By default, a Kotlin/Native target is compiled down to a `*.klib` library artifact, which can be consumed by Kotlin/Native itself as a dependency but cannot be run or used as a native library.
 To link a binary in addition to the Kotlin/Native library, add one or more of the `outputKinds`, which can be:
-
 * `executable` for an executable program;
 * `dynamic` for a dynamic library;
 * `static` for a static library;
-* `framework` for an Objective-C framework (only supported for macOS and iOS targets)
+* `framework` for an Objective-C framework (only supported for macOS and iOS targets) -->
 
-This can be done as follows:
+По умолчанию цель Kotlin / Native скомпилирована до артефакта библиотеки `*.klib`, который может быть использован самим Kotlin/Native в качестве зависимости, но не может быть запущен или использован в качестве родной библиотеки.
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Для того, чтобы привязать двоичный файл как дополнение к библиотеке Kotlin / Native, добавим один или несколько `outputKinds`, которые могут быть:
+
+* `executable` для исполняемой программы;
+* `dynamic` для динамической библиотеки;
+* `static` для статической библиотеки;
+* `framework` для фреймворка Objective-C (поддерживается только для macOS и iOS)
+
+<!-- This can be done as follows: -->
+
+Это можно сделать следующим образом:
 
 ```groovy
 kotlin {
@@ -753,11 +766,11 @@ kotlin {
 }
 ```
 
-</div>
-
-This creates additional link tasks for the debug and release binaries. The tasks can be accessed after project evaluation from the compilation as, for example, 
+<!-- This creates additional link tasks for the debug and release binaries. The tasks can be accessed after project evaluation from the compilation as, for example, 
 `getLinkTask('executable', 'release')` or `getLinkTaskName('static', 'debug')`. To get the binary file, use `getBinary`, for example, 
- as `getBinary('executable', 'release')` or `getBinary('static', 'debug')`.
+ as `getBinary('executable', 'release')` or `getBinary('static', 'debug')`. -->
+ 
+Это создает дополнительные связанные задачи для двоичных файлов отладки и релиза. Доступ к задачам можно получить после оценки проекта из компиляции, например, `getLinkTask('executable', 'release')` или `getLinkTaskName('static', 'debug')`. Для получения двоичного файла используем `getBinary`, например, `getBinary('executable', 'release')` или `getBinary('static', 'debug')`.
 
 ### CInterop support
 

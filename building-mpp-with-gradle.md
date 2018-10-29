@@ -547,18 +547,22 @@ targets `jvm6` (JVM) and `nodeJs` (JS) will have source sets: `commonMain`, `com
 
 <!-- In Android projects, additional Kotlin source sets are created for each Android source set. If the Android target has a name `foo`, the Android source set `bar` gets a Kotlin source set counterpart `fooBar`. The Kotlin compilations, however, are able to consume Kotlin sources from all of the directories `src/bar/java`, `src/bar/kotlin`, and `src/fooBar/kotlin`. Java sources are only read from the first of these directories. -->
 
-В проектах Android для каждого набора файлов Android создаются дополнительные исходные коды Kotlin. Если у цели Android есть имя `foo`, исходный набор Android `bar` получает экземпляр набора исходных кодов Kotlin `fooBar`. Компиляции Котлин, однако, способны потреблять источники Котлин из всех каталогов `src/bar/java`, `src/bar/kotlin` и `src/fooBar/kotlin`. Источники Java считываются только из первого из этих каталогов.
+В проектах Android для каждого набора файлов Android создаются дополнительные исходные коды Kotlin. Если у цели Android есть имя `foo`, то исходный набор Android `bar` получает экземпляр набора исходных кодов Kotlin `fooBar`. Компиляции Котлин, однако, способны потреблять источники Котлин из всех каталогов `src/bar/java`, `src/bar/kotlin` и `src/fooBar/kotlin`. Источники Java считываются только из первого из этих каталогов.
 
-## Running Tests
+## Запуск тестов
 
-A test task is created under the name `<targetName>Test` for each target that is suitable for testing.  Run the `check` task to run 
-the tests for all targets.
+<!-- A test task is created under the name `<targetName>Test` for each target that is suitable for testing.  Run the `check` task to run 
+the tests for all targets. -->
 
-As the `commonTest` [default source set](#default-project-layout) is added to all test compilations, tests and test tools that are needed
-on all target platforms may be placed there.
+Задача теста создается под именем `<имяЦели>Test` для каждой цели, подходящей для тестирования. Запустим задачу `check` для запуска тестов для всех целей.
 
-The [`kotlin.test` API](https://kotlinlang.org/api/latest/kotlin.test/index.html) is availble for multiplatform tests. Add the `kotlin-test-common` and `kotlin-test-annotations-common`
-dependencies to `commonTest` to use `DefaultAsserter` and `@Test`/`@Ignore`/`@BeforeTest`/`@AfterTest` annotations in the common tests.
+<!-- As the `commonTest` [default source set](#default-project-layout) is added to all test compilations, tests and test tools that are needed on all target platforms may be placed there. -->
+
+Поскольку [набор исходных кодов по умолчанию](#default-project-layout) `commonTest` по умолчанию добавляется ко всем тестовым компиляциям, там могут быть размещены тесты и инструменты тестирования, которые необходимы на всех целевых платформах.
+
+<!-- The [`kotlin.test` API](https://kotlinlang.org/api/latest/kotlin.test/index.html) is availble for multiplatform tests. Add the `kotlin-test-common` and `kotlin-test-annotations-common` dependencies to `commonTest` to use `DefaultAsserter` and `@Test`/`@Ignore`/`@BeforeTest`/`@AfterTest` annotations in the common tests. -->
+
+[`kotlin.test` API](https://kotlinlang.org/api/latest/kotlin.test/index.html) доступен для мультиплатформенных тестов. Добавьте зависимости `kotlin-test-common` и `kotlin-test-annotations-common` в `commonTest` для использования `DefaultAsserter` и аннотаций `@Test`/`@Ignore`/`@BeforeTest`/`@AfterTest` в общих тестах.
 
 For JVM targets, use `kotlin-test-junit` or `kotlin-test-testng` for the corresponding asserter implementation and
 annotations mapping.

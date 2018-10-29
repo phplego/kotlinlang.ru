@@ -18,8 +18,8 @@ and tooling features described in this document are subject to change in future 
 <!-- This document describes how [Kotlin multiplatform projects](multiplatform.html) are configured and built using 
 Gradle. Only Gradle versions 4.7 and above can be used, older Gradle versions are not supported. -->
 
-В этом документе описывается, как многоплатформенные проекты Kotlin создаются и настраиваются с использованием Gradle. 
-Могут использоваться только версии Gradle 4.7 и выше, более старые версии Gradle не поддерживаются.
+В этом документе описывается, как [мультиплатформенные проекты Kotlin](multiplatform.html) создаются и настраиваются с использованием Gradle. 
+Могут использоваться только версии Gradle 4.7 и выше, более ранние версии Gradle не поддерживаются.
 
 <!-- Gradle Kotlin DSL support has not been implemented yet for multiplatform projects, it will be added in the future 
 updates. Please use the Groovy DSL in the build scripts. -->
@@ -38,7 +38,7 @@ New Project dialog under the "Kotlin" section. -->
 for the JVM, one for JS, and one for the Native platform that you are using. These are configured in the `build.gradle`
 script in the following way: -->
 
-Например, если выбран «Kotlin (Multiplatform Library)», то создается проект библиотеки, ориентированный на 3 цели: JVM, JS и используемую Native платформу. 
+Например, если выбран «Kotlin (Multiplatform Library)», то создается проект библиотеки, ориентированный на 3 [цели](#настройка-целей): JVM, JS и используемую Native платформу. 
 Они сконфигурированы в сценарии `build.gradle` следующим образом:
 
 ```groovy
@@ -64,12 +64,12 @@ kotlin {
 <!-- The three targets are created from the presets that provide some [default configuration](#default-project-layout). 
 There are presets for each of the [supported platforms](#supported-platforms). -->
 
-Три цели создаются из предустановок, которые предоставляют некоторую конфигурацию по умолчанию. 
+Три цели создаются из предустановок, которые предоставляют некоторую [конфигурацию по умолчанию](#макет-проекта-по-умолчанию). 
 Здесь приведены предустановки для каждой поддерживаемой платформы.
 
 <!-- The [source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies) are then configured as follows: -->
 
-Затем устанавливаются наборы исходных кодов и их зависимости:
+Затем устанавливаются [наборы исходных кодов](#конфигурирование-наборов-исходных-кодов) и их [зависимости](#добавление-зависимостей):
 
 ```groovy
 plugins { /* ... */ }
@@ -115,9 +115,7 @@ platform libraries go to the source sets of the specific targets. -->
 
 <!-- The details on project structure and the DSL can be found in the following sections. -->
 
-Представленные по умолчанию имена наборов исходных кодов предназначены для основных и тестовых исходных кодов, указанных выше. Наборы `commonMain` и `commonTest`
-включаются в основную и тестовую компиляции, соответственно, для всех целевых платформ. Обратите внимание на то, что зависимости для общих наборов исходных кодов
-`commonMain` и `commonTest` общие, а библиотеки платформ идут для конкретных платформ.
+[Представленные по умолчанию имена наборов исходных кодов](#макет-проекта-по-умолчанию) предназначены для основных и тестовых исходных кодов, указанных выше. Наборы `commonMain` и `commonTest` включаются в основную и тестовую компиляции, соответственно, для всех целевых платформ. Обратите внимание на то, что зависимости для общих наборов исходных кодов `commonMain` и `commonTest` общие, а библиотеки платформ идут для конкретных платформ.
 
 Подробные сведения о структуре проекта и DSL можно найти в следующих разделах.
 
@@ -127,26 +125,28 @@ platform libraries go to the source sets of the specific targets. -->
 
 Для создания мультиплатформенного проекта с нуля применим к проекту плагин `kotlin-multiplatform` путем добавления следующего кода в 
 `build.gradle`
+
 ```groovy
 plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '{{ site.data.releases.latest.version }}'
 }
 ```
+
 <!-- This creates the `kotlin` extension at the top level. You can then access it in the build script for: -->
 Так создается расширение `kotlin` на верхнем уровне. Можно получить к нему доступ в скрипте сборки:
 
 <!-- * [setting up the targets](#setting-up-targets) for multiple platforms (no targets are created by default);
 * [configuring the source sets](#configuring-source-sets) and their [dependencies](#adding-dependencies); -->
 
-* [Настройка целей](#setting-up-targets) для нескольких платформ (по умолчанию не создается ни одной цели);
-* [Конфигурирование наборов исходных кодов] (#configuring-source-sets) и их [зависимостей](#adding-dependencies);
+* [Настройка целей](#настройка-целей) для нескольких платформ (по умолчанию не создается ни одной цели);
+* [Конфигурирование наборов исходных кодов] (#макет-проекта-по-умолчанию) и их [зависимостей](#добавление-зависимостей);
 
 ## Настройка целей
 
 <!-- A target is a part of the build responsible for compiling, testing, and packaging a piece of software aimed for
 one of the [supported platforms](#supported-platforms). -->
 
-Цель - часть сборки, отвечающей за компиляцию, тестирование и упаковку части программного обеспечения, предназначенного для одной из поддерживаемых платформ .
+Цель - часть сборки, отвечающей за компиляцию, тестирование и упаковку части программного обеспечения, предназначенного для одной из [поддерживаемых платформ](#поддерживаемые-платформы).
 
 <!-- As the platforms are different, targets are built in different ways as well and have various platform-specific 
 settings. The Gradle plugin bundles a number of presets for the supported platforms. A preset can be used to 
@@ -170,7 +170,7 @@ kotlin {
 different purpose (e.g. production code, tests) and incorporate different [source sets](#configuring-source-sets). The compilations
 of a target may be accessed in the DSL, for example, to get the task names, dependency files and compilation outputs: -->
 
-Создание цели требует компиляции Kotlin один или несколько раз. Каждая компиляция цели Kotlin может служить другой цели (например, производственный код, тесты) и включать различные наборы исходных кодов. К компиляциям цели можно обратиться в DSL, например, чтобы получить имена задач, файлы зависимостей и выходы компиляции:
+Создание цели требует компиляции Kotlin один или несколько раз. Каждая компиляция цели Kotlin может служить другой цели (например, производственный код, тесты) и включать различные [наборы исходных кодов](#макет-проекта-по-умолчанию). К компиляциям цели можно обратиться в DSL, например, чтобы получить имена задач, файлы зависимостей и выходы компиляции:
 
 ```groovy
 kotlin {
@@ -215,18 +215,18 @@ kotlin {
 <!-- All of the targets may share some of the sources and may have platform-specific sources in their compilations as well. 
 See [Configuring source sets](#configuring-source-sets) for details. -->
 
-Все цели могут совместно использовать некоторые источники и также могут иметь специфические для каждой платформы исходные коды в своих компиляциях. Подробнее см. Настройка наборов источников .
+Все цели могут совместно использовать некоторые исходные коды и также могут иметь специфические для каждой платформы исходные коды в своих компиляциях. Подробнее см. [Настройка наборов исходных кодов](#макет-проекта-по-умолчанию) .
 
 <!-- Some targets may require additional configuration. For Android and iOS examples, see the [Multiplatform Project: iOS and Android](/docs/tutorials/native/mpp-ios-android.html) tutorial. -->
 
-Для некоторых целей может потребоваться дополнительная настройка. Примеры для Android и iOS см. в руководстве «Мультиплатформенный проект: iOS и Android» .
+Для некоторых целей может потребоваться дополнительная настройка. Примеры для Android и iOS см. в руководстве [Мультиплатформенный проект: iOS и Android](/docs/tutorials/native/mpp-ios-android.html).
 
 ### Поддерживаемые платформы
 
 <!-- There are target presets that one can apply using `fromPreset(presets.<presetName>, '<targetName>')`, as described above, for the
 following target platforms: -->
 
-Существуют предустановки целей, которые можно применять fromPreset(presets.<presetName>, '<targetName>'), как описано выше, для следующих целевых платформ:
+Существуют предустановки целей, которые можно применять `fromPreset(presets.<имяПредустановки>, '<имяЦели>')`, как описано выше, для следующих целевых платформ:
 
 <!-- * `jvm` for Kotlin/JVM. Note: `jvm` targets do not compile Java; -->
 
@@ -240,7 +240,7 @@ following target platforms: -->
   
 <!-- *  Kotlin/Native target presets (see the [notes](#using-kotlinnative-targets) below): -->
 
-* Целевые предустановки Kotlin/Native (см. Примечания ниже):
+* Целевые предустановки Kotlin/Native (см. [Примечания](#использование-целей-kotlinnative) ниже):
     * `androidNativeArm32` и `androidNativeArm64` для Android NDK;
     * `iosArm32`, `iosArm64`, `iosX64` для iOS;
     * `linuxArm32Hfp`, `linuxMips32`, `linuxMipsel32`, `linuxX64` для Linux
@@ -249,22 +249,22 @@ following target platforms: -->
     
     <!-- Note that some of the Kotlin/Native targets require an [appropriate host machine](#using-kotlinnative-targets) to build on. -->
     
-    Обратите внимание на то, что некоторые из целей Kotlin / Native требуют создания [соответствующей хост-машины](#using-kotlinnative-targets).
+    Обратите внимание на то, что некоторые из целей Kotlin / Native требуют создания [соответствующей хост-машины](#использование-целей-kotlinnative).
     
 ## Конфигурирование наборов исходных кодов
 
 <!-- A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings, 
 which may take part in Kotlin compilations of one or more [targets](#setting-up-targets). -->
 
-Набор исходных кодов Kotlin - это коллекция исходных кодов Kotlin, а также их ресурсы, зависимости и языковые настройки, которые могут принимать участие в компиляции одной или нескольких целей Kotlin.
+Набор исходных кодов Kotlin - это коллекция исходных кодов Kotlin, а также их ресурсы, зависимости и языковые настройки, которые могут принимать участие в компиляции одной или нескольких [целей](#настройка-целей) Kotlin.
 
 <!-- If you apply a target preset, some source sets are created and configured by default. See [Default Project Layout](#default-project-layout). -->
 
-Если применяются целевые предустановки, то некоторые наборы исходных кодов создаются и настраиваются по умолчанию. См. « Макет проекта по умолчанию» .
+Если применяются целевые предустановки, то некоторые наборы исходных кодов создаются и настраиваются по умолчанию. См. [Макет проекта по умолчанию](#макет-проекта-по-умолчанию).
 
 <!-- The source sets are configured within a `sourceSets { ... }` block of the `kotlin { ... }` extension: -->
 
-Наборы источников настраиваются внутри блока sourceSets { ... } расширения kotlin { ... }:
+Наборы источников настраиваются внутри блока `sourceSets { ... }` расширения `kotlin { ... }`:
 
 ```groovy
 kotlin { 
@@ -283,7 +283,7 @@ See: [Connecting source sets](#connecting-source-sets). {:.note} -->
 
 > Примечание: создание набора исходных кодов не связывает его с какой-либо целью. Некоторые наборы исходных кодов предопределены и, таким образом, уже скомпилированы по умолчанию. Однако настраиваемые наборы исходных кодов всегда должны быть явно направлены на компиляцию. См. [Подключение наборов исходных кодов](#подключение-наборов-исходных-кодов).
 
-Имена наборов исходных кодов чувствительны к регистру. При обращении к набору исходных кодов по умолчанию убедитесь, что префикс имени совпадает с именем цели, например, источником, заданным iosX64Mainдля цели iosX64.
+Имена наборов исходных кодов чувствительны к регистру. При обращении к набору исходных кодов по умолчанию убедитесь, что префикс имени совпадает с именем цели, например, источником, заданным `iosX64Main` для цели `iosX64`.
 
 <!--A source set by itself is platform-agnostic, but
 it can be considered platform-specific if it is only compiled for a single platform. A source set can, therefore, contain either
@@ -324,7 +324,7 @@ into the same target binary form, such as JVM class files or JS code; -->
 <!-- * sources of `foo` 'see' the declarations of `bar`, including the `internal` ones, and the [dependencies](#adding-dependencies) of `bar`, even those
  specified as `implementation` dependencies; -->
  
- * исходный код `foo` «видит» объявления `bar`, в том числе и `внутренние`, а также [зависимости](#adding-dependencies) от `bar`, даже те, которые указаны в качестве зависимостей `implementation`;
+ * исходный код `foo` «видит» объявления `bar`, в том числе и `внутренние`, а также [зависимости](#добавление-зависимостей) от `bar`, даже те, которые указаны в качестве зависимостей `implementation`;
   
 <!--* `foo` may contain [platform-specific implementations](platform-specific-declarations.html) for the expected declarations of `bar`; -->
 
@@ -332,7 +332,7 @@ into the same target binary form, such as JVM class files or JS code; -->
 
 <!-- * the [language settings](#language-settings) of `foo` and `bar` should be consistent; -->
 
-* Языковые настройки `foo` и `bar` должны быть согласованы;
+* [Языковые настройки](#настройки-языка) `foo` и `bar` должны быть согласованы;
 
 <!-- Circular source set dependencies are prohibited. -->
 
@@ -357,7 +357,7 @@ DSL наборов исходных кодов может использоват
 <!-- Custom source sets created in addition to the [default ones](#default-project-layout) should be explicitly included into the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part in compilations. 
 Most often, they need a `dependsOn commonMain` or `dependsOn commonTest` statement, and some of the default platform-specific source sets should depend on the custom ones, directly or indirectly: -->
 
-Пользовательские наборы исходных кодов, созданные в дополнение к стандартным, должны быть явно включены в иерархию зависимостей для того, чтобы иметь возможность использовать объявления из других наборов исходных кодов и, самое главное, принимать участие в компиляциях. Чаще всего им нужен оператор `dependsOn commonMain` или `dependsOn commonTest`, а некоторые из наборов исходных кодов для конкретной платформы должны быть напрямую или косвенно зависеть от пользовательских:
+Пользовательские наборы исходных кодов, созданные в дополнение к [стандартным](#макет-проекта-по-умолчанию), должны быть явно включены в иерархию зависимостей для того, чтобы иметь возможность использовать объявления из других наборов исходных кодов и, самое главное, принимать участие в компиляциях. Чаще всего им нужен оператор `dependsOn commonMain` или `dependsOn commonTest`, а некоторые из наборов исходных кодов для конкретной платформы должны быть напрямую или косвенно зависеть от пользовательских:
 
 ```groovy
 kotlin { 
@@ -437,15 +437,15 @@ metadata packages in addition to the platform-specific artifact dependencies of 
 `-common` (as in `kotlin-stdlib-common`) or `-metadata` is required. -->
 
 Обратите внимание на то, что для того, чтобы IDE правильно анализировала зависимости общих исходных кодов, общие наборы исходных кодов должны иметь соответствующие зависимости от пакетов метаданных Kotlin в дополнение к зависимостям артефакта для конкретной платформы от  наборов исходных кодов для этой же платформы. Обычно при использовании опубликованной библиотеки требуется артефакт с суффиксом 
-`-common` (как в случае `kotlin-stdlib-common`) или -`-metadata` (если только он не опубликован с метаданными Gradle, как описано ниже).
+`-common` (как в случае `kotlin-stdlib-common`) или `-metadata` (если только он не опубликован с метаданными Gradle, как описано ниже).
 
 <!--However, a `project('...')` dependency on another multiplatform project is resolved to an appropriate target automatically. It is enough to specify a single `project('...')` dependency in a source set's dependencies, and the compilations that include the source set will receive a corresponding platform-specific artifact of that project, given that it has a compatible target.-->
 
-Однако зависимость `project('...')` от другого мультиплатформенного проекта автоматически настраивается на соответствующую цель. Достаточно указать одну зависимость `project('...')` в зависимостях набора исходных кодов, а компиляции, включающие себя исходный набор, получат соответствующий артефакт для конкретной платформы для этого проекта, учитывая, что он имеет совместимую цель.
+Однако зависимость `project('...')` от другого мультиплатформенного проекта автоматически настраивается для соответствующей цели. Достаточно указать одну зависимость `project('...')` в зависимостях набора исходных кодов, а компиляции, включающие в себя исходный набор, получат соответствующий артефакт для конкретной платформы для этого проекта, учитывая, что он имеет совместимую цель.
 
 <!-- Likewise, if a multiplatform library is published in the experimental Gradle metadata publishing mode and the project is set up to consume the metadata as well, then it is enough to specify a dependency only once, for the common source set. Otherwise, each platform-specific source set should be provided with a corresponding platform module of the library, in addition to the common module, as shown above. -->
 
-Аналогично, если многоплатформенная библиотека публикуется в экспериментальном [режиме публикации метаданных Gradle](#experimental-metadata-publishing-mode) и проект настроен так, чтобы потреблять метаданные, тогда достаточно указать зависимость только один раз для общего набора исходных кодов. В противном случае каждый набор ресурсов для конкретной платформы должен быть снабжен соответствующим платформенным модулем библиотеки в дополнение к общему модулю, как показано выше.
+Аналогично, если многоплатформенная библиотека публикуется в [экспериментальном режиме публикации метаданных Gradle](#экспериментальный-режим-публикации-метаданных) и проект настроен так, чтобы потреблять метаданные, то достаточно указать зависимость только один раз для общего набора исходных кодов. В противном случае каждый набор ресурсов для конкретной платформы должен быть снабжен соответствующим платформенным модулем библиотеки в дополнение к общему модулю, как показано выше.
 
 <!-- An alternative way to specify the dependencies is to use the Gradle built-in DSL at the top level with the configuration names following the pattern `<sourceSetName><DependencyKind>`: -->
 

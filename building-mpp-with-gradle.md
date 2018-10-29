@@ -354,10 +354,10 @@ DSL наборов исходных кодов может использоват
  }
 ```
 
-Custom source sets created in addition to the [default ones](#default-project-layout) should be explicitly included into the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part in compilations. 
-Most often, they need a `dependsOn commonMain` or `dependsOn commonTest` statement, and some of the default platform-specific source sets should depend on the custom ones, directly or indirectly:
+<!-- Custom source sets created in addition to the [default ones](#default-project-layout) should be explicitly included into the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part in compilations. 
+Most often, they need a `dependsOn commonMain` or `dependsOn commonTest` statement, and some of the default platform-specific source sets should depend on the custom ones, directly or indirectly: -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Пользовательские наборы исходных кодов, созданные в дополнение к стандартным, должны быть явно включены в иерархию зависимостей для того, чтобы иметь возможность использовать объявления из других наборов исходных кодов и, самое главное, принимать участие в компиляциях. Чаще всего им нужен оператор `dependsOn commonMain` или `dependsOn commonTest`, а некоторые из наборов исходных кодов для конкретной платформы должны быть напрямую или косвенно зависеть от пользовательских:
 
 ```groovy
 kotlin { 
@@ -383,29 +383,37 @@ kotlin {
 }
 ```
 
-</div>
+### Добавление зависимостей
 
-### Adding Dependencies
+<!-- To add a dependency to a source set, use a `dependencies { ... }` block of the source sets DSL. Four kinds of dependencies
+are supported: -->
 
-To add a dependency to a source set, use a `dependencies { ... }` block of the source sets DSL. Four kinds of dependencies
-are supported:
+Для добавления зависимости к набору исходных кодов используем блок dependencies { ... } наборов исходных кодов DSL. Поддерживаются четыре вида зависимостей:
 
-* `api` dependencies are used both during compilation and at runtime and are exported to library consumers. If any types 
-  from a dependency are used in the public API of the current module, then it should be an `api` dependency;
+<!-- * `api` dependencies are used both during compilation and at runtime and are exported to library consumers. If any types 
+  from a dependency are used in the public API of the current module, then it should be an `api` dependency; -->
   
-* `implementation` dependencies are used during compilation and at runtime for the current module, but are not exposed for compilation 
+* Зависимости `api` используются как во время компиляции, так и во время выполнения, и экспортируются в библиотеки. Если в публичном API текущего модуля используются какие-либо типы из зависимости, то это должна быть зависимость `api`;
+  
+<!-- * `implementation` dependencies are used during compilation and at runtime for the current module, but are not exposed for compilation 
   of other modules depending on the one with the `implementation` dependency. The`implementation` dependency kind should be used for 
   dependencies needed for the internal logic of a module. If a module is an endpoint application which is not published, it may
-  use `implementation` dependencies instead of `api` ones.
-
-* `compileOnly` dependencies are only used for compilation of the current module and are available neither at runtime nor during compilation
-  of other modules. These dependencies should be used for APIs which have a third-party implementation available at runtime.
+  use `implementation` dependencies instead of `api` ones. -->
   
-* `runtimeOnly` dependencies are available at runtime but are not visible during compilation of any module.
+* Зависимости `implementation` используются во время компиляции и во время выполнения текущего модуля, но не отображаются при компиляции других модулей в зависимости от того, какая зависимость `implementation` используется. Тип зависимости `implementation` должен использоваться для зависимостей, необходимых для внутренней логики модуля. Если модуль является конечным приложением, которое не публикуется, оно может использовать зависимости `implementation` вместо `api`.
 
-Dependencies are specified per source set as follows: 
+<!-- * `compileOnly` dependencies are only used for compilation of the current module and are available neither at runtime nor during compilation
+  of other modules. These dependencies should be used for APIs which have a third-party implementation available at runtime. -->
+  
+* Зависимости `compileOnly` используются только для компиляции текущего модуля и недоступны ни во время выполнения, ни при компиляции других модулей. Эти зависимости должны использоваться для API, имеющих стороннюю реализацию, доступную во время выполнения.
+  
+<!-- * `runtimeOnly` dependencies are available at runtime but are not visible during compilation of any module. -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+* Зависимости `runtimeOnly` доступны во время выполнения, но не отображаются во время компиляции никаких модулей.
+
+<!-- Dependencies are specified per source set as follows:  -->
+
+Зависимости для каждого набора исходных кодов указаны следующим образом:
 
 ```groovy
 kotlin {
@@ -423,8 +431,6 @@ kotlin {
     }
 }
 ```
-
-</div>
 
 Note that for the IDE to correctly analyze the dependencies of the common sources, the common source sets need to have corresponding dependencies on the Kotlin 
 metadata packages in addition to the platform-specific artifact dependencies of the platform-specific source sets. Usually, an artifact with a suffix 

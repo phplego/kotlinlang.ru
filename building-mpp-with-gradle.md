@@ -388,7 +388,7 @@ kotlin {
 <!-- To add a dependency to a source set, use a `dependencies { ... }` block of the source sets DSL. Four kinds of dependencies
 are supported: -->
 
-Для добавления зависимости к набору исходных кодов используем блок dependencies { ... } наборов исходных кодов DSL. Поддерживаются четыре вида зависимостей:
+Для добавления зависимости к набору исходных кодов используем блок `dependencies { ... }` наборов исходных кодов DSL. Поддерживаются четыре вида зависимостей:
 
 <!-- * `api` dependencies are used both during compilation and at runtime and are exported to library consumers. If any types 
   from a dependency are used in the public API of the current module, then it should be an `api` dependency; -->
@@ -432,9 +432,12 @@ kotlin {
 }
 ```
 
-Note that for the IDE to correctly analyze the dependencies of the common sources, the common source sets need to have corresponding dependencies on the Kotlin 
+<!-- Note that for the IDE to correctly analyze the dependencies of the common sources, the common source sets need to have corresponding dependencies on the Kotlin 
 metadata packages in addition to the platform-specific artifact dependencies of the platform-specific source sets. Usually, an artifact with a suffix 
-`-common` (as in `kotlin-stdlib-common`) or `-metadata` is required.
+`-common` (as in `kotlin-stdlib-common`) or `-metadata` is required. -->
+
+Обратите внимание на то, что для того, чтобы IDE правильно анализировала зависимости общих исходных кодов, общие наборы исходных кодов должны иметь соответствующие зависимости от пакетов метаданных Kotlin в дополнение к зависимостям артефакта для конкретной платформы от  наборов исходных кодов для этой же платформы. Обычно при использовании опубликованной библиотеки требуется артефакт с суффиксом 
+`-common` (как в случае `kotlin-stdlib-common`) или -`-metadata` (если только он не опубликован с метаданными Gradle, как описано ниже).
 
 If a multiplatform library is published in the experimental [metadata publishing mode](#experimental-metadata-publishing-mode) and the project 
 is set up to consume it, then 

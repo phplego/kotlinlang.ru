@@ -772,15 +772,16 @@ kotlin {
  
 Это создает дополнительные связанные задачи для двоичных файлов отладки и релиза. Доступ к задачам можно получить после оценки проекта из компиляции, например, `getLinkTask('executable', 'release')` или `getLinkTaskName('static', 'debug')`. Для получения двоичного файла используем `getBinary`, например, `getBinary('executable', 'release')` или `getBinary('static', 'debug')`.
 
-### CInterop support
+### Поддержка CInterop
 
-Since Kotlin/Native provides [interoperability with native languages](/docs/reference/native/c_interop.html),
+<!-- Since Kotlin/Native provides [interoperability with native languages](/docs/reference/native/c_interop.html),
 there is a DSL allowing one to configure this feature for a specific compilation.
-
 A compilation can interact with several native libraries. Interoperability with each of them can be configured in
-the `cinterops` block of the compilation:
+the `cinterops` block of the compilation: -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Поскольку Kotlin/Native обеспечивает [совместимость с родными языками](/docs/reference/native/c_interop.html), существует DSL, позволяющий настроить эту функцию для конкретной компиляции.
+
+Компиляция может взаимодействовать с несколькими родными библиотеками. Взаимодействие с каждым из них можно настроить в блоке компиляции `cinterops`:
 
 ```groovy
 // In the scope of a Kotlin/Native target's compilation:
@@ -812,16 +813,14 @@ cinterops {
     anotherInterop { /* ... */ }
 }
 ```
-</div>
 
-Often it's necessary to specify target-specific linker options for a binary which uses a native library. It can be
-done using the `linkerOpts` DSL method of a Kotlin/Native compilation:
+<!-- Often it's necessary to specify target-specific linker options for a binary which uses a native library. It can be
+done using the `linkerOpts` DSL method of a Kotlin/Native compilation: -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Часто для двоичного файла, использующего собственную библиотеку, необходимо указать параметры компоновщика для конкретной платформы. Это можно сделать с использованием метода DSL `linkerOpts` компиляции Kotlin/Native:
 
 ```groovy
 compilations.main {
     linkerOpts '-L/lib/search/path -L/another/search/path -lmylib'
 }
 ```
-</div>

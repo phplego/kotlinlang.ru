@@ -582,11 +582,11 @@ annotations mapping. -->
 <!-- > The set of target platforms is defined by a multiplatform library author, and they should provide all of the platform-specific implementations for the library. 
 > Adding new targets for a multiplatform library at the consumer's side is not supported. -->
 
-Набор целевых платформ определяется автором мультиплатформенной библиотеки, и они должны предоставлять все реализации конкретной платформы для данной библиотеки. Добавление новых целей для многоплатформенной библиотеки со стороны потребителя не поддерживается.
+> Набор целевых платформ определяется автором мультиплатформенной библиотеки, и они должны предоставлять все реализации конкретной платформы для данной библиотеки. Добавление новых целей для многоплатформенной библиотеки со стороны потребителя не поддерживается.
 
 <!-- A library built from a multiplatform project may be published to a Maven repository with the Gradle `maven-publish` plugin, which can be applied as follows: -->
 
-Библиотека, построенная из многоплатформенного проекта, может быть опубликована в репозитории Maven с плагином Gradle `maven-publish`, который может применяться следующим образом:
+Библиотека, созданная из многоплатформенного проекта, может быть опубликована в репозитории Maven с плагином Gradle `maven-publish`, который может применяться следующим образом:
 
 ```groovy
 plugins {
@@ -601,14 +601,18 @@ plugins {
 
 При применении данного плагина публикации по умолчанию создаются для каждой из целей, которая может быть создана на текущем хосте. Это требует задания в проекте `group` и `version`. Идентификаторы артефакта по умолчанию следуют шаблону `<имяПроекта>-<имяЦелиСтрочнымиБуквами>`, например, `sample-lib-nodejs` для цели, названной `nodeJs` в проекте `sample-lib`.
 
-Also, an additional publication is added by default which contains serialized Kotlin declarations and is used by the IDE to analyze multiplatform libraries.
+<!-- Also, an additional publication is added by default which contains serialized Kotlin declarations and is used by the IDE to analyze multiplatform libraries. -->
 
-By default, a sources JAR is added to each publication in addition to its main artifact. The sources JAR contains the sources used by the `main` compilation
-of the target.
+Кроме того, по умолчанию добавляется дополнительная публикация, содержащая сериализованные объявления Kotlin и используемая IDE для анализа мультиплатформенных библиотек.
 
-The Maven coordinates can be altered and additional artifact files may be added to the publication within the `targets { ... }` block:
+<!-- By default, a sources JAR is added to each publication in addition to its main artifact. The sources JAR contains the sources used by the `main` compilation
+of the target. -->
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+По умолчанию в каждую публикацию добавляется исходный код JAR, а также его главный артефакт. Исходные коды JAR содержат исходные коды, используемые при компиляции цели `main`.
+
+<!-- The Maven coordinates can be altered and additional artifact files may be added to the publication within the `targets { ... }` block: -->
+
+Координаты Maven могут быть изменены, и в публикацию внутри блока `targets { ... }` могут быть добавлены дополнительные файлы артефактов :
 
 ```groovy
 kotlin {
@@ -624,14 +628,14 @@ kotlin {
 }
 ```
 
-</div>
+### Экспериментальный режим публикации метаданных
 
-### Experimental metadata publishing mode
-
-An experimental publishing and dependency consumption mode can be enabled by adding 
+<!-- An experimental publishing and dependency consumption mode can be enabled by adding 
 `enableFeaturePreview('GRADLE_METADATA')` to the `settings.gradle` file. With Gradle metadata enabled,
  an additional publication is added which references the target publications as its variants. The artifact ID of this publication
- matches the project name.
+ matches the project name. -->
+ 
+Экспериментальный режим публикации и зависимости может быть включен путем добавления `enableFeaturePreview('GRADLE_METADATA')` в файл `settings.gradle`. При включении метаданных Gradle добавляется дополнительная публикация, которая ссылается на целевые публикации в качестве ее вариантов. Идентификатор артефакта этой публикации соответствует имени проекта.
  
 > Gradle metadata publishing is an experimental Gradle feature which is not guaranteed to be backward-compatible. 
 Future Gradle versions may fail to resolve a dependency to a library published with current versions of Gradle metadata.

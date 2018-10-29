@@ -439,16 +439,17 @@ metadata packages in addition to the platform-specific artifact dependencies of 
 Обратите внимание на то, что для того, чтобы IDE правильно анализировала зависимости общих исходных кодов, общие наборы исходных кодов должны иметь соответствующие зависимости от пакетов метаданных Kotlin в дополнение к зависимостям артефакта для конкретной платформы от  наборов исходных кодов для этой же платформы. Обычно при использовании опубликованной библиотеки требуется артефакт с суффиксом 
 `-common` (как в случае `kotlin-stdlib-common`) или -`-metadata` (если только он не опубликован с метаданными Gradle, как описано ниже).
 
-If a multiplatform library is published in the experimental [metadata publishing mode](#experimental-metadata-publishing-mode) and the project 
-is set up to consume it, then 
-it is enough to specify the corresponding dependency once for the common source set. Otherwise, each platform-specific source set should be 
-provided with a corresponding platform module of the library, in addition to the common module, as shown above. A `project('...')` dependency
-on another multiplatform project is likewise resolved to an appropriate target, even with experimental metadata disabled.
+<!--However, a `project('...')` dependency on another multiplatform project is resolved to an appropriate target automatically. It is enough to specify a single `project('...')` dependency in a source set's dependencies, and the compilations that include the source set will receive a corresponding platform-specific artifact of that project, given that it has a compatible target.-->
 
-An alternative way to specify the dependencies is to use the Gradle built-in DSL at the top level with the configuration names following the 
-pattern `<sourceSetName><DependencyKind>`:
+Однако зависимость `project('...')` от другого мультиплатформенного проекта автоматически настраивается на соответствующую цель. Достаточно указать одну зависимость `project('...')` в зависимостях набора исходных кодов, а компиляции, включающие себя исходный набор, получат соответствующий артефакт для конкретной платформы для этого проекта, учитывая, что он имеет совместимую цель.
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+<!-- Likewise, if a multiplatform library is published in the experimental Gradle metadata publishing mode and the project is set up to consume the metadata as well, then it is enough to specify a dependency only once, for the common source set. Otherwise, each platform-specific source set should be provided with a corresponding platform module of the library, in addition to the common module, as shown above. -->
+
+Аналогично, если многоплатформенная библиотека публикуется в экспериментальном [режиме публикации метаданных Gradle](#experimental-metadata-publishing-mode) и проект настроен так, чтобы потреблять метаданные, тогда достаточно указать зависимость только один раз для общего набора исходных кодов. В противном случае каждый набор ресурсов для конкретной платформы должен быть снабжен соответствующим платформенным модулем библиотеки в дополнение к общему модулю, как показано выше.
+
+<!-- An alternative way to specify the dependencies is to use the Gradle built-in DSL at the top level with the configuration names following the pattern `<sourceSetName><DependencyKind>`: -->
+
+Альтернативным способом указания зависимостей является использование встроенного DSL Gradle на верхнем уровне с именами конфигурации, следующими за шаблоном `<sourceSetName><DependencyKind>`:
 
 ```groovy
 dependencies {
@@ -457,13 +458,11 @@ dependencies {
 }
 ```
 
-</div>
+### Настройки языка
 
-### Language settings
+<!-- The language settings for a source set can be specified as follows: -- >
 
-The language settings for a source set can be specified as follows:
-
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+Настройки языка для набора источников могут быть указаны следующим образом:
 
 ```groovy
 kotlin {
@@ -480,16 +479,41 @@ kotlin {
 }
 ```
 
-</div>
+<!-- It is possible to configure the language settings of all source sets at once: -->
 
-Language settings of a source set affect how the sources are analyzed in the IDE. Due to the current limitations, in a Gradle build, only the language settings 
-of the compilation's default source set are used.
+Можно настроить языковые настройки для всех наборов источников одновременно:
 
-The language settings are checked for consistency between source sets depending on each other. Namely, if `foo` depends on `bar`:
+```groovy
+kotlin.sourceSets.all {
+    languageSettings {
+        progressiveMode = true
+    }
+}
+```
 
-* `foo` should set `languageVersion` that is greater than or equal to that of `bar`;
-* `foo` should enable all unstable language features that `bar` enables (there's no such requirement for bugfix features);
-* `apiVersion`, bugfix language features, and `progressiveMode` can be set arbitrarily; 
+<!--Language settings of a source set affect how the sources are analyzed in the IDE. Due to the current limitations, in a Gradle build, only the language settings of the compilation's default source set are used.-->
+
+Языковые настройки набора источников влияют на то, как исходные коды анализируются в IDE. Из-за существующих ограничений в сборке Gradle используются только настройки языка исходного набора компиляции.
+
+<!-- The language settings are checked for consistency between source sets depending on each other. Namely, if `foo` depends on `bar`: -->
+
+Настройки языка проверяются на согласованность между наборами исходных кодов в зависимости друг от друга. А именно, если `foo` зависит от `bar`:
+
+<!-- * `foo` should set `languageVersion` that is greater than or equal to that of `bar`; -->
+
+* `foo` должен установить значение `languageVersion`, большее или равное значению `bar`;
+
+<!-- * `foo` should enable all unstable language features that `bar` enables (there's no such requirement for bugfix features); -->
+
+* `foo` должен включить все нестабильные языковые функции, которые позволяет `bar` (к функциям исправления нет такого требования);
+
+<!--foo should use all experimental annotations that bar uses; -->
+
+* `foo` следует использовать все экспериментальные аннотации, которые использует `bar`;
+
+<!-- * `apiVersion`, bugfix language features, and `progressiveMode` can be set arbitrarily; -->
+
+* `apiVersion`, возможности исправления языка и `progressiveMode` могут быть установлены произвольно;
 
 ## Default Project Layout
 

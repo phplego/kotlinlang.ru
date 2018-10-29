@@ -564,23 +564,29 @@ the tests for all targets. -->
 
 [`kotlin.test` API](https://kotlinlang.org/api/latest/kotlin.test/index.html) доступен для мультиплатформенных тестов. Добавьте зависимости `kotlin-test-common` и `kotlin-test-annotations-common` в `commonTest` для использования `DefaultAsserter` и аннотаций `@Test`/`@Ignore`/`@BeforeTest`/`@AfterTest` в общих тестах.
 
-For JVM targets, use `kotlin-test-junit` or `kotlin-test-testng` for the corresponding asserter implementation and
-annotations mapping.
+<!-- For JVM targets, use `kotlin-test-junit` or `kotlin-test-testng` for the corresponding asserter implementation and
+annotations mapping. -->
 
-For Kotlin/JS targets, add `kotlin-test-js` as a test dependency. At this point, test tasks for Kotlin/JS do not run tests by default 
-and should be manually configured to do so. 
+Для JVM используйте `kotlin-test-junit` или k`kotlin-test-testng` для соответствующего сопоставления исполнителей и составления аннотаций.
 
-Kotlin/Native targets do not require additional test dependencies, and the `kotlin.test` API implementations are built-in.
+<!-- For Kotlin/JS targets, add kotlin-test-js as a test dependency. At this point, test tasks for Kotlin/JS are created but do not run tests by default; they should be manually configured to run the tests with a JavaScript test framework. -->
 
-## Publishing a Multiplatform Library
+Для Kotlin/JS добавим `kotlin-test-js` в качестве тестовой зависимости. На этом этапе тестовые задачи для Kotlin/JS создаются, но не запускают тесты по умолчанию; они должны быть настроены вручную для запуска тестов с помощью тестового фреймворка JavaScript.
 
-> The set of target platforms is defined by a multiplatform library author, and they should provide all of the platform-specific implementations for the library. 
-> Adding new targets for a multiplatform library at the consumer's side is not supported. 
-{:.note} 
+<!-- Kotlin/Native targets do not require additional test dependencies, and the `kotlin.test` API implementations are built-in. -->
 
-A library built from a multiplatform project may be published to a Maven repository with the Gradle `maven-publish` plugin, which can be applied as follows:
+Цели Kotlin/Native не требуют дополнительных тестовых зависимостей, а реализации API `kotlin.test` уже встроены.
 
-<div class="sample" markdown="1" theme="idea" mode='groovy'>
+## Публикация многоплатформенной библиотеки
+
+<!-- > The set of target platforms is defined by a multiplatform library author, and they should provide all of the platform-specific implementations for the library. 
+> Adding new targets for a multiplatform library at the consumer's side is not supported. -->
+
+Набор целевых платформ определяется автором мультиплатформенной библиотеки, и они должны предоставлять все реализации конкретной платформы для данной библиотеки. Добавление новых целей для многоплатформенной библиотеки со стороны потребителя не поддерживается.
+
+<!-- A library built from a multiplatform project may be published to a Maven repository with the Gradle `maven-publish` plugin, which can be applied as follows: -->
+
+Библиотека, построенная из многоплатформенного проекта, может быть опубликована в репозитории Maven с плагином Gradle `maven-publish`, который может применяться следующим образом:
 
 ```groovy
 plugins {
@@ -589,11 +595,11 @@ plugins {
 }
 ```
 
-</div>
-
-Once this plugin is applied, default publications are created for each of the targets that can be built on the current host. This requires `group` and 
+<!-- Once this plugin is applied, default publications are created for each of the targets that can be built on the current host. This requires `group` and 
 `version` to be set in the project. The default artifact IDs follow the pattern `<projectName>-<targetNameToLowerCase>`, for example `sample-lib-nodejs` for a target named `nodeJs` in a project 
-`sample-lib`. 
+`sample-lib`. -->
+
+При применении данного плагина публикации по умолчанию создаются для каждой из целей, которая может быть создана на текущем хосте. Это требует задания в проекте `group` и `version`. Идентификаторы артефакта по умолчанию следуют шаблону `<имяПроекта>-<имяЦелиСтрочнымиБуквами>`, например, `sample-lib-nodejs` для цели, названной `nodeJs` в проекте `sample-lib`.
 
 Also, an additional publication is added by default which contains serialized Kotlin declarations and is used by the IDE to analyze multiplatform libraries.
 

@@ -515,26 +515,39 @@ kotlin.sourceSets.all {
 
 * `apiVersion`, возможности исправления языка и `progressiveMode` могут быть установлены произвольно;
 
-## Default Project Layout
+## Макет проекта по умолчанию
 
-By default, each project contains two source sets, `commonMain` and `commonTest`, where one can place all the code that should be 
-shared between all of the target platforms. These source sets are added to each production and test compilation, respectively.
+<!-- By default, each project contains two source sets, `commonMain` and `commonTest`, where one can place all the code that should be 
+shared between all of the target platforms. These source sets are added to each production and test compilation, respectively. -->
 
-Then, once a target is added, default compilations are created for it:
+По умолчанию каждый проект содержит два набора источников `commonMain` и `commonTest`, где можно разместить весь код, который должен быть общим для всех целевых платформ. Эти наборы исходных кодов добавляются, соответственно, к каждой сборке и тестовой компиляции.
 
+< -- Then, once a target is added, default compilations are created for it:
 * `main` and `test` compilations for JVM, JS, and Native targets;
-* a compilation per Android variant, for Android targets;
+* a compilation per Android variant, for Android targets; -->
 
-For each compilation, there is a default source set under the name composed as `<targetName><CompilationName>`. This default source
-set participates in the compilation, and thus it should be used for the platform-specific code and dependencies, and for adding other source
- sets to the compilation by the means of 'depends on'. For example, a project with
-targets `jvm6` (JVM) and `nodeJs` (JS) will have source sets: `commonMain`, `commonTest`, `jvm6Main`, `jvm6Test`, `nodeJsMain`, `nodeJsTest`.
+Затем, после добавления цели, для него создаются компиляции по умолчанию:
 
-Numerous use cases are covered by just the default source sets and don't require custom source sets.
+* `main` и `test` компиляции для JVM, JS и Native;
+* компиляция на Android;
+
+<!-- For each compilation, there is a default source set under the name composed as `<targetName><CompilationName>`. This default source
+set participates in the compilation, and thus it should be used for the platform-specific code and dependencies, and for adding other source sets to the compilation by the means of 'depends on'. For example, a project with
+targets `jvm6` (JVM) and `nodeJs` (JS) will have source sets: `commonMain`, `commonTest`, `jvm6Main`, `jvm6Test`, `nodeJsMain`, `nodeJsTest`. -->
+
+Для каждой компиляции есть набор исходных кодов по умолчанию, заданный под именем, составленным как `<имяЦели><имяКомпиляции>`. Этот набор исходных кодов по умолчанию участвует в компиляции, и поэтому он должен использоваться для кода и зависимостей для платформы, а также для добавления других источников в компиляцию с помощью параметра 'depends on'. Например, проект с целями `jvm6` (JVM) и `nodeJs` (JS) будут иметь наборы исходных кодов: `commonMain`, `commonTest`, `jvm6Main`, `jvm6Test`, `nodeJsMain`, `nodeJsTest`.
+
+<!-- Numerous use cases are covered by just the default source sets and don't require custom source sets. -->
+
+Многочисленные варианты использования охватываются только стандартными наборами исходных кодов и не требуют настраиваемых наборов исходных кодов.
  
-Each source set by default has its Kotlin sources under `src/<sourceSetName>/kotlin` directory and the resources under `src/<sourceSetName>/resources`.
+<!-- Each source set by default has its Kotlin sources under `src/<sourceSetName>/kotlin` directory and the resources under `src/<sourceSetName>/resources`. -->
 
-In Android projects, additional Kotlin source sets are created for each Android source set. If the Android target has a name `foo`, the Android source set `bar` gets a Kotlin source set counterpart `fooBar`. The Kotlin compilations, however, are able to consume Kotlin sources from all of the directories `src/bar/java`, `src/bar/kotlin`, and `src/fooBar/kotlin`. Java sources are only read from the first of these directories.
+Каждый установленный по умолчанию набор исходных кодов имеет свои исходные коды Kotlin в директории `src/<sourceSetName>/kotlin` и ресурсы под src/<sourceSetName>/resources.
+
+<!-- In Android projects, additional Kotlin source sets are created for each Android source set. If the Android target has a name `foo`, the Android source set `bar` gets a Kotlin source set counterpart `fooBar`. The Kotlin compilations, however, are able to consume Kotlin sources from all of the directories `src/bar/java`, `src/bar/kotlin`, and `src/fooBar/kotlin`. Java sources are only read from the first of these directories. -->
+
+В проектах Android для каждого набора файлов Android создаются дополнительные исходные коды Kotlin. Если у цели Android есть имя `foo`, исходный набор Android `bar` получает экземпляр набора исходных кодов Kotlin `fooBar`. Компиляции Котлин, однако, способны потреблять источники Котлин из всех каталогов `src/bar/java`, `src/bar/kotlin` и `src/fooBar/kotlin`. Источники Java считываются только из первого из этих каталогов.
 
 ## Running Tests
 

@@ -11,7 +11,7 @@ It is recommended to remove `kotlin-runtime`, `kotlin-stdlib` and `kotlin-reflec
 already contains all of them. You also should pay attention in case when external Kotlin libraries are included.
 Most regular Kotlin dependencies are not OSGi-ready, so you shouldn't use them and should remove them from your project. -->
 
-Для включения поддержки Kotlin OSGi нам необходимо включить `kotlin-osgi-bundle` вместо обычных библиотек Kotlin. 
+Для включения поддержки Kotlin OSGi необходимо включить `kotlin-osgi-bundle` вместо обычных библиотек Kotlin. 
 Рекомендуется удалить зависимости `kotlin-runtime`, `kotlin-stdlib` и `kotlin-reflect`, т.к. `kotlin-osgi-bundle` уже содержит их все. 
 Следует обратить внимание на то, подключены ли внешние библиотеки Kotlin. Большинство обычных зависимостей Kotlin не готовы для использования
 с OSGi, поэтому их не следует использовать и нужно удалить из проекта.

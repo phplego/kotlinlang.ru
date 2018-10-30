@@ -32,7 +32,8 @@
     "coroutines"
   ],
   "Мультиплаформенное программирование": [
-    "multiplatform"
+    "multiplatform",
+    "building-mpp-with-gradle"
     ],  
   "Прочее": [
     "multi-declarations",

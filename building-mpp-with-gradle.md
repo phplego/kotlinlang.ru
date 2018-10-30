@@ -315,7 +315,7 @@ kotlin {
 <!-- * whenever `foo` is compiled for a certain target, `bar` takes part in that compilation as well and is also compiled 
 into the same target binary form, such as JVM class files or JS code; -->
 
-* всякий раз, когда `foo` компилируется для определенной цели, `bar` также участвует в этой компиляции и также скомпилируется в одну и ту же целевую двоичную форму, такую как файлы классов JVM или JS-код;
+* всякий раз, когда `foo` компилируется для определенной цели, `bar` также участвует в этой компиляции и также скомпилируется в одну и ту же целевую бинарную форму, такую как файлы классов JVM или JS-код;
 
 <!-- * the resources of `bar` are always processed and copied along with the resources of `foo`; -->
 
@@ -543,7 +543,7 @@ targets `jvm6` (JVM) and `nodeJs` (JS) will have source sets: `commonMain`, `com
  
 <!-- Each source set by default has its Kotlin sources under `src/<sourceSetName>/kotlin` directory and the resources under `src/<sourceSetName>/resources`. -->
 
-Каждый установленный по умолчанию набор исходных кодов имеет свои исходные коды Kotlin в директории `src/<sourceSetName>/kotlin` и ресурсы под src/<sourceSetName>/resources.
+Каждый установленный по умолчанию набор исходных кодов имеет свои исходные коды Kotlin в директории `src/<sourceSetName>/kotlin` и ресурсы под `src/<sourceSetName>/resources`.
 
 <!-- In Android projects, additional Kotlin source sets are created for each Android source set. If the Android target has a name `foo`, the Android source set `bar` gets a Kotlin source set counterpart `fooBar`. The Kotlin compilations, however, are able to consume Kotlin sources from all of the directories `src/bar/java`, `src/bar/kotlin`, and `src/fooBar/kotlin`. Java sources are only read from the first of these directories. -->
 
@@ -558,7 +558,7 @@ the tests for all targets. -->
 
 <!-- As the `commonTest` [default source set](#default-project-layout) is added to all test compilations, tests and test tools that are needed on all target platforms may be placed there. -->
 
-Поскольку [набор исходных кодов по умолчанию](#default-project-layout) `commonTest` по умолчанию добавляется ко всем тестовым компиляциям, там могут быть размещены тесты и инструменты тестирования, которые необходимы на всех целевых платформах.
+Поскольку [набор исходных кодов по умолчанию](#макет-проекта-по-умолчанию) `commonTest` по умолчанию добавляется ко всем тестовым компиляциям, там могут быть размещены тесты и инструменты тестирования, которые необходимы на всех целевых платформах.
 
 <!-- The [`kotlin.test` API](https://kotlinlang.org/api/latest/kotlin.test/index.html) is availble for multiplatform tests. Add the `kotlin-test-common` and `kotlin-test-annotations-common` dependencies to `commonTest` to use `DefaultAsserter` and `@Test`/`@Ignore`/`@BeforeTest`/`@AfterTest` annotations in the common tests. -->
 
@@ -567,7 +567,7 @@ the tests for all targets. -->
 <!-- For JVM targets, use `kotlin-test-junit` or `kotlin-test-testng` for the corresponding asserter implementation and
 annotations mapping. -->
 
-Для JVM используйте `kotlin-test-junit` или k`kotlin-test-testng` для соответствующего сопоставления исполнителей и составления аннотаций.
+Для JVM используем `kotlin-test-junit` или k`kotlin-test-testng` для соответствующего сопоставления исполнителей и составления аннотаций.
 
 <!-- For Kotlin/JS targets, add kotlin-test-js as a test dependency. At this point, test tasks for Kotlin/JS are created but do not run tests by default; they should be manually configured to run the tests with a JavaScript test framework. -->
 
@@ -612,7 +612,7 @@ of the target. -->
 
 <!-- The Maven coordinates can be altered and additional artifact files may be added to the publication within the `targets { ... }` block: -->
 
-Координаты Maven могут быть изменены, и в публикацию внутри блока `targets { ... }` могут быть добавлены дополнительные файлы артефактов :
+Координаты Maven могут быть изменены и в публикацию внутри блока `targets { ... }` могут быть добавлены дополнительные файлы артефактов :
 
 ```groovy
 kotlin {
@@ -723,7 +723,7 @@ kotlin {
 * macOS and iOS targets can only be built on a macOS host;
 * Android Native targets require a Linux or macOS host; -->
 
-Важно отметить, что некоторые из целей [Kotlin/Native](#supported-platforms) могут быть созданы только с помощью соответствующей хост-машины:
+Важно отметить, что некоторые из целей [Kotlin/Native](#поддерживаемые-платформы) могут быть созданы только с помощью соответствующей хост-машины:
 
 * Цели Linux могут быть построены только на хосте Linux;
 * Для целей Windows требуется хост Windows;
@@ -743,9 +743,9 @@ To link a binary in addition to the Kotlin/Native library, add one or more of th
 * `static` for a static library;
 * `framework` for an Objective-C framework (only supported for macOS and iOS targets) -->
 
-По умолчанию цель Kotlin / Native скомпилирована до артефакта библиотеки `*.klib`, который может быть использован самим Kotlin/Native в качестве зависимости, но не может быть запущен или использован в качестве родной библиотеки.
+По умолчанию цель Kotlin/Native скомпилирована до артефакта библиотеки `*.klib`, который может быть использован самим Kotlin/Native в качестве зависимости, но не может быть запущен или использован в качестве родной библиотеки.
 
-Для того, чтобы привязать двоичный файл как дополнение к библиотеке Kotlin / Native, добавим один или несколько `outputKinds`, которые могут быть:
+Для того, чтобы привязать бинарный файл как дополнение к библиотеке Kotlin/Native, добавим один или несколько `outputKinds`, которые могут быть:
 
 * `executable` для исполняемой программы;
 * `dynamic` для динамической библиотеки;
@@ -770,7 +770,7 @@ kotlin {
 `getLinkTask('executable', 'release')` or `getLinkTaskName('static', 'debug')`. To get the binary file, use `getBinary`, for example, 
  as `getBinary('executable', 'release')` or `getBinary('static', 'debug')`. -->
  
-Это создает дополнительные связанные задачи для двоичных файлов отладки и релиза. Доступ к задачам можно получить после оценки проекта из компиляции, например, `getLinkTask('executable', 'release')` или `getLinkTaskName('static', 'debug')`. Для получения двоичного файла используем `getBinary`, например, `getBinary('executable', 'release')` или `getBinary('static', 'debug')`.
+Это создает дополнительные связанные задачи для бинарных файлов отладки и релиза. Доступ к задачам можно получить после оценки проекта из компиляции, например, `getLinkTask('executable', 'release')` или `getLinkTaskName('static', 'debug')`. Для получения бинарного файла используем `getBinary`, например, `getBinary('executable', 'release')` или `getBinary('static', 'debug')`.
 
 ### Поддержка CInterop
 
@@ -817,7 +817,7 @@ cinterops {
 <!-- Often it's necessary to specify target-specific linker options for a binary which uses a native library. It can be
 done using the `linkerOpts` DSL method of a Kotlin/Native compilation: -->
 
-Часто для двоичного файла, использующего собственную библиотеку, необходимо указать параметры компоновщика для конкретной платформы. Это можно сделать с использованием метода DSL `linkerOpts` компиляции Kotlin/Native:
+Часто для бинарного файла, использующего собственную библиотеку, необходимо указать параметры компоновщика для конкретной платформы. Это можно сделать с использованием метода DSL `linkerOpts` компиляции Kotlin/Native:
 
 ```groovy
 compilations.main {

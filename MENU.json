@@ -58,6 +58,7 @@
     "kapt",
     "using-maven",
     "using-ant",
+    "kotlin-osgi",
     "compiler-plugins",
     "using-gradle"
   ],

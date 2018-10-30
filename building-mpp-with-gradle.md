@@ -357,7 +357,7 @@ DSL наборов исходных кодов может использоват
 <!-- Custom source sets created in addition to the [default ones](#default-project-layout) should be explicitly included into the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part in compilations. 
 Most often, they need a `dependsOn commonMain` or `dependsOn commonTest` statement, and some of the default platform-specific source sets should depend on the custom ones, directly or indirectly: -->
 
-Пользовательские наборы исходных кодов, созданные в дополнение к [стандартным](#макет-проекта-по-умолчанию), должны быть явно включены в иерархию зависимостей для того, чтобы иметь возможность использовать объявления из других наборов исходных кодов и, самое главное, принимать участие в компиляциях. Чаще всего им нужен оператор `dependsOn commonMain` или `dependsOn commonTest`, а некоторые из наборов исходных кодов для конкретной платформы должны быть напрямую или косвенно зависеть от пользовательских:
+Пользовательские наборы исходных кодов, созданные в дополнение к [стандартным](#макет-проекта-по-умолчанию), должны быть явно включены в иерархию зависимостей для того, чтобы иметь возможность использовать объявления из других наборов исходных кодов и, самое главное, принимать участие в компиляциях. Чаще всего им нужен оператор `dependsOn commonMain` или `dependsOn commonTest`, а некоторые из наборов исходных кодов для конкретной платформы должны напрямую или косвенно зависеть от пользовательских:
 
 ```groovy
 kotlin { 

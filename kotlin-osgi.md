@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: reference
-title: "Kotlin and OSGi"
+title: "Kotlin и OSGi"
 ---
 
 # Kotlin и OSGi

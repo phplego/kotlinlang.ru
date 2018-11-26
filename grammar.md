@@ -1,3 +1,12 @@
+---
+type: doc
+layout: inner
+title: "Грамматика"
+url: https://kotlinlang.ru/docs/reference/grammar.html
+---
+
+
+
 # Грамматика
 # Предисловие
 <!-- This section informally explains the grammar notation used below. -->

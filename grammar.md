@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: inner
+layout: reference
 title: "Грамматика"
 url: https://kotlinlang.ru/docs/reference/grammar.html
 ---

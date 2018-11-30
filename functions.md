@@ -111,14 +111,32 @@ class B : A() {
 }
 ```
 
+<!--If a default parameter precedes a parameter with no default value, the default value can be used only by calling the function with named arguments:-->
+Если параметр по умолчанию предшествует параметру без значения по умолчанию, значение по умолчанию можно использовать только при вызове функции с именованными аргументами:
+
+```kotlin
+fun foo(bar: Int = 0, baz: Int) { ... }
+
+foo(baz = 1) // Используется значение по умолчанию bar = 0
+```
+
+Но если последний аргумент [lambda](http://kotlinlang.ru/docs/reference/lambdas.html#lambda-expression-syntax) передается в вызов функции вне скобок, передача значений параметров по умолчанию не допускается:
+
+``` kotlin
+fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { ... }
+
+foo(1) { println("hello") } // Использует значение по умолчанию baz = 1 
+foo { println("hello") }    // Использует два значения по умолчанию bar = 0 и baz = 1
+```
+
 <!--### Named Arguments-->
-### Имена в названиях аргументов
+### Именованные аргументы
 
 <!--Function parameters can be named when calling functions. This is very convenient when a function has a high number of parameters or default ones.-->
-Параметры функции могут быть названы в момент вызова функций. Это очень удобно, когда у функции большой список параметров, в том числе со значениями по умолчанию.
+Имена параметров могут быть явно указаны при вызове функций. Это очень удобно, когда у функции большой список параметров, в том числе со значениями по умолчанию.
 
 <!--Given the following function-->
-Рассмотрим такую функцию
+Рассмотрим следующую функцию:
 
 ``` kotlin
 fun reformat(str: String,
@@ -145,7 +163,7 @@ reformat(str, true, true, false, '_')
 ```
 
 <!--With named arguments we can make the code much more readable-->
-С названными аргументами мы можем сделать код намного более читаемым
+С помощью именованных аргументов мы можем сделать код более читабельным:
 
 ``` kotlin
 reformat(str,
@@ -163,9 +181,21 @@ reformat(str,
 reformat(str, wordSeparator = '_')
 ```
 
+<!--When a function is called with both positional and named arguments, all the positional arguments should be placed before the first named one. For example, the call `f(1, y = 2)` is allowed, but `f(x = 1, 2)` is not.-->
+При вызове функции как с позиционными, так и с именованными аргументами все позиционные аргументы должны располагаться перед первым именованным аргументом. Например, вызов `f(1, y = 2)` разрешен, а `f(x = 1, 2)` - нет.
+
+<!--[Variable number of arguments (*vararg*{: .keyword })](#variable-number-of-arguments-varargs) can be passed in the named form by using the **spread** operator:-->
+[Переменное число аргументов (**vararg**)](#variable-number-of-arguments-varargs) можно передать в именованной форме с помощью оператора **spread**:
+
+```kotlin
+fun foo(vararg strings: String) { ... }
+
+foo(strings = *arrayOf("a", "b", "c"))
+```
+
 <!--Note that the named argument syntax cannot be used when calling Java functions, because Java bytecode does not
 always preserve names of function parameters.-->
-Обратите внимание, что синтаксис названных аргументов не может быть использован при вызове <b>Java</b> функций, потому как байт-код <b>Java</b> не всегда хранит имена параметров функции.
+Обратите внимание, что синтаксис именованных аргументов не может быть использован при вызове <b>Java</b> функций, потому как байт-код <b>Java</b> не всегда сохраняет имена параметров функции.
 
 
 <!--### Unit-returning functions-->
@@ -220,6 +250,8 @@ Kotlin does not infer return types for functions with block bodies because such 
 Функции, в которых есть тело, всегда должны указывать возвращаемый ими тип данных (если в этом качестве не указан тип `Unit`).
 <b>Kotlin</b> не вычисляет самостоятельно тип возвращаемого значения для функций с заключённым в них блоком кода потому, что подобные функции могут иметь сложную структуру и возвращаемый тип неочевиден для читающего этот код человека (иногда даже для компилятора).
 
+
+<a name="variable-number-of-arguments-varargs"></a>
 <!--### Variable number of arguments (Varargs)-->
 ### Нефиксированное число аргументов (Varargs)
 

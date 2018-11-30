@@ -149,6 +149,7 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 val compare: (x: T, y: T) -> Int = ...
 ```
 
+<a name="lambda-expression-syntax"></a>
 <!--##Lambda Expression Syntax-->
 ## Синтаксис лямбда-выражений
 

@@ -91,12 +91,15 @@ class D : A, B {
         super<A>.foo()
         super<B>.foo()
     }
+    
+    override fun bar() {
+        super<B>.bar()
+    }
 }
 ```
 
-<!--Interfaces *A* and *B* both declare functions *foo()* and *bar()*. Both of them implement *foo()*, but only *B* implements *bar()* (*bar()* is not marked abstract in *A*,
-because this is the default for interfaces, if the function has no body). Now, if we derive a concrete class *C* from *A*, we, obviously, have to override *bar()* and provide
-an implementation. And if we derive *D* from *A* and *B*, we don’t have to override *bar()*, because we have inherited only one implementation of it.
-But we have inherited two implementations of *foo()*, so the compiler does not know which one to choose, and forces us to override *foo()* and say what we want explicitly.-->
+<!--Interfaces A and B both declare functions foo() and bar(). Both of them implement foo(), but only B implements bar() (bar() is not marked abstract in A, because this is the default for interfaces, if the function has no body). Now, if we derive a concrete class C from A, we, obviously, have to override bar() and provide an implementation.
+However, if we derive D from A and B, we need to implement all the methods which we have inherited from multiple interfaces, and to specify how exactly D should implement them. This rule applies both to methods for which we've inherited a single implementation (bar()) and multiple implementations (foo()).-->
 Оба интерфейса *A* и *B* объявляют функции *foo()* и *bar()*. Оба реализуют *foo()*, но только *B* содержит реализацию *bar()*
-(*bar()* не отмечен как абстрактный метод в интерфейсе *A*, потому что в интерфейсах это подразумевается по умолчанию, если у функции нет тела). Теперь, если мы унаследуем какой-нибудь класс *C* от *A*, нам, очевидно, придётся переопределять *bar()*, обеспечивать его реализацию. А если мы унаследуем *D* от *A* и *B*, нам не надо будет переопределять *bar()*, потому что мы унаследовали только одну его имплементацию. Но мы получили в наследство две имплементации *foo()*, поэтому компилятору не известно, какую выбрать. Он заставит нас переопределить функцию *foo()* и явно указать что мы имели ввиду.  
+(*bar()* не отмечен как абстрактный метод в интерфейсе *A*, потому что в интерфейсах это подразумевается по умолчанию, если у функции нет тела). Теперь, если мы унаследуем какой-нибудь класс *C* от *A*, нам, очевидно, придётся переопределять *bar()*, обеспечивать его реализацию. 
+Однако если мы унаследуем *D* от *A* и *B*, нам надо будет переопределять все методы, которые мы унаследовали от этих интерфейсов. Это правило касается как тех методов, у которых имеется только одна реализация (*bar()*), так и тех, у которых есть несколько реализаций (*foo()*).

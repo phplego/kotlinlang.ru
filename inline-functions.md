@@ -47,7 +47,7 @@ finally {
 Чтобы заставить компилятор поступить именно так, нам необходимо отметить функцию `lock` модификатором `inline`:
 
 ``` kotlin
-inline fun lock<T>(lock: Lock, body: () -> T): T {
+inline fun <T> lock(lock: Lock, body: () -> T): T {
     // ...
 }
 ```

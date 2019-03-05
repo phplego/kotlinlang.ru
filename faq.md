@@ -154,10 +154,9 @@ Kotlin разрабатывается в основном группой инж�
 [StackOverflow](http://stackoverflow.com/questions/tagged/kotlin) и, наиболее активно, [Kotlin Slack](http://slack.kotlinlang.org)
 (примерно 7000 участников в мае 2017).
 
-### Are there Kotlin events?
+### Проходят ли какие-то мероприятия по Kotlin?
 
-Yes. There are many User Groups and Meetups now focused exclusively around Kotlin. You can find [a list on the web site](https://kotlinlang.org/community/user-groups.html).
-In addition there are community organised [Kotlin Nights](https://kotlinlang.org/community/kotlin-nights.html) events around the world.
+Да. Сейчас много пользовательских групп и митапов, которые сосредоточены на Kotlin. Список данных мероприятий можно найти [на этом сайте](https://kotlinlang.org/community/user-groups.html). Также во всем мире проводятся специальные мероприятия - [Kotlin Nights](https://kotlinlang.org/community/kotlin-nights.html)
 
 ### Проходят ли конференции, посвящённые Kotlin?
 

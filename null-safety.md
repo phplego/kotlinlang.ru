@@ -130,7 +130,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Такая цепочка вернёт *null* в случае, если одно из свойств имеет значение *null*.
 
 <!-- To perform a certain operation only for non-null values, you can use the safe call operator together with [`let`](/api/latest/jvm/stdlib/kotlin/let.html): -->
-Для проведения каких-либо операций над non-null значениями вы можете использовать [`let`](/api/latest/jvm/stdlib/kotlin/let.html)
+Для проведения каких-либо операций исключительно над non-null значениями вы можете использовать [`let`](/api/latest/jvm/stdlib/kotlin/let.html)
 оператор вместе с оператором безопасного вызова:
 
 ``` kotlin

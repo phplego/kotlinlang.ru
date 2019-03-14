@@ -224,7 +224,7 @@ if (foo::bar.isInitialized) {
 
 <!--This check is only available for the properties that are lexically accessible, i.e. declared in the same type or in one of
 the outer types, or at top level in the same file.-->
-Эта проверка возможна только для лексически доступных свойств, то есть объявленных в том же типе, или в одном из внешних типов, или расположенных на верхнем того же файла.
+Эта проверка возможна только для лексически доступных свойств, то есть объявленных в том же типе, или в одном из внешних типов, или глобальных свойств, объявленных в том же файле.
 
 <!--## Overriding Properties-->
 ## Переопределение свойств

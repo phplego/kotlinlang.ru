@@ -106,7 +106,7 @@ fun C.foo() { println("extension") }
 Если мы вызовем `c.foo()` любого объекта `c` с типом `C`, на экран выведется "member", а не "extension".
 
 <!--However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:-->
-Однако, для экстеншн-функций совершенно нормально перегружать функции-члены, которые имеют такое же имя, но другую сигнатуру:
+Однако, для функций-расширений совершенно нормально перегружать функции-члены, которые имеют такое же имя, но другую сигнатуру:
 
 ``` kotlin
 class C {

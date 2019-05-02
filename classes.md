@@ -100,7 +100,7 @@ class Customer public @Inject constructor(name: String) { ... }
 ```
 
 <!--For more details, see [Visibility Modifiers](visibility-modifiers.html#constructors).-->
-Для более подробной информации по данному вопросу см. ["Модификаторы доступа"](visibility-modifiers.html#constructors).
+Для более подробной информации по данному вопросу см. "[Модификаторы доступа](visibility-modifiers.html#constructors)".
 
 <!--#### Secondary Constructors-->
 #### Второстепенные конструкторы 

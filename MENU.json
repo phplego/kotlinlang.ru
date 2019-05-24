@@ -31,7 +31,7 @@
     "inline-functions",
     "coroutines"
   ],
-  "Мультиплаформенное программирование": [
+  "Мультиплатформенное программирование": [
     "multiplatform",
     "building-mpp-with-gradle"
     ],  

@@ -143,7 +143,7 @@ class Int {
 
 ``` kotlin
 fun Long.downTo(other: Int): LongProgression {
-    return LongProgression.fromClosedRange(this, other, -1.0)
+    return LongProgression.fromClosedRange(this, other, -1L)
 }
 
 fun Byte.downTo(other: Int): IntProgression {

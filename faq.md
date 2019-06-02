@@ -168,7 +168,7 @@ Kotlin также обсуждается во время различных ко
 Наиболее активный аккаунт [на Twitter](https://twitter.com/kotlin).
 Также есть группа [Google+](https://plus.google.com/communities/104597899765146112928).
 
-### Есть ли ещё какие-либо олайн-ресурсы по Kotlin?
+### Есть ли ещё какие-либо онлайн-ресурсы по Kotlin?
 
 В [сообществе Kotlin](https://kotlinlang.org/community/) вы можете найти множество ресурсов, включая [Дайджесты Kotlin](https://kotlin.link), организуемые сообществом,
 [новостную рассылку](http://www.kotlinweekly.net), [подкаст](https://talkingkotlin.com) и так далее.   

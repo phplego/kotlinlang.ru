@@ -77,7 +77,7 @@ fun foo() {
 <!--The **return** expression returns from the nearest enclosing function, i.e. `foo`.
 (Note that such non-local returns are supported only for lambda expressions passed to [inline functions](inline-functions.html).)
 If we need to return from a lambda expression, we have to label it and qualify the **return**:-->
-Опертор **return** возвращается из ближаейшей функции, в нашем случае `foo`.
+Опертор **return** возвращается из ближайшей функции, в нашем случае `foo`.
 (Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](inline-functions.html).) Если нам надо вернуться из лямбда-выражения, к оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
 
 ``` kotlin

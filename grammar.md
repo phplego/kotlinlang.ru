@@ -26,11 +26,18 @@ Symbol definitions may be prepended with attributes, e.g. start attribute denote
 Определения символов могут иметь множество производств и заканчиваются точкой с запятой ( ; ). 
 Определения символов могут быть добавлены с атрибутами , например, startатрибут обозначает символ начала.
 
-## EBNF expressions
-Operator | denotes alternative.
+## РБНФ выражения
+<!--## EBNF expressions-->
+Оператор | означает альтернативу.
+Оператор * означает повторение (ноль или больше).
+Оператор + означает повторение (один или больше).
+Оператор ? означает вариант (ноль или один).
+альфа{бета} означает непустой бета-разделенный список альф. 
+Оператор ++ значит что ни пробел ни комментарий не разрешен между операндами.
+<!--Operator | denotes alternative.
 Operator * denotes iteration (zero or more).
 Operator + denotes iteration (one or more).
 Operator ? denotes option (zero or one).
 alpha{beta} denotes a nonempty beta-separated list of alpha's. 
-Operator ++ means that no space or comment is allowed between operands.
+Operator ++ means that no space or comment is allowed between operands.-->
 

@@ -153,10 +153,10 @@ class MyClass {
 ```
 
 <!-- Members of the companion object can be called by using simply the class name as the qualifier: -->
-Для вызова членов такого `companion` объекта используется имя класса:
+Для вызова членов такого `companion` объекта используется имя класса плюс имя вспомогательного объекта:
 
 ``` kotlin
-val instance = MyClass.create()
+val instance = MyClass.Factory.create()
 ```
 
 <!-- The name of the companion object can be omitted, in which case the name `Companion` will be used: -->

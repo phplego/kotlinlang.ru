@@ -93,7 +93,7 @@ interface Collection<E> ... {
 ```
 
 <!-- The **wildcard type argument** `? extends E` indicates that this method accepts a collection of objects of `E` *or some subtype of* `E`, not just `E` itself. -->
-**Маска для аргумента** `? extends E` указывает на то, что этот метод принимает коллекцию объектов E *или некоего типа унаследованного от* `E`, а не сам `E`.
+**Маска для аргумента** `? extends E` указывает на то, что этот метод принимает коллекцию объектов `E` *или некоего типа унаследованного от* `E`, а не сам `E`.
 <!-- This means that we can safely **read** `E`'s from items (elements of this collection are instances of a subclass of E), but **cannot write** to -->
 <!-- it since we do not know what objects comply to that unknown subtype of `E`. -->
 <!-- In return for this limitation, we have the desired behaviour: `Collection<String>` *is* a subtype of `Collection<? extends Object>`. -->
@@ -117,6 +117,7 @@ interface Collection<E> ... {
 Джошуа Блок (Joshua Block) называет объекты:
 - **Производителями** (ориг.:_producers_), если вы только **читаете** из них
 - **Потребителями** (ориг.: _consumers_), если вы только **записываете** в них
+
 Его рекомендация: "*Для максимальной гибкости используйте маски (ориг. wildcards) на входных параметрах, которые представляют производителей или потребителей*"
 
 <!-- *PECS stands for Producer-Extends, Consumer-Super.* -->

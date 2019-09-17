@@ -101,7 +101,7 @@ when (x) {
 }
 ```
 
-Помимо этого Кotlin позволяет с момощью <b class="keyword">is</b> или <b class="keyword">!is</b> проверить тип аргумента. Обратите внимание, что благодаря [умным приведениям](typecasts.html#smart-casts) вы можете получить доступ к методам и свойствам типа без дополнительной проверки:
+Помимо этого Кotlin позволяет с помощью <b class="keyword">is</b> или <b class="keyword">!is</b> проверить тип аргумента. Обратите внимание, что благодаря [умным приведениям](typecasts.html#smart-casts) вы можете получить доступ к методам и свойствам типа без дополнительной проверки:
 
 ```kotlin
 val hasPrefix = when(x) {
@@ -110,7 +110,7 @@ val hasPrefix = when(x) {
 }
 ```
 
-<b class="keyword">when</b> удобно использовать вместо цепочки условий вида <b class="keyword">if</b>-<b class="keyword">else</b> <b class="keyword">if</b>. При отстутствии аргумента условия работают как простые логические выражения, а тело ветки выполняется при его истинности:
+<b class="keyword">when</b> удобно использовать вместо цепочки условий вида <b class="keyword">if</b>-<b class="keyword">else</b> <b class="keyword">if</b>. При отстутствии аргумента, условия работают как простые логические выражения, а тело ветки выполняется при его истинности:
 
 ``` kotlin
 when {
@@ -181,7 +181,7 @@ while (x > 0) {
 
 do {
   val y = retrieveData()
-} while (y != null) // y is visible here!
+} while (y != null) // y здесь доступно!
 ```
 
 См. [использование <b class="keyword">while</b>](grammar.html#while).

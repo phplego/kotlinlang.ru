@@ -7,7 +7,7 @@ url: "https://kotlinlang.ru/docs/reference/coroutines.html"
 ---
 
 # Сопрограммы
-> Сопрограммы являются *экспериментальными* в Kotlin 1.1. Детали см. [ниже](#experimental-status-of-coroutines) 
+> Сопрограммы получили статус *стабильные* в Kotlin 1.3. Детали см. [ниже](#experimental-status-of-coroutines) 
 
 Некоторые API инициируют долго протекающие операции (такие как сетевой ввод-вывод, файловый ввод-вывод, интенсивная обработка на CPU или GPU и др.), которые требуют блокировки вызывающего кода в ожидании завершения операций. Сопрограммы обеспечивают возможность избежать блокировки исполняющегося потока путём использования более дешёвой и управляемой операции: *приостановки* (suspend) сопрограммы.
 
@@ -140,15 +140,15 @@ More details on how coroutines work may be found in [this design document](https
 Более детально о том, как работают сопрограммы, можно узнать в [этом проектном документе](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md). Похожие описания `async / await` в других языках (таких как C# или ECMAScript 2016) актуальны и здесь, хотя особенности их языковых реализаций могут существенно отличаться от сопрограмм Kotlin.
 
 <a name="experimental-status-of-coroutines"></a>
-## Экспериментальный статус сопрограмм 
+## Экспериментальный статус сопрограмм сменился на стабильный
 
 <!--The design of coroutines is [experimental](compatibility.html#experimental-features), which means that it may be changed in the upcoming releases. When compiling coroutines in Kotlin 1.1, a warning is reported by default: *The feature "coroutines" is experimental*. To remove the warning, you need to specify an [opt-in flag](/docs/diagnostics/experimental-coroutines.html).
 
 Due to its experimental status, the coroutine-related API in the Standard Library is put under the `kotlin.coroutines.experimental` package. When the design is finalized and the experimental status lifted, the final API will be moved to `kotlin.coroutines`, and the experimental package will be kept around (probably in a separate artifact) for backward compatibility. 
 -->
-Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features), из чего следует возможность его изменения в будущих релизах. При составлении сопрограммы в Kotlin 1.1 по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](https://kotlinlang.org/docs/diagnostics/experimental-coroutines.html).
+<!--Дизайн сопрограмм носит статус [experimental](compatibility.html#experimental-features), из чего следует возможность его изменения в будущих релизах. При составлении сопрограммы в Kotlin 1.1 по умолчанию выводится предупреждение: *The feature "coroutines" is experimental*. Чтобы убрать предупреждение, необходимо указать опцию [opt-in flag](https://kotlinlang.org/docs/diagnostics/experimental-coroutines.html).-->
 
-Из-за экспериментального статуса сопрограмм все связанные API собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Когда дизайн будет стабилизирован и его экспериментальный статус снят, окончательный API будет перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет будет храниться (возможно, как отдельный артефакт) в целях обеспечения обратной совместимости.
+Из-за былого экспериментального статуса сопрограмм все связанные API были собраны в стандартной библиотеке как пакет `kotlin.coroutines.experimental`. Дизайн стабилизирован и его экспериментальный статус снят, окончательный API перенесен в пакет `kotlin.coroutines`, а экспериментальный пакет хранится в целях обеспечения обратной совместимости.
 
 <!--
   **IMPORTANT NOTE**: We advise library authors to follow the same convention: add the "experimental" (e.g. `com.example.experimental`) suffix to your packages exposing coroutine-based APIs so that your library remains binary compatible. When the final API is released, follow these steps:
@@ -158,7 +158,7 @@ Due to its experimental status, the coroutine-related API in the Standard Librar
 This will minimize migration issues for your users. 
 --> 
 
-**Важное замечание**: мы рекомендуем авторам библиотек следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий, какой там используется сопрограммно совместимый API. Таким образом ваша библиотека сохранит бинарную совместимость. А когда выйдет финальный API-интерфейс, выполните следующие действия:
+**Важное замечание**: мы рекомендовали авторам библиотек, начавшим использовать эксперементальные сопрограммы следовать той же конвенции: добавить к названию суффикс «экспериментальный» (например, `com.example.experimental`), указывающий, какой там используется сопрограммно совместимый API. Таким образом ваша библиотека сохранит бинарную совместимость. Сейчас, когда вышел финальный API-интерфейс, выполните следующие действия:
  * скопируйте все API в `com.example` (без experimental суффикса);
  * сохраните экспериментальный вариант пакета для обратной совместимости.
 

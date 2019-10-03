@@ -286,7 +286,7 @@ identifiers in other contexts:
  * `->`
      - разделяет параметры и тело [лямбда-выражения](/docs/reference/lambdas.html#lambda-expression-syntax)
      - разделяет параметры и тип возвращаемого значения [при объявлении лямбды](/docs/reference/lambdas.html#function-types)
-     - разделяет условие итело ветви [выражения when](http://kotlinlang.org/docs/reference/control-flow.html#when-expression)
+     - разделяет условие и тело ветви [выражения when](http://kotlinlang.org/docs/reference/control-flow.html#when-expression)
  * `@`
     - вводит [аннотацию](/docs/reference/annotations.html#usage)
     - вводит или ссылается на [метку цикла](/docs/reference/returns.html#break-and-continue-labels) 

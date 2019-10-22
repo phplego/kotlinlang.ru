@@ -8,7 +8,7 @@ url: https://kotlinlang.ru/docs/reference/idioms.html
 
 # Идиомы
 
-Набор различных часто используемых идиом в языке Kotlin. Если у вас есть любимая идиома, вы можете поделится ею здесь. Для этого нужно выполнить pull request.
+Набор различных часто используемых идиом в языке Kotlin. Если у вас есть любимая идиома, вы можете поделится ею здесь. Для этого нужно создать pull request.
 
 ### Создание DTO (он же POJO или POCO)
 
@@ -18,7 +18,7 @@ data class Customer(val name: String, val email: String)
 
 создаёт класс `Customer`, обладающий следующими возможностями:
 
-* геттеры (и сеттеры в случае **var**<!--keyword-->'s) для всех свойств
+* геттеры (и сеттеры в случае **var**<!--keyword-->ов) для всех свойств
 * метод `equals()`
 * метод `hashCode()`
 * метод `toString()`
@@ -151,7 +151,7 @@ println(files?.size ?: "empty")
 ```
 
 <!--### Executing a statement if null-->
-### Вызов оператора при равенстве null
+### Выброс исключения при равенстве null
 
 ``` kotlin
 val data = ...
@@ -305,4 +305,13 @@ if (b == true) {
 } else {
     // `b` is false or null
 }
+```
+
+<!-- ### Swapping two variables -->
+### Обмен значений переменных
+
+```kotlin
+var a = 1
+var b = 2
+a = b.also { b = a }
 ```

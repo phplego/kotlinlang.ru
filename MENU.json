@@ -66,6 +66,9 @@
     "java-interop",
     "java-to-kotlin-interop"
   ],
+  "Javascript": [
+    "dynamic-type"
+  ],
   "ЧаВо": [
     "faq",
     "comparison-to-java"

@@ -132,3 +132,67 @@ val x: String? = y as? String
 
 <!--Note that despite the fact that the right-hand side of *as?*{: .keyword } is a non-null type `String` the result of the cast is nullable.-->
 Заметьте, что несмотря на то, что справа от *as?* стоит non-null тип `String`, результат приведения является nullable.
+
+
+<!--## Type erasure and generic type checks-->
+## Стирание и проверка типов у Обобщений (Generics)
+
+<!--Kotlin ensures type safety of operations involving [generics](generics.html) at compile time,
+while, at runtime, instances of generic types hold no information about their actual type arguments. For example, 
+`List<Foo>` is erased to just `List<*>`. In general, there is no way to check whether an instance belongs to a generic 
+type with certain type arguments at runtime. -->
+Котлин обеспечивает типобезопасность операций, связанных с [обобщениями](generics.html) на этапе компиляции(compile time), в то время как информация о типе аргумента обобщения недоступна во время выполнения программы. Например для `List<Foo>` происходит стирание типа, что превращает его в `List<*>`. В связи с чем, нет способа проверить, принадлежит ли объект конкретному типу во время выполнения программы.
+
+<!--Given that, the compiler prohibits *is*{: .keyword }-checks that cannot be performed at runtime due to type erasure, such as 
+`ints is List<Int>` or `list is T` (type parameter). You can, however, check an instance against a [star-projected type](generics.html#star-projections):-->
+Учитывая это, компилятор запрещает **is**-проверки, которые не могут быть выполнены во время выполнения программы из-за стирания типов, например `ints is List<Int>` или `list is T` (параметризированный тип). Однако у вас есть возможность произвести проверку со ["Звёздными" проекциями](generics.html#star-projections):
+
+<div class="sample" markdown="1" theme="idea" data-highlight-only>
+
+```kotlin
+if (something is List<*>) {
+    something.forEach { println(it) } // Элементы типа `Any?`
+}
+```
+</div>
+
+<!--Similarly, when you already have the type arguments of an instance checked statically (at compile time),
+you can make an *is*{: .keyword }-check or a cast that involves the non-generic part of the type. Note that 
+angle brackets are omitted in this case:-->
+Таким же образом, когда у вас есть статически определенный тип аргумента, вы можете произвести **is**-проверку или приведение с не-обобщенной частью типа. Заметье, что в данном случае угловые скобки пропущены:
+
+<div class="sample" markdown="1" theme="idea" data-highlight-only>
+
+```kotlin
+fun handleStrings(list: List<String>) {
+    if (list is ArrayList) {
+        // `list` приводится к `ArrayList<String>` засчет "умного приведения"
+    }
+}
+```
+</div>
+
+<!--The same syntax with omitted type arguments can be used for casts that do not take type arguments into account: `list as ArrayList`. -->
+Аналогичный синтаксис, с пропущенным типом аргумента может использоваться для приведений, которые не принимают типы аргументы: `list as ArrayList`
+
+<!--Inline functions with [reified type parameters](inline-functions.html#reified-type-parameters) have their actual type arguments
+ inlined at each call site, which enables `arg is T` checks for the type parameters, but if `arg` is an instance of a 
+generic type itself, *its* type arguments are still erased. Example:-->
+Встроенные (inline) функции с параметрами вещественного типа имеют свои аргументы типа, встроенные на каждый момент вызова, что позволяет `arg is T` проверку параметризованного типа, но если `arg` является объектом обобщенного типа, его аргумент типа по-прежнему стирается. Пример:
+
+<div class="sample" markdown="1" theme="idea">
+
+```kotlin
+inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
+    if (first !is A || second !is B) return null
+    return first as A to second as B
+}
+
+val somePair: Pair<Any?, Any?> = "items" to listOf(1, 2, 3)
+
+val stringToSomething = somePair.asPairOf<String, Any>()
+val stringToInt = somePair.asPairOf<String, Int>()
+val stringToList = somePair.asPairOf<String, List<*>>()
+val stringToStringList = somePair.asPairOf<String, List<String>>() // Нарушает типобезопасность!
+```
+</div>

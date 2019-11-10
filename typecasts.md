@@ -132,3 +132,127 @@ val x: String? = y as? String
 
 <!--Note that despite the fact that the right-hand side of *as?*{: .keyword } is a non-null type `String` the result of the cast is nullable.-->
 Заметьте, что несмотря на то, что справа от *as?* стоит non-null тип `String`, результат приведения является nullable.
+
+
+<!--## Type erasure and generic type checks-->
+## Стирание и проверка типов у Обобщений (Generics)
+
+<!--Kotlin ensures type safety of operations involving [generics](generics.html) at compile time,
+while, at runtime, instances of generic types hold no information about their actual type arguments. For example, 
+`List<Foo>` is erased to just `List<*>`. In general, there is no way to check whether an instance belongs to a generic 
+type with certain type arguments at runtime. -->
+Котлин обеспечивает типобезопасность операций, связанных с [обобщениями](generics.html) на этапе компиляции(compile time), в то время как информация о типе аргумента обобщения недоступна во время выполнения программы. Например для `List<Foo>` происходит стирание типа, что превращает его в `List<*>`. В связи с чем, нет способа проверить, принадлежит ли объект конкретному типу во время выполнения программы.
+
+<!--Given that, the compiler prohibits *is*{: .keyword }-checks that cannot be performed at runtime due to type erasure, such as 
+`ints is List<Int>` or `list is T` (type parameter). You can, however, check an instance against a [star-projected type](generics.html#star-projections):-->
+Учитывая это, компилятор запрещает **is**-проверки, которые не могут быть выполнены во время выполнения программы из-за стирания типов, например `ints is List<Int>` или `list is T` (параметризированный тип). Однако у вас есть возможность произвести проверку со ["Звёздными" проекциями](generics.html#"Звёздные"-проекции):
+
+<div class="sample" markdown="1" theme="idea" data-highlight-only>
+
+```kotlin
+if (something is List<*>) {
+    something.forEach { println(it) } // Элементы типа `Any?`
+}
+```
+</div>
+
+<!--Similarly, when you already have the type arguments of an instance checked statically (at compile time),
+you can make an *is*{: .keyword }-check or a cast that involves the non-generic part of the type. Note that 
+angle brackets are omitted in this case:-->
+Таким же образом, когда у вас есть статически определенный тип аргумента, вы можете произвести **is**-проверку или приведение с не-обобщенной частью типа. Заметье, что в данном случае угловые скобки пропущены:
+
+<div class="sample" markdown="1" theme="idea" data-highlight-only>
+
+```kotlin
+fun handleStrings(list: List<String>) {
+    if (list is ArrayList) {
+        // `list` приводится к `ArrayList<String>` засчет "умного приведения"
+    }
+}
+```
+</div>
+
+<!--The same syntax with omitted type arguments can be used for casts that do not take type arguments into account: `list as ArrayList`. -->
+Аналогичный синтаксис, с пропущенным типом аргумента может использоваться для приведений, которые не принимают типы аргументы: `list as ArrayList`
+
+<!--Inline functions with [reified type parameters](inline-functions.html#reified-type-parameters) have their actual type arguments
+ inlined at each call site, which enables `arg is T` checks for the type parameters, but if `arg` is an instance of a 
+generic type itself, *its* type arguments are still erased. Example:-->
+Встроенные (inline) функции с [параметрами вещественного типа](inline-functions.html#Параметры-вещественного-типа) имеют свои аргументы типа, встроенные на каждый момент вызова, что позволяет `arg is T` проверку параметризованного типа, но если `arg` является объектом обобщенного типа, его аргумент типа по-прежнему стирается. Пример:
+
+<div class="sample" markdown="1" theme="idea">
+
+```kotlin
+inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
+    if (first !is A || second !is B) return null
+    return first as A to second as B
+}
+
+val somePair: Pair<Any?, Any?> = "items" to listOf(1, 2, 3)
+
+val stringToSomething = somePair.asPairOf<String, Any>()
+val stringToInt = somePair.asPairOf<String, Int>()
+val stringToList = somePair.asPairOf<String, List<*>>()
+val stringToStringList = somePair.asPairOf<String, List<String>>() // Нарушает типобезопасность!
+```
+</div>
+
+<!--## Unchecked casts-->
+## Непроверяемые (Unchecked) приведения
+
+<!--As said above, type erasure makes checking actual type arguments of a generic type instance impossible at runtime, and 
+generic types in the code might be connected to each other not closely enough for the compiler to ensure 
+type safety. -->
+Как упоминалось выше, стирание типов делает невозможным проверку типа аргумента обобщения на этапе выполнения, и обобщенные типы в коде могут быть недостаточно связаны друг с другом, чтобы компилятор обеспечил типобезопасность.
+
+<!--Even so, sometimes we have high-level program logic that implies type safety instead. For example:-->
+Тем не менее, иногда мы имеем программную логику высокого уровня, которая вместо этого подразумевает типобезопасность. Например:
+
+<div class="sample" markdown="1" theme="idea" data-highlight-only>
+
+```kotlin 
+fun readDictionary(file: File): Map<String, *> = file.inputStream().use { 
+    TODO("Прочитать сопоставление строк с произвольными элементами.")
+}
+
+// Мы сохранили словарь(map) `Int`ов в файл
+val intsFile = File("ints.dictionary")
+
+// Warning: Unchecked cast: `Map<String, *>` to `Map<String, Int>`
+val intsDictionary: Map<String, Int> = readDictionary(intsFile) as Map<String, Int>
+```
+</div>
+
+<!--The compiler produces a warning for the cast in the last line. The cast cannot be fully checked at runtime and provides 
+no guarantee that the values in the map are `Int`.-->
+Компилятор выдает предупреждение для приведения в последней строке. Приведение не может быть полностью проверено во время выполнения и нет дает гарантии, что значения в словаре (map) являются `Int`.
+
+<!--To avoid unchecked casts, you can redesign the program structure: in the example above, there could be interfaces
+ `DictionaryReader<T>` and `DictionaryWriter<T>` with type-safe implementations for different types. 
+ You can introduce reasonable abstractions to move unchecked casts from calling code to the implementation details.
+ Proper use of [generic variance](generics.html#variance) can also help. -->
+ Чтобы избежать непроверяемые приведения, вы можете изменить структуру программы: в примере выше, возможно объявить интерфейсы `DictionaryReader<T>` и `DictionaryWriter<T>` с типобезопасными имплементациями для типизированного типа. Правильно использование [вариативности обобщений](generics.html#Вариативность) также может помочь.
+ 
+<!--For generic functions, using [reified type parameters](inline-functions.html#reified-type-parameters) makes the casts 
+such as `arg as T` checked, unless `arg`'s type has *its own* type arguments that are erased.-->
+Для обобщенных функций, используемых встроенные (inline) функции с [параметрами вещественного типа](inline-functions.html#Параметры-вещественного-типа) приведение типа `arg as T` является проверяемым, до тех пор, если тип` arg` не имеет **свои** аргументы типа, которые были стерты.
+
+<!--An unchecked cast warning can be suppressed by [annotating](annotations.html#annotations) the statement or the 
+declaration where it occurs with `@Suppress("UNCHECKED_CAST")`:-->
+Предупреждение о непроверяемом приведении можно убрать используя [аннотации](annotations.html)
+<div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
+
+```kotlin
+inline fun <reified T> List<*>.asListOfType(): List<T>? =
+    if (all { it is T })
+        @Suppress("UNCHECKED_CAST")
+        this as List<T> else
+        null
+```
+</div>
+
+<!--On the JVM, the [array types](basic-types.html#arrays) (`Array<Foo>`) retain the information about the erased type of 
+their elements, and the type casts to an array type are partially checked: the 
+nullability and actual type arguments of the elements type are still erased. For example, 
+the cast `foo as Array<List<String>?>` will succeed if `foo` is an array holding any `List<*>`, nullable or not.-->
+В JVM, [массивы](basic-types.html#массивы) сохраняют информацию о стираемом типе их элементов, а также приведение типов к массиву частично проверяется: nullability и фактические аргументы для параметризированных элементов массива все еще стираются. Например, приведение `foo as Array <List <String>?>` будет успешным, если `foo` является массивом, содержащим какой-либо` List <*> `, null или нет.

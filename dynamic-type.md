@@ -27,12 +27,10 @@ val dyn: dynamic = ...
 Наиболее характерной особенностью типа `dynamic` является то, что мы можем вызывать свойство **any** или функцию с любыми параметрами для `dynamic` переменной
 
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ```kotlin
 dyn.whatever(1, "foo", dyn) // 'whatever' не опеределен
 dyn.whatever(*arrayOf(1, 2, 3))
 ```
-</div>
 
 В Javascript этот код будет будет скомпилирован как есть `dyn.whatever(1)` в Kotlin станет `dyn.whatever(1)` в Javscript.
 
@@ -61,21 +59,17 @@ class Person(val name: String) {
 
 Диначмический вызов функции всегда вернет `dynamic` как результат выполнения, поэтому вы можете объединять в цепочку такие вызовы:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ```kotlin
 dyn.foo().bar.baz()
 ```
-</div>
 
 Когда мы передаем лямбду (стрелочную функцию) в динамический вызов, то все ее параметры будут иметь `dynamic` тип по умолчанию:
 
-<div class="sample" markdown="1" theme="idea" data-highlight-only>
 ```kotlin
 dyn.foo {
     x -> x.bar() // x динамический
 }
 ```
-</div>
 
 Выражения, использующие значения типа `dynamic` переводятся в Javascript "как есть" и не используют соглашения операторов из Kotlin
 Следующие операторы поддерживаются:

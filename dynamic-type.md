@@ -1,4 +1,3 @@
-
 ---
 type: doc
 layout: reference

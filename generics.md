@@ -273,6 +273,7 @@ fun fill(dest: Array<in String>, value: String) {
 <!--`Array<in String>` corresponds to Java's `Array<? super String>`, i.e. you can pass an array of `CharSequence` or an array of `Object` to the `fill()` function.-->
 `Array<in String>` соответствует `Array<? super String>` из Java, то есть мы можем передать массив `CharSequence` или массив `Object` в функцию `fill()`.
 
+<a name="star-projections"></a>
 
 <!--### Star-projections-->
 ### "Звёздные" проекции 

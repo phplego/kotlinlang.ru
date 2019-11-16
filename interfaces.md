@@ -46,7 +46,7 @@ class Child : MyInterface {
 <!--You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide
 implementations for accessors. Properties declared in interfaces can't have backing fields, and therefore accessors
 declared in interfaces can't reference them.-->
-Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь _backing fields_, соответственно, методы доступа к таким свойствам не могут обращаться к _backing fields_.
+Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь теневых полей, соответственно, методы доступа к таким свойствам не могут обращаться к теневым полям.
 
 ``` kotlin
 interface MyInterface {

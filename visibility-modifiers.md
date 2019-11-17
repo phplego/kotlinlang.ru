@@ -47,7 +47,7 @@ visible everywhere;
 Примеры:
 
 ``` kotlin
-// file name: example.kt
+// имя файла: example.kt
 package foo
 
 private fun foo() {} // имеет видимость внутри example.kt
@@ -69,10 +69,10 @@ internal val baz = 6    // имеет видимость внутри модул
 * `internal` --- any client *inside this module* who sees the declaring class sees its `internal` members;
 * `public` --- any client who sees the declaring class sees its `public` members.-->
 
-* `private` означает видимость только внутри этого класса (включая его членов);
-* `protected` --- то же самое, что и `private` + видимость в субклассах;
-* `internal` --- любой клиент *внутри модуля*, который видит объявленный класс, видит и его `internal` члены;
-* `public` --- любой клиент, который видит объявленный класс, видит его `public` члены.
+* `private` означает видимость только внутри этого класса (включая его члены);
+* `protected` — то же самое, что и `private` + видимость в субклассах;
+* `internal` — любой клиент *внутри модуля*, который видит объявленный класс, видит и его `internal` члены;
+* `public` — любой клиент, который видит объявленный класс, видит его `public` члены.
 
 <!--*NOTE* for Java users: outer class does not see private members of its inner classes in Kotlin.-->
 > *Примечание для Java программистов:* в <b>Kotlin</b> внешний класс не видит `private` члены своих вложенных классов.
@@ -117,7 +117,7 @@ class Unrelated(o: Outer) {
 
 <!--To specify a visibility of the primary constructor of a class, use the following syntax (note that you need to add an
 explicit *constructor*{: .keyword } keyword):-->
-Для указания видимости главного конструктора класса используется следующий синтаксис (кстати, надо добавить ключевое слово *constructor*):
+Для указания видимости основного конструктора класса используется следующий синтаксис (кстати, надо добавить ключевое слово <b class="keyword">constructor</b>):
 
 ``` kotlin
 class C private constructor(a: Int) { ... }

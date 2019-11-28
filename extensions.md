@@ -315,8 +315,8 @@ swap(list, binarySearch(list, max(otherList)), max(list))
 <!-- This is a little better, but we have no or little help from the powerful code completion of the IDE. It would be so much better if we could say -->
 Уже немного лучше, но такой мощный инструмент IDE, как автодополнение, не предоставляет нам сколь-нибудь серьёзную помощь в данном случае. Намного лучше, если бы у нас было:
 
-``` java
-// Java
+``` kotlin
+// Kotlin
 list.swap(list.binarySearch(otherList.max()), list.max())
 ```
 

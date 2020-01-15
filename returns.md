@@ -107,7 +107,7 @@ fun foo() {
 
 <!--Alternatively, we can replace the lambda expression with an [anonymous function](lambdas.html#anonymous-functions).
 A **return** statement in an anomymous function will return from the anonymous function itself.-->
-Возможно также использование [анонимной функции](lambdas.html#anonymous-functions) в качестве альтернативы лямбда-выражениям. Оператор **return** вовзращается из самой анонимной функции.
+Возможно также использование [анонимной функции](lambdas.html#anonymous-functions) в качестве альтернативы лямбда-выражениям. Оператор **return** возвращается из самой анонимной функции.
 
 ``` kotlin
 fun foo() {

@@ -18,7 +18,7 @@ https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
 Ну и конечно же после любых изменений нужно:
 * Сделать фиксацию изменений в git
 * Если вы работаете с локальной копией, то сделать push
-* Выгрузить файлы на сервер kotlinlang.ru перейдя по урлу: http://kotlinlang.ru/update.php
+* Выгрузить файлы на сервер kotlinlang.ru перейдя по урлу: http://kotlinlang.ru/update
 
 
 ### У меня нет доступа на редактирование, что делать?

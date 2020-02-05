@@ -284,7 +284,7 @@ open class AnotherDerived() : Base() {
 <!--In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits many implementations of the same member from its immediate superclasses,
 it must override this member and provide its own implementation (perhaps, using one of the inherited ones).
 To denote the supertype from which the inherited implementation is taken, we use **super** qualified by the supertype name in angle brackets, e.g. `super<Base>`:-->
-В <b>Kotlin</b> правила наследования реализации определены следующим образом: если класс наследует многичесленные реализации одного и того члена от ближайших родительских классов, он должен переопределить этот член и обеспечить свою собственную реализацию (возможно, используя одну из унаследованных). Для того, чтобы отметить конкретный супертип (родительский класс), от которого мы наследуем данную реализацию, мы используем ключевое слово **super**. Для задания имени родительского супертипа используются треугольные скобки, например `super<Base>`:
+В <b>Kotlin</b> правила наследования реализации определены следующим образом: если класс наследует многочисленные реализации одного и того члена от ближайших родительских классов, он должен переопределить этот член и обеспечить свою собственную реализацию (возможно, используя одну из унаследованных). Для того, чтобы отметить конкретный супертип (родительский класс), от которого мы наследуем данную реализацию, мы используем ключевое слово **super**. Для задания имени родительского супертипа используются треугольные скобки, например `super<Base>`:
 
 ``` kotlin
 open class A {

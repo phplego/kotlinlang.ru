@@ -128,4 +128,4 @@ because they make the code more readable by providing meaningful names for prope
 Стандартная библиотека предоставляет классы `Pair` и `Triple`. Однако, в большинстве случаев, проименованные классы данных являются лучшим решением, потому что делают код более читаемым, избегая малосодержательные имена для свойств.
 
 ## См. также
-> [Статья "Вышел Kotlin M3"](https://habrahabr.ru/company/JetBrains/blog/152126/)
+* [Статья "Вышел Kotlin M3"](https://habrahabr.ru/company/JetBrains/blog/152126/)

@@ -68,7 +68,7 @@ Additionally, the members generation follows these rules with regard to the memb
 > (см. [Конструкторы](classes.html#constructors))
 ``` kotlin
  data class User(val name: String = "", val age: Int = 0)
- ```
+```
 
 <!-- Properties Declared in the Class Body -->
 ## Свойства, объявленные в теле класса

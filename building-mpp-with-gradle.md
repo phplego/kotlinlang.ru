@@ -41,7 +41,7 @@ script in the following way: -->
 Например, если выбран «Kotlin (Multiplatform Library)», то создается проект библиотеки, ориентированный на 3 [цели](#настройка-целей): JVM, JS и используемую Native платформу. 
 Они сконфигурированы в сценарии `build.gradle` следующим образом:
 
-```gradle
+```groovy
 plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '{{ site.data.releases.latest.version }}'
 }

@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 <!-- Kotlin's type system is aimed at eliminating the danger of null references from code, also known as the [The Billion Dollar Mistake](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions). -->
 Система типов в языке <b>Kotlin</b> нацелена на то, чтобы искоренить опасность обращения к *null* значениям, более
-известную как ["Ошибка на миллион"](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions).
+известную как ["Ошибка на миллиард"](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions).
 
 <!-- One of the most common pitfalls in many programming languages, including Java is that of accessing a member of a null reference, resulting in a null reference exception. In Java this -->
 <!-- would be the equivalent of a `NullPointerException` or NPE for short. -->

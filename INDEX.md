@@ -22,7 +22,8 @@ url: https://kotlinlang.ru
 * [Раздел на reddit.com, посвященный языку Kotlin](https://www.reddit.com/r/Kotlin)
 
 ## Сообщество
-* [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram чат, посвященный языку Kotlin и переводу документации
+* [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram чат, посвященный языку Kotlin и переводу документации.
+[Правила чата](https://kotlinlang.ru/etc/chat-rules.html)
 
 <!--
 * [@kotlin_lang](https://t.me/kotlin_lang) - Сообщество разработчиков на Kotlin

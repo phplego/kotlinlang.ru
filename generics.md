@@ -203,7 +203,7 @@ fun demo(x: Comparable<Number>) {
 thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose:-->
 Мы считаем, что слова **in** и **out** говорят сами за себя (так как они довольно успешно используются в C# уже долгое время), таким образом, мнемоника, приведённая выше, не так уж и нужна, и её можно перефразировать следущим образом:
 
-**[Экзистенцианальная](https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D0%B7%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%BC) Трансформация: Consumer in, Producer out\!** :-)
+**[Экзистенциальная](https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D0%B7%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%BC) Трансформация: Consumer in, Producer out\!** :-)
 
 <a name="type-projections"></a>
 

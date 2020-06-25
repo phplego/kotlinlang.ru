@@ -203,7 +203,7 @@ always preserve names of function parameters.-->
 
 <!--If a function does not return any useful value, its return type is `Unit`. `Unit` is a type with only one value - `Unit`. This
 value does not have to be returned explicitly-->
-Если функция не возвращает никакого полезного значения, её возвращаемый тип - `Unit`._ `Unit` - тип только с одним значением - `Unit`_. 
+Если функция не возвращает никакого полезного значения, её возвращаемый тип - `Unit`._ `Unit` - тип только с одним значением. 
 Это возвращаемое значение не нуждается в явном указании
 
 ``` kotlin

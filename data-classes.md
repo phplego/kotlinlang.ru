@@ -11,7 +11,7 @@ url: https://kotlinlang.ru/docs/reference/data-classes.html
 
 <!--We frequently create classes that do nothing but hold data. In such classes some functionality is often mechanically
 derivable from the data they hold. In Kotlin a class can be marked as `data`:-->
-Нередко мы создаём классы, единственным назначением которых является хранение данных. Функционал таких классов зависит от самих данных, которые в них хранятся. В <b>Kotlin</b> класс может быть отмечен словом <b class="keyword">data</b>:
+Нередко мы создаём классы, единственным назначением которых является хранение данных. Функциональность таких классов зависит от самих данных, которые в них хранятся. В <b>Kotlin</b> класс может быть отмечен словом <b class="keyword">data</b>:
 
 ``` kotlin
 data class User(val name: String, val age: Int)

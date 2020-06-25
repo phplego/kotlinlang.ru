@@ -277,5 +277,5 @@ val str = "$s.length is ${s.length}" // evaluates to "abc.length is 3"
 При необходимости символ `$` может быть представлен с помощью следующего синтаксиса:
 
 ``` kotlin
-val price = "${'$'}9.99"
+val price = "\$9.99"
 ```

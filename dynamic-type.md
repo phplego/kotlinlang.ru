@@ -35,10 +35,9 @@ dyn.whatever(*arrayOf(1, 2, 3))
 В Javascript этот код будет будет скомпилирован как есть `dyn.whatever(1)` в Kotlin станет `dyn.whatever(1)` в Javscript.
 
 
-When calling functions written in Kotlin on values of `dynamic` type, keep in mind the name mangling performed by the
+<!-- When calling functions written in Kotlin on values of `dynamic` type, keep in mind the name mangling performed by the
 Kotlin to JavaScript compiler. You may need to use the [@JsName annotation](js-to-kotlin-interop.html#jsname-annotation)
-to assign well-defined names to the functions that you need to call.
-
+to assign well-defined names to the functions that you need to call. -->
 При вызове функций, написанных в Kotlin со значениями типа `dynamic`, учитывайте, что имя функции может быть искажено при компиляции Kotlin в Javascript. 
 Возможно, вам потребуется использовать `@JsName Annotation` чтобы присвоить четко определенные имена функциям, которые необходимо вызвать.
 

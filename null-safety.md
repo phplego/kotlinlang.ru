@@ -144,8 +144,8 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 ## Элвис-оператор
 
-<!-- When we have a nullable reference `r`, we can say "if `r` is not null, use it, otherwise use some non-null value `x`": -->
-Если у нас есть nullable ссылка `r`, мы можем либо провести проверку этой ссылки и использовать её, либо использовать non-null значение `x`:
+<!-- When we have a nullable reference `b`, we can say "if `b` is not null, use it, otherwise use some non-null value": -->
+Если у нас есть nullable ссылка `b`, мы можем либо провести проверку этой ссылки и использовать её, либо использовать non-null значение:
 
 ``` kotlin
  val l: Int = if (b != null) b.length else -1

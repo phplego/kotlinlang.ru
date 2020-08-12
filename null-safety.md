@@ -22,7 +22,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Это приводит к ошибке. В <b>Java</b> такая ошибка называется `NullPointerException` (сокр. "NPE").
 
 <!-- Kotlin's type system is aimed to eliminate `NullPointerException`'s from our code. The only possible causes of NPE's may be -->
-<b>Kotlin</b> призван исключить ошибки подобного рода из нашего кода. NPE могу возникать только в случае:
+<b>Kotlin</b> призван исключить ошибки подобного рода из нашего кода. NPE могут возникать только в случае:
 
 <!-- * An explicit call to `throw NullPointerException()` -->
 <!-- * Usage of the `!!` operator that is described below -->

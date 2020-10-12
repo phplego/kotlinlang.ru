@@ -100,7 +100,7 @@ data class Person(var name: String, var age: Int = 0, var city: String = "")
 
 fun main() {
     val adam = Person("Adam").apply {
-        age = 20        // тоже самое, что и this.age = 20 или adam.age = 20
+        age = 20        // то же самое, что и this.age = 20 или adam.age = 20
         city = "London"
     }
     println(adam)

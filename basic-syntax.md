@@ -202,7 +202,7 @@ fun main(args: Array<String>) {
 ``` kotlin
   // ...
   if (x == null) {
-    print("Неверный формат числа у '${args[0]}'")
+    print("Неверный формат числа x '${args[0]}'")
     return
   }
   if (y == null) {

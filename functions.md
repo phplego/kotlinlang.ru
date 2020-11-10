@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/reference/functions.html
 <!--Functions in Kotlin are declared using the *fun*{: .keyword } keyword-->
 В <b>Kotlin</b> функции объявляются с помощью ключевого слова *fun*
 
-``` kotlin
+```kotlin
 fun double(x: Int): Int {
 ...
 }
@@ -27,14 +27,14 @@ fun double(x: Int): Int {
 <!--Calling functions uses the traditional approach-->
 При вызове функции используется традиционный подход
 
-``` kotlin
+```kotlin
 val result = double(2)
 ```
 
 <!--Calling member functions uses the dot notation-->
 Для вызова вложенной функции используется знак точки
 
-``` kotlin
+```kotlin
 Sample().foo() //создаёт экземпляр класса Sample и вызывает foo
 ```
 
@@ -53,7 +53,7 @@ Sample().foo() //создаёт экземпляр класса Sample и выз
 <!--* They are marked with the `infix` keyword-->
 * Когда они помечены ключевым словом `infix`
 
-``` kotlin
+```kotlin
 // Определяем выражение как Int
 infix fun Int.shl(x: Int): Int {
 ...
@@ -75,7 +75,7 @@ infix fun Int.shl(x: Int): Int {
 Параметры функции записываются аналогично системе обозначений в языке Pascal, *имя*:*тип*. Параметры разделены запятыми. Каждый параметр
 должен быть явно указан.
 
-``` kotlin
+```kotlin
 fun powerOf(number: Int, exponent: Int) {
 ...
 }
@@ -88,7 +88,7 @@ fun powerOf(number: Int, exponent: Int) {
 other languages.-->
 Параметры функции могут иметь значения по умолчанию, которые используются в случае, если аргумент функции не указан при её вызове. Это позволяет снизить уровень перегруженности кода по сравнению с другими языками.
 
-``` kotlin
+```kotlin
 fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
 ...
 }
@@ -101,7 +101,7 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
 When overriding a method with default parameters values, the default parameter values must be omitted from the signature:-->
 Переопределённые методы всегда используют те же самые значения по умолчанию, что и их базовые методы. При переопределении методов со значениями по умолчанию эти параметры должны быть опущены:
 
-``` kotlin
+```kotlin
 open class A {
     open fun foo(i: Int = 10) { ... }
 }
@@ -122,7 +122,7 @@ foo(baz = 1) // Используется значение по умолчани�
 
 Но если последний аргумент [lambda](http://kotlinlang.ru/docs/reference/lambdas.html#lambda-expression-syntax) передается в вызов функции вне скобок, передача значений параметров по умолчанию не допускается:
 
-``` kotlin
+```kotlin
 fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { ... }
 
 foo(1) { println("hello") } // Использует значение по умолчанию baz = 1 
@@ -138,7 +138,7 @@ foo { println("hello") }    // Использует два значения по
 <!--Given the following function-->
 Рассмотрим следующую функцию:
 
-``` kotlin
+```kotlin
 fun reformat(str: String,
              normalizeCase: Boolean = true,
              upperCaseFirstLetter: Boolean = true,
@@ -151,21 +151,21 @@ fun reformat(str: String,
 <!--we could call this using default arguments-->
 мы можем вызвать её, используя аргументы по умолчанию
 
-``` kotlin
+```kotlin
 reformat(str)
 ```
 
 <!--However, when calling it with non-default, the call would look something like-->
 Однако, при вызове этой функции без аргументов по умолчанию, получится что-то вроде
 
-``` kotlin
+```kotlin
 reformat(str, true, true, false, '_')
 ```
 
 <!--With named arguments we can make the code much more readable-->
 С помощью именованных аргументов мы можем сделать код более читабельным:
 
-``` kotlin
+```kotlin
 reformat(str,
     normalizeCase = true,
     upperCaseFirstLetter = true,
@@ -177,7 +177,7 @@ reformat(str,
 <!--and if we do not need all arguments-->
 Или, если нам не нужны все эти аргументы
 
-``` kotlin
+```kotlin
 reformat(str, wordSeparator = '_')
 ```
 
@@ -206,7 +206,7 @@ value does not have to be returned explicitly-->
 Если функция не возвращает никакого полезного значения, её возвращаемый тип - `Unit`._ `Unit` - тип только с одним значением - `Unit`_. 
 Это возвращаемое значение не нуждается в явном указании
 
-``` kotlin
+```kotlin
 fun printHello(name: String?): Unit {
     if (name != null)
         println("Hello ${name}")
@@ -219,7 +219,7 @@ fun printHello(name: String?): Unit {
 <!--The `Unit` return type declaration is also optional. The above code is equivalent to-->
 Указание типа `Unit` в качестве возвращаемого значения тоже не является обязательным. Код, написанный выше, совершенно идентичен с
 
-``` kotlin
+```kotlin
 fun printHello(name: String?) {
     ...
 }
@@ -231,14 +231,14 @@ fun printHello(name: String?) {
 <!--When a function returns a single expression, the curly braces can be omitted and the body is specified after a **=** symbol-->
 Когда функция возвращает одно-единственное выражение, фигурные скобки `{ }` могут быть опущены, и тело функции может быть описано после знака `=`
 
-``` kotlin
+```kotlin
 fun double(x: Int): Int = x * 2
 ```
 
 <!--Explicitly declaring the return type is [optional](#explicit-return-types) when this can be inferred by the compiler-->
 Компилятор способен сам определить типа возвращаемого значения.
 
-``` kotlin
+```kotlin
 fun double(x: Int) = x * 2
 ```
 
@@ -258,7 +258,7 @@ Kotlin does not infer return types for functions with block bodies because such 
 <!--A parameter of a function (normally the last one) may be marked with `vararg` modifier:-->
 Параметр функции (обычно для этого используется последний) может быть помечен модификатором `vararg`:
 
-``` kotlin
+```kotlin
 fun <T> asList(vararg ts: T): List<T> {
     val result = ArrayList<T>()
     for (t in ts) // ts - это массив (Array)
@@ -270,7 +270,7 @@ fun <T> asList(vararg ts: T): List<T> {
 <!--allowing a variable number of arguments to be passed to the function:-->
 это позволит указать множество значений в качестве аргументов функции:
 
-``` kotlin
+```kotlin
 val list = asList(1, 2, 3)
 ```
 
@@ -305,9 +305,9 @@ to top level functions, Kotlin functions can also be declared local, as member f
 ### Локальные функции 
 
 <!--Kotlin supports local functions, i.e. a function inside another function-->
-<b>Koltin</b> поддерживает локальные функции. Например, функции, вложенные в другие функции
+<b>Kotlin</b> поддерживает локальные функции. Например, функции, вложенные в другие функции
 
-``` kotlin
+```kotlin
 fun dfs(graph: Graph) {
     fun dfs(current: Vertex, visited: Set<Vertex>) {
         if (!visited.add(current)) return
@@ -322,7 +322,7 @@ fun dfs(graph: Graph) {
 <!--Local function can access local variables of outer functions (i.e. the closure), so in the case above, the *visited* can be a local variable-->
 Такие локальные функции могут иметь доступ к локальным переменным внешних по отношению к ним функций (типа *closure*). Таким образом, в примере, приведённом выше, *visited* может быть локальной переменной.
 
-``` kotlin
+```kotlin
 fun dfs(graph: Graph) {
     val visited = HashSet<Vertex>()
     fun dfs(current: Vertex) {
@@ -342,7 +342,7 @@ fun dfs(graph: Graph) {
 <!--A member function is a function that is defined inside a class or object-->
 Функции-элементы - это функции, объявленные внутри классов или объектов
 
-``` kotlin
+```kotlin
 class Sample() {
     fun foo() { print("Foo") }
 }
@@ -351,7 +351,7 @@ class Sample() {
 <!--Member functions are called with dot notation-->
 Функции-элементы вызываются с использованием точки
 
-``` kotlin
+```kotlin
 Sample().foo() // создаёт инстанс класса Sample и вызвает его функцию foo
 ```
 
@@ -364,7 +364,7 @@ Sample().foo() // создаёт инстанс класса Sample и вызв�
 <!--Functions can have generic parameters which are specified using angle brackets before the function name-->
 Функции могут иметь обобщённые параметры, которые задаются треугольными скобками и помещаются перед именем функции
 
-``` kotlin
+```kotlin
 fun <T> singletonList(item: T): List<T> {
     // ...
 }
@@ -401,7 +401,7 @@ When a function is marked with the `tailrec` modifier and meets the required for
 Это позволяет использовать циклические алгоритмы вместо рекурсивных функции, но без риска переполнения стэка.
 Когда функция помечена модификатором `tailrec` и её форма отвечает требованиям компилятора, он оптимизирует рекурсию, оставляя вместо неё быстрое и эффективное решение этой задачи, основанное на циклах. 
 
-``` kotlin
+```kotlin
 tailrec fun findFixPoint(x: Double = 1.0): Double
         = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 ```
@@ -409,7 +409,7 @@ tailrec fun findFixPoint(x: Double = 1.0): Double
 <!--This code calculates the fixpoint of cosine, which is a mathematical constant. It simply calls Math.cos repeatedly starting at 1.0 until the result doesn't change any more, yielding a result of 0.7390851332151607. The resulting code is equivalent to this more traditional style:-->
 Этот код высчитывает `fixpoint` косинуса, который является математической константой. Он просто напросто постоянно вызывает Math.cos, начиная с 1.0 до тех пор, пока результат не изменится, приняв значение 0.7390851332151607. Получившийся код эквивалентен вот этому более традиционному стилю:
 
-``` kotlin
+```kotlin
 private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {

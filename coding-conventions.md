@@ -23,7 +23,7 @@ url: https://kotlinlang.ru/docs/reference/coding-conventions.html
 
 В тех случаях, когда двоеточие разделяет тип и подтип, перед двоеточием ставится пробел. Если же двоеточие ставится между сущностью и типом, то пробел опускается:
 
-``` kotlin
+```kotlin
 interface Foo<out T : Any> : Bar {
     fun foo(a: Int): T
 }
@@ -33,7 +33,7 @@ interface Foo<out T : Any> : Bar {
 
 В лямбда-выражениях фигурные скобки, а также стрелка и параметры отделяются пробелами. Желательно передавать лямбду за пределами скобок.
 
-``` kotlin
+```kotlin
 list.filter { it > 10 }.map { element -> element * 2 }
 ```
 
@@ -86,7 +86,7 @@ class Person(
 
 Если возвращаемым типом является Unit, то его можно явно не указывать:
 
-``` kotlin
+```kotlin
 fun foo() { // здесь пропущено ": Unit"
 
 }

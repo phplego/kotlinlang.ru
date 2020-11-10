@@ -24,7 +24,7 @@ The default visibility, used if there is no explicit modifier, is `public`.-->
 <!--Functions, properties and classes, objects and interfaces can be declared on the "top-level", i.e. directly inside a package:-->
 Функции, свойства, классы, объекты и интерфейсы могут быть объявлены на самом "высоком уровне" прямо внутри пакета:
   
-``` kotlin
+```kotlin
 // имя файла: example.kt
 package foo
 
@@ -46,7 +46,7 @@ visible everywhere;
 <!--Examples:-->
 Примеры:
 
-``` kotlin
+```kotlin
 // имя файла: example.kt
 package foo
 
@@ -83,7 +83,7 @@ internal val baz = 6    // имеет видимость внутри модул
 <!--Examples:-->
 Примеры:
 
-``` kotlin
+```kotlin
 open class Outer {
     private val a = 1
     protected open val b = 2
@@ -119,7 +119,7 @@ class Unrelated(o: Outer) {
 explicit *constructor*{: .keyword } keyword):-->
 Для указания видимости основного конструктора класса используется следующий синтаксис (кстати, надо добавить ключевое слово <b class="keyword">constructor</b>):
 
-``` kotlin
+```kotlin
 class C private constructor(a: Int) { ... }
 ```
 

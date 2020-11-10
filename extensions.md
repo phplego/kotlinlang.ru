@@ -21,7 +21,7 @@ This is done via special declarations called _extensions_. Kotlin supports _exte
 The following adds a `swap` function to `MutableList<Int>`:-->
 Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве префикса _расширяемый тип_, то есть тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
 
-``` kotlin
+```kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
     val tmp = this[index1] // 'this' даёт ссылку на список
     this[index1] = this[index2]
@@ -34,7 +34,7 @@ Now, we can call such a function on any `MutableList<Int>`:-->
 Ключевое слово <b class="keyword">this</b> внутри функции-расширения соотносится с объектом расширяемого типа (этот тип ставится перед точкой).
 Теперь мы можем вызывать такую функцию в любом `MutableList<Int>`:
 
-``` kotlin
+```kotlin
 val l = mutableListOf(1, 2, 3)
 l.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'l'
 ```
@@ -42,7 +42,7 @@ l.swap(0, 2) // 'this' внутри 'swap()' будет содержать зн�
 <!--Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:-->
 Разумеется, эта функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой: 
 
-``` kotlin
+```kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
     val tmp = this[index1] // 'this' относится к списку
     this[index1] = this[index2]
@@ -69,7 +69,7 @@ not by the type of the result of evaluating that expression at runtime. For exam
 
 Мы хотели бы подчеркнуть, что расширения имеют статическую диспетчеризацию: это значит, что вызванная функция-расширение определяется типом её выражения во время компиляции, а не типом выражения, вычисленным в ходе выполнения программы, как при вызове виртуальных функций. К примеру:
 
-``` kotlin
+```kotlin
 open class C
 
 class D: C()
@@ -94,7 +94,7 @@ and is applicable to given arguments, the **member always wins**.
 For example:-->
 Если в классе есть и функция-член, и функция-расширение с тем же возвращаемым типом, таким же именем и применяется с такими же аргументами, то **функция-член имеет более высокий приоритет**. К примеру:
 
-``` kotlin
+```kotlin
 class C {
     fun foo() { println("member") }
 }
@@ -108,7 +108,7 @@ fun C.foo() { println("extension") }
 <!--However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:-->
 Однако, для функций-расширений совершенно нормально перегружать функции-члены, которые имеют такое же имя, но другую сигнатуру:
 
-``` kotlin
+```kotlin
 class C {
     fun foo() { println("member") }
 }
@@ -126,9 +126,9 @@ fun C.foo(i: Int) { println("extension") }
 <!--Note that extensions can be defined with a nullable receiver type. Such extensions can be called on an object variable
 even if its value is null, and can check for `this == null` inside the body. This is what allows you
 to call toString() in Kotlin without checking for null: the check happens inside the extension function.-->
-Обратите внимание, что расширения могут быть объявлены для null-допустимых типов. Такие расширения могут ссылаться на переменные объекта, даже если значение переменной равно null. В таком случае есть возможность провести проверку `this == null` внутри тела функции. Благодаря этому метод `toString()` в языке <b>Koltin</b> вызывается без проверки на null: она проходит внутри функции-расширения.
+Обратите внимание, что расширения могут быть объявлены для null-допустимых типов. Такие расширения могут ссылаться на переменные объекта, даже если значение переменной равно null. В таком случае есть возможность провести проверку `this == null` внутри тела функции. Благодаря этому метод `toString()` в языке <b>Kotlin</b> вызывается без проверки на null: она проходит внутри функции-расширения.
 
-``` kotlin
+```kotlin
 fun Any?.toString(): String {
     if (this == null) return "null"
     // после проверки на null, `this` автоматически приводится к не-null типу, 
@@ -143,7 +143,7 @@ fun Any?.toString(): String {
 <!--Similarly to functions, Kotlin supports extension properties:-->
 Аналогично функциям, <b>Kotlin</b> поддерживает расширения свойств:
 
-``` kotlin
+```kotlin
 val <T> List<T>.lastIndex: Int
     get() = size - 1
 ```
@@ -156,7 +156,7 @@ extension properties**. Their behavior can only be defined by explicitly providi
 <!--Example:-->
 Пример:
 
-``` kotlin
+```kotlin
 val Foo.bar = 1 // ошибка: запрещено инициализировать значения 
                 // в свойствах-расширениях
 ```
@@ -169,7 +169,7 @@ val Foo.bar = 1 // ошибка: запрещено инициализирова
 functions and properties for the companion object:-->
 Если у класса есть [вспомогательный объект](object-declarations.html#companion-objects), вы также можете определить функции и свойства расширения для такого объекта:
 
-``` kotlin
+```kotlin
 class MyClass {
     companion object { }  // называется "Companion"
 }
@@ -182,7 +182,7 @@ fun MyClass.Companion.foo() {
 <!--Just like regular members of the companion object, they can be called using only the class name as the qualifier:-->
 Как и для обычных членов вспомогательного объекта, для вызова функции расширения достаточно указания имени класса:
 
-``` kotlin
+```kotlin
 MyClass.foo()
 ```
 
@@ -193,7 +193,7 @@ MyClass.foo()
 <!-- Most of the time we define extensions on the top level, i.e. directly under packages: -->
  Чаще всего мы объявляем расширения на самом верхнем уровне, то есть сразу под пакетами:
 
-``` kotlin
+```kotlin
 package foo.bar
  
 fun Baz.goo() { ... } 
@@ -202,7 +202,7 @@ fun Baz.goo() { ... }
 <!-- To use such an extension outside its declaring package, we need to import it at the call site: -->
 Для того, чтобы использовать такое расширение вне пакета, в котором оно было объявлено, нам надо импортировать его на стороне вызова:
 
-``` kotlin
+```kotlin
 package com.example.usage
 
 import foo.bar.goo // импортировать все расширения за именем "goo"
@@ -223,7 +223,7 @@ _См. [Импорт](packages.html#imports) для более подробно�
 <!-- Inside a class, you can declare extensions for another class. Inside such an extension, there are multiple _implicit receivers_ - objects members of which can be accessed without a qualifier. The instance of the class in which the extension is declared is called _dispatch receiver_, and the instance of the receiver type of the extension method is called _extension receiver_. -->
 Внутри класса вы можете объявить расширение для другого класса. Внутри такого объявления существует несколько _неявных объектов-приёмников_ (ориг.:_implicit receivers_ objects), доступ к членам которых может быть произведён без квалификатора. Экземпляр класса, в котором расширение объявлено, называется _диспетчером приёмников_ (ориг.: _dispatch receiver_), а экземпляр класса, для которого вызывается расширение, называется _приёмником расширения_ (ориг.: _extension receiver_).
 
-``` kotlin
+```kotlin
 class D {
     fun bar() { ... }
 }
@@ -245,7 +245,7 @@ class C {
 <!-- In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes precedence. To refer to the member of the dispatch receiver you can use the [qualified `this` syntax](this-expressions.html#qualified). -->
 В случае конфликта имён между членами классов _диспетчера приёмников_ и _приёмников расширения_, приоритет имеет _приёмник расширения_. Чтобы обратиться к члену класса _диспетчера приёмников_, можно использовать синтаксис [this с квалификатором](http://kotlinlang.ru/docs/reference/this-expressions.html#qualified).
 
-``` kotlin
+```kotlin
 class C {
     fun D.foo() {
         toString()         // вызывает D.toString()
@@ -256,7 +256,7 @@ class C {
 <!-- Extensions declared as members can be declared as `open` and overridden in subclasses. This means that the dispatch of such functions is virtual with regard to the dispatch receiver type, but static with regard to the extension receiver type. -->
 Расширения, объявленные как члены класса, могут иметь модификатор видимости <b class="keyword">open</b> и быть переопределены в унаследованных классах. Это означает, что диспечеризация таких функций является виртуальной по отношению к типу _диспетчера приёмников_, но статической по отношению к типам _приёмников расширения_.
 
-``` kotlin
+```kotlin
 open class D {
 }
 
@@ -315,7 +315,7 @@ swap(list, binarySearch(list, max(otherList)), max(list))
 <!-- This is a little better, but we have no or little help from the powerful code completion of the IDE. It would be so much better if we could say -->
 Уже немного лучше, но такой мощный инструмент IDE, как автодополнение, не предоставляет нам сколь-нибудь серьёзную помощь в данном случае. Намного лучше, если бы у нас было:
 
-``` kotlin
+```kotlin
 // Kotlin
 list.swap(list.binarySearch(otherList.max()), list.max())
 ```

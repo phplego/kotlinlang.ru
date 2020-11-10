@@ -51,7 +51,7 @@ allOpen {
 
 Плагин также работает с мета-аннотациями:
 
-``` kotlin
+```kotlin
 @com.my.Annotation
 annotation class MyFrameworkAnnotation
 

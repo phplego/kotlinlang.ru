@@ -40,7 +40,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 К примеру, переменная часто используемого типа `String` не может быть *null*:
 
 
-``` kotlin
+```kotlin
  var a: String = "abc"
  a = null // ошибка компиляции
 ```
@@ -48,7 +48,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 <!-- To allow nulls, we can declare a variable as nullable string, written `String?`: -->
 Для того, чтобы разрешить *null* значение, мы можем объявить эту строковую переменную как `String?`:
 
-``` kotlin
+```kotlin
  var b: String? = "abc"
  b = null // ok
 ```
@@ -56,14 +56,14 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 <!-- Now, if you call a method or access a property on `a`, it's guaranteed not to cause an NPE, so you can safely say -->
 Теперь, при вызове метода с использованием переменной `a`, исключены какие-либо NPE. Вы спокойно можете писать:
 
-``` kotlin
+```kotlin
  val l = a.length
 ```
 
 <!-- But if you want to access the same property on `b`, that would not be safe, and the compiler reports an error: -->
 Но в случае, если вы захотите получить доступ к значению `b`, это будет небезопасно. Компилятор предупредит об ошибке:
 
-``` kotlin
+```kotlin
  val l = b.length // ошибка: переменная `b` может быть null
 ```
 
@@ -76,7 +76,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 <!-- First, you can explicitly check if `b` is *null*{: .keyword }, and handle the two options separately: -->
 Первый способ. Вы можете явно проверить `b` на *null* значение и обработать два варианта по отдельности:
 
-``` kotlin
+```kotlin
  val l = if (b != null) b.length else -1
 ```
 
@@ -85,7 +85,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Компилятор отслеживает информацию о проведённой вами проверке и позволяет вызывать `length` внутри блока *if*.
 Также поддерживаются более сложные конструкции:
 
-``` kotlin
+```kotlin
  if (b != null && b.length > 0) {
      print("String of length ${b.length}")
  } else {
@@ -109,7 +109,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 Вторым способом является оператор безопасного вызова `?.`:
 
- ``` kotlin
+ ```kotlin
  b?.length
  ```
 <!-- This returns `b.length` if `b` is not null, and *null*{: .keyword } otherwise. The type of this expression is `Int?`. -->
@@ -122,7 +122,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Такие безопасные вызовы полезны в цепочках. К примеру, если Bob, Employee (работник), может быть прикреплён (или нет) к отделу Department, и
 у отдела может быть управляющий, другой Employee. Для того, чтобы обратиться к имени этого управляющего (если такой есть), напишем:
 
-``` kotlin
+```kotlin
  bob?.department?.head?.name
 ```
 
@@ -133,7 +133,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Для проведения каких-либо операций исключительно над non-null значениями вы можете использовать [`let`](/api/latest/jvm/stdlib/kotlin/let.html)
 оператор вместе с оператором безопасного вызова:
 
-``` kotlin
+```kotlin
  val listWithNulls: List<String?> = listOf("A", null)
  for (item in listWithNulls) {
       item?.let { println(it) } // выводит A и игнорирует null
@@ -147,7 +147,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 <!-- When we have a nullable reference `b`, we can say "if `b` is not null, use it, otherwise use some non-null value": -->
 Если у нас есть nullable ссылка `b`, мы можем либо провести проверку этой ссылки и использовать её, либо использовать non-null значение:
 
-``` kotlin
+```kotlin
  val l: Int = if (b != null) b.length else -1
 ```
 
@@ -155,7 +155,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 Аналогом такому *if*-выражению является элвис-оператор `?:`:
 
-``` kotlin
+```kotlin
  val l = b?.length ?: -1
 ```
 
@@ -172,7 +172,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Так как *throw* и *return* тоже являются выражениями в <b>Kotlin</b>, их также можно использовать справа от Элвис-оператора.
 Это может быть крайне полезным для проверки аргументов функции:
 
-``` kotlin
+```kotlin
  fun foo(node: Node): String? {
      val parent = node.getParent() ?: return null
      val name = node.getName() ?: throw IllegalArgumentException("name expected")
@@ -190,7 +190,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Для любителей NPE существует ещё один способ. Мы можем написать `b!!` и это вернёт нам либо non-null значение `b`
 (в нашем примере вернётся `String`), либо выкинет NPE:
 
-``` kotlin
+```kotlin
  val l = b!!.length
 ```
 
@@ -208,7 +208,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 Обычное приведение типа может вызвать `ClassCastException` в случае, если объект имеет другой тип.
 Можно использовать безопасное приведение, которое вернёт *null*, если попытка не удалась:
 
-``` kotlin
+```kotlin
  val aInt: Int? = a as? Int
 ```
 
@@ -219,7 +219,7 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 Если у вас есть коллекция nullable элементов и вы хотите отфильтровать все non-null элементы, используйте функцию `filterNotNull`.
 
-``` kotlin
+```kotlin
  val nullableList: List<Int?> = listOf(1, 2, null, 4)
  val intList: List<Int> = nullableList.filterNotNull()
 ```

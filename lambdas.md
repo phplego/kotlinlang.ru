@@ -258,7 +258,7 @@ but passed immediately as an expression. Consider the following example: -->
 Лямбда-выражения и анонимные функции - это "функциональный литерал", то есть необъявленная функция, которая немедленно
 используется в качестве выражения. Рассмотрим следующий пример:
 
-``` kotlin
+```kotlin
 max(strings, { a, b -> a.length < b.length })
 ```
 
@@ -269,7 +269,7 @@ the following named function: -->
 Этот второй аргумент является выражением, которое в свою очередь есть функция, то есть <i>функциональный литерал</i>.
 Как функция он эквивалентен объявлению:
 
-``` kotlin
+```kotlin
 fun compare(a: String, b: String): Boolean = a.length < b.length
 ```
 
@@ -281,7 +281,7 @@ fun compare(a: String, b: String): Boolean = a.length < b.length
 <!--The full syntactic form of lambda expressions, i.e. literals of function types, is as follows:-->
 Полная синтаксическая форма лямбда-выражений, таких как <i>literals of function types</i>, может быть представлена следующим образом:
 
-``` kotlin
+```kotlin
 val sum = { x: Int, y: Int -> x + y }
 ```
 
@@ -291,7 +291,7 @@ val sum = { x: Int, y: Int -> x + y }
 <!--If we leave all the optional annotations out, what's left looks like this:-->
 Если мы вынесем все необязательные объявления, то, что останется, будет выглядеть следующим образом:
 
-``` kotlin
+```kotlin
 val sum: (Int, Int) -> Int = { x, y -> x + y }
 ```
 
@@ -373,7 +373,7 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 <!-- If the lambda parameter is unused, you can place an underscore instead of its name: -->
 Если параметр лямбды не используется, то разрешено его имя заменить на символ подчёркивания:
 
-``` kotlin
+```kotlin
 map.forEach { _, value -> println("$value!") }
 ```
 
@@ -397,7 +397,7 @@ fun(x: Int, y: Int): Int = x + y
 <!--An anonymous function looks very much like a regular function declaration, except that its name is omitted. Its body can be either an expression (as shown above) or a block:-->
 Объявление анонимной функции выглядит очень похоже на обычное объявление функции, за исключением того, что её имя опущено. Тело такой функции может быть описано и выражением (как показано выше), и блоком:
 
-``` kotlin
+```kotlin
 fun(x: Int, y: Int): Int {
     return x + y
 }
@@ -426,7 +426,7 @@ ints.filter(fun(item) = item > 0)
 <!--A lambda expression or anonymous function (as well as a [local function](http://kotlinlang.org/docs/reference/functions.html#local-functions) and an [object expression](http://kotlinlang.org/docs/reference/object-declarations.html#object-expressions)) can access its closure, i.e. the variables declared in the outer scope. The variables captured in the closure can be modified in the lambda:-->
 Лямбда-выражение или анонимная функция (так же, как и [локальная функция](functions.html#local-functions) или [object expression](object-declarations.html#object-expressions)) имеет доступ к своему замыканию, то есть к переменным, объявленным вне этого выражения или функции. Переменные, захваченные в замыкании, могут быть изменены в лямбде:
 
-``` kotlin
+```kotlin
 var sum = 0
 ints.filter { it > 0 }.forEach {
     sum += it
@@ -466,7 +466,7 @@ val sum: Int.(Int) -> Int = { other -> plus(other) }
 <!--The anonymous function syntax allows you to specify the receiver type of a function literal directly. This can be useful if you need to declare a variable of a function type with receiver, and to use it later.-->
 Синтаксис анонимной функции позволяет вам явно указать тип приёмника. Это может быть полезно в случае, если вам нужно объявить переменную типа нашей функции для использования в дальнейшем.
 
-```koltin
+```kotlin
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
@@ -475,7 +475,7 @@ One of the most important examples of their usage is [type-safe builders](type-s
 Лямбда-выражения могут быть использованы как литералы функций с приёмником, когда тип приёмника может быть выведен из контекста.
 Один из самых важных примеров их использования это [типобезопасные строители](type-safe-builders.html) (type-safe builders):
 
-``` kotlin
+```kotlin
 class HTML {
     fun body() { ... }
 }

@@ -23,7 +23,7 @@ url: https://kotlinlang.ru/docs/reference/object-declarations.html
 <!-- To create an object of an anonymous class that inherits from some type (or types), we write: -->
 Для того, чтобы создать объект анонимного класса, который наследуется от какого-то типа (типов), используется конструкция:
 
-``` kotlin
+```kotlin
 window.addMouseListener(object : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         // ...
@@ -41,7 +41,7 @@ window.addMouseListener(object : MouseAdapter() {
 Множество супертипов может быть указано после двоеточия в виде списка, заполненного через запятую:
 
 
-``` kotlin
+```kotlin
 open class A(x: Int) {
     public open val y: Int = x
 }
@@ -56,7 +56,7 @@ val ab: A = object : A(1), B {
 <!-- If, by any chance, we need "just an object", with no nontrivial supertypes, we can simply say: -->
 Если всё-таки нам нужен *просто объект* без всяких там родительских классов, то можем указать:
 
-``` kotlin
+```kotlin
 val adHoc = object {
     var x: Int = 0
     var y: Int = 0
@@ -68,7 +68,7 @@ print(adHoc.x + adHoc.y)
 <!-- (Unlike Java, this is not restricted to final variables.) -->
 Код внутри объявленного объекта может обращаться к переменным за скобками так же, как вложенные анонимные классы в <b>Java</b>
 
-``` kotlin
+```kotlin
 fun countClicks(window: JComponent) {
     var clickCount = 0
     var enterCount = 0
@@ -94,7 +94,7 @@ fun countClicks(window: JComponent) {
 <!-- [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern) is a very useful pattern, and Kotlin (after Scala) makes it easy to declare singletons: -->
 [Синглтон](https://ru.wikipedia.org/wiki/%D0%9E%D0%B4%D0%B8%D0%BD%D0%BE%D1%87%D0%BA%D0%B0_(%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)) - очень полезный паттерн программирования, и <b>Kotlin</b> (переняв у <b>Scala</b>) позволяет объявлять его довольно простым способом :
 
-``` kotlin
+```kotlin
 object DataProviderManager {
     fun registerDataProvider(provider: DataProvider) {
         // ...
@@ -113,14 +113,14 @@ object DataProviderManager {
 <!-- To refer to the object, we use its name directly: -->
 Для непосредственной ссылки на объект используется его имя:
 
-``` kotlin
+```kotlin
 DataProviderManager.registerDataProvider(...)
 ```
 
 <!-- Such objects can have supertypes: -->
 Подобные объекты могут иметь супертипы:
 
-``` kotlin
+```kotlin
 object DefaultListener : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         // ...
@@ -144,7 +144,7 @@ object DefaultListener : MouseAdapter() {
 <!-- An object declaration inside a class can be marked with the *companion*{: .keyword } keyword: -->
 Объявление объекта внутри класса может быть отмечено ключевым словом **companion**:
 
-``` kotlin
+```kotlin
 class MyClass {
     companion object Factory {
         fun create(): MyClass = MyClass()
@@ -155,14 +155,14 @@ class MyClass {
 <!-- Members of the companion object can be called by using simply the class name as the qualifier: -->
 Для вызова членов такого `companion` объекта используется имя класса:
 
-``` kotlin
+```kotlin
 val instance = MyClass.create()
 ```
 
 <!-- The name of the companion object can be omitted, in which case the name `Companion` will be used: -->
 Не обязательно указывать имя вспомогательного объекта. В таком случае он будет назван `Companion`:
 
-``` kotlin
+```kotlin
 class MyClass {
     companion object {
     }
@@ -176,7 +176,7 @@ val x = MyClass.Companion
 <!-- Несмотря на то, что члены таких вспомогательных объектов выглядят, как статические члены в других языках программирования, на самом деле они являются членами реальных объектов и могут реализовывать, к примеру, интерфейсы: -->
 Такие члены вспомогательных объектов выглядят, как статические члены в других языках программирования. На самом же деле, они являются членами реальных объектов и могут реализовывать, к примеру, интерфейсы:
 
-``` kotlin
+```kotlin
 interface Factory<T> {
     fun create(): T
 }

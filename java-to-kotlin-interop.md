@@ -65,7 +65,7 @@ This rule applies for properties of any type, not just `Boolean`.
 Все функции и свойства, объявленные в файле `example.kt` внутри пакета `org.foo.bar`, включая функции расширения,
 скомпилированы в статические методы класса Java с именем `org.foo.bar.ExampleKt`.
 
-``` kotlin
+```kotlin
 // example.kt
 package demo
 
@@ -86,7 +86,7 @@ demo.ExampleKt.bar();
 Имя генерируемого JAVA класса может быть выбранно при помощи аннотации `@JvmName`:
 
 
-``` kotlin
+```kotlin
 @file:JvmName("DemoUtils")
 
 package demo
@@ -112,7 +112,7 @@ demo.DemoUtils.bar();
 Чтобы включить генерацию такого фасада, используйте аннотацию `@JvmMultifileClass` во всех файлах.
 
 
-``` kotlin
+```kotlin
 // oldutils.kt
 @file:JvmName("Utils")
 @file:JvmMultifileClass
@@ -124,7 +124,7 @@ fun foo() { ... }
 
 
 
-``` kotlin
+```kotlin
 // newutils.kt
 @file:JvmName("Utils")
 @file:JvmMultifileClass
@@ -146,7 +146,7 @@ demo.Utils.bar();
 ## Package-Level Functions
 All the functions and properties declared in a file `example.kt` inside a package `org.foo.bar`, including extension functions,
 are compiled into static methods of a Java class named `org.foo.bar.ExampleKt`.
-``` kotlin
+```kotlin
 // example.kt
 package demo
 class Foo
@@ -158,7 +158,7 @@ new demo.Foo();
 demo.ExampleKt.bar();
 ```
 The name of the generated Java class can be changed using the `@JvmName` annotation:
-``` kotlin
+```kotlin
 @file:JvmName("DemoUtils")
 package demo
 class Foo
@@ -173,14 +173,14 @@ Having multiple files which have the same generated Java class name (the same pa
 @JvmName annotation) is normally an error. However, the compiler has the ability to generate a single Java facade
 class which has the specified name and contains all the declarations from all the files which have that name.
 To enable the generation of such a facade, use the @JvmMultifileClass annotation in all of the files.
-``` kotlin
+```kotlin
 // oldutils.kt
 @file:JvmName("Utils")
 @file:JvmMultifileClass
 package demo
 fun foo() { ... }
 ```
-``` kotlin
+```kotlin
 // newutils.kt
 @file:JvmName("Utils")
 @file:JvmMultifileClass
@@ -201,7 +201,7 @@ demo.Utils.bar();
 если оно имеет backing field , не является приватным, не имеет `open`, `override` или `const` модификаторов и не является делегированным свойством.
 
 
-``` kotlin
+```kotlin
 class C(id: String) {
     @JvmField val ID = id
 }
@@ -226,7 +226,7 @@ class JavaClient {
 If you need to expose a Kotlin property as a field in Java, you need to annotate it with the `@JvmField` annotation.
 The field will have the same visibility as the underlying property. You can annotate a property with `@JvmField`
 if it has a backing field, is not private, does not have `open`, `override` or `const` modifiers, and is not a delegated property.
-``` kotlin
+```kotlin
 class C(id: String) {
     @JvmField val ID = id
 }
@@ -256,7 +256,7 @@ The visibility of the field will be the same as the visibility of `lateinit` pro
  Аннотирование такого свойства с помощью `@JvmField` делает его статическим полем с той же видимостью, что и само свойство.
 
 
-``` kotlin
+```kotlin
 class Key(val value: Int) {
     companion object {
         @JvmField
@@ -277,7 +277,7 @@ Key.COMPARATOR.compare(key1, key2);
 Свойство с [поздней инициализацией](properties.html#late-initialized-properties-and-variables) в объекте или объекте-помощнике имеет статическое backing field с той же видимостью, что и сеттер свойства.
 
 
-``` kotlin
+```kotlin
 object Singleton {
     lateinit var provider: Provider
 }
@@ -296,7 +296,7 @@ Singleton.provider = new Provider();
 
 
 
-``` kotlin
+```kotlin
 // file example.kt
 
 object Obj {
@@ -331,7 +331,7 @@ Usually these fields are private but they can be exposed in one of the following
  - `const` modifier.
 Annotating such a property with `@JvmField` makes it a static field with the same visibility as the property itself.
 
-``` kotlin
+```kotlin
 class Key(val value: Int) {
     companion object {
         @JvmField
@@ -349,7 +349,7 @@ Key.COMPARATOR.compare(key1, key2);
 A [late-initialized](properties.html#late-initialized-properties-and-variables) property in an object or a companion object
 has a static backing field with the same visibility as the property setter.
 
-``` kotlin
+```kotlin
 object Singleton {
     lateinit var provider: Provider
 }
@@ -362,7 +362,7 @@ Singleton.provider = new Provider();
 ```
 Properties annotated with `const` (in classes as well as at the top level) are turned into static fields in Java:
 
-``` kotlin
+```kotlin
 // file example.kt
 object Obj {
     const val CONST = 1
@@ -392,7 +392,7 @@ Kotlin также может генерировать статические м�
 Например:
 
 
-``` kotlin
+```kotlin
 class C {
     companion object {
         @JvmStatic fun foo() {}
@@ -416,7 +416,7 @@ C.Companion.bar(); // the only way it works
 То же самое для именованных объектов:
 
 
-``` kotlin
+```kotlin
 object Obj {
     @JvmStatic fun foo() {}
     fun bar() {}
@@ -443,7 +443,7 @@ As mentioned above, Kotlin represents package-level functions as static methods.
 Kotlin can also generate static methods for functions defined in named objects or companion objects if you annotate those functions as `@JvmStatic`.
 If you use this annotation, the compiler will generate both a static method in the enclosing class of the object and an instance method in the object itself.
 For example:
-``` kotlin
+```kotlin
 class C {
     companion object {
         @JvmStatic fun foo() {}
@@ -459,7 +459,7 @@ C.Companion.foo(); // instance method remains
 C.Companion.bar(); // the only way it works
 ```
 Same for named objects:
-``` kotlin
+```kotlin
 object Obj {
     @JvmStatic fun foo() {}
     fun bar() {}
@@ -526,7 +526,7 @@ kotlin.jvm.JvmClassMappingKt.getKotlinClass(MainView.class)
 Самый яркий пример происходит вследствии *стирания типа*:
 
 
-``` kotlin
+```kotlin
 fun List<String>.filterValid(): List<String>
 fun List<Int>.filterValid(): List<Int>
 ```
@@ -536,7 +536,7 @@ fun List<Int>.filterValid(): List<Int>
 Если мы действительно хотим, чтобы они имели одно и то же имя в Kotlin, мы можем добавить одному (или обоим) аннотацию `@JvmName` и указать другое имя в качестве аргумента:
 
 
-``` kotlin
+```kotlin
 fun List<String>.filterValid(): List<String>
 
 @JvmName("filterValidInt")
@@ -549,7 +549,7 @@ fun List<Int>.filterValid(): List<Int>
 Этот же трюк применяется, когда нам нужно иметь свойство `x` вместе с функцией `getX()`:
 
 
-``` kotlin
+```kotlin
 val x: Int
     @JvmName("getX_prop")
     get() = 15
@@ -561,7 +561,7 @@ fun getX() = 10
 Чтобы изменить имена созданных методов доступа для свойств без явно введенных геттеров и сеттеров, вы можете использовать `@get:JvmName` и `@set:JvmName`:
 
 
-``` kotlin
+```kotlin
 @get:JvmName("x")
 @set:JvmName("changeX")
 var x: Int = 23
@@ -571,27 +571,27 @@ var x: Int = 23
 ## Handling signature clashes with @JvmName
 Sometimes we have a named function in Kotlin, for which we need a different JVM name the byte code.
 The most prominent example happens due to *type erasure*:
-``` kotlin
+```kotlin
 fun List<String>.filterValid(): List<String>
 fun List<Int>.filterValid(): List<Int>
 ```
 These two functions can not be defined side-by-side, because their JVM signatures are the same: `filterValid(Ljava/util/List;)Ljava/util/List;`.
 If we really want them to have the same name in Kotlin, we can annotate one (or both) of them with `@JvmName` and specify a different name as an argument:
-``` kotlin
+```kotlin
 fun List<String>.filterValid(): List<String>
 @JvmName("filterValidInt")
 fun List<Int>.filterValid(): List<Int>
 ```
 From Kotlin they will be accessible by the same name `filterValid`, but from Java it will be `filterValid` and `filterValidInt`.
 The same trick applies when we need to have a property `x` alongside with a function `getX()`:
-``` kotlin
+```kotlin
 val x: Int
     @JvmName("getX_prop")
     get() = 15
 fun getX() = 10
 ```
 To change the names of generated accessor methods for properties without explicitly implemented getters and setters, you can use `@get:JvmName` and `@set:JvmName`:
-``` kotlin
+```kotlin
 @get:JvmName("x")
 @set:JvmName("changeX")
 var x: Int = 23
@@ -607,7 +607,7 @@ var x: Int = 23
 Аннотации также работают для конструкторов, статических методов и т.д. Их нельзя использовать для абстрактных методов, включая методы, определенные в интерфейсах.
 
 
-``` kotlin
+```kotlin
 class Foo @JvmOverloads constructor(x: Int, y: Double = 0.0) {
     @JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") { ... }
 }
@@ -640,7 +640,7 @@ signature, with all parameters present. If you wish to expose multiple overloads
 `@JvmOverloads` annotation.
 The annotation also works for constructors, static methods etc. It can't be used on abstract methods, including methods
 defined in interfaces.
-``` kotlin
+```kotlin
 class Foo @JvmOverloads constructor(x: Int, y: Double = 0.0) {
     @JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") { ... }
 }
@@ -669,7 +669,7 @@ if the `@JvmOverloads` annotation is not specified.
 Поэтому если мы имеем такую функцию в Котлине:
 
 
-``` kotlin
+```kotlin
 // example.kt
 package demo
 
@@ -697,7 +697,7 @@ catch (IOException e) { // error: foo() does not declare IOException in the thro
 Чтобы обойти эту проблему, используйте аннотацию `@Throws` в Kotlin:
 
 
-``` kotlin
+```kotlin
 @Throws(IOException::class)
 fun foo() {
     throw IOException()
@@ -709,7 +709,7 @@ fun foo() {
 As we mentioned above, Kotlin does not have checked exceptions.
 So, normally, the Java signatures of Kotlin functions do not declare exceptions thrown.
 Thus if we have a function in Kotlin like this:
-``` kotlin
+```kotlin
 // example.kt
 package demo
 fun foo() {
@@ -728,7 +728,7 @@ catch (IOException e) { // error: foo() does not declare IOException in the thro
 ```
 we get an error message from the Java compiler, because `foo()` does not declare `IOException`.
 To work around this problem, use the `@Throws` annotation in Kotlin:
-``` kotlin
+```kotlin
 @Throws(IOException::class)
 fun foo() {
     throw IOException()
@@ -755,7 +755,7 @@ This way we get a `NullPointerException` in the Java code immediately.
 Когда классы Kotlin используют [вариативность на уровне объявления](generics.html#declaration-site-variance), есть два варианта того, как их использование видно из кода Java. Допустим, у нас есть следующий класс и две функции, которые его используют:
 
 
-``` kotlin
+```kotlin
 class Box<out T>(val value: T)
 
 interface Base
@@ -809,7 +809,7 @@ Base unboxBase(Box<? extends Base> box) { ... }
 Если нам нужны подстановочные знаки, где они не генерируются по умолчанию, мы можем использовать аннотацию `@JvmWildcard`:
 
 
-``` kotlin
+```kotlin
 fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 // is translated to 
 // Box<? extends Derived> boxDerived(Derived value) { ... }
@@ -819,7 +819,7 @@ fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 С другой стороны, если нам не нужны подстановочные знаки, где они созданы, мы можем использовать `@JvmSuppressWildcards`:
 
 
-``` kotlin
+```kotlin
 fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 // is translated to 
 // Base unboxBase(Box<Base> box) { ... }
@@ -832,7 +832,7 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 ## Variant generics
 When Kotlin classes make use of [declaration-site variance](generics.html#declaration-site-variance), there are two 
 options of how their usages are seen from the Java code. Let's say we have the following class and two functions that use it:
-``` kotlin
+```kotlin
 class Box<out T>(val value: T)
 interface Base
 class Derived : Base
@@ -865,13 +865,13 @@ Base unboxBase(Box<? extends Base> box) { ... }
 NOTE: when the argument type is final, there's usually no point in generating the wildcard, so `Box<String>` is always
   `Box<String>`, no matter what position it takes.
 If we need wildcards where they are not generated by default, we can use the `@JvmWildcard` annotation:
-``` kotlin
+```kotlin
 fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 // is translated to 
 // Box<? extends Derived> boxDerived(Derived value) { ... }
 ```
 On the other hand, if we don't need wildcards where they are generated, we can use `@JvmSuppressWildcards`:
-``` kotlin
+```kotlin
 fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 // is translated to 
 // Base unboxBase(Box<Base> box) { ... }
@@ -888,7 +888,7 @@ functions or classes, causing all wildcards inside them to be suppressed.
 необработанный тип, где аргумент типа `Nothing` используется:
 
 
-``` kotlin
+```kotlin
 fun emptyList(): List<Nothing> = listOf()
 // is translated to
 // List emptyList() { ... }
@@ -899,7 +899,7 @@ fun emptyList(): List<Nothing> = listOf()
 The type [`Nothing`](exceptions.html#the-nothing-type) is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
 `java.lang.Void`, accepts `null` as a value, and `Nothing` doesn't accept even that. So, this type cannot be accurately
 represented in the Java world. This is why Kotlin generates a raw type where an argument of type `Nothing` is used:
-``` kotlin
+```kotlin
 fun emptyList(): List<Nothing> = listOf()
 // is translated to
 // List emptyList() { ... }

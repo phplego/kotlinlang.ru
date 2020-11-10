@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/reference/packages.html
 
 Файл с исходным кодом может начинаться с объявления пакета:
 
-``` kotlin
+```kotlin
 package foo.bar
 
 fun baz() {}
@@ -35,19 +35,19 @@ class Goo {}
 
 Мы можем импортировать одно имя, например
 
-``` kotlin
+```kotlin
 import foo.Bar // теперь Bar можно использовать без указания пакета
 ```
 
 или доступное содержимое пространства имён (пакет, класс, объект и т.д.):
 
-``` kotlin
+```kotlin
 import foo.* // всё в 'foo' становится доступно без указания пакета
 ```
 
 При совпадении имён мы можем разрешить коллизию используя ключевое слово <b class="keyword">as</b><!--keyword--> для локального переименования совпадающей сущности:
 
-``` kotlin
+```kotlin
 import foo.Bar // Bar доступен
 import bar.Bar as bBar // bBar заменяет имя 'bar.Bar'
 ```

@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/reference/idioms.html
 
 ### Создание DTO (он же POJO или POCO)
 
-``` kotlin
+```kotlin
 data class Customer(val name: String, val email: String)
 ```
 
@@ -28,33 +28,33 @@ data class Customer(val name: String, val email: String)
 
 ### Значения по умолчанию для параметров функций
 
-``` kotlin
+```kotlin
 fun foo(a: Int = 0, b: String = "") { ... }
 ```
 
 ### Фильтрация списка
 
-``` kotlin
+```kotlin
 val positives = list.filter { x -> x > 0 }
 ```
 
 Или короче:
 
-``` kotlin
+```kotlin
 val positives = list.filter { it > 0 }
 ```
 
 <!--### String Interpolation-->
 ### Форматирование строк
 
-``` kotlin
+```kotlin
 println("Name $name")
 ```
 
 <!--### Instance Checks-->
 ### Проверка объекта на принадлежность к определённому классу
 
-``` kotlin
+```kotlin
 when (x) {
     is Foo -> ...
     is Bar -> ...
@@ -64,7 +64,7 @@ when (x) {
 <!--### Traversing a map/list of pairs-->
 ### Итерация по карте/списку пар
 
-``` kotlin
+```kotlin
 for ((k, v) in map) {
     println("$k -> $v")
 }
@@ -76,7 +76,7 @@ for ((k, v) in map) {
 <!--### Using ranges-->
 ### Использование последовательностей чисел 
 
-``` kotlin
+```kotlin
 for (i in 1..100) { ... }
 for (x in 2..10) { ... }
 ```
@@ -84,7 +84,7 @@ for (x in 2..10) { ... }
 <!--### Read-only list-->
 ### Read-only список
 
-``` kotlin
+```kotlin
 val list = listOf("a", "b", "c")
 ```
 
@@ -93,14 +93,14 @@ val list = listOf("a", "b", "c")
 <!--### Read-only map-->
 ### Read-only ассоциативный список (map)
 
-``` kotlin
+```kotlin
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 ```
 
 <!--###Accessing a map-->
 ### Обращение к ассоциативному списку
 
-``` kotlin
+```kotlin
 println(map["key"])
 map["key"] = value
 ```
@@ -108,7 +108,7 @@ map["key"] = value
 <!--### Lazy property-->
 ### Ленивые свойства
 
-``` kotlin
+```kotlin
 val p: String by lazy {
     // compute the string
 }
@@ -117,7 +117,7 @@ val p: String by lazy {
 <!--### Extension Functions-->
 ### Функции-расширения
 
-``` kotlin
+```kotlin
 fun String.spaceToCamelCase() { ... }
 
 "Convert this to camelcase".spaceToCamelCase()
@@ -126,7 +126,7 @@ fun String.spaceToCamelCase() { ... }
 <!--### Creating a singleton-->
 ### Создание синглтона
 
-``` kotlin
+```kotlin
 object Resource {
     val name = "Name"
 }
@@ -135,7 +135,7 @@ object Resource {
 <!--### If not null shorthand-->
 ### Сокращение для "Если не null"
 
-``` kotlin
+```kotlin
 val files = File("Test").listFiles()
 
 println(files?.size)
@@ -144,7 +144,7 @@ println(files?.size)
 <!--### If not null and else shorthand-->
 ### Сокращение для "Если не null, иначе" 
 
-``` kotlin
+```kotlin
 val files = File("Test").listFiles()
 
 println(files?.size ?: "empty")
@@ -153,7 +153,7 @@ println(files?.size ?: "empty")
 <!--### Executing a statement if null-->
 ### Выброс исключения при равенстве null
 
-``` kotlin
+```kotlin
 val data = ...
 val email = data["email"] ?: throw IllegalStateException("Email is missing!")
 ```
@@ -161,7 +161,7 @@ val email = data["email"] ?: throw IllegalStateException("Email is missing!")
 <!--### Execute if not null-->
 ### Выполнение при неравенстве null
 
-``` kotlin
+```kotlin
 val data = ...
 
 data?.let {
@@ -172,7 +172,7 @@ data?.let {
 <!--### Return on when statement-->
 ### Return с оператором when
 
-``` kotlin
+```kotlin
 fun transform(color: String): Int {
     return when (color) {
         "Red" -> 0
@@ -186,7 +186,7 @@ fun transform(color: String): Int {
 <!--### 'try/catch' expression-->
 ### 'try/catch' как выражение
 
-``` kotlin
+```kotlin
 fun test() {
     val result = try {
         count()
@@ -201,7 +201,7 @@ fun test() {
 <!--### 'if' expression-->
 ### 'if' как выражение
 
-``` kotlin
+```kotlin
 fun foo(param: Int) {
     val result = if (param == 1) {
         "one"
@@ -216,7 +216,7 @@ fun foo(param: Int) {
 <!--### Builder-style usage of methods that return `Unit`-->
 ### Builder-style использование методов, возвращающих `Unit`
 
-``` kotlin
+```kotlin
 fun arrayOfMinusOnes(size: Int): IntArray {
     return IntArray(size).apply { fill(-1) }
 }
@@ -226,14 +226,14 @@ fun arrayOfMinusOnes(size: Int): IntArray {
 <!--### Single-expression functions-->
 ### Функции, состоящие из одного выражения
 
-``` kotlin
+```kotlin
 fun theAnswer() = 42
 ```
 
 <!--This is equivalent to-->
 Что равносильно этому:
 
-``` kotlin
+```kotlin
 fun theAnswer(): Int {
     return 42
 }
@@ -242,7 +242,7 @@ fun theAnswer(): Int {
 <!--This can be effectively combined with other idioms, leading to shorter code. E.g. with the **when**-expression:-->
 Для сокращения кода их можно эффективно совмещать с другими идиомами. Например с **when**<!--keyword-->:
 
-``` kotlin
+```kotlin
 fun transform(color: String): Int = when (color) {
     "Red" -> 0
     "Green" -> 1
@@ -254,7 +254,7 @@ fun transform(color: String): Int = when (color) {
 <!--### Calling multiple methods on an object instance ('with')-->
 ### Вызов нескольких методов объекта ('with')
 
-``` kotlin
+```kotlin
 class Turtle {
     fun penDown()
     fun penUp()
@@ -276,7 +276,7 @@ with(myTurtle) { //draw a 100 pix square
 <!--### Java 7's try with resources-->
 ### try with resources из Java 7
 
-``` kotlin
+```kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))
 stream.buffered().reader().use { reader ->
     println(reader.readText())
@@ -286,7 +286,7 @@ stream.buffered().reader().use { reader ->
 <!-- ### Convenient form for a generic function that requires the generic type information -->
 ### Удобная форма generic-функций, требующих информацию о generic-типе
 
-``` kotlin
+```kotlin
 //  public final class Gson {
 //     ...
 //     public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
@@ -298,7 +298,7 @@ inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(
 <!-- ### Consuming a nullable Boolean -->
 ### Обработка nullable Boolean
 
-``` kotlin
+```kotlin
 val b: Boolean? = ...
 if (b == true) {
     ...

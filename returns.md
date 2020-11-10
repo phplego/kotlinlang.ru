@@ -30,7 +30,7 @@ To label an expression, we just put a label in front of it-->
 Метки имеют идентификатор в виде знака `@`. Например: метки `abc@`, `fooBar@` являются корректными
 (см. [грамматика](http://kotlinlang.org/docs/reference/grammar.html#label)). Для того, чтобы пометить выражение, мы просто ставим метку перед ним:
 
-``` kotlin
+```kotlin
 loop@ for (i in 1..100) {
   // ...
 }
@@ -39,7 +39,7 @@ loop@ for (i in 1..100) {
 <!--Now, we can qualify a **break** or a **continue** with a label:-->
 Теперь мы можем уточнить значения операторов **break** или **continue** с помощью меток:
 
-``` kotlin
+```kotlin
 loop@ for (i in 1..100) {
   for (j in 1..100) {
     if (...)
@@ -65,7 +65,7 @@ The most important use case is returning from a lambda expression. Recall that w
 Подходящий **return** позволит вернуться из внешней функции.
 Одним из самых удачных применений этой синтаксической конструкции служит возврат из лямбда-выражения. Подумайте над этим утверждением, читая данный пример:
 
-``` kotlin
+```kotlin
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach {
         if (it == 3) return // нелокальный возврат, непосредственно к объекту вызывающему функцию foo()
@@ -81,7 +81,7 @@ If we need to return from a lambda expression, we have to label it and qualify t
 Опертор **return** возвращается из ближайшей функции, в нашем случае `foo`.
 (Обратите внимание, что такой местный возврат поддерживается только лямбда-выражениями, переданными [инлайн-функциям](inline-functions.html).) Если нам надо вернуться из лямбда-выражения, к оператору стоит поставить метку и тем самым сделать уточнение для ключевого слова **return**:
 
-``` kotlin
+```kotlin
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach lit@{
         if (it == 3) return@lit // локальный возврат внутри лямбды, то есть к циклу forEach
@@ -95,7 +95,7 @@ fun foo() {
 such a label has the same name as the function to which the lambda is passed.-->
 Теперь он возвращается только из лямда-выражения. Зачастую намного более удобно указывать метки неявно: такие метки имеют такое же имя, как и функция, к которой относится лямбда.  
 
-``` kotlin
+```kotlin
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach {
         if (it == 3) return@forEach // локальный возврат внутри лямбды, то есть к циклу forEach
@@ -109,7 +109,7 @@ fun foo() {
 A **return** statement in an anomymous function will return from the anonymous function itself.-->
 Возможно также использование [анонимной функции](lambdas.html#anonymous-functions) в качестве альтернативы лямбда-выражениям. Оператор **return** возвращается из самой анонимной функции.
 
-``` kotlin
+```kotlin
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach(fun(value: Int) {
         if (value == 3) return  // локальный возврат внутри анонимной функци, то есть к циклу forEach
@@ -121,7 +121,7 @@ fun foo() {
 <!--Note that the use of local returns in previous three examples is similar to the use of continue in regular loops. There is no direct equivalent for break, but it can be simulated by adding another nesting lambda and non-locally returning from it:-->
 Обратите внимание, что использование локальных возвратов в предыдущих трех примерах аналогично использованию **continue** в обычных циклах. Прямого эквивалента для **break** не существует, но его можно смоделировать - добавить еще одну вложенную лямбду и нелокально вернуться из нее:
 
-``` kotlin
+```kotlin
 fun foo() {
     run loop@{
         listOf(1, 2, 3, 4, 5).forEach {
@@ -136,7 +136,7 @@ fun foo() {
 <!--When returning a value, the parser gives preference to the qualified return, i.e.-->
 При возвращении значения парсер отдаёт предпочтение специализированному возврату, типа
 
-``` kotlin
+```kotlin
 return@a 1
 ```
 

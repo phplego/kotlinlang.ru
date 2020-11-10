@@ -23,7 +23,7 @@ url: https://kotlinlang.ru/docs/reference/exceptions.html
 
 Для того, чтобы возбудить исключение явным образом, используйте оператор *throw*
 
-``` kotlin
+```kotlin
 throw MyException("Hi There!")
 ```
 
@@ -31,7 +31,7 @@ throw MyException("Hi There!")
 
 Оператор *try* позволяет перехватывать исключения
 
-``` kotlin
+```kotlin
 try {
     // some code
 }
@@ -57,7 +57,7 @@ finally {
 
 Ключевое слово *try* является выражением, то есть оно может иметь возвращаемое значение.
 
-``` kotlin
+```kotlin
 val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 ```
 
@@ -93,7 +93,7 @@ Appendable append(CharSequence csq) throws IOException;
 реализует интерфейс `Appendable`)...
 Данный факт постоянно приводит к написанию подобного кода:
 
-``` kotlin
+```kotlin
 try {
     log.append(message)
 }
@@ -132,7 +132,7 @@ catch (IOException e) {
 
 Вы можете использовать выражение `throw`  в качестве части элвис-выражения:
 
-``` kotlin
+```kotlin
 val s = person.name ?: throw IllegalArgumentException("Name required")
 ```
 
@@ -144,7 +144,7 @@ val s = person.name ?: throw IllegalArgumentException("Name required")
 У этого типа нет никаких значений, он используется для того, чтобы обозначить те участки кода, которые могут быть не достигнуты никогда.
 В своём коде вы можете использовать `Nothing` для того, чтобы отметить функцию, чей результат никогда не будет возвращён:
 
-``` kotlin
+```kotlin
 fun fail(message: String): Nothing {
     throw IllegalArgumentException(message)
 }
@@ -154,7 +154,7 @@ fun fail(message: String): Nothing {
 
 При вызове такой функции компилятор будет в курсе, что исполнения кода далее не последует:
 
-``` kotlin
+```kotlin
 val s = person.name ?: fail("Name required")
 println(s)     // известно, что переменная 's' проинициализирована к этому моменту
 ```

@@ -23,14 +23,14 @@ Consider the following case:-->
 Но во многих случаях эти "накладные расходы" можно устранить с помощью инлайнинга (встраивания) лямбда-выражений.
 Например, функция `lock()` может быть легко встроена в то место, из которого она вызывается: 
 
-``` kotlin
+```kotlin
 lock(l) { foo() }
 ```
 
 <!--Instead of creating a function object for the parameter and generating a call, the compiler could emit the following code-->
 Вместо создания объекта функции для параметра и генерации вызова, компилятор мог бы выполнить что-то подобное этому коду:
 
-``` kotlin
+```kotlin
 l.lock()
 try {
     foo()
@@ -46,7 +46,7 @@ finally {
 <!--To make the compiler do this, we need to mark the `lock()` function with the `inline` modifier:-->
 Чтобы заставить компилятор поступить именно так, нам необходимо отметить функцию `lock` модификатором `inline`:
 
-``` kotlin
+```kotlin
 inline fun <T> lock(lock: Lock, body: () -> T): T {
     // ...
 }
@@ -69,7 +69,7 @@ parameters with the `noinline` modifier:-->
 В случае, если вы хотите, чтобы только некоторые лямбды, переданные inline-функции, были встроены, 
 вам необходимо отметить модификатором `noinline` те функции-параметры, которые встроены не будут:
 
-``` kotlin
+```kotlin
 inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
     // ...
 }
@@ -94,7 +94,7 @@ This means that to exit a lambda, we have to use a [label](returns.html#return-a
 inside a lambda, because a lambda can not make the enclosing function return:-->
 В Kotlin мы можем использовать обыкновенный, безусловный `return` только для выхода из именованной функции или анонимной функции. Это значит, что для выхода из лямбды нам нужно использовать [label](returns.html#return-at-labels). Обычный `return` запрещён внутри лямбды, потому что она не может заставить внешнюю функцию завершиться.
 
-``` kotlin
+```kotlin
 fun foo() {
     ordinaryFunction {
         return // ERROR: can not make `foo` return here
@@ -105,7 +105,7 @@ fun foo() {
 <!--But if the function the lambda is passed to is inlined, the return can be inlined as well, so it is allowed:-->
 Но если функция, в которую передана лямбда, встроена, то `return` также будет встроен, поэтому так делать можно:
 
-``` kotlin
+```kotlin
 fun foo() {
     inlineFunction {
         return // OK: the lambda is inlined
@@ -117,7 +117,7 @@ fun foo() {
 this sort of constructs in loops, which inline functions often enclose:-->
 Такие return (находящиеся внутри лямбд, но завершающие внешнюю функцию) называются нелокальными (`non-local`). Мы используем такие конструкции в циклах, которые являются inline-функциями:
 
-``` kotlin
+```kotlin
 fun hasZeros(ints: List<Int>): Boolean {
     ints.forEach {
         if (it == 0) return true // returns from hasZeros
@@ -132,7 +132,7 @@ is also not allowed in the lambdas. To indicate that, the lambda parameter needs
 the `crossinline` modifier: -->
 Заметьте, что некоторые inline-функции могут вызывать переданные им лямбды не напрямую в теле функции, а из иного контекста, такого как локальный объект или вложенная функция. В таких случаях, нелокальное управление потоком выполнения также запрещено в лямбдах. Чтобы указать это, параметр лямбды необходимо отметить модификатором `crossinline`:
 
-``` kotlin
+```kotlin
 inline fun f(crossinline body: () -> Unit) {
     val f = object: Runnable {
         override fun run() = body()
@@ -153,7 +153,7 @@ inline fun f(crossinline body: () -> Unit) {
 <!--Sometimes we need to access a type passed to us as a parameter:-->
 Иногда нам необходимо получить доступ к типу, переданному в качестве параметра:
 
-``` kotlin
+```kotlin
 fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
     var p = parent
     while (p != null && !clazz.isInstance(p)) {
@@ -168,21 +168,21 @@ fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
 It’s all fine, but the call site is not very pretty:-->
 В этом примере мы осуществляем проход по дереву и используем рефлексию, чтобы проверить узел на принадлежность к определённому типу. Это прекрасно работает, но вызов выглядит не очень симпатично:
 
-``` kotlin
+```kotlin
 myTree.findParentOfType(MyTreeNodeType::class.java)
 ```
 
 <!--What we actually want is simply pass a type to this function, i.e. call it like this:-->
 Что мы на самом деле хотим, так это передать этой функции тип, то есть вызвать её вот так:
 
-``` kotlin
+```kotlin
 myTree.findParentOfType<MyTreeNodeType>()
 ```
 
 <!--To enable this, inline functions support *reified type parameters*, so we can write something like this:-->
 В таких случаях inline-функции могут принимать *параметры вещественного типа* (reified type parameters). Чтобы включить эту возможность, мы можем написать что-то вроде этого:
 
-``` kotlin
+```kotlin
 inline fun <reified T> TreeNode.findParentOfType(): T? {
     var p = parent
     while (p != null && p !is T) {
@@ -200,7 +200,7 @@ and `as` are working now. Also, we can call it as mentioned above: `myTree.findP
 <!--Though reflection may not be needed in many cases, we can still use it with a reified type parameter:-->
 Хотя рефлексия может быть не нужна во многих случаях, мы всё ещё можем использовать её с параметром вещественного типа:
 
-``` kotlin
+```kotlin
 inline fun <reified T> membersOf() = T::class.members
 
 fun main(s: Array<String>) {

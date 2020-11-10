@@ -28,7 +28,7 @@ url: "https://kotlinlang.ru/docs/reference/kotlin-doc.html"
 
 Ниже пример документации класса с использованием KDoc:
 
-``` kotlin
+```kotlin
 /**
  * A group of *members*.
  *

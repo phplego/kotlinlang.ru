@@ -13,7 +13,7 @@ url: https://kotlinlang.ru/docs/reference/multi-declarations.html
 <!--Sometimes it is convenient to _destructure_ an object into a number of variables, for example:-->
 Иногда удобно _деструктуризировать_ объект на несколько переменных, например:
 
-``` kotlin
+```kotlin
 val (name, age) = person 
 ```
 
@@ -22,7 +22,7 @@ We have declared two new variables: `name` and `age`, and can use them independe
 Этот синтаксис называется _деструктуризирующее присваивание_. Он позволяет присвоить объект сразу нескольким 
 переменным, разбив его на части. Мы объявили две переменные: `name` и `age`, и теперь можем использовать их по отдельности:
  
-``` kotlin
+```kotlin
 println(name)
 println(age)
 ```
@@ -30,7 +30,7 @@ println(age)
 <!--A destructuring declaration is compiled down to the following code:-->
 Эта декларация транслируется в такой код:
 
-``` kotlin
+```kotlin
 val name = person.component1()
 val age = person.component2()
 ```
@@ -49,7 +49,7 @@ keyword to allow using them in a destructuring declaration.-->
 <!--Destructuring declarations also work in *for*{: .keyword }-loops: when you say-->
 Деструктуризирующие присваивания также работают в циклах `for`:
 
-``` kotlin
+```kotlin
 for ((a, b) in collection) { ... }
 ```
 
@@ -64,7 +64,7 @@ A compact way of doing this in Kotlin is to declare a [_data class_](data-classe
 Предположим, нам нужно вернуть два значения из функции. Например, результат вычисления и какой-нибудь статус.
 Компактный способ достичь этого — объявление `data`-класса и возвращение его экземпляра:
 
-``` kotlin
+```kotlin
 data class Result(val result: Int, val status: Status)
 fun function(...): Result {
     // вычисления
@@ -90,7 +90,7 @@ but it's often better to have your data named properly.-->
 <!--Probably the nicest way to traverse a map is this:-->
 Пожалуй, самый хороший способ итерации по ассоциативному списку:
 
-``` kotlin
+```kotlin
 for ((key, value) in map) {
    // do something with the key and the value
 }
@@ -107,7 +107,7 @@ for ((key, value) in map) {
 <!--And indeed, the standard library provides such extensions:-->
 И да, стандартная библиотека предоставляет такие расширения:
 
-``` kotlin
+```kotlin
 operator fun <K, V> Map<K, V>.iterator(): Iterator<Map.Entry<K, V>> = entrySet().iterator()
 operator fun <K, V> Map.Entry<K, V>.component1() = getKey()
 operator fun <K, V> Map.Entry<K, V>.component2() = getValue()

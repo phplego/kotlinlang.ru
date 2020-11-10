@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/reference/annotations.html
 <!--Annotations are means of attaching metadata to code. To declare an annotation, put the *annotation*{: .keyword } modifier in front of a class:-->
 Аннотации являются специальной формой синтаксических метаданных, добавленных в исходный код. 
 Для объявления аннотации используйте модификатор *annotation* перед именем класса:
-``` kotlin
+```kotlin
 annotation class Fancy
 ```
 
@@ -42,7 +42,7 @@ annotation class Fancy
   * [`@MustBeDocumented`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html) определяет то, что аннотация 
   является частью публичного API и должна быть включена в сигнатуру класса или метода, попадающую в сгенерированную документацию.
 
-``` kotlin
+```kotlin
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION,
         AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.EXPRESSION)
 @Retention(AnnotationRetention.SOURCE)
@@ -53,7 +53,7 @@ annotation class Fancy
 <!--### Usage-->
 ### Использование
 
-``` kotlin
+```kotlin
 @Fancy class Foo {
     @Fancy fun baz(@Fancy foo: Int): Int {
         return (@Fancy 1)
@@ -67,7 +67,7 @@ to the constructor declaration, and add the annotations before it:-->
 при объявлении конструктора и вставить аннотацию перед ним:
 
 
-``` kotlin
+```kotlin
 class Foo @Inject constructor(dependency: MyDependency) {
     // ...
 }
@@ -76,7 +76,7 @@ class Foo @Inject constructor(dependency: MyDependency) {
 <!--You can also annotate property accessors:-->
 Вы также можете помечать аннотациями геттеры и сеттеры:
 
-``` kotlin
+```kotlin
 class Foo {
     var x: MyDependency? = null
         @Inject set
@@ -89,7 +89,7 @@ class Foo {
 <!--Аnnotations may have constructors that take parameters.-->
 Аннотации могут иметь конструкторы, принимающие параметры:
 
-``` kotlin
+```kotlin
 annotation class Special(val why: String)
 
 @Special("пример") class Foo {}
@@ -121,7 +121,7 @@ of an annotation attribute.-->
 <!--If an annotation is used as a parameter of another annotation, its name is not prefixed with the @ character:-->
 Если аннотация используется в качестве параметра к другой аннотации, её имя не нужно начинать со знака @:
 
-``` kotlin
+```kotlin
 annotation class ReplaceWith(val expression: String)
 
 annotation class Deprecated(
@@ -137,7 +137,7 @@ automatically convert it to a Java class, so that the Java code will be able to 
 normally.-->
 Если вам нужно определить класс как аргумент аннотации, используйте Kotlin класс ([KClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)).
 Компилятор Kotin автоматически сконвертирует его в Java класс, так что код на Java сможет видеть аннотации и их аргументы.
-``` kotlin
+```kotlin
 
 import kotlin.reflect.KClass
 
@@ -155,7 +155,7 @@ which uses annotations for concurrency control.-->
 Аннотации также можно использовать с лямбдами. Они будут применены к `invoke()` методу, в который генерируется тело лямбды. 
 Это полезно для фреймворков вроде [Quasar](http://www.paralleluniverse.co/quasar/), который использует аннотации для контроля многопоточности. 
 
-``` kotlin
+```kotlin
 annotation class Suspendable
 
 val f = @Suspendable { Fiber.sleep(10) }
@@ -171,7 +171,7 @@ the generated Java bytecode. To specify how exactly the annotation should be gen
 несколько Java-элементов, и поэтому в сгенерированном байт-коде элемент появляется в нескольких местах. Чтобы указать, в каком
 именно месте аннотация должна быть сгенерирована, используйте следующий синтаксис:
 
-``` kotlin
+```kotlin
 class Example(@field:Ann val foo,    // аннотация для Java-поля
               @get:Ann val bar,      // аннотация для Java-геттера
               @param:Ann val quux)   // аннотация для параметра конструктора Java 
@@ -182,7 +182,7 @@ the top level of a file, before the package directive or before all imports if t
 Тот же синтаксис может быть использован для аннотации целого файла. Для этого отметьте аннотацию словом `file` и вставьте
 её в начале файла: перед указанием пакета или перед импортами, если файл находится в пакете по умолчанию:
 
-``` kotlin
+```kotlin
 @file:JvmName("Foo")
 
 package org.jetbrains.demo
@@ -192,7 +192,7 @@ package org.jetbrains.demo
 target and putting all the annotations inside the brackets:-->
 Если вы помечаете несколькими аннотациями одно указание, вы можете избежать повторения путём указания всех аннотаций в квадратных скобках:
 
-``` kotlin
+```kotlin
 class Example {
      @set:[Inject VisibleForTesting]
      var collaborator: Collaborator
@@ -225,7 +225,7 @@ class Example {
 <!--To annotate the receiver parameter of an extension function, use the following syntax:-->
 Чтобы пометить аннотацией параметр-приёмник [расширения](extensions.html), используйте следующий синтаксис:
 
-``` kotlin
+```kotlin
 fun @receiver:Fancy String.myExtension() { }
 ```
 
@@ -246,7 +246,7 @@ being used. If there are multiple applicable targets, the first applicable targe
 <!--Java annotations are 100% compatible with Kotlin:-->
 Java-аннотации на 100% совместимы в Kotlin:
 
-``` kotlin
+```kotlin
 import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Rule
@@ -276,7 +276,7 @@ public @interface Ann {
 }
 ```
 
-``` kotlin
+```kotlin
 // Kotlin
 @Ann(intValue = 1, stringValue = "abc") class C
 ```
@@ -291,7 +291,7 @@ public @interface AnnWithValue {
 }
 ```
 
-``` kotlin
+```kotlin
 // Kotlin
 @AnnWithValue("abc") class C
 ```
@@ -306,7 +306,7 @@ public @interface AnnWithArrayValue {
 }
 ```
 
-``` kotlin
+```kotlin
 // Kotlin
 @AnnWithArrayValue("abc", "foo", "bar") class C
 ```
@@ -321,7 +321,7 @@ public @interface AnnWithArrayMethod {
 }
 ```
 
-``` kotlin
+```kotlin
 // Kotlin 1.2+:
 @AnnWithArrayMethod(names = ["abc", "foo", "bar"])  class C
 
@@ -339,7 +339,7 @@ public @interface Ann {
 }
 ```
 
-``` kotlin
+```kotlin
 // Kotlin
 fun foo(ann: Ann) {
     val i = ann.value

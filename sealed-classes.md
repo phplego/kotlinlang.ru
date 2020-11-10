@@ -22,7 +22,7 @@ the rules were even more strict: classes had to be nested inside the declaration
 
 Чтобы описать изолированный класс, укажите модификатор `sealed` перед именем класса. Изолированный класс может иметь наследников, но все они должны быть объявлены в том же файле, что и сам изолированный класс. (До версии Kotlin 1.1 правила были ещё более строгими: классы должны были быть вложены в объявлении изолированного класса). 
 
-``` kotlin
+```kotlin
 sealed class Expr
 data class Const(val number: Double) : Expr()
 data class Sum(val e1: Expr, val e2: Expr) : Expr()
@@ -53,7 +53,7 @@ the same file.-->
 
 Ключевое преимущество от использования изолированных классов проявляется тогда, когда вы используете их в [выражении when](control-flow.html#when-expression). Если возможно проверить что выражение покрывает все случаи, то вам не нужно добавлять `else`.
 
-``` kotlin
+```kotlin
 fun eval(expr: Expr): Double = when(expr) {
     is Expr.Const -> expr.number
     is Expr.Sum -> eval(expr.e1) + eval(expr.e2)

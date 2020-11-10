@@ -13,7 +13,7 @@ Kotlin изначально проектировался с учетом нео�
 
 Почти любой код Java  может быть использован без особых проблем:
 
-``` kotlin
+```kotlin
 import java.util.*
 
 fun demo(source: List<Int>) {
@@ -38,7 +38,7 @@ fun demo(source: List<Int>) {
 
 К примеру:
 
-``` kotlin
+```kotlin
 import java.util.Calendar
 
 fun calendarDemo() {
@@ -68,7 +68,7 @@ fun calendarDemo() {
 Если Java-библиотека использует ключевые слова Kotlin в названиях методов, вы все еще можете вызывать метод
 используя экранирование с помощью обратной кавычки (`):
 
-``` kotlin
+```kotlin
 foo.`is`(bar)
 ```
 
@@ -82,7 +82,7 @@ foo.`is`(bar)
 
 Рассмотрим следующие примеры:
 
-``` kotlin
+```kotlin
 val list = ArrayList<String>() // non-null (результат выполнения конструктора)
 list.add("Item")
 val size = list.size // non-null (примитив int)
@@ -93,7 +93,7 @@ val item = list[0] // подразумевается платформенный 
 во время компиляции, но работа этих методов может вызвать ошибки на рантайме по причине NPE либо ассершена,
 генерируемого Kotlin для предотвращения всплытия null значений:
 
-``` kotlin
+```kotlin
 item.substring(1) // разрешается, может выбросить исключение, если item == null
 ```
 
@@ -102,7 +102,7 @@ item.substring(1) // разрешается, может выбросить ис�
 определение типа (переменная получит подразумеваемый платформенный тип, так же как `item` приведенная в примерах выше),
 или же мы можем сами выбрать ожидаемый тип (разрешаются как nullable, так и  non-null типы):
 
-``` kotlin
+```kotlin
 val nullable: String? = item // разрешается, всегда работает
 val notNull: String = item // разрешается, может вызвать ошибку на рантайме
 ```
@@ -394,7 +394,7 @@ i.e. `ArrayList<Integer>()` is indistinguishable from `ArrayList<Character>()`.
 This makes it impossible to perform *is*{: .keyword }-checks that take generics into account.
 Kotlin only allows *is*{: .keyword }-checks for star-projected generic types:
 
-``` kotlin
+```kotlin
 if (a is List<Int>) // Error: cannot check if it is really a List of Ints
 // but
 if (a is List<*>) // OK: no guarantees about the contents of the list
@@ -424,7 +424,7 @@ public class JavaArrayExample {
 
 To pass an array of primitive values you can do the following in Kotlin:
 
-``` kotlin
+```kotlin
 val javaObj = JavaArrayExample()
 val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndices(array)  // passes int[] to method
@@ -433,7 +433,7 @@ javaObj.removeIndices(array)  // passes int[] to method
 При компиляции в байт-код JVM, компилятор оптимизирует доступ к массивам, таким образом, что отсутствуют
 какие-либо накладные расходы:
 
-``` kotlin
+```kotlin
 val array = arrayOf(1, 2, 3, 4)
 array[x] = array[x] * 2 // no actual calls to get() and set() generated
 for (x in array) { // не создается итератор
@@ -443,7 +443,7 @@ for (x in array) { // не создается итератор
 
 Even when we navigate with an index, it does not introduce any overhead:
 
-``` kotlin
+```kotlin
 for (i in array.indices) { // не создается итератор
     array[i] += 2
 }
@@ -451,7 +451,7 @@ for (i in array.indices) { // не создается итератор
 
 Finally, *in*{: .keyword }-checks have no overhead either:
 
-``` kotlin
+```kotlin
 if (i in array.indices) { // same as (i >= 0 && i < array.size)
     print(array[i])
 }
@@ -472,7 +472,7 @@ public class JavaArrayExample {
 
 In that case you need to use the spread operator `*` to pass the `IntArray`:
 
-``` kotlin
+```kotlin
 val javaObj = JavaArrayExample()
 val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndicesVarArg(*array)
@@ -492,7 +492,7 @@ Calling Java methods using the infix call syntax is not allowed.
 В Kotlin все исключения непроверяемые (unchecked), это значит, что компилятор не будет заставлять Вас их обрабатывать.
 Так, когда Вы вызываете Java метод, который может выбросить проверяемое (checked) исключение, Kotlin не заставит Вас его обработать:
 
-``` kotlin
+```kotlin
 fun render(list: List<*>, to: Appendable) {
     for (item in list) {
         to.append(item.toString()) // Java потребует здесь обработки IOException
@@ -520,13 +520,13 @@ If you really need to call them, you can cast to `java.lang.Object`:
 
 To retrieve the Java class of an object, use the `java` extension property on a [class reference](reflection.html#class-references):
 
-``` kotlin
+```kotlin
 val fooClass = foo::class.java
 ```
 
 The code above uses a [bound class reference](reflection.html#bound-class-references-since-11), which is supported since Kotlin 1.1. You can also use the `javaClass` extension property:
 
-``` kotlin
+```kotlin
 val fooClass = foo.javaClass
 ```
 
@@ -566,7 +566,7 @@ At most one Java class (and as many Java interfaces as you like) can be a supert
 Static members of Java classes form "companion objects" for these classes. We cannot pass such a "companion object" around as a value,
 but can access the members explicitly, for example:
 
-``` kotlin
+```kotlin
 if (Character.isLetter(a)) {
     // ...
 }
@@ -585,13 +585,13 @@ Other supported cases include acquiring a Java getter/setter method or a backing
 
 Вы можете использовать это для создания объектов SAM интерфейсов:
 
-``` kotlin
+```kotlin
 val runnable = Runnable { println("This runs in a runnable") }
 ```
 
 ...и в вызовах метода:
 
-``` kotlin
+```kotlin
 val executor = ThreadPoolExecutor()
 // Java signature: void execute(Runnable command)
 executor.execute { println("This runs in a thread pool") }
@@ -599,7 +599,7 @@ executor.execute { println("This runs in a thread pool") }
 
 Если Java класс имеет несколько методов, принимающих функциональные интерфейсы, Вы можете выбрать тот, который Вам нужен, используя адаптер функции, который преобразует лямбду в необходимый SAM тип. Эти адаптеры также генерируются компилятором, когда это необходимо:
 
-``` kotlin
+```kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
 ```
 
@@ -611,7 +611,7 @@ executor.execute(Runnable { println("This runs in a thread pool") })
 
 Чтобы объявить функцию, реализованную на нативном (C или C++) коде, Вам нужно пометить ее модификатором `external`:
 
-``` kotlin
+```kotlin
 external fun foo(x: Int): Double
 ```
 

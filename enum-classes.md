@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/reference/enum-classes.html
 <!--The most basic usage of enum classes is implementing type-safe enums-->
 Наиболее базовый пример использования enum — это реализация типобезопасных перечислений
 
-``` kotlin
+```kotlin
 enum class Direction {
     NORTH, SOUTH, WEST, EAST
 }
@@ -27,7 +27,7 @@ enum class Direction {
 <!--Since each enum is an instance of the enum class, they can be initialized-->
 Так как константы являются экземплярами enum-класса, они могут быть инициализированы
 
-``` kotlin
+```kotlin
 enum class Color(val rgb: Int) {
         RED(0xFF0000),
         GREEN(0x00FF00),
@@ -41,7 +41,7 @@ enum class Color(val rgb: Int) {
 <!--Enum constants can also declare their own anonymous classes with their corresponding methods, as well as overriding base methods.-->
 Enum-константы также могут объявлять свои собственные анонимные классы как с их собственными методами, так и с перегруженными методами базового класса.
 
-``` kotlin
+```kotlin
 enum class ProtocolState {
     WAITING {
         override fun signal() = TALKING
@@ -100,7 +100,7 @@ of these methods are as follows (assuming the name of the enum class is `EnumCla
 Так же как и в Java, enum-классы в Kotlin имеют стандартные методы для вывода списка объявленных констант и для получения enum-константы по её имени.
 Ниже приведены сигнатуры этих методов: 
 
-``` kotlin
+```kotlin
 EnumClass.valueOf(value: String): EnumClass
 EnumClass.values(): Array<EnumClass>
 ```
@@ -126,7 +126,7 @@ printAllValues<RGB>() // выведет RED, GREEN, BLUE
 <!--Every enum constant has properties to obtain its name and position in the enum class declaration:-->
 Каждая enum-константа имеет поля, в которых содержатся её имя и порядковый номер в enum-классе:
 
-``` kotlin
+```kotlin
 val name: String
 val ordinal: Int
 ```

@@ -16,7 +16,7 @@ url: https://kotlinlang.ru/docs/reference/properties.html
 These can be declared as mutable, using the *var*{: .keyword } keyword or read-only using the *val*{: .keyword } keyword.-->
 Классы в <b>Kotlin</b> могут иметь свойства: изменяемые (_mutable_) и неизменяемые (_read-only_) — **var** и **val** соответственно.
 
-``` kotlin
+```kotlin
 public class Address {
     public var name: String = ...
     public var street: String = ...
@@ -29,7 +29,7 @@ public class Address {
 <!--To use a property, we simply refer to it by name, as if it were a field in Java:-->
 Для того, чтобы воспользоваться свойством, мы просто обращаемся к его имени (как в <b>Java</b>):
 
-``` kotlin
+```kotlin
 fun copyAddress(address: Address): Address {
     val result = Address() // нет никакого слова `new`
     result.name = address.name // вызов методов доступа
@@ -45,7 +45,7 @@ fun copyAddress(address: Address): Address {
 <!--The full syntax for declaring a property is-->
 Полный синтаксис объявления свойства выглядит так:
 
-``` kotlin
+```kotlin
 var <propertyName>: <PropertyType> [= <property_initializer>]
     [<getter>]
     [<setter>]
@@ -57,7 +57,7 @@ var <propertyName>: <PropertyType> [= <property_initializer>]
 <!--Examples:-->
 Примеры:
 
-``` kotlin
+```kotlin
 var allByDefault: Int? // ошибка: необходима явная инициализация, 
                        // предусмотрены стандартные геттер и сеттер
 var initialized = 1 // имеет тип Int, стандартный геттер и сеттер
@@ -66,7 +66,7 @@ var initialized = 1 // имеет тип Int, стандартный гетте�
 <!--The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with `val` instead of `var` and does not allow a setter:-->
 Синтаксис объявления констант имеет два отличия от синтаксиса объявления изменяемых переменных: во-первых, объявление константы начинается с ключевого слова `val` вместо `var`, а во-вторых, объявление сеттера запрещено:
 
-``` kotlin
+```kotlin
 val simple: Int? // имеет тип Int, стандартный геттер, 
                  // должен быть инициализирован в конструкторе
 val inferredType = 1 // имеет тип Int и стандартный геттер
@@ -75,7 +75,7 @@ val inferredType = 1 // имеет тип Int и стандартный гетт
 <!--We can write custom accessors, very much like ordinary functions, right inside a property declaration. Here's an example of a custom getter:-->
 Мы можем самостоятельно описать методы доступа, как и обычные функции, прямо при объявлении свойств. Например, пользовательский геттер:
 
-``` kotlin
+```kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
@@ -83,7 +83,7 @@ val isEmpty: Boolean
 <!--A custom setter looks like this:-->
 Пользовательский сеттер выглядит примерно так:
 
-``` kotlin
+```kotlin
 var stringRepresentation: String
     get() = this.toString()
     set(value) {
@@ -99,7 +99,7 @@ var stringRepresentation: String
 you can define the accessor without defining its body:-->
 Если вам нужно изменить область видимости метода доступа или пометить его аннотацией, при этом не внося изменения в реализацию по умолчанию, вы можете объявить метод доступа без объявления его тела:
 
-``` kotlin
+```kotlin
 var setterVisibility: String = "abc"
     private set // сеттер имеет private доступ и стандартную реализацию
 
@@ -115,7 +115,7 @@ var setterWithAnnotation: Any? = null
 an automatic backing field which can be accessed using the `field` identifier:-->
 Классы в <b>Kotlin</b> не могут иметь полей. Т.е. переменные, которые вы объявляете внутри класса только выглядят и ведут себя как поля из Java, хотя на самом деле являются _свойствами_, т.к. для них неявно реализуются методы get и set. А сама переменная, в которой находится значение свойства, называется **теневое поле** (backing field). Однако, иногда, при использовании пользовательских методов доступа, необходимо иметь доступ к _теневому полю_. Для этих целей <b>Kotlin</b> предоставляет автоматическое _теневое поле_, к которому можно обратиться с помощью идентификатора `field`:
 
-``` kotlin
+```kotlin
 var counter = 0
     set(value) {
         if (value >= 0) field = value // значение при инициализации записывается 
@@ -132,7 +132,7 @@ _Теневое поле_ будет сгенерировано для свой�
 <!--For example, in the following case there will be no backing field:-->
 Например, в нижестоящем примере не будет никакого _теневого поля_:
 
-``` kotlin
+```kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
@@ -142,7 +142,7 @@ val isEmpty: Boolean
 <!--If you want to do something that does not fit into this "implicit backing field" scheme, you can always fall back to having a *backing property*:-->
 Если вы хотите предпринять что-то такое, что выходит за рамки вышеуказанной схемы "неявного _теневого поля_", вы всегда можете использовать **теневое свойство** (backing property):
 
-``` kotlin
+```kotlin
 private var _table: Map<String, Int>? = null
 public val table: Map<String, Int>
     get() {
@@ -171,7 +171,7 @@ Such properties need to fulfil the following requirements:-->
 <!--Such properties can be used in annotations:-->
 Такие свойства могут быть использованы в аннотациях:
 
-``` kotlin
+```kotlin
 const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 
 @Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { ... }
@@ -190,7 +190,7 @@ but you still want to avoid null checks when referencing the property inside the
 <!--To handle this case, you can mark the property with the `lateinit` modifier:-->
 Для того, чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`:
 
-``` kotlin
+```kotlin
 public class MyTest {
     lateinit var subject: TestSubject
 

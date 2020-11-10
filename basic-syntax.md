@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/reference/basic-syntax.html
 
 Имя пакета указывается в начале исходного файла, так же как и в Java:
 
-``` kotlin
+```kotlin
 package my.demo
 
 import java.util.*
@@ -30,7 +30,7 @@ import java.util.*
 <!-- Function having two `Int` parameters with `Int` return type: -->
 Функция принимает два аргумента `Int` и возвращает `Int`: 
 
-``` kotlin
+```kotlin
 fun sum(a: Int, b: Int): Int {
   return a + b
 }
@@ -39,14 +39,14 @@ fun sum(a: Int, b: Int): Int {
 <!-- Function with an expression body and inferred return type: -->
 Функция с выражением в качестве тела и автоматически определенным типом возвращаемого значения:
 
-``` kotlin
+```kotlin
 fun sum(a: Int, b: Int) = a + b
 ```
 
 <!-- Function returning no meaningful value: -->
 Функция, не возвращающая никакого значения (void в Java):
 
-``` kotlin
+```kotlin
 fun printSum(a: Int, b: Int): Unit {
   print(a + b)
 }
@@ -55,7 +55,7 @@ fun printSum(a: Int, b: Int): Unit {
 <!-- `Unit` return type can be omitted: -->
 Тип возвращаемого значения `Unit` может быть опущен: 
 
-``` kotlin
+```kotlin
 fun printSum(a: Int, b: Int) {
   print(a + b)
 }
@@ -68,7 +68,7 @@ fun printSum(a: Int, b: Int) {
 <!-- Assign-once (read-only) local variable: -->
 Неизменяемая (только для чтения) внутренняя переменная:
 
-``` kotlin
+```kotlin
 val a: Int = 1
 val b = 1   // Тип `Int` выведен автоматически
 val c: Int  // Тип обязателен, когда значение не инициализируется
@@ -78,7 +78,7 @@ c = 1       // последующее присвоение
 <!-- Mutable variable: -->
 Изменяемая переменная:
 
-``` kotlin
+```kotlin
 var x = 5 // Тип `Int` выведен автоматически
 x += 1
 ```
@@ -86,7 +86,7 @@ x += 1
 <!-- Top-level vaiables: -->
 Глобальные переменные:
 
-``` kotlin
+```kotlin
 val PI = 3.14
 var x = 0
 
@@ -102,7 +102,7 @@ fun incrementX() {
 <!--Just like Java and JavaScript, Kotlin supports end-of-line and block comments.-->
 Также, как Java и JavaScript, Kotlin поддерживает однострочные комментарии.
 
-``` kotlin
+```kotlin
 // однострочный комментарий
 
 /* Блочный комментарий
@@ -120,7 +120,7 @@ fun incrementX() {
 
 Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
 
-``` kotlin
+```kotlin
 fun main(args: Array<String>) {
   if (args.size == 0) return
 
@@ -148,7 +148,7 @@ val s2 = "${s1.replace("равно", "было равно")}, но теперь 
 
 ## Использование условных выражений
 
-``` kotlin
+```kotlin
 fun max(a: Int, b: Int): Int {
   if (a > b)
     return a
@@ -159,7 +159,7 @@ fun max(a: Int, b: Int): Int {
 Также <b class="keyword">if</b> может быть использовано как выражение (т. е. <b class="keyword">if</b> ... <b class="keyword">else</b> возвращает значение):
 
 
-``` kotlin
+```kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
@@ -171,7 +171,7 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 Возвращает <b class="keyword">null</b> если `str` не содержит числа:
 
-``` kotlin
+```kotlin
 fun parseInt(str: String): Int? {
   // ...
 }
@@ -179,7 +179,7 @@ fun parseInt(str: String): Int? {
 
 Использование функции, возвращающей <b class="keyword">null</b>:
 
-``` kotlin
+```kotlin
 fun main(args: Array<String>) {
   if (args.size < 2) {
     print("Ожидается два целых числа")
@@ -199,7 +199,7 @@ fun main(args: Array<String>) {
 
 или
 
-``` kotlin
+```kotlin
   // ...
   if (x == null) {
     print("Неверный формат числа у '${args[0]}'")
@@ -223,7 +223,7 @@ fun main(args: Array<String>) {
 Если неизменяемая внутренняя переменная или свойство уже проверены на определенный тип, то в дальнейшем нет необходимости
 явно приводить к этому типу:
 
-``` kotlin
+```kotlin
 fun getStringLength(obj: Any): Int? {
   if (obj is String) {
     // в этом блоке `obj` автоматически преобразован в `String`
@@ -237,7 +237,7 @@ fun getStringLength(obj: Any): Int? {
 
 или
 
-``` kotlin
+```kotlin
 fun getStringLength(obj: Any): Int? {
   if (obj !is String)
     return null
@@ -249,7 +249,7 @@ fun getStringLength(obj: Any): Int? {
 
 или даже
 
-``` kotlin
+```kotlin
 fun getStringLength(obj: Any): Int? {
   // `obj` автоматически преобразован в `String` справа от оператора `&&`
   if (obj is String && obj.length > 0)
@@ -263,7 +263,7 @@ fun getStringLength(obj: Any): Int? {
 
 ## Использование цикла <b class="keyword">for</b>
 
-``` kotlin
+```kotlin
 fun main(args: Array<String>) {
   for (arg in args)
     print(arg)
@@ -272,7 +272,7 @@ fun main(args: Array<String>) {
 
 или
 
-``` kotlin
+```kotlin
 for (i in args.indices)
   print(args[i])
 ```
@@ -281,7 +281,7 @@ for (i in args.indices)
 
 ## Использование цикла <b class="keyword">while</b>
 
-``` kotlin
+```kotlin
 fun main(args: Array<String>) {
   var i = 0
   while (i < args.size)
@@ -293,7 +293,7 @@ fun main(args: Array<String>) {
 
 ## Использование выражения <b class="keyword">when</b>
 
-``` kotlin
+```kotlin
 fun cases(obj: Any) {
   when (obj) {
     1          -> print("One")
@@ -311,27 +311,27 @@ fun cases(obj: Any) {
 
 Проверка на вхождение числа в интервал с помощью оператора <b class="keyword">in</b>:
 
-``` kotlin
+```kotlin
 if (x in 1..y-1)
   print("OK")
 ```
 
 Проверка значения на выход за пределы интервала:
 
-``` kotlin
+```kotlin
 if (x !in 0..array.lastIndex)
   print("Out")
 ```
 
 Перебор значений в заданном интервале:
 
-``` kotlin
+```kotlin
 for (x in 1..5)
   print(x)
 ```
 <!--or over a progression:-->
 Или по арифметической прогрессии:
-``` kotlin
+```kotlin
 for (x in 1..10 step 2) {
   print(x)
 }
@@ -346,14 +346,14 @@ for (x in 9 downTo 0 step 3) {
 
 Итерация по коллекции:
 
-``` kotlin
+```kotlin
 for (name in names)
   println(name)
 ```
 
 Проверка, содержит ли коллекция данный объект, с помощью оператора <b class="keyword">in</b>:
 
-``` kotlin
+```kotlin
 val items = setOf("apple", "banana", "kiwi")
 when {
   "orange" in items -> println("juicy")
@@ -364,7 +364,7 @@ when {
 <!--Using lambda expressions to filter and map collections:-->
 Использование лямбда-выражения для фильтрации и модификации коллекции:
 
-``` kotlin
+```kotlin
 names
     .filter { it.startsWith("A") }
     .sortedBy { it }
@@ -378,7 +378,7 @@ names
 <!--Creating basic classes and their instances:-->
 Создание базовых классов и их экземпляров
 
-``` kotlin
+```kotlin
 val rectangle = Rectangle(5.0, 2.0) //не требуется ключевое слово 'new'
 val triangle = Triangle(3.0, 4.0, 5.0)
 ```

@@ -21,7 +21,7 @@ For instance, it's often tempting to shrink collection types:-->
 Псевдонимы типов полезны, когда вы хотите сократить длинные имена типов, содержащих обобщения. 
 К примеру, можно упрощать названия типов коллекций:
 
-``` kotlin
+```kotlin
 typealias NodeSet = Set<Network.Node>
 
 typealias FileTable<K> = MutableMap<K, MutableList<File>>
@@ -30,7 +30,7 @@ typealias FileTable<K> = MutableMap<K, MutableList<File>>
 <!--You can provide different aliases for function types:-->
 Вы также можете объявить псевдонимы для функциональных типов:
 
-``` kotlin
+```kotlin
 typealias MyHandler = (Int, String, Any) -> Unit
 
 typealias Predicate<T> = (T) -> Boolean
@@ -39,7 +39,7 @@ typealias Predicate<T> = (T) -> Boolean
 <!--You can have new names for inner and nested classes:-->
 Вы можете ввести новые имена для внутренних или вложенных классов:
 
-``` kotlin
+```kotlin
 class A {
     inner class Inner
 }
@@ -58,7 +58,7 @@ Thus you can pass a variable of your type whenever a general function type is re
 Псевдонимы типов не вводят новых типов. Они эквивалентны соответствующим базовым типам. Когда вы добавляете `typealias Predicate<T>` и используете `Predicate<Int>` в своём коде, компилятор Kotlin всегда преобразовывает это в `(Int) -> Boolean`.
 Таким образом, вы можете передать переменную своего типа в любое место, где требуется базовый тип (тот, которому был задан псевдоним), и наоборот:
 
-``` kotlin
+```kotlin
 typealias Predicate<T> = (T) -> Boolean
 
 fun foo(p: Predicate<Int>) = p(42)

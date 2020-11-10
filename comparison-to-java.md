@@ -13,7 +13,7 @@ url: "https://kotlinlang.ru/docs/reference/comparison-to-java.html"
 ##Некоторые проблемы Java, решённые в Kotlin
 
 <!--Kotlin fixes a series of issues that Java suffers from-->
-Koltin решает целый ряд проблем, от которых страдает Java:
+Kotlin решает целый ряд проблем, от которых страдает Java:
 <!--
  Null references are [controlled by the type system](null-safety.html).
  [No raw types](java-interop.html)

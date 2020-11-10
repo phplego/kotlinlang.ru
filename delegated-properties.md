@@ -25,7 +25,7 @@ would be very nice to implement once and for all, and put into a library. Exampl
 <!--To cover these (and other) cases, Kotlin supports _delegated properties_:-->
 Для таких случаев, Kotlin поддерживает _делегированные свойства_:
 
-``` kotlin
+```kotlin
 class Example {
     var p: String by Delegate()
 }
@@ -39,7 +39,7 @@ For example: -->
 Их синтаксис выглядит следующим образом: `val/var <имя свойства>: <Тип> by <выражение>`. Выражение после *by* — _делегат_: обращения  (`get()`, `set()`) к свойству будут обрабатываться этим выражением. 
 Делегат не обязан реализовывать какой-то интерфейс, достаточно, чтобы у него были методы `getValue()` и `setValue()` с определённой сигнатурой: 
 
-``` kotlin
+```kotlin
 class Delegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
         return "$thisRef, спасибо за делегирование мне '${property.name}'!"
@@ -57,7 +57,7 @@ so that its first parameter is the object we read `p` from and the second parame
 
 Когда мы читаем значение свойства `p`, вызывается метод `getValue()` класса `Delegate`, причем первым параметром ей передается тот объект, у которого запрашивается свойство `p`, а вторым — объект-описание самого свойства p (у него можно, в частности, узнать имя свойства). Например:
 
-``` kotlin
+```kotlin
 val e = Example()
 println(e.p)
 ```
@@ -65,21 +65,21 @@ println(e.p)
 <!--This prints -->
 Этот код выведет
 
-``` kotlin
+```kotlin
 Example@33a17727, спасибо за делегирование мне ‘p’!
 ```
  
 <!--Similarly, when we assign to `p`, the `setValue()` function is called. The first two parameters are the same, and the third holds the value being assigned:-->
 Похожим образом, когда мы обращаемся к `p`, вызывается метод `setValue()`. Два первых параметра — такие же, как у get(), а третий — присваиваемое значение свойства:
 
-``` kotlin
+```kotlin
 e.p = "NEW"
 ```
 
 <!--This prints-->
 Этот код выведет
  
-``` kotlin
+```kotlin
 NEW было присвоено значению ‘p’ в Example@33a17727.
 ```
 
@@ -104,7 +104,7 @@ subsequent calls to `get()` simply return the remembered result. -->
 `lazy()` это функция, которая принимает лямбду и возвращает экземпляр класса `Lazy<T>`, который служит делегатом для реализации ленивого свойства: первый вызов `get()` запускает лямбда-выражение, переданное `lazy()` в качестве аргумента, и запоминает полученное значение, а последующие вызовы просто возвращают вычисленное значение. 
 
 
-``` kotlin
+```kotlin
 val lazyValue: String by lazy {
     println("computed!")
     "Hello"
@@ -139,7 +139,7 @@ The handler gets called every time we assign to the property (_after_ the assign
 parameters: a property being assigned to, the old value and the new one:-->
 Функция `Delegates.observable()` принимает два аргумента: начальное значение свойства и обработчик (лямбда), который вызывается при изменении свойства. У обработчика три параметра: описание свойства, которое изменяется, старое значение и новое значение.
 
-``` kotlin
+```kotlin
 import kotlin.properties.Delegates
 
 class User {
@@ -174,7 +174,7 @@ This comes up often in applications like parsing JSON or doing other “dynamic�
 In this case, you can use the map instance itself as the delegate for a delegated property.-->
 Один из самых частых сценариев использования делегированных свойств заключается в хранении свойств в ассоциативном списке. Это полезно в "динамическом" коде, например, при работе с JSON:
 
-``` kotlin
+```kotlin
 class User(val map: Map<String, Any?>) {
     val name: String by map
     val age: Int     by map
@@ -184,7 +184,7 @@ class User(val map: Map<String, Any?>) {
 <!--In this example, the constructor takes a map:-->
 В этом примере конструктор принимает ассоциативный список
 
-``` kotlin
+```kotlin
 val user = User(mapOf(
     "name" to "John Doe",
     "age"  to 25
@@ -195,7 +195,7 @@ val user = User(mapOf(
 Делегированные свойства берут значения из этого ассоциативного списка (по строковым ключам)
 
 
-``` kotlin
+```kotlin
 println(user.name) // Prints "John Doe"
 println(user.age)  // Prints 25
 ```
@@ -203,7 +203,7 @@ println(user.age)  // Prints 25
 <!--This works also for *var*{:.keyword}’s properties if you use a `MutableMap` instead of read-only `Map`:-->
 Также, если вы используете `MutableMap` вместо `Map`, поддерживаются изменяемые свойства (var):
 
-``` kotlin
+```kotlin
 class MutableUser(val map: MutableMap<String, Any?>) {
     var name: String by map
     var age: Int     by map
@@ -217,7 +217,7 @@ class MutableUser(val map: MutableMap<String, Any?>) {
 For instance, you can make a local variable lazy:-->
 Вы можете объявить локальные переменные как делегированные свойства. Например, вы можете сделать локальную переменную ленивой:
 
-``` kotlin
+```kotlin
 fun example(computeFoo: () -> Foo) {
     val memoizedFoo by lazy(computeFoo)
 
@@ -269,7 +269,7 @@ These interfaces are declared in the Kotlin standard library:-->
 
 Эти интерфейсы объявлены в стандартной библиотеке Kotlin:
 
-``` kotlin
+```kotlin
 interface ReadOnlyProperty<in R, out T> {
     operator fun getValue(thisRef: R, property: KProperty<*>): T
 }
@@ -287,7 +287,7 @@ interface ReadWriteProperty<in R, T> {
 For instance, for the property `prop` the hidden property `prop$delegate` is generated, and the code of the accessors simply delegates to this additional property:-->
 Для каждого делегированного свойства компилятор Kotlin "за кулисами" генерирует вспомогательное свойство и делегирует его. Например, для свойства `prop` генерируется скрытое свойство `prop$delegate`, и исполнение геттеров и сеттеров просто делегируется этому дополнительному свойству:
 
-``` kotlin
+```kotlin
 class C {
     var prop: Type by MyDelegate()
 }
@@ -322,7 +322,7 @@ called to create the property delegate instance.-->
 <!--For example, if you want to check the property name before binding, you can write something like this:-->
 Например, если вы хотите проверить имя свойства перед связыванием, вы можете написать что-то вроде:
 
-``` kotlin
+```kotlin
 class ResourceLoader<T>(id: ResourceID<T>) {
     operator fun provideDelegate(
             thisRef: MyUI,
@@ -358,7 +358,7 @@ class MyUI {
 you'd have to pass the property name explicitly, which isn't very convenient:-->
 Не будь этой возможности внедрения между свойством и делегатом, для достижения той же функциональности вам бы пришлось передавать имя свойства явно, что не очень удобно:
 
-``` kotlin
+```kotlin
 // Проверяем имя свойства без "provideDelegate"
 class MyUI {
     val image by bindResource(ResourceID.image_id, "image")
@@ -380,7 +380,7 @@ Compare the generated code for the property declaration `val prop: Type by MyDel
 В сгенерированном коде метод `provideDelegate` вызывается для инициализации вспомогательного свойства `prop$delegate`.
 Сравните сгенерированный для объявления свойства код `val prop: Type by MyDelegate()` со сгенерированным кодом из Transaction Rules (когда `provideDelegate` не представлен):
 
-``` kotlin
+```kotlin
 class C {
     var prop: Type by MyDelegate()
 }

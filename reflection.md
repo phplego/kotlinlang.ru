@@ -33,7 +33,7 @@ statically known Kotlin class, you can use the _class literal_ syntax:-->
 Самая базовая возможность рефлексии — это получение ссылки на Kotlin класс. Чтобы получить ссылку на статический Kotlin класс, 
 используйте синтаксис _литерала класса_:
 
-``` kotlin
+```kotlin
 val c = MyClass::class
 ```
 
@@ -52,7 +52,7 @@ _Примечание: доступно с версии Kotlin 1.1_
 <!--You can get the reference to a class of a specific object with the same `::class` syntax by using the object as a receiver:-->
 Вы можете получить ссылку на класс определённого объекта с помощью уже известного вам синтаксиса, вызвав `::class` у нужного объекта:
 
-``` kotlin
+```kotlin
 val widget: Widget = ...
 assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 ```
@@ -68,7 +68,7 @@ assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 <!--When we have a named function declared like this:-->
 Когда у нас есть именованная функция, объявленная следующим образом:
 
-``` kotlin
+```kotlin
 fun isOdd(x: Int) = x % 2 != 0
 ```
 
@@ -77,7 +77,7 @@ To do this, we use the `::` operator:-->
 Мы можем как вызвать её напрямую (`isOdd(5)`), так и передать её как значение, например в другую функцию.
 Чтобы сделать это, используйте оператор `::`:
 
-``` kotlin
+```kotlin
 val numbers = listOf(1, 2, 3)
 println(numbers.filter(::isOdd)) // выведет [1, 3]
 ```
@@ -90,7 +90,7 @@ For example:-->
 Оператор `::` может быть использован с перегруженными функциями, когда тип используемой функции известен из контекста.
 Например:
 
-``` kotlin
+```kotlin
 fun isOdd(x: Int) = x % 2 != 0
 fun isOdd(s: String) = s == "brillig" || s == "slithy" || s == "tove"
 
@@ -101,7 +101,7 @@ println(numbers.filter(::isOdd)) // ссылается на isOdd(x: Int)
 <!--Alternatively, you can provide the necessary context by storing the method reference in a variable with an explicitly specified type:-->
 Также вместо этого вы можете указать нужный контекст путём сохранения ссылки на функцию в переменной, тип которой задан явно:
 
-``` kotlin
+```kotlin
 val predicate: (String) -> Boolean = ::isOdd   // ссылается на isOdd(x: String)
 ```
 
@@ -116,7 +116,7 @@ e.g. `String::toCharArray` gives us an extension function for type `String`: `St
 <!--Consider the following function:-->
 Рассмотрим следующую функцию:
 
-``` kotlin
+```kotlin
 fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
     return { x -> f(g(x)) }
 }
@@ -127,7 +127,7 @@ Now, you can apply it to callable references:-->
 Она возвращает композицию двух функций, переданных ей: `compose(f, g) = f(g(*))`. 
 Теперь вы можете применять её к ссылкам на функции:
 
-``` kotlin
+```kotlin
 fun length(s: String) = s.length
 
 val oddLength = compose(::isOdd, ::length)
@@ -142,7 +142,7 @@ println(strings.filter(oddLength)) // выведет "[a, abc]"
 <!--To access properties as first-class objects in Kotlin, we can also use the `::` operator:-->
 Для доступа к свойствам как первичным объектам в Kotlin мы по-прежнему можем использовать оператор `::`:
 
-``` kotlin
+```kotlin
 var x = 1
 
 fun main(args: Array<String>) {
@@ -167,7 +167,7 @@ which has a `set()` method.-->
 <!--A property reference can be used where a function with no parameters is expected:-->
 Ссылка на свойство может быть использована там, где ожидается функция без параметров:
  
-``` kotlin
+```kotlin
 val strs = listOf("a", "bc", "def")
 println(strs.map(String::length)) // выведет [1, 2, 3]
 ```
@@ -175,7 +175,7 @@ println(strs.map(String::length)) // выведет [1, 2, 3]
 <!--To access a property that is a member of a class, we qualify it:-->
 Для доступа к свойству, которое является членом класса, мы указываем класс:
 
-``` kotlin
+```kotlin
 class A(val p: Int)
 
 fun main(args: Array<String>) {
@@ -188,7 +188,7 @@ fun main(args: Array<String>) {
 Для [функции-расширения](extensions.html):
 
 
-``` kotlin
+```kotlin
 val String.lastChar: Char
     get() = this[length - 1]
 
@@ -206,7 +206,7 @@ For example, to find a backing field or a Java method that serves as a getter fo
 которые сопоставляют расширяемые ими объекты рефлексии Kotlin с объектами рефлексии Java (см. пакет `kotlin.reflect.jvm`).
 К примеру, для нахождения поля или метода, который служит геттером для Kotlin-свойства, вы можете написать что-то вроде этого:
 
-``` kotlin
+```kotlin
 import kotlin.reflect.jvm.*
  
 class A(val p: Int)
@@ -220,7 +220,7 @@ fun main(args: Array<String>) {
 <!--To get the Kotlin class corresponding to a Java class, use the `.kotlin` extension property:-->
 Для получения класса Kotlin, соответствующего классу Java, используйте свойство-расширение `.kotlin`:
 
-``` kotlin
+```kotlin
 fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 ```
 
@@ -235,7 +235,7 @@ that expects a function parameter with no parameters and return type `Foo`:-->
 объект функционального типа. Обращение к конструкторам происходит с помощью оператора `::` и имени класса. 
 Рассмотрим функцию, которая принимает функциональный параметр без параметров и возвращает `Foo`:
 
-``` kotlin
+```kotlin
 class Foo
 
 fun function(factory : () -> Foo) {
@@ -246,7 +246,7 @@ fun function(factory : () -> Foo) {
 <!--Using `::Foo`, the zero-argument constructor of the class Foo, we can simply call it like this:-->
 Используя `::Foo`, конструктор класса Foo без аргументов, мы можем просто вызывать функцию таким образом:
 
-``` kotlin
+```kotlin
 function(::Foo)
 ```
 
@@ -255,7 +255,7 @@ function(::Foo)
 <!--You can refer to an instance method of a particular object.-->
 Вы можете сослаться на метод экземпляра конкретного объекта.
 
-``` kotlin 
+```kotlin 
 val numberRegex = "\\d+".toRegex()
 println(numberRegex.matches("29")) // выведет "true"
  
@@ -268,7 +268,7 @@ Such reference is bound to its receiver.
 It can be called directly (like in the example above) or used whenever an expression of function type is expected:-->
 Вместо вызова метода `matches` напрямую, мы храним ссылку на него. Такие ссылки привязаны к объектам, к которым относятся:
 
-``` kotlin
+```kotlin
 val strings = listOf("abc", "124", "a70")
 println(strings.filter(numberRegex::matches)) // выведет "[124]"
 ```
@@ -278,7 +278,7 @@ Bound callable reference has its receiver "attached" to it, so the type of the r
 Сравним типы привязанных и соответствующих непривязанных ссылок. Объект-приёмник "прикреплён" к привязанной ссылке, поэтому тип
 приёмника больше не является параметром:
 
-``` kotlin
+```kotlin
 val isNumber: (CharSequence) -> Boolean = numberRegex::matches
 
 val matches: (Regex, CharSequence) -> Boolean = Regex::matches
@@ -287,7 +287,7 @@ val matches: (Regex, CharSequence) -> Boolean = Regex::matches
 <!--Property reference can be bound as well:-->
 Ссылка на свойство может быть также привязанной:
 
-``` kotlin
+```kotlin
 val prop = "abc"::length
 println(prop.get())   // выведет "3"
 ```

@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/reference/nested-classes.html
 <!--Classes can be nested in other classes-->
 Классы могут быть вложены в другие классы
 
-``` kotlin
+```kotlin
 class Outer {
     private val bar: Int = 1
     class Nested {
@@ -29,7 +29,7 @@ val demo = Outer.Nested().foo() // == 2
 Класс может быть отмечен как внутренний с помощью слова `inner`, тем самым он будет иметь доступ к членам внешнего класса. 
 Внутренние классы содержат ссылку на объект внешнего класса:
 
-``` kotlin
+```kotlin
 class Outer {
     private val bar: Int = 1
     inner class Inner {
@@ -48,7 +48,7 @@ val demo = Outer().Inner().foo() // == 1
 <!--Anonymous inner class instances are created using an [object expression](object-declarations.html#object-expressions):-->
 Анонимные внутренние экземпляры классов создаются с помощью [object expression](object-declarations.html#object-expressions):
 
-``` kotlin
+```kotlin
 window.addMouseListener(object: MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         // ...
@@ -65,6 +65,6 @@ you can create it using a lambda expression prefixed with the type of the interf
 Если объект является экземпляром функционального Java-интерфейса (т.е. Java-интерфейса с единственным абстрактным методом), 
 вы можете создать его с помощью лямбда-выражения с префиксом — типом интерфейса:
 
-``` kotlin
+```kotlin
 val listener = ActionListener { println("clicked") }
 ```

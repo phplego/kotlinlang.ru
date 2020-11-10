@@ -17,7 +17,7 @@ properties but these need to be abstract or to provide accessor implementations.
 <!--An interface is defined using the keyword *interface*{: .keyword }-->
 Интерфейс определяется ключевым словом **interface**:
 
-``` kotlin
+```kotlin
 interface MyInterface {
     fun bar()
     fun foo() {
@@ -32,7 +32,7 @@ interface MyInterface {
 <!--A class or object can implement one or more interfaces-->
 Класс или объект могут реализовать любое количество интерфейсов:
 
-``` kotlin
+```kotlin
 class Child : MyInterface {
     override fun bar() {
         // тело
@@ -48,7 +48,7 @@ implementations for accessors. Properties declared in interfaces can't have back
 declared in interfaces can't reference them.-->
 Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь теневых полей, соответственно, методы доступа к таким свойствам не могут обращаться к теневым полям.
 
-``` kotlin
+```kotlin
 interface MyInterface {
     val prop: Int // абстрактное свойство
 
@@ -71,7 +71,7 @@ class Child : MyInterface {
 <!--When we declare many types in our supertype list, it may appear that we inherit more than one implementation of the same method. For example-->
 Когда мы объявлем большое количество типов в списке нашего супертипа, может так выйти, что мы допустим более одной реализации одного и того же метода. Например:
 
-``` kotlin
+```kotlin
 interface A {
     fun foo() { print("A") }
     fun bar()

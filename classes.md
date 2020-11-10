@@ -18,7 +18,7 @@ url: https://kotlinlang.ru/docs/reference/classes.html
 <!--Classes in Kotlin are declared using the keyword <b class="keyword">class</b>:-->
 Классы в <b>Kotlin</b> объявляются с помощью использования ключевого слова **class**:
 
-``` kotlin
+```kotlin
 class Invoice {
 }
 ```
@@ -29,7 +29,7 @@ if the class has no body, curly braces can be omitted.-->
 Объявление класса состоит из имени класса, заголовка (указания типов его параметров, основного конструктора и т.п) и тела класса,
 заключённого в фигурные скобки. И заголовок, и тело класса являются необязательными составляющими: если у класса нет тела, фигурные скобки могут быть опущены.
 
-``` kotlin
+```kotlin
 class Empty
 ```
 
@@ -42,7 +42,7 @@ class Empty
 constructor is part of the class header: it goes after the class name (and optional type parameters).-->
 Класс в <b>Kotlin</b> может иметь основной конструктор (**primary constructor**) и один или более дополнительных конструкторов (**secondary constructors**). Основной конструктор является частью заголовка класса, его объявление идёт сразу после имени класса (и необязательных параметров):
 
-``` kotlin
+```kotlin
 class Person constructor(firstName: String)
 ```
 
@@ -50,7 +50,7 @@ class Person constructor(firstName: String)
 keyword can be omitted:-->
 Если у конструктора нет аннотаций и модификаторов видимости, ключевое слово <b class="keyword">constructor</b> может быть опущено:
 
-``` kotlin
+```kotlin
 class Person(firstName: String)
 ```
 
@@ -85,7 +85,7 @@ fun main() {
 property initializers declared in the class body:-->
 Обратите внимание, что параметры основного конструктора могут быть использованы в инициализирующем блоке. Они также могут быть использованы при инициализации свойств в теле класса:
 
-``` kotlin
+```kotlin
 class Customer(name: String) {
     val customerKey = name.toUpperCase()
 }
@@ -94,7 +94,7 @@ class Customer(name: String) {
 <!--In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:-->
 В действительности, для объявления и инициализации свойств основного конструктора в <b>Kotlin</b> есть лаконичное синтаксическое решение:
 
-``` kotlin
+```kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
   // ...
 }
@@ -108,7 +108,7 @@ mutable (**var**) or read-only (**val**).-->
 the modifiers go before it:-->
 Если у конструктора есть аннотации или модификаторы видимости, ключевое слово <b class="keyword">constructor</b> обязательно, и модификаторы используются перед ним:
 
-``` kotlin
+```kotlin
 class Customer public @Inject constructor(name: String) { ... }
 ```
 
@@ -121,7 +121,7 @@ class Customer public @Inject constructor(name: String) { ... }
 <!--The class can also declare **secondary constructors**, which are prefixed with **constructor**:-->
 В классах также могут быть объявлены дополнительные конструкторы (**secondary constructors**), перед которыми используется ключевое слово <b class="keyword">constructor</b>:
 
-``` kotlin
+```kotlin
 class Person {
     var children: MutableList<Person> = mutableListOf<>()
     constructor(parent: Person) {
@@ -135,7 +135,7 @@ directly or indirectly through another secondary constructor(s). Delegation to a
 is done using the **this** keyword:-->
 Если у класса есть основной конструктор, каждый дополнительный конструктор должен прямо или косвенно ссылаться (через другой(_ие_) конструктор(_ы_)) на основной. Осуществляется это при помощи ключевого слова <b class="keyword">this</b>:
 
-``` kotlin
+```kotlin
 class Person(val name: String) {
     var children: MutableList<Person> = mutableListOf<>()
     constructor(name: String, parent: Person) : this(name) {
@@ -168,7 +168,7 @@ constructor with no arguments. The visibility of the constructor will be public.
 to have a public constructor, you need to declare an empty primary constructor with non-default visibility:-->
 Если в абстрактном классе не объявлено никаких конструкторов (основного или дополнительных), у этого класса автоматически сгенерируется пустой конструктор без параметров. Видимость этого конструктора будет **public**. Если вы не желаете иметь класс с открытым **public** конструктором, вам необходимо объявить пустой конструктор с соответствующим модификатором видимости:
 
-``` kotlin
+```kotlin
 class DontCreateMe private constructor () {
 }
 ```
@@ -176,7 +176,7 @@ class DontCreateMe private constructor () {
 <!--NOTE: On the JVM, if all of the parameters of the primary constructor have default values, the compiler will generate an additional parameterless constructor which will use the default values. This makes it easier to use Kotlin with libraries such as Jackson or JPA that create class instances through parameterless constructors.-->
 >**Примечание**: В виртуальной машине JVM компилятор генерирует дополнительный конструктор без параметров в случае, если все параметры основного конструктора имеют значения по умолчанию. Это делает использование таких библиотек, как <b>Jackson</b> и <b>JPA</b>, более простым в языке <b>Kotlin</b>, так как они используют пустые конструкторы при создании экземпляров классов.
 >
->``` kotlin
+>```kotlin
 >class Customer(val customerName: String = "")
 >```
 
@@ -187,7 +187,7 @@ class DontCreateMe private constructor () {
 <!--To create an instance of a class, we call the constructor as if it were a regular function:-->
 Для создания экземпляра класса конструктор вызывается так, как если бы он был обычной функцией:
 
-``` kotlin
+```kotlin
 val invoice = Invoice()
 
 val customer = Customer("Joe Smith")
@@ -222,9 +222,9 @@ val customer = Customer("Joe Smith")
 ## Наследование
 
 <!--All classes in Kotlin have a common superclass `Any`, that is a default super for a class with no supertypes declared:-->
-Для всех классов в языке <b>Koltin</b> родительским суперклассом является класс `Any`. Он также является родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
+Для всех классов в языке <b>Kotlin</b> родительским суперклассом является класс `Any`. Он также является родительским классом для любого класса, в котором не указан какой-либо другой родительский класс:
 
-``` kotlin
+```kotlin
 class Example // Неявно наследуется от Any
 ```
 
@@ -243,7 +243,7 @@ open class Base // Класс открыт для наследования
 <!--To declare an explicit supertype, we place the type after a colon in the class header:-->
 Для явного объявления суперкласса мы помещаем его имя за знаком двоеточия в оглавлении класса:
 
-``` kotlin
+```kotlin
 open class Base(p: Int)
 
 class Derived(p: Int) : Base(p)
@@ -259,7 +259,7 @@ Note that in this case different secondary constructors can call different const
 Если у класса нет основного конструктора, тогда каждый последующий дополнительный конструктор должен включать в себя инициализацию базового типа с помощью ключевого слова <b class="keyword">super</b> или давать отсылку на другой конструктор, который это делает.
 Примечательно, что любые дополнительные конструкторы могут ссылаться на разные конструкторы базового типа:
 
-``` kotlin
+```kotlin
 class MyView : View {
     constructor(ctx: Context) : super(ctx) {
     }

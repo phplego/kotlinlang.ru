@@ -29,7 +29,7 @@ url: "https://kotlinlang.ru/docs/reference/coroutines.html"
 
 Приостановка происходит в случае вызова функции, обозначенной специальным модификатором `suspend`:
 
-``` kotlin 
+```kotlin 
 suspend fun doSomething(foo: Foo): Bar {
     ...
 }
@@ -41,7 +41,7 @@ suspend fun doSomething(foo: Foo): Bar {
 Such functions are called *suspending functions*, because calls to them may suspend a coroutine (the library can decide to proceed without suspension, if the result for the call in question is already available). Suspending functions can take parameters and return values in the same manner as regular functions, but they can only be called from coroutines and other suspending functions. In fact, to start a coroutine, there must be at least one suspending function, and it is usually anonymous (i.e. it is a suspending lambda). Let's look at an example, a simplified `async()` function (from the [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines) library): -->
 
     
-``` kotlin
+```kotlin
 fun <T> async(block: suspend () -> T)
 ``` 
 
@@ -49,7 +49,7 @@ fun <T> async(block: suspend () -> T)
 
 Здесь `async()` является обычной функцией (не функцией остановки), но параметр `block` имеет функциональный тип с модификатором `suspend`:  `suspend () -> T`. Таким образом, когда мы передаём лямбда-функцию в `async()`, она является анонимной функцией остановки, и мы можем вызывать функцию остановки изнутри её:
    
-``` kotlin
+```kotlin
 async {
     doSomething(foo)
     ...
@@ -60,7 +60,7 @@ async {
 
 Продолжая аналогию, `await()` может быть функцией остановки (также может вызываться из блока `async {}`), которая приостанавливает сопрограмму до тех пор, пока некоторые вычисления не будут выполнены, и затем возвращает их результат:
 
-``` kotlin
+```kotlin
 async {
     ...
     val result = computation.await()
@@ -75,7 +75,7 @@ async {
 <!--Note that suspending functions `await()` and `doSomething()` can not be called from a regular function like `main()`: -->
 Отметим, что функции приостановки `await()` и `doSomething()` не могут быть вызваны из обыкновенных функций, подобных `main()`:
 
-``` kotlin
+```kotlin
 fun main(args: Array<String>) {
     doSomething() // ERROR: Suspending function called from a non-coroutine context 
 }
@@ -85,7 +85,7 @@ fun main(args: Array<String>) {
 
 Заметим, что функции остановки могут быть виртуальными, и при их переопределении модификатор `suspend` также должен быть указан:
  
-``` kotlin
+```kotlin
 interface Base {
     suspend fun foo()
 }
@@ -111,7 +111,7 @@ This is relevant in the _rare_ cases when every suspension is handled in a speci
 
 Это актуально в тех _редких_ случаях, когда каждая приостановка обрабатывается специальным образом в библиотеке. Например, при реализации генераторов через [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) функцию, описанную [ниже](#generators-api-in-kotlincoroutines), мы должны быть уверены, что любой приостанавливаемый вызовов в сопрограмме завершается вызовом либо `yield()`, либо `yieldAll()`, а не какой-либо другой функции. Именно по этой причине [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) аннотирована с @RestrictsSuspension:
 
-``` kotlin
+```kotlin
 @RestrictsSuspension
 public abstract class SequenceBuilder<in T> {
     ...
@@ -206,7 +206,7 @@ This will minimize migration issues for your users.
 <!--These are shipped within `kotlin-stdlib` because they are related to sequences. In fact, these functions (and we can limit ourselves to `buildSequence()` alone here) implement _generators_, i.e. provide a way to cheaply build a lazy sequence:-->
 Они перенесены в рамки `kotlin-stdlib`, поскольку они относятся к последовательностям. По сути, эти функции (и мы можем ограничиться здесь рассмотрением только `sequence()`) реализуют генераторы, т. е. предоставляют лёгкую возможность построить ленивые последовательности:
 
-``` kotlin
+```kotlin
 import kotlin.coroutines.*
 
 fun main(args: Array<String>) {
@@ -241,7 +241,7 @@ This generates a lazy, potentially infinite Fibonacci sequence by creating a cor
    
 To demonstrate the real laziness of such a sequence, let's print some debug output inside a call to `buildSequence()`:-->
   
-``` kotlin
+```kotlin
 import kotlin.coroutines.*
 
 fun main(args: Array<String>) {
@@ -269,7 +269,7 @@ To yield a collection (or sequence) of values at once, the `yieldAll()` function
 
 Чтобы сразу породить всю коллекцию (или последовательность) значений, доступна функция `yieldAll()`:
 
-``` kotlin
+```kotlin
 import kotlin.coroutines.*
 
 fun main(args: Array<String>) {
@@ -292,7 +292,7 @@ fun main(args: Array<String>) {
 
 One can add custom yielding logic to `buildSequence()` by writing suspending extensions to the `SequenceBuilder` class (that bears the `@RestrictsSuspension` annotation described [above](#restrictssuspension-annotation)): -->
 
-``` kotlin
+```kotlin
 import kotlin.coroutines.*
 
 //sampleStart

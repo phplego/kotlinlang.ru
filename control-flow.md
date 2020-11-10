@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/reference/control-flow.html
 В языке Kotlin ключевое слово <b class="keyword">if</b> является выражением, т.е. оно возвращает значение.
 Это позволяет отказаться от тернарного оператора (условие ? условие истинно : условие ложно), поскольку выражению <b class="keyword">if</b> вполне по силам его заменить.
 
-``` kotlin
+```kotlin
 // обычное использование 
 var max = a 
 if (a < b) 
@@ -34,7 +34,7 @@ val max = if (a > b) a else b
 
 "Ветви" выражения <b class="keyword">if</b> могут содержать несколько строк кода, при этом последнее выражение является значением блока:
 
-``` kotlin
+```kotlin
 val max = if (a > b) { 
     print("возвращаем a") 
     a 
@@ -55,7 +55,7 @@ val max = if (a > b) {
 
 Ключевое слово <b class="keyword">when</b> призвано заменить оператор switch, присутствующий в C-подобных языках. В простейшем виде его использование выглядит так:
 
-``` kotlin
+```kotlin
 when (x) {
   1 -> print("x == 1")
   2 -> print("x == 2")
@@ -74,7 +74,7 @@ when (x) {
 
 Если для нескольких значений выполняется одно и то же действие, то условия можно перечислять в одной ветке через запятую:
 
-``` kotlin
+```kotlin
 when (x) {
   0, 1 -> print("x == 0 or x == 1")
   else -> print("otherwise")
@@ -83,7 +83,7 @@ when (x) {
 
 Помимо констант в ветках можно использовать произвольные выражения:
 
-``` kotlin
+```kotlin
 when (x) {
   parseInt(s) -> print("s encodes x")
   else -> print("s does not encode x")
@@ -92,7 +92,7 @@ when (x) {
 
 Также можно проверять вхождение аргумента в [интервал](ranges.html) <b class="keyword">in</b> или <b class="keyword">!in</b> или его наличие в коллекции:
 
-``` kotlin
+```kotlin
 when (x) {
   in 1..10 -> print("x is in the range")
   in validNumbers -> print("x is valid")
@@ -112,7 +112,7 @@ val hasPrefix = when(x) {
 
 <b class="keyword">when</b> удобно использовать вместо цепочки условий вида <b class="keyword">if</b>-<b class="keyword">else</b> <b class="keyword">if</b>. При отстутствии аргумента, условия работают как простые логические выражения, а тело ветки выполняется при его истинности:
 
-``` kotlin
+```kotlin
 when {
   x.isOdd() -> print("x is odd")
   x.isEven() -> print("x is even")
@@ -128,14 +128,14 @@ when {
 
 Цикл <b class="keyword">for</b> обеспечивает перебор всех значений, поставляемых итератором. Для этого используется следующий синтаксис:
 
-``` kotlin
+```kotlin
 for (item in collection)
   print(item)
 ```
 
 Телом цикла может быть блок кода:
 
-``` kotlin
+```kotlin
 for (item: Int in ints) {
   // ...
 }
@@ -151,7 +151,7 @@ for (item: Int in ints) {
 
 Если при проходе по массиву или списку необходим порядковый номер элемента, используйте следующий подход:
 
-``` kotlin
+```kotlin
 for (i in array.indices)
   print(array[i])
 ```
@@ -160,7 +160,7 @@ for (i in array.indices)
 
 Также вы можете использовать библиотечную функцию `withIndex`:
 
-``` kotlin
+```kotlin
 for ((index, value) in array.withIndex()) {
     println("the element at $index is $value")
 }
@@ -174,7 +174,7 @@ for ((index, value) in array.withIndex()) {
 
 Ключевые слова <b class="keyword">while</b> и <b class="keyword">do</b>..<b class="keyword">while</b> работают как обычно:
 
-``` kotlin
+```kotlin
 while (x > 0) {
   x--
 }

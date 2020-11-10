@@ -30,7 +30,7 @@ true if and only if `a` and `b` point to the same object.-->
 <!--Structural equality is checked by the `==` operation (and its negated counterpart `!=`). By convention, an expression like `a == b` is translated to -->
 Структурное равенство проверяется оператором `==`  (и его отрицанием `!=`). Условно, выражение `a == b` транслируется в:
 
-``` kotlin
+```kotlin
 a?.equals(b) ?: (b === null)
 ```
 

@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/reference/generics.html
 <!-- As in Java, classes in Kotlin may have type parameters: -->
 Как и в <b>Java</b>, в <b>Kotlin</b> классы тоже могут иметь типовые параметры:
 
-``` kotlin
+```kotlin
 class Box<T>(t: T) {
     var value = t
 }
@@ -21,14 +21,14 @@ class Box<T>(t: T) {
 <!-- In general, to create an instance of such a class, we need to provide the type arguments: -->
 Для того, чтобы создать объект такого класса, необходимо предоставить тип в качестве аргумента:
 
-``` kotlin
+```kotlin
 val box: Box<Int> = Box<Int>(1)
 ```
 
 <!-- But if the parameters may be inferred, e.g. from the constructor arguments or by some other means, one is allowed to omit the type arguments: -->
 Но если параметры могут быть выведены из контекста (в аргументах конструктора или в некоторых других случаях), можно опустить указание типа:
 
-``` kotlin
+```kotlin
 val box = Box(1) // 1 имеет тип Int, поэтому компилятор отмечает для себя, что тип переменной box — Box<Int>
 ```
 
@@ -161,7 +161,7 @@ void demo(Source<String> strs) {
 To do this we provide the **out** modifier:-->
 В Kotlin существует способ объяснить вещь такого рода компилятору. Он называется **вариантность на уровне объявления**: мы можем объявить **типовой параметр** `T` класса `Source` таким образом, чтобы удостовериться, что он только **возвращается** (производится) членами `Source<T>`, и никогда не потребляется. Чтобы сделать это, нам необходимо использовать модификатор **out**
 
-``` kotlin
+```kotlin
 abstract class Source<out T> {
     abstract fun nextT(): T
 }
@@ -187,7 +187,7 @@ This is in contrast with Java's **use-site variance** where wildcards in the typ
 produced. A good example of a contravariant class is `Comparable`:-->
 В дополнении к **out**, Kotlin предоставляет дополнительную модификатор **in**. Он делает параметризованный тип **контравариантным**: он может только потребляться, но не может производиться. `Comparable` является хорошим примером такого класса:
 
-``` kotlin
+```kotlin
 abstract class Comparable<in T> {
     abstract fun compareTo(other: T): Int
 }
@@ -216,7 +216,7 @@ thus the mnemonic mentioned above is not really needed, and one can rephrase it 
 <!--It is very convenient to declare a type parameter T as *out* and have no trouble with subtyping on the use site. Yes, it is, when the class in question **can** actually be restricted to only return `T`'s, but what if it can't?
 A good example of this is Array:-->
 Объявлять параметризованный тип `T` как **out** очень удобно: при его использовании не будет никаких проблем с подтипами. И это действительно так в случае с классами, которые могут быть ограничены на только возвращение `T`. А как быть с теми классами, которые ещё и принимают `T`? Пример: класс `Array`
-``` kotlin
+```kotlin
 class Array<T>(val size: Int) {
     fun get(index: Int): T { /* ... */ }
     fun set(index: Int, value: T) { /* ... */ }
@@ -226,7 +226,7 @@ class Array<T>(val size: Int) {
 <!--This class cannot be either co\- or contravariant in `T`. And this imposes certain inflexibilities. Consider the following function:-->
 Этот класс не может быть ни ко-, ни контравариантным по `T`, что ведёт к некоторому снижению гибкости. Рассмотрим следующую функцию:
 
-``` kotlin
+```kotlin
 fun copy(from: Array<Any>, to: Array<Any>) {
     assert(from.size == to.size)
     for (i in from.indices)
@@ -237,7 +237,7 @@ fun copy(from: Array<Any>, to: Array<Any>) {
 <!--This function is supposed to copy items from one array to another. Let's try to apply it in practice:-->
 По задумке, это функция должна копировать значения из одного массива в другой. Давате попробуем сделать это на практике:
 
-``` kotlin
+```kotlin
 val ints: Array<Int> = arrayOf(1, 2, 3)
 val any = Array<Any>(3)
 copy(ints, any) // Ошибка: ожидалось (Array<Any>, Array<Any>)
@@ -251,7 +251,7 @@ and if we actually passed an array of `Int` there, a `ClassCastException` would 
 <!--Then, the only thing we want to ensure is that `copy()` does not do any bad things. We want to prohibit it from **writing** to `from`, and we can:-->
 Таким образом, единственное, в чём мы хотим удостовериться, это то, что `copy()` не сделает ничего плохого. Мы хотим запретить методу **записывать** в `from`, и мы можем это сделать:
 
-``` kotlin
+```kotlin
 fun copy(from: Array<out Any>, to: Array<Any>) {
  // ...
 }
@@ -264,7 +264,7 @@ fun copy(from: Array<out Any>, to: Array<Any>) {
 <!--You can project a type with **in** as well:-->
 Вы также можете проецировать тип с помощью **in**:
 
-``` kotlin
+```kotlin
 fun fill(dest: Array<in String>, value: String) {
     // ...
 }
@@ -317,7 +317,7 @@ For example, if the type is declared as `interface Function<in T, out U>` we can
 <!--Not only classes can have type parameters. Functions can, too. Type parameters are placed before the name of the function:-->
 Функции, как и классы, могут иметь типовые параметры. Типовые параметры помещаются перед именем функции:
 
-``` kotlin
+```kotlin
 fun <T> singletonList(item: T): List<T> {
     // ...
 }
@@ -330,7 +330,7 @@ fun <T> T.basicToString() : String {  // функция-расширение
 <!--To call a generic function, specify the type arguments at the call site **after** the name of the function:-->
 Для вызова обобщённой функции, укажите тип аргументов на месте вызова **после** имени функции:
 
-``` kotlin
+```kotlin
 val l = singletonList<Int>(1)
 ```
 
@@ -346,7 +346,7 @@ val l = singletonList<Int>(1)
 <!--The most common type of constraint is an **upper bound** that corresponds to Java's *extends* keyword:-->
 Самый распространённый тип ограничений - **верхняя граница**, которая соответствует ключевому слову *extends* из Java:
 
-``` kotlin
+```kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {
     // ...
 }
@@ -355,7 +355,7 @@ fun <T : Comparable<T>> sort(list: List<T>) {
 <!--The type specified after a colon is the **upper bound**: only a subtype of `Comparable<T>` may be substituted for `T`. For example-->
 Тип, указанный после двоеточия, является **верхней границей**: только подтип `Comparable<T>` может быть передан в `T`. Например:
 
-``` kotlin
+```kotlin
 sort(listOf(1, 2, 3)) // Всё в порядке. Int — подтип Comparable<Int>
 sort(listOf(HashMap<Int, String>())) // Ошибка: HashMap<Int, String> не является подтипом Comparable<HashMap<Int, String>>
 ```
@@ -365,7 +365,7 @@ If the same type parameter needs more than one upper bound, we need a separate *
 По умолчанию (если не указана явно) верхняя граница — `Any?`. В угловых скобках может быть указана только одна верхняя граница.
 Для указания нескольких верхних границ нужно использовать отдельное условие **where**:
 
-``` kotlin
+```kotlin
 fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
     where T : Comparable,
           T : Cloneable {

@@ -53,7 +53,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 <!--As an example, here's how you can overload the unary minus operator:-->
 Например, вы можете перегрузить оператор унарного минуса:
 
-``` kotlin
+```kotlin
 data class Point(val x: Int, val y: Int)
 
 operator fun Point.unaryMinus() = Point(-x, -y)
@@ -139,7 +139,7 @@ in Kotlin 1.1.-->
 <!--Below is an example Counter class that starts at a given value and can be incremented using the overloaded `+` operator.-->
 Ниже приведен пример класса Counter, начинающего счёт с заданного значения, которое может быть увеличено с помощью перегруженного оператора `+`.
 
-``` kotlin
+```kotlin
 data class Counter(val dayIndex: Int) {
     operator fun plus(increment: Int): Counter {
         return Counter(dayIndex + increment)

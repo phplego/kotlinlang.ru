@@ -28,7 +28,7 @@ dynamically-typed implementation made in Groovy itself.-->
 <!--Consider the following code:-->
 Рассмотрим следующий код:
 
-``` kotlin
+```kotlin
 import com.example.html.* // смотрите объявления ниже
 
 fun result(args: Array<String>) =
@@ -85,7 +85,7 @@ For example, `HTML` is a class that describes the `<html>` tag, i.e. it defines 
 <!--Now, let's recall why we can say something like this in the code:-->
 Теперь давайте вернёмся к вопросу почему мы можем писать вот такой код:
 
-``` kotlin
+```kotlin
 html {
  // ...
 }
@@ -96,7 +96,7 @@ This function is defined as follows:-->
 На самом деле, `html` является вызовом функции, которая принимает [лямбда-выражение](lambdas.html) в качестве аргумента.
 Вот как эта функция определена:
 
-``` kotlin
+```kotlin
 fun html(init: HTML.() -> Unit): HTML {
     val html = HTML()
     html.init()
@@ -115,7 +115,7 @@ The receiver can be accessed through the *this*{: .keyword } keyword:-->
 и мы сможем обращаться к членам объекта в теле этой функции. Обращение происходит через
 ключевое слово <b class="keyword">this</b>:
 
-``` kotlin
+```kotlin
 html {
     this.head { /* ... */ }
     this.body { /* ... */ }
@@ -128,7 +128,7 @@ html {
 <!--Now, *this*{: .keyword } can be omitted, as usual, and we get something that looks very much like a builder already:-->
 Теперь <b class="keyword">this</b> может быть опущено, и мы получим что-то, что уже очень похоже на строителя:
 
-``` kotlin
+```kotlin
 html {
     head { /* ... */ }
     body { /* ... */ }
@@ -149,7 +149,7 @@ The only difference is that they add the built instances to the `children` colle
 Функции `head` и `body` в классе `HTML` объявлены схоже с функцией `html`. 
 Единственное отличие в том, что они добавляют отстроенные экземпляры в коллекцию `children` заключающего экземпляра `HTML`:
 
-``` kotlin
+```kotlin
 fun head(init: Head.() -> Unit) : Head {
     val head = Head()
     head.init()
@@ -168,7 +168,7 @@ fun body(init: Body.() -> Unit) : Body {
 <!--Actually these two functions do just the same thing, so we can have a generic version, `initTag`:-->
 На самом деле эти две функции делают одно и тоже, поэтому мы можем использовать обобщённую версию, `initTag`:
 
-``` kotlin
+```kotlin
 protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
     tag.init()
     children.add(tag)
@@ -179,7 +179,7 @@ protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
 <!--So, now our functions are very simple:-->
 Теперь наши функции выглядят очень просто:
 
-``` kotlin
+```kotlin
 fun head(init: Head.() -> Unit) = initTag(Head(), init)
 
 fun body(init: Body.() -> Unit) = initTag(Body(), init)
@@ -192,7 +192,7 @@ fun body(init: Body.() -> Unit) = initTag(Body(), init)
 <!--One other thing to be discussed here is how we add text to tag bodies. In the example above we say something like-->
 Ещё одна вещь, которую следует обсудить, это добавление текста в тело тэга. В примере выше мы используем такой синтаксис:
 
-``` kotlin
+```kotlin
 html {
     head {
         title {+"XML кодирование с Kotlin"}
@@ -208,7 +208,7 @@ That operation is actually defined by an extension function `unaryPlus()` that i
 Эта операция определена с помощью [функции-расширения](extensions.html) `unaryPlus()`, 
 которая является членом абстрактного класса `TagWithText` (родителя `Title`).
 
-``` kotlin
+```kotlin
 fun String.unaryPlus() {
     children.add(TextElement(this))
 }
@@ -231,7 +231,7 @@ We can call methods of every available implicit receiver inside a lambda and the
 может возникнуть проблема, когда слишком много функций могут быть вызваны в определённом контексте.
 Мы можем вызывать методы каждого неявного приёмника внутри лямбды, и из-за этого может возникать противоречивый результат, как, например, тэг `head` внутри другого тэга `head`:
 
-``` kotlin
+```kotlin
 html {
     head {
         head {} // должен быть запрещён
@@ -253,7 +253,7 @@ For instance, for HTML Builders we declare an annotation `@HTMLTagMarker`:-->
 Чтобы заставить компилятор запускать контрольные области, нам нужно только аннотировать типы всех получателей, используемых в DSL, той же маркерной аннотацией.
 Например, для HTML Builders мы объявляем аннотацию `@HTMLTagMarker`:
  
-``` kotlin
+```kotlin
 @DslMarker
 annotation class HtmlTagMarker
 ```
@@ -265,7 +265,7 @@ annotation class HtmlTagMarker
 It's enough to annotate only the superclass with `@HtmlTagMarker` and after that the Kotlin compiler will treat all the inherited classes as annotated:-->
 В нашем DSL все классы тэгов расширяют один и тот же суперкласс `Tag`.
 Нам достаточно аннотировать `@HtmlTagMarker` только суперкласс, и после этого компилятор Kotlin обработает все унаследованные классы в соответствии с аннотацией:
-``` kotlin
+```kotlin
 @HtmlTagMarker
 abstract class Tag(val name: String) { ... }
 ```
@@ -281,7 +281,7 @@ class Head() : Tag("head") { ... }
 <!--After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only: -->
 После добавления этой аннотации, компилятор Kotlin знает, какие неявные приёмники являются частью того же DSL, и разрешает обращаться только к членам ближайших приёмников:
 
-``` kotlin
+```kotlin
 html {
     head {
         head { } // ошибка: член внешнего приёмника
@@ -293,7 +293,7 @@ html {
 <!--Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:-->
 Обратите внимание, что всё ещё возможно вызывать члены внешнего приёмника, но для этого вам нужно указать этот приёмник явно:
 
-``` kotlin
+```kotlin
 html {
     head {
         this@html.head { } // всё работает
@@ -319,7 +319,7 @@ _Примечание: Аннотация @DslMarker доступна в Kotlin 
 
 <a name='declarations'></a>
 
-``` kotlin
+```kotlin
 package com.example.html
 
 interface Element {

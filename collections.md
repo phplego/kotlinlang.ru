@@ -33,7 +33,7 @@ We can see basic usage of the list and set types below: -->
 
 Пример базового использования списка (list) и множества (set):
 
-``` kotlin
+```kotlin
 val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
 val readOnlyView: List<Int> = numbers
 println(numbers)        // выведет "[1, 2, 3]"
@@ -60,7 +60,7 @@ A simple way to create such a collection is like this:-->
 Заметьте, что переменная `readOnlyView` изменяется вместе со списком, на который она указывает. Если единственная ссылка, указывающая
 на список является read-only, то мы можем с уверенностью сказать, что коллекция полностью неизменяемая.
 Простой способ создания такой коллекции выглядит так:
-``` kotlin
+```kotlin
 val items = listOf(1, 2, 3)
 ```
 
@@ -76,7 +76,7 @@ it would allow for failures at runtime.-->
 <!--Sometimes you want to return to the caller a snapshot of a collection at a particular point in time, one that's guaranteed to not change:-->
 Иногда вам необходимо вернуть состояние коллекции в определённый момент времени:
 
-``` kotlin
+```kotlin
 class Controller {
     private val _items = mutableListOf<String>()
     val items: List<String> get() = _items.toList()
@@ -89,7 +89,7 @@ class Controller {
 <!--There are various useful extension methods on lists and sets that are worth being familiar with:-->
 Существует несколько полезных расширений для списков и множеств, с которыми стоит познакомиться:
 
-``` kotlin
+```kotlin
 val items = listOf(1, 2, 3, 4)
 items.first() == 1
 items.last() == 4
@@ -107,7 +107,7 @@ val item = rwList.firstOrNull()
 <!--Maps follow the same pattern. They can be easily instantiated and accessed like this:-->
 То же самое происходит и с ассоциативными списками. Они могут быть с лёгкостью инициализированы и использованы следующим образом:
 
-``` kotlin
+```kotlin
 val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
 println(readWriteMap["foo"])  // выведет "1"
 val snapshot: Map<String, Int> = HashMap(readWriteMap)

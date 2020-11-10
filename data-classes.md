@@ -13,7 +13,7 @@ url: https://kotlinlang.ru/docs/reference/data-classes.html
 derivable from the data they hold. In Kotlin a class can be marked as `data`:-->
 Нередко мы создаём классы, единственным назначением которых является хранение данных. Функционал таких классов зависит от самих данных, которые в них хранятся. В <b>Kotlin</b> класс может быть отмечен словом <b class="keyword">data</b>:
 
-``` kotlin
+```kotlin
 data class User(val name: String, val age: Int)
 ```
 
@@ -66,7 +66,7 @@ Additionally, the members generation follows these rules with regard to the memb
 <!-- On the JVM, if the generated class needs to have a parameterless constructor, default values for all properties have to be specified (see Constructors). -->
 > Для того, чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
 > (см. [Конструкторы](classes.html#constructors))
-``` kotlin
+```kotlin
  data class User(val name: String = "", val age: Int = 0)
 ```
 
@@ -75,14 +75,14 @@ Additionally, the members generation follows these rules with regard to the memb
 
 <!-- Note that the compiler only uses the properties defined inside the primary constructor for the automatically generated functions. To exclude a property from the generated implementations, declare it inside the class body: -->
 Обратите внимание, что компилятор использует только свойства, определенные в основном конструкторе для автоматически созданных функций. Чтобы исключить свойство из автоматически созданной реализации, объявите его в теле класса:
-``` kotlin
+```kotlin
 data class Person(val name: String) {
     var age: Int = 0
 }
 ```
 <!-- Only the property name will be used inside the toString(), equals(), hashCode(), and copy() implementations, and there will only be one component function component1(). While two Person objects can have different ages, they will be treated as equal. --> 
 Только свойство `name` будет учитываться в реализациях функций `toString()`, `equals()`, `hashCode()` и `copy()`, и будет создана только одна компонентная функция `component1()`. Даже если два объекта класса `Person` будут иметь разные значения свойств `age`, они будут считаться равными.
-``` kotlin
+```kotlin
     val person1 = Person("John")
     val person2 = Person("John")
     person1.age = 10
@@ -97,13 +97,13 @@ data class Person(val name: String) {
 This is what `copy()` function is generated for. For the `User` class above, its implementation would be as follows:-->
 Довольно часто нам приходится копировать объект с изменением только _некоторых_ его свойств. Для этой задачи генерируется функция `copy()`. Для написанного выше класса `User` такая реализация будет выглядеть следующим образом:
 
-``` kotlin
+```kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)
 ```
 
 <!--This allows us to write-->
 Это позволяет нам писать:
-``` kotlin
+```kotlin
 val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
@@ -114,7 +114,7 @@ val olderJack = jack.copy(age = 2)
 <!--_Component functions_ generated for data classes enable their use in [destructuring declarations](multi-declarations.html):-->
 Сгенерированные для классов данных _компонентные функции_ позволяют использовать их в [мульти-декларациях](multi-declarations.html):
 
-``` kotlin
+```kotlin
 val jane = User("Jane", 35)
 val (name, age) = jane
 println("$name, $age years of age") // выводит "Jane, 35 years of age"

@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/reference/typecasts.html
 <!--We can check whether an object conforms to a given type at runtime by using the `is` operator or its negated form `!is`:-->
 Мы можем проверить принадлежит ли объект к какому-либо типу во время исполнения с помощью оператора `is` или его отрицания `!is`:
 
-``` kotlin
+```kotlin
 if (obj is String) {
     print(obj.length)
 }
@@ -38,7 +38,7 @@ else {
 Во многих случаях в Kotlin вам не нужно использовать явные приведения, потому что компилятор следит за `is`-проверками для 
 неизменяемых значений и вставляет приведения автоматически, там, где они нужны:
 
-``` kotlin
+```kotlin
 fun demo(x: Any) {
     if (x is String) {
         print(x.length) // x автоматически преобразовывается в String
@@ -50,7 +50,7 @@ fun demo(x: Any) {
 Компилятор достаточно умён для того, чтобы делать автоматические приведения в случаях, когда проверка на несоответствие типу (`!is`)
 приводит к выходу из функции:
 
-``` kotlin
+```kotlin
     if (x !is String) return
     print(x.length) // x автоматически преобразовывается в String
 ```
@@ -58,7 +58,7 @@ fun demo(x: Any) {
 <!--or in the right-hand side of `&&` and `||`:-->
 или в случаях, когда приводимая переменная находится справа от оператора `&&` или `||`:
 
-``` kotlin
+```kotlin
     // x автоматически преобразовывается в String справа от `||`
     if (x !is String || x.length == 0) return
 
@@ -73,7 +73,7 @@ fun demo(x: Any) {
 and [*while*{: .keyword }-loops](control-flow.html#while-loops) as well:-->
 Такие _умные приведения_  работают вместе с [*when*-выражениями](control-flow.html#when-expression) и [циклами *while*](control-flow.html#while-loops):
 
-``` kotlin
+```kotlin
 when (x) {
     is Int -> print(x + 1)
     is String -> print(x.length + 1)
@@ -107,7 +107,7 @@ The unsafe cast in Kotlin is done by the infix operator *as*{: .keyword } (see [
 Обычно оператор приведения выбрасывает исключение, если приведение невозможно, поэтому мы называем его *небезопасным*.
 Небезопасное приведение в Kotlin выполняется с помощью инфиксного оператора *as* (см. [приоритеты операторов](grammar.html#precedence)):
 
-``` kotlin
+```kotlin
 val x: String = y as String
 ```
 
@@ -117,7 +117,7 @@ In order to match Java cast semantics we have to have nullable type at cast righ
 Заметьте, что *null* не может быть приведен к `String`, так как `String` не является [nullable](null-safety.html),
 т.е. если `y` - null, код выше выбросит исключение. Чтобы соответствовать семантике приведений в Java, нам нужно указать nullable тип в правой части приведения:
 
-``` kotlin
+```kotlin
 val x: String? = y as String?
 ```
 
@@ -129,7 +129,7 @@ val x: String? = y as String?
 <!--To avoid an exception being thrown, one can use a *safe* cast operator *as?*{: .keyword } that returns *null*{: .keyword } on failure:-->
 Чтобы избежать исключения, вы можете использовать оператор *безопасного* приведения *as?*, который возвращает *null* в случае неудачи:
 
-``` kotlin
+```kotlin
 val x: String? = y as? String
 ```
 

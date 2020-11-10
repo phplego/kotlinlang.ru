@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/reference/ranges.html
 Интервалы оформлены с помощью функций `rangeTo` и имеют оператор в виде `..`, который дополняется  *in* и *!in*.
 Они применимы ко всем сравниваемым (_comparable_) типам, но для целочисленных примитивов есть оптимизированная реализация. Вот несколько примеров применения интервалов.
 
-``` kotlin
+```kotlin
 if (i in 1..10) { // equivalent of 1 <= i && i <= 10
     println(i)
 }
@@ -25,7 +25,7 @@ if (i in 1..10) { // equivalent of 1 <= i && i <= 10
 Интервалы целочисленного типа (`IntRange`, `LongRange`, `CharRange`) имеют определённое преимущество: они могут иметь дополнительную итерацию.
 Компилятор конвертирует такие интервалы в аналогичные циклы *for* из языка <b>Java</b>.
 
-``` kotlin
+```kotlin
 for (i in 1..4) print(i) // prints "1234"
 
 for (i in 4..1) print(i) // prints nothing
@@ -34,14 +34,14 @@ for (i in 4..1) print(i) // prints nothing
 <!-- What if you want to iterate over numbers in reverse order? It's simple. You can use the `downTo()` function defined in the standard library -->
 А что, если вы хотите произвести итерацию в обратном порядке? Это просто. Можете использовать функцию `downTo()`, определённую в стандартной библиотеке:
 
-``` kotlin
+```kotlin
 for (i in 4 downTo 1) print(i) // prints "4321"
 ```
 
 <!-- Is it possible to iterate over numbers with arbitrary step, not equal to 1? Sure, the `step()` function will help you -->
 А есть ли возможность производить итерацию с шагом, отличным от единицы? Разумеется. В этом вам поможет функция `step()`:
 
-``` kotlin
+```kotlin
 for (i in 1..4 step 2) print(i) // prints "13"
 
 for (i in 4 downTo 1 step 2) print(i) // prints "42"
@@ -50,7 +50,7 @@ for (i in 4 downTo 1 step 2) print(i) // prints "42"
 <!-- To create a range which does not include its end element, you can use the `until` function: -->
 Для создания интервала, который не включает последний элемент перебора, используйте `until`:
 
-``` kotlin
+```kotlin
 for (i in 1 until 10) { // i in [1, 10), 10 is excluded
      println(i)
 }
@@ -99,7 +99,7 @@ for (int i = first; i != last; i += increment) {
 Последовательности спроектированы с использованием функции `fromClosedRange` в их вспомогательном объекте (_companion object_):
 
 
-``` kotlin
+```kotlin
     IntProgression.fromClosedRange(start, end, increment)
 ```
 
@@ -116,7 +116,7 @@ for (int i = first; i != last; i += increment) {
 <!-- The `rangeTo()` operators on integral types simply call the constructors of `*Range` classes, e.g.: -->
 Операторы `rangeTo()` для целочисленных типов просто вызывают конструктор класса `*Range*`:
 
-``` kotlin
+```kotlin
 class Int {
     //...
     operator fun rangeTo(other: Long): LongRange = LongRange(this, other)
@@ -129,7 +129,7 @@ class Int {
 <!-- Floating point numbers (`Double`, `Float`) do not define their `rangeTo` operator, and the one provided by the standard library for generic `Comparable` types is used instead: -->
 Числа с плавающей точкой (`Double`, `Float`) не имеют своего оператора `rangeTo`. Такой оператор обозначен для них в дженериках типа `Comparable` стандартной библиотеки:
 
-``` kotlin
+```kotlin
     public operator fun <T: Comparable<T>> T.rangeTo(that: T): ClosedRange<T>
 ```
 
@@ -141,7 +141,7 @@ class Int {
 <!-- The `downTo()` extension function is defined for any pair of integral types, here are two examples: -->
 Экстеншн-функция `downTo()` задана для любой пары целочисленных типов, вот два примера:
 
-``` kotlin
+```kotlin
 fun Long.downTo(other: Int): LongProgression {
     return LongProgression.fromClosedRange(this, other, -1L)
 }
@@ -156,7 +156,7 @@ fun Byte.downTo(other: Int): IntProgression {
 <!-- The `reversed()` extension functions are defined for each `*Progression` classes, and all of them return reversed progressions. -->
 Функция `reversed()` расширяет класс `*Progression*` таким образом, что все экземпляры этого класса возвращают обратные последовательности при её вызове.
 
-``` kotlin
+```kotlin
 fun IntProgression.reversed(): IntProgression {
     return IntProgression.fromClosedRange(last, first, -increment)
 }
@@ -171,7 +171,7 @@ fun IntProgression.reversed(): IntProgression {
 Она возвращает последовательность с изменённым значением шага `step` (параметр функции).
 Значение шага всегда должно быть положительным числом для того, чтобы функция никогда не меняла направления своей итерации.
 
-``` kotlin
+```kotlin
 fun IntProgression.step(step: Int): IntProgression {
     if (step <= 0) throw IllegalArgumentException("Step must be positive, was: $step") //шаг должен быть положительным
     return IntProgression.fromClosedRange(first, last, if (increment > 0) step else -step)
@@ -187,7 +187,7 @@ fun CharProgression.step(step: Int): CharProgression {
 Обратите внимание, что значение элемента `last` в возвращённой последовательности может отличаться от значения `last` первоначальной последовательности с тем,
 чтобы предотвратить инвариант `(last - first) % increment == 0`. Вот пример:
 
-``` kotlin
+```kotlin
     (1..12 step 2).last == 11  // последовательность чисел со значениями [1, 3, 5, 7, 9, 11]
     (1..12 step 3).last == 10  // последовательность чисел со значениями [1, 4, 7, 10]
     (1..12 step 4).last == 9   // последовательность чисел со значениями [1, 5, 9]

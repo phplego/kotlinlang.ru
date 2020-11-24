@@ -109,9 +109,10 @@ url: https://kotlinlang.ru/docs/reference/null-safety.html
 
 Вторым способом является оператор безопасного вызова `?.`:
 
- ```kotlin
+```kotlin
  b?.length
- ```
+```
+
 <!-- This returns `b.length` if `b` is not null, and *null*{: .keyword } otherwise. The type of this expression is `Int?`. -->
 
 Этот код возвращает `b.length` в том, случае, если `b` не имеет значение *null*. Иначе он возвращает *null*. Типом этого выражения будет `Int?`.

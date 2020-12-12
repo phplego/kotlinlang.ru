@@ -66,7 +66,7 @@ print(adHoc.x + adHoc.y)
 
 <!-- Just like Java's anonymous inner classes, code in object expressions can access variables from the enclosing scope. -->
 <!-- (Unlike Java, this is not restricted to final variables.) -->
-Код внутри объявленного объекта может обращаться к переменным за скобками так же, как вложенные анонимные классы в <b>Java</b>
+Код внутри объявленного объекта может обращаться к переменным за скобками
 
 ```kotlin
 fun countClicks(window: JComponent) {

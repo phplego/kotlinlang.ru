@@ -120,6 +120,19 @@ when {
 }
 ```
 
+Начиная с Kotlin 1.3 можно получать переменную внутри <b class="keyword">when</b> условия по следующему синтаксису:
+
+```kotlin
+fun Request.getBody() =
+        when (val response = executeRequest()) {
+            is Success -> response.body
+            is HttpError -> throw HttpException(response.status)
+        }
+```
+
+Такая переменная, объявленная внутри условия <b class="keyword">when</b> может быть видна только внутри тела этого <b class="keyword">when</b>
+
+
 См. [использование <b class="keyword">when</b>](grammar.html#when).
 
 <a name="for-loops"></a>

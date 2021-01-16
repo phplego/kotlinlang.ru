@@ -206,7 +206,7 @@ class MyClass {
 <!-- * object declarations are initialized **lazily**, when accessed for the first time -->
 <!-- * a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer -->
 
-* анонимный объект инициализируется **сразу после того**, как был использован
+* анонимный объект инициализируется **непосредственно** при использовании
 * декларированный объект инициализируется **лениво**, в момент первого к нему доступа
 * вспомогательный объект инициализируется в момент, когда класс, к которому он относится, загружен и семантически совпадает со статическим инициализатором <b>Java</b>
 

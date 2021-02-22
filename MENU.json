@@ -29,7 +29,9 @@
     "functions",
     "lambdas",
     "inline-functions",
-    "coroutines"
+  ],
+  "Сопрограммы": [
+    "coroutines-basics"
   ],
   "Мультиплатформенное программирование": [
     "multiplatform",

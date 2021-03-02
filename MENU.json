@@ -28,7 +28,7 @@
   "Функции и лямбды": [
     "functions",
     "lambdas",
-    "inline-functions",
+    "inline-functions"
   ],
   "Сопрограммы": [
     "coroutines-basics"

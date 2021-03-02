@@ -32,7 +32,7 @@ dyn.whatever(1, "foo", dyn) // 'whatever' не опеределен
 dyn.whatever(*arrayOf(1, 2, 3))
 ```
 
-В Javascript этот код будет будет скомпилирован как есть `dyn.whatever(1)` в Kotlin станет `dyn.whatever(1)` в Javscript.
+В Javascript этот код будет будет скомпилирован как есть `dyn.whatever(1)` в Kotlin станет `dyn.whatever(1)` в Javascript.
 
 
 When calling functions written in Kotlin on values of `dynamic` type, keep in mind the name mangling performed by the

@@ -48,7 +48,7 @@ val box = Box(1) // 1 имеет тип Int, поэтому компилятор
 Прежде всего, обобщённые типы в <b>Java</b> являются **инвариантными** (ориг. invariant). Это означает, что `List<String>` **не является** подтипом `List<Object>`.
 <!-- Why so? If List was not **invariant**, it would have been no -->
 <!-- better than Java's arrays, since the following code would have compiled and caused an exception at runtime: -->
-Почему так? Если бы List был изменяемым, он был бы ничем не лучше массива, потому что после компиляции данный код вызвал бы ошибку в во время выполнения:
+Почему так? Если бы List был изменяемым, он был бы ничем не лучше массива, потому что после компиляции данный код вызвал бы ошибку во время выполнения:
 
 ``` java
 // Java

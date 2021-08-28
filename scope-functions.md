@@ -6,6 +6,7 @@ title: "Функции области видимости"
 url: https://kotlinlang.ru/docs/reference/scope-functions.html
 ---
 
+<a name="scope-functions"></a>
 <!-- # Scope Functions -->
 # Функции области видимости
 
@@ -58,6 +59,7 @@ fun main() {
 <!-- Due to the similar nature of scope functions, choosing the right one for your case can be a bit tricky. The choice mainly depends on your intent and the consistency of use in your project. Below we'll provide detailed descriptions of the distinctions between scope functions and the conventions on their usage. -->
 Из-за того, что все функции области видимости имеют схожий характер, выбрать правильную для вашего конкретного случая может быть затруднительно. В основном выбор зависит от ваших намерений и от структуры вашего проекта. Ниже приведено подробное описание того, чем функции области видимости отличаются между собой, а также соглашение об их использовании.
 
+<a name="distinctions"></a>
 <!-- ## Distinctions -->
 ## Отличительные особенности
 
@@ -68,6 +70,7 @@ fun main() {
 * Способ ссылки на контекстный объект
 * Возвращаемое значение.
 
+<a name="context-object-this-or-it"></a>
 <!-- ### Context object: `this` or `it` -->
 ### Контекстный объект: `this` или `it`
 
@@ -152,7 +155,7 @@ fun main() {
 }
 ```
 
-
+<a name="return-value"></a>
 <!-- ### Return value -->
 ### Возвращаемое значение
 
@@ -240,6 +243,7 @@ fun main() {
 }
 ```
 
+<a name="functions"></a>
 <!-- ## Functions -->
 ## Функции
 
@@ -247,6 +251,7 @@ fun main() {
 Чтобы помочь вам выбрать правильную функцию области видимости, ниже будет представлено их подробное описание и рекомендации по использованию. Во многих случаях они взаимозаменяемы, поэтому в примерах будет отражен общий стиль использования, а также соглашение по их применению.
 
 
+<a name="let"></a>
 ### `let`
 
 <!-- **The context object** is available as an argument (`it`). **The return value** is the lambda result. -->
@@ -320,6 +325,7 @@ fun main() {
 ```
 
 
+<a name="with"></a>
 ### `with`
 
 <!-- A non-extension function: **the context object** is passed as an argument, but inside the lambda, it's available as a receiver (`this`). **The return value** is the lambda result. -->
@@ -353,6 +359,7 @@ fun main() {
 ```
 
 
+<a name="run"></a>
 ### `run`
 
 <!-- **The context object** is available as a receiver (`this`). **The return value** is the lambda result. -->
@@ -409,6 +416,7 @@ fun main() {
 ```
 
 
+<a name="apply"></a>
 ### `apply`
 
 <!-- **The context object** is available as a receiver (`this`). **The return value** is the object itself. -->
@@ -433,6 +441,7 @@ fun main() {
 Так как возвращаемое значение - это сам объект, то можно с легкостью включить `apply` в цепочки вызовов для более сложной обработки.
 
 
+<a name="also"></a>
 ### `also`
 
 <!-- **The context object** is available as an argument (`it`). **The return value** is the object itself. -->
@@ -454,6 +463,7 @@ fun main() {
 ```
 
 
+<a name="function-selection"></a>
 <!-- ## Function selection -->
 ## Выбор функции
 
@@ -493,6 +503,7 @@ fun main() {
 <!-- Although the scope functions are a way of making the code more concise, avoid overusing them: it can decrease your code readability and lead to errors. Avoid nesting scope functions and be careful when chaining them: it's easy to get confused about the current context object and the value of `this` or `it`. -->
 Несмотря на то, что функции области видимости предназначены для того, чтобы сделать код более кратким, избегайте их чрезмерного использования: это может снизить читабельность кода и привести к ошибкам. Избегайте вложенности функций и будьте осторожны при их объединении: можно легко запутаться в текущем значении контекстного объекта и в значениях `this` или `it`.
 
+<a name="takeif-and-takeunless"></a>
 ## `takeIf` и `takeUnless`
 
 <!-- In addition to scope functions, the standard library contains the functions `takeIf` and `takeUnless`. These functions let you embed checks of the object state in call chains. -->

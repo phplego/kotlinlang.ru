@@ -30,6 +30,9 @@
     "lambdas",
     "inline-functions"
   ],
+  "Коллекции": [
+    "collections-overview"
+  ],
   "Сопрограммы": [
     "coroutines-basics"
   ],

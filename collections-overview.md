@@ -6,6 +6,7 @@ title: "Коллекции"
 url: https://kotlinlang.ru/docs/reference/collections-overview.html
 ---
 
+<a name="collections-overview"></a>
 <!--# Collections overview-->
 # Коллекции. Общий обзор
 
@@ -47,6 +48,7 @@ of its contents. -->
 Интерфейсы коллекций и связанные с ними функции находятся в пакете `kotlin.collections`. Давайте рассмотрим его содержимое.
 
 
+<a name="collection-types"></a>
 <!-- ## Collection types -->
 ## Типы коллекций
 
@@ -94,6 +96,7 @@ violating its `Rectangle` type argument. -->
 Пройдемся по интерфейсам и их реализациям.
 
 
+<a name="collection"></a>
 <!-- ### Collection -->
 ### Collection
 
@@ -142,6 +145,7 @@ fun main() {
 }
 ```
 
+<a name="list"></a>
 <!-- ### List -->
 ### List
 
@@ -206,6 +210,7 @@ which you can think of as a resizable array. -->
 По умолчанию в Kotlin реализацией `List` является [`ArrayList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html), который можно рассматривать как массив с изменяемым размером.
 
 
+<a name="set"></a>
 <!-- ### Set -->
 ### Set
 
@@ -251,6 +256,7 @@ requires less memory to store the same number of elements. -->
 Альтернативная реализация - [`HashSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-set/index.html) - не сохраняет порядок элементов, поэтому при вызове функций `first()` или `last()` вернётся непредсказуемый результат. Однако `HashSet` требует меньше памяти для хранения того же количества элементов.
 
 
+<a name="map"></a>
 <!-- ### Map -->
 ### Map
 

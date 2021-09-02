@@ -31,7 +31,8 @@
     "inline-functions"
   ],
   "Коллекции": [
-    "collections-overview"
+    "collections-overview",
+    "collection-filtering"
   ],
   "Сопрограммы": [
     "coroutines-basics"

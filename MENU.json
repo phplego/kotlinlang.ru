@@ -32,7 +32,8 @@
   ],
   "Коллекции": [
     "collections-overview",
-    "collection-filtering"
+    "collection-filtering",
+    "collection-transformations"
   ],
   "Сопрограммы": [
     "coroutines-basics"

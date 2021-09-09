@@ -276,7 +276,7 @@ identifiers in other contexts:
  * `===`, `!==` - [операторы ссылочного равенства](/docs/reference/equality.html#referential-equality)
  * `<`, `>`, `<=`, `>=` - [операторы сравнения](/docs/reference/operator-overloading.html#comparison) (переведенные на вызовы `compareTo()` для не-примитивных типов)
  * `[`, `]` - [оператор индексированного доступа](/docs/reference/operator-overloading.html#indexed) (переведенный на вызовы `get` и `set`)
- * `!!` [утверждает, что выражение не равно нулю](/docs/reference/null-safety.html#the--operator)
+ * `!!` [утверждает, что выражение не равно null](/docs/reference/null-safety.html#the--operator)
  * `?.` выполняет [безопасный вызов](/docs/reference/null-safety.html#safe-calls) (вызывает метод или обращается к свойству, если получатель не имеет значения null)
  * `?:` принимает правое значение, если левое значение равно нулю ([Элвис оператор](http://kotlinlang.org/docs/reference/null-safety.html#elvis-operator))
  * `::` создает [ссылку на элемент](/docs/reference/reflection.html#function-references)  или [ссылку на класс](/docs/reference/reflection.html#class-references)

@@ -45,7 +45,8 @@
     "collection-elements",
     "collection-ordering",
     "collection-aggregate",
-    "collection-write"
+    "collection-write",
+    "list-operations"
   ],
   "Сопрограммы": [
     "coroutines-basics"

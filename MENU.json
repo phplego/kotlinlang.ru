@@ -37,8 +37,9 @@
     "ranges",
     "sequences",
     "collection-operations",
+    "collection-transformations",
     "collection-filtering",
-    "collection-transformations"
+    "collection-plus-minus"
   ],
   "Сопрограммы": [
     "coroutines-basics"

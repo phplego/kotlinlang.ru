@@ -43,7 +43,8 @@
     "collection-grouping",
     "collection-parts",
     "collection-elements",
-    "collection-ordering"
+    "collection-ordering",
+    "collection-aggregate"
   ],
   "Сопрограммы": [
     "coroutines-basics"

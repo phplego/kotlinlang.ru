@@ -34,6 +34,7 @@
     "collections-overview",
     "constructing-collections",
     "iterators",
+    "ranges",
     "collection-filtering",
     "collection-transformations"
   ],
@@ -47,7 +48,6 @@
   "Прочее": [
     "multi-declarations",
     "collections",
-    "ranges",
     "typecasts",
     "this-expressions",
     "equality",

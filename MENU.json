@@ -32,6 +32,7 @@
   ],
   "Коллекции": [
     "collections-overview",
+    "constructing-collections",
     "collection-filtering",
     "collection-transformations"
   ],

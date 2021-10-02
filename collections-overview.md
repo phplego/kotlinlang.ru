@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: Collections
-title: "Коллекции"
+title: "Коллекции. Общий обзор"
 url: https://kotlinlang.ru/docs/reference/collections-overview.html
 ---
 

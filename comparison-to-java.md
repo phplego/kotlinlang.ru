@@ -79,5 +79,5 @@ Kotlin решает целый ряд проблем, от которых стр
 * [Перегрузка операторов](operator-overloading.html)
 * [Вспомогательные объекты](classes.html#companion-objects)
 * [Классы данных](data-classes.html)
-* [Раздельные интерфейсы для изменяемых и неизменяемых коллекций](collections.html)
+* [Раздельные интерфейсы для изменяемых и неизменяемых коллекций](collections-overview#collection-types.html)
 * [Сопрограммы (корутины)](coroutines.html)

@@ -59,7 +59,6 @@
     ],
   "Прочее": [
     "multi-declarations",
-    "collections",
     "typecasts",
     "this-expressions",
     "equality",

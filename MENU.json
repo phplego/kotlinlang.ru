@@ -35,6 +35,7 @@
     "constructing-collections",
     "iterators",
     "ranges",
+    "sequences",
     "collection-filtering",
     "collection-transformations"
   ],

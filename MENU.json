@@ -39,7 +39,8 @@
     "collection-operations",
     "collection-transformations",
     "collection-filtering",
-    "collection-plus-minus"
+    "collection-plus-minus",
+    "collection-grouping"
   ],
   "Сопрограммы": [
     "coroutines-basics"

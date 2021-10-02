@@ -42,7 +42,8 @@
     "collection-plus-minus",
     "collection-grouping",
     "collection-parts",
-    "collection-elements"
+    "collection-elements",
+    "collection-ordering"
   ],
   "Сопрограммы": [
     "coroutines-basics"

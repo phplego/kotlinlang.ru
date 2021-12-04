@@ -19,6 +19,7 @@ a detailed description of the related topic. -->
 on JetBrains Academy. -->
 Вы также можете изучить все основы Kotlin в бесплатном курсе [Основы Kotlin](https://hyperskill.org/tracks/18) от JetBrains Academy.
 
+<a name="package-definition-and-imports"></a>
 <!-- ## Package definition and imports -->
 ## Определение имени пакета и импорт
 
@@ -40,6 +41,7 @@ import java.util.*
 <!-- See [Packages](packages.md). -->
 См. [Пакеты](packages.html).
 
+<a name="program-entry-point"></a>
 <!-- ## Program entry point -->
 ## Точка входа в программу
 
@@ -61,6 +63,7 @@ fun main(args: Array<String>) {
 }
 ```
 
+<a name="print-to-the-standard-output"></a>
 <!-- ## Print to the standard output -->
 ## Вывод в стандартный поток
 
@@ -80,6 +83,7 @@ println("Hello world!")
 println(42)
 ```
 
+<a name="functions"></a>
 <!-- ## Functions -->
 ## Функции
 
@@ -120,6 +124,7 @@ fun printSum(a: Int, b: Int) {
 <!-- See [Functions](functions.md). -->
 См. [Функции](functions.html).
 
+<a name="variables"></a>
 <!-- ## Variables -->
 ## Переменные
 
@@ -156,6 +161,7 @@ fun incrementX() {
 <!-- See also [Properties](properties.md). -->
 См. [Свойства и поля](properties.html).
 
+<a name="creating-classes-and-instances"></a>
 <!-- ## Creating classes and instances -->
 ## Создание классов и экземпляров
 
@@ -199,6 +205,7 @@ class Rectangle(var height: Double, var length: Double): Shape() {
 <!-- See [classes](classes.md) and [objects and instances](object-declarations.md). -->
 См. [Классы и наследование](classes.html) и [Объекты и экземпляры](object-declarations.html).
 
+<a name="comments"></a>
 <!-- ## Comments -->
 ## Комментарии
 
@@ -224,8 +231,8 @@ class Rectangle(var height: Double, var length: Double): Shape() {
 <!-- See [Documenting Kotlin Code](kotlin-doc.md) for information on the documentation comment syntax. -->
 См. [Документация Kotlin кода](kotlin-doc.html) для информации о документации в комментариях.
 
+<a name="string-templates"></a>
 <!-- ## String templates -->
-<a name="using-string-templates"></a>
 ## Строковые шаблоны
 
 Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
@@ -256,6 +263,7 @@ val s2 = "${s1.replace("равно", "было равно")}, но теперь 
 <!-- See [String templates](basic-types.md#string-templates) for details. -->
 См. [Строковые шаблоны](basic-types.html#string-templates).
 
+<a name="conditional-expressions"></a>
 <!-- ## Conditional expressions -->
 ## Условные выражения
 
@@ -279,6 +287,7 @@ fun maxOf(a: Int, b: Int) = if (a > b) a else b
 <!-- See [`if`-expressions](control-flow.md#if-expression). -->
 См. [Выражение `if`](control-flow.html#if-expression).
 
+<a name="for-loop"></a>
 <!-- ## for loop -->
 ## Цикл for
 
@@ -302,6 +311,7 @@ for (index in items.indices) {
 <!-- See [for loop](control-flow.md#for-loops). -->
 См. [Цикл for](control-flow.html#for-loops).
 
+<a name="while-loop"></a>
 <!-- ## while loop -->
 ## Цикл while
 
@@ -317,6 +327,7 @@ while (index < items.size) {
 <!-- See [while loop](control-flow.md#while-loops). -->
 См. [Цикл while](control-flow.html#while-loops).
 
+<a name="when-expression"></a>
 <!-- ## when expression -->
 ## Выражение when
 
@@ -334,6 +345,7 @@ fun describe(obj: Any): String =
 <!-- See [when expression](control-flow.md#when-expression). -->
 См. [Выражение when](control-flow.html#when-expression).
 
+<a name="ranges"></a>
 <!-- ## Ranges -->
 ## Интервалы
 
@@ -386,6 +398,7 @@ for (x in 9 downTo 0 step 3) {
 <!-- See [Ranges and progressions](ranges.md). -->
 См. [Интервалы](ranges.html).
 
+<a name="collections"></a>
 <!-- ## Collections -->
 ## Коллекции
 
@@ -424,6 +437,7 @@ fruits
 <!-- See [Collections overview](collections-overview.md). -->
 См. [Коллекции](collections-overview.html).
 
+<a name="nullable-values-and-null-checks"></a>
 <!-- ## Nullable values and null checks -->
 ## Nullable-значения и проверка на null
 
@@ -479,6 +493,7 @@ if (y == null) {
 <!-- See [Null-safety](null-safety.md). -->
 См. [Null-безопасность](null-safety.html).
 
+<a name="type-checks-and-automatic-casts"></a>
 <!-- ## Type checks and automatic casts -->
 ## Проверка типа и автоматическое приведение типов
 

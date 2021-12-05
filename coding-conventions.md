@@ -15,6 +15,7 @@ Here we provide guidelines on the code style and code organization for projects 
 Общеизвестные и простые в использовании соглашения о стилистике кода жизненно важны для любого языка программирования.
 Здесь мы предоставляем рекомендации по стилю кода и его организации для проектов, использующих Kotlin.
 
+<a name="configure-style-in-ide"></a>
 <!-- ## Configure style in IDE -->
 ## Настройка стиля в IDE
 
@@ -24,6 +25,7 @@ the given code style. -->
 Две самые популярные IDE для Kotlin - [IntelliJ IDEA](https://www.jetbrains.com/idea/) и [Android Studio](https://developer.android.com/studio/)
 обеспечивают широкую поддержку стиля кода. Вы можете настроить их для автоматического форматирования вашего кода в соответствии с заданным стилем.
 
+<a name="apply-the-style-guide"></a>
 <!-- ### Apply the style guide -->
 ### Примените руководства по стилю
 
@@ -34,6 +36,7 @@ the given code style. -->
 2. Нажмите **Set from...**.
 3. Выберите **Kotlin style guide**.
 
+<a name="verify-that-your-code-follows-the-style-guide"></a>
 <!-- ### Verify that your code follows the style guide -->
 ### Убедитесь, что ваш код соответствует руководству по стилю
 
@@ -46,9 +49,11 @@ Additional inspections that verify other issues described in the style guide (su
 3. Включите проверку **File is not formatted according to project settings**. Дополнительные проверки, которые проверяют другие проблемы,
 описанные в руководстве по стилю (например, соглашения об именах), включены по умолчанию.
 
+<a name="source-code-organization"></a>
 <!-- ## Source code organization -->
 ## Организация кода
 
+<a name="directory-structure"></a>
 <!-- ### Directory structure -->
 ### Структура каталогов
 
@@ -68,6 +73,7 @@ files in `org.example.kotlin.network.socket` should be in the `network/socket` s
 > что и исходные файлы Java, и следовать той же структуре каталогов:
 > каждый файл должен храниться в каталоге, соответствующем каждой инструкции пакета.
 
+<a name="source-file-names"></a>
 <!-- ### Source file names -->
 ### Имена файлов
 
@@ -87,6 +93,7 @@ words such as `Util` in file names. -->
 Имена файлов должны описывать, что в них делает код. Поэтому при наименовании файла вам следует избегать слов, не несущих смысла,
 таких как `Util`.
 
+<a name="source-file-organization"></a>
 <!-- ### Source file organization -->
 ### Организация файла
 
@@ -104,6 +111,7 @@ all extensions of some class. -->
 поместите их в один файл с самим классом. При определении функций-расширения, которые имеют смысл только для конкретного клиента,
 поместите их рядом с кодом этого клиента. Избегайте создания файлов только для хранения всех расширений какого-либо класса.
 
+<a name="class-layout"></a>
 <!-- ### Class layout -->
 ### Схема классов
 
@@ -131,6 +139,7 @@ referenced inside the class, put them in the end, after the companion object. --
 Поместите вложенные классы рядом с кодом, который их использует. Если эти классы предназначены для внешнего использования
 и на них нет ссылок внутри класса, поместите их в конце, после сопутствующего объекта.
 
+<a name="interface-implementation-layout"></a>
 <!-- ### Interface implementation layout -->
 ### Схема реализации интерфейса
 
@@ -139,12 +148,14 @@ interspersed with additional private methods used for the implementation). -->
 При реализации интерфейса располагайте элементы в том же порядке,
 что и элементы интерфейса (при необходимости чередуйте их с дополнительными частными методами, используемыми для реализации).
 
+<a name="overload-layout"></a>
 <!-- ### Overload layout -->
 ### Расположение перегрузки
 
 <!-- Always put overloads next to each other in a class. -->
 Всегда помещайте перегрузки друг после друга в классе.
 
+<a name="naming-rules"></a>
 <!-- ## Naming rules -->
 ## Правила наименований
 
@@ -167,6 +178,7 @@ open class DeclarationProcessor { /*...*/ }
 object EmptyDeclarationProcessor : DeclarationProcessor() { /*...*/ }
 ```
 
+<a name="function-names"></a>
 <!-- ### Function names -->
 ### Имена функций
 
@@ -189,6 +201,7 @@ class FooImpl : Foo { /*...*/ }
 fun Foo(): Foo { return FooImpl() }
 ```
 
+<a name="names-for-test-methods"></a>
 <!-- ### Names for test methods -->
 ### Имена тестовых методов
 
@@ -207,6 +220,7 @@ class MyTestCase {
 }
 ```
 
+<a name="property-names"></a>
 <!-- ### Property names -->
 ### Имена свойств
 
@@ -241,6 +255,7 @@ val PersonComparator: Comparator<Person> = /*...*/
 ([SCREAMING_SNAKE_CASE](https://en.wikipedia.org/wiki/Snake_case)) (`enum class Color { RED, GREEN }`),
 и имена с использованием UpperCamelCase.
 
+<a name="names-for-backing-properties"></a>
 <!-- ### Names for backing properties -->
 ### Имена для вспомогательных свойств
 
@@ -257,6 +272,8 @@ class C {
          get() = _elementList
 }
 ```
+
+<a name="choose-good-names"></a>
 <!-- ### Choose good names -->
 ### Выбирайте хорошие имена
 
@@ -280,9 +297,11 @@ capitalize only the first letter if it is longer (`XmlFormatter`, `HttpInputStre
 При использовании аббревиатуры в качестве части имени объявления, пишите её в верхнем регистре, если она состоит из двух букв (`IOStream`);
 если аббревиатура длиннее, заглавной следует оставить только первую букву (`XmlFormatter`, `HttpInputStream`).
 
+<a name="formatting"></a>
 <!-- ## Formatting -->
 ## Форматирование
 
+<a name="indentation"></a>
 <!-- ### Indentation -->
 ### Отступ
 
@@ -307,6 +326,7 @@ if (elements != null) {
 В Kotlin точка с запятой необязательна, и поэтому разрывы строк являются значимыми. Дизайн языка предполагает фигурные скобки в стиле Java,
 и вы можете столкнуться с неожиданным поведением, если попытаетесь использовать другой стиль форматирования.
 
+<a name="horizontal-whitespace"></a>
 <!-- ### Horizontal whitespace -->
 ### Пробелы
 
@@ -355,6 +375,8 @@ should not affect the formatting of either the declaration or any of the usages.
 Основное правило: избегайте любого горизонтального выравнивания.
 Переименование идентификатора в имя с другой длиной не должно влиять на форматирование.
 
+<a name="colon"></a>
+<!-- ### Colon -->
 ### Двоеточие
 
 <!-- Put a space before `:` in the following cases: -->
@@ -385,6 +407,7 @@ class FooImpl : Foo() {
 } 
 ```
 
+<a name="class-headers"></a>
 <!-- ### Class headers -->
 ## Заголовки классов
 
@@ -461,6 +484,7 @@ declared in the body of a class. -->
 Используйте обычный отступ (четыре пробела) для параметров конструктора.
 Это гарантирует, что свойства, объявленные в основном конструкторе, имеют тот же отступ, что и свойства, объявленные в теле класса.
 
+<a name="modifiers-order"></a>
 <!-- ### Modifiers order -->
 ### Порядок модификаторов
 
@@ -497,6 +521,7 @@ private val foo: Foo
 <!-- Unless you're working on a library, omit redundant modifiers (for example, `public`). -->
 Если вы не работаете с библиотекой, опускайте избыточные модификаторы (например, `public`).
 
+<a name="annotations"></a>
 <!-- ### Annotations -->
 ### Аннотации
 
@@ -523,6 +548,7 @@ var x: String
 @Test fun foo() { /*...*/ }
 ```
 
+<a name="file-annotations"></a>
 <!-- ### File annotations -->
 ### Аннотации к файлам
 
@@ -538,6 +564,7 @@ and are separated from `package` with a blank line (to emphasize the fact that t
 package foo.bar
 ```
 
+<a name="functions"></a>
 <!-- ### Functions -->
 ### Функции
 
@@ -567,6 +594,7 @@ fun foo(): Int {     // плохо
 fun foo() = 1        // хорошо
 ```
 
+<a name="expression-bodies"></a>
 <!-- ### Expression bodies -->
 ### Выражение вместо тела
 
@@ -580,6 +608,7 @@ fun f(x: String, y: String, z: String) =
     veryLongFunctionCallWithManyWords(andLongParametersToo(), x, y, z)
 ```
 
+<a name="properties"></a>
 <!-- ### Properties -->
 ### Свойства
 
@@ -608,6 +637,7 @@ private val defaultCharset: Charset? =
     EncodingRegistry.getInstance().getDefaultCharsetForPropertiesFiles(file)
 ```
 
+<a name="control-flow-statements"></a>
 <!-- ### Control flow statements -->
 ### Операторы управления потоком
 
@@ -673,6 +703,7 @@ when (foo) {
 }
 ```
 
+<a name="method-calls"></a>
 <!-- ### Method calls -->
 ### Вызовы методов
 
@@ -692,6 +723,7 @@ drawSquare(
 <!-- Put spaces around the `=` sign separating the argument name and value. -->
 Используйте пробелы вокруг знака `=`, разделяющего имя аргумента и значение.
 
+<a name="wrap-chained-calls"></a>
 <!-- ### Wrap chained calls -->
 ### Группировка цепочки вызовов
 
@@ -708,6 +740,7 @@ val anchor = owner
 <!-- The first call in the chain usually should have a line break before it, but it's OK to omit it if the code makes more sense that way. -->
 Обычно перед первым вызовом в цепочке нужно перейти на новую строку, но можно пренебречь этим, если при этом код имеет больше смысла.
 
+<a name="lambdas"></a>
 <!-- ### Lambdas -->
 ## Лямбда-выражения
 
@@ -752,6 +785,7 @@ foo {
 }
 ```
 
+<a name="trailing-commas"></a>
 <!-- ### Trailing commas -->
 ### Завершающие запятые
 
@@ -786,6 +820,7 @@ open the **Other** tab and select the **Use trailing comma** option. -->
 Чтобы включить завершающие запятые в IntelliJ IDEA, перейдите в раздел **Settings/Preferences | Editor | Code Style | Kotlin**,
 откройте вкладку **Other** и выберите опцию **Use trailing comma**.
 
+<a name="enumerations"></a>
 <!-- #### Enumerations -->
 #### Перечисления
 
@@ -798,6 +833,7 @@ enum class Direction {
 }
 ```
 
+<a name="value-arguments"></a>
 <!-- #### Value arguments -->
 #### Аргументы
 
@@ -814,6 +850,7 @@ val colors = listOf(
 )
 ```
 
+<a name="class-properties-and-parameters"></a>
 <!-- #### Class properties and parameters -->
 #### Свойства и параметры класса
 
@@ -828,6 +865,7 @@ class Customer(
 )
 ```
 
+<a name="function-value-parameters"></a>
 <!-- #### Function value parameters -->
 #### Параметры функции
 
@@ -846,6 +884,7 @@ fun print(
 ) {}
 ```
 
+<a name="parameters-with-optional-type-including-setters"></a>
 <!-- #### Parameters with optional type (including setters) -->
 #### Параметры с необязательным типом (включая сеттеры)
 
@@ -860,6 +899,7 @@ val sum: (Int, Int, Int) -> Int = fun(
 println(sum(8, 8, 8))
 ```
 
+<a name="indexing-suffix"></a>
 <!-- #### Indexing suffix -->
 #### Суффикс индексации
 
@@ -874,6 +914,7 @@ fun getZValue(mySurface: Surface, xValue: Int, yValue: Int) =
     ]
 ```
 
+<a name="parameters-in-lambdas"></a>
 <!-- #### Parameters in lambdas -->
 #### Параметры в лямбдах
 
@@ -889,6 +930,7 @@ fun main() {
 }
 ```
 
+<a name="when-entry"></a>
 <!-- #### `when` entry -->
 #### `when`
 
@@ -902,7 +944,8 @@ fun isReferenceApplicable(myReference: KClass<*>) = when (myReference) {
 }
 ```
 
-<!-- #### Collection literals -->
+<a name="collection-literals-in-annotations"></a>
+<!-- #### Collection literals (in annotations) -->
 #### Литералы коллекции
 
 ```kotlin
@@ -916,6 +959,7 @@ annotation class ApplicableFor(val services: Array<String>)
 fun run() {}
 ```
 
+<a name="type-arguments"></a>
 #### Type arguments
 
 ```kotlin
@@ -928,6 +972,7 @@ fun main() {
 }
 ```
 
+<a name="type-parameters"></a>
 #### Type parameters
 
 ```kotlin
@@ -937,6 +982,7 @@ class MyMap<
         > {}
 ```
 
+<a name="destructuring-declarations"></a>
 #### Destructuring declarations
 
 ```kotlin
@@ -962,6 +1008,7 @@ fun printMeanValue() {
 printMeanValue()
 ```
 
+<a name="documentation-comments"></a>
 <!-- ## Documentation comments -->
 ## Документация комментариями
 
@@ -1009,6 +1056,7 @@ fun abs(number: Int) { /*...*/ }
 fun abs(number: Int) { /*...*/ }
 ```
 
+<a name="avoid-redundant-constructs"></a>
 <!-- ## Avoid redundant constructs -->
 ## Избегайте избыточных конструкций
 
@@ -1017,6 +1065,7 @@ as redundant, you should omit it in your code. Do not leave unnecessary syntacti
 just "for clarity". -->
 В общем случае, если определенная синтаксическая конструкция в Kotlin является необязательной и выделена IDE как избыточная, вы должны опустить ее в своем коде. Не оставляйте ненужные синтаксические элементы в коде просто "для ясности".
 
+<a name="unit-return-type"></a>
 <!-- ### Unit return type -->
 ### Возвращаемый тип Unit
 
@@ -1029,12 +1078,14 @@ fun foo() { // ": Unit" опущено
 }
 ```
 
+<a name="semicolons"></a>
 <!-- ### Semicolons -->
 ### Точки с запятой
 
 <!-- Omit semicolons whenever possible. -->
 Опускайте точки с запятой везде, где это возможно.
 
+<a name="string-templates"></a>
 <!-- ### String templates -->
 ### Строковые шаблоны
 
@@ -1045,9 +1096,11 @@ fun foo() { // ": Unit" опущено
 println("У $name уже ${children.size} детей")
 ```
 
+<a name="idiomatic-use-of-language-features"></a>
 <!-- ## Idiomatic use of language features -->
 ## Идиоматическое использование функций языка
 
+<a name="immutability"></a>
 <!-- ### Immutability -->
 ### Неизменность
 
@@ -1077,6 +1130,7 @@ val allowedValues = arrayListOf("a", "b", "c")
 val allowedValues = listOf("a", "b", "c")
 ```
 
+<a name="default-parameter-values"></a>
 <!-- ### Default parameter values -->
 ### Значения параметров по умолчанию
 
@@ -1092,6 +1146,7 @@ fun foo(a: String) { /*...*/ }
 fun foo(a: String = "a") { /*...*/ }
 ```
 
+<a name="type-aliases"></a>
 <!-- ### Type aliases -->
 ### Псевдонимы типов
 
@@ -1109,6 +1164,7 @@ typealias PersonIndex = Map<String, Person>
 Если вы используете псевдоним частного или внутреннего типа, чтобы избежать конфликта имен,
 предпочтительнее использовать `import … as …`, упомянутый в [Пакеты и импорты](packages.html)
 
+<a name="lambda-parameters"></a>
 <!-- ### Lambda parameters -->
 ### Лямбда-параметры
 
@@ -1117,6 +1173,7 @@ explicitly. In nested lambdas with parameters, always declare parameters explici
 В коротких лямбда-выражениях, не являющихся вложенными, рекомендуется использовать `it` вместо явного объявления параметра.
 Во вложенных лямбдах с параметрами последние всегда должны быть объявлены.
 
+<a name="returns-in-a-lambda"></a>
 <!-- ### Returns in a lambda -->
 ### Возвращаемое значение в лямбде
 
@@ -1128,6 +1185,7 @@ If that's not possible or not clear enough, consider converting the lambda into 
 <!-- Do not use a labeled return for the last statement in a lambda. -->
 Не используйте помеченный возврат для последнего оператора в лямбде.
 
+<a name="named-arguments"></a>
 <!-- ### Named arguments -->
 ### Именованные аргументы
 
@@ -1140,6 +1198,7 @@ unless the meaning of all parameters is absolutely clear from context. -->
 drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
 ```
 
+<a name="conditional-statements"></a>
 <!-- ### Conditional statements -->
 ### Условные операторы
 
@@ -1174,6 +1233,7 @@ when(x) {
 }    
 ```
 
+<a name="if-versus-when"></a>
 <!-- ### if versus when -->
 ### if vs when
 
@@ -1198,6 +1258,7 @@ when (x) {
 <!-- Prefer using `when` if there are three or more options. -->
 Предпочтительнее использовать `when`, если есть три и более вариантов.
 
+<a name="nullable-boolean-values-in-conditions"></a>
 <!-- ### Nullable Boolean values in conditions -->
 ### Обнуляемые логические значения в условиях
 
@@ -1205,6 +1266,7 @@ when (x) {
 Если вам нужно использовать в условном операторе `Boolean`, допускающее значение null,
 используйте проверки `if (value == true)` или `if (value == false)`.
 
+<a name="loops"></a>
 <!-- ### Loops -->
 ### Циклы
 
@@ -1219,6 +1281,7 @@ of the operations being performed in each case and keep performance consideratio
 Делая выбор между циклом и сложным выражением, использующим несколько функций более высокого порядка, учитывайте стоимость операций,
 выполняемых в каждом конкретном случае, исходите из соображений производительности.
 
+<a name="loops-on-ranges"></a>
 <!-- ### Loops on ranges -->
 ### Циклы для диапазонов
 
@@ -1230,6 +1293,7 @@ for (i in 0..n - 1) { /*...*/ }  // плохо
 for (i in 0 until n) { /*...*/ }  // хорошо
 ```
 
+<a name="strings"></a>
 <!-- ### Strings -->
 ### Строки
 
@@ -1271,6 +1335,7 @@ println(a)
 <!-- Learn the difference between [Java and Kotlin multiline strings](java-to-kotlin-idioms-strings.md#use-multiline-strings). -->
 См. [Многострочные строки Java и Kotlin](java-to-kotlin-idioms-strings.html#use-multiline-strings), чтобы узнать разницу между ними в Java и Kotlin.
 
+<a name="functions-vs-properties"></a>
 <!-- ### Functions vs properties -->
 ### Функции vs Свойства
 
@@ -1291,6 +1356,7 @@ returns the same result over invocations -->
 * не требует больших затрат на выполнение (или результат вычислений кэшируется при первом вызове)
 * возвращает одинаковый результат
 
+<a name="extension-functions"></a>
 <!-- ### Extension functions -->
 ### Функции-расширения
 
@@ -1303,6 +1369,7 @@ or top-level extension functions with private visibility. -->
 насколько это имеет смысл. При необходимости используйте функции локального расширения, функции расширения участника
 или функции расширения верхнего уровня с закрытой видимостью.
 
+<a name="infix-functions"></a>
 <!-- ### Infix functions -->
 ### Инфиксные функции
 
@@ -1314,6 +1381,7 @@ Bad example: `add`. -->
 <!-- Do not declare a method as `infix` if it mutates the receiver object. -->
 Не объявляйте метод как "инфиксный`, если он изменяет объект.
 
+<a name="factory-functions"></a>
 <!-- ### Factory functions -->
 ### Заводские функции
 
@@ -1340,6 +1408,7 @@ factory functions. -->
 и не могут быть сведены к одному конструктору со значениями аргументов по умолчанию,
 предпочтительнее заменить перегруженные конструкторы заводскими функциями.
 
+<a name="platform-types"></a>
 <!-- ### Platform types -->
 ### Типы платформ
 
@@ -1369,6 +1438,7 @@ fun main() {
 }
 ```
 
+<a name="scope-functions-apply-with-run-also-let"></a>
 <!-- ### Scope functions apply/with/run/also/let -->
 ### Функции области видимости apply/with/run/also/let
 
@@ -1377,6 +1447,7 @@ For the guidance on choosing the right scope function for your case, refer to [S
 Kotlin предоставляет набор функций для выполнения блока кода в контексте данного объекта: `let`, `run`, `with`, `apply` и `also`.
 Для получения рекомендаций по выбору правильной области видимости функции для вашего случая обратитесь к [Функции области видимости](scope-functions.html).
 
+<a name="coding-conventions-for-libraries"></a>
 <!-- ## Coding conventions for libraries -->
 ## Соглашения для библиотек
 

@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Диапазоны и прогрессии"
-url: https://kotlinlang.ru/docs/reference/ranges.html
+url: https://kotlinlang.ru/docs/ranges.html
 ---
 
 <a name="ranges-and-progressions"></a>

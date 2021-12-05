@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Сопрограммы"
-url: "https://kotlinlang.ru/docs/reference/coroutines.html"
+url: https://kotlinlang.ru/docs/coroutines.html
 ---
 
 # Сопрограммы

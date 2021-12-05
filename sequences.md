@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Последовательности (Sequences)"
-url: https://kotlinlang.ru/docs/reference/sequences.html
+url: https://kotlinlang.ru/docs/sequences.html
 ---
 
 <a name="sequences"></a>

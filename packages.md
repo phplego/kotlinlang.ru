@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Пакеты"
-url: https://kotlinlang.ru/docs/reference/packages.html
+url: https://kotlinlang.ru/docs/packages.html
 ---
 
 # Пакеты

@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Выбор одного элемента"
-url: https://kotlinlang.ru/docs/reference/collection-elements.html
+url: https://kotlinlang.ru/docs/collection-elements.html
 ---
 
 <!-- # Retrieve single elements -->

@@ -2,7 +2,7 @@
 type: doc
 layout: inner
 title: "Создание новой статьи"
-url: https://kotlinlang.ru/docs/reference/add-new-article.html
+url: https://kotlinlang.ru/docs/add-new-article.html
 ---
 
 ## Создание новой статьи

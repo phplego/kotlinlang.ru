@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Аннотации"
-url: https://kotlinlang.ru/docs/reference/annotations.html
+url: https://kotlinlang.ru/docs/annotations.html
 ---
 
 <!--# Annotations-->

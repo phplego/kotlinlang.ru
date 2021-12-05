@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Делегирование"
-url: https://kotlinlang.ru/docs/reference/delegation.html
+url: https://kotlinlang.ru/docs/delegation.html
 ---
 
 <!--# Delegation-->

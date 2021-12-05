@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Other
 title: "Документация Kotlin кода"
-url: "https://kotlinlang.ru/docs/reference/kotlin-doc.html"
+url: "https://kotlinlang.ru/docs/kotlin-doc.html"
 ---
 
 # Документация Kotlin кода

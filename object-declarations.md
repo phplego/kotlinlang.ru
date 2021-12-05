@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Объекты"
-url: https://kotlinlang.ru/docs/reference/object-declarations.html
+url: https://kotlinlang.ru/docs/object-declarations.html
 ---
 
 <!-- # Object Expressions and Declarations -->

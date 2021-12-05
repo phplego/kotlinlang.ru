@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Сортировка"
-url: https://kotlinlang.ru/docs/reference/collection-ordering.html
+url: https://kotlinlang.ru/docs/collection-ordering.html
 ---
 
 <!-- # Ordering -->

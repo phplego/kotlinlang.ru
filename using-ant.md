@@ -3,6 +3,7 @@ type: doc
 layout: reference
 title: "Использование Ant"
 description: В этом руководстве рассматриваются различные сценарии при использовании Ant для создания приложений, содержащих исходный код Kotlin
+url: https://kotlinlang.ru/docs/using-ant.html
 ---
 <!-- description: "This tutorial walks you through different scenarios when using Ant for building applications that contain Kotlin code" -->
 # Использование Ant

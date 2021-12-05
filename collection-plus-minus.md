@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Операторы plus и minus"
-url: https://kotlinlang.ru/docs/reference/collection-plus-minus.html
+url: https://kotlinlang.ru/docs/collection-plus-minus.html
 ---
 
 <!-- # Plus and minus operators -->

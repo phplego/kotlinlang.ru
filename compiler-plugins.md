@@ -2,6 +2,7 @@
 type: doc
 layout: reference
 title: "Плагины для компилятора"
+url: https://kotlinlang.ru/docs/compiler-plugins.html
 ---
 
 # Плагины для компилятора

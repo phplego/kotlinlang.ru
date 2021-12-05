@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Вложенные классы"
-url: https://kotlinlang.ru/docs/reference/nested-classes.html
+url: https://kotlinlang.ru/docs/nested-classes.html
 ---
 
 <!--Nested Classes-->

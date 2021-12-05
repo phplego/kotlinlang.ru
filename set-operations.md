@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Set: специфичные операции"
-url: https://kotlinlang.ru/docs/reference/set-operations.html
+url: https://kotlinlang.ru/docs/set-operations.html
 ---
 
 <!-- # Set-specific operations -->

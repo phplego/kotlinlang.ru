@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Фильтрация"
-url: https://kotlinlang.ru/docs/reference/collection-filtering.html
+url: https://kotlinlang.ru/docs/collection-filtering.html
 ---
 
 <a name="filtering-collections"></a>

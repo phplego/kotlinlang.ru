@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Выборка элементов"
-url: https://kotlinlang.ru/docs/reference/collection-parts.html
+url: https://kotlinlang.ru/docs/collection-parts.html
 ---
 
 <!-- # Retrieve collection parts -->

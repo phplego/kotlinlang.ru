@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Other"
 title: "Равенство"
-url: https://kotlinlang.ru/docs/reference/equality.html
+url: https://kotlinlang.ru/docs/equality.html
 ---
 
 <!--# Equality-->

@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Коллекции. Общий обзор"
-url: https://kotlinlang.ru/docs/reference/collections-overview.html
+url: https://kotlinlang.ru/docs/collections-overview.html
 ---
 
 <a name="collections-overview"></a>

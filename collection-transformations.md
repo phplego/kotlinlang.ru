@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Преобразование"
-url: https://kotlinlang.ru/docs/reference/collection-transformations.html
+url: https://kotlinlang.ru/docs/collection-transformations.html
 ---
 
 <a name="collection-transformation-operations"></a>

@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Ключевое слово this"
-url: https://kotlinlang.ru/docs/reference/this-expressions.html
+url: https://kotlinlang.ru/docs/this-expressions.html
 ---
 
 <!--# This Expression-->

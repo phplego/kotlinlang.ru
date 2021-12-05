@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Функции области видимости"
-url: https://kotlinlang.ru/docs/reference/scope-functions.html
+url: https://kotlinlang.ru/docs/scope-functions.html
 ---
 
 <a name="scope-functions"></a>

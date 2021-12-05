@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 title: "Использование kapt"
-url: "https://kotlinlang.ru/docs/reference/kapt.html"
+url: "https://kotlinlang.ru/docs/kapt.html"
 ---
 
 # Обработка аннотаций с Kotlin

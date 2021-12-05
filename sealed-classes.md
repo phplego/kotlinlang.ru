@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Classes and Objects"
 title: "Изолированные классы"
-url: https://kotlinlang.ru/docs/reference/sealed-classes.html
+url: https://kotlinlang.ru/docs/sealed-classes.html
 ---
 
 <!--# Sealed Classes-->

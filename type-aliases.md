@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Other"
 title: "Псевдонимы типов"
-url: https://kotlinlang.ru/docs/reference/type-aliases.html
+url: https://kotlinlang.ru/docs/type-aliases.html
 ---
 
 <!--## Type aliases-->

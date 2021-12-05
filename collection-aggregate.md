@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Объединение"
-url: https://kotlinlang.ru/docs/reference/collection-aggregate.html
+url: https://kotlinlang.ru/docs/collection-aggregate.html
 ---
 
 <!-- # Aggregate operations -->

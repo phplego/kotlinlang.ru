@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Операции записи"
-url: https://kotlinlang.ru/docs/reference/collection-write.html
+url: https://kotlinlang.ru/docs/collection-write.html
 ---
 
 <!-- # Collection write operations -->

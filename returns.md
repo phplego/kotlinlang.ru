@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Операторы перехода"
-url: https://kotlinlang.ru/docs/reference/returns.html
+url: https://kotlinlang.ru/docs/returns.html
 ---
 
 <!--# Returns and Jumps-->

@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Итераторы"
-url: https://kotlinlang.ru/docs/reference/iterators.html
+url: https://kotlinlang.ru/docs/iterators.html
 ---
 
 <a name="iterators"></a>

@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Типобезопасные строители"
+url: https://kotlinlang.ru/docs/type-safe-builders.html
 ---
 
 <!--# Type-Safe Builders-->

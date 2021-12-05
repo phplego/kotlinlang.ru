@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Управляющие инструкции"
-url: https://kotlinlang.ru/docs/reference/control-flow.html
+url: https://kotlinlang.ru/docs/control-flow.html
 ---
 
 # Управляющие инструкции

@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: FAQ
 title: ЧаВо
+url: https://kotlinlang.ru/docs/faq.html
 ---
 
 # Частые вопросы

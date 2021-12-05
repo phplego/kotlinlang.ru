@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Создание коллекций"
-url: https://kotlinlang.ru/docs/reference/constructing-collections.html
+url: https://kotlinlang.ru/docs/constructing-collections.html
 ---
 
 <a name="constructing-collections"></a>

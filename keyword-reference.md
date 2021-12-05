@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Tools"
 title: "Ключевые слова и операторы"
+url: https://kotlinlang.ru/docs/keyword-reference.html
 ---
 
 # Ключевые слова и операторы

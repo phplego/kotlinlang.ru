@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Группировка"
-url: https://kotlinlang.ru/docs/reference/collection-grouping.html
+url: https://kotlinlang.ru/docs/collection-grouping.html
 ---
 
 <!-- # Grouping -->

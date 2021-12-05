@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: FAQ
 title: "Сравнение с Java"
-url: "https://kotlinlang.ru/docs/reference/comparison-to-java.html"
+url: https://kotlinlang.ru/docs/comparison-to-java.html
 ---
 
 <!--# Comparison to Java Programming Language-->

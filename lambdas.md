@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 title: "Лямбды"
-url: https://kotlinlang.ru/docs/reference/lambdas.html
+url: https://kotlinlang.ru/docs/lambdas.html
 ---
 
 <!-- # Higher-Order Functions and Lambdas -->

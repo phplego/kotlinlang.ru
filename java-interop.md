@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Java Interop"
 title: "Вызов Java из Kotlin"
+url: https://kotlinlang.ru/docs/java-interop.html
 ---
 
 # Вызов кода Java из Kotlin

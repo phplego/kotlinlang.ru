@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Свойства и поля"
-url: https://kotlinlang.ru/docs/reference/properties.html
+url: https://kotlinlang.ru/docs/properties.html
 ---
 
 <!--# Properties and Fields-->

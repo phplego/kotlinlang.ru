@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Syntax"
 title: "Основы сопрограмм"
-url: "https://kotlinlang.ru/docs/reference/coroutines-basics.html"
+url: https://kotlinlang.ru/docs/coroutines-basics.html
 ---
 
 <!-- # Coroutine Basics -->

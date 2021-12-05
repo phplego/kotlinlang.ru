@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Basics"
 title: "Основной синтаксис"
-url: https://kotlinlang.ru/docs/reference/basic-syntax.html
+url: https://kotlinlang.ru/docs/basic-syntax.html
 ---
       
 <!-- При переводе статьи оригинальная версия была от 13 September 2021 -->

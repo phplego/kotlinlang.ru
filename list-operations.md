@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "List: специфичные операции"
-url: https://kotlinlang.ru/docs/reference/list-operations.html
+url: https://kotlinlang.ru/docs/list-operations.html
 ---
 
 <!-- # List-specific operations -->

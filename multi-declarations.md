@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Other"
 title: "Мульти-декларации"
-url: https://kotlinlang.ru/docs/reference/multi-declarations.html
+url: https://kotlinlang.ru/docs/multi-declarations.html
 ---
 
 <!--# Destructuring Declarations-->

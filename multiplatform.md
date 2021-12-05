@@ -3,6 +3,7 @@ type: doc
 layout: reference
 category: "Other"
 title: "Мультиплатформенные проекты"
+url: https://kotlinlang.ru/docs/multiplatform.html
 ---
 
 # Мультиплатформенные проекты

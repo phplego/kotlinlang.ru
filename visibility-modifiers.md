@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "Classes and Objects"
 title: "Модификаторы доступа"
-url: https://kotlinlang.ru/docs/reference/visibility-modifiers.html
+url: https://kotlinlang.ru/docs/visibility-modifiers.html
 ---
 
 <!--# Visibility Modifiers-->

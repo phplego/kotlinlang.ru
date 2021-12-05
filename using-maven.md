@@ -3,6 +3,7 @@ type: doc
 layout: reference
 title: "Использование Maven"
 description: "В этом руководстве рассказывается о различных сценариях при использовании Maven для создания приложений, содержащих код Kotlin"
+url: https://kotlinlang.ru/docs/using-maven.html
 ---
 
 # Использование Maven

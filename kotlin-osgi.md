@@ -2,6 +2,7 @@
 type: doc
 layout: reference
 title: "Kotlin и OSGi"
+url: https://kotlinlang.ru/docs/kotlin-osgi.html
 ---
 
 # Kotlin и OSGi

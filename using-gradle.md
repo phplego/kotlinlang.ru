@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: "tools"
 title: "Использование Gradle"
-url: https://kotlinlang.ru/docs/reference/using-gradle.html
+url: https://kotlinlang.ru/docs/using-gradle.html
 ---
 
 

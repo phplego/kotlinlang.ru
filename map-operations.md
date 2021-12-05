@@ -3,7 +3,7 @@ type: doc
 layout: reference
 category: Collections
 title: "Map: специфичные операции"
-url: https://kotlinlang.ru/docs/reference/map-operations.html
+url: https://kotlinlang.ru/docs/map-operations.html
 ---
 
 <!-- # Map-specific operations -->

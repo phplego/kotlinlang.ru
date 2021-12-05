@@ -3,7 +3,7 @@ type: doc
 layout: inner
 title: "Обсуждение терминов и выражений для перевода"
 menuLabel: "Обсуждение терминов"
-url: http://kotlinlang.ru/docs/reference/mistranslations.html
+url: http://kotlinlang.ru/docs/MISTRANSLATIONS.html
 ---
 
 ## Обсуждение терминов и выражений для перевода

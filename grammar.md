@@ -3,6 +3,7 @@ type: doc
 layout: reference
 title: "Грамматика"
 url: https://kotlinlang.ru/docs/grammar.html
+source: https://kotlinlang.org/docs/reference/grammar.html
 ---
 
 

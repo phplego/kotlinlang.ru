@@ -82,7 +82,7 @@ but `noinline` ones can be manipulated in any way we like: stored in fields, pas
 <!--Note that if an inline function has no inlinable function parameters and no
 [reified type parameters](#reified-type-parameters), the compiler will issue a warning, since inlining such functions is
  very unlikely to be beneficial (you can suppress the warning if you are sure the inlining is needed).-->
-Заметьте, что если inline-функция не имеет ни inline параметров, ни [параметров вещественного типа](#параметры-вещественного-типа), компилятор выдаст предупреждение, так как встраивание такой функции вряд ли принесёт пользу (вы можете скрыть предупреждение, если уверены, что встраивание необходимо).
+Заметьте, что если inline-функция не имеет ни inline параметров, ни [параметров вещественного типа](#reified-type-parameters), компилятор выдаст предупреждение, так как встраивание такой функции вряд ли принесёт пользу (вы можете скрыть предупреждение, если уверены, что встраивание необходимо).
 
 <a name="non-local-returns"></a>
 
@@ -145,7 +145,7 @@ inline fun f(crossinline body: () -> Unit) {
 <!-- `break` and `continue` are not yet available in inlined lambdas, but we are planning to support them too-->
 > `break` и `continue` пока что недоступны во встроенных лямбдах, но мы планируем добавить их поддержку
 
-<a name="параметры-вещественного-типа"></a>
+<a name="reified-type-parameters"></a>
 
 <!--## Reified type parameters-->
 ## Параметры вещественного типа

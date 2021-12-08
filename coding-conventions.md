@@ -1203,7 +1203,7 @@ drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
 ### Условные операторы
 
 <!-- Prefer using the expression form of `try`, `if`, and `when`. -->
-Предпочтительно использовать эту форму выражения `try`, if` и `when`.
+Предпочтительно использовать эту форму выражения `try`, `if` и `when`.
 
 ```kotlin
 return if (x) foo() else bar()
@@ -1379,7 +1379,7 @@ Bad example: `add`. -->
 Хорошие примеры: `and`, `to`, `zip`. Плохой пример: `add`.
 
 <!-- Do not declare a method as `infix` if it mutates the receiver object. -->
-Не объявляйте метод как "инфиксный`, если он изменяет объект.
+Не объявляйте метод как `infix`, если он изменяет объект.
 
 <a name="factory-functions"></a>
 <!-- ### Factory functions -->

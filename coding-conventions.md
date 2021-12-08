@@ -932,7 +932,7 @@ fun main() {
 
 <a name="when-entry"></a>
 <!-- #### `when` entry -->
-#### `when`
+#### when
 
 ```kotlin
 fun isReferenceApplicable(myReference: KClass<*>) = when (myReference) {

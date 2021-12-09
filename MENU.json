@@ -79,7 +79,7 @@
   "Инструменты": [
     "kotlin-doc",
     "kapt",
-    "using-maven",
+    "maven",
     "ant",
     "kotlin-osgi",
     "all-open-plugin",

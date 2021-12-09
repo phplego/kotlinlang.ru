@@ -80,7 +80,7 @@
     "kotlin-doc",
     "kapt",
     "using-maven",
-    "using-ant",
+    "ant",
     "kotlin-osgi",
     "all-open-plugin",
     "gradle"

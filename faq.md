@@ -99,8 +99,8 @@ Kotlin поддерживается всеми крупными IDE для Java,
 
 ### Какие инструменты для сборки поддерживают Kotlin?
 
-На стороне JVM - [Gradle](https://kotlinlang.org/docs/gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html),
-[Ant](https://kotlinlang.org/docs/reference/using-ant.html) и [Kobalt](http://beust.com/kobalt/home/index.html). Также есть множество инструментов
+На стороне JVM - [Gradle](https://kotlinlang.ru/docs/gradle.html), [Maven](https://kotlinlang.org/docs/reference/using-maven.html),
+[Ant](https://kotlinlang.ru/docs/ant.html) и [Kobalt](http://beust.com/kobalt/home/index.html). Также есть множество инструментов
 со стороны JavaScript.
 
 ### Во что может компилироваться и транслироваться Kotlin?

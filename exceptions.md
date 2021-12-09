@@ -11,6 +11,7 @@ url: https://kotlinlang.ru/docs/exceptions.html
 <!-- # Exceptions -->
 # Исключения
 
+<a name="exception-classes"></a>
 <!-- ## Exception classes -->
 ## Классы исключений
 
@@ -45,6 +46,7 @@ However, at least one `catch` or `finally` block is required. -->
 В коде может быть любое количество блоков `catch` (такие блоки могут и вовсе отсутствовать). Блоки `finally`
 могут быть опущены. Однако, должен быть использован как минимум один блок `catch` или `finally`.
 
+<a name="try-is-an-expression"></a>
 <!-- ### Try is an expression -->
 ### Try - это выражение
 
@@ -62,6 +64,7 @@ The contents of the `finally` block don't affect the result of the expression. -
 Возвращаемым значением будет либо последнее выражение в блоке `try`, либо последнее выражение
 в блоке `catch` (или блоках). Содержимое `finally` блока никак не повлияет на результат `try`-выражения.
 
+<a name="checked-exceptions"></a>
 <!-- ## Checked exceptions -->
 ## Проверяемые исключения
 
@@ -120,6 +123,7 @@ and [for Swift and Objective-C](native-objc-interop.md#errors-and-exceptions). -
 вы можете использовать аннотацию `@Throws`. Узнайте больше об использовании этой аннотации [для Java](java-to-kotlin-interop.md#checked-exceptions),
 а также [для Swift и Objective-C](native-objc-interop.md#errors-and-exceptions).
 
+<a name="the-nothing-type"></a>
 <!-- ## The Nothing type -->
 ## Тип Nothing
 
@@ -165,6 +169,7 @@ val x = null           // у 'x' тип `Nothing?`
 val l = listOf(null)   // у 'l' тип `List<Nothing?>
 ```
 
+<a name="java-interoperability"></a>
 <!-- ## Java interoperability -->
 ## Совместимость с Java
 

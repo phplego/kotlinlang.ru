@@ -28,6 +28,7 @@ interface MyInterface {
 }
 ```
 
+<a name="implementing-interfaces"></a>
 <!-- ## Implementing interfaces -->
 ## Реализация интерфейсов
 
@@ -42,6 +43,7 @@ class Child : MyInterface {
 }
 ```
 
+<a name="properties-in-interfaces"></a>
 <!-- ## Properties in interfaces -->
 ## Свойства в интерфейсах
 
@@ -69,6 +71,7 @@ class Child : MyInterface {
 }
 ```
 
+<a name="interfaces-inheritance"></a>
 <!-- ## Interfaces Inheritance -->
 ## Наследование интерфейсов
 
@@ -99,6 +102,7 @@ data class Employee(
 ) : Person
 ```
 
+<a name="resolving-overriding-conflicts"></a>
 <!-- ## Resolving overriding conflicts -->
 ## Устранение противоречий при переопределении
 

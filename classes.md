@@ -125,6 +125,7 @@ class Customer public @Inject constructor(name: String) { /*...*/ }
 <!-- Learn more about [visibility modifiers](visibility-modifiers.md#constructors). -->
 Для более подробной информации см. "[Модификаторы доступа](visibility-modifiers.html#constructors)".
 
+<a name="secondary-constructors"></a>
 <!-- ### Secondary constructors -->
 ### Дополнительные конструкторы 
 
@@ -200,7 +201,7 @@ class DontCreateMe private constructor () { /*...*/ }
 > class Customer(val customerName: String = "")
 > ```
 
-
+<a name="creating-instances-of-classes"></a>
 <!-- ## Creating instances of classes -->
 ## Создание экземпляров классов
 
@@ -219,6 +220,7 @@ val customer = Customer("Joe Smith")
 <!-- The process of creating instances of nested, inner, and anonymous inner classes is described in [Nested classes](nested-classes.md). -->
 Создание экземпляров вложенных, внутренних и анонимных внутренних классов описано в разделе [Вложенные классы](nested-classes.html).
 
+<a name="class-members"></a>
 <!-- ## Class members -->
 ## Члены класса
 
@@ -245,6 +247,7 @@ val customer = Customer("Joe Smith")
 Классы могут быть производными друг от друга и формировать иерархии наследования.
 [Узнайте больше о наследовании в Котлине](inheritance.md).
 
+<a name="abstract-classes"></a>
 <!-- ## Abstract classes -->
 ## Абстрактные классы
 
@@ -281,6 +284,7 @@ abstract class WildShape : Polygon() {
 }
 ```
 
+<a name="companion-objects"></a>
 <!-- ## Companion objects -->
 ## Объекты-помощники
 

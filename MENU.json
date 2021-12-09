@@ -82,7 +82,7 @@
     "using-maven",
     "using-ant",
     "kotlin-osgi",
-    "compiler-plugins",
+    "all-open-plugin",
     "gradle"
   ],
   "Совместимость с Java": [

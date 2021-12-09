@@ -2,64 +2,101 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Пакеты"
+title: "Пакеты и импорты"
 url: https://kotlinlang.ru/docs/packages.html
 ---
 
-# Пакеты
+<!-- Packages and imports -->
+# Пакеты и импорты
 
-Файл с исходным кодом может начинаться с объявления пакета:
+<!-- A source file may start with a package declaration: -->
+Файл с исходным кодом может начинаться с объявления пакета.
 
 ```kotlin
-package foo.bar
+package org.example
 
-fun baz() {}
-
-class Goo {}
+fun printMessage() { /*...*/ }
+class Message { /*...*/ }
 
 // ...
 ```
 
+<!-- All the contents, such as classes and functions, of the source file are included in this package.
+So, in the example above, the full name of `printMessage()` is `org.example.printMessage`,
+and the full name of `Message` is `org.example.Message`. -->
 Всё содержимое файла с исходниками (например, классы и функции) располагается в объявленном пакете.
-Таким образом, в приведённом выше примере полное имя функции `baz()` будет `foo.bar.baz`, а полное имя класса `Goo` - `foo.bar.Goo`. 
- 
-Если файл не содержит явного объявления пакета, то его содержимое находится в безымянном "пакете по умолчанию".
+Таким образом, в приведённом выше примере полное имя функции `printMessage()` будет `org.example.printMessage`,
+а полное имя класса `Message` - `org.example.Message`.
+
+<!-- If the package is not specified, the contents of such a file belong to the _default_ package with no name. -->
+Если файл не содержит явного объявления пакета, то его содержимое находится в безымянном пакете *по умолчанию*.
+
+<!-- ## Default imports -->
+## Импорт по умолчанию
+
+<!-- A number of packages are imported into every Kotlin file by default: -->
+По умолчанию в каждый файл Kotlin импортируется несколько пакетов:
+
+- [kotlin.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/index.html)
+- [kotlin.annotation.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/index.html)
+- [kotlin.collections.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html)
+- [kotlin.comparisons.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.comparisons/index.html)
+- [kotlin.io.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/index.html)
+- [kotlin.ranges.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/index.html)
+- [kotlin.sequences.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html)
+- [kotlin.text.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/index.html)
+
+<!-- Additional packages are imported depending on the target platform: -->
+Дополнительные пакеты импортируются в зависимости от платформы:
+
+- JVM:
+  - java.lang.\*
+  - [kotlin.jvm.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/index.html)
+
+- JS:    
+  - [kotlin.js.\*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/index.html)
 
 <a name="imports"></a>
-
-<!--## Imports-->
+<!-- ## Imports -->
 ## Импорт
 
+<!-- Apart from the default imports, each file may contain its own `import` directives. -->
 Помимо импорта по умолчанию каждый файл может содержать свои собственные объявления импорта.
-Синтаксис импорта описан а разделе [Грамматика](https://kotlinlang.org/docs/reference/grammar.html#imports).
 
-Мы можем импортировать одно имя, например
-
-```kotlin
-import foo.Bar // теперь Bar можно использовать без указания пакета
-```
-
-или доступное содержимое пространства имён (пакет, класс, объект и т.д.):
+<!-- You can import either a single name: -->
+Вы можете импортировать одно имя:
 
 ```kotlin
-import foo.* // всё в 'foo' становится доступно без указания пакета
+import org.example.Message // теперь Message можно использовать без указания пакета
 ```
 
-При совпадении имён мы можем разрешить коллизию используя ключевое слово <b class="keyword">as</b><!--keyword--> для локального переименования совпадающей сущности:
+Можете импортировать всё доступное содержимое пространства имён (пакет, класс, объект и т.д.):
 
 ```kotlin
-import foo.Bar // Bar доступен
-import bar.Bar as bBar // bBar заменяет имя 'bar.Bar'
+import org.example.* // всё в 'org.example' становится доступно без указания пакета
 ```
 
+<!-- If there is a name clash, you can disambiguate by using `as` keyword to locally rename the clashing entity: -->
+При совпадении имён мы можем разрешить коллизию используя ключевое слово `as` для локального переименования совпадающей сущности.
+
+```kotlin
+import org.example.Message // Message доступен
+import org.test.Message as testMessage // testMessage заменяет имя 'org.test.Message'
+```
+
+<!-- The `import` keyword is not restricted to importing classes; you can also use it to import other declarations: -->
 Ключевое слово `import` можно использовать не только с классами, но и с другими объявлениями:
 
-  * функции и свойства верхнего уровня;
-  * функции и свойства, объявленные в [объявлениях объектов](object-declarations.html#object-declarations);
-  * [перечислениях](enum-classes.html)
+<!-- * top-level functions and properties
+  * functions and properties declared in [object declarations](object-declarations.md#object-declarations-overview)
+  * [enum constants](enum-classes.md) -->
+* функции и свойства верхнего уровня;
+* функции и свойства, объявленные в [объявлениях объектов](object-declarations.html#object-declarations-overview);
+* [перечислениях](enum-classes.html).
 
-В отличие от  Java, Kotlin не предоставляет отдельного объявления статического импорта "import static"; все подобные объявления импортируются ключевым словом `import`.
-
+<!-- ## Visibility of top-level declarations -->
 ## Область видимости объявлений верхнего уровня
 
-Если объявление верхнего уровня отмечено как <b class="keyword">private</b><!--keyword-->, то оно является private в файле, в котором оно объявлено (см. [Модификаторы области видимости](visibility-modifiers.html)).
+<!-- If a top-level declaration is marked `private`, it is private to the file it's declared in (see [Visibility modifiers](visibility-modifiers.md)). -->
+Если объявление верхнего уровня отмечено как `private`, то оно является private в файле, в котором оно объявлено
+(см. [Модификаторы области видимости](visibility-modifiers.html)).

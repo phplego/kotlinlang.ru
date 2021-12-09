@@ -21,6 +21,7 @@
   ],
   "Классы и объекты": [
     "classes",
+    "inheritance",
     "properties",
     "interfaces",
     "visibility-modifiers",

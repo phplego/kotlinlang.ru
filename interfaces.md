@@ -6,6 +6,8 @@ title: "Интерфейсы"
 url: https://kotlinlang.ru/docs/interfaces.html
 ---
 
+<!-- При переводе статьи оригинальная версия была от 02 September 2021 -->
+
 <!-- # Interfaces -->
 # Интерфейсы
 

@@ -31,6 +31,7 @@ and the full name of `Message` is `org.example.Message`. -->
 <!-- If the package is not specified, the contents of such a file belong to the _default_ package with no name. -->
 Если файл не содержит явного объявления пакета, то его содержимое находится в безымянном пакете *по умолчанию*.
 
+<a name="default-imports"></a>
 <!-- ## Default imports -->
 ## Импорт по умолчанию
 
@@ -94,6 +95,7 @@ import org.test.Message as testMessage // testMessage заменяет имя 'o
 * функции и свойства, объявленные в [объявлениях объектов](object-declarations.html#object-declarations-overview);
 * [перечислениях](enum-classes.html).
 
+<a name="visibility-of-top-level-declarations"></a>
 <!-- ## Visibility of top-level declarations -->
 ## Область видимости объявлений верхнего уровня
 

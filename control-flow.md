@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Управляющие инструкции"
+title: "Условия и циклы"
 url: https://kotlinlang.ru/docs/control-flow.html
 ---
 

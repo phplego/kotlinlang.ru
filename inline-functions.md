@@ -90,9 +90,9 @@ but `noinline` ones can be manipulated in any way we like: stored in fields, pas
 ## Нелокальные return
 
 <!--In Kotlin, we can only use a normal, unqualified `return` to exit a named function or an anonymous function.
-This means that to exit a lambda, we have to use a [label](returns.html#return-at-labels), and a bare `return` is forbidden
+This means that to exit a lambda, we have to use a [label](returns.html#return-to-labels), and a bare `return` is forbidden
 inside a lambda, because a lambda can not make the enclosing function return:-->
-В Kotlin мы можем использовать обыкновенный, безусловный `return` только для выхода из именованной функции или анонимной функции. Это значит, что для выхода из лямбды нам нужно использовать [label](returns.html#return-at-labels). Обычный `return` запрещён внутри лямбды, потому что она не может заставить внешнюю функцию завершиться.
+В Kotlin мы можем использовать обыкновенный, безусловный `return` только для выхода из именованной функции или анонимной функции. Это значит, что для выхода из лямбды нам нужно использовать [label](returns.html#return-to-labels). Обычный `return` запрещён внутри лямбды, потому что она не может заставить внешнюю функцию завершиться.
 
 ```kotlin
 fun foo() {

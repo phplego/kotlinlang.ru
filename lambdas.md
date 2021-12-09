@@ -338,9 +338,9 @@ ints.filter { it > 0 } // этот литерал имеет тип '(it: Int) -
 <!-- ### Returning a value from a lambda expression -->
 ### Возврат значения из лямбда-выражения
 
-<!-- We can explicitly return a value from the lambda using the [qualified return](returns.html#return-at-labels) syntax.
+<!-- We can explicitly return a value from the lambda using the [qualified return](returns.html#return-to-labels) syntax.
 Otherwise, the value of the last expression is implicitly returned. -->
-Мы можем вернуть значение из лямбды явно, используя оператор [return](returns.html#return-at-labels).
+Мы можем вернуть значение из лямбды явно, используя оператор [return](returns.html#return-to-labels).
 Либо неявно будет возвращено значение последнего выражения.
 
 <!-- Therefore, the two following snippets are equivalent: -->

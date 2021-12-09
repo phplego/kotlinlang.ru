@@ -291,7 +291,7 @@ identifiers in other contexts:
  * `@`
     - вводит [аннотацию](/docs/reference/annotations.html#usage)
     - вводит или ссылается на [метку цикла](/docs/reference/returns.html#break-and-continue-labels) 
-    - вводит или ссылается на [лямбда-метку](/docs/reference/returns.html#return-at-labels)
+    - вводит или ссылается на [лямбда-метку](/docs/reference/returns.html#return-to-labels)
     - ссылается на [выражение 'this' из внешней области](/docs/reference/this-expressions.html#qualified)
     - ссылается на [внешний суперкласс](/docs/reference/classes.html#calling-the-superclass-implementation)
  * `;` разделяет несколько операторов на одной строке 

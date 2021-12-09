@@ -31,6 +31,7 @@ val s = person.name ?: return
 <!-- The type of these expressions is the [Nothing type](exceptions.md#the-nothing-type). -->
 Эти выражения имеют тип [Nothing](exceptions.md#the-nothing-type).
 
+<a name="break-and-continue-labels"></a>
 <!-- ## Break and continue labels -->
 ## Метки операторов break и continue
 
@@ -63,7 +64,7 @@ A `continue` proceeds to the next iteration of that loop. -->
 Оператор `break`, отмеченный `@loop`, переводит выполнение кода в точку сразу после цикла, отмеченного этой меткой.
 Оператор `continue` продолжает цикл со следующей его итерации.
 
-<a name="return-at-labels"></a>
+<a name="return-to-labels"></a>
 <!-- ## Return to labels -->
 ## Возврат к меткам
 

@@ -34,7 +34,8 @@
     "enum-classes",
     "object-declarations",
     "delegation",
-    "delegated-properties"
+    "delegated-properties",
+    "type-aliases"
   ],
   "Функции и лямбды": [
     "functions",
@@ -72,8 +73,7 @@
     "destructuring-declarations",
     "operator-overloading",
     "scope-functions",
-    "type-safe-builders",
-    "type-aliases"
+    "type-safe-builders"
   ],
   "Справочник": [
     "keyword-reference"

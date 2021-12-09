@@ -6,7 +6,13 @@
   ],
   "Основы": [
     "basic-types",
-    "packages"
+    "typecasts",
+    "packages",
+    "null-safety",
+    "equality",
+    "this-expressions",
+    "annotations",
+    "reflection"
   ],
   "Управление потоком": [
     "control-flow",
@@ -62,13 +68,7 @@
     ],
   "Прочее": [
     "multi-declarations",
-    "typecasts",
-    "this-expressions",
-    "equality",
     "operator-overloading",
-    "null-safety",
-    "annotations",
-    "reflection",
     "scope-functions",
     "type-safe-builders",
     "type-aliases"

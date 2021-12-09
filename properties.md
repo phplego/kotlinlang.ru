@@ -9,6 +9,7 @@ url: https://kotlinlang.ru/docs/properties.html
 <!-- # Properties -->
 # Свойства
 
+<a name="declaring-properties"></a>
 <!-- ## Declaring properties -->
 ## Объявление свойств
 
@@ -38,6 +39,7 @@ fun copyAddress(address: Address): Address {
 }
 ```
 
+<a name="getters-and-setters"></a>
 <!-- ## Getters and setters -->
 ## Геттеры и сеттеры
 
@@ -160,6 +162,7 @@ val isEmpty: Boolean
     get() = this.size == 0
 ```
 
+<a name="backing-properties"></a>
 <!-- ### Backing properties -->
 ### Теневые свойства
 
@@ -184,6 +187,7 @@ public val table: Map<String, Int>
 > В JVM: доступ к приватным свойствам со стандартными геттерами и сеттерами оптимизируется таким образом,
 > что вызов функции не происходит.
 
+<a name="compile-time-constants"></a>
 <!-- ## Compile-time constants -->
 ## Константы времени компиляции
 
@@ -209,6 +213,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 @Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { ... }
 ```
 
+<a name="late-initialized-properties-and-variables"></a>
 <!-- ## Late-initialized properties and variables -->
 ## Свойства и переменные с поздней инициализацией
 
@@ -249,6 +254,7 @@ being accessed and the fact that it hasn't been initialized. -->
 Доступ к `lateinit` свойству до того, как оно проинициализировано, выбрасывает специальное исключение, которое чётко обозначает,
 свойство, к которому осуществляется доступ, и тот факт, что оно не было инициализировано.
 
+<a name="checking-whether-a-lateinit-var-is-initialized"></a>
 <!-- ### Checking whether a `lateinit var` is initialized  -->
 ### Проверка инициализации lateinit var
 
@@ -266,12 +272,14 @@ outer types, or at top level in the same file. -->
 Эта проверка возможна только для лексически доступных свойств, то есть объявленных в том же типе, или в одном из внешних типов,
 или глобальных свойств, объявленных в том же файле.
 
+<a name="overriding-properties"></a>
 <!-- ## Overriding properties -->
 ## Переопределение свойств
 
 <!-- See [Overriding properties](inheritance.md#overriding-properties). -->
 См. [Переопределение свойств класса](inheritance.html#overriding-properties).
 
+<a name="delegated-properties"></a>
 <!-- ## Delegated properties -->
 ## Делегированные свойства
 

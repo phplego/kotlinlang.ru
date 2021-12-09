@@ -2,8 +2,10 @@
 type: doc
 layout: reference
 title: "Создание мультиплатформенных проектов с помощью Gradle"
-url: https://kotlinlang.ru/docs/building-mpp-with-gradle.html
+url: https://kotlinlang.ru/docs/mpp-intro.html
 ---
+
+<!-- Статья устарела. В оригинале либо отсутствует, либо разделена на более мелкие статьи и обновлена. -->
 
 <!-- # Building Multiplatform Projects with Gradle -->
 

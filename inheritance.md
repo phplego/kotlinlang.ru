@@ -94,6 +94,7 @@ open class Rectangle() : Shape() {
 }
 ```
 
+<a name="overriding-properties"></a>
 <!-- ## Overriding properties -->
 ## Переопределение свойств класса
 
@@ -134,6 +135,7 @@ class Polygon : Shape {
 }
 ```
 
+<a name="derived-class-initialization-order"></a>
 <!--## Derived class initialization order-->
 ## Порядок инициализации производного класса
 
@@ -179,6 +181,7 @@ or `init` blocks. -->
 это может привести к некорректному поведению или сбою во время выполнения. Поэтому при разработке базового класса следует избегать использования членов
 с ключевым словом `open` в конструкторах, инициализации свойств и блоков инициализации (`init`).
 
+<a name="calling-the-superclass-implementation"></a>
 <!-- ## Calling the superclass implementation -->
 ### Вызов функций и свойств суперкласса
 
@@ -223,6 +226,7 @@ class FilledRectangle: Rectangle() {
 }
 ```
 
+<a name="overriding-rules"></a>
 <!-- ## Overriding rules -->
 ## Правила переопределения
 

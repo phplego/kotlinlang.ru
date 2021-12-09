@@ -83,7 +83,7 @@
     "using-ant",
     "kotlin-osgi",
     "compiler-plugins",
-    "using-gradle"
+    "gradle"
   ],
   "Совместимость с Java": [
     "java-interop",

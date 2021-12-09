@@ -6,6 +6,8 @@ title: "Свойства"
 url: https://kotlinlang.ru/docs/properties.html
 ---
 
+<!-- При переводе статьи оригинальная версия была от 08 December 2021 -->
+
 <!-- # Properties -->
 # Свойства
 

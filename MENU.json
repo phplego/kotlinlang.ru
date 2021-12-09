@@ -6,9 +6,12 @@
   ],
   "Основы": [
     "basic-types",
-    "packages",
+    "packages"
+  ],
+  "Управление потоком": [
     "control-flow",
-    "returns"
+    "returns",
+    "exceptions"
   ],
   "Классы и объекты": [
     "classes",
@@ -64,7 +67,6 @@
     "equality",
     "operator-overloading",
     "null-safety",
-    "exceptions",
     "annotations",
     "reflection",
     "scope-functions",

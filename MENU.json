@@ -24,6 +24,7 @@
     "inheritance",
     "properties",
     "interfaces",
+    "fun-interfaces",
     "visibility-modifiers",
     "extensions",
     "data-classes",

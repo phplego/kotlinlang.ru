@@ -67,7 +67,7 @@
     "mpp-intro"
     ],
   "Прочее": [
-    "multi-declarations",
+    "destructuring-declarations",
     "operator-overloading",
     "scope-functions",
     "type-safe-builders",

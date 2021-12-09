@@ -298,7 +298,7 @@ identifiers in other contexts:
  * `$` ссылается на переменную или выражение в [строковом шаблоне](/docs/reference/basic-types.html#string-templates)    
  * `_`
      - заменяет неиспользуемый параметр в [лямбда выражении](/docs/reference/lambdas.html#underscore-for-unused-variables-since-11)
-     - заменяет неиспользуемый параметр в [деструктуризирующем присваивании](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)
+     - заменяет неиспользуемый параметр в [деструктуризирующем присваивании](http://kotlinlang.org/docs/reference/destructuring-declarations.html#underscore-for-unused-variables-since-11)
      
 
 <!--

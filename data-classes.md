@@ -28,7 +28,7 @@ the primary constructor:
 
   * пару функций `equals()`/`hashCode()`,
   * функцию `toString()` в форме `"User(name=John, age=42)"`,
-  * компонентные функции [componentN()](multi-declarations.html), которые соответствуют свойствам, в соответствии с порядком их объявления,
+  * компонентные функции [componentN()](destructuring-declarations.html), которые соответствуют свойствам, в соответствии с порядком их объявления,
   * функцию `copy()` (см. ниже)
 
 <!--If any of these functions is explicitly defined in the class body or inherited from the base types, it will not be generated.-->
@@ -111,8 +111,8 @@ val olderJack = jack.copy(age = 2)
 <!--## Data Classes and Destructuring Declarations-->
 ## Классы данных и мульти-декларации
 
-<!--_Component functions_ generated for data classes enable their use in [destructuring declarations](multi-declarations.html):-->
-Сгенерированные для классов данных _компонентные функции_ позволяют использовать их в [мульти-декларациях](multi-declarations.html):
+<!--_Component functions_ generated for data classes enable their use in [destructuring declarations](destructuring-declarations.html):-->
+Сгенерированные для классов данных _компонентные функции_ позволяют использовать их в [мульти-декларациях](destructuring-declarations.html):
 
 ```kotlin
 val jane = User("Jane", 35)

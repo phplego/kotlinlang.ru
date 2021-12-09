@@ -381,7 +381,7 @@ map.forEach { _, value -> println("$value!") }
 ### Деструктуризация в лямбдах (since 1.1)
 
 <!-- Destructuring in lambdas is described as a part of [destructuring declarations](multi-declarations.html#destructuring-in-lambdas-since-11). -->
-Деструктуризация в лямбдах описана в [деструктурирующие объявления](multi-declarations.html#destructuring-in-lambdas-since-11).
+Деструктуризация в лямбдах описана в [деструктурирующие объявления](destructuring-declarations.html#destructuring-in-lambdas-since-11).
 
 
 <a name="anonymous-functions"></a>

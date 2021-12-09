@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: reference
-title: "Основные типы"
+title: "Функциональные (SAM) интерфейсы"
 url: https://kotlinlang.ru/docs/basic-types.html
 ---
 

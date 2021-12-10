@@ -107,7 +107,7 @@ person2.age = 20
 ## Копирование
 
 <!-- Use the `copy()` function to copy an object, allowing you to alter _some_ of its properties while keeping the rest unchanged. The implementation of this function for the `User` class above would be as follows: -->
-Используйте функцию `copy()`, что позволит изменить только *некоторые* его свойств, оставив остальные неизменными.
+Используйте функцию `copy()` для копирования объекта, что позволит изменить только *некоторые* его свойств, оставив остальные неизменными.
 Для написанного выше класса `User` такая реализация будет выглядеть следующим образом:
 
 ```kotlin

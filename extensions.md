@@ -6,20 +6,34 @@ title: "Расширения"
 url: https://kotlinlang.ru/docs/extensions.html
 ---
 
-<!--# Extensions-->
+<!-- При переводе статьи оригинальная версия была от 19 July 2021 -->
+
+<!-- # Extensions -->
 # Расширения (extensions)
 
-<!--Kotlin, similar to C# and Gosu, provides the ability to extend a class with new functionality without having to inherit from the class or use any type of design pattern such as Decorator.
-This is done via special declarations called _extensions_. Kotlin supports _extension functions_ and _extension properties_.-->
-Аналогично таким языкам программирования, как <b>C#</b> и <b>Gosu</b>, <b>Kotlin</b> позволяет расширять класс путём добавления нового функционала. Не наследуясь от такого класса и не используя паттерн "Декоратор".
-Это реализовано с помощью специальных выражений, называемых _расширения_. <b>Kotlin</b> поддерживает _функции-расширения_ и _свойства-расширения_.
+<!-- Kotlin provides the ability to extend a class with new functionality
+without having to inherit from the class or use design patterns such as _Decorator_.
+This is done via special declarations called _extensions_. -->
+Kotlin позволяет расширять класс путём добавления нового функционала без необходимости наследования от такого класса
+и использования паттернов, таких как *Decorator*. Это реализовано с помощью специальных выражений, называемых *расширения*.
 
-<!--## Extension Functions-->
+<!-- For example, you can write new functions for a class from a third-party library that you can't modify.
+Such functions can be called in the usual way, as if they were methods of the original class.
+This mechanism is called an _extension function_. There are also _extension properties_ that let you define
+new properties for existing classes. -->
+Например, вы можете написать новые функции для класса из сторонней библиотеки, которую вы не можете изменить.
+Такие функции можно вызывать обычным способом, как если бы они были методами исходного класса.
+Этот механизм называется *функцией расширения*. Существуют также *свойства расширения*,
+которые позволяют определять новые свойства для существующих классов.
+
+<a name="extension-functions"></a>
+<!-- ## Extension functions -->
 ## Функции-расширения
 
-<!--To declare an extension function, we need to prefix its name with a _receiver type_, i.e. the type being extended.
-The following adds a `swap` function to `MutableList<Int>`:-->
-Для того, чтобы объявить функцию-расширение, нам нужно указать в качестве префикса _расширяемый тип_, то есть тип, который мы расширяем. Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
+<!-- To declare an extension function, prefix its name with a _receiver type_, which refers to the type being extended.
+The following adds a `swap` function to `MutableList<Int>`: -->
+Для того, чтобы объявить функцию-расширение, укажите в качестве префикса *расширяемый тип*, то есть тип, который мы расширяем.
+Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
 
 ```kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
@@ -29,18 +43,18 @@ fun MutableList<Int>.swap(index1: Int, index2: Int) {
 }
 ```
 
-<!--The *this*{: .keyword } keyword inside an extension function corresponds to the receiver object (the one that is passed before the dot). 
-Now, we can call such a function on any `MutableList<Int>`:-->
-Ключевое слово <b class="keyword">this</b> внутри функции-расширения соотносится с объектом расширяемого типа (этот тип ставится перед точкой).
-Теперь мы можем вызывать такую функцию в любом `MutableList<Int>`:
+<!-- The `this` keyword inside an extension function corresponds to the receiver object (the one that is passed before the dot).
+Now, you can call such a function on any `MutableList<Int>`: -->
+Ключевое слово `this` внутри функции-расширения соотносится с объектом расширяемого типа (этот тип ставится перед точкой).
+Теперь мы можем вызывать такую функцию в любом `MutableList<Int>`.
 
 ```kotlin
-val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'l'
+val list = mutableListOf(1, 2, 3)
+list.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'l'
 ```
 
-<!--Of course, this function makes sense for any `MutableList<T>`, and we can make it generic:-->
-Разумеется, эта функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой: 
+<!-- This function makes sense for any `MutableList<T>`, and you can make it generic: -->
+Эта функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой.
 
 ```kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
@@ -50,275 +64,280 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 }
 ```
 
-<!--We declare the generic type parameter before the function name for it to be available in the receiver type expression. 
-See [Generic functions](generics.html).-->
-Мы объявляем обобщённый тип-параметр перед именем функции для того, чтобы он был доступен в получаемом типе-выражении.
-См. [Обобщения](/docs/reference/generics.html).
+<!-- You need to declare the generic type parameter before the function name to make it available in the receiver type expression.
+For more information about generics, see [generic functions](generics.md). -->
+Вам нужно объявлять обобщённый тип-параметр перед именем функции для того, чтобы он был доступен в получаемом типе-выражении.
+См. [Обобщения](generics.html).
 
-<!--## Extensions are resolved **statically**-->
+<a name="extensions-are-resolved-statically"></a>
+<!-- ## Extensions are resolved _statically_ -->
 ## Расширения вычисляются статически
 
-<!--Extensions do not actually modify classes they extend. By defining an extension, you do not insert new members into a class,
-but merely make new functions callable with the dot-notation on variables of this type.-->
-Расширения на самом деле не проводят никаких модификаций с классами, которые они расширяют. Объявляя расширение, вы создаёте новую функцию, а не новый член класса. Такие функции могут быть вызваны через точку, применимо к конкретному типу. 
+<!-- Extensions do not actually modify the classes they extend. By defining an extension, you are not inserting new members into
+a class, only making new functions callable with the dot-notation on variables of this type. -->
+Расширения на самом деле не проводят никаких модификаций с классами, которые они расширяют.
+Объявляя расширение, вы создаёте новую функцию, а не новый член класса. Такие функции могут быть вызваны через точку, применимо к конкретному типу.
 
-<!--We would like to emphasize that extension functions are dispatched **statically**, i.e. they are not virtual by receiver type.
-This means that the extension function being called is determined by the type of the expression on which the function is invoked,
-not by the type of the result of evaluating that expression at runtime. For example:-->
-<!--Мы хотели бы подчеркнуть, что расширения запускаются **статически**, то есть фактически не являются получаемым типом. Это значит, что вызванная функция-расширение определена типом выражения, из которого она вызвана. А не типом результата, получаемым в ходе выполнения программы (в рантайме). К примеру:-->
-
-Мы хотели бы подчеркнуть, что расширения имеют статическую диспетчеризацию: это значит, что вызванная функция-расширение определяется типом её выражения во время компиляции, а не типом выражения, вычисленным в ходе выполнения программы, как при вызове виртуальных функций. К примеру:
-
-```kotlin
-open class C
-
-class D: C()
-
-fun C.foo() = "c"
-
-fun D.foo() = "d"
-
-fun printFoo(c: C) {
-    println(c.foo())
-}
-
-printFoo(D())
-```
-
-<!--This example will print "c", because the extension function being called depends only on the declared type of the
-parameter `c`, which is the `C` class.-->
-Этот пример выведет нам "с" на экран потому, что вызванная функция-расширение зависит только от объявленного параметризованного типа `c`, который является `C` классом.
-
-<!--If a class has a member function, and an extension function is defined which has the same receiver type, the same name
-and is applicable to given arguments, the **member always wins**.
-For example:-->
-Если в классе есть и функция-член, и функция-расширение с тем же возвращаемым типом, таким же именем и применяется с такими же аргументами, то **функция-член имеет более высокий приоритет**. К примеру:
+<!-- Extension functions are dispatched _statically_, which means they are not virtual by receiver type.
+An extension function being called is determined by the type of the expression on which the function is invoked,
+not by the type of the result from evaluating that expression at runtime. For example: -->
+Расширения имеют *статическую* диспетчеризацию: это значит, что вызванная функция-расширение определяется типом её выражения, из которого она вызвана,
+а не типом выражения, вычисленным в ходе выполнения программы, как при вызове виртуальных функций.
 
 ```kotlin
-class C {
-    fun foo() { println("member") }
+open class Shape
+class Rectangle: Shape()
+
+fun Shape.getName() = "Shape"
+fun Rectangle.getName() = "Rectangle"
+
+fun printClassName(s: Shape) {
+    println(s.getName())
 }
 
-fun C.foo() { println("extension") }
+printClassName(Rectangle())
 ```
 
-<!--If we call `c.foo()` of any `c` of type `C`, it will print "member", not "extension".-->
-Если мы вызовем `c.foo()` любого объекта `c` с типом `C`, на экран выведется "member", а не "extension".
+<!-- This example prints _Shape_, because the extension function called depends only on the declared type of the
+parameter `s`, which is the `Shape` class. -->
+Этот пример выведет нам *Shape* на экран потому, что вызванная функция-расширение зависит только от объявленного параметризованного типа `s`,
+который является `Shape` классом.
 
-<!--However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:-->
-Однако, для функций-расширений совершенно нормально перегружать функции-члены, которые имеют такое же имя, но другую сигнатуру:
+<!-- If a class has a member function, and an extension function is defined which has the same receiver type,
+the same name, and is applicable to given arguments, the _member always wins_.
+For example: -->
+Если в классе есть и функция-член, и функция-расширение с тем же возвращаемым типом, таким же именем и применяется с такими же аргументами,
+то *функция-член имеет более высокий приоритет*.
 
 ```kotlin
-class C {
-    fun foo() { println("member") }
+class Example {
+    fun printFunctionType() { println("Class method") }
 }
 
-fun C.foo(i: Int) { println("extension") }
+fun Example.printFunctionType() { println("Extension function") }
+
+Example().printFunctionType()
 ```
 
-<!--The call to `C().foo(1)` will print "extension".-->
-Обращение к `C().foo(1)` выведет на экран надпись "extension".
+<!-- This code prints _Class method_. -->
+Этот код выведет *Class method*.
 
+<!-- However, it's perfectly OK for extension functions to overload member functions that have the same name but a different signature: -->
+Однако для функций-расширений совершенно нормально перегружать функции-члены, которые имеют такое же имя, но другую сигнатуру.
 
-<!--## Nullable Receiver-->
+```kotlin
+class Example {
+    fun printFunctionType() { println("Class method") }
+}
+
+fun Example.printFunctionType(i: Int) { println("Extension function #$i") }
+
+Example().printFunctionType(1)
+```
+
+Обращение к `Example().printFunctionType(1)` выведет на экран надпись *Extension function #1*.
+
+<a name="nullable-receiver"></a>
+<!-- ## Nullable receiver -->
 ## Расширение null-допустимых типов
 
-<!--Note that extensions can be defined with a nullable receiver type. Such extensions can be called on an object variable
-even if its value is null, and can check for `this == null` inside the body. This is what allows you
-to call toString() in Kotlin without checking for null: the check happens inside the extension function.-->
-Обратите внимание, что расширения могут быть объявлены для null-допустимых типов. Такие расширения могут ссылаться на переменные объекта, даже если значение переменной равно null. В таком случае есть возможность провести проверку `this == null` внутри тела функции. Благодаря этому метод `toString()` в языке <b>Kotlin</b> вызывается без проверки на null: она проходит внутри функции-расширения.
+<!-- Note that extensions can be defined with a nullable receiver type. These extensions can be called on an object variable
+even if its value is null, and they can check for `this == null` inside the body. -->
+Обратите внимание, что расширения могут быть объявлены для null-допустимых типов.
+Такие расширения могут ссылаться на переменные объекта, даже если значение переменной равно null
+и есть возможность провести проверку `this == null` внутри тела функции.
+
+<!-- This way, you can call `toString()` in Kotlin without checking for `null`, as the check happens inside the extension function: -->
+Благодаря этому метод `toString()` в Kotlin вызывается без проверки на `null`: она проходит внутри функции-расширения.
 
 ```kotlin
 fun Any?.toString(): String {
     if (this == null) return "null"
-    // после проверки на null, `this` автоматически приводится к не-null типу, 
+    // после проверки на null, `this` автоматически приводится к не-null типу,
     // поэтому toString() обращается (ориг.: resolves) к функции-члену класса Any
     return toString()
 }
 ```
 
-<!--## Extension Properties-->
+<a name="extension-properties"></a>
+<!-- ## Extension properties -->
 ## Свойства-расширения
 
-<!--Similarly to functions, Kotlin supports extension properties:-->
-Аналогично функциям, <b>Kotlin</b> поддерживает расширения свойств:
+<!--Kotlin supports extension properties much like it supports functions:-->
+Аналогично функциям, Kotlin поддерживает расширения свойств.
 
 ```kotlin
 val <T> List<T>.lastIndex: Int
     get() = size - 1
 ```
 
-<!--Note that, since extensions do not actually insert members into classes, there's no efficient way for an extension 
-property to have a [backing field](properties.html#backing-fields). This is why **initializers are not allowed for 
-extension properties**. Their behavior can only be defined by explicitly providing getters/setters.-->
-Так как расширения на самом деле не добавляют никаких членов к классам, свойство-расширение не может иметь [_теневого поля_](properties.html#backing-fields). Вот почему **запрещено использовать инициализаторы для свойств-расширений**. Их поведение может быть определено только явным образом, с указанием геттеров/сеттеров.
+<!-- > Since extensions do not actually insert members into classes, there's no efficient way for an extension
+> property to have a [backing field](properties.md#backing-fields). This is why _initializers are not allowed for
+> extension properties_. Their behavior can only be defined by explicitly providing getters/setters. -->
+> Поскольку расширения фактически не добавляют никаких членов к классам, свойство-расширение не может иметь [теневого поля](properties.html#backing-fields).
+> Вот почему *запрещено использовать инициализаторы для свойств-расширений*.
+> Их поведение может быть определено только явным образом, с указанием геттеров/сеттеров.
 
-<!--Example:-->
+<!-- Example: -->
 Пример:
 
 ```kotlin
-val Foo.bar = 1 // ошибка: запрещено инициализировать значения 
-                // в свойствах-расширениях
+val House.number = 1 // ошибка: запрещено инициализировать значения
+                     // в свойствах-расширениях
 ```
 
-
-<!--## Companion Object Extensions-->
+<a name="companion-object-extensions"></a>
+<!-- ## Companion object extensions -->
 ## Расширения для вспомогательных объектов (ориг.: _companion object extensions_)
 
-<!--If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
-functions and properties for the companion object:-->
-Если у класса есть [вспомогательный объект](object-declarations.html#companion-objects), вы также можете определить функции и свойства расширения для такого объекта:
+<!-- If a class has a [companion object](object-declarations.md#companion-objects) defined, you can also define extension
+functions and properties for the companion object. Just like regular members of the companion object,
+they can be called using only the class name as the qualifier: -->
+Если у класса есть [вспомогательный объект](object-declarations.html#companion-objects), вы также можете определить функции и свойства расширения для такого объекта.
+Как и обычные члены вспомогательного объекта, их можно вызывать, используя в качестве определителя только имя класса.
 
 ```kotlin
 class MyClass {
-    companion object { }  // называется "Companion"
+    companion object { } // называется "Companion"
 }
 
-fun MyClass.Companion.foo() {
-    // ...
-}
+fun MyClass.Companion.printCompanion() { println("companion") }
 ```
 
-<!--Just like regular members of the companion object, they can be called using only the class name as the qualifier:-->
-Как и для обычных членов вспомогательного объекта, для вызова функции расширения достаточно указания имени класса:
-
-```kotlin
-MyClass.foo()
-```
-
-
-<!-- ## Scope of Extensions -->
+<a name="scope-of-extensions"></a>
+<!-- ## Scope of extensions -->
 ## Область видимости расширений
 
-<!-- Most of the time we define extensions on the top level, i.e. directly under packages: -->
- Чаще всего мы объявляем расширения на самом верхнем уровне, то есть сразу под пакетами:
+<!-- In most cases, you define extensions on the top level, directly under packages: -->
+В большинстве случаев вы определяете расширения на верхнем уровне, непосредственно в разделе пакетов.
 
 ```kotlin
-package foo.bar
- 
-fun Baz.goo() { ... } 
-``` 
+package org.example.declarations
 
-<!-- To use such an extension outside its declaring package, we need to import it at the call site: -->
-Для того, чтобы использовать такое расширение вне пакета, в котором оно было объявлено, нам надо импортировать его на стороне вызова:
-
-```kotlin
-package com.example.usage
-
-import foo.bar.goo // импортировать все расширения за именем "goo"
-                   // или
-import foo.bar.*   // импортировать все из "foo.bar"
-
-fun usage(baz: Baz) {
-    baz.goo()
-)
-
+fun List<String>.getLongestString() { /*...*/}
 ```
 
-_См. [Импорт](packages.html#imports) для более подробной информации._
+<!-- To use an extension outside its declaring package, import it at the call site: -->
+Для того, чтобы использовать такое расширение вне пакета, в котором оно было объявлено, импортируйте его на месте вызова.
 
-<!-- ## Declaring Extensions as Members -->
+```kotlin
+package org.example.usage
+
+import org.example.declarations.getLongestString
+
+fun main() {
+    val list = listOf("red", "green", "blue")
+    list.getLongestString()
+}
+```
+
+<!-- See [Imports](packages.md#imports) for more information. -->
+См. [Импорт](packages.html#imports) для более подробной информации.
+
+<a name="declaring-extensions-as-members"></a>
+<!-- ## Declaring extensions as members -->
 ## Объявление расширений в качестве членов класса
 
-<!-- Inside a class, you can declare extensions for another class. Inside such an extension, there are multiple _implicit receivers_ - objects members of which can be accessed without a qualifier. The instance of the class in which the extension is declared is called _dispatch receiver_, and the instance of the receiver type of the extension method is called _extension receiver_. -->
-Внутри класса вы можете объявить расширение для другого класса. Внутри такого объявления существует несколько _неявных объектов-приёмников_ (ориг.:_implicit receivers_ objects), доступ к членам которых может быть произведён без квалификатора. Экземпляр класса, в котором расширение объявлено, называется _диспетчером приёмников_ (ориг.: _dispatch receiver_), а экземпляр класса, для которого вызывается расширение, называется _приёмником расширения_ (ориг.: _extension receiver_).
+<!-- You can declare extensions for one class inside another class. Inside such an extension, there are multiple _implicit receivers_ -
+objects whose members can be accessed without a qualifier. An instance of a class in which the extension is declared is called a
+_dispatch receiver_, and an instance of the receiver type of the extension method is called an _extension receiver_. -->
+Внутри класса вы можете объявить расширение для другого класса. Внутри такого объявления существует несколько *неявных объектов-приёмников*
+(ориг.: *implicit receivers*), доступ к членам которых может быть произведён без квалификатора. Экземпляр класса, в котором расширение
+объявлено, называется *диспетчером приёмников* (ориг.: *dispatch receiver*), а экземпляр класса, для которого вызывается расширение,
+называется *приёмником расширения* (ориг.: *extension receiver*).
 
 ```kotlin
-class D {
-    fun bar() { ... }
+class Host(val hostname: String) {
+    fun printHostname() { print(hostname) }
 }
 
-class C {
-    fun baz() { ... }
+class Connection(val host: Host, val port: Int) {
+    fun printPort() { print(port) }
 
-    fun D.foo() {
-        bar()   // вызывает D.bar
-        baz()   // вызывает C.baz
+    fun Host.printConnectionString() {
+        printHostname() // вызывает Host.printHostname()
+        print(":")
+        printPort()     // вызывает Connection.printPort()
     }
 
-    fun caller(d: D) {
-        d.foo()   // вызов функции-расширения
+    fun connect() {
+        /*...*/
+        host.printConnectionString() // вызов функции-расширения
     }
+}
+
+fun main() {
+    Connection(Host("kotl.in"), 443).connect()
+    // Host("kotl.in").printConnectionString() // ошибка, функция расширения недоступна вне подключения
 }
 ```
 
-<!-- In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes precedence. To refer to the member of the dispatch receiver you can use the [qualified `this` syntax](this-expressions.html#qualified). -->
-В случае конфликта имён между членами классов _диспетчера приёмников_ и _приёмников расширения_, приоритет имеет _приёмник расширения_. Чтобы обратиться к члену класса _диспетчера приёмников_, можно использовать синтаксис [this с квалификатором](http://kotlinlang.ru/docs/reference/this-expressions.html#qualified).
+<!-- In the event of a name conflict between the members of a dispatch receiver and an extension receiver, the extension receiver takes
+precedence. To refer to the member of the dispatch receiver, you can use the [qualified `this` syntax](this-expressions.md#qualified-this). -->
+В случае конфликта имён между членами классов диспетчера приёмников и приёмников расширения, приоритет имеет приёмник расширения.
+Чтобы обратиться к члену класса диспетчера приёмников, можно использовать синтаксис [`this` с квалификатором](this-expressions.html#qualified-this).
 
 ```kotlin
-class C {
-    fun D.foo() {
-        toString()         // вызывает D.toString()
-        this@C.toString()  // вызывает C.toString()
+class Connection {
+    fun Host.getConnectionString() {
+        toString()                 // вызывает D.toString()
+        this@Connection.toString() // вызывает C.toString()
     }
+}
 ```
 
-<!-- Extensions declared as members can be declared as `open` and overridden in subclasses. This means that the dispatch of such functions is virtual with regard to the dispatch receiver type, but static with regard to the extension receiver type. -->
-Расширения, объявленные как члены класса, могут иметь модификатор видимости <b class="keyword">open</b> и быть переопределены в унаследованных классах. Это означает, что диспечеризация таких функций является виртуальной по отношению к типу _диспетчера приёмников_, но статической по отношению к типам _приёмников расширения_.
+<!-- Extensions declared as members can be declared as `open` and overridden in subclasses. This means that the dispatch of such
+functions is virtual with regard to the dispatch receiver type, but static with regard to the extension receiver type. -->
+Расширения, объявленные как члены класса, могут иметь модификатор видимости `open` и быть переопределены в унаследованных классах.
+Это означает, что диспечеризация таких функций является виртуальной по отношению к типу диспетчера приёмников,
+но статической по отношению к типам приёмников расширения.
 
 ```kotlin
-open class D {
-}
+open class Base { }
 
-class D1 : D() {
-}
+class Derived : Base() { }
 
-open class C {
-    open fun D.foo() {
-        println("D.foo in C")
+open class BaseCaller {
+    open fun Base.printFunctionInfo() {
+        println("Base extension function in BaseCaller")
     }
 
-    open fun D1.foo() {
-        println("D1.foo in C")
+    open fun Derived.printFunctionInfo() {
+        println("Derived extension function in BaseCaller")
     }
 
-    fun caller(d: D) {
-        d.foo()   // вызов функции-расширения
+    fun call(b: Base) {
+        b.printFunctionInfo() // вызов функции расширения
     }
 }
 
-class C1 : C() {
-    override fun D.foo() {
-        println("D.foo in C1")
+class DerivedCaller: BaseCaller() {
+    override fun Base.printFunctionInfo() {
+        println("Base extension function in DerivedCaller")
     }
 
-    override fun D1.foo() {
-        println("D1.foo in C1")
+    ooverride fun Derived.printFunctionInfo() {
+        println("Derived extension function in DerivedCaller")
     }
 }
 
-C().caller(D())   // prints "D.foo in C"
-C1().caller(D())  // prints "D.foo in C1" - диспетчер приёмников вычислен виртуально
-C().caller(D1())  // prints "D.foo in C" - приёмник расширения вычислен статически
+fun main() {
+    BaseCaller().call(Base())        // "Base extension function in BaseCaller"
+    DerivedCaller().call(Base())     // "Base extension function in DerivedCaller" - приемник отправки является виртуальным
+    DerivedCaller().call(Derived())  // "Base extension function in DerivedCaller" - приемник расширения является статическим
+}
 ```
 
- 
-<!-- ## Motivation -->
-## Мотивация
+<a name="note-on-visibility"></a>
+<!-- ## Note on visibility -->
+## Примечание о видимости
 
-<!-- In Java, we are used to classes named "\*Utils": `FileUtils`, `StringUtils` and so on. The famous `java.util.Collections` belongs to the same breed. And the unpleasant part about these Utils-classes is that the code that uses them looks like this: -->
-В <b>Java</b> мы привыкли к классам с названием "\*Utils": `FileUtils`, `StringUtils` и т.п. Довольно известным следствием этого является `java.util.Collections`. Но вот использование таких утилитных классов в своём коде - не самое приятное занятие:
+<!-- Extensions utilize the same [visibility modifiers](visibility-modifiers.md) as regular functions declared in the same scope would.
+For example: -->
+Расширения используют те же [модификаторы видимости](visibility-modifiers.html) как и обычные функции, объявленные в той же области видимости.
+Например:
 
-``` java
-// Java
-Collections.swap(list, Collections.binarySearch(list, Collections.max(otherList)), Collections.max(list))
-```
-
-<!-- Those class names are always getting in the way. We can use static imports and get this: -->
-Имена таких классов постоянно используются при вызове. Мы можем их статически импортировать и получить что-то типа:
-
-``` java
-// Java
-swap(list, binarySearch(list, max(otherList)), max(list))
-```
-
-<!-- This is a little better, but we have no or little help from the powerful code completion of the IDE. It would be so much better if we could say -->
-Уже немного лучше, но такой мощный инструмент IDE, как автодополнение, не предоставляет нам сколь-нибудь серьёзную помощь в данном случае. Намного лучше, если бы у нас было:
-
-```kotlin
-// Kotlin
-list.swap(list.binarySearch(otherList.max()), list.max())
-```
-
-<!-- But we don't want to implement all the possible methods inside the class `List`, right? This is where extensions help us. -->
-Но мы же не хотим реализовывать все возможные методы внутри класса `List`, ведь так? Вот для чего и нужны расширения.
+<!-- * An extension declared at the top level of a file has access to the other `private` top-level declarations in the same file.
+* If an extension is declared outside its receiver type, it cannot access the receiver's `private` or `protected` members. -->
+* Расширение, объявленное на верхнем уровне файла, имеет доступ к другим `private` объявлениям верхнего уровня в том же файле;
+* Если расширение объявлено вне своего типа приёмника, оно не может получить доступ к `private` или `protected` членам приёмника.

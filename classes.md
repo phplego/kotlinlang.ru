@@ -286,7 +286,7 @@ abstract class WildShape : Polygon() {
 
 <a name="companion-objects"></a>
 <!-- ## Companion objects -->
-## Объекты-помощники
+## Вспомогательные объекты
 
 <!-- If you need to write a function that can be called without having a class instance but that needs access to the internals
 of a class (such as a factory method), you can write it as a member of an [object declaration](object-declarations.md) inside that class. -->
@@ -295,5 +295,5 @@ of a class (such as a factory method), you can write it as a member of an [objec
 
 <!-- Even more specifically, if you declare a [companion object](object-declarations.md#companion-objects) inside your class,
 you can access its members using only the class name as a qualifier. -->
-В частности, если вы объявляете [объект-помощник](object-declarations.html#companion-objects) в своём классе,
+В частности, если вы объявляете [вспомогательный объект](object-declarations.html#companion-objects) в своём классе,
 у вас появляется возможность обращаться к членам класса, используя только название класса в качестве классификатора.

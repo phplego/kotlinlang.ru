@@ -1,14 +1,14 @@
 ---
 type: doc
 layout: reference
-title: "Основной синтаксис"
+title: "Вcтроенные классы"
 url: https://kotlinlang.ru/docs/basic-syntax.html
 ---
 
 <!-- При переводе статьи оригинальная версия была от 05 May 2021 -->
 
 <!-- Inline classes -->
-# Втроенные (inline) классы
+# Вcтроенные (inline) классы
 
 <!-- Sometimes it is necessary for business logic to create a wrapper around some type. However, it introduces runtime 
 overhead due to additional heap allocations. Moreover, if the wrapped type is primitive, the performance hit is terrible, 
@@ -46,7 +46,7 @@ value class Password(private val s: String)
 
 <!-- An inline class must have a single property initialized in the primary constructor. At runtime, instances of the inline 
 class will be represented using this single property (see details about runtime representation [below](#representation)): -->
-Втроенный класс должен иметь одно свойство, инициализированное в основном конструкторе. Во время выполнения экземпляры
+Встроенный класс должен иметь одно свойство, инициализированное в основном конструкторе. Во время выполнения экземпляры
 встроенного класса будут представлены с помощью этого единственного свойства (подробнее о представлении во время
 выполнения [ниже](#representation)).
 
@@ -58,7 +58,7 @@ val securePassword = Password("Don't try this in production")
 
 <!-- This is the main feature of inline classes, which inspired the name *inline*: data of the class is *inlined* into its 
 usages (similar to how content of [inline functions](inline-functions.md) is inlined to call sites). -->
-Это главная особеннсоть встроенных классов, которая исплюстрирует их название - *встроенные*: данные класса *встроены* в
+Это главная особенность встроенных классов, которая иллюстрирует их название - *встроенные*: данные класса *встроены* в
 его использование (аналогично тому, как содержимое [встроенных функций](inline-functions.html) встроено в местах вызовов).
 
 <a name="members"></a>
@@ -67,7 +67,7 @@ usages (similar to how content of [inline functions](inline-functions.md) is inl
 
 <!-- Inline classes support some functionality of regular classes. In particular, they are allowed to declare properties and 
 functions, and have the `init` block: -->
-Встроенные классы поддерживают некотрый функционал обычных классов. В частности, им разрешено объявлять свойства и
+Встроенные классы поддерживают некоторый функционал обычных классов. В частности, им разрешено объявлять свойства и
 функции и иметь блок инициализации `init`.
 
 ```kotlin
@@ -160,7 +160,7 @@ fun <T> id(x: T): T = x
 fun main() {
     val f = Foo(42)
 
-    asInline(f)    // не обернутый: используйется сам Foo
+    asInline(f)    // не обернутый: используется сам Foo
     asGeneric(f)   // обернутый: используется в качестве универсального типа T
     asInterface(f) // обернутый: используется в качестве типа I
     asNullable(f)  // обернутый: используется в качестве Foo?, который отличается от Foo
@@ -173,7 +173,7 @@ fun main() {
 
 <!-- Because inline classes may be represented both as the underlying value and as a wrapper, [referential equality](equality.md#referential-equality) 
 is pointless for them and is therefore prohibited. -->
-Потому что встроенные функции могут быть представленны и как базовые типы, и как обертки, [равенство по ссылке](equality.html#referential-equality)
+Потому что встроенные функции могут быть представлены и как базовые типы, и как обертки, [равенство по ссылке](equality.html#referential-equality)
 для них бессмысленно и поэтому запрещено.
 
 <a name="mangling"></a>

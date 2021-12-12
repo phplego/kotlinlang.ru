@@ -10,10 +10,10 @@ url: https://kotlinlang.ru/docs/add-new-article.html
 Для создания новой статьи нужно выполнить два действия:
 
 * Добавить пункт меню в файл `MENU.json`. То есть отредактировать `MENU.json` https://github.com/phplego/kotlinlang.ru/blob/master/MENU.json 
-* Создать файл с соответствующим именем `<article-id>.md`. Или скопировать соответствующий файл из [английской документации](https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference).
+* Создать файл с соответствующим именем `<article-id>.md`. Или скопировать соответствующий файл из [английской документации](https://github.com/JetBrains/kotlin-web-site/tree/master/docs/topics).
 
 Оригинальные тексты документации на английском находятся тут:
-https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
+https://github.com/JetBrains/kotlin-web-site/tree/master/docs/topics
 
 Ну и конечно же после любых изменений нужно:
 * Сделать фиксацию изменений в git
@@ -26,5 +26,3 @@ https://github.com/JetBrains/kotlin-web-site/tree/master/pages/docs/reference
 В этом случае есть два варианта:
 * Попросить доступ в чате https://telegram.me/KotlinLangRu
 * Сделать Pull Request ваших изменений, и мы их одобрим (или отклоним) в ближайшее время
-
-.

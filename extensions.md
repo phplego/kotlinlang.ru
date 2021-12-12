@@ -50,11 +50,11 @@ Now, you can call such a function on any `MutableList<Int>`: -->
 
 ```kotlin
 val list = mutableListOf(1, 2, 3)
-list.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'l'
+list.swap(0, 2) // 'this' внутри 'swap()' будет содержать значение 'list'
 ```
 
 <!-- This function makes sense for any `MutableList<T>`, and you can make it generic: -->
-Эта функция имеет смысл для любого `MutableList<T>`, и мы можем сделать её обобщённой.
+Следующая функция имеет смысл для любого `MutableList<T>`, и вы можете сделать её обобщённой:
 
 ```kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {

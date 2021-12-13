@@ -51,7 +51,7 @@ of `Derived` and the compiler will generate all the methods of `Base` that forwa
 implementations instead of those in the delegate object. If you want to add `override fun printMessage() { print("abc") }` to 
 `Derived`, the program would print *abc* instead of *10* when `printMessage` is called: -->
 [Переопределения](inheritance.html#overriding-methods) работают так, как вы ожидаете: компилятор будет использовать
-ваши `override` реализации вместо реализаций в делегированном объекте. Если вы хотите добавить
+ваши `override` реализации вместо реализаций в объекте делегата. Если вы хотите добавить
 `override fun printMessage() { print("abc") }` в `Derived`, программа будет печатать *abc* вместо *10* при вызове `printMessage`.
 
 ```kotlin
@@ -78,7 +78,7 @@ fun main() {
 
 <!-- Note, however, that members overridden in this way do not get called from the members of the 
 delegate object, which can only access its own implementations of the interface members: -->
-Однако обратите внимание, что члены, переопределенные таким образом, не вызываются из членов делегированного объекта,
+Однако обратите внимание, что члены, переопределенные таким образом, не вызываются из членов делегата,
 который может получить доступ только к своим собственным реализациям членов интерфейса.
 
 ```kotlin

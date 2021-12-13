@@ -191,7 +191,7 @@ println("Периметр равен ${rectangle.perimeter}")
 
 <!-- Inheritance between classes is declared by a colon (`:`). Classes are final by default; to make a class inheritable, 
 mark it as `open`. -->
-Чтобы объявить наследование между класслами используйте двоеточие (`:`). По умолчанию классы являются финальными,
+Чтобы объявить наследование между классами используйте двоеточие (`:`). По умолчанию классы являются финальными,
 поэтому, чтобы сделать класс наследуемым, используйте `open`.
 
 ```kotlin

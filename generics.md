@@ -2,7 +2,8 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Обобщения (Generics)"
+title: "Обобщения (Generics): in, out, where"
+menuLabel: "Обобщения: in, out, where"
 url: https://kotlinlang.ru/docs/generics.html
 ---
 

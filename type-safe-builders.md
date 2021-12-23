@@ -6,33 +6,37 @@ title: "Типобезопасные строители"
 url: https://kotlinlang.ru/docs/type-safe-builders.html
 ---
 
-<!--# Type-Safe Builders-->
+<!-- При переводе статьи оригинальная версия была от 28 May 2021 -->
+
+<!-- # Type-safe builders -->
 # Типобезопасные строители
 
-<!--The concept of [builders](http://www.groovy-lang.org/dsls.html#_nodebuilder) is rather popular in the *Groovy* community.
-Builders allow for defining data in a semi-declarative way. Builders are good for [generating XML](http://www.groovy-lang.org/processing-xml.html#_creating_xml), 
-[laying out UI components](http://www.groovy-lang.org/swing.html), 
-[describing 3D scenes](http://www.artima.com/weblogs/viewpost.jsp?thread=296081) and more...-->
-Идея строителей ([builders](http://www.groovy-lang.org/dsls.html#_nodebuilder)) довольна популярна в сообществе *Groovy*.
-Строители позволяют объявлять данные в полудекларативном виде. Строители хороши для [генерации XML](http://www.groovy-lang.org/processing-xml.html#_creating_xml),
-[вёрстки компонентов UI](http://www.groovy-lang.org/swing.html), [описания 3D сцен](http://www.artima.com/weblogs/viewpost.jsp?thread=296081) и многого другого...
+<!-- By using well-named functions as builders in combination with [function literals with receiver](lambdas.md#function-literals-with-receiver) 
+it is possible to create type-safe, statically-typed builders in Kotlin. -->
+Используя хорошо названные функции в качестве строителей в сочетании с [литералами функций с объектом-приёмником](lambdas.md#function-literals-with-receiver),
+можно создавать типобезопасные статически типизированные строители.
 
-<!--For many use cases, Kotlin allows to *type-check* builders, which makes them even more attractive than the 
-dynamically-typed implementation made in Groovy itself.-->
-В отличие от Groovy, Kotlin проверяет типы строителей, что делает их более приятными в использовании в большинстве юзкейсов.
+<!-- Type-safe builders allow creating Kotlin-based domain-specific languages (DSLs) suitable for building complex hierarchical 
+data structures in a semi-declarative way. Sample use cases for the builders are: -->
+Типобезопасные строители позволяют на основе Kotlin создавать доменно-ориентированные языки (ориг.: *domain-specific languages*, DSL),
+подходящие для построения сложных иерархических структур данных полу-декларативным способом. Примерами использования
+строителей являются:
 
-<!--For the rest of the cases, Kotlin supports Dynamic types builders.-->
-Для прочих случаев Kotlin поддерживает Динамически типизированные строители (Dynamic types builders).
+<!-- * Generating markup with Kotlin code, such as [HTML](https://github.com/Kotlin/kotlinx.html) or XML
+* Programmatically laying out UI components: [Anko](https://github.com/Kotlin/anko/wiki/Anko-Layouts)
+* Configuring routes for a web server: [Ktor](https://ktor.io/docs/routing.html) -->
 
-<!--## A type-safe builder example-->
-## Пример типобезопасного строителя
-<!--Consider the following code:-->
+* Создание разметки с помощью кода Kotlin, например [HTML](https://github.com/Kotlin/kotlinx.html) or XML,
+* Программной вёрстки компонентов UI: [Anko](https://github.com/Kotlin/anko/wiki/Anko-Layouts),
+* Настройка маршрутов для веб-сервера: [Ktor](https://ktor.io/docs/routing.html).
+
+<!-- Consider the following code: -->
 Рассмотрим следующий код:
 
 ```kotlin
 import com.example.html.* // смотрите объявления ниже
 
-fun result(args: Array<String>) =
+fun result() =
     html {
         head {
             title {+"XML кодирование с Kotlin"}
@@ -63,28 +67,30 @@ fun result(args: Array<String>) =
     }
 ```
 
-<!--This is completely legitimate Kotlin code.
-You can play with this code online (modify it and run in the browser) [here](http://try.kotlinlang.org/#/Examples/Longer examples/HTML Builder/HTML Builder.kt).-->
-Всё это полностью корректный Kotlin-код. 
-[Здесь](https://try.kotlinlang.org/#/Examples/Longer%20examples/HTML%20Builder/HTML%20Builder.kt) 
+<!-- This is completely legitimate Kotlin code.
+You can [play with this code online (modify it and run in the browser) here](https://play.kotlinlang.org/byExample/09_Kotlin_JS/06_HtmlBuilder). -->
+Всё это полностью корректный Kotlin-код.
+[Здесь](https://play.kotlinlang.org/byExample/09_Kotlin_JS/06_HtmlBuilder)
 вы можете отредактировать и запустить пример с этим кодом прямо у себя в браузере.
 
-<!--## How it works-->
+<a name="how-it-works"></a>
+
+<!-- ## How it works -->
 ## Как это работает
 
-<!--Let's walk through the mechanisms of implementing type-safe builders in Kotlin.
-First of all we need to define the model we want to build, in this case we need to model HTML tags.
+<!-- Assume that you need to implement a type-safe builder in Kotlin.
+First of all, define the model you want to build. In this case you need to model HTML tags.
 It is easily done with a bunch of classes.
-For example, `HTML` is a class that describes the `<html>` tag, i.e. it defines children like `<head>` and `<body>`.
-(See its declaration [below](#full-definition-of-the-comexamplehtml-package).) -->
-Давайте рассмотрим механизм реализации типобезопасных строителей в Kotlin.
-Прежде всего, нам нужно определить модель, которую мы собираемся строить. В данном случае это HTML-тэги.
-Мы можем сделать это без труда с помощью нескольких классов.
+For example, `HTML` is a class that describes the `<html>` tag defining children like `<head>` and `<body>`.
+(See its declaration [below](#full-definition-of-the-com-example-html-package).) -->
+Предположим, что вам нужно реализовать типобезопасный строитель в Kotlin.
+Прежде всего, вам нужно определить модель, которую вы собираетесь строить. В данном случае это HTML-тэги.
+Вы можете сделать это без труда с помощью нескольких классов.
 К примеру, `HTML` — это класс, который описывает тэг `<html>`, т.е. он определяет потомков, таких как `<head>` и `<body>`.
-(См. его объявление [ниже](#full-definition-of-the-comexamplehtml-package).)
+(См. его объявление [ниже](#full-definition-of-the-com-example-html-package).)
 
-<!--Now, let's recall why we can say something like this in the code:-->
-Теперь давайте вернёмся к вопросу почему мы можем писать вот такой код:
+<!-- Now, let's recall why you can say something like this in the code: -->
+Теперь давайте вернёмся к вопросу почему вы можете писать вот такой код:
 
 ```kotlin
 html {
@@ -92,8 +98,8 @@ html {
 }
 ```
 
-<!--`html` is actually a function call that takes a [lambda expression](lambdas.html) as an argument.
-This function is defined as follows:-->
+<!-- `html` is actually a function call that takes a [lambda expression](lambdas.md) as an argument.
+This function is defined as follows: -->
 На самом деле, `html` является вызовом функции, которая принимает [лямбда-выражение](lambdas.html) в качестве аргумента.
 Вот как эта функция определена:
 
@@ -106,15 +112,16 @@ fun html(init: HTML.() -> Unit): HTML {
 ```
 
 <!--This function takes one parameter named `init`, which is itself a function.
-The type of the function is `HTML.() -> Unit`, which is a _function type with receiver_.
-This means that we need to pass an instance of type `HTML` (a _receiver_) to the function,
-and we can call members of that instance inside the function.
-The receiver can be accessed through the *this*{: .keyword } keyword:-->
+The type of the function is `HTML.() -> Unit`, which is a *function type with receiver*.
+This means that you need to pass an instance of type `HTML` (a *receiver*) to the function,
+and you can call members of that instance inside the function.-->
 Эта функция принимает один параметр-функцию под названием `init`.
-Тип этой функции: `HTML.() -> Unit` — _функциональный тип с объектом-приёмником_.
-Это значит, что нам нужно передать экземпляр класса `HTML` (_приёмник_) в функцию, 
-и мы сможем обращаться к членам объекта в теле этой функции. Обращение происходит через
-ключевое слово <b class="keyword">this</b>:
+Тип этой функции: `HTML.() -> Unit` — *функциональный тип с объектом-приёмником*.
+Это значит, что вам нужно передать экземпляр класса `HTML` (*приёмник*) в функцию,
+и вы сможете обращаться к членам объекта в теле этой функции.
+
+<!-- The receiver can be accessed through the `this` keyword: -->
+Обращение происходит через ключевое слово `this`.
 
 ```kotlin
 html {
@@ -126,29 +133,29 @@ html {
 <!--(`head` and `body` are member functions of `HTML`.)-->
 (`head` и `body` — члены класса `HTML`)
 
-<!--Now, *this*{: .keyword } can be omitted, as usual, and we get something that looks very much like a builder already:-->
-Теперь <b class="keyword">this</b> может быть опущено, и мы получим что-то, что уже очень похоже на строителя:
+<!-- Now, `this` can be omitted, as usual, and you get something that looks very much like a builder already: -->
+`this`, как обычно, можно опустить, и вы получите нечто, что уже очень похожее на строителя.
 
 ```kotlin
 html {
-    head { /* ... */ }
-    body { /* ... */ }
+    head { /*...*/ }
+    body { /*...*/ }
 }
 ```
 
-<!--So, what does this call do? Let's look at the body of `html` function as defined above.
+<!-- So, what does this call do? Let's look at the body of `html` function as defined above.
 It creates a new instance of `HTML`, then it initializes it by calling the function that is passed as an argument
-(in our example this boils down to calling `head` and `body` on the `HTML` instance), and then it returns this instance. 
-This is exactly what a builder should do.-->
+(in this example this boils down to calling `head` and `body` on the `HTML` instance), and then it returns this instance. 
+This is exactly what a builder should do. -->
 Итак, что же делает этот вызов? Давайте посмотрим на тело функции `html`, объявленной выше.
 Она создаёт новый экземпляр `HTML`, затем инициализирует его путём вызова функции, которая была передана в аргументе
-(в нашем примере это сводится к вызову `head` и `body` у объекта `HTML`), и после этого возвращает его значение.
+(в примере это сводится к вызову `head` и `body` у объекта `HTML`), и после этого возвращает его значение.
 Это в точности то, что и должен делать строитель.
 
-<!--The `head` and `body` functions in the `HTML` class are defined similarly to `html`. 
-The only difference is that they add the built instances to the `children` collection of the enclosing `HTML` instance:-->
-Функции `head` и `body` в классе `HTML` объявлены схоже с функцией `html`. 
-Единственное отличие в том, что они добавляют отстроенные экземпляры в коллекцию `children` заключающего экземпляра `HTML`:
+<!-- The `head` and `body` functions in the `HTML` class are defined similarly to `html`. 
+The only difference is that they add the built instances to the `children` collection of the enclosing `HTML` instance: -->
+Функции `head` и `body` в классе `HTML` объявлены схоже с функцией `html`.
+Единственное отличие в том, что они добавляют отстроенные экземпляры в коллекцию `children` заключающего экземпляра `HTML`.
 
 ```kotlin
 fun head(init: Head.() -> Unit) : Head {
@@ -166,8 +173,8 @@ fun body(init: Body.() -> Unit) : Body {
 }
 ```
 
-<!--Actually these two functions do just the same thing, so we can have a generic version, `initTag`:-->
-На самом деле эти две функции делают одно и тоже, поэтому мы можем использовать обобщённую версию, `initTag`:
+<!-- Actually these two functions do just the same thing, so you can have a generic version, `initTag`: -->
+На самом деле эти две функции делают одно и тоже, поэтому вы можете использовать обобщённую версию, `initTag`.
 
 ```kotlin
 protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
@@ -177,8 +184,8 @@ protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
 }
 ```
 
-<!--So, now our functions are very simple:-->
-Теперь наши функции выглядят очень просто:
+<!-- So, now your functions are very simple: -->
+Теперь ваши функции выглядят очень просто:
 
 ```kotlin
 fun head(init: Head.() -> Unit) = initTag(Head(), init)
@@ -186,12 +193,11 @@ fun head(init: Head.() -> Unit) = initTag(Head(), init)
 fun body(init: Body.() -> Unit) = initTag(Body(), init)
 ```
 
-<!--And we can use them to build `<head>` and `<body>` tags. -->
-И мы можем использовать их для постройки тэгов `<html>` и `<body>`.
+<!-- And you can use them to build `<head>` and `<body>` tags. -->
+И вы можете использовать их для постройки тэгов `<html>` и `<body>`.
 
-
-<!--One other thing to be discussed here is how we add text to tag bodies. In the example above we say something like-->
-Ещё одна вещь, которую следует обсудить, это добавление текста в тело тэга. В примере выше мы используем такой синтаксис:
+<!-- One other thing to be discussed here is how you add text to tag bodies. In the example above you say something like: -->
+Ещё одна вещь, которую следует обсудить, это добавление текста в тело тэга. В примере выше используется такой синтаксис:
 
 ```kotlin
 html {
@@ -202,85 +208,94 @@ html {
 }
 ```
 
-<!--So basically, we just put a string inside a tag body, but there is this little `+` in front of it,
+<!-- So basically, you just put a string inside a tag body, but there is this little `+` in front of it,
 so it is a function call that invokes a prefix `unaryPlus()` operation.
-That operation is actually defined by an extension function `unaryPlus()` that is a member of the `TagWithText` abstract class (a parent of `Title`):-->
-Итак, мы просто добавляем строку в тело тэга, приписав `+` перед текстом, что ведёт к вызову префиксной операции `unaryPlus()`.
-Эта операция определена с помощью [функции-расширения](extensions.html) `unaryPlus()`, 
+That operation is actually defined by an extension function `unaryPlus()` that is a member of the `TagWithText` abstract 
+class (a parent of `Title`): -->
+Итак, вы просто добавляете строку в тело тэга, приписав `+` перед текстом, что ведёт к вызову префиксной операции `unaryPlus()`.
+Эта операция определена с помощью [функции-расширения](extensions.html) `unaryPlus()`,
 которая является членом абстрактного класса `TagWithText` (родителя `Title`).
 
 ```kotlin
-fun String.unaryPlus() {
+operator fun String.unaryPlus() {
     children.add(TextElement(this))
 }
 ```
 
-<!--So, what the prefix `+` does here is it wraps a string into an instance of `TextElement` and adds it to the `children` collection,
-so that it becomes a proper part of the tag tree.-->
+<!-- So, what the prefix `+` does here is wrapping a string into an instance of `TextElement` and adding it to the `children` collection,
+so that it becomes a proper part of the tag tree. -->
 Иными словами, префикс `+` оборачивает строку в экземпляр `TextElement` и добавляет его в коллекцию `children`.
 
-<!--All this is defined in a package `com.example.html` that is imported at the top of the builder example above.
-In the last section you can read through the full definition of this package.-->
-Всё это определено в пакете `com.example.html`, который импортирован в начале примера выше. 
-В последней секции вы можете прочитать полное описание определений в этом пакете.
+<!-- All this is defined in a package `com.example.html` that is imported at the top of the builder example above.
+In the last section you can read through the full definition of this package. -->
+Всё это определено в пакете `com.example.html`, который импортирован в начале примера выше.
+В последнем разделе вы можете прочитать полное описание определений в этом пакете.
 
-<!--## Scope control: @DslMarker (since 1.1)-->
-## Контроль области видимости: @DslMarker (с версии 1.1)
-<!--When using DSLs, one might have come across the problem that too many functions can be called in the context. 
-We can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, like the tag `head` inside another `head`: -->
-При использовании [DSL](https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE-%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA) 
-может возникнуть проблема, когда слишком много функций могут быть вызваны в определённом контексте.
-Мы можем вызывать методы каждого неявного приёмника внутри лямбды, и из-за этого может возникать противоречивый результат, как, например, тэг `head` внутри другого тэга `head`:
+<a name="scope-control-dslmarker"></a>
+
+<!-- ## Scope control: `@DslMarker` -->
+## Контроль области видимости: @DslMarker
+
+<!-- When using DSLs, one might have come across the problem that too many functions can be called in the context. 
+You can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, 
+like the tag `head` inside another `head`: -->
+При использовании DSL может возникнуть проблема, когда слишком много функций могут быть вызваны в определённом контексте.
+Вы можете вызывать методы каждого неявного приёмника внутри лямбды, и из-за этого может возникать противоречивый результат,
+как, например, тэг `head` внутри другого тэга `head`.
 
 ```kotlin
 html {
     head {
-        head {} // должен быть запрещён
+        head {} // такое не должно происходить
     }
     // ...
 }
 ```
 
-<!--In this example only members of the nearest implicit receiver `this@head` must be available; `head()` is a member of the outer receiver `this@html`, so it must be illegal to call it.-->
-В этом примере должны быть доступны только члены ближайшего неявного приёмника `this@head`; `head()` является членом другого приёмника — `this@html`, поэтому его вызов в другом контексте должен быть запрещён.
+<!-- In this example only members of the nearest implicit receiver `this@head` must be available; `head()` is a member of the 
+outer receiver `this@html`, so it must be illegal to call it. -->
+В этом примере должны быть доступны только члены ближайшего неявного приёмника `this@head`;
+`head()` является членом другого приёмника — `this@html`, поэтому его вызов в другом контексте должен быть запрещён.
 
-<!--To address this problem, in Kotlin 1.1 a special mechanism to control receiver scope was introduced.
+<!-- To address this problem, there is a special mechanism to control receiver scope. -->
+Для решения этой проблемы существует специальный механизм для управления областью видимости приёмника.
 
-To make the compiler start controlling scopes we only have to annotate the types of all receivers used in the DSL with the same marker annotation.
-For instance, for HTML Builders we declare an annotation `@HTMLTagMarker`:-->
+<!-- To make the compiler start controlling scopes you only have to annotate the types of all receivers used in the DSL with 
+the same marker annotation.
+For instance, for HTML Builders you declare an annotation `@HTMLTagMarker`: -->
+Чтобы заставить компилятор запускать контрольные области, нам нужно только аннотировать типы всех получателей,
+используемых в DSL, той же маркерной аннотацией. Например, для HTML Builders мы объявляем аннотацию `@HTMLTagMarker`.
 
-Для решения этой проблемы в Kotlin 1.1 был введен специальный механизм для управления областью приёмника.
-
-Чтобы заставить компилятор запускать контрольные области, нам нужно только аннотировать типы всех получателей, используемых в DSL, той же маркерной аннотацией.
-Например, для HTML Builders мы объявляем аннотацию `@HTMLTagMarker`:
- 
 ```kotlin
 @DslMarker
 annotation class HtmlTagMarker
 ```
 
-<!--An annotation class is called a DSL marker if it is annotated with the `@DslMarker` annotation.-->
+<!-- An annotation class is called a DSL marker if it is annotated with the `@DslMarker` annotation. -->
 Аннотированный класс называется DSL-маркером, если он помечен аннотацией `@DslMarker`.
 
-<!--In our DSL all the tag classes extend the same superclass `Tag`.
-It's enough to annotate only the superclass with `@HtmlTagMarker` and after that the Kotlin compiler will treat all the inherited classes as annotated:-->
-В нашем DSL все классы тэгов расширяют один и тот же суперкласс `Tag`.
-Нам достаточно аннотировать `@HtmlTagMarker` только суперкласс, и после этого компилятор Kotlin обработает все унаследованные классы в соответствии с аннотацией:
+<!-- In our DSL all the tag classes extend the same superclass `Tag`.
+It's enough to annotate only the superclass with `@HtmlTagMarker` and after that the Kotlin compiler will treat all the 
+inherited classes as annotated: -->
+В нашем DSL все классы тэгов расширяют один и тот же суперкласс `Tag`. Вам достаточно аннотировать `@HtmlTagMarker`
+только суперкласс, и после этого компилятор Kotlin обработает все унаследованные классы в соответствии с аннотацией.
+
 ```kotlin
 @HtmlTagMarker
-abstract class Tag(val name: String) { ... }
+abstract class Tag(val name: String) { /*...*/ }
 ```
 
-<!--We don't have to annotate the `HTML` or `Head` classes with `@HtmlTagMarker` because their superclass is already annotated:-->
-Нам не нужно помечать классы `HTML` или `Head` аннотацией `@HtmlTagMarker`, потому что их суперкласс уже аннотирован:
+<!-- You don't have to annotate the `HTML` or `Head` classes with `@HtmlTagMarker` because their superclass is already annotated: -->
+Вам не нужно помечать классы `HTML` или `Head` аннотацией `@HtmlTagMarker`, потому что их суперкласс уже аннотирован.
 
 ```
-class HTML() : Tag("html") { ... }
-class Head() : Tag("head") { ... }
+class HTML() : Tag("html") { /*...*/ }
+class Head() : Tag("head") { /*...*/ }
 ```
 
-<!--After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only: -->
-После добавления этой аннотации, компилятор Kotlin знает, какие неявные приёмники являются частью того же DSL, и разрешает обращаться только к членам ближайших приёмников:
+<!-- After you've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only: -->
+После добавления этой аннотации, компилятор Kotlin знает, какие неявные приёмники являются частью того же DSL,
+и разрешает обращаться только к членам ближайших приёмников.
 
 ```kotlin
 html {
@@ -291,8 +306,8 @@ html {
 }
 ```
 
-<!--Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:-->
-Обратите внимание, что всё ещё возможно вызывать члены внешнего приёмника, но для этого вам нужно указать этот приёмник явно:
+<!-- Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly: -->
+Обратите внимание, что всё ещё возможно вызывать члены внешнего приёмника, но для этого вам нужно указать этот приёмник явно.
 
 ```kotlin
 html {
@@ -303,22 +318,17 @@ html {
 }
 ```
 
-<a name="full-definition-of-the-comexamplehtml-package"></a>
-<!--## Full definition of the `com.example.html` package-->
-## Полное описание пакета `com.example.html`
+<a name="full-definition-of-the-com-example-html-package"></a>
 
-<!--This is how the package `com.example.html` is defined (only the elements used in the example above).
-It builds an HTML tree. It makes heavy use of [extension functions](extensions.html) and
-[lambdas with receiver](lambdas.html#function-literals-with-receiver).
+<!-- ## Full definition of the `com.example.html` package -->
+## Полное описание пакета com.example.html
 
-Note that the `@DslMarker` annotation is available only since Kotlin 1.1.-->
-
+<!-- This is how the package `com.example.html` is defined (only the elements used in the example above).
+It builds an HTML tree. It makes heavy use of [extension functions](extensions.md) and
+[lambdas with receiver](lambdas.md#function-literals-with-receiver). -->
 Перед вами содержание пакета `com.example.html` (представлены только элементы, использованные в примере выше).
-Он строит HTML дерево и активно использует [расширения](extensions.html) и [лямбды с приёмниками](lambdas.html#function-literals-with-receiver).
-
-_Примечание: Аннотация @DslMarker доступна в Kotlin начиная с версии 1.1_
-
-<a name='declarations'></a>
+Он строит HTML дерево и активно использует [расширения](extensions.html) и
+[лямбды с приёмниками](lambdas.html#function-literals-with-receiver).
 
 ```kotlin
 package com.example.html

@@ -44,7 +44,8 @@
     "lambdas",
     "inline-functions",
     "operator-overloading",
-    "type-safe-builders"
+    "type-safe-builders",
+    "using-builders-with-builder-inference"
   ],
   "Коллекции": [
     "collections-overview",

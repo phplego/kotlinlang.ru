@@ -275,7 +275,7 @@ println(10.0 / 3)
 <!-- You can also override these operators for custom classes. See [Operator overloading](operator-overloading.md) for details. -->
 Вы также можете переопределить эти операторы для пользовательских классов. См. [Перегрузка операторов](operator-overloading.html) для деталей.
 
-<a name="floating-point-numbers-comparison"></a>
+<a name="division-of-integers"></a>
 <!-- #### Division of integers -->
 #### Деление целых чисел
 

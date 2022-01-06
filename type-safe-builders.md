@@ -6,7 +6,7 @@ title: "Типобезопасные строители"
 url: https://kotlinlang.ru/docs/type-safe-builders.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 28 May 2021 -->
+<!-- При переводе статьи оригинальная версия была от 29 December 2021 -->
 
 <!-- # Type-safe builders -->
 # Типобезопасные строители
@@ -158,14 +158,14 @@ The only difference is that they add the built instances to the `children` colle
 Единственное отличие в том, что они добавляют отстроенные экземпляры в коллекцию `children` заключающего экземпляра `HTML`.
 
 ```kotlin
-fun head(init: Head.() -> Unit) : Head {
+fun head(init: Head.() -> Unit): Head {
     val head = Head()
     head.init()
     children.add(head)
     return head
 }
 
-fun body(init: Body.() -> Unit) : Body {
+fun body(init: Body.() -> Unit): Body {
     val body = Body()
     body.init()
     children.add(body)

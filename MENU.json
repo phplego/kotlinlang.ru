@@ -11,6 +11,7 @@
     "null-safety",
     "equality",
     "this-expressions",
+    "async-programming",
     "annotations",
     "destructuring-declarations",
     "reflection"

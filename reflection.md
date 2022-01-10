@@ -56,14 +56,14 @@ dependencies {
 <!-- * In Maven: -->
 * В Maven:
 
-    ```xml
-    <dependencies>
-      <dependency>
-          <groupId>org.jetbrains.kotlin</groupId>
-          <artifactId>kotlin-reflect</artifactId>
-      </dependency>
-    </dependencies>
-    ```
+```xml
+<dependencies>
+  <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+  </dependency>
+</dependencies>
+```
 
 <!-- If you don't use Gradle or Maven, make sure you have `kotlin-reflect.jar` in the classpath of your project.
 In other supported cases (IntelliJ IDEA projects that use the command-line compiler or Ant),

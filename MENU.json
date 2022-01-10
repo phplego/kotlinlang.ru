@@ -12,6 +12,7 @@
     "equality",
     "this-expressions",
     "async-programming",
+    "coroutines-overview",
     "annotations",
     "destructuring-declarations",
     "reflection"

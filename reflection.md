@@ -39,19 +39,19 @@ library for applications that do not use reflection features. -->
 <!-- * In Gradle: -->
 * В Gradle:
 
-    ```kotlin
-    // Kotlin
-    dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-reflect:%kotlinVersion%")
-    }
-    ```
+```kotlin
+// Kotlin
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-reflect:%kotlinVersion%")
+}
+```
 
-    ```groovy
-    // Groovy
-    dependencies {
-        implementation "org.jetbrains.kotlin:kotlin-reflect:%kotlinVersion%"
-    }
-    ```
+```groovy
+// Groovy
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect:%kotlinVersion%"
+}
+```
 
 <!-- * In Maven: -->
 * В Maven:

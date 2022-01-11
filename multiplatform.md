@@ -68,7 +68,7 @@ when you can reuse much of the code in similar platforms.
 * [Делитесь кодом со всеми платформами, используемыми в вашем проекте](mpp-share-on-platforms.html#share-code-on-all-platforms).
 Используйте его для совместного использования общей бизнес-логики, применимой ко всем платформам;
 
-    <img src="https://kotlinlang.org/docs/images/flat-structure.png" alt="Общий код для всех платформ" title="Общий код для всех платформ" width="2322" height="992">
+    <img src="https://kotlinlang.org/docs/images/flat-structure.png" alt="Общий код для всех платформ" title="Общий код для всех платформ">
 
 * [Делитесь кодом с некоторыми платформами](mpp-share-on-platforms.html#share-code-on-similar-platforms), включенными в
 ваш проект, но не со всеми. Поступайте так, когда вы можете повторно использовать большую часть кода на аналогичных платформах.

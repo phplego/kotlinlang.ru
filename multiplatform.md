@@ -1,211 +1,211 @@
 ---
 type: doc
 layout: reference
-category: "Other"
 title: "Мультиплатформенные проекты"
 url: https://kotlinlang.ru/docs/multiplatform.html
 ---
 
-# Мультиплатформенные проекты
+<!-- При переводе статьи оригинальная версия была от 13 September 2021 -->
 
-> Мультиплатформенные проекты - это новая экспериментальная возможность Kotlin 1.2. Все описываемые
-здесь возможности языка могут претерпеть изменения в последующих версиях Kotlin.
+<!-- # Multiplatform programming -->
+# Мультиплатформенное программирование
 
-Мультиплатформенные проекты Kotlin позволяют вам компилировать один и тот же код для многих целевых
-платформ. На данный момент поддерживаемыми целевыми платформами являются JVM и JS, с добавлением Native
-в перспективе.
+<!-- > Multiplatform projects are in [Alpha](components-stability.md). Language features and tooling may change in future Kotlin versions. -->
+> Мультиплатформенные проекты находятся в [стадии альфа-тестирования](components-stability.html). Языковые функции и
+> инструментарий могут измениться в будущих версиях Kotlin.
 
-## Структура мультиплатформенного проекта
+<!-- Support for multiplatform programming is one of Kotlin’s key benefits. It reduces time spent writing and maintaining the
+same code for [different platforms](mpp-supported-platforms.md) while retaining the flexibility and benefits of native programming. -->
+Поддержка мультиплатформенного программирования является одним из ключевых преимуществ Kotlin. Это сокращает время,
+затрачиваемое на написание и поддержку одного и того же кода для [разных платформ](mpp-supported-platforms.html),
+сохраняя при этом гибкость и преимущества нативного программирования.
 
-Мультиплатформенный проект состоит из трех типов модулей:
+<!-- This is how Kotlin Multiplatform works. -->
+Вот как работает мультиплатформенность в Kotlin:
 
-  * _Общий_ модуль содержит код, который не свойствен какой-либо определённой платформе, а также объявления
-    для реализации в платформо-зависимых API. Эти объявления позволяют общему коду быть зависимостью для
-    реализаций для конкретных платформ.
-  * _Платформенный_ модуль содержит реализации платформо-зависимых объявлений из общего модуля
-    для конкретной платформы и другой платформенный код. Платформенный модуль всегда
-    является реализацией одного общего модуля.
-  * Обычный модуль. Такие модули базируются на определённой платформе и могут либо быть зависимостью
-    платформенных модулей, либо зависеть от них.
+<img src="https://kotlinlang.org/docs/images/kotlin-multiplatform.png" alt="Мультиплатформенность Kotlin" title="Мультиплатформенность Kotlin" width="500" height="505">
 
-Общий модуль может зависеть только от других общих модулей и библиотек, включая общую
-версию стандартной библиотеки Kotlin (`kotlin-stdlib-common`). Общие модули содержат только код на Kotlin
-и ни на каких иных языках.
+<!-- *   **Common Kotlin** includes the language, core libraries, and basic tools. Code written in common Kotlin works 
+everywhere on all platforms.
+*   With Kotlin Multiplatform libraries, you can reuse the multiplatform logic in common and platform-specific code. 
+Common code can rely on a set of libraries that cover everyday tasks such as [HTTP](https://ktor.io/clients/http-client/multiplatform.html), [serialization](https://github.com/Kotlin/kotlinx.serialization), and [managing 
+coroutines](https://github.com/Kotlin/kotlinx.coroutines).
+*   To interop with platforms, use platform-specific versions of Kotlin. **Platform-specific versions of Kotlin** 
+(Kotlin/JVM, Kotlin/JS, Kotlin/Native) include extensions to the Kotlin language, and platform-specific libraries and tools. 
+*   Through these platforms you can access the **platform native code** (JVM, JS, and Native) and leverage all native
+ capabilities. -->
 
-Платформенный модуль можеть зависеть от любых модулей и библиотек для заданной платформы
-(включая библиотеки Java в случае с Kotlin/JVM и библиотеки JavaScript для Kotlin/JS). Платформенные модули
-для Kotlin/JVM также могут содержать код на Java и других языках для JVM.
+* **Обычный Kotlin** включает в себя язык, основные библиотеки и базовые инструменты. Код, написанный на обычном Kotlin,
+работает везде на всех платформах;
+* С помощью мультиплатформенных библиотек Kotlin вы можете повторно использовать мультиплатформенную логику в обычном и
+специфичном для платформы коде. Обычный код может полагаться на набор библиотек, которые охватывают повседневные задачи,
+такие как [HTTP](https://ktor.io/clients/http-client/multiplatform.html),
+[сериализация](https://github.com/Kotlin/kotlinx.serialization) и
+[управление корутинами](https://github.com/Kotlin/kotlinx.coroutines);
+* Для взаимодействия с платформами используйте версии Kotlin для конкретной платформы. **Версии Kotlin для конкретной
+платформы** (Kotlin/JVM, Kotlin/JS, Kotlin/Native) включают расширения для языка Kotlin, а также библиотеки и
+инструменты для конкретной платформы;
+* С помощью этих платформ вы можете получить доступ к **встроенному коду платформы** (JVM, JS и Native) и использовать
+все встроенные возможности.
 
-Результат компиляции общего модуля - специальный файл _метаданных_, содержащий все объявления
-в этом модуле. Результат компиляции платформенного модуля - код для заданной платформы
-(байт-код JVM или исходный код JS) для исходного кода Kotlin как в платформенном, так и в реализуемом общем модуле.
+<!-- With Kotlin Multiplatform, spend less time on writing and maintaining the same code for [different platforms](mpp-supported-platforms.md)
+– just share it using the mechanisms Kotlin provides: -->
+Благодаря мультиплатформенности Kotlin вы можете тратить меньше времени на написание и поддержку одного и того же кода
+для [разных платформ](mpp-supported-platforms.html) – просто делитесь им, используя механизмы, предоставляемые Kotlin:
 
-Следовательно, каждую мультиплатформенную библиотеку необходимо распространять как набор артефактов - .jar с метаданными
-для общего кода и несколько .jar для каждого платформенного модуля.
+<!-- * [Share code among all platforms used in your project](mpp-share-on-platforms.md#share-code-on-all-platforms). Use it for sharing the common 
+business logic that applies to all platforms. 
+     
+    ![Code shared for all platforms](flat-structure.png)
+    
+* [Share code among some platforms](mpp-share-on-platforms.md#share-code-on-similar-platforms) included in your project but not all. Do this 
+when you can reuse much of the code in similar platforms.  
+    
+    ![Hierarchical structure](hierarchical-structure.png)
 
+    ![Code shared for iOS targets](iosmain-hierarchy.png){width=400} -->
 
-## Подготовка мультиплатформенного проекта
+* [Делитесь кодом со всеми платформами, используемыми в вашем проекте](mpp-share-on-platforms.html#share-code-on-all-platforms).
+Используйте его для совместного использования общей бизнес-логики, применимой ко всем платформам;
 
-Kotlin 1.2 поддерживает сборку мультиплатформенных проектов только с Gradle; другие системы сборки не поддерживаются.
+    <img src="https://kotlinlang.org/docs/images/flat-structure.png" alt="Общий код для всех платформ" title="Общий код для всех платформ" width="2322" height="992">
 
-Для создания нового мультиплатформенного проекта в IDE откройте окно создания проекта и выберите опцию
-"Kotlin (Multiplatform)" во вкладке "Kotlin". IDE создаст проект с тремя модулями: общий
-и два платформенных для JVM и JS. Для добавления дополнительных модулей откройте окно создания модуля и выберите одну
-из опций "Kotlin (Multiplatform)" во вкладке "Gradle".
+* [Делитесь кодом с некоторыми платформами](mpp-share-on-platforms.html#share-code-on-similar-platforms), включенными в
+ваш проект, но не со всеми. Поступайте так, когда вы можете повторно использовать большую часть кода на аналогичных платформах.
 
-Если вам необходимо настроить проект вручную:
+    <img src="https://kotlinlang.org/docs/images/hierarchical-structure.png" alt="Иерархическая структура" title="Иерархическая структура" width="1328" height="796">
 
-  1. Добавьте плагин Kotlin для Gradle в classpath скрипта сборки: `classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"`
-  2. Примените плагин `kotlin-platform-common` к общему модулю
-  3. Добавьте зависимость `kotlin-stdlib-common` к общему модулю
-  4. Примените плагины `kotlin-platform-jvm` и `kotlin-platform-js` для соответствующих платформенных модулей
-  5. Добавьте зависимости с областью `expectedBy` от платформенных модулей к общему
+    <img src="https://kotlinlang.org/docs/images/iosmain-hierarchy.png" alt="Общий код для целей iOS" title="Общий код для целей iOS" width="400" height="343">
 
-Пример файла `build.gradle` для общего модуля с Kotlin 1.2-Beta:
+<!-- If you need to access platform-specific APIs from the shared code, use the Kotlin mechanism of [expected and actual 
+declarations](mpp-connect-to-apis.md). -->
+Если вам нужно получить доступ к API для конкретной платформы из общего кода, используйте механизм
+[ожидаемых и фактических объявлений](mpp-connect-to-apis.html).
 
-``` groovy
-buildscript {
-    ext.kotlin_version = '{{ site.data.releases.latest.version }}'
+<!-- With this mechanism, a common source set defines an _expected declaration_, and platform source sets must provide the 
+_actual declaration_ that corresponds to the expected declaration. This works for most Kotlin declarations, such as 
+functions, classes, interfaces, enumerations, properties, and annotations. -->
+С помощью этого механизма общий набор источников определяет *ожидаемое объявление*, а наборы источников платформы должны
+предоставлять *фактическое объявление*, соответствующее ожидаемому объявлению. Это работает для большинства объявлений
+Kotlin, таких как функции, классы, интерфейсы, перечисления, свойства и аннотации.
 
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: 'kotlin-platform-common'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-    testCompile "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"
-}
-```
-
-Пример файла `build.gradle` для платформенного модуля JVM. Обратите внимание на `expectedBy` в блоке `dependencies`:
-
-``` groovy
-buildscript {
-    ext.kotlin_version = '{{ site.data.releases.latest.version }}'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: 'kotlin-platform-jvm'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    expectedBy project(":")
-    testCompile "junit:junit:4.12"
-    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-}
-```
-
-
-## Платформо-зависимые объявления
-
-Одна из ключевых возможностей мультиплатформенного кода Kotlin - способ организации зависимости
-общего кода от платформенного. В других языках используется методика создания набора интерфейсов в общем коде и их
-реализация в платформенном. Однако, этот подход не идеален в тех случаях, когда у вас есть библиотека
-для целевой платформы, имеющая нужную вам функциональность, и вы хотите использовать API этой библиотеки напрямую,
-без дополнительных обёрток. Также, вы будете вынуждены представлять все общие объявления в виде интерфейсов,
-что не всегда применимо.
-
-Kotlin же имеет механизм _ожидаемых и актуальных объявлений_.
-С этим механизмом общий модуль может иметь _ожидаемые объявления_, а платформенный модуль - _актуальные объявления_,
-соответствующие ожидаемым.
-Чтобы понять, как это работает, взглянем на пример. Отрывок кода общего модуля:
+<img src="https://kotlinlang.org/docs/images/expect-actual.png" alt="Ожидаемые и фактические объявления" title="Ожидаемые и фактические объявления" width="700" height="377">
 
 ```kotlin
-package org.jetbrains.foo
-
-expect class Foo(bar: String) {
-    fun frob()
-}
-
-fun main(args: Array<String>) {
-    Foo("Hello").frob()
-}
+//Common
+expect fun randomUUID(): String
 ```
-
-Код соответствующего платформенного JVM-модуля:
 
 ```kotlin
-package org.jetbrains.foo
-
-actual class Foo actual constructor(val bar: String) {
-    actual fun frob() {
-        println("Frobbing the $bar")
-    }
-}
+//Android
+import java.util.*
+actual fun randomUUID() = UUID.randomUUID().toString()
 ```
-
-Пример описывает несколько важных моментов:
-
-  * Ожидаемые объявления в общих модулях и соответствующие им актуальные объявления всегда имеют абсолютно одинаковые
-    имена.
-  * Ожидаемые объявления помечены ключевым словом `expect`, а актуальные - `actual`.
-  * Все актуальные объявления, соответствующие любому ожидаемому объявлению,
-    должны быть помечены ключевым словом `actual`.
-  * Ожидаемые объявления никогда не реализуются в общем модуле.
-
-Заметьте, что не только интерфейсы и их члены могут быть помечены как ожидаемые.
-В этом примере ожидаемый класс имеет конструктор, и его объекты могут быть созданы прямо из общего кода.
-Вы также можете применять модификатор `expect` к объявлениям на верхнем уровне и аннотациям:
 
 ```kotlin
-// Общий код
-expect fun formatString(source: String, vararg args: Any): String
-
-expect annotation class Test
-
-// JVM
-actual fun formatString(source: String, vararg args: Any) =
-    String.format(source, args)
-
-actual typealias Test = org.junit.Test
+//iOS
+import platform.Foundation.NSUUID
+actual fun randomUUID(): String = NSUUID().UUIDString()
 ```
 
-Компилятор следит за тем, чтобы каждое ожидаемое объявление имело соответствующее актуальное объявление
-во всех платформенных модулях, реализующих соответствующий общий модуль, и сообщает об ошибке если какие-либо
-актуальные объявления отсутствуют. IDE имеет средства, которые могут помочь создать отсутствующие ожидаемые объявления.
+<a name="use-cases"></a>
 
-Если у вас есть платформенная библиотека, которую вы хотите использовать в общем коде и одновременно иметь собственную
-реализацию для другой платформы, вы можете создать псевдоним для существующего класса как актуальное объявление:
+<!-- ## Use cases -->
+## Примеры использования
 
-```kotlin
-expect class AtomicRef<V>(value: V) {
-    fun get(): V
-    fun set(value: V)
-    fun getAndSet(value: V): V
-    fun compareAndSet(expect: V, update: V): Boolean
-}
+<a name="android-ios"></a>
 
-actual typealias AtomicRef<V> = java.util.concurrent.atomic.AtomicReference<V>
-```
+### Android — iOS
 
-## Мультиплатформенные тесты
+<!-- Sharing code between mobile platforms is one of the major Kotlin Multiplatform use cases. With Kotlin Multiplatform Mobile (KMM), 
+you can build multiplatform mobile applications sharing code, such as business logic, connectivity, 
+and more, between Android and iOS. -->
+Совместное использование кода между мобильными платформами является одним из основных вариантов использования
+мультиплатформенности Kotlin. С помощью Kotlin Multiplatform Mobile (KMS) вы можете создавать мультиплатформенные
+мобильные приложения, совместно использующие один код и в Android, и в iOS, например бизнес-логику, возможности
+подключения и многое другое.
 
-Вы можете иметь тесты в общем проекте, которые будут скомпилированы и запущены в каждом платформенном проекте.
-Для этого в пакете `kotlin.test` есть 4 аннотации дя пометки тестов в общем коде: `@Test`, `@Ignore`,
-`@BeforeTest` и `@AfterTest`.
-На платформе JVM эти аннотации соответствуют аннотациям JUnit 4, а в модуле для JS они уже доступны
-с версии Kotlin 1.1.4 для поддержки модульного тестирования кода JS.
+<!-- See [KMM features, case studies and examples](https://kotlinlang.org/lp/mobile/) -->
+Смотрите [особенности KMM, примеры](https://kotlinlang.org/lp/mobile/).
 
-Для их использования добавьте зависимость `kotlin-test-annotations-common` к общему модулю,
-`kotlin-test-junit` к платформенному модулю JVM и `kotlin-test-js` к модулю для JS.
+<a name="client-server"></a>
+
+<!-- ### Client — Server -->
+### Клиент — Сервер
+
+<!-- Another scenario when code sharing may bring benefits is a connected application where the logic can be 
+reused on both the server and the client side running in the browser. This is covered by Kotlin 
+Multiplatform as well. -->
+Другой сценарий, когда совместное использование кода может принести пользу, - это подключенное приложение, в котором
+логика может быть повторно использована как на стороне сервера, так и на стороне клиента, запущенного в браузере. Это
+также распространяется на мультиплатформенность Kotlin.
+
+<!-- The [Ktor framework](https://ktor.io/) is suitable for building asynchronous servers and clients in connected systems. -->
+[Ktor framework](https://ktor.io/) подходит для создания асинхронных серверов и клиентов в связанных системах.
+
+<a name="what-s-next"></a>
+
+<!-- ## What's next? -->
+## Что дальше?
+
+<!-- New to Kotlin? Visit [Getting started with Kotlin](getting-started.md). -->
+Недавно начали изучать Kotlin? Посетите [Начало работы с Kotlin](getting-started.html).
+
+<a name="documentation"></a>
+
+<!-- ### Documentation -->
+### Документация
+
+<!-- * [Get started with Kotlin Multiplatform Mobile (KMM)](kmm-getting-started.md)
+* [Create a multiplatform project](mpp-create-lib.md)
+* [Share code on multiple platforms](mpp-share-on-platforms.md)
+* [Connect to platform-specific APIs](mpp-connect-to-apis.md) -->
+
+* [Начало работы с Kotlin Multiplatform Mobile (KMM)](kmm-getting-started.html)
+* [Создание мультиплатформенного проект](mpp-create-lib.html)
+* [Совместное использование кода на нескольких платформах](mpp-share-on-platforms.html)
+* [Подключение к специфичным для конкретной платформы API](mpp-connect-to-apis.html)
+
+<a name="tutorials"></a>
+
+<!-- ### Tutorials -->
+### Руководства
+
+<!-- * [Create your first KMM application](kmm-create-first-app.md) shows how to create a mobile application that works on Android and iOS with the help of the [KMM plugin for Android Studio](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile).
+Create, run, and test your first multiplatform mobile application.
+
+* [Creating a multiplatform Kotlin library](multiplatform-library.md) teaches how to create a multiplatform 
+library available for JVM, JS, and Native and which can be used from any other common code (for example, shared with 
+Android and iOS). It also shows how to write tests which will be executed on all platforms and use an efficient implementation
+ provided by a specific platform.
+
+* [Building a full stack web app with Kotlin Multiplatform](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction) 
+  teaches the concepts behind building an application that targets Kotlin/JVM and Kotlin/JS by building a client-server 
+  application that makes use of shared code, serialization, and other multiplatform paradigms. It also provides a brief
+  introduction to working with Ktor both as a server- and client-side framework. -->
+
+* [Создайте свое первое KMM приложение](kmm-create-first-app.html): узнайте, как создать мобильное приложение,
+работающее на Android и iOS, с помощью
+[KMM плагина для Android Studio](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile). Создайте,
+запустите и протестируйте свое первое мультиплатформенное мобильное приложение;
+* [Создание мультиплатформенной библиотеки Kotlin](multiplatform-library.html): научитесь, как создать
+мультиплатформенную библиотеку, доступную для JVM, JS и Native, которую можно использовать из любого другого общего кода
+(например, совместно используемого с Android и iOS). Здесь также описано, как писать тесты, которые будут выполняться
+на всех платформах, и использовать эффективную реализацию, предоставляемую конкретной платформой;
+* [Создание фулстек веб-приложения с помощью мультиплатформенности в Kotlin](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction):
+изучите концепции создания приложения, ориентированного на Kotlin/JVM и Kotlin/JS, путем создания клиент-серверного
+приложения, использующего общий код, сериализацию и другие мультиплатформенные парадигмы. Здесь также содержится краткое
+введение в работу с Ktor как с серверной, так и с клиентской стороны.
+
+<a name="sample-projects"></a>
+
+<!-- ## Sample projects -->
+## Примеры проектов
+
+<!-- - [Kotlin Multiplatform Mobile (KMM) samples](kmm-samples.md)
+- [KotlinConf app](https://github.com/JetBrains/kotlinconf-app) 
+- [KotlinConf Spinner app](https://github.com/jetbrains/kotlinconf-spinner) -->
+
+* [Примеры Kotlin Multiplatform Mobile (KMM)](kmm-samples.html)
+* [Приложение KotlinConf](https://github.com/JetBrains/kotlinconf-app)
+* [Приложение KotlinConf Spinner](https://github.com/jetbrains/kotlinconf-spinner)

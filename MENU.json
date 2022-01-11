@@ -1,4 +1,7 @@
 {
+  "Обзор Kotlin": [
+    "multiplatform"
+  ],
   "Введение": [
     "basic-syntax",
     "idioms",
@@ -50,7 +53,6 @@
     "using-builders-with-builder-inference"
   ],
   "Мультиплатформенное программирование": [
-    "multiplatform",
     "mpp-dsl-reference"
     ],
   "Коллекции": [

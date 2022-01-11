@@ -6,7 +6,7 @@ title: "Изолированные классы"
 url: https://kotlinlang.ru/docs/sealed-classes.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 07 September 2021 -->
+<!-- При переводе статьи оригинальная версия была от 10 January 2022 -->
 
 <!-- # Sealed classes -->
 # Изолированные классы
@@ -97,7 +97,7 @@ as long as they are compatible with normal inheritance rules in Kotlin. -->
 изолированные интерфейсы.
 
 <!-- These restrictions don't apply to indirect subclasses. If a direct subclass of a sealed class is not marked as sealed,
-it can be extended in any ways that its modifiers allow: -->
+it can be extended in any way that its modifiers allow: -->
 Эти ограничения не применяются к непрямым наследникам. Если прямой наследник изолированного класса не помечен как
 изолированный, он может быть расширен любыми способами, разрешенными его модификаторами.
 

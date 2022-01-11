@@ -33,6 +33,7 @@ such as concurrency and actors. -->
 ## Как начать
 
 <!-- New to Kotlin? Take a look at the [Getting started](getting-started.md) page. -->
+Недавно начали изучать Kotlin? Посетите [Начало работы с Kotlin](getting-started.html).
 
 <a name="documentation"></a>
 

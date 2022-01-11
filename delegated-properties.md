@@ -6,7 +6,7 @@ title: "Делегированные свойства"
 url: https://kotlinlang.ru/docs/delegated-properties.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 25 October 2021 -->
+<!-- При переводе статьи оригинальная версия была от 16 November 2021 -->
 <!-- Статья на хабре устарела, но всё равно помогает https://habrahabr.ru/company/JetBrains/blog/183444/-->
 
 <!--# Delegated Properties-->
@@ -77,7 +77,7 @@ println(e.p)
 Этот код выведет:
 
 ```
-Example@33a17727, спасибо за делегирование мне ‘p’!
+Example@33a17727, спасибо за делегирование мне 'p'!
 ```
 
 <!-- Similarly, when you assign to `p`, the `setValue()` function is called. The first two parameters are the same, and
@@ -93,7 +93,7 @@ e.p = "NEW"
 Этот код выведет:
 
 ```
-NEW было присвоено значению ‘p’ в Example@33a17727.
+NEW было присвоено значению 'p' в Example@33a17727.
 ```
 
 <!-- The specification of the requirements to the delegated object can be found [below](#property-delegate-requirements). -->
@@ -501,7 +501,7 @@ class C<Type> {
             impl = value
         }
     
-    fun getProp$delegate(): Type = impl // Этот метод нужен только для осмысления
+    fun getProp$delegate(): Type = impl // Этот метод нужен только для рефлексии
 }
 ```
 

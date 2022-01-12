@@ -68,14 +68,14 @@ when you can reuse much of the code in similar platforms.
 * [Делитесь кодом со всеми платформами, используемыми в вашем проекте](mpp-share-on-platforms.html#share-code-on-all-platforms).
 Используйте его для совместного использования общей бизнес-логики, применимой ко всем платформам;
 
-    <img src="https://kotlinlang.org/docs/images/flat-structure.png" width="500" alt="Общий код для всех платформ" title="Общий код для всех платформ">
+    <img src="https://kotlinlang.org/docs/images/flat-structure.png" alt="Общий код для всех платформ" title="Общий код для всех платформ">
 
 * [Делитесь кодом с некоторыми платформами](mpp-share-on-platforms.html#share-code-on-similar-platforms), включенными в
 ваш проект, но не со всеми. Поступайте так, когда вы можете повторно использовать большую часть кода на аналогичных платформах.
 
-    <img src="https://kotlinlang.org/docs/images/hierarchical-structure.png" alt="Иерархическая структура" title="Иерархическая структура" width="500">
+    <img src="https://kotlinlang.org/docs/images/hierarchical-structure.png" alt="Иерархическая структура" title="Иерархическая структура">
 
-    <img src="https://kotlinlang.org/docs/images/iosmain-hierarchy.png" alt="Общий код для целей iOS" title="Общий код для целей iOS" width="500">
+    <img src="https://kotlinlang.org/docs/images/iosmain-hierarchy.png" alt="Общий код для целей iOS" title="Общий код для целей iOS">
 
 <!-- If you need to access platform-specific APIs from the shared code, use the Kotlin mechanism of [expected and actual 
 declarations](mpp-connect-to-apis.md). -->
@@ -89,7 +89,7 @@ functions, classes, interfaces, enumerations, properties, and annotations. -->
 предоставлять *фактическое объявление*, соответствующее ожидаемому объявлению. Это работает для большинства объявлений
 Kotlin, таких как функции, классы, интерфейсы, перечисления, свойства и аннотации.
 
-<img src="https://kotlinlang.org/docs/images/expect-actual.png" alt="Ожидаемые и фактические объявления" title="Ожидаемые и фактические объявления" width="700" height="377">
+<img src="https://kotlinlang.org/docs/images/expect-actual.png" alt="Ожидаемые и фактические объявления" title="Ожидаемые и фактические объявления">
 
 ```kotlin
 //Common

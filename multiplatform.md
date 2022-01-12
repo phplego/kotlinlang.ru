@@ -23,7 +23,7 @@ same code for [different platforms](mpp-supported-platforms.md) while retaining 
 <!-- This is how Kotlin Multiplatform works. -->
 Вот как работает мультиплатформенность в Kotlin:
 
-<img src="https://kotlinlang.org/docs/images/kotlin-multiplatform.png" alt="Мультиплатформенность Kotlin" title="Мультиплатформенность Kotlin" width="500" height="505">
+<img src="https://kotlinlang.org/docs/images/kotlin-multiplatform.png" alt="Мультиплатформенность Kotlin" title="Мультиплатформенность Kotlin">
 
 <!-- *   **Common Kotlin** includes the language, core libraries, and basic tools. Code written in common Kotlin works 
 everywhere on all platforms.

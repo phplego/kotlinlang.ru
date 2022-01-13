@@ -80,7 +80,8 @@
   ],
   "Корутины (kotlinx.coroutines)": [
     "coroutines-guide",
-    "coroutines-basics"
+    "coroutines-basics",
+    "cancellation-and-timeouts"
   ],
   "Прочее": [
     "scope-functions"

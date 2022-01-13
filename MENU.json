@@ -78,7 +78,8 @@
     "set-operations",
     "map-operations"
   ],
-  "Сопрограммы": [
+  "Корутины (kotlinx.coroutines)": [
+    "coroutines-guide",
     "coroutines-basics"
   ],
   "Прочее": [

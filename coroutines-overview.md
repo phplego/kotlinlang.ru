@@ -19,7 +19,7 @@ but also scalable when needed. -->
 
 <!-- Kotlin solves this problem in a flexible way by providing [coroutine](https://en.wikipedia.org/wiki/Coroutine) support
 at the language level and delegating most of the functionality to libraries. -->
-Kotlin решает эту проблему гибким способом, предоставляя поддержку [корутинов](https://en.wikipedia.org/wiki/Coroutine)
+Kotlin решает эту проблему гибким способом, предоставляя поддержку [корутин](https://en.wikipedia.org/wiki/Coroutine)
 на уровне языка и делегирование большей части функциональности библиотекам.
 
 <!-- In addition to opening the doors to asynchronous programming, coroutines also provide a wealth of other possibilities,
@@ -50,7 +50,7 @@ such as concurrency and actors. -->
 * [Руководство по корутинам](coroutines-guide.html)
 * [Основы](coroutines-basics.html)
 * [Каналы](channels.html)
-* [Контекст корутинов и диспетчеры](coroutine-context-and-dispatchers.html)
+* [Контекст корутин и диспатчеры](coroutine-context-and-dispatchers.html)
 * [Разделяемое изменяемое состояние и параллелизм](shared-mutable-state-and-concurrency.html)
 * [Асинхронный поток](flow.html)
 

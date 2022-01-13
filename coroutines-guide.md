@@ -44,7 +44,7 @@ In order to use coroutines as well as follow the examples in this guide, you nee
 -->
 * [Основы корутин](coroutines-basics.md)
 * [Практика: Введение в корутины и каналы](https://play.kotlinlang.org/hands-on/Introduction%20to%20Coroutines%20and%20Channels)
-* [Cancellation и тайм-ауты](cancellation-and-timeouts.md)
+* [Отмена корутин и тайм-ауты](cancellation-and-timeouts.md)
 * [Создание suspending-функций](composing-suspending-functions.md)
 * [Контекст корутин и диспатчеры](coroutine-context-and-dispatchers.md)
 * [Асинхронный Flow](flow.md)

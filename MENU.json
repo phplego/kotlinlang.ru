@@ -2,7 +2,8 @@
   "Обзор Kotlin": [
     "multiplatform",
     "server-overview",
-    "android-overview"
+    "android-overview",
+    "js-overview"
   ],
   "Введение": [
     "basic-syntax",

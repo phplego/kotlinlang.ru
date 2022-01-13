@@ -78,8 +78,10 @@
     "set-operations",
     "map-operations"
   ],
-  "Сопрограммы": [
-    "coroutines-basics"
+  "Корутины (kotlinx.coroutines)": [
+    "coroutines-guide",
+    "coroutines-basics",
+    "cancellation-and-timeouts"
   ],
   "Прочее": [
     "scope-functions"

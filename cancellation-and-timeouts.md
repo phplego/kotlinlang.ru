@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 title: "Отмена корутин и тайм-ауты"
-url: https://kotlinlang.ru/cancellation-and-timeouts.html
+url: https://kotlinlang.ru/docs/cancellation-and-timeouts.html
 ---
 
 <!-- При переводе статьи оригинальная версия была от 13 September 2021 -->

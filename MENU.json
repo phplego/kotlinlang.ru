@@ -4,7 +4,8 @@
     "server-overview",
     "android-overview",
     "js-overview",
-    "native-overview"
+    "native-overview",
+    "data-science-overview"
   ],
   "Введение": [
     "basic-syntax",

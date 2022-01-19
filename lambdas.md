@@ -338,7 +338,7 @@ val sum = { x: Int, y: Int -> x + y }
 <!-- According to Kotlin convention, if the last parameter of a function is a function, then a lambda expression passed as the
 corresponding argument can be placed outside the parentheses: -->
 В Kotlin существует соглашение: если последний параметр функции является функцией, то лямбда-выражение, переданное в
-качестве соответствующего аргумента, может быть заключено в скобки.
+качестве соответствующего аргумента, может быть вынесено за круглые скобки.
 
 ```kotlin
 val product = items.fold(1) { acc, e -> acc * e }

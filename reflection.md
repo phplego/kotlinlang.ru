@@ -24,7 +24,7 @@ the type of a property or function at runtime) is essential when using a functio
 <a name="jvm-dependency"></a>
 
 <!-- ## JVM dependency -->
-## JVM pависимость
+## JVM зависимость
 
 <!-- On the JVM platform, the Kotlin compiler distribution includes the runtime component required for using the reflection features as a separate
 artifact, `kotlin-reflect.jar`. This is done to reduce the required size of the runtime

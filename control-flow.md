@@ -283,7 +283,7 @@ The difference between them is the condition checking time: -->
 <!-- * `while` checks the condition and, if it's satisfied, executes the body and then returns to the condition check.
 * `do-while` executes the body and then checks the condition. If it's satisfied, the loop repeats. So, the body of 
 executes at least once regardless of the condition. -->
-* `while` проверяет условие и, если оно истенно, выполняет тело, а затем возвращается к проверке условия;
+* `while` проверяет условие и, если оно истинно, выполняет тело, а затем возвращается к проверке условия;
 * `do-while` выполняет тело и только затем проверяет условие. Если оно выполняется, цикл повторяется.
 Таким образом, тело `do-while` выполняется по крайней мере один раз независимо от условия.
 

@@ -29,7 +29,7 @@ class Address {
 ```
 
 <!-- To use a property, simply refer to it by its name: -->
-Для того, чтобы воспользоваться свойством, просто обращатитесь к нему по имени.
+Для того, чтобы воспользоваться свойством, просто обратитесь к нему по имени.
 
 ```kotlin
 fun copyAddress(address: Address): Address {

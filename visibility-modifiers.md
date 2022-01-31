@@ -72,7 +72,7 @@ internal val baz = 6          // имеет видимость внутри мо
 ## Члены класса
 
 <!-- For members declared inside a class: -->
-Для членов, объявленых в классе:
+Для членов, объявленных в классе:
 
 <!-- * `private` means that the member is visible inside this class only (including all its members).
 * `protected` means that the member has the same visibility as one marked as `private`, but that it is also visible in subclasses.
@@ -164,5 +164,5 @@ a module is a set of Kotlin files compiled together, for example: -->
 * A set of files compiled with one invocation of the `<kotlinc>` Ant task. -->
 * модуль IntelliJ IDEA;
 * Maven проект;
-* исподный набор Gradle (за исключением того, что исходный набор `test` может получить доступ к внутренним объявлениям `main`);
+* исходный набор Gradle (за исключением того, что исходный набор `test` может получить доступ к внутренним объявлениям `main`);
 * набор скомпилированных вместе файлов с одним способом вызова `<kotlinc>` задачи в Ant.

@@ -5,7 +5,7 @@ title: "Kotlin для спортивного программирования"
 url: https://kotlinlang.ru/docs/competitive-programming.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 14 December 2021 -->
+<!-- При переводе статьи оригинальная версия была от 27 January 2022 -->
 
 <!-- # Kotlin for competitive programming -->
 # Kotlin для спортивного программирования
@@ -60,7 +60,7 @@ It asks to implement a straightforward algorithm described in the problem statem
 реализовать простой алгоритм, описанный в условии.
 
 <!-- We'd start solving it by creating a Kotlin source file with an arbitrary name. `A.kt` will do well.
-First, we need to implement a function specified in the problem statement as: -->
+First, you need to implement a function specified in the problem statement as: -->
 Решение этой задачи началось бы с создания исходного файла Kotlin с произвольным именем. `A.kt` подойдет. Во-первых, нам
 нужно реализовать функцию, указанную в условии задачи:
 
@@ -83,7 +83,7 @@ tailrec fun removeZeroes(x: Int): Int =
 fun f(x: Int) = removeZeroes(x + 1)
 ```
 
-<!-- Alternatively, we can write an imperative implementation of the function `f` using the traditional 
+<!-- Alternatively, you can write an imperative implementation of the function `f` using the traditional
 [while loop](control-flow.md) and mutable variables that are denoted in Kotlin with 
 [var](basic-syntax.md#variables): -->
 Как вариант, вы можете написать императивную реализацию функции `f`, используя традиционный [цикл `while`](control-flow.html)
@@ -136,7 +136,7 @@ fun main() {
 
 <!-- There is no need to handle the case of misformatted input in competitive programming. An input format is always precisely
 specified in competitive programming, and the actual input cannot deviate from the input specification in the problem
-statement. That's why we're using Kotlin's [`readln()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/readln.html) function. It asserts that the input string is present and throws
+statement. That's why you can use Kotlin's [`readln()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/readln.html) function. It asserts that the input string is present and throws
 an exception otherwise. Likewise, the [`String.toInt()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/to-int.html)
 function throws an exception if the input string is not an integer. -->
 В спортивном программировании нет необходимости обрабатывать случай неправильно отформатированного ввода. Формат ввода

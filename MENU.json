@@ -59,6 +59,7 @@
     "using-builders-with-builder-inference"
   ],
   "Мультиплатформенное программирование": [
+    "mpp-intro",
     "mpp-dsl-reference"
     ],
   "Коллекции": [

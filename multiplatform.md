@@ -11,12 +11,12 @@ url: https://kotlinlang.ru/docs/multiplatform.html
 # Мультиплатформенное программирование
 
 <!-- > Multiplatform projects are in [Alpha](components-stability.md). Language features and tooling may change in future Kotlin versions. -->
-> Мультиплатформенные проекты находятся в [стадии альфа-тестирования](components-stability.html). Языковые функции и
-> инструментарий могут измениться в будущих версиях Kotlin.
+> Мультиплатформенные проекты находятся в [стадии альфа-тестирования](components-stability.html). Особенности языка и
+> инструментарий могут быть изменены в будущих версиях Kotlin.
 
 <!-- Support for multiplatform programming is one of Kotlin’s key benefits. It reduces time spent writing and maintaining the
 same code for [different platforms](mpp-supported-platforms.md) while retaining the flexibility and benefits of native programming. -->
-Поддержка мультиплатформенного программирования является одним из ключевых преимуществ Kotlin. Это сокращает время,
+Поддержка мультиплатформенного программирования является одним из ключевых преимуществ Kotlin. Она сокращает время,
 затрачиваемое на написание и поддержку одного и того же кода для [разных платформ](mpp-supported-platforms.html),
 сохраняя при этом гибкость и преимущества нативного программирования.
 
@@ -65,21 +65,18 @@ when you can reuse much of the code in similar platforms.
 
     ![Code shared for iOS targets](iosmain-hierarchy.png){width=400} -->
 
-* [Делитесь кодом со всеми платформами, используемыми в вашем проекте](mpp-share-on-platforms.html#share-code-on-all-platforms).
-Используйте его для совместного использования общей бизнес-логики, применимой ко всем платформам;
-
+* [Использование одного кода на всех платформах, которые задействованы в вашем проекте](mpp-share-on-platforms.html#share-code-on-all-platforms).
+Используйте это для общей бизнес-логики, применимой ко всем платформам;
     <img src="https://kotlinlang.org/docs/images/flat-structure.png" alt="Общий код для всех платформ" title="Общий код для всех платформ">
 
-* [Делитесь кодом с некоторыми платформами](mpp-share-on-platforms.html#share-code-on-similar-platforms), включенными в
-ваш проект, но не со всеми. Поступайте так, когда вы можете повторно использовать большую часть кода на аналогичных платформах.
-
+* [Использование одного кода только на некоторых платформах](mpp-share-on-platforms.html#share-code-on-similar-platforms),
+которые включены в ваш проект, а не на всех. Поступайте так, когда вы можете повторно использовать большую часть кода на аналогичных платформах.
     <img src="https://kotlinlang.org/docs/images/hierarchical-structure.png" alt="Иерархическая структура" title="Иерархическая структура">
-
     <img src="https://kotlinlang.org/docs/images/iosmain-hierarchy.png" alt="Общий код для целей iOS" title="Общий код для целей iOS">
 
 <!-- If you need to access platform-specific APIs from the shared code, use the Kotlin mechanism of [expected and actual 
 declarations](mpp-connect-to-apis.md). -->
-Если вам нужно получить доступ к API для конкретной платформы из общего кода, используйте механизм
+Если вам нужно получить доступ к API, которые ограничены конкретной платформой, используйте механизм
 [ожидаемых и фактических объявлений](mpp-connect-to-apis.html).
 
 <!-- With this mechanism, a common source set defines an _expected declaration_, and platform source sets must provide the 
@@ -184,18 +181,18 @@ Android and iOS). It also shows how to write tests which will be executed on all
   application that makes use of shared code, serialization, and other multiplatform paradigms. It also provides a brief
   introduction to working with Ktor both as a server- and client-side framework. -->
 
-* [Создайте свое первое KMM приложение](kmm-create-first-app.html): узнайте, как создать мобильное приложение,
+* ["Создайте свое первое KMM приложение"](kmm-create-first-app.html): узнайте, как создать мобильное приложение,
 работающее на Android и iOS, с помощью
 [KMM плагина для Android Studio](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile). Создайте,
 запустите и протестируйте свое первое мультиплатформенное мобильное приложение;
-* [Создание мультиплатформенной библиотеки Kotlin](multiplatform-library.html): научитесь, как создать
-мультиплатформенную библиотеку, доступную для JVM, JS и Native, которую можно использовать из любого другого общего кода
-(например, совместно используемого с Android и iOS). Здесь также описано, как писать тесты, которые будут выполняться
-на всех платформах, и использовать эффективную реализацию, предоставляемую конкретной платформой;
-* [Создание фулстек веб-приложения с помощью мультиплатформенности в Kotlin](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction):
-изучите концепции создания приложения, ориентированного на Kotlin/JVM и Kotlin/JS, путем создания клиент-серверного
-приложения, использующего общий код, сериализацию и другие мультиплатформенные парадигмы. Здесь также содержится краткое
-введение в работу с Ktor как с серверной, так и с клиентской стороны.
+* ["Создание мультиплатформенной Kotlin библиотеки"](multiplatform-library.html) научит процессу создания
+мультиплатформенной библиотеки для JVM, JS и Native, которую можно использовать из любого другого общего кода
+(например в Android и iOS). Здесь также описано, как писать тесты, которые будут выполняться на всех платформах и использовать
+эффективную реализацию, предоставляемую конкретной платформой.
+* ["Создание фулстек веб-приложения с помощью Kotlin Multiplatform"](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction)
+обучает концепциям построения приложения для Kotlin/JVM и Kotlin/JS посредством создания клиент-серверной приложения,
+использующего общий код, сериализацию и другие мультиплатформенные парадигмы. Также предоставляется краткое введение в
+работу с Ktor как на стороне сервера, так и клиента.
 
 <a name="sample-projects"></a>
 

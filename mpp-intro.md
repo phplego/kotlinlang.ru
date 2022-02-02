@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/mpp-intro.html
 # Kotlin Multiplatform
 
 <!-- > Multiplatform projects are in [Alpha](components-stability.md). Language features and tooling may change in future Kotlin versions. -->
-> Мультиплатформенные проекты находятся в [стадии альфа-тестирования](components-stability.md). Особенности языка и
+> Мультиплатформенные проекты находятся в [стадии альфа-тестирования](components-stability.html). Особенности языка и
 > инструментарий могут быть изменены в будущих версиях Kotlin.
 
 <!-- Support for multiplatform programming is one of Kotlin’s key benefits. It reduces time spent writing and maintaining the

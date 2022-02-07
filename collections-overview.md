@@ -233,7 +233,7 @@ fun main() {
 
 <!-- [`MutableSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html) is a `Set` with
 write operations from `MutableCollection`. -->
-[`MutableSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html) - это `Set` с операции записи из `MutableCollection`.
+[`MutableSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html) - это `Set` с операциями записи из `MutableCollection`.
 
 <!-- The default implementation of `Set` – [`LinkedHashSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-linked-hash-set/index.html) –
 preserves the order of elements insertion.

@@ -18,7 +18,7 @@ url: https://kotlinlang.ru/docs/mpp-intro.html
  Learn more about [Kotlin Multiplatform benefits](multiplatform.md). -->
 Поддержка мультиплатформенного программирования является одним из ключевых преимуществ Kotlin. Она сокращает время,
 затрачиваемое на написание и поддержку одного и того же кода для [разных платформ](mpp-supported-platforms.html),
-сохраняя при этом гибкость и преимущества нативного программирования. Узнайте больше про
+сохраняя при этом гибкость и плюсы нативного программирования. Узнайте больше про
 [преимущества использования Kotlin Multiplatform](multiplatform.html).
 
 <!-- With Kotlin Multiplatform, share the code using the mechanisms Kotlin provides: -->
@@ -49,7 +49,7 @@ for common combinations of targets or [create the hierarchical structure manuall
 <!-- If you need to access platform-specific APIs from the shared code, use the Kotlin mechanism of [expected and actual 
 declarations](mpp-connect-to-apis.md). -->
 Если вам нужно получить доступ к API, которые ограничены конкретной платформой, используйте механизм
-[ожидаемых и фактических объявлений](mpp-connect-to-apis.html).
+[ожидаемых (`expected`) и фактических (`actual`) объявлений](mpp-connect-to-apis.html).
 
 <a name="tutorials"></a>
 
@@ -71,6 +71,6 @@ Android and iOS). It also shows how to write tests which will be executed on all
 (например в Android и iOS). Здесь также описано, как писать тесты, которые будут выполняться на всех платформах и использовать
 эффективную реализацию, предоставляемую конкретной платформой.
 * ["Создание фулстек веб-приложения с помощью Kotlin Multiplatform"](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction)
-обучает концепциям построения приложения для Kotlin/JVM и Kotlin/JS посредством создания клиент-серверной приложения,
-использующего общий код, сериализацию и другие мультиплатформенные парадигмы. Также предоставляется краткое введение в
-работу с Ktor как на стороне сервера, так и клиента.
+обучает концепциям построения приложения для Kotlin/JVM и Kotlin/JS на архитектуре клиент-сервер, использующего общий
+код, сериализацию и другие мультиплатформенные парадигмы. Также предоставляется краткое введение в работу с Ktor как на
+стороне сервера, так и на стороне клиента.

@@ -43,6 +43,8 @@ Kotlin Екатерина Петрова объясняет, что такое K
 Также вы можете посмотреть другие видео о [Kotlin Multiplatform Multiverse](https://www.youtube.com/playlist?list=PLlFc5cFwUnmy_oVc9YQzjasSNoAk4hk_C)
 на YouTube.
 
+<a name="supported-platforms"></a>
+
 <!-- ## Supported platforms -->
 ## Поддерживаемые платформы
 
@@ -61,6 +63,8 @@ JavaScript, Linux, Windows, and WebAssembly. -->
 Технология [Kotlin Multiplatform](multiplatform.html) также поддерживает [другие платформы](mpp-supported-platforms.html),
 включая JavaScript, Linux, Windows, и WebAssembly.
 
+<a name="start-from-scratch"></a>
+
 <!-- ## Start from scratch -->
 ## Начало с нуля
 
@@ -73,6 +77,8 @@ JavaScript, Linux, Windows, and WebAssembly. -->
 * [Создайте в IDE ваше первое приложение, работующее и на Android, и на iOS](kmm-create-first-app.html),
 * [Изучите примеры проектов](kmm-samples.html),
 * [Познакомьте свою команду с кроссплатформенной мобильной разработкой](kmm-introduce-your-team.html).
+
+<a name="make-your-android-application-work-on-ios"></a>
 
 <!-- ## Make your Android application work on iOS -->
 ## Настройте ваше Android приложение для работы на iOS
@@ -87,6 +93,8 @@ you get started: -->
 
 * [Настройте окружение для кроссплатформенной мобильной разработки](kmm-setup.html),
 * [Сделайте так, чтобы пример Android приложения, хорошо работал под iOS](kmm-integrate-in-existing-app.html).
+
+<a name="get-help"></a>
 
 <!-- ## Get help -->
 ## Получить помощь

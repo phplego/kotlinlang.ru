@@ -140,7 +140,7 @@ you don't get a `String`, but rather an `Object`. -->
 В случае, если вы вызываете из `List<T>` что-то c возвращаемым значением `T`, вы получаете не `String`, а `Object`.
 
 <!-- Joshua Bloch gives the name _Producers_ to objects you only _read from_ and _Consumers_ to those you only _write to_. He recommends: -->
-Джошуа Блох (Joshua Block) называет объекты:
+Джошуа Блох (Joshua Bloch) называет объекты:
 - *Производителями* (ориг.: *producers*), если вы только *читаете* из них,
 - *Потребителями* (ориг.: *consumers*), если вы только *записываете* в них.
 

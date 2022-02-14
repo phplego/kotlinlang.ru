@@ -305,7 +305,7 @@ fun copy(from: Array<Any>, to: Array<Any>) {
 val ints: Array<Int> = arrayOf(1, 2, 3)
 val any = Array<Any>(3) { "" } 
 copy(ints, any)
-//   ^ Ошибка: тип Array<Any>, а ожидалось Array<Any>
+//   ^ Ошибка: тип Array<Int>, а ожидалось Array<Any>
 ```
 
 <!-- Here you run into the same familiar problem: `Array<T>` is _invariant_ in `T`, and so neither `Array<Int>` nor `Array<Any>`

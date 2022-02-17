@@ -250,7 +250,7 @@ typealias NameTypeAlias = String
 @JvmInline
 value class NameInlineClass(val s: String)
 
-un acceptString(s: String) {}
+fun acceptString(s: String) {}
 fun acceptNameTypeAlias(n: NameTypeAlias) {}
 fun acceptNameInlineClass(p: NameInlineClass) {}
 

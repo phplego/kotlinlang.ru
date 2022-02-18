@@ -170,7 +170,7 @@ or use camel case (`org.example.myProject`). -->
 либо просто объедените их вместе, либо используйте при этом lowerCamelСase (`org.example.myProject`).
 
 <!-- * Names of classes and objects start with an uppercase letter and use camel case: -->
-Имена классов и объектов начинаются с заглавной буквы и используют UpperCamelCase.
+* Имена классов и объектов начинаются с заглавной буквы и используют UpperCamelCase.
 
 ```kotlin
 open class DeclarationProcessor { /*...*/ }

@@ -86,7 +86,7 @@ for example, `ProcessDeclarations.kt`. -->
 то его имя должно совпадать с именем этого класса с добавлением расширения `.kt`.
 Если файл содержит несколько классов или только объявления верхнего уровня, выберите имя, описывающее содержимое файла,
 и назовите файл соответствующим образом. Используйте [UpperCamelCase](https://en.wikipedia.org/wiki/Camel_case) (так же известный как Pascal case),
-начиная с заглавнной буквы, например, `ProcessDeclarations.kt`.
+начиная с заглавной буквы, например, `ProcessDeclarations.kt`.
 
 <!-- The name of the file should describe what the code in the file does. Therefore, you should avoid using meaningless
 words such as `Util` in file names. -->
@@ -167,7 +167,7 @@ names is generally discouraged, but if you do need to use multiple words, you ca
 or use camel case (`org.example.myProject`). -->
 * Имена пакетов всегда написаны в нижнем регистре и не содержат нижних подчеркиваний.
 Использование имен, состоящих из нескольких слов, обычно не рекомендуется, но, если вы не можете их не использовать,
-либо просто объедените их вместе, либо используйте при этом lowerCamelСase (`org.example.myProject`).
+либо просто объедините их вместе, либо используйте при этом lowerCamelCase (`org.example.myProject`).
 
 <!-- * Names of classes and objects start with an uppercase letter and use camel case: -->
 * Имена классов и объектов начинаются с заглавной буквы и используют UpperCamelCase.
@@ -190,7 +190,7 @@ fun processDeclarations() { /*...*/ }
 var declarationCount = 1
 ```
 
-        <!-- Exception: factory functions used to create instances of classes can have the same name as the abstract return type: -->
+<!-- Exception: factory functions used to create instances of classes can have the same name as the abstract return type: -->
 Исключение: заводские функции, используемые для создания экземпляров классов, могут иметь то же имя, что и абстрактный возвращаемый тип.
 
 ```kotlin
@@ -323,8 +323,8 @@ if (elements != null) {
 
 <!-- >In Kotlin, semicolons are optional, and therefore line breaks are significant. The language design assumes 
 >Java-style braces, and you may encounter surprising behavior if you try to use a different formatting style. -->
-В Kotlin точка с запятой необязательна, и поэтому разрывы строк являются значимыми. Дизайн языка предполагает фигурные скобки в стиле Java,
-и вы можете столкнуться с неожиданным поведением, если попытаетесь использовать другой стиль форматирования.
+> В Kotlin точка с запятой необязательна, и поэтому разрывы строк являются значимыми. Дизайн языка предполагает фигурные скобки в стиле Java,
+> и вы можете столкнуться с неожиданным поведением, если попытаетесь использовать другой стиль форматирования.
 
 <a name="horizontal-whitespace"></a>
 <!-- ### Horizontal whitespace -->
@@ -421,7 +421,7 @@ class Person(id: Int, name: String)
 <!-- Classes with longer headers should be formatted so that each primary constructor parameter is in a separate line with indentation.
 Also, the closing parenthesis should be on a new line. If you use inheritance, the superclass constructor call or 
 the list of implemented interfaces should be located on the same line as the parenthesis: -->
-Классы с более длинными сигнатурами должны быть отформатированны так, чтобы каждый параметр находится в отдельной строке с отступом.
+Классы с более длинными сигнатурами должны быть отформатированы так, чтобы каждый параметр находится в отдельной строке с отступом.
 Кроме того, закрывающая скобка должна быть в новой строке. Наследование, вызов конструктора суперкласса или список реализованных интерфейсов
 должны располагаться в той же строке, что и скобка.
 
@@ -584,7 +584,7 @@ fun longMethodName(
 Используйте обычный отступ (четыре пробела) для параметров функции. Это помогает обеспечить согласованность с параметрами конструктора.
 
 <!-- Prefer using an expression body for functions with the body consisting of a single expression. -->
-Для функции, состоящей из одного выражения, предпочтительно использовать выражение в кажестве тела функции.
+Для функции, состоящей из одного выражения, предпочтительно использовать выражение в качестве тела функции.
 
 ```kotlin
 fun foo(): Int {     // плохо
@@ -1069,7 +1069,7 @@ just "for clarity". -->
 <!-- ### Unit return type -->
 ### Возвращаемый тип Unit
 
-If a function returns Unit, the return type should be omitted:
+<!-- If a function returns Unit, the return type should be omitted: -->
 Если функция возвращает `Unit`, тип возвращаемого значения следует опускать.
 
 ```kotlin
@@ -1413,7 +1413,7 @@ factory functions. -->
 ### Типы платформ
 
 <!-- A public function/method returning an expression of a platform type must declare its Kotlin type explicitly: -->
-Публичная функция/метод, возвращающая выражение типа платформы, должена явно объявить свой тип Kotlin.
+Публичная функция/метод, возвращающая выражение типа платформы, должна явно объявить свой тип Kotlin.
 
 ```kotlin
 fun apiCall(): String = MyJavaApi.getProperty("name")

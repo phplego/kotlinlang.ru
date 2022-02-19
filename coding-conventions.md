@@ -841,7 +841,7 @@ enum class Direction {
 fun shift(x: Int, y: Int) { /*...*/ }
 shift(
     25,
-    20, // trailing comma
+    20, // завершающая запятая
 )
 val colors = listOf(
     "red",

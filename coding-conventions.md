@@ -191,7 +191,7 @@ var declarationCount = 1
 ```
 
 <!-- Exception: factory functions used to create instances of classes can have the same name as the abstract return type: -->
-Исключение: заводские функции, используемые для создания экземпляров классов, могут иметь то же имя, что и абстрактный возвращаемый тип.
+Исключение: фабричные функции, используемые для создания экземпляров классов, могут иметь то же имя, что и абстрактный возвращаемый тип.
 
 ```kotlin
 interface Foo { /*...*/ }
@@ -1113,7 +1113,7 @@ they are not modified after initialization. -->
 mutated. When using factory functions to create collection instances, always use functions that return immutable
 collection types when possible: -->
 Всегда используйте неизменяемые коллекции интерфейсов (`Collection`, `List`, `Set`, `Map`) для объявления коллекций,
-которые не изменяются. При использовании заводских функций для создания экземпляров коллекции всегда используйте функции,
+которые не изменяются. При использовании фабричных функций для создания экземпляров коллекции всегда используйте функции,
 возвращающие неизменяемые типы коллекций, когда это возможно.
 
 ```kotlin
@@ -1383,13 +1383,13 @@ Bad example: `add`. -->
 
 <a name="factory-functions"></a>
 <!-- ### Factory functions -->
-### Заводские функции
+### Фабричные функции
 
 <!-- If you declare a factory function for a class, avoid giving it the same name as the class itself. Prefer using a distinct name
 making it clear why the behavior of the factory function is special. Only if there is really no special semantics,
 you can use the same name as the class. -->
-Если вы объявляете заводскую функцию для класса, избегайте присвоения ей того же имени, что и самому классу.
-Предпочтительнее использовать отдельное имя, дающее понять, почему поведение заводской функции является особенным.
+Если вы объявляете фабричную функцию для класса, избегайте присвоения ей того же имени, что и самому классу.
+Предпочтительнее использовать отдельное имя, дающее понять, почему поведение фабричной функции является особенным.
 Только если на самом деле нет специальной семантики, вы можете использовать то же имя, что и класс.
 
 
@@ -1406,7 +1406,7 @@ can't be reduced to a single constructor with default argument values, prefer to
 factory functions. -->
 Если у вас есть объект с несколькими перегруженными конструкторами, которые не вызывают разные конструкторы суперкласса
 и не могут быть сведены к одному конструктору со значениями аргументов по умолчанию,
-предпочтительнее заменить перегруженные конструкторы заводскими функциями.
+предпочтительнее заменить перегруженные конструкторы фабричными функциями.
 
 <a name="platform-types"></a>
 <!-- ### Platform types -->

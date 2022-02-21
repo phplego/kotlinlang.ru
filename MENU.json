@@ -29,7 +29,8 @@
   "Управление потоком": [
     "control-flow",
     "returns",
-    "exceptions"],
+    "exceptions"
+  ],
   "Классы и объекты": [
     "classes",
     "inheritance",

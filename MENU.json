@@ -8,7 +8,11 @@
     "data-science-overview",
     "competitive-programming"
   ],
-  "Введение": ["basic-syntax", "idioms", "coding-conventions"],
+  "Введение": [
+    "basic-syntax",
+    "idioms",
+    "coding-conventions"
+  ],
   "Основы": [
     "basic-types",
     "typecasts",
@@ -22,7 +26,10 @@
     "destructuring-declarations",
     "reflection"
   ],
-  "Управление потоком": ["control-flow", "returns", "exceptions"],
+  "Управление потоком": [
+    "control-flow",
+    "returns",
+    "exceptions"],
   "Классы и объекты": [
     "classes",
     "inheritance",
@@ -81,8 +88,12 @@
     "cancellation-and-timeouts",
     "composing-suspending-functions"
   ],
-  "Прочее": ["scope-functions"],
-  "Справочник": ["keyword-reference"],
+  "Прочее": [
+    "scope-functions"
+  ],
+  "Справочник": [
+    "keyword-reference"
+  ],
   "Инструменты": [
     "kotlin-doc",
     "kapt",
@@ -92,8 +103,20 @@
     "all-open-plugin",
     "gradle"
   ],
-  "Совместимость с Java": ["java-interop", "java-to-kotlin-interop"],
-  "Javascript": ["dynamic-type"],
-  "ЧаВо": ["faq", "comparison-to-java"],
-  "Редактору": ["how-to-edit", "add-new-article", "/contributors|Участники"]
+  "Совместимость с Java": [
+    "java-interop",
+    "java-to-kotlin-interop"
+  ],
+  "Javascript": [
+    "dynamic-type"
+  ],
+  "ЧаВо": [
+    "faq",
+    "comparison-to-java"
+  ],
+  "Редактору": [
+    "how-to-edit",
+    "add-new-article",
+    "/contributors|Участники"
+  ]
 }

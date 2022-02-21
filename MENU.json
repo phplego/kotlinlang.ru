@@ -62,7 +62,7 @@
     "mpp-get-started",
     "kmm-getting-started",
     "mpp-dsl-reference"
-    ],
+  ],
   "Коллекции": [
     "collections-overview",
     "constructing-collections",
@@ -86,7 +86,8 @@
   "Корутины (kotlinx.coroutines)": [
     "coroutines-guide",
     "coroutines-basics",
-    "cancellation-and-timeouts"
+    "cancellation-and-timeouts",
+    "composing-suspending-functions"
   ],
   "Прочее": [
     "scope-functions"

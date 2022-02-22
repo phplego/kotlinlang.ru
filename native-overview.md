@@ -67,7 +67,7 @@ Kotlin/Native поддерживает двустороннюю совмести
 
 <!-- Kotlin/Native supports interoperability to use existing libraries
 directly from Kotlin/Native: -->
-Балгородя совместимости, вы можете использования существующие библиотеки непосредственно из Kotlin/Native:
+Благодаря совместимости, вы можете использования существующие библиотеки непосредственно из Kotlin/Native:
 
 <!-- * static or dynamic [C libraries](native-c-interop.md)
 * C, [Swift, and Objective-C](native-objc-interop.md) frameworks -->.

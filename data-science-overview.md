@@ -163,8 +163,8 @@ Kotlin и Apache Spark. Это позволяет разработчикам Kot
 <!-- ### Java libraries -->
 ### Java библиотеки
 
-Since Kotlin provides first-class interop with Java, you can also use Java libraries for data science in your Kotlin code.
-Here are some examples of such libraries:
+<!-- Since Kotlin provides first-class interop with Java, you can also use Java libraries for data science in your Kotlin code.
+Here are some examples of such libraries: -->
 Поскольку Kotlin полностью совместим с Java, вы также можете использовать Java-библиотеки для Data Science в своем
 Kotlin-коде. Вот несколько примеров таких библиотек:
 

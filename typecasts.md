@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/typecasts.html
 ## Операторы `is` и `!is`
 
 <!-- Use the `is` operator or its negated form `!is` to perform a runtime check that identifies whether an object conforms to a given type: -->
-Используйте оператор `is` или его орицание `!is`, чтобы проверить соотвествует ли объект заданному типу
+Используйте оператор `is` или его отрицание `!is`, чтобы проверить соотвествует ли объект заданному типу
 во время исполнения.
 
 ```kotlin

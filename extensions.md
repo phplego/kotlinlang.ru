@@ -316,7 +316,7 @@ class DerivedCaller: BaseCaller() {
         println("Base extension function in DerivedCaller")
     }
 
-    ooverride fun Derived.printFunctionInfo() {
+    override fun Derived.printFunctionInfo() {
         println("Derived extension function in DerivedCaller")
     }
 }

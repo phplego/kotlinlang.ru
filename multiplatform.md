@@ -1,39 +1,107 @@
 ---
 type: doc
 layout: reference
-title: "Мультиплатформенные проекты"
+title: "Kotlin Multiplatform"
 url: https://kotlinlang.ru/docs/multiplatform.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 13 September 2021 -->
+<!-- При переводе статьи оригинальная версия была от 28 February 2022 -->
 
-<!-- # Multiplatform programming -->
-# Мультиплатформенное программирование
+<!-- # Kotlin Multiplatform -->
+# Kotlin Multiplatform
 
 <!-- > Multiplatform projects are in [Alpha](components-stability.md). Language features and tooling may change in future Kotlin versions. -->
 > Мультиплатформенные проекты находятся в [стадии альфа-тестирования](components-stability.html). Особенности языка и
 > инструментарий могут быть изменены в будущих версиях Kotlin.
 
 <!-- Support for multiplatform programming is one of Kotlin’s key benefits. It reduces time spent writing and maintaining the
-same code for [different platforms](mpp-supported-platforms.md) while retaining the flexibility and benefits of native programming. -->
+same code for [different platforms](multiplatform-dsl-reference.md#targets) while retaining the flexibility and benefits of native programming. -->
 Поддержка мультиплатформенного программирования является одним из ключевых преимуществ Kotlin. Она сокращает время,
-затрачиваемое на написание и поддержку одного и того же кода для [разных платформ](mpp-supported-platforms.html),
+затрачиваемое на написание и поддержку одного и того же кода для [разных платформ](multiplatform-supported-platforms.html),
 сохраняя при этом гибкость и преимущества нативного программирования.
 
-<!-- This is how Kotlin Multiplatform works. -->
-Вот как работает мультиплатформенность в Kotlin:
+<!-- ## Kotlin Multiplatform use cases -->
+## Примеры использования Kotlin Multiplatform
 
-<img src="https://kotlinlang.org/docs/images/kotlin-multiplatform.png" alt="Мультиплатформенность Kotlin" title="Мультиплатформенность Kotlin">
+<!-- ### Android and iOS applications -->
+### Android и iOS приложения
 
-<!-- *   **Common Kotlin** includes the language, core libraries, and basic tools. Code written in common Kotlin works 
+<!-- Sharing code between mobile platforms is one of the major Kotlin Multiplatform use cases. With Kotlin Multiplatform Mobile,
+you can build cross-platform mobile applications and share common code between Android and iOS, such as business logic, connectivity,
+and more. -->
+Использование одного кода на всех мобильных платформах является одним из основных вариантов использования Kotlin
+Multiplatform. С помощью Kotlin Multiplatform Mobile вы можете создавать мультиплатформенные мобильные приложения,
+совместно использующие один код и в Android, и в iOS, например бизнес-логику, возможности подключения и многое другое.
+
+<!-- Check out the [Get started with Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/) section and
+[Kotlin Multiplatform Hands-on: Networking and Data Storage](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/01_Introduction),
+where you will create an application for Android and iOS that includes a module with shared code for both platforms. -->
+Ознакомьтесь с разделом [Начало работы с Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/) и
+[Kotlin Multiplatform Hands-on: Сети и хранение данных](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/01_Introduction),
+где вы создадите приложение для Android и iOS, включающее модуль с общим кодом для обеих платформ.
+
+<!-- ### Full-stack web applications -->
+### Фулстек веб-приложения
+
+<!-- Another scenario when code sharing may bring benefits is a connected application where the logic can be
+reused on both the server and the client side running in the browser. This is covered by Kotlin
+Multiplatform as well. -->
+Другой сценарий, когда совместное использование кода может принести пользу, - это приложение, в котором логика может
+быть повторно использована как на стороне сервера, так и на стороне клиента, запущенного в браузере. С этим Kotlin
+Multiplatform тоже прекрасно справляется.
+
+<!-- See [Build a Full Stack Web App with Kotlin Multiplatform](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction)
+hands-on, where you will create a connected application consisting of a server part, using Kotlin/JVM and a web client,
+using Kotlin/JS. -->
+См. руководство [Создание фулстек веб-приложения с помощью Kotlin Multiplatform](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction),
+где вы создадите приложение, состоящее из серверной части с использованием Kotlin/JVM и веб-клиента с использованием
+Kotlin/JS.
+
+<!-- ### Multiplatform libraries -->
+### Мультиплатформенные библиотеки
+
+<!-- Kotlin Multiplatform is also useful for library authors. You can create a multiplatform library with common code and its
+platform-specific implementations for JVM, JS, and Native platforms. Once published, a multiplatform library can be used
+in other cross-platform projects as a dependency. -->
+Kotlin Multiplatform также отлично подойдет для авторов библиотек. Вы можете создать мультиплатформенную библиотеку с
+общим кодом и ее платформенными реализациями для JVM, JS и собственных платформ. После публикации мультиплатформенная
+библиотека может использоваться в других кроссплатформенных проектах в качестве зависимости.
+
+<!-- See the [Create and publish a multiplatform library](multiplatform-library.md) tutorial, where you will create
+a multiplatform library, test it, and publish it to Maven. -->
+См. руководство [Создание и публикация мультиплатформенной библиотеки](multiplatform-library.html), в котором вы
+создадите мультиплатформенную библиотеку, протестируете ее и опубликуете в Maven.
+
+<!-- ### Common code for mobile and web applications -->
+### Общий код для мобильных и веб-приложений
+
+<!-- One more popular case for using Kotlin Multiplatform is sharing the same code across Android, iOS, and web apps. It
+reduces the amount of business logic coded by frontend developers and helps implement products more efficiently,
+decreasing the coding and testing efforts. -->
+Еще одним популярным примером использования Kotlin Multiplatform является совместное использование одного и того же кода
+в Android, iOS и веб-приложениях. Это сокращает объем бизнес-логики, написанной фронтенд-разработчиками, и помогает
+более эффективно внедрять продукты, сокращая затраты на разработку и тестирование.
+
+<!-- See the [RSS Reader](https://github.com/Kotlin/kmm-production-sample/tree/c6a0d9182802490d17729ae634fb59268f68a447) sample
+project — a cross-platform application for iOS and Android with desktop and web clients implemented as experimental features. -->
+Смотрите пример проекта [RSS Reader](https://github.com/Kotlin/kmm-production-sample/tree/c6a0d9182802490d17729ae634fb59268f68a447 ) —
+кроссплатформенное приложение для iOS и Android с десктоп- и веб-клиентами, реализованными в качестве экспериментальных
+функций.
+
+<!-- ## How Kotlin Multiplatform works -->
+## Как работает Kotlin Multiplatform
+
+<img src="https://kotlinlang.org/docs/images/kotlin-multiplatform.png" alt="Kotlin Multiplatform" title="Kotlin Multiplatform">
+
+<!-- * **Common Kotlin** includes the language, core libraries, and basic tools. Code written in common Kotlin works
 everywhere on all platforms.
-*   With Kotlin Multiplatform libraries, you can reuse the multiplatform logic in common and platform-specific code. 
-Common code can rely on a set of libraries that cover everyday tasks such as [HTTP](https://ktor.io/clients/http-client/multiplatform.html), [serialization](https://github.com/Kotlin/kotlinx.serialization), and [managing 
+* With Kotlin Multiplatform libraries, you can reuse the multiplatform logic in common and platform-specific code.
+Common code can rely on a set of libraries that cover everyday tasks such as [HTTP](https://ktor.io/clients/http-client/multiplatform.html), [serialization](https://github.com/Kotlin/kotlinx.serialization), and [managing
 coroutines](https://github.com/Kotlin/kotlinx.coroutines).
-*   To interop with platforms, use platform-specific versions of Kotlin. **Platform-specific versions of Kotlin** 
-(Kotlin/JVM, Kotlin/JS, Kotlin/Native) include extensions to the Kotlin language, and platform-specific libraries and tools. 
-*   Through these platforms you can access the **platform native code** (JVM, JS, and Native) and leverage all native
- capabilities. -->
+* To interop with platforms, use platform-specific versions of Kotlin. **Platform-specific versions of Kotlin**
+(Kotlin/JVM, Kotlin/JS, Kotlin/Native) include extensions to the Kotlin language, and platform-specific libraries and tools.
+* Through these platforms you can access the **platform native code** (JVM, JS, and Native) and leverage all native
+capabilities. -->
 
 * **Обычный Kotlin** включает в себя язык, основные библиотеки и базовые инструменты. Код, написанный на обычном Kotlin,
 работает везде на всех платформах;
@@ -48,161 +116,63 @@ coroutines](https://github.com/Kotlin/kotlinx.coroutines).
 * С помощью этих платформ вы можете получить доступ к **встроенному коду платформы** (JVM, JS и Native) и использовать
 все встроенные возможности.
 
-<!-- With Kotlin Multiplatform, spend less time on writing and maintaining the same code for [different platforms](mpp-supported-platforms.md)
+<!-- ### Code sharing between platforms -->
+### Использование кода на разных платформах
+
+<!-- With Kotlin Multiplatform, spend less time on writing and maintaining the same code for [different platforms](multiplatform-dsl-reference.md#targets)
 – just share it using the mechanisms Kotlin provides: -->
-Благодаря мультиплатформенности Kotlin вы можете тратить меньше времени на написание и поддержку одного и того же кода
-для [разных платформ](mpp-supported-platforms.html) – просто делитесь им, используя механизмы, предоставляемые Kotlin:
+Благодаря Kotlin Multiplatform тратьте меньше времени на написание и поддержку одного и того же кода для [разных платформ](multiplatform-dsl-reference.html#targets) –
+просто поделитесь им, используя механизмы, предоставляемые Kotlin:
 
-<!-- * [Share code among all platforms used in your project](mpp-share-on-platforms.md#share-code-on-all-platforms). Use it for sharing the common 
-business logic that applies to all platforms. 
-     
-    ![Code shared for all platforms](flat-structure.png)
-    
-* [Share code among some platforms](mpp-share-on-platforms.md#share-code-on-similar-platforms) included in your project but not all. Do this 
-when you can reuse much of the code in similar platforms.  
-    
-    ![Hierarchical structure](hierarchical-structure.png)
+<!-- * [Share code among all platforms used in your project](multiplatform-share-on-platforms.md#share-code-on-all-platforms). Use it for sharing the common
+business logic that applies to all platforms.
 
-    ![Code shared for iOS targets](iosmain-hierarchy.png){width=400} -->
+* [Share code among some platforms](multiplatform-share-on-platforms.md#share-code-on-similar-platforms) included in your project but not all. Do this
+when you can reuse much of the code in similar platforms:
 
-* [Использование одного кода на всех платформах, которые задействованы в вашем проекте](mpp-share-on-platforms.html#share-code-on-all-platforms).
+    ![Code shared for iOS targets](kotlin-multiplatofrm-hierarchical-structure.png){width=700}
+
+* If you need to access platform-specific APIs from the shared code, use the Kotlin mechanism of [expected and actual
+declarations](multiplatform-connect-to-apis.md). -->
+
+* [Использование одного кода на всех платформах, которые задействованы в вашем проекте](multiplatform-share-on-platforms.html#share-code-on-all-platforms).
 Используйте это для общей бизнес-логики, применимой ко всем платформам;
-    <img src="https://kotlinlang.org/docs/images/flat-structure.png" alt="Общий код для всех платформ" title="Общий код для всех платформ">
 
 * [Использование одного кода только на некоторых платформах](mpp-share-on-platforms.html#share-code-on-similar-platforms),
-которые включены в ваш проект, а не на всех. Поступайте так, когда вы можете повторно использовать большую часть кода на аналогичных платформах.
-    <img src="https://kotlinlang.org/docs/images/hierarchical-structure.png" alt="Иерархическая структура" title="Иерархическая структура">
-    <img src="https://kotlinlang.org/docs/images/iosmain-hierarchy.png" alt="Общий код для целей iOS" title="Общий код для целей iOS">
+которые включены в ваш проект, а не на всех. Поступайте так, когда вы можете повторно использовать большую часть кода на
+аналогичных платформах.
 
-<!-- If you need to access platform-specific APIs from the shared code, use the Kotlin mechanism of [expected and actual 
-declarations](mpp-connect-to-apis.md). -->
-Если вам нужно получить доступ к API, которые ограничены конкретной платформой, используйте механизм
-[ожидаемых и фактических объявлений](mpp-connect-to-apis.html).
+    <img src="https://kotlinlang.org/docs/images/kotlin-multiplatofrm-hierarchical-structure.png" alt="Общий код для iOS" title="Общий код для iOS">
 
-<!-- With this mechanism, a common source set defines an _expected declaration_, and platform source sets must provide the 
-_actual declaration_ that corresponds to the expected declaration. This works for most Kotlin declarations, such as 
-functions, classes, interfaces, enumerations, properties, and annotations. -->
-С помощью этого механизма общий набор источников определяет *ожидаемое объявление*, а наборы источников платформы должны
-предоставлять *фактическое объявление*, соответствующее ожидаемому объявлению. Это работает для большинства объявлений
-Kotlin, таких как функции, классы, интерфейсы, перечисления, свойства и аннотации.
+* Если вам нужно получить доступ к API-интерфейсам, зависящим от платформы, из общего кода, используйте механизм Kotlin
+[ожидаемых и фактических объявлений](multiplatform-connect-to-apis.html).
 
-<img src="https://kotlinlang.org/docs/images/expect-actual.png" alt="Ожидаемые и фактические объявления" title="Ожидаемые и фактические объявления">
+<!-- ## Get started -->
+## Начало работы
 
-```kotlin
-//Common
-expect fun randomUUID(): String
-```
+<!-- * Look through [our examples and tutorials](multiplatform-share-on-platforms.md) if you want to create applications or libraries targeting JVM, JavaScript, and other platforms
+* Start with the [Get started with Kotlin Multiplatform Mobile](multiplatform-mobile-getting-started.md) if you want to create iOS and Android applications with shared code -->
 
-```kotlin
-//Android
-import java.util.*
-actual fun randomUUID() = UUID.randomUUID().toString()
-```
+* Ознакомьтесь с [нашими примерами и руководствами](multiplatform-share-on-platforms.html), если вы хотите создавать
+приложения или библиотеки, ориентированные на JVM, JavaScript и другие платформы;
+* Начните с [Начало работы с Kotlin Multiplatform Mobile](multiplatform-mobile-getting-started.html), если вы хотите
+создавать приложения для iOS и Android с общим кодом.
 
-```kotlin
-//iOS
-import platform.Foundation.NSUUID
-actual fun randomUUID(): String = NSUUID().UUIDString()
-```
+<!-- > New to Kotlin? Take a look at [Getting started with Kotlin](getting-started.md). -->
+> Недавно начали изучать Kotlin? Посетите [Начало работы с Kotlin](getting-started.html).
 
-<a name="use-cases"></a>
+<!-- ### Sample projects -->
+### Примеры проектов
 
-<!-- ## Use cases -->
-## Примеры использования
+<!-- Look through cross-platform application samples to understand how Kotlin Multiplatform works: -->
+Просмотрите примеры кроссплатформенных приложений, чтобы понять, как работает Kotlin Multiplatform:
 
-<a name="android-ios"></a>
-
-### Android — iOS
-
-<!-- Sharing code between mobile platforms is one of the major Kotlin Multiplatform use cases. With Kotlin Multiplatform Mobile (KMM), 
-you can build multiplatform mobile applications sharing code, such as business logic, connectivity, 
-and more, between Android and iOS. -->
-Совместное использование кода между мобильными платформами является одним из основных вариантов использования
-мультиплатформенности Kotlin. С помощью Kotlin Multiplatform Mobile (KMS) вы можете создавать мультиплатформенные
-мобильные приложения, совместно использующие один код и в Android, и в iOS, например бизнес-логику, возможности
-подключения и многое другое.
-
-<!-- See [KMM features, case studies and examples](https://kotlinlang.org/lp/mobile/) -->
-Смотрите [особенности KMM, примеры](https://kotlinlang.org/lp/mobile/).
-
-<a name="client-server"></a>
-
-<!-- ### Client — Server -->
-### Клиент — Сервер
-
-<!-- Another scenario when code sharing may bring benefits is a connected application where the logic can be 
-reused on both the server and the client side running in the browser. This is covered by Kotlin 
-Multiplatform as well. -->
-Другой сценарий, когда совместное использование кода может принести пользу, - это подключенное приложение, в котором
-логика может быть повторно использована как на стороне сервера, так и на стороне клиента, запущенного в браузере. Это
-также распространяется на мультиплатформенность Kotlin.
-
-<!-- The [Ktor framework](https://ktor.io/) is suitable for building asynchronous servers and clients in connected systems. -->
-[Ktor framework](https://ktor.io/) подходит для создания асинхронных серверов и клиентов в связанных системах.
-
-<a name="what-s-next"></a>
-
-<!-- ## What's next? -->
-## Что дальше?
-
-<!-- New to Kotlin? Visit [Getting started with Kotlin](getting-started.md). -->
-Недавно начали изучать Kotlin? Посетите [Начало работы с Kotlin](getting-started.html).
-
-<a name="documentation"></a>
-
-<!-- ### Documentation -->
-### Документация
-
-<!-- * [Get started with Kotlin Multiplatform Mobile (KMM)](kmm-getting-started.md)
-* [Create a multiplatform project](mpp-create-lib.md)
-* [Share code on multiple platforms](mpp-share-on-platforms.md)
-* [Connect to platform-specific APIs](mpp-connect-to-apis.md) -->
-
-* [Начало работы с Kotlin Multiplatform Mobile (KMM)](kmm-getting-started.html)
-* [Создание мультиплатформенного проект](mpp-create-lib.html)
-* [Совместное использование кода на нескольких платформах](mpp-share-on-platforms.html)
-* [Подключение к специфичным для конкретной платформы API](mpp-connect-to-apis.html)
-
-<a name="tutorials"></a>
-
-<!-- ### Tutorials -->
-### Руководства
-
-<!-- * [Create your first KMM application](kmm-create-first-app.md) shows how to create a mobile application that works on Android and iOS with the help of the [KMM plugin for Android Studio](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile).
-Create, run, and test your first multiplatform mobile application.
-
-* [Creating a multiplatform Kotlin library](multiplatform-library.md) teaches how to create a multiplatform 
-library available for JVM, JS, and Native and which can be used from any other common code (for example, shared with 
-Android and iOS). It also shows how to write tests which will be executed on all platforms and use an efficient implementation
- provided by a specific platform.
-
-* [Building a full stack web app with Kotlin Multiplatform](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction) 
-  teaches the concepts behind building an application that targets Kotlin/JVM and Kotlin/JS by building a client-server 
-  application that makes use of shared code, serialization, and other multiplatform paradigms. It also provides a brief
-  introduction to working with Ktor both as a server- and client-side framework. -->
-
-* ["Создайте свое первое KMM приложение"](kmm-create-first-app.html): узнайте, как создать мобильное приложение,
-работающее на Android и iOS, с помощью
-[KMM плагина для Android Studio](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile). Создайте,
-запустите и протестируйте свое первое мультиплатформенное мобильное приложение;
-* ["Создание мультиплатформенной Kotlin библиотеки"](multiplatform-library.html) научит процессу создания
-мультиплатформенной библиотеки для JVM, JS и Native, которую можно использовать из любого другого общего кода
-(например в Android и iOS). Здесь также описано, как писать тесты, которые будут выполняться на всех платформах и использовать
-эффективную реализацию, предоставляемую конкретной платформой.
-* ["Создание фулстек веб-приложения с помощью Kotlin Multiplatform"](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction)
-обучает концепциям построения приложения для Kotlin/JVM и Kotlin/JS посредством создания клиент-серверной приложения,
-использующего общий код, сериализацию и другие мультиплатформенные парадигмы. Также предоставляется краткое введение в
-работу с Ktor как на стороне сервера, так и клиента.
-
-<a name="sample-projects"></a>
-
-<!-- ## Sample projects -->
-## Примеры проектов
-
-<!-- - [Kotlin Multiplatform Mobile (KMM) samples](kmm-samples.md)
-- [KotlinConf app](https://github.com/JetBrains/kotlinconf-app) 
-- [KotlinConf Spinner app](https://github.com/jetbrains/kotlinconf-spinner) -->
+<!-- * [Kotlin Multiplatform Mobile samples](multiplatform-mobile-samples.md)
+* [KotlinConf app](https://github.com/JetBrains/kotlinconf-app)
+* [KotlinConf Spinner app](https://github.com/jetbrains/kotlinconf-spinner)
+* [Build a Full Stack Web App with Kotlin Multiplatform hands-on](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction) -->
 
 * [Примеры Kotlin Multiplatform Mobile (KMM)](kmm-samples.html)
 * [Приложение KotlinConf](https://github.com/JetBrains/kotlinconf-app)
 * [Приложение KotlinConf Spinner](https://github.com/jetbrains/kotlinconf-spinner)
+* [Создайте фулстек веб-приложение с помощью Kotlin Multiplatform hands-on](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction)

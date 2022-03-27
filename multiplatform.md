@@ -20,8 +20,12 @@ same code for [different platforms](multiplatform-dsl-reference.md#targets) whil
 затрачиваемое на написание и поддержку одного и того же кода для [разных платформ](multiplatform-supported-platforms.html),
 сохраняя при этом гибкость и преимущества нативного программирования.
 
+<a name="kotlin-multiplatform-use-cases"></a>
+
 <!-- ## Kotlin Multiplatform use cases -->
 ## Примеры использования Kotlin Multiplatform
+
+<a name="android-and-ios-applications"></a>
 
 <!-- ### Android and iOS applications -->
 ### Android и iOS приложения
@@ -40,6 +44,8 @@ where you will create an application for Android and iOS that includes a module 
 [Kotlin Multiplatform Hands-on: Сети и хранение данных](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/01_Introduction),
 где вы создадите приложение для Android и iOS, включающее модуль с общим кодом для обеих платформ.
 
+<a name="full-stack-web-applications"></a>
+
 <!-- ### Full-stack web applications -->
 ### Фулстек веб-приложения
 
@@ -57,6 +63,8 @@ using Kotlin/JS. -->
 где вы создадите приложение, состоящее из серверной части с использованием Kotlin/JVM и веб-клиента с использованием
 Kotlin/JS.
 
+<a name="multiplatform-libraries"></a>
+
 <!-- ### Multiplatform libraries -->
 ### Мультиплатформенные библиотеки
 
@@ -71,6 +79,8 @@ Kotlin Multiplatform также отлично подойдет для авто�
 a multiplatform library, test it, and publish it to Maven. -->
 См. руководство [Создание и публикация мультиплатформенной библиотеки](multiplatform-library.html), в котором вы
 создадите мультиплатформенную библиотеку, протестируете ее и опубликуете в Maven.
+
+<a name="common-code-for-mobile-and-web-applications"></a>
 
 <!-- ### Common code for mobile and web applications -->
 ### Общий код для мобильных и веб-приложений
@@ -87,6 +97,8 @@ project — a cross-platform application for iOS and Android with desktop and we
 Смотрите пример проекта [RSS Reader](https://github.com/Kotlin/kmm-production-sample/tree/c6a0d9182802490d17729ae634fb59268f68a447 ) —
 кроссплатформенное приложение для iOS и Android с десктоп- и веб-клиентами, реализованными в качестве экспериментальных
 функций.
+
+<a name="how-kotlin-multiplatform-works"></a>
 
 <!-- ## How Kotlin Multiplatform works -->
 ## Как работает Kotlin Multiplatform
@@ -115,6 +127,8 @@ capabilities. -->
 инструменты для конкретной платформы;
 * С помощью этих платформ вы можете получить доступ к **встроенному коду платформы** (JVM, JS и Native) и использовать
 все встроенные возможности.
+
+<a name="code-sharing-between-platforms"></a>
 
 <!-- ### Code sharing between platforms -->
 ### Использование кода на разных платформах
@@ -147,6 +161,8 @@ declarations](multiplatform-connect-to-apis.md). -->
 * Если вам нужно получить доступ к API-интерфейсам, зависящим от платформы, из общего кода, используйте механизм Kotlin
 [ожидаемых и фактических объявлений](multiplatform-connect-to-apis.html).
 
+<a name="get-started"></a>
+
 <!-- ## Get started -->
 ## Начало работы
 
@@ -160,6 +176,8 @@ declarations](multiplatform-connect-to-apis.md). -->
 
 <!-- > New to Kotlin? Take a look at [Getting started with Kotlin](getting-started.md). -->
 > Недавно начали изучать Kotlin? Посетите [Начало работы с Kotlin](getting-started.html).
+
+<a name="sample-projects"></a>
 
 <!-- ### Sample projects -->
 ### Примеры проектов

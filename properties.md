@@ -6,12 +6,13 @@ title: "Свойства"
 url: https://kotlinlang.ru/docs/properties.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 08 December 2021 -->
+<!-- При переводе статьи оригинальная версия была от 25 January 2022 -->
 
 <!-- # Properties -->
 # Свойства
 
 <a name="declaring-properties"></a>
+
 <!-- ## Declaring properties -->
 ## Объявление свойств
 
@@ -42,6 +43,7 @@ fun copyAddress(address: Address): Address {
 ```
 
 <a name="getters-and-setters"></a>
+
 <!-- ## Getters and setters -->
 ## Геттеры и сеттеры
 
@@ -55,9 +57,9 @@ var <propertyName>[: <PropertyType>] [= <property_initializer>]
 ```
 
 <!-- The initializer, getter, and setter are optional. The property type is optional if it can be inferred from the initializer
-or from the initializer’s or the getter’s return type, as shown below: -->
+or the getter’s return type, as shown below: -->
 Инициализатор `property_initializer`, геттер и сеттер можно не указывать. Также необязательно указывать тип свойства,
-если он может быть выведен из инициализатора или из возвращаемого типа инициализатора или геттера.
+если он может быть выведен из инициализатора или из возвращаемого типа геттера.
 
 ```kotlin
 var initialized = 1 // имеет тип Int, стандартный геттер и сеттер
@@ -85,7 +87,7 @@ the property (this way you can implement a computed property). Here's an example
 ```kotlin
 class Rectangle(val width: Int, val height: Int) {
     val area: Int
-        get() = this.width * this.height
+        get() = this.width * this.height // тип свойства необязателен, поскольку он может быть выведен из возвращаемого типа геттера
 }
 ```
 
@@ -127,6 +129,7 @@ var setterWithAnnotation: Any? = null
 ```
 
 <a name="backing-fields"></a>
+
 <!-- ### Backing fields -->
 ### Теневые поля
 
@@ -165,6 +168,7 @@ val isEmpty: Boolean
 ```
 
 <a name="backing-properties"></a>
+
 <!-- ### Backing properties -->
 ### Теневые свойства
 
@@ -190,6 +194,7 @@ public val table: Map<String, Int>
 > что вызов функции не происходит.
 
 <a name="compile-time-constants"></a>
+
 <!-- ## Compile-time constants -->
 ## Константы времени компиляции
 
@@ -216,6 +221,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 ```
 
 <a name="late-initialized-properties-and-variables"></a>
+
 <!-- ## Late-initialized properties and variables -->
 ## Свойства и переменные с поздней инициализацией
 
@@ -257,6 +263,7 @@ being accessed and the fact that it hasn't been initialized. -->
 свойство, к которому осуществляется доступ, и тот факт, что оно не было инициализировано.
 
 <a name="checking-whether-a-lateinit-var-is-initialized"></a>
+
 <!-- ### Checking whether a `lateinit var` is initialized  -->
 ### Проверка инициализации lateinit var
 
@@ -275,6 +282,7 @@ outer types, or at top level in the same file. -->
 или глобальных свойств, объявленных в том же файле.
 
 <a name="overriding-properties"></a>
+
 <!-- ## Overriding properties -->
 ## Переопределение свойств
 
@@ -282,6 +290,7 @@ outer types, or at top level in the same file. -->
 См. [Переопределение свойств класса](inheritance.html#overriding-properties).
 
 <a name="delegated-properties"></a>
+
 <!-- ## Delegated properties -->
 ## Делегированные свойства
 

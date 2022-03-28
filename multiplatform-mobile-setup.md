@@ -5,6 +5,8 @@ title: "Настройка среды"
 url: https://kotlinlang.ru/docs/multiplatform-mobile-setup.html
 ---
 
+<!-- При переводе статьи оригинальная версия была от 16 February 2022 -->
+
 <!-- Set up an environment -->
 # Настройка среды
 

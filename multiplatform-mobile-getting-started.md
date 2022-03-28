@@ -2,11 +2,12 @@
 type: doc
 layout: reference
 title: "Начало работы с Kotlin Multiplatform Mobile"
-url: https://kotlinlang.ru/docs/kmm-getting-started.html
+url: https://kotlinlang.ru/docs/multiplatform-mobile-getting-started.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 30 December 2021 -->
+<!-- При переводе статьи оригинальная версия была от 25 February 2022 -->
 
+<!-- Get started with Kotlin Multiplatform Mobile -->
 # Начало работы с Kotlin Multiplatform Mobile
 
 <!-- > Kotlin Multiplatform Mobile is in [Alpha](components-stability.md). Language features and tooling may change in future
@@ -58,9 +59,9 @@ Kotlin Екатерина Петрова объясняет, что такое K
 * Устройства Apple iOS (ARM64 и ARM32) и симуляторы,
 * Устройства Apple watchOS (ARM64 и ARM32) и симуляторы.
 
-<!-- [Kotlin Multiplatform](multiplatform.md) technology also supports [other platforms](mpp-supported-platforms.md), including
+<!-- [Kotlin Multiplatform](multiplatform.md) technology also supports [other platforms](multiplatform-dsl-reference.md#targets), including
 JavaScript, Linux, Windows, and WebAssembly. -->
-Технология [Kotlin Multiplatform](multiplatform.html) также поддерживает [другие платформы](mpp-supported-platforms.html),
+Технология [Kotlin Multiplatform](multiplatform.html) также поддерживает [другие платформы](multiplatform-dsl-reference.html#targets),
 включая JavaScript, Linux, Windows, и WebAssembly.
 
 <a name="start-from-scratch"></a>
@@ -68,15 +69,15 @@ JavaScript, Linux, Windows, and WebAssembly. -->
 <!-- ## Start from scratch -->
 ## Начало с нуля
 
-<!-- * [Set up the environment for cross-platform mobile development](kmm-setup.md)
-* [Create your first app that works both on Android and iOS with IDE](kmm-create-first-app.md)
-* [Check out the list of sample projects](kmm-samples.md)
-* [Introduce cross-platform mobile development to your team](kmm-introduce-your-team.md) -->
+<!-- * [Set up the environment for cross-platform mobile development](multiplatform-mobile-setup.md)
+* [Create your first app that works both on Android and iOS with IDE](multiplatform-mobile-create-first-app.md)
+* [Check out the list of sample projects](multiplatform-mobile-samples.md)
+* [Introduce cross-platform mobile development to your team](multiplatform-mobile-introduce-your-team.md) -->
 
-* [Настройте окружение для кроссплатформенной мобильной разработки](kmm-setup.html),
-* [Создайте в IDE ваше первое приложение, работующее и на Android, и на iOS](kmm-create-first-app.html),
-* [Изучите примеры проектов](kmm-samples.html),
-* [Познакомьте свою команду с кроссплатформенной мобильной разработкой](kmm-introduce-your-team.html).
+* [Настройте окружение для кроссплатформенной мобильной разработки](multiplatform-mobile-setup.html),
+* [Создайте в IDE ваше первое приложение, работующее и на Android, и на iOS](multiplatform-mobile-create-first-app.html),
+* [Изучите примеры проектов](multiplatform-mobile-samples.html),
+* [Познакомьте свою команду с кроссплатформенной мобильной разработкой](multiplatform-mobile-introduce-your-team.html).
 
 <a name="make-your-android-application-work-on-ios"></a>
 
@@ -88,11 +89,11 @@ you get started: -->
 Если у вас уже есть мобильное Android приложение и вы хотите сделать его кроссплатформенным, то вот что вам может помочь
 начать:
 
-<!-- * [Set up the environment for cross-platform development](kmm-setup.md)
-* [Make a sample Android application work well on iOS](kmm-integrate-in-existing-app.md) -->
+<!-- * [Set up the environment for cross-platform development](multiplatform-mobile-setup.md)
+* [Make a sample Android application work well on iOS](multiplatform-mobile-integrate-in-existing-app.md) -->
 
-* [Настройте окружение для кроссплатформенной мобильной разработки](kmm-setup.html),
-* [Сделайте так, чтобы пример Android приложения, хорошо работал под iOS](kmm-integrate-in-existing-app.html).
+* [Настройте окружение для кроссплатформенной мобильной разработки](multiplatform-mobile-setup.html),
+* [Сделайте так, чтобы пример Android приложения, хорошо работал под iOS](multiplatform-mobile-integrate-in-existing-app.html).
 
 <a name="get-help"></a>
 

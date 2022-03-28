@@ -6,7 +6,7 @@ title: "Типобезопасные строители"
 url: https://kotlinlang.ru/docs/type-safe-builders.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 29 December 2021 -->
+<!-- При переводе статьи оригинальная версия была от 02 February 2022 -->
 
 <!-- # Type-safe builders -->
 # Типобезопасные строители
@@ -23,11 +23,9 @@ data structures in a semi-declarative way. Sample use cases for the builders are
 строителей являются:
 
 <!-- * Generating markup with Kotlin code, such as [HTML](https://github.com/Kotlin/kotlinx.html) or XML
-* Programmatically laying out UI components: [Anko](https://github.com/Kotlin/anko/wiki/Anko-Layouts)
 * Configuring routes for a web server: [Ktor](https://ktor.io/docs/routing.html) -->
 
 * Создание разметки с помощью кода Kotlin, например [HTML](https://github.com/Kotlin/kotlinx.html) or XML,
-* Программной вёрстки компонентов UI: [Anko](https://github.com/Kotlin/anko/wiki/Anko-Layouts),
 * Настройка маршрутов для веб-сервера: [Ktor](https://ktor.io/docs/routing.html).
 
 <!-- Consider the following code: -->

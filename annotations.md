@@ -6,6 +6,8 @@ title: "Аннотации"
 url: https://kotlinlang.ru/docs/annotations.html
 ---
 
+<!-- При переводе статьи оригинальная версия была от 16 November 2021 -->
+
 <!-- # Annotations -->
 # Аннотации
 

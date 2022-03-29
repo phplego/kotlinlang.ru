@@ -60,7 +60,8 @@
   ],
   "Kotlin Multiplatform для iOS и Android": [
     "multiplatform-mobile-getting-started",
-    "multiplatform-mobile-setup"
+    "multiplatform-mobile-setup",
+    "multiplatform-mobile-create-first-app"
   ],
   "Мультиплатформенное программирование": [
     "mpp-get-started",

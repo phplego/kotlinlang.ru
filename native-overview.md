@@ -5,7 +5,7 @@ title: "Kotlin Native"
 url: https://kotlinlang.ru/docs/native-overview.html
 ---
       
-<!-- При переводе статьи оригинальная версия была от 07 December 2021 -->
+<!-- При переводе статьи оригинальная версия была от 25 February 2022 -->
 
 # Kotlin Native
 
@@ -44,8 +44,8 @@ Kotlin/Native поддерживает следующие платформы:
 * Windows (MinGW)
 * Android NDK
 
-<!-- [The full list of supported targets is available here](mpp-supported-platforms.md). -->
-[Полный список поддерживаемых платформ вы можете найти здесь](mpp-supported-platforms.html).
+<!-- [The full list of supported targets is available here](multiplatform-dsl-reference.md). -->
+[Полный список поддерживаемых платформ вы можете найти здесь](multiplatform-dsl-reference.html).
 
 <a name="interoperability"></a>
 
@@ -67,7 +67,7 @@ Kotlin/Native поддерживает двустороннюю совмести
 
 <!-- Kotlin/Native supports interoperability to use existing libraries
 directly from Kotlin/Native: -->
-Балгородя совместимости, вы можете использования существующие библиотеки непосредственно из Kotlin/Native:
+Благодаря совместимости, вы можете использования существующие библиотеки непосредственно из Kotlin/Native:
 
 <!-- * static or dynamic [C libraries](native-c-interop.md)
 * C, [Swift, and Objective-C](native-objc-interop.md) frameworks -->.
@@ -107,8 +107,8 @@ Kotlin in one place and share it with some or all target platforms. -->
 кода Kotlin и помогают разрабатывать общие части проекта в Kotlin в одном месте и делиться ими с некоторыми или всеми
 платформами.
 
-<!-- You can use [Kotlin Multiplatform Mobile (KMM)](https://kotlinlang.org/lp/mobile/) to create multiplatform mobile applications with code shared between Android and iOS. -->
-Вы можете использовать [Kotlin Multiplatform Mobile (KMM)](https://kotlinlang.org/lp/mobile/) для создания
+<!-- You can use [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/) to create multiplatform mobile applications with code shared between Android and iOS. -->
+Вы можете использовать [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/) для создания
 мультиплатформенных мобильных приложений с одним кодом для Android и iOS.
 
 <a name="how-to-get-started"></a>
@@ -127,13 +127,13 @@ Kotlin in one place and share it with some or all target platforms. -->
 <!-- Recommended documentation: -->
 Рекомендуемая документация:
 
-<!-- * [Kotlin Multiplatform Mobile documentation](kmm-getting-started.md)
-* [Multiplatform documentation](mpp-intro.md)
+<!-- * [Kotlin Multiplatform Mobile documentation](multiplatform-mobile-getting-started.md)
+* [Multiplatform documentation](multiplatform-get-started.md)
 * [C interop](native-c-interop.md)
 * [Swift/Objective-C interop](native-objc-interop.md) -->
 
-* [Документация Kotlin Multiplatform Mobile](kmm-getting-started.html)
-* [Документация по мультиплатформенности](mpp-intro.html)
+* [Документация Kotlin Multiplatform Mobile](multiplatform-mobile-getting-started.html)
+* [Документация по мультиплатформенности](multiplatform-get-started.html)
 * [C interop](native-c-interop.html)
 * [Swift/Objective-C interop](native-objc-interop.html)
 
@@ -141,13 +141,13 @@ Kotlin in one place and share it with some or all target platforms. -->
 Рекомендуемые руководства:
 
 <!-- * [Get started with Kotlin/Native](native-get-started.md)
-* [Create your first KMM application](kmm-create-first-app.md)
+* [Create your first cross-platform mobile application](multiplatform-mobile-create-first-app.md)
 * [Types mapping between C and Kotlin/Native](mapping-primitive-data-types-from-c.md)
 * [Kotlin/Native as a Dynamic Library](native-dynamic-libraries.md)
 * [Kotlin/Native as an Apple Framework](apple-framework.md) -->
 
 * [Начало работы с Kotlin/Native](native-get-started.html)
-* [Создание первого KMM приложения](kmm-create-first-app.html)
+* [Создание первого кроссплатформенного мобильного приложения](multiplatform-mobile-create-first-app.html)
 * [Сравнение типов C и Kotlin/Native](mapping-primitive-data-types-from-c.html)
 * [Kotlin/Native как динамическая библиотека](native-dynamic-libraries.html)
 * [Kotlin/Native как Apple фреймворк](apple-framework.html)
@@ -157,14 +157,14 @@ Kotlin in one place and share it with some or all target platforms. -->
 <!-- ## Sample projects -->
 ## Примеры проктов
 
-<!-- * [Kotlin Multiplatform Mobile samples](kmm-samples.md)
+<!-- * [Kotlin Multiplatform Mobile samples](multiplatform-mobile-samples.md)
 * [Kotlin/Native sources and examples](https://github.com/JetBrains/kotlin/tree/master/kotlin-native/samples)
 * [KotlinConf app](https://github.com/JetBrains/kotlinconf-app)
 * [KotlinConf Spinner app](https://github.com/jetbrains/kotlinconf-spinner)
 * [Kotlin/Native sources and examples (.tgz)](https://download.jetbrains.com/kotlin/native/kotlin-native-samples-1.0.1.tar.gz)
 * [Kotlin/Native sources and examples (.zip)](https://download.jetbrains.com/kotlin/native/kotlin-native-samples-1.0.1.zip) -->
 
-* [Примеры Kotlin Multiplatform Mobile](kmm-samples.html)
+* [Примеры Kotlin Multiplatform Mobile](multiplatform-mobile-samples.html)
 * [Kotlin/Native исходный код и примеры](https://github.com/JetBrains/kotlin/tree/master/kotlin-native/samples)
 * [Приложение KotlinConf](https://github.com/JetBrains/kotlinconf-app)
 * [Приложение KotlinConf Spinner](https://github.com/jetbrains/kotlinconf-spinner)

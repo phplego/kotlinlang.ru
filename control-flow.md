@@ -6,19 +6,21 @@ title: "Условия и циклы"
 url: https://kotlinlang.ru/docs/control-flow.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 16 November 2021 -->
+<!-- При переводе статьи оригинальная версия была от 21 March 2022 -->
 
 <!-- Conditions and loops -->
 # Условия и циклы
 
 <a name="if-expression"></a>
+
 <!-- ## If expression -->
 ## Условное выражение if
 
 <!-- In Kotlin, `if` is an expression: it returns a value.
 Therefore, there is no ternary operator (`condition ? then : else`) because ordinary `if` works fine in this role. -->
 В языке Kotlin `if` является выражением, т.е. оно возвращает значение.
-Это позволяет отказаться от тернарного оператора (`условие ? условие истинно : условие ложно`), потому что обычному `if` вполне по силам его заменить.
+Это позволяет отказаться от тернарного оператора (`условие ? условие истинно : условие ложно`), потому что обычному `if`
+вполне по силам его заменить.
 
 ```kotlin
 // обычное использование
@@ -38,7 +40,8 @@ val max = if (a > b) a else b
 ```
 
 <!-- Branches of `if` branches can be blocks. In this case, the last expression is the value of a block: -->
-"Ветви" выражения `if` могут быть блоками, т.е. содержать несколько строк кода, при этом последнее выражение является значением блока:
+"Ветви" выражения `if` могут быть блоками, т.е. содержать несколько строк кода, при этом последнее выражение является
+значением блока:
 
 ```kotlin
 val max = if (a > b) {
@@ -52,7 +55,8 @@ val max = if (a > b) {
 
 <!-- If you're using `if` as an expression, for example, for returning its value or
 assigning it to a variable, the `else` branch is mandatory. -->
-Если вы используете `if` в качестве выражения (например, возвращая его значение или присваивая его переменной), то использование ветки `else` является обязательным.
+Если вы используете `if` в качестве выражения (например, возвращая его значение или присваивая его переменной), то
+использование ветки `else` является обязательным.
 
 <a name="when-expression"></a>
 <!-- ## When expression -->
@@ -60,7 +64,8 @@ assigning it to a variable, the `else` branch is mandatory. -->
 
 <!-- `when` defines a conditional expression with multiple branches. It is similar to the `switch` statement in C-like languages.
 Its simple form looks like this. -->
-`when` определяет условное выражение с несколькими "ветвями". Оно похоже на оператор `switch`, присутствующий в C-подобных языках.
+`when` определяет условное выражение с несколькими "ветвями". Оно похоже на оператор `switch`, присутствующий в
+C-подобных языках.
 
 ```kotlin
 when (x) {
@@ -73,15 +78,17 @@ when (x) {
 ```
 
 <!-- `when` matches its argument against all branches sequentially until some branch condition is satisfied. -->
-`when` последовательно сравнивает свой аргумент со всеми указанными значениями, пока не выполнится какое-либо из условий ветвей.
+`when` последовательно сравнивает свой аргумент со всеми указанными значениями, пока не выполнится какое-либо из условий
+ветвей.
 
 <!-- `when` can be used either as an expression or as a statement. If it is used as an expression, the value
 of the first matching branch becomes the value of the overall expression. If it is used as a statement, the values of
 individual branches are ignored. Just like with `if`, each branch can be a block, and its value
 is the value of the last expression in the block. -->
-`when` можно использовать и как выражение, и как оператор. При использовании его в виде выражения значение первой ветки, удовлетворяющей условию,
-становится значением всего выражения. При использовании в виде оператора значения отдельных веток отбрасываются.
-В точности как `if`: каждая ветвь может быть блоком и её значением является значение последнего выражения блока.
+`when` можно использовать и как выражение, и как оператор. При использовании его в виде выражения значение первой ветки,
+удовлетворяющей условию, становится значением всего выражения. При использовании в виде оператора значения отдельных
+веток отбрасываются. В точности как `if`: каждая ветвь может быть блоком и её значением является значение последнего
+выражения блока.
 
 <!-- The `else` branch is evaluated if none of the other branch conditions are satisfied. -->
 Значение ветки `else` вычисляется в том случае, когда ни одно из условий в других ветках не удовлетворено.
@@ -89,9 +96,9 @@ is the value of the last expression in the block. -->
 <!-- If `when` is used as an _expression_, the `else` branch is mandatory,
 unless the compiler can prove that all possible cases are covered with branch conditions,
 for example, with [`enum` class](enum-classes.md) entries and [`sealed` class](sealed-classes.md) subtypes). -->
-Если `when` используется как *выражение*, то ветка `else` является обязательной, за исключением случаев, в которых компилятор может убедиться,
-что ветки покрывают все возможные значения. Так происходит, например с записями [класса `enum`](enum-classes.html)
-и с подтипами [`sealed` (изолированных) классов](sealed-classes.html).
+Если `when` используется как *выражение*, то ветка `else` является обязательной, за исключением случаев, в которых
+компилятор может убедиться, что ветки покрывают все возможные значения. Так происходит, например с записями
+[класса `enum`](enum-classes.html) и с подтипами [`sealed` (изолированных) классов](sealed-classes.html).
 
 ```kotlin
 enum class Bit {
@@ -168,7 +175,8 @@ when (x) {
 due to [smart casts](typecasts.md#smart-casts), you can access the methods and properties of the type without
 any extra checks. -->
 Помимо этого Кotlin позволяет с помощью `is` или `!is` проверить тип аргумента. Обратите внимание,
-что благодаря [умным приведениям](typecasts.html#smart-casts) вы можете получить доступ к методам и свойствам типа без дополнительной проверки.
+что благодаря [умным приведениям](typecasts.html#smart-casts) вы можете получить доступ к методам и свойствам типа без
+дополнительной проверки.
 
 ```kotlin
 fun hasPrefix(x: Any) = when(x) {
@@ -195,22 +203,24 @@ when {
 
 ```kotlin
 fun Request.getBody() =
-        when (val response = executeRequest()) {
-            is Success -> response.body
-            is HttpError -> throw HttpException(response.status)
-        }
+    when (val response = executeRequest()) {
+        is Success -> response.body
+        is HttpError -> throw HttpException(response.status)
+    }
 ```
 
 <!-- The scope of variable introduced in *when* subject is restricted to the body of this *when*. -->
 Такая переменная, объявленная внутри условия `when` может быть видна только внутри тела этого `when`.
 
 <a name="for-loops"></a>
+
 <!-- ## For loops -->
 ## Цикл for
 
 <!-- The `for` loop iterates through anything that provides an iterator. This is equivalent to the `foreach` loop in languages like C#.
 The syntax of `for` is the following: -->
-Цикл `for` обеспечивает перебор всех значений, поставляемых итератором. Он эквивалентен циклу `foreach` в таких языках, как C#.
+Цикл `for` обеспечивает перебор всех значений, поставляемых итератором. Он эквивалентен циклу `foreach` в таких языках,
+как C#.
 
 ```kotlin
 for (item in collection) print(item)
@@ -272,6 +282,7 @@ for ((index, value) in array.withIndex()) {
 ```
 
 <a name="while-loops"></a>
+
 <!-- ## While loops -->
 ## Цикл while
 
@@ -296,6 +307,8 @@ do {
     val y = retrieveData()
 } while (y != null) // y здесь доступно!
 ```
+
+<a name="break-and-continue-in-loops"></a>
 
 ## Break и continue в циклах
 

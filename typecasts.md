@@ -6,16 +6,16 @@ title: "Приведение и проверка типов"
 url: https://kotlinlang.ru/docs/typecasts.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 02 September 2021 -->
+<!-- При переводе статьи оригинальная версия была от 13 January 2022 -->
 
-<!-- Type Checks and Casts -->
+<!-- Type checks and casts -->
 # Приведение и проверка типов
 
-<!-- ## `is` and `!is` Operators -->
-## Операторы `is` и `!is`
+<!-- ## is and !is operators -->
+## Операторы is и !is
 
 <!-- Use the `is` operator or its negated form `!is` to perform a runtime check that identifies whether an object conforms to a given type: -->
-Используйте оператор `is` или его орицание `!is`, чтобы проверить соотвествует ли объект заданному типу
+Используйте оператор `is` или его отрицание `!is`, чтобы проверить соотвествует ли объект заданному типу
 во время исполнения.
 
 ```kotlin
@@ -32,7 +32,8 @@ else {
 ```
 
 <a name="smart-casts"></a>
-<!--## Smart Casts-->
+
+<!-- ## Smart casts -->
 ## Умные приведения
 
 <!-- In most cases, you don't need to use explicit cast operators in Kotlin because the compiler tracks the
@@ -59,8 +60,9 @@ if (x !is String) return
 print(x.length) // x автоматически преобразовывается в String
 ```
 
-<!-- or if it is on the right-hand side of `&&` or `||`: -->
-или в случаях, когда приводимая переменная находится справа от оператора `&&` или `||`:
+<!-- or if it is on the right-hand side of `&&` or `||` and the proper check (regular or negative) is on the left-hand side: -->
+или в случаях, когда приводимая переменная находится справа от оператора `&&` или `||`, а соответствующая проверка
+(обычная или отрицательная) находится слева:
 
 ```kotlin
 // x автоматически преобразовывается в String справа от `||`
@@ -71,7 +73,6 @@ if (x is String && x.length > 0) {
     print(x.length) // x автоматически преобразовывается в String
 }
 ```
-
 
 <!-- Smart casts work for [`when` expressions](control-flow.md#when-expression)
 and [`while` loops](control-flow.md#while-loops) as well: -->
@@ -98,13 +99,15 @@ More specifically, smart casts can be used under the following conditions: -->
 * `var` properties - never, because the variable can be modified at any time by other code. -->
 
 * с локальными `val` переменными - всегда за исключением [локальных делегированных свойств](delegated-properties.md).;
-* с `val` свойствами - если поле имеет модификатор доступа `private` или `internal`, или проверка происходит в том же [модуле](visibility-modifiers.html#modules), в котором объявлено это свойство.
+* с `val` свойствами - если поле имеет модификатор доступа `private` или `internal`, или проверка происходит в том же
+[модуле](visibility-modifiers.html#modules), в котором объявлено это свойство.
 Умные приведения неприменимы к публичным свойствам или свойствам, которые имеют переопределённые getter'ы;
 * с локальными `var` переменными - если переменная не изменяется между проверкой и использованием,
 не захватывается лямбдой, которая её модифицирует и не является локальным делегированным свойством;
 * с `var` свойствами - никогда, потому что переменная может быть изменена в любое время другим кодом.
 
 <a name="unsafe-cast-operator"></a>
+
 <!-- ## "Unsafe" cast operator -->
 ## Оператор "небезопасного" приведения
 
@@ -129,11 +132,13 @@ val x: String? = y as String?
 ```
 
 <a name="safe-nullable-cast-operator"></a>
+
 <!-- ## "Safe" (nullable) cast operator -->
-## Оператор "безопасного" (nullable) приведения 
+## Оператор "безопасного" (nullable) приведения
 
 <!-- To avoid exceptions, use the *safe* cast operator `as?`, which returns `null` on failure. -->
-Чтобы избежать исключения, вы можете использовать оператор *безопасного* приведения `as?`, который возвращает `null` в случае неудачи.
+Чтобы избежать исключения, вы можете использовать оператор *безопасного* приведения `as?`, который возвращает `null` в
+случае неудачи.
 
 ```kotlin
 val x: String? = y as? String
@@ -143,6 +148,7 @@ val x: String? = y as? String
 Заметьте, что несмотря на то, что справа от `as?` стоит non-null тип `String`, результат приведения является nullable.
 
 <a name="type-erasure-and-generic-type-checks"></a>
+
 <!-- ## Type erasure and generic type checks -->
 ## Стирание и проверка типов у Обобщений (Generics)
 
@@ -188,9 +194,9 @@ fun handleStrings(list: List<String>) {
 <!-- Inline functions with [reified type parameters](inline-functions.md#reified-type-parameters) have their actual type arguments
 inlined at each call site. This enables `arg is T` checks for the type parameters, but if `arg` is an instance of a
 generic type itself, *its* type arguments are still erased. -->
-Встроенные (inline) функции с [параметрами вещественного типа](inline-functions.html#reified-type-parameters) имеют свои аргументы типа,
-встроенные на каждый момент вызова, что позволяет `arg is T` проверять параметризованный тип,
-но если `arg` является объектом обобщенного типа, его аргумент типа по-прежнему стираются.
+Встроенные (inline) функции с [параметрами вещественного типа](inline-functions.html#reified-type-parameters) имеют свои
+аргументы типа, встроенные на каждый момент вызова, что позволяет `arg is T` проверять параметризованный тип, но если
+`arg` является объектом обобщенного типа, его аргумент типа по-прежнему стираются.
 
 ```kotlin
 inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
@@ -215,18 +221,20 @@ fun main() {
 ```
 
 <a name="unchecked-casts"></a>
+
 <!-- ## Unchecked casts -->
 ## Непроверяемые (Unchecked) приведения
 
 <!-- As established above, type erasure makes checking the actual type arguments of a generic type instance impossible at runtime.
 Additionally, generic types in the code might not be connected to each other closely enough for the compiler to ensure
-type safety. --> 
-Как упоминалось выше, стирание типов делает невозможным проверку типа аргумента обобщения на этапе выполнения, и обобщенные типы в коде могут быть недостаточно связаны друг с другом, чтобы компилятор обеспечил типобезопасность.
+type safety. -->
+Как упоминалось выше, стирание типов делает невозможным проверку типа аргумента обобщения на этапе выполнения, и
+обобщенные типы в коде могут быть недостаточно связаны друг с другом, чтобы компилятор обеспечил типобезопасность.
 
 <!-- Even so, sometimes we have high-level program logic that implies type safety instead. For example: -->
 Тем не менее, иногда мы имеем программную логику высокого уровня, которая подразумевает типобезопасность.
 
-```kotlin 
+```kotlin
 fun readDictionary(file: File): Map<String, *> = file.inputStream().use {
     TODO("Прочитать сопоставление строк с произвольными элементами.")
 }
@@ -240,7 +248,8 @@ val intsDictionary: Map<String, Int> = readDictionary(intsFile) as Map<String, I
 
 <!-- A warning appears for the cast in the last line. The compiler can't fully check it at runtime and provides
 no guarantee that the values in the map are `Int`. -->
-Компилятор выдает предупреждение для приведения в последней строке. Приведение не может быть полностью проверено во время выполнения и нет дает гарантии, что значения в словаре (map) являются `Int`.
+Компилятор выдает предупреждение для приведения в последней строке. Приведение не может быть полностью проверено во
+время выполнения и нет дает гарантии, что значения в словаре (map) являются `Int`.
 
 <!-- To avoid unchecked casts, you can redesign the program structure. In the example above, you could use the
 `DictionaryReader<T>` and `DictionaryWriter<T>` interfaces with type-safe implementations for different types.
@@ -250,12 +259,12 @@ Proper use of [generic variance](generics.md#variance) can also help. -->
 возможно объявить интерфейсы `DictionaryReader<T>` и `DictionaryWriter<T>`
 с типобезопасными имплементациями для различных типов. Правильное использование
 [вариативности обобщений](generics.html#variance) также может помочь.
- 
+
 <!-- For generic functions, using [reified type parameters](inline-functions.md#reified-type-parameters) makes casts
 like `arg as T` checked, unless `arg`'s type has *its own* type arguments that are erased. -->
 Для обобщенных функций, используемых встроенные (inline) функции с
-[параметрами вещественного типа](inline-functions.html#reified-type-parameters) приведение типа `arg as T` является проверяемым,
-до тех пор, пока тип `arg` не имеет *свои* аргументы типа, которые были стерты.
+[параметрами вещественного типа](inline-functions.html#reified-type-parameters) приведение типа `arg as T` является
+проверяемым, до тех пор, пока тип `arg` не имеет *свои* аргументы типа, которые были стерты.
 
 <!-- An unchecked cast warning can be suppressed by [annotating](annotations.md) the statement or the
 declaration where it occurs with `@Suppress("UNCHECKED_CAST")`: -->
@@ -273,7 +282,8 @@ inline fun <reified T> List<*>.asListOfType(): List<T>? =
 >their elements, and type casts to an array type are partially checked: the
 >nullability and actual type arguments of the element type are still erased. For example,
 >the cast `foo as Array<List<String>?>` will succeed if `foo` is an array holding any `List<*>`, whether it is nullable or not. -->
-В JVM, [массивы](basic-types.html#arrays) (`Array<Foo>`) сохраняют информацию о стираемом типе их элементов,
-и приведение типов к массиву частично проверяется: nullability и фактические аргументы
-для параметризированных элементов массива все еще стираются.
-Например, приведение `foo as Array <List <String>?>` будет успешным, если `foo` является массивом `List <*>`, независимо от того, является ли он nullable или нет.
+> В JVM, [массивы](basic-types.html#arrays) (`Array<Foo>`) сохраняют информацию о стираемом типе их элементов,
+> и приведение типов к массиву частично проверяется: nullability и фактические аргументы
+> для параметризированных элементов массива все еще стираются.
+> Например, приведение `foo as Array <List <String>?>` будет успешным, если `foo` является массивом `List <*>`,
+> независимо от того, является ли он nullable или нет.

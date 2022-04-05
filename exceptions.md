@@ -6,12 +6,13 @@ title: "Исключения"
 url: https://kotlinlang.ru/docs/exceptions.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 10 September 2021 -->
+<!-- При переводе статьи оригинальная версия была от 05 March 2022 -->
 
 <!-- # Exceptions -->
 # Исключения
 
 <a name="exception-classes"></a>
+
 <!-- ## Exception classes -->
 ## Классы исключений
 
@@ -47,6 +48,7 @@ However, at least one `catch` or `finally` block is required. -->
 могут быть опущены. Однако, должен быть использован как минимум один блок `catch` или `finally`.
 
 <a name="try-is-an-expression"></a>
+
 <!-- ### Try is an expression -->
 ### Try - это выражение
 
@@ -65,6 +67,7 @@ The contents of the `finally` block don't affect the result of the expression. -
 в блоке `catch` (или блоках). Содержимое `finally` блока никак не повлияет на результат `try`-выражения.
 
 <a name="checked-exceptions"></a>
+
 <!-- ## Checked exceptions -->
 ## Проверяемые исключения
 
@@ -80,8 +83,7 @@ Appendable append(CharSequence csq) throws IOException;
 
 <!-- This signature says that every time I append a string to something (a `StringBuilder`, some kind of a log, a console, etc.),
 I have to catch the `IOExceptions`. Why? Because the implementation might be performing IO operations (`Writer` also implements `Appendable`).
-The result is code like this all over the place.: -->
-
+The result is code like this all over the place: -->
 Сигнатура говорит, что каждый раз, когда я присоединяю строку к чему-то (к `StringBuilder`, какому-нибудь логу, сообщению в консоль и т.п),
 мне необходимо отлавливать исключения типа `IOExceptions`. Почему? Потому, что данная операция может вызывать IO (Input-Output: Ввод-Вывод) (`Writer` также
 реализует интерфейс `Appendable`).
@@ -105,7 +107,7 @@ try {
 <!-- > Examination of small programs leads to the conclusion that requiring exception specifications
 >could both enhance developer productivity and enhance code quality, but experience with large software projects suggests
 >a different result – decreased productivity and little or no increase in code quality. -->
- 
+
 > Анализ небольших программ показал, что обязательная обработка исключений может повысить производительность разработчика и улучшить качество кода.
 > Однако, изучение крупных проектов по разработке программного обеспечения позволяет сделать противоположный  вывод:
 > происходит понижение продуктивности и сравнительно небольшое улучшение кода (а иногда и без всякого улучшения).
@@ -124,6 +126,7 @@ and [for Swift and Objective-C](native-objc-interop.md#errors-and-exceptions). -
 а также [для Swift и Objective-C](native-objc-interop.md#errors-and-exceptions).
 
 <a name="the-nothing-type"></a>
+
 <!-- ## The Nothing type -->
 ## Тип Nothing
 
@@ -170,6 +173,7 @@ val l = listOf(null)   // у 'l' тип `List<Nothing?>
 ```
 
 <a name="java-interoperability"></a>
+
 <!-- ## Java interoperability -->
 ## Совместимость с Java
 

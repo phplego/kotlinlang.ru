@@ -6,7 +6,7 @@ title: "Изолированные классы"
 url: https://kotlinlang.ru/docs/sealed-classes.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 10 January 2022 -->
+<!-- При переводе статьи оригинальная версия была от 22 February 2022 -->
 
 <!-- # Sealed classes -->
 # Изолированные классы
@@ -53,7 +53,7 @@ sealed interface Error
 
 sealed class IOError(): Error
 
-class FileReadError(val f: File): IOError()
+class FileReadError(val file: File): IOError()
 class DatabaseError(val source: DataSource): IOError()
 
 object RuntimeError : Error
@@ -65,7 +65,6 @@ object RuntimeError : Error
 
 <!-- Constructors of sealed classes can have one of two [visibilities](visibility-modifiers.md): `protected` (by default) or
 `private`: -->
-
 Конструкторы изолированных классов могут иметь одну из двух [видимостей](visibility-modifiers.html): `protected` (по
 умолчанию) или `private`.
 
@@ -78,6 +77,7 @@ sealed class IOError {
 ```
 
 <a name="location-of-direct-subclasses"></a>
+
 <!-- ## Location of direct subclasses -->
 ## Расположение прямых наследников
 
@@ -109,27 +109,29 @@ open class CustomError(): Error // может быть расширен везд
 ```
 
 <a name="inheritance-in-multiplatform-projects"></a>
+
 <!-- ### Inheritance in multiplatform projects -->
 ## Наследование в мультиплатформенных проектах
 
-<!-- There is one more inheritance restriction in [multiplatform projects](mpp-intro.md): direct subclasses of sealed classes must
-reside in the same source set. It applies to sealed classes without the [`expect` and `actual` modifiers](mpp-connect-to-apis.md). -->
-В [мультиплатформенных проектах](mpp-intro.html) есть еще одно ограничение наследования: прямые наследники изолированных
+<!-- There is one more inheritance restriction in [multiplatform projects](multiplatform-get-started.md): direct subclasses of sealed classes must
+reside in the same source set. It applies to sealed classes without the [`expect` and `actual` modifiers](multiplatform-connect-to-apis.md). -->
+В [мультиплатформенных проектах](multiplatform-get-started.html) есть еще одно ограничение наследования: прямые наследники изолированных
 классов должны находиться в одном модуле. Это применимо к изолированным классам без
-[модификаторов `expect` и `actual`](mpp-connect-to-apis.html).
+[модификаторов `expect` и `actual`](multiplatform-connect-to-apis.html).
 
 <!-- If a sealed class is declared as `expect` in a common source set and have `actual` implementations in platform source sets,
-both `expect` and `actual` versions can have subclasses in their source sets. Moreover, if you use a [hierarchical structure](mpp-share-on-platforms.md#share-code-on-similar-platforms),
+both `expect` and `actual` versions can have subclasses in their source sets. Moreover, if you use a [hierarchical structure](multiplatform-share-on-platforms.md#share-code-on-similar-platforms),
 you can create subclasses in any source set between the `expect` and `actual` declarations. -->
 Если изолированный класс объявлен как `expected` в общем модуле и имеет `actual` реализации в платформенном модуле, как
 ожидаемая, так и актуальные версии могут иметь наследников в своих модулях. Более того, если вы используете
-[иерархическую структуру](mpp-share-on-platforms.html#share-code-on-similar-platforms), вы можете создавать наследников
+[иерархическую структуру](multiplatform-share-on-platforms.html#share-code-on-similar-platforms), вы можете создавать наследников
 в любом исходном наборе между `expect` и `actual` объявлениями.
 
-<!-- [Learn more about the hierarchical structure of multiplatform projects](mpp-share-on-platforms.md#share-code-on-similar-platforms). -->
-Узнайте больше о [иерархической структуре мультиплатформенных проектов](mpp-share-on-platforms.html#share-code-on-similar-platforms).
+<!-- [Learn more about the hierarchical structure of multiplatform projects](multiplatform-share-on-platforms.md#share-code-on-similar-platforms). -->
+Узнайте больше о [иерархической структуре мультиплатформенных проектов](multiplatform-share-on-platforms.html#share-code-on-similar-platforms).
 
 <a name="sealed-classes-and-when-expression"></a>
+
 <!-- ## Sealed classes and when expression -->
 ## Изолированные классы и выражение when
 
@@ -151,10 +153,10 @@ fun log(e: Error) = when(e) {
 }
 ```
 
-<!-- > `when` expressions on [`expect`](mpp-connect-to-apis.md) sealed classes in the common code of multiplatform projects still 
+<!-- > `when` expressions on [`expect`](multiplatform-connect-to-apis.md) sealed classes in the common code of multiplatform projects still 
 > require an `else` branch. This happens because subclasses of `actual` platform implementations aren't known in the 
 > common code. -->
 
-> Выражение `when` в [`expect`](mpp-connect-to-apis.html) изолированных классах в общем коде многоплатформенных проектов
+> Выражение `when` в [`expect`](multiplatform-connect-to-apis.html) изолированных классах в общем коде многоплатформенных проектов
 > по-прежнему требует ветки `else`. Это происходит потому, что наследники актуальных реализаций платформы не известны
 > в общем коде.

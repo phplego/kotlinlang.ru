@@ -91,7 +91,8 @@
     "coroutines-guide",
     "coroutines-basics",
     "cancellation-and-timeouts",
-    "composing-suspending-functions"
+    "composing-suspending-functions",
+    "coroutine-context-and-dispatchers"
   ],
   "Прочее": [
     "scope-functions"

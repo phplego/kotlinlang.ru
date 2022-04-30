@@ -1160,7 +1160,7 @@ println("У $name уже ${children.size} детей")
 
 <!-- Prefer using immutable data to mutable. Always declare local variables and properties as `val` rather than `var` if
 they are not modified after initialization. -->
-Предпочтительнее использовать неизменяемые данные. Всегда объявляйте локальные переменные и свойства как "val", а не "var", если
+Предпочтительнее использовать неизменяемые данные. Всегда объявляйте локальные переменные и свойства как `val`, а не `var`, если
 они не будут изменены после инициализации.
 
 <!-- Always use immutable collection interfaces (`Collection`, `List`, `Set`, `Map`) to declare collections which are not
@@ -1411,7 +1411,7 @@ Although the semantics are similar, there are some stylistic conventions on when
 Несмотря на схожую семантику, есть некоторые стилистические соглашения, указывающие на то, когда лучше использовать одно из этих решений.
 
 <!-- Prefer a property over a function when the underlying algorithm: -->
-Использование свойства перед функцией предпочтительнее, когда лежащий в основе алгоритм:
+Предпочтительно использовать свойства вместо функций, если лежащий в основе алгоритм:
 
 <!--does not throw
 has a `O(1)` complexity

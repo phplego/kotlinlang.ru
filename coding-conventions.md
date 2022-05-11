@@ -403,7 +403,7 @@ should not affect the formatting of either the declaration or any of the usages.
 ### Двоеточие
 
 <!-- Put a space before `:` in the following cases: -->
-Не ставьте пробел перед `:` в следующих случаях:
+Ставьте пробел перед `:` в следующих случаях:
 
 <!-- * when it's used to separate a type and a supertype
 * when delegating to a superclass constructor or a different constructor of the same class

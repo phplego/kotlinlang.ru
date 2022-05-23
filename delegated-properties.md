@@ -16,7 +16,7 @@ url: https://kotlinlang.ru/docs/delegated-properties.html
 
 <!-- With some common kinds of properties, even though you can implement them manually every time you need them,
 it is more helpful to implement them once, add them to a library, and reuse them later. For example: -->
-Существует несколько основных видов свойств, которые вы реализовываете каждый раз вручную в случае их надобности, однако
+Существует несколько основных видов свойств, которые вы реализуете каждый раз вручную в случае их надобности, однако
 намного удобнее реализовать их один раз и положить в какую-нибудь библиотеку. Примеры таких свойств:
 
 <!-- * _Lazy_ properties: the value is computed only on first access.

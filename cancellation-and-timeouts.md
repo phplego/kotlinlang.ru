@@ -40,7 +40,6 @@ println("main: I'm tired of waiting!")
 job.cancel() // cancels the job
 job.join() // waits for job's completion 
 println("main: Now I can quit.")
-}
 ```
 
 <!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-cancel-01.kt). -->
@@ -243,7 +242,7 @@ delay(1300L) // delay a bit
 println("main: I'm tired of waiting!")
 job.cancelAndJoin() // cancels the job and waits for its completion
 println("main: Now I can quit.")
-}
+
 ```
 
 <!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-cancel-05.kt). -->

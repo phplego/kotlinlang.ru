@@ -235,7 +235,7 @@ to use the resulting deferred value to get the result. -->
 <!-- > [GlobalScope] is a delicate API that can backfire in non-trivial ways, one of which will be explained
 > below, so you must explicitly opt-in into using `GlobalScope` with `@OptIn(DelicateCoroutinesApi::class)`. -->
 
-> [GlobalScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html) — это деликатный API, который может иметь нетривиальные последствия, один из которых будет объяснен ниже, поэтому вы должны явным образом согласиться на использование `GlobalScope` с помощью `@OptIn(DelicateCoroutinesApi::class)`.
+> [GlobalScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html) — это деликатный API, который может иметь нетривиальные последствия, одно из которых будет объяснено ниже, поэтому вы должны явным образом согласиться на использование `GlobalScope` с помощью `@OptIn(DelicateCoroutinesApi::class)`.
 
 ```kotlin
 // The result type of somethingUsefulOneAsync is Deferred<Int>

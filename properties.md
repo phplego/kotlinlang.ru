@@ -30,7 +30,7 @@ class Address {
 ```
 
 <!-- To use a property, simply refer to it by its name: -->
-Для того, чтобы воспользоваться свойством, просто обратитесь к нему по имени.
+Для того чтобы воспользоваться свойством, просто обратитесь к нему по имени.
 
 ```kotlin
 fun copyAddress(address: Address): Address {
@@ -235,7 +235,7 @@ but you still want to avoid null checks when referencing the property inside the
 но всё равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству.
 
 <!-- To handle such cases, you can mark the property with the `lateinit` modifier: -->
-Для того, чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`.
+Для того чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`.
 
 ```kotlin
 public class MyTest {
@@ -259,7 +259,7 @@ The type of the property or variable must be non-null, and it must not be a prim
 
 <!-- Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
 being accessed and the fact that it hasn't been initialized. -->
-Доступ к `lateinit` свойству до того, как оно проинициализировано, выбрасывает специальное исключение, которое чётко обозначает,
+Доступ к `lateinit` свойству до того, как оно проинициализировано, выбрасывает специальное исключение, которое чётко обозначает 
 свойство, к которому осуществляется доступ, и тот факт, что оно не было инициализировано.
 
 <a name="checking-whether-a-lateinit-var-is-initialized"></a>
@@ -299,7 +299,7 @@ allow you to use properties so one can implement any sort of behavior of a prope
 Somewhere in between the simplicity of the first kind and variety of the second, there are common patterns for what properties
 can do. A few examples: lazy values, reading from a map by a given key, accessing a database, notifying a listener on access. -->
 Самый простой тип свойств просто считывает (или записывает) данные из теневого поля.
-Тем не менее, с пользовательскими геттерами и сеттерами мы можем реализовать совершенно любое поведение свойства.
+Тем не менее с пользовательскими геттерами и сеттерами мы можем реализовать совершенно любое поведение свойства.
 Где-то между простотой первого вида и разнообразием второго существуют общепринятые шаблоны того, что могут делать свойства.
 Несколько примеров: вычисление значения свойства при первом доступе к нему (ленивые значения),
 чтение из ассоциативного списка с помощью заданного ключа, доступ к базе данных, оповещение listener'а в момент доступа.

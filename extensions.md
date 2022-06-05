@@ -32,7 +32,7 @@ new properties for existing classes. -->
 
 <!-- To declare an extension function, prefix its name with a _receiver type_, which refers to the type being extended.
 The following adds a `swap` function to `MutableList<Int>`: -->
-Для того, чтобы объявить функцию-расширение, укажите в качестве префикса *расширяемый тип*, то есть тип, который мы расширяем.
+Для того чтобы объявить функцию-расширение, укажите в качестве префикса *расширяемый тип*, то есть тип, который мы расширяем.
 Следующий пример добавляет функцию `swap` к `MutableList<Int>`:
 
 ```kotlin

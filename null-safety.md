@@ -63,7 +63,7 @@ a = null // ошибка компиляции
 ```
 
 <!-- To allow nulls, you can declare a variable as a nullable string by writing `String?`: -->
-Для того, чтобы разрешить `null` значение, вы можете объявить эту строковую переменную как `String?`.
+Для того чтобы разрешить `null` значение, вы можете объявить эту строковую переменную как `String?`.
 
 ```kotlin
 var b: String? = "abc" // null-значения возможны
@@ -143,7 +143,7 @@ println(a?.length) // Ненужный безопасный вызов
 may in turn have another employee as a department head. To obtain the name of Bob's department head (if there is one),
 you write the following: -->
 Такие безопасные вызовы полезны в цепочках. К примеру, если Bob (Боб), Employee (работник), может быть прикреплён (или
-нет) к отделу Department, и у отдела может быть управляющий, другой Employee. Для того, чтобы обратиться к имени этого
+нет) к отделу Department, и у отдела может быть управляющий, другой Employee. Для того чтобы обратиться к имени этого
 управляющего (если такой есть), напишем:
 
 ```kotlin
@@ -189,7 +189,7 @@ val l: Int = if (b != null) b.length else -1
 ```
 
 <!-- Instead of writing the complete `if` expression, you can also express this with the Elvis operator `?:`: -->
-Вместо того, чтобы писать полное `if`-выражение, вы можете использовать элвис-оператор `?:`.
+Вместо того чтобы писать полное `if`-выражение, вы можете использовать элвис-оператор `?:`.
 
 ```kotlin
 val l = b?.length ?: -1
@@ -198,7 +198,7 @@ val l = b?.length ?: -1
 <!-- If the expression to the left of `?:` is not `null`, the Elvis operator returns it, otherwise it returns the expression
 to the right.
 Note that the expression on the right-hand side is evaluated only if the left-hand side is `null`. -->
-Если выражение, стоящее слева от Элвис-оператора, не является `null`, то элвис-оператор его вернёт. В противном случае,
+Если выражение, стоящее слева от Элвис-оператора, не является `null`, то элвис-оператор его вернёт. В противном случае
 в качестве возвращаемого значения послужит то, что стоит справа. Обращаем ваше внимание на то, что часть кода,
 расположенная справа, выполняется ТОЛЬКО в случае, если слева получается `null`.
 

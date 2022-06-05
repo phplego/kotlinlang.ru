@@ -151,7 +151,7 @@ kapt {
 
 ## Создание исходного кода Kotlin
 
-Kapt может генерировать исходный код Kotlin. Просто поместим сгенерированные исходные файлы Kotlin в указанную директорию `processingEnv.options["kapt.kotlin.generated"]`,  и эти файлы будут скомпилированы вместе с основными исходниками.
+Kapt может генерировать исходный код Kotlin. Просто поместим сгенерированные исходные файлы Kotlin в указанную директорию `processingEnv.options["kapt.kotlin.generated"]`, и эти файлы будут скомпилированы вместе с основными исходниками.
 
 Полный образец можно найти в [kotlin-examples](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-code-generation) репозитория Github.
 

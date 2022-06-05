@@ -38,7 +38,7 @@ With a SAM conversion, Kotlin can convert any lambda expression whose signature 
 the signature of the interface's single method into the code, which dynamically instantiates the interface implementation. -->
 Вместо создания класса, который реализует функциональный интерфейс вручную, вы можете использовать лямбда-выражения.
 Вместе с SAM преобразованиями Kotlin может преобразовывать лямбда-выражения, сигнатура которых совпадает с
-сигнатурой единственного метода интерфейса, в код, который динамически создает экземпляр реализации интерфейса.
+сигнатурой единственного метода интерфейса, в код, динамически создающий экземпляр реализации интерфейса.
 
 <!-- For example, consider the following Kotlin functional interface: -->
 Например, рассмотрим следующий функциональный интерфейс Kotlin:

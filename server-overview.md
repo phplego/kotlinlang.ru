@@ -26,7 +26,7 @@ Kotlin отлично подходит для разработки сервер�
   for Spring) in the plugin for IntelliJ IDEA Ultimate.
 * **Learning Curve**: For a Java developer, getting started with Kotlin is very easy. The automated Java-to-Kotlin converter included in the Kotlin plugin helps with the first steps. [Kotlin Koans](koans.md) can guide you through the key features of the language with a series of interactive exercises. -->
 
-* **Выразительность**: инновационные возможности Kotlin, такие как поддержка
+* **Выразительность**: инновационные возможности Kotlin, такие, как поддержка
 [типобезопасных строителей](type-safe-builders.html) и [делегированных свойств](delegated-properties.html), помогают
 создавать мощные и простые в использовании абстракции.
 * **Масштабируемость**: поддержка [корутинов](coroutines-overview.html) помогает создавать серверные приложения,
@@ -44,7 +44,7 @@ Kotlin, включенный в плагин Kotlin, помогает с пер�
 <a name="frameworks-for-server-side-development-with-kotlin"></a>
 
 <!-- ## Frameworks for server-side development with Kotlin -->
-## Фреймворки для серверной разработки с Kotlin
+## Фреймворки для серверной разработки на Kotlin
 
 <!-- * [Spring](https://spring.io) makes use of Kotlin's language features to offer [more concise APIs](https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0),
   starting with version 5.0. The [online project generator](https://start.spring.io/#!language=kotlin) allows you to quickly generate a new project in Kotlin.
@@ -119,12 +119,12 @@ Google Cloud Platform предлагает серию учебных пособ�
 <a name="products-that-use-kotlin-on-the-server-side"></a>
 
 <!-- ## Products that use Kotlin on the server side -->
-## Продукты, использующие Kotlin на  сервере
+## Продукты, использующие Kotlin на сервере
 
 <!-- [Corda](https://www.corda.net/) is an open-source distributed ledger platform that is supported by major
 banks and built entirely in Kotlin. -->
 [Corda](https://www.corda.net/) - это open-source платформа распределенных реестров, которая поддерживается крупными
-банками и полностью построенана Kotlin.
+банками и полностью построена Kotlin.
 
 <!-- [JetBrains Account](https://account.jetbrains.com/), the system responsible for the entire license sales and validation
 process at JetBrains, is written in 100% Kotlin and has been running in production since 2015 with no major issues. -->

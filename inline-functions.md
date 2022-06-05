@@ -51,7 +51,7 @@ inline fun <T> lock(lock: Lock, body: () -> T): T { /*...*/ }
 
 <!-- The `inline` modifier affects both the function itself and the lambdas passed to it: all of those will be inlined
 into the call site. -->
-Модификатор `inline` влияет и на функцию, и на лямбду, переданную ей: они обе будут встроены в место вызова.
+Модификатор `inline` влияет и на функцию, и на лямбду, переданную ей: они обе будут встроены вместо вызова.
 
 <!-- Inlining may cause the generated code to grow. However, if you do it in a reasonable way (avoiding inlining large
 functions), it will pay off in performance, especially at "megamorphic" call-sites inside loops. -->
@@ -188,7 +188,7 @@ treeNode.findParentOfType<MyTreeNode>()
 
 <!-- To enable this, inline functions support *reified type parameters*, so you can write something like this: -->
 В таких случаях inline-функции могут принимать *параметры вещественного типа* (ориг.: *reified type parameters*).
-Чтобы включить эту возможность, вы можем написать что-то вроде этого:
+Чтобы включить эту возможность, мы можем написать что-то вроде этого:
 
 ```kotlin
 inline fun <reified T> TreeNode.findParentOfType(): T? {
@@ -267,7 +267,7 @@ it is considered a [module](visibility-modifiers.md#modules)'s public API. It ca
 inlined at such call sites as well. -->
 Если у встроенной функции модификатор доступа `public` или `protected`, при этом она не является частью объявления с
 модификаторами доступа `private` или `internal`, то она считается public API [модуля](visibility-modifiers.html#modules).
-Её можно вызывать в других модулях и где она встраиваться в месте вызова.
+Её можно вызывать в других модулях и где она встраивается в месте вызова.
 
 <!-- This imposes certain risks of binary incompatibility caused by changes in the module that declares an inline function in
 case the calling module is not re-compiled after the change. -->

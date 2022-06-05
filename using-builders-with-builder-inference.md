@@ -19,7 +19,7 @@ Kotlin поддерживает *определение типа строите�
 
 <!-- Consider this example of [`buildMap()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/build-map.html)
 usage: -->
-Рассмотрим в кажестве примера использование [`buildMap()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/build-map.html).
+Рассмотрим в качестве примера использование [`buildMap()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/build-map.html).
 
 ```kotlin
 fun addEntryToMap(baseMap: Map<String, Number>, additionalEntry: Pair<String, Int>?) {
@@ -216,7 +216,7 @@ val result = buildList {
 <!-- After the postponed type variable gets assigned to a variable of the `String` type, builder inference gets the information
 that `x` is a subtype of `String`. This assignment is the last statement in the builder lambda, so the builder inference
 analysis ends with the result of inferring the type argument `E` into `String`. -->
-После того, как переменная отложенного типа присваивается переменной типа `String`, вывод строителя получает информацию
+После того как переменная отложенного типа присваивается переменной типа `String`, вывод строителя получает информацию
 о том, что `x` является подтипом `String`. Это присваивание является последним оператором в лямбде строителя, поэтому
 анализ вывода строителя заканчивается результатом вывода аргумента `E` в `String`.
 

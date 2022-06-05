@@ -290,7 +290,7 @@ abstract class WildShape : Polygon() {
 
 <!-- If you need to write a function that can be called without having a class instance but that needs access to the internals
 of a class (such as a factory method), you can write it as a member of an [object declaration](object-declarations.md) inside that class. -->
-Если вам нужно написать функцию, которая может быть использована без создания экземпляра класса, которая имела бы доступ к данным внутри этого класса
+Если вам нужно написать функцию, которая может быть использована без создания экземпляра класса, имеющую доступ к данным внутри этого класса
 (к примеру, фабричный метод), вы можете написать её как член [объявления объекта](object-declarations.html) внутри этого класса.
 
 <!-- Even more specifically, if you declare a [companion object](object-declarations.md#companion-objects) inside your class,

@@ -52,7 +52,7 @@ where you will create an application for Android and iOS that includes a module 
 <!-- Another scenario when code sharing may bring benefits is a connected application where the logic can be
 reused on both the server and the client side running in the browser. This is covered by Kotlin
 Multiplatform as well. -->
-Другой сценарий, когда совместное использование кода может принести пользу, - это приложение, в котором логика может
+Другой сценарий, когда совместное использование кода может принести пользу, — это приложение, в котором логика может
 быть повторно использована как на стороне сервера, так и на стороне клиента, запущенного в браузере. С этим Kotlin
 Multiplatform тоже прекрасно справляется.
 

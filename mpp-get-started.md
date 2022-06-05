@@ -80,7 +80,7 @@ Android and iOS). It also shows how to write tests which will be executed on all
 
 * [Build native binaries](mpp-build-native-binaries.md) as executables or shared libraries, like universal frameworks or XCFrameworks. -->
 
-* [Используйте однин код на платформах](mpp-share-on-platforms.md) в своем проекте Kotlin Multiplatform;
+* [Используйте один код на платформах](mpp-share-on-platforms.md) в своем проекте Kotlin Multiplatform;
 * [Подключайтесь к API конкретной платформы](mpp-connect-to-apis.md), используя механизм ожидаемых и фактических
 объявлений Kotlin;
 * [Настройте целевые показатели вручную](mpp-set-up-targets.md) для вашего проекта Kotlin Multiplatform;

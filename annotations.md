@@ -34,7 +34,7 @@ annotation class Fancy
     generated API documentation. -->
 
 * [`@Target`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html) определяет возможные
-виды элементов, которые могут быть помечены аннотацией (такие как классы, функции, свойства и выражения);
+виды элементов, которые могут быть помечены аннотацией (такие, как классы, функции, свойства и выражения);
 * [`@Retention`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html) определяет, будет
 ли аннотация храниться в скомпилированном классе и будет ли видима через рефлексию (по умолчанию оба утверждения верны);
 * [`@Repeatable`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html) позволяет
@@ -137,7 +137,7 @@ annotation class Deprecated(
 automatically convert it to a Java class, so that the Java code can access the annotations and arguments
 normally. -->
 Если вам нужно определить класс как аргумент аннотации, используйте Kotlin класс
-([KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)). Компилятор Kotin
+([KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)). Компилятор Kotlin
 автоматически сконвертирует его в Java класс, так что код на Java сможет видеть аннотации и их аргументы.
 
 ```kotlin

@@ -16,7 +16,7 @@ of items (possibly zero) that share significance to the problem being solved and
 
 <!-- Collections are a common concept for most programming languages, so if you're familiar with, for example, Java or Python
 collections, you can skip this introduction and proceed to the detailed sections.  -->
-Коллекции — это общая концепция для большинства языков программирования, поэтому, если вы знакомы с коллекциями, например, в Java или Python, то можете пропустить данное введение и перейти к разделам с более подробным описанием.
+Коллекции — это общая концепция для большинства языков программирования, поэтому если вы знакомы с коллекциями, например, в Java или Python, то можете пропустить данное введение и перейти к разделам с более подробным описанием.
 
 <!-- A collection usually contains a number of objects (this number may also be zero) of the same type. Objects in a collection
 are called _elements_ or _items_. For example, all the students in a department form a collection that can be used to

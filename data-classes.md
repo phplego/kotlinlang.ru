@@ -66,7 +66,7 @@ data class User(val name: String, val age: Int)
 
 <!-- > On the JVM, if the generated class needs to have a parameterless constructor, default values for the properties have
 > to be specified (see [Constructors](classes.md#constructors)). -->
-> Для того, чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
+> Для того чтобы у сгенерированного в JVM класса был конструктор без параметров, значения всех свойств должны быть заданы по умолчанию
 > (см. [Конструкторы](classes.html#constructors)).
 
 ```kotlin
@@ -141,5 +141,5 @@ println("$name, $age years of age") // выводит "Jane, 35 years of age"
 
 <!-- The standard library provides the `Pair` and `Triple` classes. In most cases, though, named data classes are a better design choice
 because they make the code more readable by providing meaningful names for the properties. -->
-Стандартная библиотека предоставляет классы `Pair` и `Triple`. Однако, в большинстве случаев, проименованные классы данных являются лучшим решением,
+Стандартная библиотека предоставляет классы `Pair` и `Triple`. Однако, в большинстве случаев, именованные классы данных являются лучшим решением,
 потому что делают код более читаемым, избегая малосодержательные имена для свойств.

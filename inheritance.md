@@ -238,7 +238,7 @@ using one of the inherited ones). -->
 
 <!-- To denote the supertype from which the inherited implementation is taken, use `super` qualified by the supertype name in
 angle brackets, such as `super<Base>`: -->
-Для того, чтобы отметить конкретный супертип (родительский класс), от которого мы наследуем данную реализацию,
+Для того чтобы отметить конкретный супертип (родительский класс), от которого мы наследуем данную реализацию,
 используйте ключевое слово `super`. Для задания имени родительского супертипа используются треугольные скобки, например `super<Base>`.
 
 ```kotlin

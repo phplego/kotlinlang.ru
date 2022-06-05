@@ -85,7 +85,7 @@ sealed class IOError {
 inside any number of other named classes, named interfaces, or named objects. Subclasses can have any [visibility](visibility-modifiers.md)
 as long as they are compatible with normal inheritance rules in Kotlin. -->
 Прямые наследники изолированных классов и интерфейсов должны быть объявлены в том же пакете. Они могут быть верхнего
-уровня или вложены в любое количество других проименованных классов, проименованных интерфейсов или проименованных
+уровня или вложены в любое количество других именованных классов, именованных интерфейсов или именованных
 объектов. Наследники могут иметь любую [видимость](visibility-modifiers.html), если они совместимы с обычными правилами
 наследования в Kotlin.
 
@@ -128,7 +128,7 @@ you can create subclasses in any source set between the `expect` and `actual` de
 в любом исходном наборе между `expect` и `actual` объявлениями.
 
 <!-- [Learn more about the hierarchical structure of multiplatform projects](multiplatform-share-on-platforms.md#share-code-on-similar-platforms). -->
-Узнайте больше о [иерархической структуре мультиплатформенных проектов](multiplatform-share-on-platforms.html#share-code-on-similar-platforms).
+Узнайте больше об [иерархической структуре мультиплатформенных проектов](multiplatform-share-on-platforms.html#share-code-on-similar-platforms).
 
 <a name="sealed-classes-and-when-expression"></a>
 

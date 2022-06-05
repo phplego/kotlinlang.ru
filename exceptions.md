@@ -23,7 +23,7 @@ Every exception has a message, a stack trace, and an optional cause. -->
 это исключение вероятно было вызвано.
 
 <!-- To throw an exception object, use the `throw` expression: -->
-Для того, чтобы возбудить исключение явным образом, используйте оператор `throw`.
+Для того чтобы возбудить исключение явным образом, используйте оператор `throw`.
 
 ```kotlin
 throw Exception("Hi There!")
@@ -75,7 +75,7 @@ The contents of the `finally` block don't affect the result of the expression. -
 В Kotlin нет проверяемых исключений. Для этого существует целый ряд причин, но мы рассмотрим простой пример, который иллюстрирует причину этого.
 
 <!-- The following is an example interface from the JDK implemented by the `StringBuilder` class: -->
-Приведённый ниже фрагмент кода является примером простого интерфейса в JDK, который реализован в классе `StringBulder`.
+Приведённый ниже фрагмент кода является примером простого интерфейса в JDK, который реализован в классе `StringBuilder`.
 
 ```java
 Appendable append(CharSequence csq) throws IOException;
@@ -109,7 +109,7 @@ try {
 >a different result – decreased productivity and little or no increase in code quality. -->
 
 > Анализ небольших программ показал, что обязательная обработка исключений может повысить производительность разработчика и улучшить качество кода.
-> Однако, изучение крупных проектов по разработке программного обеспечения позволяет сделать противоположный  вывод:
+> Однако, изучение крупных проектов по разработке программного обеспечения позволяет сделать противоположный вывод:
 > происходит понижение продуктивности и сравнительно небольшое улучшение кода (а иногда и без всякого улучшения).
 
 <!-- And here are some additional thoughts on the matter: -->
@@ -179,4 +179,4 @@ val l = listOf(null)   // у 'l' тип `List<Nothing?>
 
 <!-- Please see the section on exceptions in the [Java interoperability page](java-interop.md) for information about Java interoperability. -->
 
-См. раздел, посвещённый исключениям, [Страница совместимости Java](java-interop.html) для получения информации о совместимости с Java.
+См. раздел, посвящённый исключениям, [Страница совместимости Java](java-interop.html) для получения информации о совместимости с Java.

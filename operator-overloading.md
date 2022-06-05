@@ -16,9 +16,9 @@ predefined symbolic representation (like `+` or `*`) and precedence. To implemen
 or an [extension function](extensions.md) with a specific name for the corresponding type. This type becomes the left-hand side type
 for binary operations and the argument type for the unary ones. -->
 Kotlin позволяет реализовывать предопределённый набор операторов для ваших типов. Эти операторы имеют фиксированное
-символическое представление (вроде `+` или `*`) и фиксированные приоритеты. Для реализации оператора предоставте
+символическое представление (вроде `+` или `*`) и фиксированные приоритеты. Для реализации оператора предоставьте
 [функцию-член](functions.html#member-functions) или [функцию-расширение](extensions.html) с фиксированным именем и с
-соответствующим типом, т. е. левосторонним типом для бинарных операций или типом аргумента для унарных оперций.
+соответствующим типом, т. е. левосторонним типом для бинарных операций или типом аргумента для унарных операций.
 
 <!-- To overload an operator, mark the corresponding function with the `operator` modifier: -->
 Функции, которые перегружают операторы, должны быть отмечены модификатором `operator`.
@@ -102,7 +102,7 @@ fun main() {
 
 <!-- The `inc()` and `dec()` functions must return a value, which will be assigned to the variable on which the
 `++` or `--` operation was used. They shouldn't mutate the object on which the `inc` or `dec` was invoked. -->
-Функции `inc()` и `dec()` должны возвращать значение, которое будет присвоено переменной, к которой была применёна
+Функции `inc()` и `dec()` должны возвращать значение, которое будет присвоено переменной, к которой была применена
 операция `++` или `--` . Они не должны изменять сам объект, для которого были вызваны эти функции.
 
 <!-- The compiler performs the following steps for resolution of an operator in the *postfix* form, for example `a++`: -->
@@ -201,7 +201,7 @@ data class Counter(val dayIndex: Int) {
 | `a[i_1, ...,  i_n] = b` | `a.set(i_1, ..., i_n, b)` |
 
 <!-- Square brackets are translated to calls to `get` and `set` with appropriate numbers of arguments. -->
-Квадратные скобки транслируется в вызов `get` или `set` с соответствующим числом аргументов.
+Квадратные скобки транслируются в вызов `get` или `set` с соответствующим числом аргументов.
 
 <a name="invoke-operator"></a>
 

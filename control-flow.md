@@ -174,7 +174,7 @@ when (x) {
 <!-- Another option is checking that a value `is` or `!is` of a particular type. Note that,
 due to [smart casts](typecasts.md#smart-casts), you can access the methods and properties of the type without
 any extra checks. -->
-Помимо этого Кotlin позволяет с помощью `is` или `!is` проверить тип аргумента. Обратите внимание,
+Помимо этого Kotlin позволяет с помощью `is` или `!is` проверить тип аргумента. Обратите внимание,
 что благодаря [умным приведениям](typecasts.html#smart-casts) вы можете получить доступ к методам и свойствам типа без
 дополнительной проверки.
 
@@ -188,7 +188,7 @@ fun hasPrefix(x: Any) = when(x) {
 <!-- `when` can also be used as a replacement for an `if`-`else` `if` chain.
 If no argument is supplied, the branch conditions are simply boolean expressions, and a branch is executed when its condition is true: -->
 `when` удобно использовать вместо цепочки условий вида `if`-`else` `if`.
-При отсутствии  аргумента условия работают как простые логические выражения, а тело ветки выполняется при его истинности.
+При отсутствии аргумента условия работают как простые логические выражения, а тело ветки выполняется при его истинности.
 
 ```kotlin
 when {

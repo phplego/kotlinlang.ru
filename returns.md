@@ -39,7 +39,7 @@ val s = person.name ?: return
 Labels have the form of an identifier followed by the `@` sign, such as `abc@` or `fooBar@`.
 To label an expression, just add a label in front of it. -->
 Любое выражение в Kotlin может быть помечено меткой *label*.
-Метки имеют форму идентификатора, за которым следует знак `@`, нпример `abc@` или `fooBar@`.
+Метки имеют форму идентификатора, за которым следует знак `@`, например `abc@` или `fooBar@`.
 Для того чтобы пометить выражение, мы просто ставим метку перед ним.
 
 ```kotlin
@@ -104,7 +104,7 @@ fun foo() {
 
 <!-- Now, it returns only from the lambda expression. Often it is more convenient to use _implicit labels_, because such a label
 has the same name as the function to which the lambda is passed. -->
-Теперь он возвращает только из лямда-выражения. Зачастую намного более удобно использовать *неявные метки*, потому что такие метки имеют такое же имя,
+Теперь он возвращает только из лямбда-выражения. Зачастую намного более удобно использовать *неявные метки*, потому что такие метки имеют такое же имя,
 как и функция, к которой относится лямбда.
 
 ```kotlin
@@ -125,7 +125,7 @@ A `return` statement in an anonymous function will return from the anonymous fun
 ```kotlin
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach(fun(value: Int) {
-        if (value == 3) return  // локальный возврат внутри анонимной функци, то есть к циклу forEach
+        if (value == 3) return  // локальный возврат внутри анонимной функции, то есть к циклу forEach
         print(value)
     })
     print(" выполнится с использованием анонимной функции")

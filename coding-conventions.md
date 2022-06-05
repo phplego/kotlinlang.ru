@@ -1317,7 +1317,7 @@ when (x) {
 ```
 
 <!-- Prefer using `when` if there are three or more options. -->
-Предпочтительнее использовать `when`, если есть три и более вариантов.
+Предпочтительнее использовать `when`, если есть три и более варианта.
 
 <a name="nullable-boolean-values-in-conditions"></a>
 

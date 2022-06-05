@@ -19,7 +19,7 @@ make similar updates to them. -->
 <!-- Iterators can be obtained for inheritors of the [`Iterable<T>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html)
 interface, including `Set` and `List`, by calling the [`iterator()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html)
 function. -->
-Итераторы доступны всем наследникам интерфейса [`Iterable<T>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html),  включая `Set` и `List`, путём вызова функции [`iterator()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html).
+Итераторы доступны всем наследникам интерфейса [`Iterable<T>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html), включая `Set` и `List`, путём вызова функции [`iterator()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html).
 
 <!-- Once you obtain an iterator, it points to the first element of a collection; calling the [`next()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/next.html)
 function returns this element and moves the iterator position to the following element if it exists. -->

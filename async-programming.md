@@ -13,8 +13,8 @@ url: https://kotlinlang.ru/docs/async-programming.html
 <!-- For decades, as developers we are confronted with a problem to solve - how to prevent our applications from blocking. Whether 
 we're developing desktop, mobile, or even server-side applications, we want to avoid having the user wait or what's worse cause 
 bottlenecks that would prevent an application from scaling. -->
-На протяжении десятилетий мы, разработчики, сталкиваемся с проблемой, которую необходимо решить, - как предотвратить
-блокировку наших приложений. Независимо от того, разрабатываем ли мы десткопные, мобильные или даже серверные
+На протяжении десятилетий мы, разработчики, сталкиваемся с проблемой, которую необходимо решить - как предотвратить
+блокировку наших приложений. Независимо от того, разрабатываем ли мы десктопные, мобильные или даже серверные
 приложения, мы хотим избежать того, чтобы пользователь ждал или, что еще хуже, создавал узкие места (ориг.:
 *bottlenecks*), которые мешали бы масштабированию приложения.
 
@@ -82,7 +82,7 @@ allow us to avoid the UI from blocking. This is a very common technique, but has
 ## Коллбэки
 
 <!-- With callbacks, the idea is to pass one function as a parameter to another function, and have this one invoked once the process has completed. -->
-Идея коллбэков (обрытных вызовов, ориг.: callbacks) состоит в том, чтобы передать одну функцию в качестве параметра
+Идея коллбэков (обратных вызовов, ориг.: callbacks) состоит в том, чтобы передать одну функцию в качестве параметра
 другой функции и вызвать ее после завершения процесса.
 
 ```kotlin
@@ -101,7 +101,7 @@ fun preparePostAsync(callback: (Token) -> Unit) {
 ```
 
 <!-- This in principle feels like a much more elegant solution, but once again has several issues: -->
-В принципе, это выглядит более элегантным решением, но опять же имеет несколько проблем:
+В принципе это выглядит более элегантным решением, но опять же имеет несколько проблем:
 
 <!-- * Difficulty of nested callbacks. Usually a function that is used as a callback, often ends up needing its own callback. This leads to a series of nested callbacks which
 lead to incomprehensible code. The pattern is often referred to as the titled christmas tree (braces represent branches of the tree).
@@ -154,8 +154,8 @@ such as loops, exception handling, etc. usually are no longer valid in this mode
 * Specific return type. The return type moves away from the actual data that we need and instead returns a new type `Promise` which has to be introspected. 
 * Error handling can be complicated. The propagation and chaining of errors aren't always straightforward. -->
 
-* Другая модель программирования. Подобно коллбэкам, модель программирования отходит от императивного подхода сверхувниз к композиционной модели с цепными вызовами. Традиционные программные структуры, такие как циклы, обработка исключений и т.д., обычно не применимы в этой модели;
-* Различные API. Обычно возникает необходимость изучить совершенно новый API, такие как `thenCompose` или `thenAccept`, которые также могут варьироваться в зависимости от платформы;
+* Другая модель программирования. Подобно коллбэкам, модель программирования отходит от императивного подхода сверху вниз к композиционной модели с цепными вызовами. Традиционные программные структуры, такие как циклы, обработка исключений и т.д., обычно не применимы в этой модели;
+* Различные API. Обычно возникает необходимость изучить совершенно новый API, такие, как `thenCompose` или `thenAccept`, которые также могут варьироваться в зависимости от платформы;
 * Определенный возвращаемый тип. Возвращаемый тип отклоняется от фактических данных, которые нам нужны, и вместо этого возвращает новый тип `Promise`, который необходимо проанализировать;
 * Обработка ошибок может быть сложной. Распространение и цепочка ошибок не всегда просты.
 
@@ -175,7 +175,7 @@ it really didn't reach mainstream adoption until Netflix ported it over to Java,
 the [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) with a series of extensions which allow us to operate on the data. -->
 Идея Rx состоит в том, чтобы перейти к так называемым `observable streams` (наблюдаемым потокам), благодаря которым
 теперь мы думаем о данных как о потоках (бесконечных объемах данных), и эти потоки можно наблюдать. С практической точки
-зрения, Rx - это просто [шаблон наблюдателя](https://en.wikipedia.org/wiki/Observer_pattern) с рядом расширений, которые
+зрения, Rx - это просто [шаблон наблюдателя](https://ru.wikipedia.org/wiki/%D0%9D%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_(%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)) с рядом расширений, которые
 позволяют нам оперировать данными.
 
 <!-- In approach it's quite similar to Futures, but one can think of a Future as returning a discrete element, whereas Rx returns a stream. However, similar to the previous, it also introduces 

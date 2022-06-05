@@ -11,7 +11,7 @@ url: https://kotlinlang.ru/docs/android-overview.html
 # Kotlin для Android
 
 <!-- Android mobile development has been Kotlin-first since Google I/O in 2019. -->
-Kotlin был объявленны приоритетным языком программирования для Android-разработки на Google I/O в 2019.
+Kotlin был объявлен приоритетным языком программирования для Android-разработки на Google I/O в 2019.
 
 <!-- Using Kotlin for Android development, you can benefit from: -->
 Используя Kotlin для Android-разработки, вы получаете:
@@ -37,7 +37,7 @@ According to Google, over 60% of the top 1000 apps on the Play Store use Kotlin.
 но и как целая экосистема с надежным инструментарием. Теперь он полностью интегрирован в Android Studio и активно
 используется многими компаниями для разработки Android-приложений.
 * **Поддержка Kotlin в Android Jetpack и других библиотеках**. [Расширения KTX](https://developer.android.com/kotlin/ktx)
-добавляют функции языка Kotlin, такие как корутины, функции-расширения, лямбды и именованные параметры, в существующие
+добавляют функции языка Kotlin, такие, как корутины, функции-расширения, лямбды и именованные параметры, в существующие
 Android библиотеки.
 * **Совместимость с Java**. Вы можете использовать Kotlin вместе с Java в своих приложениях без необходимости переноса
 всего вашего кода на Kotlin.

@@ -50,7 +50,7 @@ the given code style. -->
 3. Switch on **File is not formatted according to project settings** inspection.
 Additional inspections that verify other issues described in the style guide (such as naming conventions) are enabled by default. -->
 
-1. Перейдите в раздел **Settings/Preferences | Editor | Code Style | Kotlin**.
+1. Перейдите в раздел **Settings/Preferences | Editor | Inspections | Kotlin**.
 2. Отройте **Kotlin | Style issues**.
 3. Включите проверку **File is not formatted according to project settings**. Дополнительные проверки, которые проверяют другие проблемы,
 описанные в руководстве по стилю (например, соглашения об именах), включены по умолчанию.

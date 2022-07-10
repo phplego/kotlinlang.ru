@@ -65,7 +65,12 @@
   ],
   "Мультиплатформенное программирование": [
     "mpp-get-started",
-    "mpp-dsl-reference"
+    "mpp-dsl-reference",
+    {"Добавление зависимостей": [
+      "multiplatform-add-dependencies",
+      "multiplatform-mobile-android-dependencies",
+      "multiplatform-mobile-ios-dependencies"
+    ]}
   ],
   "Коллекции": [
     "collections-overview",

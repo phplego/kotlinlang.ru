@@ -14,51 +14,9 @@
     "coding-conventions"
   ],
   "Основы": [
-    {
-      "Типы": [
-        "basic-types",
-        "typecasts"
-      ]
-    },
-    {
-      "Управление потоком": [
-        "control-flow",
-        "returns",
-        "exceptions"
-      ]
-    },
+    "basic-types",
+    "typecasts",
     "packages",
-    {
-      "Классы и объекты": [
-        "classes",
-        "inheritance",
-        "properties",
-        "interfaces",
-        "fun-interfaces",
-        "visibility-modifiers",
-        "extensions",
-        "data-classes",
-        "sealed-classes",
-        "generics",
-        "nested-classes",
-        "enum-classes",
-        "inline-classes",
-        "object-declarations",
-        "delegation",
-        "delegated-properties",
-        "type-aliases"
-      ]
-    },
-    {
-      "Функции и лямбды": [
-        "functions",
-        "lambdas",
-        "inline-functions",
-        "operator-overloading",
-        "type-safe-builders",
-        "using-builders-with-builder-inference"
-      ]
-    },
     "null-safety",
     "equality",
     "this-expressions",
@@ -67,6 +25,38 @@
     "annotations",
     "destructuring-declarations",
     "reflection"
+  ],
+  "Управление потоком": [
+    "control-flow",
+    "returns",
+    "exceptions"
+  ],
+  "Классы и объекты": [
+    "classes",
+    "inheritance",
+    "properties",
+    "interfaces",
+    "fun-interfaces",
+    "visibility-modifiers",
+    "extensions",
+    "data-classes",
+    "sealed-classes",
+    "generics",
+    "nested-classes",
+    "enum-classes",
+    "inline-classes",
+    "object-declarations",
+    "delegation",
+    "delegated-properties",
+    "type-aliases"
+  ],
+  "Функции и лямбды": [
+    "functions",
+    "lambdas",
+    "inline-functions",
+    "operator-overloading",
+    "type-safe-builders",
+    "using-builders-with-builder-inference"
   ],
   "Kotlin Multiplatform для iOS и Android": [
     "multiplatform-mobile-getting-started",

@@ -183,7 +183,7 @@ Having to manually keep references to all the launched coroutines and [join][Job
 <!-- There is a better solution. We can use structured concurrency in our code.
 Instead of launching coroutines in the [GlobalScope], just like we usually do with threads (threads are always global),
 we can launch coroutines in the specific scope of the operation we are performing. -->
-Есть более лучшее решение. В нашем коде можно использовать структурированный параллелизм. Вместо запуска сопрограмм в [GlobalScope], как мы обычно делаем с потоками (потоки всегда глобальные), мы можем запускать сопрограммы в области видимости выполняемой нами операции.
+Есть более хорошее решение. В нашем коде можно использовать структурированный параллелизм. Вместо запуска сопрограмм в [GlobalScope], как мы обычно делаем с потоками (потоки всегда глобальные), мы можем запускать сопрограммы в области видимости выполняемой нами операции.
 
 <!-- In our example, we have a `main` function that is turned into a coroutine using the [runBlocking] coroutine builder.
 Every coroutine builder, including `runBlocking`, adds an instance of [CoroutineScope] to the scope of its code block.

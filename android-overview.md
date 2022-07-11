@@ -11,7 +11,7 @@ url: https://kotlinlang.ru/docs/android-overview.html
 # Kotlin для Android
 
 <!-- Android mobile development has been Kotlin-first since Google I/O in 2019. -->
-Kotlin был объявленны приоритетным языком программирования для Android-разработки на Google I/O в 2019.
+Kotlin был объявлен приоритетным языком программирования для Android-разработки на Google I/O в 2019.
 
 <!-- Using Kotlin for Android development, you can benefit from: -->
 Используя Kotlin для Android-разработки, вы получаете:

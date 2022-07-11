@@ -194,7 +194,7 @@ as identifiers in other contexts:
  * `inline` указывает компилятору [встроить функцию и лямбда-выражение на стороне вызова](/docs/reference/inline-functions.html)
  * `inner` позволяет ссылаться на экземпляр внешнего класса из [вложенного класса](/docs/reference/nested-classes.html)
  * `internal` помечает объявление как [видимое в текущем модуле](/docs/reference/visibility-modifiers.html)
- * `lateinit` позволяет инициализацировать [не-null свойство вне конструктора](/docs/reference/properties.html#late-initialized-properties-and-variables)
+ * `lateinit` позволяет инициализировать [не-null свойство вне конструктора](/docs/reference/properties.html#late-initialized-properties-and-variables)
  * `noinline` отключает [подстановку лямбды, переданной во встроенную функцию](/docs/reference/inline-functions.html#noinline)
  * `open` позволяет [создавать подклассы класса или переопределять элемент](/docs/reference/classes.html#inheritance)
  * `operator` обозначает функцию как [перегрузку оператора или реализацию соглашения](/docs/reference/operator-overloading.html)
@@ -280,7 +280,7 @@ identifiers in other contexts:
  * `!!` [утверждает, что выражение не равно null](/docs/reference/null-safety.html#the--operator)
  * `?.` выполняет [безопасный вызов](/docs/reference/null-safety.html#safe-calls) (вызывает метод или обращается к свойству, если получатель не имеет значения null)
  * `?:` принимает правое значение, если левое значение равно нулю ([Элвис оператор](http://kotlinlang.org/docs/reference/null-safety.html#elvis-operator))
- * `::` создает [ссылку на элемент](/docs/reference/reflection.html#function-references)  или [ссылку на класс](/docs/reference/reflection.html#class-references)
+ * `::` создает [ссылку на элемент](/docs/reference/reflection.html#function-references) или [ссылку на класс](/docs/reference/reflection.html#class-references)
  * `..` создает [диапазон](/docs/reference/ranges.html) 
  * `:` отделяет имя от типа в объявлениях
  * `?` отмечает тип с [нулевым значением](/docs/reference/null-safety.html#nullable-types-and-non-null-types) 

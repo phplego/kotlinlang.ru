@@ -269,7 +269,6 @@ println(1 + 2)
 println(2_500_000_000L - 1L)
 println(3.14 * 2.71)
 println(10.0 / 3)
-}
 ```
 
 <!-- You can also override these operators for custom classes. See [Operator overloading](operator-overloading.md) for details. -->
@@ -280,7 +279,7 @@ println(10.0 / 3)
 #### Деление целых чисел
 
 <!-- Division between integers numbers always returns an integer number. Any fractional part is discarded. -->
-Деление целых чисел всегда возвращат целое число. Любая дробная часть отбрасывается.
+Деление целых чисел всегда возвращает целое число. Любая дробная часть отбрасывается.
 
 ```kotlin
 val x = 5 / 2
@@ -578,7 +577,7 @@ println(s + "def") // abc1def
 ```
 
 <!-- Note that in most cases using [string templates](#string-templates) or raw strings is preferable to string concatenation. -->
-Обратите внимание, что в большинстве случаев использование [cтроковых шаблонов](#string-templates)
+Обратите внимание, что в большинстве случаев использование [строковых шаблонов](#string-templates)
 или обычных строк предпочтительнее объединения строк.
 
 <a name="string-literals"></a>

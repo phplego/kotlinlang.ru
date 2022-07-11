@@ -19,7 +19,7 @@ val dyn: dynamic = ...
 
 ```
 
-Динамический" тип в основном отключает проверку типов в Kotlin:
+Динамический тип в основном отключает проверку типов в Kotlin:
 
   - значение этого типа может быть присвоено любой переменной или передано в качестве параметра в любое место;
   - любое значение может быть присвоено переменной типа `dynamic` или передано функции, которая принимает `dynamic` параметр;
@@ -29,11 +29,11 @@ val dyn: dynamic = ...
 
 
 ```kotlin
-dyn.whatever(1, "foo", dyn) // 'whatever' не опеределен
+dyn.whatever(1, "foo", dyn) // 'whatever' не определен
 dyn.whatever(*arrayOf(1, 2, 3))
 ```
 
-В Javascript этот код будет будет скомпилирован как есть `dyn.whatever(1)` в Kotlin станет `dyn.whatever(1)` в Javascript.
+В Javascript этот код будет скомпилирован как есть `dyn.whatever(1)` в Kotlin станет `dyn.whatever(1)` в Javascript.
 
 
 When calling functions written in Kotlin on values of `dynamic` type, keep in mind the name mangling performed by the
@@ -86,4 +86,4 @@ dyn.foo {
 
 `in`, `!in` и `..` операторы со значением типа `dynamic` запрещены.
 
-Для получения более подробной информации по динамической типизации вы можете обратится к спецификации [spec document](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md).
+Для получения более подробной информации по динамической типизации вы можете обратиться к спецификации [spec document](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md).

@@ -28,15 +28,15 @@ You can share common code between iOS and Android apps and write platform-specif
 For example, to implement a native UI or when working with platform-specific APIs. -->
 Kotlin Multiplatform Mobile (KMM) - это средства разработки ПО, предназначенные для упрощения разработки
 кроссплатформенных приложений для мобильных устройств. Вы можете использовать общий код в программах для iOS и Android и
-писать код, специфичный для каждой из платформ, только там, где это необходимо. Например, чтобы реализовать нативный UI
-или когда работаете с API, которые ограничены конкретной платформой.
+писать код, специфичный для каждой из платформ, только там, где это необходимо. Например, при реализации нативного UI
+или при работе с API, которые ограничены конкретной платформой.
 
 <!-- Watch the introductory [video](https://www.youtube.com/watch?v=mdN6P6RI__k), in which Kotlin Product Marketing Manager Ekaterina 
 Petrova explains what Kotlin Multiplatform Mobile is and how to use it in your project. With Ekaterina,
 you'll set up an environment and prepare to create your first cross-platform mobile application: -->
 Посмотрите вводное [видео](https://www.youtube.com/watch?v=mdN6P6RI__k), в котором менеджер по продуктовому маркетингу
 Kotlin Екатерина Петрова объясняет, что такое Kotlin Multiplatform Mobile и как использовать его в вашем проекте. Вместе
-с ней вы настроете среду разработки и подготовитесь к созданию вашего первого кроссплатформенных мобильного приложения.
+с ней вы настроите среду разработки и подготовитесь к созданию вашего первого кроссплатформенных мобильного приложения.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mdN6P6RI__k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -75,7 +75,7 @@ JavaScript, Linux, Windows, and WebAssembly. -->
 * [Introduce cross-platform mobile development to your team](multiplatform-mobile-introduce-your-team.md) -->
 
 * [Настройте окружение для кроссплатформенной мобильной разработки](multiplatform-mobile-setup.html),
-* [Создайте в IDE ваше первое приложение, работующее и на Android, и на iOS](multiplatform-mobile-create-first-app.html),
+* [Создайте в IDE ваше первое приложение, работающее и на Android, и на iOS](multiplatform-mobile-create-first-app.html),
 * [Изучите примеры проектов](multiplatform-mobile-samples.html),
 * [Познакомьте свою команду с кроссплатформенной мобильной разработкой](multiplatform-mobile-introduce-your-team.html).
 

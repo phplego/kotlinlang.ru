@@ -27,9 +27,9 @@ programmer needs to write and read while working with the code almost to the lev
 scripting languages, while having tooling and performance of a statically-typed language. -->
 [Спортивного программирование](https://en.wikipedia.org/wiki/Competitive_programming) - это интеллектуальный спорт, в
 котором участники пишут программы для решения точно заданных алгоритмических задач в рамках строгих ограничений. Задачи
-могут варьироваться от простых, которые может решить любой разработчик программного обеспечения и которые требуют
+могут варьироваться от простых, которые может решить любой разработчик программного обеспечения и требующие
 небольшого количества кода, до сложных, требующих знания специальных алгоритмов, структур данных и много опыта. Несмотря
-на то, что  Kotlin специально не разрабатывался для спортивного программирования, он хорошо вписывается в эту область,
+на то, что Kotlin специально не разрабатывался для спортивного программирования, он хорошо вписывается в эту область,
 сокращая типичный объем шаблонов, которые программисту необходимо писать и читать при работе с кодом, почти до уровня,
 предлагаемого динамически типизированными языками, при этом имея инструментарий и производительность статически
 типизированного языка.
@@ -87,7 +87,7 @@ fun f(x: Int) = removeZeroes(x + 1)
 [while loop](control-flow.md) and mutable variables that are denoted in Kotlin with 
 [var](basic-syntax.md#variables): -->
 Как вариант, вы можете написать императивную реализацию функции `f`, используя традиционный [цикл `while`](control-flow.html)
-и изменяемые переменные, обознаемые с помощью [`var`](basic-syntax.html#variables).
+и изменяемые переменные, обозначаемые с помощью [`var`](basic-syntax.html#variables).
 
 ```kotlin
 fun f(x: Int): Int {
@@ -105,8 +105,8 @@ a well-defined static type that is known at compilation. -->
 <!-- Now, all is left is to write the main function that reads the input and implements the rest of the algorithm that the problem 
 statement asks for &mdash; to compute the number of different integers that are produced while repeatedly applying 
 function `f` to the initial number `n` that is given in the standard input. -->
-Теперь осталось написать основную функцию, которая считывает входные данные и реализует остальную часть алгоритма, о
-котором говорится в условии задачи - вычислить количество различных целых чисел, которые получаются при многократном
+Теперь осталось написать основную функцию, считывающую входные данные и реализующую остальную часть алгоритма, о
+котором говорится в условии задачи - вычислить количество различных целых чисел, получающихся при многократном
 применении функции `f` к исходному числу `n`.
 
 <!-- By default, Kotlin runs on JVM and gives direct access to a rich and efficient collections library with 
@@ -114,10 +114,10 @@ general-purpose collections and data-structures like dynamically-sized arrays (`
 hash-based maps and sets (`HashMap`/`HashSet`), tree-based ordered maps and sets (`TreeMap`/`TreeSet`), etc. 
 Using a hash-set of integers to track values that were already reached while applying function `f`, 
 the straightforward imperative version of a solution to the problem can be written as shown below: -->
-По умолчанию Kotlin работает на JVM и предоставляет прямой доступ к богатой и эффективной библиотеке коллекций с коллекциями общего назначения и структурами данных, такими как массивы динамического размера (ArrayList), карты и наборы на основе хэша (HashMap /HashSet), упорядоченные карты и наборы на основе дерева (TreeMap/TreeSet) и т. Д. Используя хэш-набор целых чисел для отслеживания значений, которые уже были достигнуты при применении функции f, простая императивная версия решения проблемы может быть записана, как показано ниже:
+
 По умолчанию Kotlin работает на JVM и предоставляет прямой доступ к богатой и эффективной библиотеке коллекций с
 коллекциями и структурами данных общего назначения, такими как динамически изменяемые массивы (`ArrayList`),
-ассоциативные списоки и наборы на основе хэшей (`HashMap`/`HashSet`), упорядоченные ассоциативные списоки и наборы на
+ассоциативные списки и наборы на основе хэшей (`HashMap`/`HashSet`), упорядоченные ассоциативные списки и наборы на
 основе деревьев (`TreeMap`/`TreeSet`) и тому подобное. Используя хэш-набор целых чисел для отслеживания значений,
 которые уже были достигнуты при применении функции `f`, прямая императивная версия решения задачи может быть записана
 так, как показано ниже.
@@ -192,7 +192,7 @@ fun main() {
     val fl = readln().split(" ").map { it.toInt() }
     // определение локальной функции f
     fun f(c: Char) = '0' + fl[c - '1']
-    // жадное нахождние первого и последнего индекса
+    // жадное нахождение первого и последнего индекса
     val i = s.indexOfFirst { c -> f(c) > c }
         .takeIf { it >= 0 } ?: s.length
     val j = s.withIndex().indexOfFirst { (j, c) -> j > i && f(c) < c }

@@ -104,7 +104,7 @@ For performing operations with destinations, there are separate functions with t
 [`filterTo()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-to.html) instead of [`filter()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html)
 or [`associateTo()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate-to.html) instead of [`associate()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate.html).
 These functions take the destination collection as an additional parameter. -->
-Некоторые функции в качестве параметра принимают целевой объект - _destination_. Он представляет из себя изменяемую коллекцию, в которую функция добавляет результаты своих вычислений, вместо того, чтобы самостоятельно создавать новый объект.
+Некоторые функции в качестве параметра принимают целевой объект - _destination_. Он представляет собой изменяемую коллекцию, в которую функция добавляет результаты своих вычислений, вместо того, чтобы самостоятельно создавать новый объект.
 Названия таких функций можно отличить по постфиксу `To`, например,
 [`filterTo()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-to.html) вместо
 [`filter()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html) или

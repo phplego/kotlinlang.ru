@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/typecasts.html
 ## Операторы is и !is
 
 <!-- Use the `is` operator or its negated form `!is` to perform a runtime check that identifies whether an object conforms to a given type: -->
-Используйте оператор `is` или его отрицание `!is`, чтобы проверить соотвествует ли объект заданному типу
+Используйте оператор `is` или его отрицание `!is`, чтобы проверить соответствует ли объект заданному типу
 во время исполнения.
 
 ```kotlin
@@ -38,7 +38,7 @@ else {
 
 <!-- In most cases, you don't need to use explicit cast operators in Kotlin because the compiler tracks the
 `is`-checks and [explicit casts](#unsafe-cast-operator) for immutable values and inserts (safe) casts automatically when necessary: -->
-В большенстве случаев вам не нужно использовать явные приведения в Kotlin,
+В большинстве случаев вам не нужно использовать явные приведения в Kotlin,
 потому что компилятор отслеживает `is`-проверки и [явные преобразования](#unsafe-cast-operator)
 для неизменяемых значений и вставляет (безопасно) приведения автоматически, там, где они нужны.
 
@@ -158,7 +158,7 @@ while, at runtime, instances of generic types don't hold information about their
 type with certain type arguments at runtime. -->
 Котлин обеспечивает типобезопасность операций, связанных с [обобщениями](generics.html) на этапе компиляции,
 в то время как информация о типе аргумента обобщения недоступна во время выполнения программы.
-Например для `List<Foo>` происходит стирание типа, что превращает его в `List<*>`. В связи с чем,
+Например, для `List<Foo>` происходит стирание типа, что превращает его в `List<*>`. В связи с чем,
 нет способа проверить, принадлежит ли объект конкретному типу во время выполнения программы.
 
 <!-- Because of that, the compiler prohibits `is`-checks that cannot be performed at runtime due to type erasure, such as
@@ -182,7 +182,7 @@ angle brackets are omitted in this case: -->
 ```kotlin
 fun handleStrings(list: List<String>) {
     if (list is ArrayList) {
-        // `list` приводится к `ArrayList<String>` засчет "умного приведения"
+        // `list` приводится к `ArrayList<String>` путём "умного приведения"
     }
 }
 ```
@@ -232,7 +232,7 @@ type safety. -->
 обобщенные типы в коде могут быть недостаточно связаны друг с другом, чтобы компилятор обеспечил типобезопасность.
 
 <!-- Even so, sometimes we have high-level program logic that implies type safety instead. For example: -->
-Тем не менее, иногда мы имеем программную логику высокого уровня, которая подразумевает типобезопасность.
+Тем не менее иногда мы имеем программную логику высокого уровня, которая подразумевает типобезопасность.
 
 ```kotlin
 fun readDictionary(file: File): Map<String, *> = file.inputStream().use {

@@ -1,14 +1,14 @@
 ---
 type: doc
 layout: reference
-title: "Вcтроенные классы"
+title: "Встроенные классы"
 url: https://kotlinlang.ru/docs/basic-syntax.html
 ---
 
 <!-- При переводе статьи оригинальная версия была от 05 May 2021 -->
 
 <!-- Inline classes -->
-# Вcтроенные (inline) классы
+# Встроенные (inline) классы
 
 <!-- Sometimes it is necessary for business logic to create a wrapper around some type. However, it introduces runtime 
 overhead due to additional heap allocations. Moreover, if the wrapped type is primitive, the performance hit is terrible, 
@@ -188,7 +188,7 @@ is pointless for them and is therefore prohibited. -->
 @JvmInline
 value class UInt(val x: Int)
 
-// Предаставлен как 'public final void compute(int x)' в JVM
+// Предоставлен как 'public final void compute(int x)' в JVM
 fun compute(x: Int) { }
 
 // Так же представлен как 'public final void compute(int x)' в JVM!

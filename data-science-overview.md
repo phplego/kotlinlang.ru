@@ -48,7 +48,7 @@ Data Science и машинного обучения.
 (aka "notebooks") that can contain code, visualizations, and Markdown text. 
 [Kotlin-jupyter](https://github.com/Kotlin/kotlin-jupyter) is an open source project that brings Kotlin 
 support to Jupyter Notebook. -->
-Jupyter Notebook - это веб-приложение с открытым исходным кодом, которое позволяет создавать и обмениваться документами
+Jupyter Notebook - это веб-приложение с открытым исходным кодом, позволяющее создавать и обмениваться документами
 (также известными как "ноутбуки"), которые могут содержать код, визуализации и Markdown разметку.
 [Kotlin-jupyter](https://github.com/Kotlin/kotlin-jupyter) - это проект с открытым исходным кодом, который обеспечивает
 поддержку Kotlin для Jupyter Notebook.
@@ -157,7 +157,7 @@ Kotlin и Apache Spark. Это позволяет разработчикам Kot
 * [lets-plot](https://github.com/JetBrains/lets-plot) - это библиотека построения графиков для статистических данных.
 Она мультиплатформенная и может использоваться не только с JVM, но также с JS и Python;
 
-* [kravis](https://github.com/holgerbrandl/kravis)  - это еще одна библиотека для визуализации табличных данных,
+* [kravis](https://github.com/holgerbrandl/kravis) - это еще одна библиотека для визуализации табличных данных,
 вдохновленная [ggplot](https://ggplot2.tidyverse.org/) в R;
 
 * [londogard-nlp-toolkit](https://github.com/londogard/londogard-nlp-toolkit/) - это библиотека, которая предоставляет инструменты для обработки естественных языков, например для работы со словами/частями слов/предложениями, частоты использования слов, стоп-слов, поиском основы слова и многим другим.

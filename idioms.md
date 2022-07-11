@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/idioms.html
 # Идиомы
 
 <!-- A collection of random and frequently used idioms in Kotlin. If you have a favorite idiom, contribute it by sending a pull request. -->
-Набор различных часто используемых идиом в языке Kotlin. Если у вас есть любимая идиома, вы можете поделится ею здесь.
+Набор различных часто используемых идиом в языке Kotlin. Если у вас есть любимая идиома, вы можете поделиться ею здесь.
 Для этого нужно создать pull request.
 
 <a name="create-dtos-pojos-pocos"></a>
@@ -150,7 +150,7 @@ for ((k, v) in map) {
 <a name="iterate-over-a-range"></a>
 
 <!-- ## Iterate over a range -->
-## Итерация по по диапазону
+## Итерация по диапазону
 
 ```kotlin
 for (i in 1..100) { ... }  // закрытый диапазон: включает 100

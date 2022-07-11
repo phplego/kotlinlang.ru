@@ -44,7 +44,7 @@ Kotlin, включенный в плагин Kotlin, помогает с пер�
 <a name="frameworks-for-server-side-development-with-kotlin"></a>
 
 <!-- ## Frameworks for server-side development with Kotlin -->
-## Фреймворки для серверной разработки с Kotlin
+## Фреймворки для серверной разработки на Kotlin
 
 <!-- * [Spring](https://spring.io) makes use of Kotlin's language features to offer [more concise APIs](https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0),
   starting with version 5.0. The [online project generator](https://start.spring.io/#!language=kotlin) allows you to quickly generate a new project in Kotlin.
@@ -119,12 +119,12 @@ Google Cloud Platform предлагает серию учебных пособ�
 <a name="products-that-use-kotlin-on-the-server-side"></a>
 
 <!-- ## Products that use Kotlin on the server side -->
-## Продукты, использующие Kotlin на  сервере
+## Продукты, использующие Kotlin на сервере
 
 <!-- [Corda](https://www.corda.net/) is an open-source distributed ledger platform that is supported by major
 banks and built entirely in Kotlin. -->
 [Corda](https://www.corda.net/) - это open-source платформа распределенных реестров, которая поддерживается крупными
-банками и полностью построенана Kotlin.
+банками и полностью построена Kotlin.
 
 <!-- [JetBrains Account](https://account.jetbrains.com/), the system responsible for the entire license sales and validation
 process at JetBrains, is written in 100% Kotlin and has been running in production since 2015 with no major issues. -->

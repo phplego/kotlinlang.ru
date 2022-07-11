@@ -17,7 +17,7 @@ type, defined in the Kotlin standard library. -->
 
 <!-- The coroutine context is a set of various elements. The main elements are the [Job] of the coroutine, 
 which we've seen before, and its dispatcher, which is covered in this section. -->
-Контекст корутины представляет собой набор различных элементов. Основными элементами являются [Job](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html) корутины, которую мы видели ранее, и ее диспетчер, который рассматривается в этом разделе.
+Контекст корутины представляет собой набор различных элементов. Основными элементами являются [Job](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html) корутины, которую мы видели ранее, и ее диспетчер, рассматриваемый в этом разделе.
 
 
 <a name="dispatchers-and-threads"></a>
@@ -41,7 +41,7 @@ parameter that can be used to explicitly specify the dispatcher for the new coro
 import kotlinx.coroutines.*
 
 fun main() = runBlocking<Unit> {
-    launch { // онтекст родителя, основная корутина runBlocking
+    launch { // контекст родителя, основная корутина runBlocking
         println("main runBlocking      : I'm working in thread ${Thread.currentThread().name}")
     }
     launch(Dispatchers.Unconfined) { // не ограничено -- будет работать с основным потоком
@@ -161,7 +161,7 @@ figure out what the coroutine was doing, where, and when if you don't have speci
 ### Отладка с помощью IDEA
 
 <!-- The Coroutine Debugger of the Kotlin plugin simplifies debugging coroutines in IntelliJ IDEA. -->
-Плагин отдалки корутин для Kotlin упрощает отладку корутин в IntelliJ IDEA.
+Плагин отладки корутин для Kotlin упрощает отладку корутин в IntelliJ IDEA.
 
 <!-- > Debugging works for versions 1.3.8 or later of `kotlinx-coroutines-core`. -->
 > Отладка работает для версий 1.3.8 и выше `kotlinx-coroutines-core`.
@@ -328,7 +328,7 @@ My job is "coroutine#1":BlockingCoroutine{Active}@6d311334
 Однако это отношение родитель-потомок может быть явно переопределено одним из двух способов:
 
 <!-- 1. When a different scope is explicitly specified when launching a coroutine (for example, `GlobalScope.launch`), then it does not inherit a `Job` from the parent scope. -->
-1. Если при запуске корутины явно указана другая область видимости (например, `GlobalScope.launch`), то она не наследует `Job` от родительской области видимости видимости.
+1. Если при запуске корутины явно указана другая область видимости (например, `GlobalScope.launch`), то она не наследует `Job` от родительской области видимости.
 <!-- 2. When a different `Job` object is passed as the context for the new coroutine (as show in the example below), then it overrides the `Job` of the parent scope. -->
 2. Когда в качестве контекста для новой корутины передается другой объект `Job` (как показано в примере ниже), он переопределяет `Job` родительской области видимости.
 
@@ -640,4 +640,4 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
 В качестве альтернативы значение может храниться в классе-обертке, таком как `class Counter(var i: Int)`, который, в свою очередь, хранится в локальной переменной потока. Однако в этом случае вы несете полную ответственность за синхронизацию потенциально одновременных изменений переменной в этом классе-обертке.
 
 <!-- For advanced usage, for example for integration with logging MDC, transactional contexts or any other libraries which internally use thread-locals for passing data, see the documentation of the [ThreadContextElement] interface that should be implemented. -->
-Для расширенного использования, например для интеграции с логированием MDC, контекстами транзакций или любыми другими библиотеками, которые внутренне используют локальные потоки для передачи данных, смотрите документацию по интерфейсу [ThreadContextElement](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html), который необходимо реализовать.
+Для расширенного использования, например для интеграции с логированием MDC, контекстами транзакций или любыми другими библиотеками, использующих внутри локальные потоки для передачи данных, смотрите документацию по интерфейсу [ThreadContextElement](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html), который необходимо реализовать.

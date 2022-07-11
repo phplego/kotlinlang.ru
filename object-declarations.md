@@ -56,7 +56,7 @@ val helloWorld = object {
 
 <!-- To create an object of an anonymous class that inherits from some type (or types), specify this type after `object` and a
 colon (`:`). Then implement or override the members of this class as if you were [inheriting](inheritance.md) from it: -->
-Для того, чтобы создать объект анонимного класса, который наследуется от какого-то типа (типов), укажите этот тип после
+Для того чтобы создать объект анонимного класса, который наследуется от какого-то типа (типов), укажите этот тип после
 `object` и двоеточия (`:`). Затем реализуйте или переопределите члены этого класса, как если бы вы
 [наследовали](inheritance.md) от него.
 
@@ -254,7 +254,7 @@ val instance = MyClass.create()
 ```
 
 <!-- The name of the companion object can be omitted, in which case the name `Companion` will be used: -->
-Не обязательно указывать имя вспомогательного объекта. Тогда он будет назван `Companion`.
+Необязательно указывать имя вспомогательного объекта. Тогда он будет назван `Companion`.
 
 ```kotlin
 class MyClass {

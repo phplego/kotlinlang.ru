@@ -85,7 +85,7 @@ fun main() {
 function from the standard library. `compareBy()` takes a lambda function that produces a `Comparable` value from an instance
 and defines the custom order as the natural order of the produced values. -->
 Существует более упрощённый вариант использования `Comparator` - функция
-[`compareBy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.comparisons/compare-by.html) из стандартной библиотеки. Она принимает лямбда-функцию, которая из объекта создаёт `Comparable` значение и задаёт пользовательский порядок, который по факту представляет из себя естественный порядок созданных `Comparable` значений.
+[`compareBy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.comparisons/compare-by.html) из стандартной библиотеки. Она принимает лямбда-функцию, которая из объекта создаёт `Comparable` значение и задаёт пользовательский порядок, который по факту представляет собой естественный порядок созданных `Comparable` значений.
 
 
 <!-- With `compareBy()`, the length comparator from the example above looks like this: -->

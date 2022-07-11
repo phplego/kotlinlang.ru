@@ -96,7 +96,7 @@ recommended to use *withKotlin* task: -->
 ```
 
 <!-- ## Targeting JavaScript with single source folder -->
-## Использование в JavaScript с с одной исходной папкой
+## Использование в JavaScript с одной исходной папкой
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -189,7 +189,7 @@ result of translation: -->
 <!-- To pass custom raw compiler arguments, you can use `<compilerarg>` elements with either `value` or `line` attributes.
 This can be done within the `<kotlinc>`, `<kotlin2js>`, and `<withKotlin>` task elements, as follows: -->
 Для выборочной передачи исходных аргументов компилятора используются элементы `<compilerarg>` с атрибутами `value` или `line`.
-Это может быть сделано в рамках элементов задач `<kotlinc>`, `<kotlin2js>` и `<withKotlin>` следующим образом :
+Это может быть сделано в рамках элементов задач `<kotlinc>`, `<kotlin2js>` и `<withKotlin>` следующим образом:
 
 ``` xml
 <kotlinc src="${test.data}/hello.kt" output="${temp}/hello.jar">

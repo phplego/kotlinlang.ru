@@ -265,7 +265,7 @@ fun double(x: Int) = x * 2
 <!-- Kotlin does not infer return types for functions with block bodies because such functions may have complex control flow
 in the body, and the return type will be non-obvious to the reader (and sometimes even for the compiler). -->
 Kotlin самостоятельно не вычисляет тип возвращаемого значения для функций с блочным телом, потому что подобные функции
-могут иметь сложную структуру и возвращаемый тип будет неочевидным для читающего этот код человека (иногда даже для
+могут иметь сложную структуру, и возвращаемый тип будет неочевидным для читающего этот код человека (иногда даже для
 компилятора).
 
 <a name="variable-number-of-arguments-varargs"></a>
@@ -306,7 +306,7 @@ a lambda outside the parentheses. -->
 
 <!-- When you call a `vararg`-function, you can pass arguments individually, for example `asList(1, 2, 3)`. If you already have
 an array and want to pass its contents to the function, use the *spread* operator (prefix the array with `*`): -->
-При вызове `vararg`-функции вы можете передать аргументы один за одним, например `asList(1, 2, 3)`, или, если у нас уже
+При вызове `vararg`-функции вы можете передать аргументы один за другим, например `asList(1, 2, 3)`, или, если у нас уже
 есть необходимый массив элементов и вы хотите передать его содержимое в функцию, используйте оператор `spread`
 (необходимо пометить массив знаком `*`).
 
@@ -405,7 +405,7 @@ class MyStringCollection {
 <!-- Kotlin functions can be declared at the top level in a file, meaning you do not need to create a class to hold a function,
 which you are required to do in languages such as Java, C#, and Scala. In addition
 to top level functions, Kotlin functions can also be declared locally as member functions and extension functions. -->
-В Kotlin функции могут быть объявлены в самом начале файла, что значит, что вам не обязательно создавать класс, чтобы
+В Kotlin функции могут быть объявлены в самом начале файла, что значит, что вам необязательно создавать класс, чтобы
 воспользоваться его функцией (как в Java, C# или Scala). В дополнение к этому, функции в Kotlin могут быть объявлены
 локально, как функции-члены и функции-расширения.
 
@@ -464,7 +464,7 @@ class Sample {
 Функции-члены вызываются с использованием точки.
 
 ```kotlin
-Sample().foo() // создаёт инстанс класса Sample и вызвает его функцию foo
+Sample().foo() // создаёт инстанс класса Sample и вызывает его функцию foo
 ```
 
 <!-- For more information on classes and overriding members see [Classes](classes.md) and [Inheritance](classes.md#inheritance). -->
@@ -509,7 +509,7 @@ tailrec fun findFixPoint(x: Double = 1.0): Double =
 <!-- This code calculates the `fixpoint` of cosine, which is a mathematical constant. It simply calls `Math.cos` repeatedly
 starting at `1.0` until the result no longer changes, yielding a result of `0.7390851332151611` for the specified
 `eps` precision. The resulting code is equivalent to this more traditional style: -->
-Этот код высчитывает `fixpoint` косинуса, который является математической константой. Он просто напросто постоянно
+Этот код высчитывает `fixpoint` косинуса, который является математической константой. Он просто-напросто постоянно
 вызывает `Math.cos`, начиная с `1.0` до тех пор, пока результат не изменится, приняв значение `0.7390851332151611` для
 заданной точности `eps`. Получившийся код эквивалентен вот этому более традиционному стилю:
 
@@ -532,7 +532,7 @@ Currently, tail recursion is supported by Kotlin for the JVM and Kotlin/Native. 
 Для соответствия требованиям модификатора `tailrec`, функция должна вызывать сама себя в качестве последней операции,
 которую она предпринимает. Вы не можете использовать хвостовую рекурсию, когда существует ещё какой-то код после вызова
 этой самой рекурсии. Также нельзя использовать её внутри блоков `try`/`catch`/`finally` или в `open` функциях. На данный
-момент, хвостовая рекурсия поддерживается только в backend виртуальной машины Java (JVM) и в Kotlin/Native.
+момент хвостовая рекурсия поддерживается только в backend виртуальной машины Java (JVM) и в Kotlin/Native.
 
 <!-- **See also**: -->
 **См. также:**

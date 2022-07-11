@@ -22,7 +22,7 @@ url: https://kotlinlang.ru/docs/maven.html
 
 ## Зависимости
 
-Kotlin имеет обширную стандартную библиотеку, которая может использоваться при разработке приложений. Настройте следущие зависимости в файле pom: 
+Kotlin имеет обширную стандартную библиотеку, которая может использоваться при разработке приложений. Настройте следующие зависимости в файле pom: 
 
 ``` xml
 <dependencies>
@@ -39,7 +39,7 @@ Kotlin имеет обширную стандартную библиотеку, 
 или `kotlin-stdlib-jdk8`, в зависимости от вашей версии JDK (для Kotlin 1.1.x,` kotlin-stdlib-jre7` и `kotlin-stdlib-jre8`).
 
 Если ваш проект использует [Kotlin reflection](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) или объекты для тестирования, то вам нужно добавить соответствующие зависимости.
-Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotlin-test-junit` для библиотек тестирования.
+Artifact ID для Kotlin reflection - `kotlin-reflect`, `kotlin-test` и `kotlin-test-junit` для библиотек тестирования.
 
 ## Компиляция только исходного кода Kotlin
 
@@ -147,7 +147,7 @@ Artifact ID для Kotlin refletcion - `kotlin-reflect`, `kotlin-test` и `kotli
 ## Инкрементальная компиляция
 
 Чтобы ускорить сборку, вы можете использовать инкрементальную компиляцию сборщика Maven (поддерживается начиная с Kotlin 1.1.2).
-Для этого добавите свойсто `kotlin.compiler.incremental`:
+Для этого добавите свойство `kotlin.compiler.incremental`:
 
 ``` xml
 <properties>

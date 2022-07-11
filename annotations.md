@@ -137,7 +137,7 @@ annotation class Deprecated(
 automatically convert it to a Java class, so that the Java code can access the annotations and arguments
 normally. -->
 Если вам нужно определить класс как аргумент аннотации, используйте Kotlin класс
-([KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)). Компилятор Kotin
+([KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)). Компилятор Kotlin
 автоматически сконвертирует его в Java класс, так что код на Java сможет видеть аннотации и их аргументы.
 
 ```kotlin

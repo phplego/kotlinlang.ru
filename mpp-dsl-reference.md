@@ -216,7 +216,7 @@ kotlin {
 <!-- All of the targets may share some of the sources and may have platform-specific sources in their compilations as well. 
 See [Configuring source sets](#configuring-source-sets) for details. -->
 
-Все цели могут совместно использовать некоторые исходные коды и также могут иметь специфические для каждой платформы исходные коды в своих компиляциях. Подробнее см. [Настройка наборов исходных кодов](#макет-проекта-по-умолчанию) .
+Все цели могут совместно использовать некоторые исходные коды и также могут иметь специфические для каждой платформы исходные коды в своих компиляциях. Подробнее см. [Настройка наборов исходных кодов](#макет-проекта-по-умолчанию).
 
 <!-- Some targets may require additional configuration. For Android and iOS examples, see the [Multiplatform Project: iOS and Android](/docs/tutorials/native/mpp-ios-android.html) tutorial. -->
 
@@ -437,7 +437,7 @@ kotlin {
 metadata packages in addition to the platform-specific artifact dependencies of the platform-specific source sets. Usually, an artifact with a suffix 
 `-common` (as in `kotlin-stdlib-common`) or `-metadata` is required. -->
 
-Обратите внимание на то, что для того, чтобы IDE правильно анализировала зависимости общих исходных кодов, общие наборы исходных кодов должны иметь соответствующие зависимости от пакетов метаданных Kotlin в дополнение к зависимостям артефакта для конкретной платформы от  наборов исходных кодов для этой же платформы. Обычно при использовании опубликованной библиотеки требуется артефакт с суффиксом 
+Обратите внимание на то, что для того, чтобы IDE правильно анализировала зависимости общих исходных кодов, общие наборы исходных кодов должны иметь соответствующие зависимости от пакетов метаданных Kotlin в дополнение к зависимостям артефакта для конкретной платформы от наборов исходных кодов для этой же платформы. Обычно при использовании опубликованной библиотеки требуется артефакт с суффиксом 
 `-common` (как в случае `kotlin-stdlib-common`) или `-metadata` (если только он не опубликован с метаданными Gradle, как описано ниже).
 
 <!--However, a `project('...')` dependency on another multiplatform project is resolved to an appropriate target automatically. It is enough to specify a single `project('...')` dependency in a source set's dependencies, and the compilations that include the source set will receive a corresponding platform-specific artifact of that project, given that it has a compatible target.-->
@@ -613,7 +613,7 @@ of the target. -->
 
 <!-- The Maven coordinates can be altered and additional artifact files may be added to the publication within the `targets { ... }` block: -->
 
-Координаты Maven могут быть изменены и в публикацию внутри блока `targets { ... }` могут быть добавлены дополнительные файлы артефактов :
+Координаты Maven могут быть изменены и в публикацию внутри блока `targets { ... }` могут быть добавлены дополнительные файлы артефактов:
 
 ```groovy
 kotlin {
@@ -733,7 +733,7 @@ kotlin {
 
 <!-- A target that is not supported by the current host is ignored during build and therefore not published. A library author may want to set up builds and publishing from different hosts as required by the library target platforms. -->
 
-Цель,не поддерживаемая текущим хостом, игнорируется во время сборки и поэтому не публикуется. Автор библиотеки может захотеть настроить сборку и публикацию с разных хостов в соответствии с требованиями целевых платформ библиотеки.
+Цель, неподдерживаемая текущим хостом, игнорируется во время сборки и поэтому не публикуется. Автор библиотеки может захотеть настроить сборку и публикацию с разных хостов в соответствии с требованиями целевых платформ библиотеки.
 
 ### Виды выходных данных Kotlin/Native
 
@@ -746,7 +746,7 @@ To link a binary in addition to the Kotlin/Native library, add one or more of th
 
 По умолчанию цель Kotlin/Native скомпилирована до артефакта библиотеки `*.klib`, который может быть использован самим Kotlin/Native в качестве зависимости, но не может быть запущен или использован в качестве родной библиотеки.
 
-Для того, чтобы привязать бинарный файл как дополнение к библиотеке Kotlin/Native, добавим один или несколько `outputKinds`, которые могут быть:
+Для того чтобы привязать бинарный файл как дополнение к библиотеке Kotlin/Native, добавим один или несколько `outputKinds`, которые могут быть:
 
 * `executable` для исполняемой программы;
 * `dynamic` для динамической библиотеки;

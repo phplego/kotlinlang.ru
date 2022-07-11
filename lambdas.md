@@ -455,7 +455,7 @@ fun(x: Int, y: Int): Int {
 
 <!-- The parameters and the return type are specified in the same way as for regular functions, except the parameter types can
 be omitted if they can be inferred from the context: -->
-Параметры функции и возвращаемый тип обозначаются таким же образом, как в обычных функциях. за исключением того, что тип
+Параметры функции и возвращаемый тип обозначаются таким же образом, как в обычных функциях, за исключением того, что тип
 параметра может быть опущен, если его значение следует из контекста.
 
 ```kotlin
@@ -466,7 +466,7 @@ ints.filter(fun(item) = item > 0)
 for anonymous functions with an expression body, but it has to be specified explicitly (or is assumed to be `Unit`) for anonymous
 functions with a block body. -->
 Аналогично и с типом возвращаемого значения: он вычисляется автоматически для функций-выражений или же должен быть явно
-определён (если не является типом `Unit`) для анонимных функций с блоком в качетсве тела.
+определён (если не является типом `Unit`) для анонимных функций с блоком в качестве тела.
 
 <!-- > When passing anonymous functions as parameters, place them inside the parentheses. The shorthand syntax that allows you to leave
 > the function outside the parentheses works only for lambda expressions. -->

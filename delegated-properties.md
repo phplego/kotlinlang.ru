@@ -378,7 +378,7 @@ with the following parameters: -->
 * `thisRef` — должен иметь такой же тип или быть наследником типа *хозяина свойства* (для расширений — тип, который
 расширяется);
 * `property` — должен быть типа `KProperty<*>` или его родительского типа;
-* `value` — должен быть того же типа, что и свойство (или его родительской тип).
+* `value` — должен быть того же типа, что и свойство (или его родительский тип).
 
 ```kotlin
 class Resource
@@ -411,7 +411,7 @@ They provide the required methods: `getValue()` is declared in `ReadOnlyProperty
 extends it and adds `setValue()`. This means you can pass a `ReadWriteProperty` whenever a `ReadOnlyProperty` is expected. -->
 Вы можете создавать делегатов как анонимные объекты без создания новых классов, используя интерфейсы `ReadOnlyProperty`
 и `ReadWriteProperty` из стандартной библиотеки Kotlin. Они предоставляют необходимые методы: `getValue()` объявлен в
-`ReadOnlyProperty`; `ReadWriteProperty` расширяет его и добавляет `setValue()`. Это значает, что вы можете передавать
+`ReadOnlyProperty`; `ReadWriteProperty` расширяет его и добавляет `setValue()`. Это значит, что вы можете передавать
 `ReadWriteProperty` всякий раз, когда ожидается `ReadOnlyProperty`.
 
 ```kotlin
@@ -555,7 +555,7 @@ class MyUI {
 <!-- * `thisRef` must be the same type as, or a supertype of, the _property owner_ (for extension properties, it should be the type being extended);
 * `property` must be of type `KProperty<*>` or its supertype. -->
 
-* `thisRef` — должен иметь такой же тип, или быть наследником типа *хозяина свойства* (для расширений —  тип, который
+* `thisRef` — должен иметь такой же тип, или быть наследником типа *хозяина свойства* (для расширений — тип, который
 расширяется)
 * `property` — должен быть типа `KProperty<*>` или его родительского типа.
 

@@ -28,7 +28,7 @@ which has slightly different behavior: it throws an exception if the key is not 
 Additionally, you have two more options to handle the key absence:
 * [`getOrElse()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html) works the same way as for lists: the values for non-existent keys are returned from the given lambda function.
 * [`getOrDefault()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-default.html) returns the specified default value if the key is not found. -->
-Для того, чтобы получить значение из `Map`, вы должны передать его ключ в качестве аргумента функции
+Для того чтобы получить значение из `Map`, вы должны передать его ключ в качестве аргумента функции
 [`get()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html). Также поддерживается сокращённый синтаксис - `[key]`. Если такой ключ не найден, то вернётся `null`.
 Помимо этого существует функция [`getValue()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html), которая в случае отсутствия ключа бросит исключение.
 Также есть еще две функции для решения проблемы отсутствия ключа:

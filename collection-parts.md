@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/collection-parts.html
 <!-- The Kotlin standard library contains extension functions for retrieving parts of a collection.
 These functions provide a variety of ways to select elements for the result collection: listing their positions explicitly,
 specifying the result size, and others.  -->
-В стандартной библиотеке Kotlin есть функции-расширения,  которые предоставляют множество способов выбора элементов: явное перечисление их позиций, указание размера результата и пр.
+В стандартной библиотеке Kotlin есть функции-расширения, которые предоставляют множество способов выбора элементов: явное перечисление их позиций, указание размера результата и пр.
 
 
 <a name="slice"></a>
@@ -92,7 +92,7 @@ fun main() {
 `chunked()` takes a single argument – the size of the chunk – and returns a `List` of `List`s of the given size.
 The first chunk starts from the first element and contains the `size` elements, the second chunk holds the next `size` elements,
 and so on. The last chunk may have a smaller size. -->
-Функция [`chunked()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/chunked.html) позволяет разбить коллекцию на части (или чанки) заданного размера. Она принимает единственный аргумент `size` - размер каждой части - и возвращает `List`, состоящий из вложенных списков. Первая часть будет содержать в себе элементы, начиная с первого и далее, но количеством не более заданного размера; вторая часть - последующие элементы, но не более заданного размера и т.д.  В последней части может быть меньше элементов, чем указанный размер (остаток).
+Функция [`chunked()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/chunked.html) позволяет разбить коллекцию на части (или чанки) заданного размера. Она принимает единственный аргумент `size` - размер каждой части - и возвращает `List`, состоящий из вложенных списков. Первая часть будет содержать в себе элементы, начиная с первого и далее, но количеством не более заданного размера; вторая часть - последующие элементы, но не более заданного размера и т.д. В последней части может быть меньше элементов, чем указанный размер (остаток).
 
 ```kotlin
 fun main() {

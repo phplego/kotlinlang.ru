@@ -280,8 +280,8 @@ precedence. To refer to the member of the dispatch receiver, you can use the [qu
 ```kotlin
 class Connection {
     fun Host.getConnectionString() {
-        toString()                 // вызывает D.toString()
-        this@Connection.toString() // вызывает C.toString()
+        toString()                 // вызывает Host.toString()
+        this@Connection.toString() // вызывает Connection.toString()
     }
 }
 ```

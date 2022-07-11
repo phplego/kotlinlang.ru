@@ -36,7 +36,7 @@ val result = double(2)
 Для вызова вложенной функции используется знак точки.
 
 ```kotlin
-Stream().read() //создаёт экземпляр класса Sample и вызывает read()
+Stream().read() //создаёт экземпляр класса Stream и вызывает read()
 ```
 
 <a name="parameters"></a>

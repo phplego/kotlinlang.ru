@@ -155,7 +155,7 @@ Kotlin in one place and share it with some or all target platforms. -->
 <a name="sample-projects"></a>
 
 <!-- ## Sample projects -->
-## Примеры проктов
+## Примеры проектов
 
 <!-- * [Kotlin Multiplatform Mobile samples](multiplatform-mobile-samples.md)
 * [Kotlin/Native sources and examples](https://github.com/JetBrains/kotlin/tree/master/kotlin-native/samples)

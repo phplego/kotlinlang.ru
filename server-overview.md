@@ -26,7 +26,7 @@ Kotlin отлично подходит для разработки сервер�
   for Spring) in the plugin for IntelliJ IDEA Ultimate.
 * **Learning Curve**: For a Java developer, getting started with Kotlin is very easy. The automated Java-to-Kotlin converter included in the Kotlin plugin helps with the first steps. [Kotlin Koans](koans.md) can guide you through the key features of the language with a series of interactive exercises. -->
 
-* **Выразительность**: инновационные возможности Kotlin, такие, как поддержка
+* **Выразительность**: инновационные возможности Kotlin, такие как поддержка
 [типобезопасных строителей](type-safe-builders.html) и [делегированных свойств](delegated-properties.html), помогают
 создавать мощные и простые в использовании абстракции.
 * **Масштабируемость**: поддержка [корутинов](coroutines-overview.html) помогает создавать серверные приложения,

@@ -34,7 +34,7 @@ annotation class Fancy
     generated API documentation. -->
 
 * [`@Target`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html) определяет возможные
-виды элементов, которые могут быть помечены аннотацией (такие, как классы, функции, свойства и выражения);
+виды элементов, которые могут быть помечены аннотацией (такие как классы, функции, свойства и выражения);
 * [`@Retention`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html) определяет, будет
 ли аннотация храниться в скомпилированном классе и будет ли видима через рефлексию (по умолчанию оба утверждения верны);
 * [`@Repeatable`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html) позволяет

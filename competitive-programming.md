@@ -106,7 +106,7 @@ a well-defined static type that is known at compilation. -->
 statement asks for &mdash; to compute the number of different integers that are produced while repeatedly applying 
 function `f` to the initial number `n` that is given in the standard input. -->
 Теперь осталось написать основную функцию, считывающую входные данные и реализующую остальную часть алгоритма, о
-котором говорится в условии задачи - вычислить количество различных целых чисел получающихся при многократном
+котором говорится в условии задачи - вычислить количество различных целых чисел, получающихся при многократном
 применении функции `f` к исходному числу `n`.
 
 <!-- By default, Kotlin runs on JVM and gives direct access to a rich and efficient collections library with 

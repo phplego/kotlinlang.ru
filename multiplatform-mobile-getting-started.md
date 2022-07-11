@@ -28,8 +28,8 @@ You can share common code between iOS and Android apps and write platform-specif
 For example, to implement a native UI or when working with platform-specific APIs. -->
 Kotlin Multiplatform Mobile (KMM) - это средства разработки ПО, предназначенные для упрощения разработки
 кроссплатформенных приложений для мобильных устройств. Вы можете использовать общий код в программах для iOS и Android и
-писать код, специфичный для каждой из платформ, только там, где это необходимо. Например, чтобы реализовать нативный UI,
-или когда работаете с API, которые ограничены конкретной платформой.
+писать код, специфичный для каждой из платформ, только там, где это необходимо. Например, при реализации нативного UI
+или при работе с API, которые ограничены конкретной платформой.
 
 <!-- Watch the introductory [video](https://www.youtube.com/watch?v=mdN6P6RI__k), in which Kotlin Product Marketing Manager Ekaterina 
 Petrova explains what Kotlin Multiplatform Mobile is and how to use it in your project. With Ekaterina,

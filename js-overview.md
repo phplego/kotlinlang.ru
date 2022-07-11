@@ -82,7 +82,7 @@ scenarios in which you can use Kotlin/JS: -->
 * **Написание серверных и бессерверных приложений с использованием Kotlin/JS**
   * Возможность использования Node.js, предоставляемая Kotlin/JS, позволяет создавать приложения, которые
   **выполняются на сервере** или **выполняются в бессерверной инфраструктуре**. Это дает вам все преимущества
-  JavaScript, такие, как **быстрый запуск** и **малый объем памяти**. С помощью
+  JavaScript, такие как **быстрый запуск** и **малый объем памяти**. С помощью
   [`kotlinx-nodejs`](https://github.com/Kotlin/kotlinx-nodejs) у вас есть типобезопасный доступ к
   [Node.js API](https://nodejs.org/docs/latest/api/) непосредственно из вашего Kotlin-кода.
 
@@ -143,7 +143,7 @@ Here are a few examples of popular web frameworks for Kotlin/JS written by diffe
 that can be used as building blocks for your application’s user interface. You can use both reactive and imperative programming
 models to build your frontend, use connectors for Ktor, Spring Boot, and other frameworks to integrate it with your server-side
 applications, and share code using [Kotlin Multiplatform](multiplatform.md). -->
-*KVision* - это объектно-ориентированный веб-фреймворк позволяющий писать приложения на Kotlin/JS с ready-to-use
+*KVision* - это объектно-ориентированный веб-фреймворк, позволяющий писать приложения на Kotlin/JS с ready-to-use
 компонентами, которые можно использовать в качестве строительных блоков для пользовательского интерфейса вашего
 приложения. Вы можете использовать как реактивные, так и императивные модели программирования для создания своего
 интерфейса, использовать соединители для Ktor, Spring Boot и других фреймворков для интеграции с вашими серверными

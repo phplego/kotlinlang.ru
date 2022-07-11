@@ -32,7 +32,7 @@ to a specific thread, dispatch it to a thread pool, or let it run unconfined.  -
 <!-- All coroutine builders like [launch] and [async] accept an optional 
 [CoroutineContext](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/) 
 parameter that can be used to explicitly specify the dispatcher for the new coroutine and other context elements.  -->
-Все билдеры корутин, такие, как [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html) и [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html), принимают необязательный параметр [CoroutineContext](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/), который можно использовать для явного указания диспетчера для новой корутины и других элементов контекста.
+Все билдеры корутин, такие как [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html) и [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html), принимают необязательный параметр [CoroutineContext](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/), который можно использовать для явного указания диспетчера для новой корутины и других элементов контекста.
 
 <!-- Try the following example: -->
 Попробуйте следующий пример:

@@ -188,7 +188,7 @@ treeNode.findParentOfType<MyTreeNode>()
 
 <!-- To enable this, inline functions support *reified type parameters*, so you can write something like this: -->
 В таких случаях inline-функции могут принимать *параметры вещественного типа* (ориг.: *reified type parameters*).
-Чтобы включить эту возможность, мы можем написать что-то вроде этого:
+Чтобы включить эту возможность, вы можете написать что-то вроде этого:
 
 ```kotlin
 inline fun <reified T> TreeNode.findParentOfType(): T? {

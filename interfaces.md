@@ -148,6 +148,6 @@ Now, if you derive a concrete class *C* from *A*, you have to override *bar()* a
 <!-- However, if you derive *D* from *A* and *B*, you need to implement all the methods that you have
 inherited from multiple interfaces, and you need to specify how exactly *D* should implement them. This rule applies
 both to methods for which you've inherited a single implementation (*bar()*) and to those for which you've inherited multiple implementations (*foo()*). -->
-Однако если вы унаследуете класс *D* от интерфейсов *A* и *B*, вам надо будет переопределять все методы унаследованные от этих интерфейсов,
+Однако если вы унаследуете класс *D* от интерфейсов *A* и *B*, вам надо будет переопределять все методы, унаследованные от этих интерфейсов,
 и вам нужно указать, как именно *D* должен их реализовать.
 Это правило касается как тех методов, у которых имеется только одна реализация (`bar()`), так и тех, у которых есть несколько реализаций (`foo()`).

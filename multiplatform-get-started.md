@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 title: "Начало работы с Kotlin Multiplatform"
-url: https://kotlinlang.ru/docs/kmm-getting-started.html
+url: https://kotlinlang.ru/docs/multiplatform-get-started.html
 ---
 
 <!-- При переводе статьи оригинальная версия была от 02 February 2022 -->

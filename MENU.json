@@ -61,7 +61,6 @@
             "using-builders-with-builder-inference"
           ]
         }
-        
       ]
     },
     "null-safety",
@@ -73,72 +72,97 @@
     "destructuring-declarations",
     "reflection"
   ],
-  "Kotlin Multiplatform для iOS и Android": [
-    "multiplatform-mobile-getting-started",
-    "multiplatform-mobile-setup",
-    "multiplatform-mobile-create-first-app"
+  "Мультиплатформенная разработка": [
+    {
+      "Kotlin Multiplatform для iOS и Android": [
+        "multiplatform-mobile-getting-started",
+        "multiplatform-mobile-setup",
+        "multiplatform-mobile-create-first-app"
+      ]
+    },
+    {
+      "Kotlin Multiplatform для других платформ": [
+        "multiplatform-get-started"
+      ]
+    },
+    "multiplatform-dsl-reference"
   ],
-  "Мультиплатформенное программирование": [
-    "mpp-get-started",
-    "mpp-dsl-reference",
-    {"Добавление зависимостей": [
-      "multiplatform-add-dependencies",
-      "multiplatform-mobile-android-dependencies",
-      "multiplatform-mobile-ios-dependencies"
-    ]}
+  "Платформы": [
+    {
+      "JVM": [
+        "comparison-to-java",
+        "java-interop",
+        "java-to-kotlin-interop"
+      ]
+    },
+    {
+      "JavaScript": [
+        {
+          "Kotlin для JS-платформы": [
+            "dynamic-type"
+          ]
+        }
+      ]
+    }
   ],
-  "Коллекции": [
-    "collections-overview",
-    "constructing-collections",
-    "iterators",
-    "ranges",
-    "sequences",
-    "collection-operations",
-    "collection-transformations",
-    "collection-filtering",
-    "collection-plus-minus",
-    "collection-grouping",
-    "collection-parts",
-    "collection-elements",
-    "collection-ordering",
-    "collection-aggregate",
-    "collection-write",
-    "list-operations",
-    "set-operations",
-    "map-operations"
-  ],
-  "Корутины (kotlinx.coroutines)": [
-    "coroutines-guide",
-    "coroutines-basics",
-    "cancellation-and-timeouts",
-    "composing-suspending-functions",
-    "coroutine-context-and-dispatchers"
-  ],
-  "Прочее": [
+  "Стандартная библиотека": [
+    {
+      "Коллекции": [
+        "collections-overview",
+        "constructing-collections",
+        "iterators",
+        "ranges",
+        "sequences",
+        "collection-operations",
+        "collection-transformations",
+        "collection-filtering",
+        "collection-plus-minus",
+        "collection-grouping",
+        "collection-parts",
+        "collection-elements",
+        "collection-ordering",
+        "collection-aggregate",
+        "collection-write",
+        "list-operations",
+        "set-operations",
+        "map-operations"
+      ]
+    },
     "scope-functions"
+  ],
+  "Официальные библиотеки": [
+    {
+      "Корутины (kotlinx.coroutines)": [
+        "coroutines-guide",
+        "coroutines-basics",
+        "cancellation-and-timeouts",
+        "composing-suspending-functions",
+        "coroutine-context-and-dispatchers"
+      ]
+    }
   ],
   "Справочник": [
     "keyword-reference"
   ],
   "Инструменты": [
+    {
+      "Инструменты для сборки": [
+        "gradle",
+        "maven",
+        "ant"
+      ]
+    },
+    {
+      "Плагины компилятора": [
+        "all-open-plugin",
+        "kapt"
+      ]
+    },
     "kotlin-doc",
-    "kapt",
-    "maven",
-    "ant",
-    "kotlin-osgi",
-    "all-open-plugin",
-    "gradle"
+    "kotlin-osgi"
   ],
-  "Совместимость с Java": [
-    "java-interop",
-    "java-to-kotlin-interop"
-  ],
-  "Javascript": [
-    "dynamic-type"
-  ],
-  "ЧаВо": [
-    "faq",
-    "comparison-to-java"
+  "Прочее": [
+    "faq"
   ],
   "Редактору": [
     "how-to-edit",

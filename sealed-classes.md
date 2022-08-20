@@ -148,7 +148,7 @@ However, this works only if you use `when` as an expression (using the result) a
 fun log(e: Error) = when(e) {
     is FileReadError -> { println("Error while reading file ${e.file}") }
     is DatabaseError -> { println("Error while reading from database ${e.source}") }
-    RuntimeError ->  { println("Runtime error") }
+    is RuntimeError ->  { println("Runtime error") }
     // оператор `else` не требуется, потому что мы покрыли все возможные случаи
 }
 ```

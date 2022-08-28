@@ -241,7 +241,7 @@ This is in contrast with Java's _use-site variance_ where wildcards in the type 
 
 <!-- In addition to `out`, Kotlin provides a complementary variance annotation: `in`. It makes a type parameter _contravariant_, meaning
 it can only be consumed and never produced. A good example of a contravariant type is `Comparable`: -->
-В дополнении к `out`, Kotlin предоставляет дополнительную модификатор `in`. Он делает параметризованный тип *контравариантным*:
+В дополнении к `out`, Kotlin предоставляет дополнительный модификатор `in`. Он делает параметризованный тип *контравариантным*:
 он может только потребляться, но не может производиться. `Comparable` является хорошим примером такого класса:
 
 ```kotlin

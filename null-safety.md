@@ -126,7 +126,7 @@ that `b` changes to `null` after the check. -->
 ## Безопасные вызовы
 
 <!-- Your second option for accessing a property on a nullable variable is using the safe call operator `?.`: -->
-Вторым способом доступа к свойству nullable переменной - это использование оператор безопасного вызова `?.`.
+Вторым способом доступа к свойству nullable переменной - это использование оператора безопасного вызова `?.`.
 
 ```kotlin
 val a = "Kotlin"

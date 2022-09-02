@@ -25,7 +25,7 @@ data structures in a semi-declarative way. Sample use cases for the builders are
 <!-- * Generating markup with Kotlin code, such as [HTML](https://github.com/Kotlin/kotlinx.html) or XML
 * Configuring routes for a web server: [Ktor](https://ktor.io/docs/routing.html) -->
 
-* Создание разметки с помощью кода Kotlin, например [HTML](https://github.com/Kotlin/kotlinx.html) or XML,
+* Создание разметки с помощью кода Kotlin, например [HTML](https://github.com/Kotlin/kotlinx.html) или XML,
 * Настройка маршрутов для веб-сервера: [Ktor](https://ktor.io/docs/routing.html).
 
 <!-- Consider the following code: -->

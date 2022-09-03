@@ -132,7 +132,7 @@ html {
 (`head` и `body` — члены класса `HTML`)
 
 <!-- Now, `this` can be omitted, as usual, and you get something that looks very much like a builder already: -->
-`this`, как обычно, можно опустить, и вы получите нечто, что уже очень похожее на строителя.
+`this`, как обычно, можно опустить, и вы получите нечто, что уже очень похоже на строителя.
 
 ```kotlin
 html {

@@ -18,7 +18,7 @@ implementation inheritance, and Kotlin supports it natively requiring zero boile
 написания шаблонного кода.
 
 <!-- A class `Derived` can implement an interface `Base` by delegating all of its public members to a specified object: -->
-Класс `Derived` может реализовать интерфейс `Base`, делегировав все свои public члены указанному объекту.
+Класс `Derived` может реализовать интерфейс `Base`, делегируя все свои public члены указанному объекту.
 
 ```kotlin
 interface Base {

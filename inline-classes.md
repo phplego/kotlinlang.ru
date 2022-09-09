@@ -173,7 +173,7 @@ fun main() {
 
 <!-- Because inline classes may be represented both as the underlying value and as a wrapper, [referential equality](equality.md#referential-equality) 
 is pointless for them and is therefore prohibited. -->
-Потому что встроенные функции могут быть представлены и как базовые типы, и как обертки, [равенство по ссылке](equality.html#referential-equality)
+Поскольку встроенные классы могут быть представлены и как базовые типы, и как обертки, [равенство по ссылке](equality.html#referential-equality)
 для них бессмысленно и поэтому запрещено.
 
 <a name="mangling"></a>
@@ -236,7 +236,7 @@ a new type and both will be represented as the underlying type at runtime. -->
 
 <!-- However, the crucial difference is that type aliases are *assignment-compatible* with their underlying type (and with 
 other type aliases with the same underlying type), while inline classes are not. -->
-Однако решающее различие заключается в том, что псевдонимы типов *совместимы с назначением* с их базовым типом (и с
+Однако решающее различие заключается в том, что псевдонимы типов *совместимы с присвоением* с их базовым типом (и с
 другими псевдонимами типов с тем же базовым типом), в то время как встроенные классы - нет.
 
 <!-- In other words, inline classes introduce a truly _new_ type, contrary to type aliases which only introduce an alternative name 
@@ -262,7 +262,7 @@ fun main() {
     acceptString(nameAlias) // Всё хорошо: передача псевдонима вместо базового типа
     acceptString(nameInlineClass) // Всё плохо: не удается передать встроенный класс вместо базового типа
 
-    // And vice versa:
+    // И наоборот:
     acceptNameTypeAlias(string) // Всё хорошо: передача базового типа вместо псевдонима
     acceptNameInlineClass(string) // Всё плохо: не удается передать базовый тип вместо встроенного класса
 }

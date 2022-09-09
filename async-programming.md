@@ -168,7 +168,7 @@ such as loops, exception handling, etc. usually are no longer valid in this mode
 it really didn't reach mainstream adoption until Netflix ported it over to Java, naming it RxJava. From then on, numerous ports have been provided for a variety of platforms including JavaScript (RxJS). -->
 Реактивные расширения (ориг.: *Reactive Extensions, Rx*) были введены в C#
 [Эриком Мейером](https://en.wikipedia.org/wiki/Erik_Meijer_(computer_scientist)). Хотя Rx определенно использовались на
-платформе .NET, в реальности они не получил широкого распространения, пока Netflix не перенес их на Java, назвав RxJava.
+платформе .NET, в реальности они не получили широкого распространения, пока Netflix не перенес их на Java, назвав RxJava.
 С тех пор было предоставлено множество портов для различных платформ, включая JavaScript (RxJS).
 
 <!-- The idea behind Rx is to move towards what's called `observable streams` whereby we now think of data as streams (infinite amounts of data) and these streams can be observed. In practical terms, Rx is simply 

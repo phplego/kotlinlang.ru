@@ -18,18 +18,18 @@ transformations, and so on.  -->
 
 <a name="extension-and-member-functions"></a>
 <!-- ## Extension and member functions -->
-## Функции-расширения (Extension) и функции-элементы (member functions)
+## Функции-расширения (Extension) и функции-члены (member functions)
 
 <!-- Collection operations are declared in the standard library in two ways: [member functions](classes.md#class-members) of
 collection interfaces and [extension functions](extensions.md#extension-functions). -->
-Операции коллекций в стандартной библиотеке объявляются двумя способами: как [функции-элементы](classes.html#class-members) и как [функции-расширения](extensions.html#extension-functions).
+Операции коллекций в стандартной библиотеке объявляются двумя способами: как [функции-члены](classes.html#class-members) и как [функции-расширения](extensions.html#extension-functions).
 
 <!-- Member functions define operations that are essential for a collection type. For example, [`Collection`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html)
 contains the function [`isEmpty()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/is-empty.html)
 for checking its emptiness; [`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html) contains
 [`get()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html) for index access to elements,
 and so on. -->
-С помощью функций-элементов определяются операции, которые необходимы для определённых типов коллекций. Например, у
+С помощью функций-членов определяются операции, которые необходимы для определённых типов коллекций. Например, у
 [`Collection`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html) есть функция
 [`isEmpty()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/is-empty.html) для проверки того, что коллекция пуста; у
 [`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html) есть функция
@@ -42,7 +42,7 @@ standard library: [`AbstractCollection`](https://kotlinlang.org/api/latest/jvm/s
 [`AbstractSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-set/index.html),
 [`AbstractMap`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-map/index.html), and their
 mutable counterparts. -->
-Если вы решите создать свою собственную реализацию коллекции, например, на основе интерфейса `Collection`, то вы также должны будете реализовать все его функции-элементы. Чтобы упростить эту задачу используйте специально подготовленные реализации интерфейсов из стандартной библиотеки:
+Если вы решите создать свою собственную реализацию коллекции, например, на основе интерфейса `Collection`, то вы также должны будете реализовать все его функции-члены. Чтобы упростить эту задачу, используйте специально подготовленные реализации интерфейсов из стандартной библиотеки:
 [`AbstractCollection`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-collection/index.html),
 [`AbstractList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-list/index.html),
 [`AbstractSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-set/index.html),

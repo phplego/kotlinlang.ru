@@ -49,7 +49,7 @@ val numbersMap = mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key4" to 1)
 isn't critical. To avoid excessive memory usage, use alternative ways. For example, you can create a mutable map and
 populate it using the write operations. The [`apply()`](scope-functions.md#apply) function can help to keep the
 initialization fluent here. -->
-Обратите внимание, что нотация `to` создаёт недолговечный объект `Pair`, поэтому рекомендуется использовать его только в том случае, если производительность не критична. Чтобы избежать чрезмерного использования памяти, используйте альтернативные способы. Например, вы можете создать `MutableMap` и заполнить его с помощью операций записи. Функция [`apply ()`](scope-functions.html#apply) поможет создать плавную инициализацию.
+Обратите внимание, что нотация `to` создаёт недолговечный объект `Pair`, поэтому рекомендуется использовать его только в том случае, если производительность не критична. Чтобы избежать чрезмерного использования памяти, используйте альтернативные способы. Например, вы можете создать `MutableMap` и заполнить его с помощью операций записи. Функция [`apply()`](scope-functions.html#apply) поможет создать плавную инициализацию.
 
 ```kotlin
 val numbersMap = mutableMapOf<String, String>()
@@ -215,7 +215,7 @@ fun main() {
 ```
 
 <!-- [Association](collection-transformations.md#associate) produces maps: -->
-Или функция `associate`, которая создаёт ассоциативный список:
+Или функция `associateWith()`, которая создаёт ассоциативный список:
 
 ```kotlin
 fun main() {

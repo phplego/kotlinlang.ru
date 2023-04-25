@@ -109,7 +109,7 @@ class C {
 ```
 
 <!-- If this function or property is public or private inline, its actual type is: -->
-Если эта функция или свойство маркированы как встроенные и public или private одновременно, то их тип:
+Если эта функция или свойство маркированы как public или встроенный private, то их тип:
 
 <!-- * `Any` if the anonymous object doesn't have a declared supertype
 * The declared supertype of the anonymous object, if there is exactly one such type

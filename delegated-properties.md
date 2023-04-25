@@ -345,7 +345,7 @@ If `someCondition` fails, the variable won't be computed at all. -->
 <!-- * `thisRef` must be the same type as, or a supertype of, the *property owner* (for extension properties, it should be the type being extended).
 * `property`  must be of type `KProperty<*>` or its supertype. -->
 
-* `thisRef` — должен иметь такой же тип или быть наследником типа *хозяина свойства* (для расширений — тип, который
+* `thisRef` — должен иметь такой же тип или быть родителем *хозяина свойства* (для расширений — тип, который
 расширяется);
 * `property` — должен быть типа `KProperty<*>` или его родительского типа.
 
@@ -375,7 +375,7 @@ with the following parameters: -->
 * `property` must be of type `KProperty<*>` or its supertype.
 * `value` must be of the same type as the property (or its supertype). -->
 
-* `thisRef` — должен иметь такой же тип или быть наследником типа *хозяина свойства* (для расширений — тип, который
+* `thisRef` — должен иметь такой же тип или быть родителем *хозяина свойства* (для расширений — тип, который
 расширяется);
 * `property` — должен быть типа `KProperty<*>` или его родительского типа;
 * `value` — должен быть того же типа, что и свойство (или его родительский тип).
@@ -555,7 +555,7 @@ class MyUI {
 <!-- * `thisRef` must be the same type as, or a supertype of, the _property owner_ (for extension properties, it should be the type being extended);
 * `property` must be of type `KProperty<*>` or its supertype. -->
 
-* `thisRef` — должен иметь такой же тип, или быть наследником типа *хозяина свойства* (для расширений — тип, который
+* `thisRef` — должен иметь такой же тип, или быть родителем *хозяина свойства* (для расширений — тип, который
 расширяется)
 * `property` — должен быть типа `KProperty<*>` или его родительского типа.
 

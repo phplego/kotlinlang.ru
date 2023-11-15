@@ -589,7 +589,7 @@ println(s + "def") // abc1def
 
 <!-- * _escaped_ strings that may contain escaped characters
 * _raw_ strings that can contain newlines and arbitrary text -->
-* *экронированные* строки с экранированными символами 
+* *экранированные* строки с экранированными символами 
 * *обычные* строки, которые могут содержать символы новой строки и произвольный текст
 
 <!-- Here's an example of an escaped string: -->

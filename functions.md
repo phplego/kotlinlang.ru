@@ -340,7 +340,7 @@ for the call). Infix functions must meet the following requirements: -->
 * The parameter must not [accept variable number of arguments](#variable-number-of-arguments-varargs) and must have
 no [default value](#default-arguments). -->
 
-* Они должны являться членом другой функции или [расширения](extensions.html);
+* Они должны являться функцией-членом класса или [функцией расширения](extensions.html);
 * В них должен использоваться только один параметр;
 * Параметр не должен принимать [переменное количество аргументов](#variable-number-of-arguments-varargs) и не должен
 иметь [значения по умолчанию](#default-arguments).

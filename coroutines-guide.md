@@ -40,7 +40,7 @@ coroutine-enabled primitives that this guide covers, including `launch`, `async`
 
 <!-- 
 * [Coroutines basics](coroutines-basics.md)
-* [Hands-on: Intro to coroutines and channels](https://play.kotlinlang.org/hands-on/Introduction%20to%20Coroutines%20and%20Channels)
+* [Tutorial: Coroutines and channels](https://kotlinlang.org/docs/coroutines-and-channels.html)
 * [Cancellation and timeouts](cancellation-and-timeouts.md)
 * [Composing suspending functions](composing-suspending-functions.md)
 * [Coroutine context and dispatchers](coroutine-context-and-dispatchers.md)
@@ -54,7 +54,7 @@ coroutine-enabled primitives that this guide covers, including `launch`, `async`
 -->
 
 * [Основы корутин](coroutines-basics.html)
-* [Практика: Введение в корутины и каналы](https://play.kotlinlang.org/hands-on/Introduction%20to%20Coroutines%20and%20Channels)
+* [Туториал: Корутины и каналы](https://kotlinlang.org/docs/coroutines-and-channels.html)
 * [Отмена корутин и тайм-ауты](cancellation-and-timeouts.html)
 * [Создание suspending-функций](composing-suspending-functions.html)
 * [Контекст корутин и диспатчеры](coroutine-context-and-dispatchers.html)

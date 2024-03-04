@@ -418,7 +418,7 @@ for (item in items) {
 val items = setOf("яблоко", "банан", "киви")
 when {
     "апельсин" in items -> println("сочно")
-    "apple" in items -> println("яблоко тоже подойдет")
+    "яблоко" in items -> println("яблоко тоже подойдет")
 }
 ```
 

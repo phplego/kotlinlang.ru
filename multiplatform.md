@@ -194,3 +194,5 @@ declarations](multiplatform-connect-to-apis.md). -->
 * [Приложение KotlinConf](https://github.com/JetBrains/kotlinconf-app)
 * [Приложение KotlinConf Spinner](https://github.com/jetbrains/kotlinconf-spinner)
 * [Создайте фулстек веб-приложение с помощью Kotlin Multiplatform hands-on](https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction)
+
+...

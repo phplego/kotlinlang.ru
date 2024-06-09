@@ -218,7 +218,7 @@ If they were, we would have troubles of the following sort: -->
 // Возможный код, который на самом деле не скомпилируется:
 val a: Int? = 1 // "Обёрнутый" Int (java.lang.Integer)
 val b: Long? = a // неявное преобразование возвращает "обёрнутый" Long (java.lang.Long)
-print(b == a) // Нежданчик! Данное выражение выведет "false" т. к. метод equals() типа Long предполагает, что вторая часть выражения также имеет тип Long
+print(b == a) // Внимание! Данное выражение выведет "false" т. к. метод equals() типа Long предполагает, что вторая часть выражения также имеет тип Long
 ```
 
 <!-- So equality would have been lost silently, not to mention identity. -->

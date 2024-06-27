@@ -44,7 +44,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 In practice, we do this if we use the result of the first function to make a decision on whether we need
 to invoke the second one or to decide on how to invoke it. -->
 
-Что мы делаем, если нам нужно, чтобы они вызывались _последовательно_ &mdash; первый `doSomethingUsefulOne`, _затем_ `doSomethingUsefulTwo`, и вычислить сумму их результатов? На практике мы делаем это, если используем результат первой функции, чтобы принять решение о том, нужно ли нам вызывать вторую, или решить, как ее вызывать.
+Что мы делаем, если нам нужно, чтобы они вызывались _последовательно_ - первый `doSomethingUsefulOne`, _затем_ `doSomethingUsefulTwo`, и вычислить сумму их результатов? На практике мы делаем это, если используем результат первой функции, чтобы принять решение о том, нужно ли нам вызывать вторую, или решить, как ее вызывать.
 
 <!-- We use a normal sequential invocation, because the code in the coroutine, just like in the regular
 code, is _sequential_ by default. The following example demonstrates it by measuring the total

@@ -195,7 +195,7 @@ values of map entries. -->
 fun main() {
     val numbersMap = mutableMapOf("one" to 1, "two" to 2)
     val previousValue = numbersMap.put("one", 11)
-    println("value associated with 'one', before: $previousValue, after: ${numbersMap["one"]}") // 11
+    println("value associated with 'one', before: $previousValue, after: ${numbersMap["one"]}") // value associated with 'one', before: 1, after: 11
     println(numbersMap) // {one=11, two=2}
 }
 ```

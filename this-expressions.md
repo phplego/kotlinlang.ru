@@ -44,8 +44,8 @@ or labeled [function literal with receiver](lambdas.md#function-literals-with-re
 class A { // неявная метка @A
     inner class B { // неявная метка @B
         fun Int.foo() { // неявная метка @foo
-            val a = this@A // this из A
-            val b = this@B // this из B
+            val a = this@A // this класса A
+            val b = this@B // this класса B
 
             val c = this // объект-приёмник функции foo(), типа Int
             val c1 = this@foo // объект-приёмник функции foo(), типа Int

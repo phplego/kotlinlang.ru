@@ -9,7 +9,7 @@ url: https://kotlinlang.ru/docs/add-new-article.html
 
 Для создания новой статьи нужно выполнить два действия:
 
-* Добавить пункт меню в файл `MENU.json`. То есть отредактировать `MENU.json` https://github.com/phplego/kotlinlang.ru/blob/master/MENU.json 
+* Добавить пункт меню в файл `MENU.yaml`. То есть отредактировать `MENU.yaml` https://github.com/phplego/kotlinlang.ru/blob/master/MENU.yaml 
 * Создать файл с соответствующим именем `<article-id>.md`. Или скопировать соответствующий файл из [английской документации](https://github.com/JetBrains/kotlin-web-site/tree/master/docs/topics).
 
 Оригинальные тексты документации на английском находятся тут:

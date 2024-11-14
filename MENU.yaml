@@ -1,12 +1,3 @@
-Обзор Kotlin:
-  - multiplatform
-  - server-overview
-  - android-overview
-  - js-overview
-  - native-overview
-  - data-science-overview
-  - competitive-programming
-
 Введение:
   - basic-syntax
   - idioms
@@ -117,6 +108,15 @@
       - kapt
   - kotlin-doc
   - kotlin-osgi
+
+Обзор Kotlin:
+  - multiplatform
+  - server-overview
+  - android-overview
+  - js-overview
+  - native-overview
+  - data-science-overview
+  - competitive-programming
 
 Прочее:
   - faq

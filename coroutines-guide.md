@@ -15,29 +15,28 @@ libraries to utilize coroutines. Unlike many other languages with similar capabi
 are not keywords in Kotlin and are not even part of its standard library. Moreover, Kotlin's concept
 of _suspending function_ provides a safer and less error-prone abstraction for asynchronous 
 operations than futures and promises. -->
-Kotlin, как язык, предоставляет только минимальные низкоуровневые API в своей стандартной библиотеке, чтобы позволить
-другим библиотекам использовать корутины. В отличие от многих других языков с аналогичными возможностями, `async` и
+Kotlin, как язык, предоставляет только минимальные низкоуровневые API в своей стандартной библиотеке, чтобы другие
+библиотеки могли использовать корутины. В отличие от многих других языков с аналогичными возможностями, `async` и
 `await` не являются ключевыми словами в Kotlin и даже не входят в его стандартную библиотеку. Более того, концепция
-`suspend` функций Kotlin обеспечивает более безопасную и менее подверженную ошибкам абстракцию для асинхронных операций,
-чем Future и Promise.
+корутинных функций (suspending functions) Kotlin обеспечивает более безопасную и менее подверженную ошибкам абстракцию для асинхронных операций,
+чем промисы и фьючерсы.
 
 <!-- `kotlinx.coroutines` is a rich library for coroutines developed by JetBrains. It contains a number of high-level 
 coroutine-enabled primitives that this guide covers, including `launch`, `async` and others. -->
-`kotlinx.coroutines` — это богатая библиотека для корутин, разработанная JetBrains. Она содержит ряд высокоуровневых
-примитивов с поддержкой корутин, которые рассматриваются в этом руководстве, включая `launch`, `async` и другие.
+`kotlinx.coroutines` — это развитая библиотека для корутин от JetBrains. Она содержит ряд высокоуровневых
+примитивов, поддерживающих корутины, которые рассматриваются в этом руководстве, включая `launch`, `async` и другие.
 
 <!-- This is a guide on core features of `kotlinx.coroutines` with a series of examples, divided up into different topics. -->
-Это руководство по основным функциям `kotlinx.coroutines` с серией примеров, разделенных на разные темы.
+Это руководство по ключевым функциям `kotlinx.coroutines` с серией примеров, разделенных по различным темам.
 
 <!-- In order to use coroutines as well as follow the examples in this guide, you need to add a dependency on the `kotlinx-coroutines-core` module as explained
 [in the project README](https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects). -->
-Чтобы использовать корутины, а также следовать примерам из этого руководства, вам необходимо добавить зависимость от модуля `kotlinx-coroutines-core`, как описано в [README проекта](https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects).
+Чтобы использовать корутины и следовать примерам из этого руководства, вам необходимо добавить зависимость от модуля `kotlinx-coroutines-core`, как описано в [README проекта](https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects).
 
 <a name="table-of-contents"></a>
 
 <!-- ## Table of contents -->
 ## Содержание
-
 <!-- 
 * [Coroutines basics](coroutines-basics.md)
 * [Tutorial: Coroutines and channels](https://kotlinlang.org/docs/coroutines-and-channels.html)

@@ -31,7 +31,7 @@ Additionally, you have two more options to handle the key absence:
 Для того чтобы получить значение из `Map`, вы должны передать его ключ в качестве аргумента функции
 [`get()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html). Также поддерживается сокращённый синтаксис - `[key]`. Если такой ключ не найден, то вернётся `null`.
 Помимо этого существует функция [`getValue()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html), которая в случае отсутствия ключа бросит исключение.
-Также есть еще две функции для решения проблемы отсутствия ключа:
+Также есть ещё две функции для решения проблемы отсутствия ключа:
 * [`getOrElse()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html) - работает так же, как и для списков: если ключ не найден, то вернётся результат выполнения лямбды.
 * [`getOrDefault()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-default.html) - если ключ не найден, то вернёт заданное значение по умолчанию.
 

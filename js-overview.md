@@ -143,7 +143,7 @@ Here are a few examples of popular web frameworks for Kotlin/JS written by diffe
 that can be used as building blocks for your application’s user interface. You can use both reactive and imperative programming
 models to build your frontend, use connectors for Ktor, Spring Boot, and other frameworks to integrate it with your server-side
 applications, and share code using [Kotlin Multiplatform](multiplatform.md). -->
-*KVision* - это объектно-ориентированный веб-фреймворк, позволяющий писать приложения на Kotlin/JS с ready-to-use
+*KVision* - это объектно-ориентированный веб-фреймворк, позволяющий писать приложения на Kotlin/JS с готовыми
 компонентами, которые можно использовать в качестве строительных блоков для пользовательского интерфейса вашего
 приложения. Вы можете использовать как реактивные, так и императивные модели программирования для создания своего
 интерфейса, использовать соединители для Ktor, Spring Boot и других фреймворков для интеграции с вашими серверными

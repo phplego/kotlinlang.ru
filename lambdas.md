@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/lambdas.html
 be stored in variables and data structures, and can be passed as arguments to and returned from other
 [higher-order functions](#higher-order-functions). You can perform any operations on functions that are possible for other
 non-function values. -->
-В Kotlin функции являются [*функциями первого класса*](https://en.wikipedia.org/wiki/First-class_function). Это значит,
+В Kotlin функции являются [*объектами первого класса*](https://en.wikipedia.org/wiki/First-class_function). Это значит,
 что они могут храниться в переменных и структурах данных, передаваться в качестве аргументов и возвращаться из других
 [*функций высшего порядка*](#higher-order-functions). Вы можете работать с функциями любым способом, который возможен
 для других нефункциональных значений.

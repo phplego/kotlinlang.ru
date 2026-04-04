@@ -138,7 +138,7 @@ The following tokens are always interpreted as keywords and cannot be used as id
  * `init` начинает [блок инициализации](/docs/reference/classes.html#constructors)
  * `param` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
  * `property` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
- * `receiver`используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
+ * `receiver` используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
  * `set`
      - объявляет [сеттер свойства](/docs/reference/properties.html#getters-and-setters)
      - используется в качестве [целевого объекта аннотации](/docs/reference/annotations.html#annotation-use-site-targets)
@@ -339,4 +339,3 @@ Kotlin supports the following operators and special symbols:
      - substitutes an unused parameter in a [lambda expression](/docs/reference/lambdas.html#underscore-for-unused-variables-since-11)
      - substitutes an unused parameter in a [destructuring declaration](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)   
 -->
-

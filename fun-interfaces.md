@@ -111,7 +111,7 @@ When you choose which one to use in your code, consider your needs: -->
 
 <!-- * If your API needs to accept a function (any function) with some specific parameter and return types – use a simple functional type or define a type alias to give a shorter name to the corresponding functional type.
 * If your API accepts a more complex entity than a function – for example, it has non-trivial contracts and/or operations on it that can't be expressed in a functional type's signature – declare a separate functional interface for it. -->
-* Если вашему API необходимо принять функцию (любую функцию) с определенным параметром и типами возвращаемых значений –используйте простой функциональный тип
+* Если вашему API необходимо принять функцию (любую функцию) с определенным параметром и типами возвращаемых значений - используйте простой функциональный тип
 или определите псевдоним типа, чтобы дать более короткое имя соответствующему функциональному типу.
 * Если ваш API принимает более сложную сущность, чем функция, – например, у него есть нетривиальные контракты и/или операции над ним,
 которые не могут быть выражены в сигнатуре функционального типа, объявите для него отдельный функциональный интерфейс.

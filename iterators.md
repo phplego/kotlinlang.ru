@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/iterators.html
 objects that provide access to the elements sequentially without exposing the underlying structure of the collection.
 Iterators are useful when you need to process all the elements of a collection one-by-one, for example, print values or
 make similar updates to them. -->
-Для обхода элементов коллекции стандартная библиотека Kotlin поддерживает механизм _итераторов_ - объектов, которые предоставляют доступ к элементам последовательно, не раскрывая базовую структуру коллекции. Итераторы полезны, когда вам нужно обработать все элементы коллекции один за другим, например, вывести в лог их значения или обновить.
+Для обхода элементов коллекции стандартная библиотека Kotlin поддерживает механизм _итераторов_ - объектов, которые предоставляют доступ к элементам последовательно, не раскрывая базовую структуру коллекции. Итераторы полезны, когда вам нужно обработать все элементы коллекции один за другим, например, вывести в лог их значения или выполнить аналогичные изменения.
 
 <!-- Iterators can be obtained for inheritors of the [`Iterable<T>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html)
 interface, including `Set` and `List`, by calling the [`iterator()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html)

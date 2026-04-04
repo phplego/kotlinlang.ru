@@ -74,7 +74,7 @@ inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) { /*...*/ }
 
 <!-- Inlinable lambdas can only be called inside inline functions or passed as inlinable arguments. `noinline` lambdas,
 however, can be manipulated in any way you like, including being stored in fields or passed around. -->
-Когда как встраиваемые лямбды могут быть вызваны только внутри inline-функций или переданы в качестве встраиваемых
+В то время как встраиваемые лямбды могут быть вызваны только внутри inline-функций или переданы в качестве встраиваемых
 аргументов, с `noinline`-функциями можно работать без ограничений: хранить внутри полей, передавать куда-либо и т.д.
 
 <!-- > If an inline function has no inlinable function parameters and no

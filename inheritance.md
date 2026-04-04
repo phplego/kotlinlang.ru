@@ -30,7 +30,7 @@ open class Base // Класс открыт для наследования
 ```
 
 <!-- To declare an explicit supertype, place the type after a colon in the class header: -->
-Для явного объявления суперкласса мы помещаем его имя за знаком двоеточия в оглавлении класса:
+Для явного объявления суперкласса мы помещаем его имя за знаком двоеточия в заголовке класса:
 
 ```kotlin
 open class Base(p: Int)

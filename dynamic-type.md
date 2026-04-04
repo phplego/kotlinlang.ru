@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Динамические типы Javascript"
+title: "Динамические типы JavaScript"
 url: https://kotlinlang.ru/docs/dynamic-type.html
 ---
 

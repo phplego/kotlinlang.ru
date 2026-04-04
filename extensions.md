@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/extensions.html
 without having to inherit from the class or use design patterns such as _Decorator_.
 This is done via special declarations called _extensions_. -->
 Kotlin позволяет расширять класс путём добавления нового функционала без необходимости наследования от такого класса
-и использования паттернов, таких как *Decorator*. Это реализовано с помощью специальных выражений, называемых *расширения*.
+и использования паттернов, таких как *Decorator*. Это реализовано с помощью специальных объявлений, называемых *расширениями*.
 
 <!-- For example, you can write new functions for a class from a third-party library that you can't modify.
 Such functions can be called in the usual way, as if they were methods of the original class.

@@ -102,7 +102,7 @@ try {
 
 <!-- Bruce Eckel says this about checked exceptions: -->
 
-Брюс Эккель как-то сказал о проверяемых исключения:
+Брюс Эккель как-то сказал о проверяемых исключениях:
 
 <!-- > Examination of small programs leads to the conclusion that requiring exception specifications
 >could both enhance developer productivity and enhance code quality, but experience with large software projects suggests

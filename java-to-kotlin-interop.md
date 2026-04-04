@@ -8,7 +8,7 @@ url: https://kotlinlang.ru/docs/java-to-kotlin-interop.html
 
 # Вызов кода Kotlin из Java
 
-Код Kotlin может быть вызван из JAVA просто.
+Код Kotlin может быть просто вызван из Java.
 
 <!--Kotlin code can be called from Java easily.-->
 

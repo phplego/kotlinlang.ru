@@ -47,7 +47,7 @@ For mutable collections, they modify the collection if it's a `val`. For more de
 
 Подробнее об использовании операторов `plus` и `minus` с ассоциативным списком можно ознакомиться в разделе [Map: специфичные операции](map-operations.html).
 
-Также для коллекций определены [расширенные операторы присваивания](operator-overloading.html#augmented-assignments) такие как,
+Также для коллекций определены [расширенные операторы присваивания](operator-overloading.html#augmented-assignments), такие как
 [`plusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html) (`+=`) и
 [`minusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html) (`-=`). Однако с неизменяемыми коллекциями они фактически используют операторы `plus` или `minus`, пытаясь присвоить результат той же переменной. Поэтому неизменяемая коллекция должна быть объявлена при помощи ключевого слова `var`.
 Для изменяемых коллекций этого не требуется.

@@ -28,7 +28,7 @@ it is more helpful to implement them once, add them to a library, and reuse them
 * свойства, хранимые в *ассоциативном списке*, а не в отдельных полях.
 
 <!-- To cover these (and other) cases, Kotlin supports _delegated properties_: -->
-Для этих (и остальных) случаев, Kotlin поддерживает *делегированные свойства*.
+Для этих (и остальных) случаев Kotlin поддерживает *делегированные свойства*.
 
 ```kotlin
 class Example {

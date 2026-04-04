@@ -68,7 +68,7 @@ Ant version 1.8.2+ is required. -->
 
 <!-- If a project consists of both Kotlin and Java source code, while it is possible to use *kotlinc*, to avoid repetition of task parameters, it is
 recommended to use *withKotlin* task: -->
-Если проект состоит из исходного кода Kotlin и Java, то для избежания повторения параметров задачи рекомендуется 
+Если проект состоит из исходного кода Kotlin и Java, то во избежание повторения параметров задачи рекомендуется 
 использовать задачу *withKotlin* везде, где возможно использовать *kotlinc*:
 
 ``` xml

@@ -151,7 +151,7 @@ println("main: Now I can quit.")
 available inside the coroutine via the [CoroutineScope] object. -->
 Как вы можете увидеть, теперь цикл отменяется.
 [`isActive`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/is-active.html) —
-это extension-параметр, доступный внутри корутины, благодаря объекту
+это extension-свойство, доступное внутри корутины, благодаря объекту
 [`CoroutineScope`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html).
 
 <a name="closing-resources-with-finally"></a>

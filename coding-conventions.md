@@ -1336,7 +1336,7 @@ when (x) {
 <!-- Prefer using higher-order functions (`filter`, `map` etc.) to loops. Exception: `forEach` (prefer using a regular `for` loop instead,
 unless the receiver of `forEach` is nullable or `forEach` is used as part of a longer call chain). -->
 Предпочтительнее использовать функции более высокого порядка (`filter`, `map` и т.д.), чем циклы.
-Исключение: `forEach` (лучше использовать обычный цикл `for`) используется только, если получатель `forEach` не может быть обнулен
+Исключение: `forEach` (лучше использовать обычный цикл `for`) используется только, если получатель `forEach` не может быть `null`
 или `forEach` используется как часть более длинной цепочки вызовов.
 
 <!-- When making a choice between a complex expression using multiple higher-order functions and a loop, understand the cost

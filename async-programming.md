@@ -109,7 +109,7 @@ lead to incomprehensible code. The pattern is often referred to as the titled ch
 
 * Сложность вложенных коллбэков. Обычно функция, которая используется в качестве коллбэка, часто заканчивается тем, что
 ей требуется собственный обратный вызов. Это приводит к серии вложенных обратных вызовов, из-за чего код становится
-малопонятным. Этот паттерн часто называют рождественской елкой (фигурные скобки представляют ветви дерева).
+малопонятным. Этот паттерн часто называют рождественской ёлкой (фигурные скобки представляют ветви дерева).
 * Обработка ошибок сложна. Модель вложенности несколько усложняет обработку ошибок и их воспроизведение.
 
 <!-- Callbacks are quite common in event-loop architectures such as JavaScript, but even there, generally people have moved away to using other approaches such as promises or reactive extensions. -->

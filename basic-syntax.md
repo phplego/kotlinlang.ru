@@ -24,7 +24,7 @@ on JetBrains Academy. -->
 ## Определение имени пакета и импорт
 
 <!-- Package specification should be at the top of the source file. -->
-Имя пакета указывается в начале исходного файла, так же как и в Java.
+Имя пакета указывается в начале исходного файла, так же, как и в Java.
 
 ```kotlin
 package my.demo

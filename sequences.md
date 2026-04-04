@@ -97,7 +97,7 @@ fun main() {
 
 <a name="from-chunks"></a>
 <!-- ### From chunks -->
-### С помощью чанков (chunks)
+### С помощью порций
 
 <!-- Finally, there is a function that lets you produce sequence elements one by one or by chunks of arbitrary sizes – the
 [`sequence()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence.html) function.
@@ -107,7 +107,7 @@ They return an element to the sequence consumer and suspend the execution of `se
 requested by the consumer. `yield()` takes a single element as an argument; `yieldAll()` can take an `Iterable` object,
 an `Iterator`, or another `Sequence`. A `Sequence` argument of `yieldAll()` can be infinite. However, such a call must be
 the last: all subsequent calls will never be executed. -->
-Наконец, есть функция [`sequence()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence.html), которая позволяет создавать элементы последовательности один за другим или кусками (chunks) произвольного размера. Эта функция принимает лямбда-выражение, содержащее вызовы функций
+Наконец, есть функция [`sequence()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence.html), которая позволяет создавать элементы последовательности один за другим или порциями произвольного размера. Эта функция принимает лямбда-выражение, содержащее вызовы функций
 [`yield()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield.html) и
 [`yieldAll()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield-all.html).
 Они возвращают элемент потребителю последовательности и приостанавливают выполнение `sequence()` до тех пор, пока потребитель не запросит следующий элемент. Функция `yield()` принимает в качестве аргумента один элемент; `yieldAll()` может принимать объект `Iterable`, `Iterator` или другую `Sequence`. Аргумент `Sequence`, переданный в `yieldAll()`, может быть бесконечным. Однако такой вызов должен быть последним, иначе все последующие вызовы никогда не будут выполнены.

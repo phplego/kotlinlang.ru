@@ -23,7 +23,7 @@ first operand go before the elements of the second. -->
 <!-- To find an intersection between two collections (elements present in both of them), use [`intersect()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/intersect.html).
 To find collection elements not present in another collection, use [`subtract()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/subtract.html).
 Both these functions can be called in the infix form as well, for example, `a intersect b`. -->
-Чтобы найти пересечения между двумя коллекциями (другими словами поиск элементов, присутствующих в обеих коллекциях), используйте функцию [`intersect()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/intersect.html). И наоборот, для поиска элементов, отсутствующих в другой коллекции, используйте
+Чтобы найти пересечение между двумя коллекциями, то есть элементы, присутствующие в обеих коллекциях, используйте функцию [`intersect()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/intersect.html). И наоборот, для поиска элементов, отсутствующих в другой коллекции, используйте
 [`subtract()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/subtract.html). Обе функции могут быть вызваны в инфиксной форме, например, `a intersect b`.
 
 ```kotlin

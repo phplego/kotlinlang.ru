@@ -21,7 +21,7 @@ val (name, age) = person
 
 <!-- This syntax is called a *destructuring declaration*. A destructuring declaration creates multiple variables at once.
 You have declared two new variables: `name` and `age`, and can use them independently: -->
-Этот синтаксис называется *деструктуризирующее присваивание*. Он позволяет присвоить объект сразу нескольким переменным,
+Этот синтаксис называется *деструктуризирующим присваиванием*. Он позволяет присвоить объект сразу нескольким переменным,
 разбив его на части. Вы объявили две переменные: `name` и `age`, и теперь можете использовать их по отдельности.
 
 ```kotlin

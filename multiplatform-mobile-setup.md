@@ -58,7 +58,7 @@ url: https://kotlinlang.ru/docs/multiplatform-mobile-setup.html
 4. Убедитесь, что у вас установлен [совместимый плагин Kotlin](multiplatform-mobile-plugin-releases.html#release-details).
 
     В Android Studio выберите **Tools** | **Kotlin** | **Configure Kotlin Plugin Updates** и проверьте текущую версию
-    плагина Kotlin. При необходимости обновите до последней **Stable** версии.
+    плагина Kotlin. При необходимости обновите до последней стабильной версии.
 
 5. Установите плагин *Kotlin Multiplatform Mobile*.
 

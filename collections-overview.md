@@ -21,7 +21,7 @@ collections, you can skip this introduction and proceed to the detailed sections
 <!-- A collection usually contains a number of objects (this number may also be zero) of the same type. Objects in a collection
 are called _elements_ or _items_. For example, all the students in a department form a collection that can be used to
 calculate their average age.  -->
-Обычно в коллекции находится несколько объектов одного типа (но также коллекция может быть пустой). Эти объекты называются _элементами_ или _items_. Например, все студенты одного факультета образуют коллекцию, которую можно использовать для расчёта их среднего возраста.
+Обычно в коллекции находится несколько объектов одного типа (но также коллекция может быть пустой). Эти объекты называются _элементами_ или _items_ (элементами коллекции). Например, все студенты одного факультета образуют коллекцию, которую можно использовать для расчёта их среднего возраста.
 
 <!-- The  following collection types are relevant for Kotlin:
 * _List_ is an ordered collection with access to elements by indices – integer numbers that reflect their position.

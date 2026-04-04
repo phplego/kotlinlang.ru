@@ -97,7 +97,7 @@ is the value of the last expression in the block. -->
 unless the compiler can prove that all possible cases are covered with branch conditions,
 for example, with [`enum` class](enum-classes.md) entries and [`sealed` class](sealed-classes.md) subtypes). -->
 Если `when` используется как *выражение*, то ветка `else` является обязательной, за исключением случаев, в которых
-компилятор может убедиться, что ветки покрывают все возможные значения. Так происходит, например с записями
+компилятор может убедиться, что ветки покрывают все возможные значения. Так происходит, например, с записями
 [класса `enum`](enum-classes.html) и с подтипами [`sealed` (изолированных) классов](sealed-classes.html).
 
 ```kotlin

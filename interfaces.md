@@ -15,7 +15,7 @@ url: https://kotlinlang.ru/docs/interfaces.html
 implementations. What makes them different from abstract classes is that interfaces cannot store a state. They can have
 properties, but these need to be abstract or provide accessor implementations. -->
 Интерфейсы в Kotlin могут содержать объявления абстрактных методов, а также методы с реализацией.
-Главное отличие интерфейсов от абстрактных классов заключается в невозможности хранения переменных экземпляров.
+Главное отличие интерфейсов от абстрактных классов заключается в том, что они не могут хранить состояние.
 Они могут иметь свойства, но те должны быть либо абстрактными, либо предоставлять реализацию методов доступа. 
 
 <!-- An interface is defined using the keyword `interface`: -->
@@ -53,8 +53,8 @@ class Child : MyInterface {
 implementations for accessors. Properties declared in interfaces can't have backing fields, and therefore accessors
 declared in interfaces can't reference them: -->
 Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным,
-либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь теневых полей, соответственно,
-методы доступа к таким свойствам не могут обращаться к теневым полям.
+либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь backing-полей, соответственно,
+методы доступа к таким свойствам не могут обращаться к backing-полям.
 
 ```kotlin
 interface MyInterface {

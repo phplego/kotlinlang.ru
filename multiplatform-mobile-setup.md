@@ -67,7 +67,7 @@ url: https://kotlinlang.ru/docs/multiplatform-mobile-setup.html
 
     <img src="https://kotlinlang.org/docs/images/mobile-multiplatform-plugin.png" alt="Плагин Kotlin Multiplatform Mobile" title="Плагин Kotlin Multiplatform Mobile">
 
-    Посмотрите [Kotlin Multiplatform Mobile plugin release notes](multiplatform-mobile-plugin-releases.html).
+    Посмотрите [заметки к выпуску плагина Kotlin Multiplatform Mobile](multiplatform-mobile-plugin-releases.html).
 
 <!-- Now it's time to [create your first cross-platform mobile application](multiplatform-mobile-create-first-app.md). -->
 Теперь вы можете [создать ваше первое кроссплатформенное мобильное приложение](multiplatform-mobile-create-first-app.html).

@@ -266,7 +266,7 @@ val mainEmail = emails.firstOrNull() ?: ""
 ```
 
 <!-- Learn the difference between [Java and Kotlin first item getting](java-to-kotlin-collections-guide.md#get-the-first-and-the-last-items-of-a-possibly-empty-collection). -->
-Узнайте разницу между [получения первого элемента в Java и Kotlin](java-to-kotlin-collections-guide.html#get-the-first-and-the-last-items-of-a-possibly-empty-collection).
+Узнайте разницу между [получением первого элемента в Java и Kotlin](java-to-kotlin-collections-guide.html#get-the-first-and-the-last-items-of-a-possibly-empty-collection).
 
 <a name="execute-if-not-null"></a>
 

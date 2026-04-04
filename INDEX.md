@@ -105,4 +105,4 @@ url: https://kotlinlang.ru
   * [Kotlin and continuous integration with TeamCity](https://kotlinlang.org/docs/kotlin-and-ci.html)
 * Раздел "Learning materials": весь
 * Раздел "Other resources": весь (кроме [FAQ](https://kotlinlang.org/docs/faq.html) — статья уже переведена)
-* Статья [Grammar](https://kotlinlang.ru/docs/reference/grammar.html)
+* Статья ["Grammar"](https://kotlinlang.ru/docs/reference/grammar.html)

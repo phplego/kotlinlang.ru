@@ -17,7 +17,7 @@ type, defined in the Kotlin standard library. -->
 
 <!-- The coroutine context is a set of various elements. The main elements are the [Job] of the coroutine, 
 which we've seen before, and its dispatcher, which is covered in this section. -->
-Контекст корутины представляет собой набор различных элементов. Основными элементами являются [Job](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html) корутины, которую мы видели ранее, и ее диспетчер, рассматриваемый в этом разделе.
+Контекст корутины представляет собой набор различных элементов. Основными элементами являются [Job](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html) корутины, который мы видели ранее, и ее диспетчер, рассматриваемый в этом разделе.
 
 
 <a name="dispatchers-and-threads"></a>

@@ -10,7 +10,7 @@ url: https://kotlinlang.ru/docs/comparison-to-java.html
 # Сравнение с языком программирования Java
 
 <!--## Some Java issues addressed in Kotlin-->
-##Некоторые проблемы Java, решённые в Kotlin
+## Некоторые проблемы Java, решённые в Kotlin
 
 <!--Kotlin fixes a series of issues that Java suffers from-->
 Kotlin решает целый ряд проблем, от которых страдает Java:

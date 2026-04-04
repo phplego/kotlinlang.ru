@@ -19,7 +19,7 @@ the type of a property or function at runtime) is essential when using a functio
 имени или типа во время исполнения) сильно переплетена с использованием функциональной или реактивной парадигмы.
 
 <!-- > Kotlin/JS provides limited support for reflection features. [Learn more about reflection in Kotlin/JS](js-reflection.md). -->
-> Kotlin/JS предоставляет ограниченную поддержку рефлексии. [Узнайте больше об рефлексии в Kotlin/JS](js-reflection.html).
+> Kotlin/JS предоставляет ограниченную поддержку рефлексии. [Узнайте больше о рефлексии в Kotlin/JS](js-reflection.html).
 
 <a name="jvm-dependency"></a>
 

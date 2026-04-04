@@ -1,6 +1,7 @@
 # kotlinlang.ru
-Документация Kotlin на русском.
 
-Для просмотра содержимого документации пройдите по адресу [kotlinlang.ru](https://kotlinlang.ru) (бывший [kotlin.su](http://kotlin.su))
+Русскоязычная документация по Kotlin.
 
-Чтобы вносить изменения без задержки на одобрение pull request, пишите в чат https://t.me/KotlinLangRu для получения доступа
+Сайт: [kotlinlang.ru](https://kotlinlang.ru)
+
+Для доступа на запись: https://t.me/KotlinLangRu

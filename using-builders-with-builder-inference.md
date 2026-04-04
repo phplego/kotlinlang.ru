@@ -54,7 +54,7 @@ Builder inference allows to omit type arguments while using generic builders. --
 <!-- > Before Kotlin 1.6.0, enabling builder inference for a builder function required the [`@BuilderInference`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-builder-inference/)
 > annotation to be present on a builder lambda parameter. In 1.6.0, you can omit the annotation if both you and your
 > builder's clients are using the compiler option `-Xenable-builder-inference`. -->
-> До Kotlin 1.6.0 для включения вывода строителя для функции строителя требовалось аннотация
+> До Kotlin 1.6.0 для включения вывода строителя для функции строителя требовалась аннотация
 > [`@BuilderInference`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-builder-inference/) в лямбда-параметре
 > строителя. В версии 1.6.0 вы можете её опустить, если и вы, и клиенты вашего строителя используете опцию компилятора
 > `-Xenable-builder-inference`.

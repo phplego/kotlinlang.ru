@@ -113,7 +113,7 @@ var stringRepresentation: String
 ```
 
 <!-- By convention, the name of the setter parameter is `value`, but you can choose a different name if you prefer. -->
-По договорённости, имя параметра сеттера - `value`, но вы можете использовать любое другое.
+По договорённости имя параметра сеттера - `value`, но вы можете использовать любое другое.
 
 <!-- If you need to annotate an accessor or change its visibility, but you don't need to change the default implementation,
 you can define the accessor without defining its body: -->

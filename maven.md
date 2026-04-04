@@ -147,7 +147,7 @@ Artifact ID для Kotlin reflection - `kotlin-reflect`, `kotlin-test` и `kotli
 ## Инкрементальная компиляция
 
 Чтобы ускорить сборку, вы можете использовать инкрементальную компиляцию сборщика Maven (поддерживается начиная с Kotlin 1.1.2).
-Для этого добавите свойство `kotlin.compiler.incremental`:
+Для этого добавьте свойство `kotlin.compiler.incremental`:
 
 ``` xml
 <properties>

@@ -17,7 +17,7 @@ url: https://kotlinlang.ru/docs/returns.html
 <!-- * `return` by default returns from the nearest enclosing function or [anonymous function](lambdas.md#anonymous-functions).
 * `break` terminates the nearest enclosing loop.
 * `continue` proceeds to the next step of the nearest enclosing loop. -->
-* `return` по умолчанию производит возврат из ближайшей окружающей его функции или [анонимной функции](lambdas.md#anonymous-functions);
+* `return` по умолчанию производит возврат из ближайшей содержащей его функции или [анонимной функции](lambdas.md#anonymous-functions);
 * `break` завершает выполнение ближайшего окружающего его цикла;
 * `continue` продолжает выполнение цикла со следующего его шага, без обработки оставшегося кода текущей итерации.
 

@@ -53,7 +53,7 @@ coroutine is limited only by the lifetime of the whole application.   -->
 <!-- You can achieve the same result by replacing
 `GlobalScope.launch { ... }` with `thread { ... }`, and `delay(...)` with `Thread.sleep(...)`.
 Try it (don't forget to import `kotlin.concurrent.thread`). -->
-Вы можете получить тот же результат, заменив `GlobalScope.launch {...}` на `thread {...}` или на `delay(...)` с `Thread.sleep (...)`. Попробуйте (не забудьте импортировать `kotlin.concurrent.thread`).
+Вы можете получить тот же результат, заменив `GlobalScope.launch {...}` на `thread {...}`, а `delay(...)` на `Thread.sleep(...)`. Попробуйте (не забудьте импортировать `kotlin.concurrent.thread`).
 
 <!-- If you start by replacing `GlobalScope.launch` with `thread`, the compiler produces the following error: -->
 Если вы начнете с замены `GlobalScope.launch` на `thread`, то компилятор выдаст следующую ошибку:

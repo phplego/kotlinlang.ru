@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/visibility-modifiers.html
 <!-- Classes, objects, interfaces, constructors, and functions, as well as properties and their setters, can have *visibility modifiers*.
 Getters always have the same visibility as their properties. --> 
 Классы, объекты, интерфейсы, конструкторы, функции, свойства и их сеттеры могут иметь *модификаторы доступа*.
-Геттеры всегда имеют тут же видимость, что и свойства, к которым они относятся.
+Геттеры всегда имеют ту же видимость, что и свойства, к которым они относятся.
 
 <!-- There are four visibility modifiers in Kotlin: `private`, `protected`, `internal`, and `public`.
 The default visibility is `public`. -->

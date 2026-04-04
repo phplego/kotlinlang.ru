@@ -36,7 +36,7 @@ Petrova explains what Kotlin Multiplatform Mobile is and how to use it in your p
 you'll set up an environment and prepare to create your first cross-platform mobile application: -->
 Посмотрите вводное [видео](https://www.youtube.com/watch?v=mdN6P6RI__k), в котором менеджер по продуктовому маркетингу
 Kotlin Екатерина Петрова объясняет, что такое Kotlin Multiplatform Mobile и как использовать его в вашем проекте. Вместе
-с ней вы настроите среду разработки и подготовитесь к созданию вашего первого кроссплатформенных мобильного приложения.
+с ней вы настроите среду разработки и подготовитесь к созданию вашего первого кроссплатформенного мобильного приложения.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mdN6P6RI__k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

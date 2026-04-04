@@ -122,7 +122,7 @@ reside in the same source set. It applies to sealed classes without the [`expect
 <!-- If a sealed class is declared as `expect` in a common source set and have `actual` implementations in platform source sets,
 both `expect` and `actual` versions can have subclasses in their source sets. Moreover, if you use a [hierarchical structure](multiplatform-share-on-platforms.md#share-code-on-similar-platforms),
 you can create subclasses in any source set between the `expect` and `actual` declarations. -->
-Если изолированный класс объявлен как `expected` в общем модуле и имеет `actual` реализации в платформенном модуле, как
+Если изолированный класс объявлен как `expect` в общем модуле и имеет `actual` реализации в платформенном модуле, как
 ожидаемая, так и актуальные версии могут иметь наследников в своих модулях. Более того, если вы используете
 [иерархическую структуру](multiplatform-share-on-platforms.html#share-code-on-similar-platforms), вы можете создавать наследников
 в любом исходном наборе между `expect` и `actual` объявлениями.

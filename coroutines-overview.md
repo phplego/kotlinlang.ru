@@ -14,7 +14,7 @@ url: https://kotlinlang.ru/docs/coroutines-overview.html
 desktop, or mobile applications, it's important to provide an experience that is not only fluid from the user's perspective,
 but also scalable when needed. -->
 Асинхронное или неблокирующее программирование является важной частью разработки. При создании серверных, десктопных или
-мобильных приложений важно обеспечить интерфейс не только гибкий с точки зрения пользователя, но и масштабируемый при
+мобильных приложений важно обеспечить интерфейс, который не только удобен с точки зрения пользователя, но и масштабируем при
 необходимости.
 
 <!-- Kotlin solves this problem in a flexible way by providing [coroutine](https://en.wikipedia.org/wiki/Coroutine) support

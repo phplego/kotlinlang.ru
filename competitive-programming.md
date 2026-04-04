@@ -25,7 +25,7 @@ special algorithms, data structures, and a lot of practice. While not being spec
 programming, Kotlin incidentally fits well in this domain, reducing the typical amount of boilerplate that a 
 programmer needs to write and read while working with the code almost to the level offered by dynamically-typed 
 scripting languages, while having tooling and performance of a statically-typed language. -->
-[Спортивного программирование](https://en.wikipedia.org/wiki/Competitive_programming) - это интеллектуальный спорт, в
+[Спортивное программирование](https://en.wikipedia.org/wiki/Competitive_programming) - это интеллектуальный спорт, в
 котором участники пишут программы для решения точно заданных алгоритмических задач в рамках строгих ограничений. Задачи
 могут варьироваться от простых, которые может решить любой разработчик программного обеспечения и требующие
 небольшого количества кода, до сложных, требующих знания специальных алгоритмов, структур данных и много опыта. Несмотря

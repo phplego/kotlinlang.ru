@@ -21,7 +21,7 @@ https://github.com/JetBrains/kotlin-web-site/tree/master/docs/topics
 * Выгрузить файлы на сервер kotlinlang.ru перейдя по урлу: http://kotlinlang.ru/update
 
 
-### У меня нет доступа на редактирование, что делать?
+### У меня нет доступа к редактированию, что делать?
 
 В этом случае есть два варианта:
 * Попросить доступ в чате https://telegram.me/KotlinLangRu

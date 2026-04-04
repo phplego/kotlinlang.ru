@@ -67,7 +67,7 @@ url: https://kotlinlang.ru
   * [Using Java records in Kotlin](https://kotlinlang.org/docs/jvm-records.html)
   * [Strings in Java and Kotlin](https://kotlinlang.org/docs/java-to-kotlin-idioms-strings.html)
   * [Collections in Java and Kotlin](https://kotlinlang.org/docs/java-to-kotlin-collections-guide.html)
-* Раздел "Platforms", подраздел "JavaScript": весь (кроме [Dynamic type](https://kotlinlang.org/docs/dynamic-type.html) — уже переведена)
+* Раздел "Platforms", подраздел "JavaScript": весь (кроме [Dynamic type](https://kotlinlang.org/docs/dynamic-type.html) — статья уже переведена)
 * Раздел "Platforms", подраздел "Native": весь
 * Раздел "Platforms", подраздел "Scripting": весь
 * Раздел "Releases and roadmap": весь

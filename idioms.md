@@ -90,7 +90,7 @@ println("Name $name")
 ```
 
 <!-- Learn the difference between [Java and Kotlin string concatenation](java-to-kotlin-idioms-strings.md#concatenate-strings). -->
-Узнайте разницу между [конкатенация строк в Java и Kotlin](java-to-kotlin-idioms-strings.html#concatenate-strings).
+Узнайте разницу между [конкатенацией строк в Java и Kotlin](java-to-kotlin-idioms-strings.html#concatenate-strings).
 
 <a name="instance-checks"></a>
 

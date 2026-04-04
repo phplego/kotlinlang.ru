@@ -12,7 +12,7 @@ url: https://kotlinlang.ru/docs/collection-write.html
 <!-- [Mutable collections](collections-overview.md#collection-types) support operations for changing the collection contents, for example, adding or removing elements.
 On this page, we'll describe write operations available for all implementations of `MutableCollection`.
 For more specific operations available for `List` and `Map`, see [List-specific Operations](list-operations.md) and [Map Specific Operations](map-operations.md) respectively. -->
-[Изменяемые коллекции](collections-overview.html#collection-types) поддерживают операции, изменяющие её содержимое, например, операции по добавлению и удалению элементов. В этом разделе описаны операции записи, доступные для всех реализаций `MutableCollection`. Более конкретные операции, доступные для `List` и `Map`, описаны в разделах [List: специфичные операции](list-operations.html) и [Map: специфичные операции](map-operations.html).
+[Изменяемые коллекции](collections-overview.html#collection-types) поддерживают операции, изменяющие их содержимое, например, операции по добавлению и удалению элементов. В этом разделе описаны операции записи, доступные для всех реализаций `MutableCollection`. Более конкретные операции, доступные для `List` и `Map`, описаны в разделах [List: специфичные операции](list-operations.html) и [Map: специфичные операции](map-operations.html).
 
 
 <a name="adding-elements"></a>

@@ -62,7 +62,7 @@ val demo = Outer().Inner().foo() // == 1
 ```
 
 <!-- See [Qualified `this` expressions](this-expressions.md) to learn about disambiguation of `this` in inner classes. -->
-Подробнее об использовании `this` во внутренних классах: [Qualified `this` expressions](this-expressions.html).
+Подробнее об использовании `this` во внутренних классах: [Квалифицированные выражения `this`](this-expressions.html).
 
 <a name="anonymous-inner-classes"></a>
 <!-- ## Anonymous inner classes -->

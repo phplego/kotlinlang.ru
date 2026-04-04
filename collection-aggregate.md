@@ -111,7 +111,7 @@ fun main() {
 <!-- The example above shows the difference: `fold()` is used for calculating the sum of doubled elements.
 If you pass the same function to `reduce()`, it will return another result because it uses the list's first and second
 elements as arguments on the first step, so the first element won't be doubled. -->
-В примере выше показана разница: `fold()` используется для вычисления суммы удвоенных элементов. Если вы передадите ту же функцию в `reduce()`, она вернёт другой результат, поскольку он использует первый и второй элементы списка в качестве аргументов на первом шаге, в связи с чем первый элемент не будет удвоен.
+В примере выше показана разница: `fold()` используется для вычисления суммы удвоенных элементов. Если вы передадите ту же функцию в `reduce()`, она вернёт другой результат, поскольку `reduce()` использует первый и второй элементы списка в качестве аргументов на первом шаге, в связи с чем первый элемент не будет удвоен.
 
 <!-- To apply a function to elements in the reverse order, use functions [`reduceRight()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right.html)
 and [`foldRight()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right.html).

@@ -11,7 +11,7 @@ url: https://kotlinlang.ru/docs/list-operations.html
 
 <!-- [`List`](collections-overview.md#list) is the most popular type of built-in collection in Kotlin. Index access to the elements
 of lists provides a powerful set of operations for lists.  -->
-[`List`](collections-overview.html#list) - самый популярный из всех типов коллекций в Kotlin. Он предоставляет мощный набор операций благодаря наличию доступа к элементам по индексу.
+[`List`](collections-overview.html#list) - один из самых популярных типов коллекций в Kotlin. Он предоставляет мощный набор операций благодаря наличию доступа к элементам по индексу.
 
 
 <a name="retrieve-elements-by-index"></a>

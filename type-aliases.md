@@ -56,7 +56,7 @@ They are equivalent to the corresponding underlying types.
 When you add `typealias Predicate<T>` and use `Predicate<Int>` in your code, the Kotlin compiler always expands it to `(Int) -> Boolean`. 
 Thus you can pass a variable of your type whenever a general function type is required and vice versa: -->
 Псевдонимы типов не вводят новых типов. Они эквивалентны соответствующим базовым типам. Когда вы добавляете
-`typealias Predicate<T>` и используете `Predicate<Int>` в своём коде, компилятор Kotlin всегда преобразовывает это в
+`typealias Predicate<T>` и используете `Predicate<Int>` в своём коде, компилятор Kotlin всегда преобразует это в
 `(Int) -> Boolean`. Таким образом, вы можете передать переменную своего типа в любое место, где требуется базовый тип
 (тот, которому был задан псевдоним), и наоборот:
 

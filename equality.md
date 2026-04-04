@@ -48,7 +48,7 @@ is referentially equal to `null`.-->
 [`equals(other: Any?): Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html) function.
 Functions with the same name and other signatures, like `equals(other: Foo)`, don't affect equality checks with
 the operators `==` and `!=`. -->
-Чтобы обеспечить вашу реализацию проверки равенства, переопределите функцию
+Чтобы предоставить собственную реализацию проверки равенства, переопределите функцию
 [`equals(other: Any?): Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html). Функции с тем же
 именем и другими сигнатурами, например `equals(other: Foo)`, не влияют на проверку равенства с помощью операторов `==` и
 `!=`.

@@ -149,7 +149,7 @@ fun main() {
 ```
 
 <!-- To define a custom progression step, use the `step` function on a range. -->
-Чтобы прогрессии задать собственный шаг, используйте функцию `step`.
+Чтобы задать прогрессии собственный шаг, используйте функцию `step`.
 
 ```kotlin
 fun main() {

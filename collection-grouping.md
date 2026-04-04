@@ -20,7 +20,7 @@ their first letter.  -->
 <!-- You can also call `groupBy()` with a second lambda argument – a value transformation function.
 In the result map of `groupBy()` with two lambdas, the keys produced by `keySelector` function are mapped to the results
 of the value transformation function instead of the original elements. -->
-Также `groupBy()` может быть передана вторая лямбда-функция — функция преобразования значений. В этом случае ключи, созданные первой лямбдой `keySelector`, будут отражать результаты второй лямбды `valueTransform`, вместо исходных элементов.
+Также в `groupBy()` можно передать вторую лямбда-функцию - функцию преобразования значений. В этом случае ключи, созданные первой лямбдой `keySelector`, будут отражать результаты второй лямбды `valueTransform`, вместо исходных элементов.
 
 ```kotlin
 fun main() {

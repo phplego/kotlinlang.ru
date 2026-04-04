@@ -41,7 +41,7 @@ enum class Color(val rgb: Int) {
 <!-- Enum constants can declare their own anonymous classes with their corresponding methods, as well as with overriding base
 methods. -->
 Enum-константы также могут объявлять свои собственные анонимные классы как с их собственными методами, так и с
-перегруженными методами базового класса.
+переопределёнными методами базового класса.
 
 ```kotlin
 enum class ProtocolState {

@@ -13,7 +13,7 @@ already contains all of them. You also should pay attention in case when externa
 Most regular Kotlin dependencies are not OSGi-ready, so you shouldn't use them and should remove them from your project. -->
 
 Для включения поддержки Kotlin OSGi необходимо включить `kotlin-osgi-bundle` вместо обычных библиотек Kotlin. 
-Рекомендуется удалить зависимости `kotlin-runtime`, `kotlin-stdlib` и `kotlin-reflect`, т.к. `kotlin-osgi-bundle` уже содержит их все. 
+Рекомендуется удалить зависимости `kotlin-runtime`, `kotlin-stdlib` и `kotlin-reflect`, так как `kotlin-osgi-bundle` уже содержит их все. 
 Следует обратить внимание на то, подключены ли внешние библиотеки Kotlin. Большинство обычных зависимостей Kotlin не готовы для использования
 с OSGi, поэтому их не следует использовать и нужно удалить из проекта.
 
@@ -90,4 +90,3 @@ So it was decided to make a separate artifact for OSGi. -->
 из-за так называемой [проблемы "разделения пакета"](http://wiki.osgi.org/wiki/Split_Packages), которая не может быть легко устранена, и такие большие изменения пока не планируются. 
 Есть функция `Require-Bundle`, но она не является лучшим вариантом и не рекомендована к использованию. Поэтому было принято решение 
 сделать отдельный артефакт для OSGi.
-

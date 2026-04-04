@@ -18,7 +18,7 @@ Functions described on this page apply to both lists and sets. -->
 Hence, every element of a list has its position that you can use for referring.
 In addition to functions described on this page, lists offer a wider set of ways to retrieve and search for elements by indices.
 For more details, see [List-specific operations](list-operations.md). -->
-В [определении списка](collections-overview.html) сказано, что список - это упорядоченная коллекция. Следовательно, каждый элемент списка имеет свою позицию, которую вы можете использовать в качестве ссылки на этот элемент.
+В [определении списка](collections-overview.html) сказано, что список - это упорядоченная коллекция. Следовательно, каждый элемент списка имеет свою позицию, которую вы можете использовать для обращения к нему.
 В дополнение к функциям, описанным в этом разделе, списки предлагают более широкий набор способов извлечения и поиска элементов по индексам. Для получения дополнительной информации см. [List: специфичные операции](list-operations.html).
 
 <!-- In turn, set is not an ordered collection by [definition](collections-overview.md).

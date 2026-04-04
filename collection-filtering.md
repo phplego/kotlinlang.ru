@@ -18,7 +18,7 @@ a boolean value: `true` means that the given element matches the predicate, `fal
 <!-- The standard library contains a group of extension functions that let you filter collections in a single call.
 These functions leave the original collection unchanged, so they are available for both [mutable and read-only](collections-overview.md#collection-types)
 collections. To operate the filtering result, you should assign it to a variable or chain the functions after filtering. -->
-В стандартной библиотеке есть группа функций-расширений, с помощью которых можно фильтровать коллекции за один вызов такой функции. Они не изменяют исходную коллекцию, поэтому их можно использовать и для [изменяемых, и для неизменяемых](collections-overview.html#collection-types) коллекций. Чтобы использовать результат фильтрации, вы должны либо присвоить его переменной, либо использовать его в цепочке вызовов.
+В стандартной библиотеке есть группа функций-расширений, с помощью которых можно фильтровать коллекции за один вызов. Они не изменяют исходную коллекцию, поэтому их можно использовать и для [изменяемых, и для неизменяемых](collections-overview.html#collection-types) коллекций. Чтобы использовать результат фильтрации, вы должны либо присвоить его переменной, либо использовать его в цепочке вызовов.
 
 
 <a name="filter-by-predicate"></a>

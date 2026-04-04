@@ -22,7 +22,7 @@ Symbol definitions may have many productions and are terminated by a semicolon (
 Symbol definitions may be prepended with attributes, e.g. start attribute denotes a start symbol. -->
 
 Терминальные символьные имена начинаются с прописной буквы, например SimpleName . 
-Нетерминальные символьные имена начинаются с строчной буквы, например kotlinFile . 
+Нетерминальные символьные имена начинаются со строчной буквы, например kotlinFile . 
 Каждое производство начинается с двоеточием ( : ). 
 Определения символов могут иметь множество производств и заканчиваются точкой с запятой ( ; ). 
 Определения символов могут быть добавлены с атрибутами , например, startатрибут обозначает символ начала.
@@ -41,4 +41,3 @@ Operator + denotes iteration (one or more).
 Operator ? denotes option (zero or one).
 alpha{beta} denotes a nonempty beta-separated list of alpha's. 
 Operator ++ means that no space or comment is allowed between operands.-->
-

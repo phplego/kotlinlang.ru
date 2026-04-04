@@ -188,7 +188,7 @@ fun main() {
 
 <!-- Another way to build maps in which both keys and values are somehow produced from collection elements is the function [`associate()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate.html).
 It takes a lambda function that returns a `Pair`: the key and the value of the corresponding map entry. -->
-Есть еще один способ создания ассоциативного списка, при котором ключи и значения тем или иным образом создаются на основе элементов коллекции - при помощи функции [`associate()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate.html).
+Есть ещё один способ создания ассоциативного списка, при котором ключи и значения тем или иным образом создаются на основе элементов коллекции - при помощи функции [`associate()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate.html).
 Она принимает лямбда-функцию, которая возвращает объект `Pair`. Этот объект и представляет собой пару "ключ-значение".
 
 <!-- Note that `associate()` produces short-living `Pair` objects which may affect the performance.

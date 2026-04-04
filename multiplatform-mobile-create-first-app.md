@@ -11,7 +11,7 @@ url: https://kotlinlang.ru/docs/multiplatform-mobile-create-first-app.html
 # Создание вашего первого кроссплатформенного мобильного приложения
 
 <!-- Here you will learn how to create and run your first Kotlin Multiplatform Mobile application. -->
-Здесь вы узнаете, как создать и запустить ваше первое Kotlin Multiplatform Mobile приложение.
+Здесь вы узнаете, как создать и запустить ваше первое приложение Kotlin Multiplatform Mobile.
 
 Вы также можете посмотреть видео этого урока, созданное Екатериной Петровой.
 

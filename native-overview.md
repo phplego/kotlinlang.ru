@@ -72,7 +72,7 @@ directly from Kotlin/Native: -->
 <!-- * static or dynamic [C libraries](native-c-interop.md)
 * C, [Swift, and Objective-C](native-objc-interop.md) frameworks -->.
 
-* статичные или динамичные [библиотеки C](native-c-interop.html),
+* статические или динамические [библиотеки C](native-c-interop.html),
 * фреймворки C, [Swift, and Objective-C](native-objc-interop.html).
 
 <!-- It is easy to include compiled Kotlin code in

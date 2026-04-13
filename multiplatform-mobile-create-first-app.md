@@ -64,11 +64,11 @@ You can also watch a video of this tutorial created by Ekaterina Petrova, Kotlin
 
 3. Выберите **Kotlin Multiplatform App** в списке шаблонов проектов и нажмите **Next**.
 
-    <img src="https://kotlinlang.org/docs/images/multiplatform-mobile-project-wizard-1.png" alt="Шаблон мобильного мультиплатформенного проекта" title="Шаблон мобильного мультиплатформенного проекта">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 4. Укажите имя для вашего первого приложения и нажмите **Next**.
 
-    <img src="https://kotlinlang.org/docs/images/multiplatform-mobile-project-wizard-2.png" alt="Мобильный мультиплатформенный проект - основные настройки" title="Мобильный мультиплатформенный проект - основные настройки">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 5. В открывшемся окне выполните следующие действия:
 
@@ -78,7 +78,7 @@ You can also watch a video of this tutorial created by Ekaterina Petrova, Kotlin
 
     Нажмите **Finish**, чтобы создать новый проект.
 
-    <img src="https://kotlinlang.org/docs/images/multiplatform-mobile-project-wizard-3.png" alt="Мобильный мультиплатформенный проект - дополнительные настройки" title="Мобильный мультиплатформенный проект - дополнительные настройки">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
     > Если вы хотите использовать мультиплатформенный модуль Kotlin в качестве зависимости CocoaPods, выберите опцию
     > **CocoaPods dependency manager**. Чтобы узнать больше о зависимостях CocoaPods, см. раздел [Интеграция CocoaPods](native-cocoapods.html).
@@ -94,7 +94,7 @@ You can [understand the project structure](multiplatform-mobile-understand-proje
 **Project**. Вы можете [разобраться со структурой проекта](multiplatform-mobile-understand-project-structure.html) и
 тем, как вы можете её использовать.
 
-<img src="https://kotlinlang.org/docs/images/select-project-view.png" alt="Выбор вида проекта" title="Выбор вида проекта">
+<!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 <a name="run-your-application"></a>
 
@@ -117,9 +117,9 @@ You can [understand the project structure](multiplatform-mobile-understand-proje
 
 * В списке конфигураций запуска выберите **androidApp** и нажмите **Run**.
 
-    <img src="https://kotlinlang.org/docs/images/run-android.png" alt="Запуск мультиплатформенного приложения на Android" title="Запуск мультиплатформенного приложения на Android">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/compose-run-android.png" alt="Запуск мультиплатформенного приложения на Android" title="Запуск мультиплатформенного приложения на Android">
 
-    <img src="https://kotlinlang.org/docs/images/first-multiplatform-project-on-android-1.png" alt="Первое мультиплатформенное приложение на Android" title="Первое мультиплатформенное приложение на Android">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/first-multiplatform-project-on-android-1.png" alt="Первое мультиплатформенное приложение на Android" title="Первое мультиплатформенное приложение на Android">
 
 <a name="run-on-a-different-android-simulated-device"></a>
 
@@ -150,9 +150,9 @@ You can [understand the project structure](multiplatform-mobile-understand-proje
 
 * В списке конфигураций запуска выберите **iosApp** и нажмите **Run**.
 
-    <img src="https://kotlinlang.org/docs/images/run-ios.png" alt="Запуск мультиплатформенного приложения на iOS" title="Запуск мультиплатформенного приложения на iOS">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/compose-run-ios.png" alt="Запуск мультиплатформенного приложения на iOS" title="Запуск мультиплатформенного приложения на iOS">
 
-    <img src="https://kotlinlang.org/docs/images/first-multiplatform-project-on-ios-1.png" alt="Первое мультиплатформенное приложение на iOS" title="Первое мультиплатформенное приложение на iOS">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/first-multiplatform-project-on-ios-1.png" alt="Первое мультиплатформенное приложение на iOS" title="Первое мультиплатформенное приложение на iOS">
 
 <a name="run-on-a-different-iphone-simulated-device"></a>
 
@@ -181,17 +181,17 @@ You can [understand the project structure](multiplatform-mobile-understand-proje
 
 1. В списке конфигураций запуска нажмите **Edit Configurations**.
 
-    <img src="https://kotlinlang.org/docs/images/ios-edit-configurations.png" alt="Редактирование конфигурации запуска" title="Редактирование конфигурации запуска">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/ios-edit-configurations.png" alt="Редактирование конфигурации запуска" title="Редактирование конфигурации запуска">
 
 2. Нажмите кнопку **+** над списком конфигураций и выберите **iOS Application**.
 
-    <img src="https://kotlinlang.org/docs/images/ios-new-configuration.png" alt="Новая конфигурация запуска для iOS-приложения" title="Новая конфигурация запуска для iOS-приложения">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/ios-new-configuration.png" alt="Новая конфигурация запуска для iOS-приложения" title="Новая конфигурация запуска для iOS-приложения">
 
 3. Укажите название вашей конфигурации.
 
 4. Выберите симулируемое устройство в списке **Execution target**, а затем нажмите **OK**.
 
-    <img src="https://kotlinlang.org/docs/images/ios-new-simulator.png" alt="Новая конфигурация запуска с симулятором iOS" title="Новая конфигурация запуска с симулятором iOS">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 5. Нажмите **Run**, чтобы запустить ваше приложение на новом симулируемом устройстве.
 
@@ -238,14 +238,14 @@ platform-specific code. -->
 1. Откройте файл `iosTest.kt` в папке `shared/src/iosTest/kotlin/com.example.kmmapplication.shared`. Каталоги с именем
 `Test` содержат тесты. Этот файл содержит пример теста для iOS.
 
-    <img src="https://kotlinlang.org/docs/images/ios-test-kt.png" alt="Тестовый Kotlin-файл для iOS" title="Тестовый Kotlin-файл для iOS">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 2. Нажмите на значок **Run** рядом с тестом.
 
 <!-- Tests run on a simulator without UI. Congratulations! The test has passed – see test results in the console. -->
 Тесты выполняются на симуляторе без UI. Поздравляем! Тест пройден – смотрите результаты теста в консоли.
 
-<img src="https://kotlinlang.org/docs/images/ios-test-result.png" alt="Результаты iOS-теста" title="Результаты iOS-теста">
+<!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 <a name="run-tests-on-android"></a>
 
@@ -301,7 +301,7 @@ platform-specific code. -->
 хранится общий код для обеих платформ – Android и iOS. Если вы внесете изменения в общий код, вы увидите изменения в
 обоих приложениях.
 
-    <img src="https://kotlinlang.org/docs/images/common-kotlin-file.png" alt="Общий Kotlin-файл" title="Общий Kotlin-файл">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 2. Обновите общий код: используйте функцию стандартной Kotlin-библиотеки, которая работает на всех платформах и
 возвращает текст: `reversed()`.
@@ -316,17 +316,17 @@ platform-specific code. -->
 
 3. Запустите обновленное приложение на Android.
 
-    <img src="https://kotlinlang.org/docs/images/first-multiplatform-project-on-android-2.png" alt="Обновленное мобильное мультиплатформенное приложение на Android" title="Обновленное мобильное мультиплатформенное приложение на Android">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/first-multiplatform-project-on-android-2.png" alt="Обновленное мобильное мультиплатформенное приложение на Android" title="Обновленное мобильное мультиплатформенное приложение на Android">
 
 4. Запустите обновленное приложение на iOS.
 
-    <img src="https://kotlinlang.org/docs/images/first-multiplatform-project-on-ios-2.png" alt="Обновленное мобильное мультиплатформенное приложение на iOS" title="Обновленное мобильное мультиплатформенное приложение на iOS">
+    <img src="https://kotlinlang.org/docs/multiplatform/images/first-multiplatform-project-on-ios-2.png" alt="Обновленное мобильное мультиплатформенное приложение на iOS" title="Обновленное мобильное мультиплатформенное приложение на iOS">
 
 5. Запустите тесты на Android и iOS.
 
     Как вы видите, тесты проваливаются. Обновите тесты для прохождения. Вы знаете, как это сделать, верно? ;)
 
-    <img src="https://kotlinlang.org/docs/images/ios-test-failed.png" alt="iOS-тест провалился" title="iOS-тест провалился">
+    <!-- Изображение удалено в актуальной версии kotlinlang.org -->
 
 <a name="next-steps"></a>
 

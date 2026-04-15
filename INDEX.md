@@ -24,33 +24,30 @@ url: https://kotlinlang.ru
 * [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram-чат, посвященный языку Kotlin и переводу документации ([правила чата](https://kotlinlang.ru/etc/chat-rules.html)).
 * [Одержимый ИИ](https://t.me/ObsessedAI) - Telegram-канал про ИИ-инструменты, обучение и рабочие практики, которые могут быть полезны Kotlin-разработчику.
 
-<!--
-* [@kotlin_lang](https://t.me/kotlin_lang) - Сообщество разработчиков на Kotlin
- Локальные группы:
-* [@KotlinMoscow](https://t.me/KotlinMoscow) - Московская группа
-* [@KotlinKrasnodar](https://t.me/KotlinKrasnodar) - Краснодарская группа
--->
 
 ## Актуальные задачи
 
-Сейчас сайту важнее не расширять список страниц, а закрывать самые заметные проблемы в уже существующих материалах. Если
-хотите помочь проекту, лучше всего начинать с задач ниже.
+Сейчас особенно важно закрывать незавершённые статьи, обновлять устаревшие рекомендации и сверять старые переводы с
+актуальной документацией. Лучше всего начинать с этих задач.
 
 * **Незавершённые страницы перевода.**
   В первую очередь нужна помощь со статьями, где вместо содержимого пока осталась заготовка. Пример:
   [Adding dependencies on multiplatform libraries](https://kotlinlang.ru/docs/multiplatform-add-dependencies.html).
 * **Статьи с устаревшими рекомендациями.**
-  Некоторые материалы всё ещё описывают старые версии Kotlin и практики, которые уже неактуальны. Особенно важно обновить
-  страницы [Gradle](https://kotlinlang.ru/docs/gradle.html), [Maven](https://kotlinlang.ru/docs/maven.html) и
-  [Coroutines](https://kotlinlang.ru/docs/coroutines.html).
+  В [Gradle](https://kotlinlang.ru/docs/gradle.html) и [Maven](https://kotlinlang.ru/docs/maven.html) до сих пор
+  описана экспериментальная поддержка coroutines в Kotlin 1.2 и настройка через `experimental { coroutines 'enable' }`
+  и `<experimentalCoroutines>enable</experimentalCoroutines>`. Такие места нужно находить и обновлять в первую очередь.
 * **Раздел про корутины и связанные страницы.**
-  Часть материалов про корутины, асинхронность и concurrency нуждается в пересмотре: там встречаются старые ссылки,
-  устаревшие API и исторические пояснения, которые сегодня только запутывают.
+  В [Coroutines](https://kotlinlang.ru/docs/coroutines.html) всё ещё обсуждаются `kotlin.coroutines.experimental`,
+  старый экспериментальный статус coroutines и прекращение поддержки experimental-версии в Kotlin 1.4. Это уже
+  исторический материал, который сегодня требует аккуратной переработки или явной переупаковки.
 * **Базовые статьи, переведённые по версиям 2021–2022 годов.**
-  Многие ключевые страницы были переведены давно и требуют сверки с актуальной англоязычной документацией. В первую
-  очередь полезно пересматривать [Основы](https://kotlinlang.ru/docs/basic-syntax.html),
-  [Классы](https://kotlinlang.ru/docs/classes.html), [Функции](https://kotlinlang.ru/docs/functions.html),
-  [Null safety](https://kotlinlang.ru/docs/null-safety.html) и [Коллекции](https://kotlinlang.ru/docs/collections-overview.html).
+  У ряда ключевых страниц в комментариях прямо указано, по какой версии делался перевод: например,
+  [Basic syntax](https://kotlinlang.ru/docs/basic-syntax.html) от 13 September 2021,
+  [Classes](https://kotlinlang.ru/docs/classes.html) от 29 November 2021,
+  [Functions](https://kotlinlang.ru/docs/functions.html) от 10 November 2021 и
+  [Null safety](https://kotlinlang.ru/docs/null-safety.html) от 08 July 2021. Их полезно регулярно сверять с текущей
+  англоязычной документацией и обновлять по мере расхождений.
 
 Если хотите подключиться, выбирайте любую из этих задач, правьте статью через GitHub и приходите в
 [@KotlinLangRu](https://t.me/KotlinLangRu), если нужна координация или ревью.

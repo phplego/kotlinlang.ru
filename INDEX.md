@@ -21,9 +21,8 @@ url: https://kotlinlang.ru
 
 ## Сообщество
 
-* [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram-чат, посвященный языку Kotlin и переводу документации.
+* [@KotlinLangRu](https://t.me/KotlinLangRu) - Telegram-чат, посвященный языку Kotlin и переводу документации ([правила чата](https://kotlinlang.ru/etc/chat-rules.html)).
 * [Одержимый ИИ](https://t.me/ObsessedAI) - Telegram-канал про ИИ-инструменты, обучение и рабочие практики, которые могут быть полезны Kotlin-разработчику.
-[Правила чата](https://kotlinlang.ru/etc/chat-rules.html)
 
 <!--
 * [@kotlin_lang](https://t.me/kotlin_lang) - Сообщество разработчиков на Kotlin

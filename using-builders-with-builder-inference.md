@@ -5,7 +5,7 @@ title: "Использование строителей с выводом тип
 url: https://kotlinlang.ru/docs/using-builders-with-builder-inference.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 16 November 2021 -->
+<!-- При переводе статьи оригинальная версия была от 25 September 2024 -->
 
 <!-- # Using builders with builder type inference -->
 # Использование строителей с выводом типа строителя
@@ -13,7 +13,7 @@ url: https://kotlinlang.ru/docs/using-builders-with-builder-inference.html
 <!-- Kotlin supports _builder type inference_ (or builder inference), which can come in useful when you are working with
 generic builders. It helps the compiler infer the type arguments of a builder call based on the type information
 about other calls inside its lambda argument. -->
-Kotlin поддерживает *определение типа строителя* (или вывод строителя), которое может оказаться полезным при работе с
+Kotlin поддерживает *вывод типа строителя* (или вывод строителя), который может оказаться полезным при работе с
 универсальными строителями. Это помогает компилятору определять тип аргументов вызова строителя на основе информации
 о типе других вызовов внутри его лямбда-аргумента.
 
@@ -51,13 +51,13 @@ Builder inference allows to omit type arguments while using generic builders. --
 <!-- ### Requirements for enabling builder inference -->
 ### Требования для включения вывода строителя
 
-<!-- > Before Kotlin 1.6.0, enabling builder inference for a builder function required the [`@BuilderInference`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-builder-inference/)
-> annotation to be present on a builder lambda parameter. In 1.6.0, you can omit the annotation if both you and your
-> builder's clients are using the compiler option `-Xenable-builder-inference`. -->
-> До Kotlin 1.6.0 для включения вывода строителя для функции строителя требовалась аннотация
-> [`@BuilderInference`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-builder-inference/) в лямбда-параметре
-> строителя. В версии 1.6.0 вы можете её опустить, если и вы, и клиенты вашего строителя используете опцию компилятора
-> `-Xenable-builder-inference`.
+<!-- > Before Kotlin 1.7.0, enabling builder inference for a builder function required `-Xenable-builder-inference` compiler option.
+> In 1.7.0 the option is enabled by default.
+>
+{style="note"} -->
+> До Kotlin 1.7.0 для включения вывода строителя для функции строителя требовалась опция компилятора
+> `-Xenable-builder-inference`. В Kotlin 1.7.0 эта опция включена по умолчанию.
+{:.note}
 
 <!-- To let builder inference work for your own builder, make sure its declaration has a builder lambda parameter of a
 function type with a receiver. There are also two requirements for the receiver type: -->
@@ -87,12 +87,12 @@ function type with a receiver. There are also two requirements for the receiver 
 
        fun getLastItem(): T? = items.lastOrNull()
    }
-   
+
    fun <T> ItemHolder<T>.addAllItems(xs: List<T>) {
        xs.forEach { addItem(it) }
    }
 
-   fun <T> itemHolderBuilder(builder: ItemHolder<T>.() -> Unit): ItemHolder<T> = 
+   fun <T> itemHolderBuilder(builder: ItemHolder<T>.() -> Unit): ItemHolder<T> =
        ItemHolder<T>().apply(builder)
 
    fun test(s: String) {
@@ -100,7 +100,7 @@ function type with a receiver. There are also two requirements for the receiver 
            addItem(s)
        }
        val itemHolder2 = itemHolderBuilder { // Тип itemHolder2 - это ItemHolder<String>
-           addAllItems(listOf(s)) 
+           addAllItems(listOf(s))
        }
        val itemHolder3 = itemHolderBuilder { // Тип itemHolder3 - это ItemHolder<String?>
            val lastItem: String? = getLastItem()
@@ -133,7 +133,7 @@ function type with a receiver. There are also two requirements for the receiver 
       mapBuilder: MutableMap<K, V>.() -> Unit
   ): Pair<List<V>, Map<K, V>> =
       mutableListOf<V>().apply(listBuilder) to mutableMapOf<K, V>().apply(mapBuilder)
-  
+
   fun main() {
       val result = myBuilder(
           { add(1) },
@@ -150,11 +150,11 @@ function type with a receiver. There are also two requirements for the receiver 
   fun <K, V> myBuilder1(
       mapBuilder: MutableMap<K, V>.() -> K
   ): Map<K, V> = mutableMapOf<K, V>().apply { mapBuilder() }
-  
+
   fun <K, V> myBuilder2(
       mapBuilder: MutableMap<K, V>.(K) -> Unit
   ): Map<K, V> = mutableMapOf<K, V>().apply { mapBuilder(2 as K) }
-  
+
   fun main() {
       // тип result1 определен как Map<Long, String>
       val result1 = myBuilder1 {
@@ -290,7 +290,7 @@ It considers: -->
           val isLong = x.isMoreThat3()
       // ...
       } // result2 имеет тип List<String>
-  
+
       val result3 = buildList {
           takeListOfStrings(this)
       } // result3 имеет тип List<String>

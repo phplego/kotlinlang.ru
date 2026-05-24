@@ -4,19 +4,19 @@ layout: reference
 title: "Методы асинхронного программирования"
 url: https://kotlinlang.ru/docs/async-programming.html
 ---
-      
-<!-- При переводе статьи оригинальная версия была от 13 September 2021 -->
+
+<!-- При переводе статьи оригинальная версия была от 02 April 2026 -->
 
 <!-- # Asynchronous programming techniques -->
 # Методы асинхронного программирования
 
-<!-- For decades, as developers we are confronted with a problem to solve - how to prevent our applications from blocking. Whether 
-we're developing desktop, mobile, or even server-side applications, we want to avoid having the user wait or what's worse cause 
-bottlenecks that would prevent an application from scaling. -->
+<!-- For decades, as developers we are confronted with a problem to solve - how to prevent our applications from blocking. Whether
+we're developing desktop, mobile, or even backend applications, we want to avoid making the user wait or, even worse, create
+bottlenecks that prevent the application from scaling. -->
 На протяжении десятилетий мы, разработчики, сталкиваемся с проблемой, которую необходимо решить, — как предотвратить
-блокировку наших приложений. Независимо от того, разрабатываем ли мы десктопные, мобильные или даже серверные
-приложения, мы хотим избежать того, чтобы пользователь ждал или, что еще хуже, создавал узкие места (ориг.:
-*bottlenecks*), которые мешали бы масштабированию приложения.
+блокировку наших приложений. Независимо от того, разрабатываем ли мы десктопные, мобильные или даже
+бэкенд-приложения, мы хотим не заставлять пользователя ждать и, что еще хуже, не создавать узкие места (ориг.:
+*bottlenecks*), мешающие приложению масштабироваться.
 
 <!-- There have been many approaches to solving this problem, including: -->
 Существует множество подходов к решению этой проблемы, в том числе:
@@ -65,15 +65,15 @@ allow us to avoid the UI from blocking. This is a very common technique, but has
 пользовательского интерфейса. Это очень распространенный метод, но он имеет ряд недостатков:
 
 <!-- * Threads aren't cheap. Threads require context switches which are costly.
-* Threads aren't infinite. The number of threads that can be launched is limited by the underlying operating system. In server-side applications, this could cause a major bottleneck.
+* Threads aren't infinite. The number of threads that can be launched is limited by the underlying operating system. In backend applications, this could cause a major bottleneck.
 * Threads aren't always available. Some platforms, such as JavaScript do not even support threads.
-* Threads aren't easy. Debugging threads, avoiding race conditions are common problems we suffer in multi-threaded programming.  -->
+* Threads aren't easy. Debugging threads and avoiding race conditions are common problems we suffer in multi-threaded programming. -->
 
 * Потоки недешевые. Потоки требуют переключения контекста, что является дорогостоящим.
 * Потоки не бесконечны. Количество потоков, которые могут быть запущены, ограничено базовой операционной системой. В
-  серверных приложениях это может стать серьезным узким местом.
+  бэкенд-приложениях это может стать серьезным узким местом.
 * Потоки не всегда доступны. Некоторые платформы, такие как JavaScript, не поддерживают потоки.
-* Потоки - это непросто. Отладка потоков, избежание состояния гонки (конкуренции) - это распространенные проблемы, с
+* Потоки - это непросто. Отладка потоков и предотвращение состояний гонки (конкуренции) - это распространенные проблемы, с
 которыми мы сталкиваемся при многопоточном программировании.
 
 <a name="callbacks"></a>
@@ -87,8 +87,8 @@ allow us to avoid the UI from blocking. This is a very common technique, but has
 
 ```kotlin
 fun postItem(item: Item) {
-    preparePostAsync { token -> 
-        submitPostAsync(token, item) { post -> 
+    preparePostAsync { token ->
+        submitPostAsync(token, item) { post ->
             processPost(post)
         }
     }
@@ -104,12 +104,14 @@ fun preparePostAsync(callback: (Token) -> Unit) {
 В принципе это выглядит более элегантным решением, но опять же имеет несколько проблем:
 
 <!-- * Difficulty of nested callbacks. Usually a function that is used as a callback, often ends up needing its own callback. This leads to a series of nested callbacks which
-lead to incomprehensible code. The pattern is often referred to as the titled christmas tree (braces represent branches of the tree).
-* Error handling is complicated. The nesting model makes error handling and propagation of these somewhat more complicated.  -->
+lead to incomprehensible code. The pattern is often referred to as callback hell, or the [pyramid of doom](https://en.wikipedia.org/wiki/Pyramid_of_doom_(programming)) due to the triangular shape that indentations from these deeply nested callbacks create.
+* Error handling is complicated. The nesting model makes error handling and propagation of these somewhat more complicated. -->
 
 * Сложность вложенных коллбэков. Обычно функция, которая используется в качестве коллбэка, часто заканчивается тем, что
 ей требуется собственный обратный вызов. Это приводит к серии вложенных обратных вызовов, из-за чего код становится
-малопонятным. Этот паттерн часто называют рождественской ёлкой (фигурные скобки представляют ветви дерева).
+малопонятным. Этот паттерн часто называют callback hell или
+[pyramid of doom](https://en.wikipedia.org/wiki/Pyramid_of_doom_(programming)) из-за треугольной формы, которую создают
+отступы в таких глубоко вложенных коллбэках.
 * Обработка ошибок сложна. Модель вложенности несколько усложняет обработку ошибок и их воспроизведение.
 
 <!-- Callbacks are quite common in event-loop architectures such as JavaScript, but even there, generally people have moved away to using other approaches such as promises or reactive extensions. -->
@@ -121,37 +123,37 @@ lead to incomprehensible code. The pattern is often referred to as the titled ch
 <!-- ## Futures, promises, and others -->
 ## Фьючерс, обещания и другое
 
-<!-- The idea behind futures or promises (there are also other terms these can be referred to depending on language/platform), is that when we make a call, we're promised 
-that at some point it will return with an object called a Promise, which can then be operated on. -->
-Идея, лежащая в основе фьючерсов (ориг.: *futures*) или обещаний (есть и другие термины, на которые можно ссылаться в
-зависимости от языка/платформы), заключается в том, что когда мы совершаем вызов, нам обещают, что в какой-то момент он
-вернет объект, который называется Promise (обещание) и с которым затем можно работать.
+<!-- The idea behind futures or promises (other terms may be used depending on the language or platform), is that when we
+make a call, we're _promised_ that at some point the call will return a `Promise` object, which we can then operate on. -->
+Идея, лежащая в основе фьючерсов (ориг.: *futures*) или обещаний (в зависимости от языка или платформы могут
+использоваться и другие термины), заключается в том, что когда мы совершаем вызов, нам _обещают_, что в какой-то момент
+вызов вернет объект `Promise`, с которым затем можно работать.
 
 ```kotlin
 fun postItem(item: Item) {
-    preparePostAsync() 
-        .thenCompose { token -> 
+    preparePostAsync()
+        .thenCompose { token ->
             submitPostAsync(token, item)
         }
-        .thenAccept { post -> 
+        .thenAccept { post ->
             processPost(post)
         }
-         
+
 }
 
 fun preparePostAsync(): Promise<Token> {
     // делает запрос и возвращает обещание, которое будет выполнено позже
-    return promise 
+    return promise
 }
 ```
 
 <!-- This approach requires a series of changes in how we program, in particular: -->
 Этот подход требует ряда изменений в том, как мы программируем, в частности:
 
-<!-- * Different programming model. Similar to callbacks, the programming model moves away from a top-down imperative approach to a compositional model with chained calls. Traditional program structures 
+<!-- * Different programming model. Similar to callbacks, the programming model moves away from a top-down imperative approach to a compositional model with chained calls. Traditional program structures
 such as loops, exception handling, etc. usually are no longer valid in this model.
 * Different APIs. Usually there's a need to learn a completely new API such as `thenCompose` or `thenAccept`, which can also vary across platforms.
-* Specific return type. The return type moves away from the actual data that we need and instead returns a new type `Promise` which has to be introspected. 
+* Specific return type. The return type moves away from the actual data that we need and instead returns a new type `Promise` which has to be introspected.
 * Error handling can be complicated. The propagation and chaining of errors aren't always straightforward. -->
 
 * Другая модель программирования. Подобно коллбэкам, модель программирования отходит от императивного подхода сверху вниз к композиционной модели с цепными вызовами. Традиционные программные структуры, такие как циклы, обработка исключений и т.д., обычно не применимы в этой модели;
@@ -171,14 +173,14 @@ it really didn't reach mainstream adoption until Netflix ported it over to Java,
 платформе .NET, в реальности они не получили широкого распространения, пока Netflix не перенес их на Java, назвав RxJava.
 С тех пор было предоставлено множество портов для различных платформ, включая JavaScript (RxJS).
 
-<!-- The idea behind Rx is to move towards what's called `observable streams` whereby we now think of data as streams (infinite amounts of data) and these streams can be observed. In practical terms, Rx is simply 
+<!-- The idea behind Rx is to move towards what's called `observable streams` whereby we now think of data as streams (infinite amounts of data) and these streams can be observed. In practical terms, Rx is simply
 the [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) with a series of extensions which allow us to operate on the data. -->
 Идея Rx состоит в том, чтобы перейти к так называемым `observable streams` (наблюдаемым потокам), благодаря которым
 теперь мы думаем о данных как о потоках (бесконечных объемах данных), и эти потоки можно наблюдать. С практической точки
 зрения, Rx - это просто [шаблон наблюдателя](https://ru.wikipedia.org/wiki/%D0%9D%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_(%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)) с рядом расширений, которые
 позволяют нам оперировать данными.
 
-<!-- In approach it's quite similar to Futures, but one can think of a Future as returning a discrete element, whereas Rx returns a stream. However, similar to the previous, it also introduces 
+<!-- In approach it's quite similar to Futures, but one can think of a Future as returning a discrete element, whereas Rx returns a stream. However, similar to the previous, it also introduces
 a complete new way of thinking about our programming model, famously phrased as  -->
 По подходу они очень похожи на фьючерс, но можно думать о фьючере как о возврате дискретного элемента, тогда как Rx
 возвращают поток. Однако, как и фьючерс, они представляют совершенно новый взгляд на нашу модель программирования,
@@ -187,7 +189,7 @@ a complete new way of thinking about our programming model, famously phrased as 
 <!--    "everything is a stream, and it's observable" -->
     "всё - поток, который можно наблюдать"
 
-<!-- This implies a different way to approach problems and quite a significant shift from what we're used to when writing synchronous code. One benefit as opposed to Futures is that given it's ported to 
+<!-- This implies a different way to approach problems and quite a significant shift from what we're used to when writing synchronous code. One benefit as opposed to Futures is that given it's ported to
 so many platforms, generally we can find a consistent API experience no matter what we use, be it C#, Java, JavaScript, or any other language where Rx is available. -->
 Это подразумевает иной подход к решению проблем и довольно значительный сдвиг от того, к чему мы привыкли при написании
 синхронного кода. Одно из преимуществ по сравнению с фьючерс заключается в том, что, учитывая, что Rx портированы на
@@ -226,12 +228,12 @@ fun postItem(item: Item) {
 
 suspend fun preparePost(): Token {
     // делает запрос и приостанавливает выполнение корутины
-    возвращает suspendCoroutine { /* ... */ }
+    return suspendCoroutine { /* ... */ }
 }
 ```
 
-<!-- This code will launch a long-running operation without blocking the main thread. The `preparePost` is what's called a 
-`suspendable function`, thus the keyword `suspend` prefixing it. What this means as stated above, is that the function will 
+<!-- This code will launch a long-running operation without blocking the main thread. The `preparePost` is what's called a
+`suspendable function`, thus the keyword `suspend` prefixing it. What this means as stated above, is that the function will
 execute, pause execution and resume at some point in time.  -->
 Этот код запустит длительную операцию, не блокируя основной поток. `preparePost` - это так называемая
 `suspendable function` (приостанавливаемая функция), поэтому в качестве префикса для неё выступает ключевое слово

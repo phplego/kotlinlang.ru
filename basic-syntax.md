@@ -5,38 +5,39 @@ category: "Basics"
 title: "Основной синтаксис"
 url: https://kotlinlang.ru/docs/basic-syntax.html
 ---
-      
-<!-- При переводе статьи оригинальная версия была от 13 September 2021 -->
 
-# Основной синтаксис
+<!-- При обновлении статьи оригинальная версия была от 01 April 2026 -->
+
+# Обзор основного синтаксиса
 
 <!-- This is a collection of basic syntax elements with examples. At the end of every section, you'll find a link to
 a detailed description of the related topic. -->
 Это подборка базового синтаксиса с примерами.
 В конце каждого раздела вы найдете ссылку на более подробное описание соответствующей темы.
 
-<!-- You can also learn all the Kotlin essentials with the free [Kotlin Basics track](https://hyperskill.org/tracks/18)
-on JetBrains Academy. -->
-Вы также можете изучить все основы Kotlin в бесплатном курсе [Основы Kotlin](https://hyperskill.org/tracks/18) от JetBrains Academy.
+<!-- You can also learn all the Kotlin essentials with the free [Kotlin Core track](https://hyperskill.org/tracks?category=4&utm_source=jbkotlin_hs&utm_medium=referral&utm_campaign=kotlinlang-docs&utm_content=button_1&utm_term=22.03.23)
+by JetBrains Academy. -->
+Вы также можете изучить все основы Kotlin в бесплатном курсе [Kotlin Core](https://hyperskill.org/tracks?category=4&utm_source=jbkotlin_hs&utm_medium=referral&utm_campaign=kotlinlang-docs&utm_content=button_1&utm_term=22.03.23)
+от JetBrains Academy.
 
 <a name="package-definition-and-imports"></a>
 <!-- ## Package definition and imports -->
 ## Определение имени пакета и импорт
 
-<!-- Package specification should be at the top of the source file. -->
-Имя пакета указывается в начале исходного файла, так же, как и в Java.
+<!-- Package specification should be at the top of the source file: -->
+Имя пакета должно указываться в начале исходного файла:
 
 ```kotlin
 package my.demo
 
-import java.util.*
+import kotlin.text.*
 
 // ...
 ```
 
 <!-- It is not required to match directories and packages: source files can be placed arbitrarily in the file system. -->
-Но в отличие от Java, нет необходимости, чтобы структура пакетов совпадала со структурой папок:
-исходные файлы могут располагаться в произвольном месте на диске.
+Сопоставлять каталоги и пакеты не обязательно: исходные файлы могут располагаться в произвольном месте
+в файловой системе.
 
 <!-- See [Packages](packages.md). -->
 См. [Пакеты](packages.html).
@@ -45,7 +46,7 @@ import java.util.*
 <!-- ## Program entry point -->
 ## Точка входа в программу
 
-<!-- An entry point of a Kotlin application is the `main` function. -->
+<!-- An entry point of a Kotlin application is the `main` function: -->
 В Kotlin точкой входа в программу является функция `main`.
 
 ```kotlin
@@ -54,8 +55,8 @@ fun main() {
 }
 ```
 
-<!-- Another form of `main` accepts a variable number of `String` arguments.  -->
-Другая форма `main` может принимать массив строк `String`.
+<!-- Another form of `main` accepts a variable number of `String` arguments:  -->
+Другая форма `main` принимает переменное количество аргументов типа `String`.
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -83,12 +84,41 @@ println("Hello world!")
 println(42)
 ```
 
+<a name="read-from-the-standard-input"></a>
+<!-- ## Read from the standard input -->
+## Чтение из стандартного потока ввода
+
+<!-- The `readln()` function reads from the standard input. This function reads the entire line the user enters as a string. -->
+Функция `readln()` читает данные из стандартного потока ввода.
+Она считывает всю введенную пользователем строку как строковое значение.
+
+<!-- You can use the `println()`, `readln()`, and `print()` functions together to print messages requesting
+and showing user input: -->
+Функции `println()`, `readln()` и `print()` можно использовать вместе, чтобы выводить запросы на ввод
+и показывать введенные пользователем данные:
+
+```kotlin
+// Выводит сообщение с запросом на ввод
+println("Введите любое слово: ")
+
+// Читает и сохраняет пользовательский ввод. Например: Счастье
+val yourWord = readln()
+
+// Выводит сообщение с введенным значением
+print("Вы ввели слово: ")
+print(yourWord)
+// Вы ввели слово: Счастье
+```
+
+<!-- For more information, see [Read standard input](read-standard-input.md). -->
+Подробнее см. [Чтение стандартного ввода](https://kotlinlang.org/docs/read-standard-input.html).
+
 <a name="functions"></a>
 <!-- ## Functions -->
 ## Функции
 
-<!-- A function with two `Int` parameters and `Int` return type. -->
-Функция принимает два аргумента `Int` и возвращает `Int`.
+<!-- A function with two `Int` parameters and `Int` return type: -->
+Функция с двумя параметрами типа `Int` и возвращаемым значением типа `Int`.
 
 ```kotlin
 fun sum(a: Int, b: Int): Int {
@@ -104,7 +134,7 @@ fun sum(a: Int, b: Int) = a + b
 ```
 
 <!-- A function that returns no meaningful value. -->
-Функция, не возвращающая никакого значения (`void` в Java).
+Функция, которая не возвращает осмысленного значения.
 
 ```kotlin
 fun printSum(a: Int, b: Int): Unit {
@@ -128,45 +158,67 @@ fun printSum(a: Int, b: Int) {
 <!-- ## Variables -->
 ## Переменные
 
-<!-- Read-only local variables are defined using the keyword `val`. They can be assigned a value only once. -->
-Неизменяемые (только для чтения) локальные переменные определяются с помощью ключевого слова `val`. Присвоить им значение можно только один раз.
+<!-- In Kotlin, you declare a variable starting with a keyword, `val` or `var`, followed by the name of the variable. -->
+В Kotlin объявление переменной начинается с ключевого слова `val` или `var`, после которого указывается имя переменной.
+
+<!-- Use the `val` keyword to declare variables that are assigned a value only once. These are immutable, read-only local variables that can't be reassigned a different value after initialization: -->
+Используйте ключевое слово `val` для объявления переменных, которым значение присваивается только один раз.
+Это неизменяемые локальные переменные только для чтения: после инициализации им нельзя присвоить другое значение.
 
 ```kotlin
-val a: Int = 1   // Инициализация при объявлении
-val b = 1        // Тип `Int` определен автоматически
-val c: Int       // Указывать тип обязательно, если переменная не инициализирована сразу
-c = 1            // Последующее присвоение
+val x: Int = 5
 ```
 
-<!-- Variables that can be reassigned use the `var` keyword. -->
-Изменяемые переменные объявляются с помощью ключевого слова `var`.
+<!-- Use the `var` keyword to declare variables that can be reassigned. These are mutable variables, and you can change their values after initialization: -->
+Используйте ключевое слово `var` для объявления переменных, которым можно присваивать новые значения.
+Это изменяемые переменные: их значения можно менять после инициализации.
 
 ```kotlin
-var x = 5 // Тип `Int` определен автоматически
+var x: Int = 5
 x += 1
 ```
 
-<!-- You can declare variables at the top level. -->
-Вы можете объявлять глобальные переменные.
+<!-- Kotlin supports type inference and automatically identifies the data type of a declared variable. When declaring a variable, you can omit the type after the variable name: -->
+Kotlin поддерживает вывод типов и автоматически определяет тип данных объявленной переменной.
+При объявлении переменной можно опустить тип после ее имени.
+
+```kotlin
+val x = 5
+```
+
+<!-- You can use variables only after initializing them. You can either initialize a variable at the moment of declaration or declare a variable first and initialize it later.
+In the second case, you must specify the data type: -->
+Переменные можно использовать только после инициализации.
+Переменную можно инициализировать в момент объявления или сначала объявить, а затем инициализировать позже.
+Во втором случае тип данных нужно указывать явно.
+
+```kotlin
+val x = 5
+val c: Int
+c = 3
+```
+
+<!-- You can declare variables at the top level: -->
+Вы можете объявлять переменные на верхнем уровне.
 
 ```kotlin
 val PI = 3.14
 var x = 0
 
-fun incrementX() { 
-    x += 1 
+fun incrementX() {
+    x += 1
 }
 ```
 
-<!-- See also [Properties](properties.md). -->
-См. [Свойства и поля](properties.html).
+<!-- For information about declaring properties, see [Properties](properties.md). -->
+Информацию об объявлении свойств см. в разделе [Свойства](properties.html).
 
 <a name="creating-classes-and-instances"></a>
 <!-- ## Creating classes and instances -->
 ## Создание классов и экземпляров
 
-<!-- To define a class, use the `class` keyword. -->
-Для создания класса используйте ключевое слово `class`.
+<!-- To define a class, use the `class` keyword: -->
+Чтобы определить класс, используйте ключевое слово `class`.
 
 ```kotlin
 class Shape
@@ -176,8 +228,8 @@ class Shape
 Свойства класса могут быть перечислены при его объявлении или в его теле.
 
 ```kotlin
-class Rectangle(var height: Double, var length: Double) {
-    var perimeter = (height + length) * 2 
+class Rectangle(val height: Double, val length: Double) {
+    val perimeter = (height + length) * 2
 }
 ```
 
@@ -185,11 +237,15 @@ class Rectangle(var height: Double, var length: Double) {
 Конструктор по умолчанию с параметрами, перечисленными при объявлении класса, доступен автоматически.
 
 ```kotlin
+class Rectangle(val height: Double, val length: Double) {
+    val perimeter = (height + length) * 2
+}
+
 val rectangle = Rectangle(5.0, 2.0)
 println("Периметр равен ${rectangle.perimeter}")
 ```
 
-<!-- Inheritance between classes is declared by a colon (`:`). Classes are final by default; to make a class inheritable, 
+<!-- Inheritance between classes is declared by a colon (`:`). Classes are `final` by default; to make a class inheritable,
 mark it as `open`. -->
 Чтобы объявить наследование между классами используйте двоеточие (`:`). По умолчанию классы являются финальными,
 поэтому, чтобы сделать класс наследуемым, используйте `open`.
@@ -197,20 +253,20 @@ mark it as `open`. -->
 ```kotlin
 open class Shape
 
-class Rectangle(var height: Double, var length: Double): Shape() {
-    var perimeter = (height + length) * 2 
+class Rectangle(val height: Double, val length: Double): Shape() {
+    val perimeter = (height + length) * 2
 }
 ```
 
-<!-- See [classes](classes.md) and [objects and instances](object-declarations.md). -->
-См. [Классы и наследование](classes.html) и [Объекты и экземпляры](object-declarations.html).
+<!-- For more information about constructors and inheritance, see [Classes](classes.md) and [Objects and instances](object-declarations.md). -->
+Подробнее о конструкторах и наследовании см. в разделах [Классы](classes.html) и [Объекты и экземпляры](object-declarations.html).
 
 <a name="comments"></a>
 <!-- ## Comments -->
 ## Комментарии
 
 <!-- Just like most modern languages, Kotlin supports single-line (or _end-of-line_) and multi-line (_block_) comments. -->
-Также, как любой другой популярный современный язык, Kotlin поддерживает однострочные и многострочные (блочные) комментарии.
+Как и большинство современных языков, Kotlin поддерживает однострочные (до конца строки) и многострочные (блочные) комментарии.
 
 ```kotlin
 // Это однострочный комментарий
@@ -235,33 +291,22 @@ class Rectangle(var height: Double, var length: Double): Shape() {
 <!-- ## String templates -->
 ## Строковые шаблоны
 
-Допустимо использование переменных внутри строк в формате `$name` или `${name}`:
-
 ```kotlin
-fun main(args: Array<String>) {
-  if (args.size == 0) return
+fun main() {
+    var a = 1
+    // простое имя в шаблоне:
+    val s1 = "a равно $a"
 
-  print("Первый аргумент: ${args[0]}")
+    a = 2
+    // произвольное выражение в шаблоне:
+    val s2 = "${s1.replace("равно", "было равно")}, но теперь равно $a"
+
+    println(s2)
 }
 ```
 
-```
-var a = 1
-// просто имя переменной в шаблоне:
-val s1 = "a равно $a" 
-
-a = 2
-// произвольное выражение в шаблоне:
-val s2 = "${s1.replace("равно", "было равно")}, но теперь равно $a"
-
-/*
-  Результат работы программы:
-  a было равно 1, но теперь равно 2
-*/
-```
-
-<!-- See [String templates](basic-types.md#string-templates) for details. -->
-См. [Строковые шаблоны](basic-types.html#string-templates).
+<!-- See [String templates](strings.md#string-templates) for details. -->
+См. [Строковые шаблоны](https://kotlinlang.org/docs/strings.html#string-templates).
 
 <a name="conditional-expressions"></a>
 <!-- ## Conditional expressions -->
@@ -278,7 +323,7 @@ fun maxOf(a: Int, b: Int): Int {
 ```
 
 <!-- In Kotlin, `if` can also be used as an expression. -->
-В Kotlin `if` может быть использован как выражение (т. е. `if` ... `else` возвращает значение):
+В Kotlin `if` также может использоваться как выражение:
 
 ```kotlin
 fun maxOf(a: Int, b: Int) = if (a > b) a else b
@@ -304,7 +349,7 @@ for (item in items) {
 ```kotlin
 val items = listOf("яблоко", "банан", "киви")
 for (index in items.indices) {
-    println("${index} фрукт - это ${items[index]}")
+    println("элемент с индексом $index - это ${items[index]}")
 }
 ```
 
@@ -319,7 +364,7 @@ for (index in items.indices) {
 val items = listOf("яблоко", "банан", "киви")
 var index = 0
 while (index < items.size) {
-    println("${index} фрукт - это ${items[index]}")
+    println("элемент с индексом $index - это ${items[index]}")
     index++
 }
 ```
@@ -338,12 +383,12 @@ fun describe(obj: Any): String =
         "Hello"    -> "Приветствие"
         is Long    -> "Long"
         !is String -> "Не строка"
-        else       -> "Unknown"
+        else       -> "Неизвестно"
     }
 ```
 
-<!-- See [when expression](control-flow.md#when-expression). -->
-См. [Выражение when](control-flow.html#when-expression).
+<!-- See [when expressions and statements](control-flow.md#when-expressions-and-statements). -->
+См. [Выражения и инструкции when](control-flow.html#when-expressions-and-statements).
 
 <a name="ranges"></a>
 <!-- ## Ranges -->
@@ -356,7 +401,7 @@ fun describe(obj: Any): String =
 val x = 10
 val y = 9
 if (x in 1..y+1) {
-    println("принадлежит диапазону")
+    println("попадает в диапазон")
 }
 ```
 
@@ -367,10 +412,10 @@ if (x in 1..y+1) {
 val list = listOf("a", "b", "c")
 
 if (-1 !in 0..list.lastIndex) {
-    println("-1 не принадлежит диапазону")
+    println("-1 вне диапазона")
 }
 if (list.size !in list.indices) {
-    println("размер списка также выходит за допустимый диапазон индексов списка")
+    println("размер списка тоже вне допустимого диапазона индексов")
 }
 ```
 
@@ -382,7 +427,8 @@ for (x in 1..5) {
     print(x)
 }
 ```
-<!-- Or over a progression. -->
+
+<!-- Or over a progression: -->
 Или по арифметической прогрессии.
 
 ```kotlin
@@ -396,7 +442,7 @@ for (x in 9 downTo 0 step 3) {
 ```
 
 <!-- See [Ranges and progressions](ranges.md). -->
-См. [Интервалы](ranges.html).
+См. [Интервалы и прогрессии](ranges.html).
 
 <a name="collections"></a>
 <!-- ## Collections -->
@@ -422,8 +468,8 @@ when {
 }
 ```
 
-<!-- Using lambda expressions to filter and map collections: -->
-Использование лямбда-выражения для фильтрации и модификации коллекции.
+<!-- Use [lambda expressions](lambdas.md) to filter and map collections: -->
+Используйте [лямбда-выражения](lambdas.html), чтобы фильтровать и преобразовывать коллекции.
 
 ```kotlin
 val fruits = listOf("банан", "авокадо", "яблоко", "киви")
@@ -441,33 +487,39 @@ fruits
 <!-- ## Nullable values and null checks -->
 ## Nullable-значения и проверка на null
 
-<!-- A reference must be explicitly marked as nullable when `null` value is possible. Nullable type names have `?` at the end. -->
-Ссылка должна быть явно объявлена как nullable (символ `?` в конце имени), когда она может принимать значение `null`.
+<!-- A reference must be explicitly marked as nullable when a `null` value is possible. Nullable type names have `?` at the end.
+For example, `Int?`. -->
+Ссылка должна быть явно помечена как nullable, когда для нее возможно значение `null`.
+Имена nullable-типов заканчиваются символом `?`, например `Int?`.
 
 <!-- Return `null` if `str` does not hold an integer: -->
-Возвращает `null`, если `str` не содержит числа.
+Возвращает `null`, если `str` не содержит целое число.
 
 ```kotlin
 fun parseInt(str: String): Int? {
-  // ...
+    return str.toIntOrNull()
 }
 ```
 
 <!-- Use a function returning nullable value: -->
-Использование функции, возвращающей `null`.
+Использование функции, возвращающей nullable-значение.
 
 ```kotlin
+fun parseInt(str: String): Int? {
+    return str.toIntOrNull()
+}
+
 fun printProduct(arg1: String, arg2: String) {
     val x = parseInt(arg1)
     val y = parseInt(arg2)
-    
-    // Использование `x * y` приведет к ошибке, потому что они могут содержать null
+
+    // Использование `x * y` приведет к ошибке, потому что они могут содержать null.
     if (x != null && y != null) {
         // x и y автоматически приведены к не-nullable после проверки на null
-    print(x * y)
+        println(x * y)
     }
     else {
-        println("'$arg1' или '$arg2' не число")
+        println("'$arg1' или '$arg2' не является числом")
     }
 }
 ```
@@ -476,18 +528,27 @@ fun printProduct(arg1: String, arg2: String) {
 или
 
 ```kotlin
-// ...
-if (x == null) {
-    print("Неверный формат числа arg1: '$arg1'")
-    return
-}
-if (y == null) {
-    print("Неверный формат числа arg2: '$arg2'")
-    return
+fun parseInt(str: String): Int? {
+    return str.toIntOrNull()
 }
 
-// x и y автоматически приведены к не-nullable после проверки на null
-  print(x * y)
+fun printProduct(arg1: String, arg2: String) {
+    val x = parseInt(arg1)
+    val y = parseInt(arg2)
+
+    // ...
+    if (x == null) {
+        println("Неверный формат числа в arg1: '$arg1'")
+        return
+    }
+    if (y == null) {
+        println("Неверный формат числа в arg2: '$arg2'")
+        return
+    }
+
+    // x и y автоматически приведены к не-nullable после проверки на null
+    println(x * y)
+}
 ```
 
 <!-- See [Null-safety](null-safety.md). -->
@@ -506,11 +567,11 @@ If an immutable local variable or property is checked for a specific type, there
 ```kotlin
 fun getStringLength(obj: Any): Int? {
     if (obj is String) {
-        // в этом блоке `obj` автоматически преобразован в `String`
+        // в этой ветке `obj` автоматически преобразован в `String`
         return obj.length
     }
 
-    // `obj` имеет тип `Any` вне блока проверки типа
+    // вне ветки проверки типа `obj` по-прежнему имеет тип `Any`
     return null
 }
 ```
@@ -522,7 +583,7 @@ fun getStringLength(obj: Any): Int? {
 fun getStringLength(obj: Any): Int? {
     if (obj !is String) return null
 
-    // в этом блоке `obj` автоматически преобразован в `String`
+    // в этой ветке `obj` автоматически преобразован в `String`
     return obj.length
 }
 ```
@@ -533,7 +594,7 @@ fun getStringLength(obj: Any): Int? {
 ```kotlin
 fun getStringLength(obj: Any): Int? {
     // `obj` автоматически преобразован в `String` справа от оператора `&&`
-    if (obj is String && obj.length > 0) {
+    if (obj is String && obj.length >= 0) {
         return obj.length
     }
 

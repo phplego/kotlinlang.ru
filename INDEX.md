@@ -27,27 +27,26 @@ url: https://kotlinlang.ru
 
 ## Актуальные задачи
 
-Сейчас особенно важно закрывать незавершённые статьи, обновлять устаревшие рекомендации и сверять старые переводы с
-актуальной документацией. Лучше всего начинать с этих задач.
+Основные устаревшие переводы, незавершённые заготовки и страницы с рекомендациями старых версий Kotlin уже обновлены по
+текущей англоязычной документации. Теперь особенно полезны задачи на вычитку и поддержание качества.
 
-* **Незавершённые страницы перевода.**
-  В первую очередь нужна помощь со статьями, где вместо содержимого пока осталась заготовка. Пример:
-  [Adding dependencies on multiplatform libraries](https://kotlinlang.ru/docs/multiplatform-add-dependencies.html).
-* **Статьи с устаревшими рекомендациями.**
-  В [Gradle](https://kotlinlang.ru/docs/gradle.html) и [Maven](https://kotlinlang.ru/docs/maven.html) до сих пор
-  описана экспериментальная поддержка coroutines в Kotlin 1.2 и настройка через `experimental { coroutines 'enable' }`
-  и `<experimentalCoroutines>enable</experimentalCoroutines>`. Такие места нужно находить и обновлять в первую очередь.
-* **Раздел про корутины и связанные страницы.**
-  В [Coroutines](https://kotlinlang.ru/docs/coroutines.html) всё ещё обсуждаются `kotlin.coroutines.experimental`,
-  старый экспериментальный статус coroutines и прекращение поддержки experimental-версии в Kotlin 1.4. Это уже
-  исторический материал, который сегодня требует аккуратной переработки или явной переупаковки.
-* **Базовые статьи, переведённые по версиям 2021–2022 годов.**
-  У ряда ключевых страниц в комментариях прямо указано, по какой версии делался перевод: например,
-  [Basic syntax](https://kotlinlang.ru/docs/basic-syntax.html) от 13 September 2021,
-  [Classes](https://kotlinlang.ru/docs/classes.html) от 29 November 2021,
-  [Functions](https://kotlinlang.ru/docs/functions.html) от 10 November 2021 и
-  [Null safety](https://kotlinlang.ru/docs/null-safety.html) от 08 July 2021. Их полезно регулярно сверять с текущей
-  англоязычной документацией и обновлять по мере расхождений.
+* **Вычитка обновлённых статей.**
+  Нужна ручная проверка крупных разделов после синхронизации с upstream: [Основные типы](https://kotlinlang.ru/docs/basic-types.html),
+  [Соглашение о стилистике кода](https://kotlinlang.ru/docs/coding-conventions.html),
+  [Kotlin Multiplatform](https://kotlinlang.ru/docs/multiplatform.html),
+  [Kotlin/JavaScript](https://kotlinlang.ru/docs/js-overview.html) и
+  [Kotlin/Native](https://kotlinlang.ru/docs/native-overview.html).
+* **Проверка локальных ссылок.**
+  После переезда Kotlin Multiplatform-документации часть старых страниц стала локальными мостами на новые официальные
+  разделы. Полезно проходить видимые ссылки в статьях и заменять отсутствующие локальные страницы на актуальные
+  официальные URL.
+* **Поддержка актуальности переводов.**
+  При обновлениях Kotlin стоит сверять дату официальной страницы и служебный комментарий в переводе. В первую очередь
+  проверяйте страницы с высокой скоростью изменений: Multiplatform, Kotlin/JS, Kotlin/Native, корутины, Gradle и Maven.
+* **Редактура терминологии.**
+  В старых переводах встречается смешение терминов, например `корутины`/`сопрограммы`, `source set`, `target`,
+  `inline value class`, `builder inference`. Если правите статью, сохраняйте единообразие внутри неё и сверяйтесь с
+  соседними обновлёнными страницами.
 
 Если хотите подключиться, выбирайте любую из этих задач, правьте статью через GitHub и приходите в
 [@KotlinLangRu](https://t.me/KotlinLangRu), если нужна координация или ревью.

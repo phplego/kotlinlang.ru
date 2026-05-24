@@ -6,7 +6,7 @@ title: Стилистика кода
 url: https://kotlinlang.ru/docs/coding-conventions.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 14 January 2022 -->
+<!-- При переводе статьи оригинальная версия была от 11 June 2025 -->
 
 <!-- # Coding conventions -->
 # Соглашение о стилистике кода
@@ -45,15 +45,17 @@ the given code style. -->
 <!-- ### Verify that your code follows the style guide -->
 ### Убедитесь, что ваш код соответствует руководству по стилю
 
-<!-- 1. Go to **Settings/Preferences | Editor | Inspections | Kotlin**.
-2. Open **Kotlin | Style issues**.
-3. Switch on **File is not formatted according to project settings** inspection.
+<!-- 1. Go to **Settings/Preferences | Editor | Inspections | General**.
+2. Switch on **Incorrect formatting** inspection.
 Additional inspections that verify other issues described in the style guide (such as naming conventions) are enabled by default. -->
 
-1. Перейдите в раздел **Settings/Preferences | Editor | Inspections | Kotlin**.
-2. Отройте **Kotlin | Style issues**.
-3. Включите проверку **File is not formatted according to project settings**. Дополнительные проверки, которые проверяют другие проблемы,
-описанные в руководстве по стилю (например, соглашения об именах), включены по умолчанию.
+1. Перейдите в раздел **Settings/Preferences | Editor | Inspections | General**.
+2. Включите проверку **Incorrect formatting**.
+Дополнительные проверки, которые проверяют другие проблемы, описанные в руководстве по стилю (например, соглашения об именах),
+включены по умолчанию.
+
+<!-- For more information, see the [Migrate to Kotlin code style with IntelliJ IDEA](code-style-migration-guide.md) guide. -->
+Подробнее см. в руководстве [Migrate to Kotlin code style with IntelliJ IDEA](https://kotlinlang.org/docs/code-style-migration-guide.html).
 
 <a name="source-code-organization"></a>
 
@@ -86,21 +88,87 @@ files in `org.example.kotlin.network.socket` should be in the `network/socket` s
 <!-- ### Source file names -->
 ### Имена файлов
 
-<!-- If a Kotlin file contains a single class (potentially with related top-level declarations), its name should be the same
-as the name of the class, with the `.kt` extension appended. If a file contains multiple classes, or only top-level declarations,
-choose a name describing what the file contains, and name the file accordingly.
-Use [upper camel case](https://en.wikipedia.org/wiki/Camel_case) with an uppercase first letter (also known as Pascal case),
-for example, `ProcessDeclarations.kt`. -->
-Если Kotlin файл содержит один класс (возможно со связанными объявлениями верхнего уровня),
-то его имя должно совпадать с именем этого класса с добавлением расширения `.kt`.
+<!-- If a Kotlin file contains a single class or interface (potentially with related top-level declarations), its name should be the same
+as the name of the class, with the `.kt` extension appended. It applies to all types of classes and interfaces.
+If a file contains multiple classes, or only top-level declarations, choose a name describing what the file contains, and name the file accordingly.
+Use [upper camel case](https://en.wikipedia.org/wiki/Camel_case), where the first letter of each word is capitalized.
+For example, `ProcessDeclarations.kt`. -->
+Если Kotlin-файл содержит один класс или интерфейс (возможно, со связанными объявлениями верхнего уровня),
+его имя должно совпадать с именем этого класса или интерфейса с добавлением расширения `.kt`.
+Это относится ко всем типам классов и интерфейсов.
 Если файл содержит несколько классов или только объявления верхнего уровня, выберите имя, описывающее содержимое файла,
-и назовите файл соответствующим образом. Используйте [UpperCamelCase](https://en.wikipedia.org/wiki/Camel_case) (так же известный как Pascal case),
-начиная с заглавной буквы, например, `ProcessDeclarations.kt`.
+и назовите файл соответствующим образом. Используйте [UpperCamelCase](https://en.wikipedia.org/wiki/Camel_case),
+где первая буква каждого слова пишется с заглавной.
+Например, `ProcessDeclarations.kt`.
 
 <!-- The name of the file should describe what the code in the file does. Therefore, you should avoid using meaningless
 words such as `Util` in file names. -->
 Имена файлов должны описывать, что в них делает код. Поэтому при наименовании файла вам следует избегать слов, не несущих смысла,
 таких как `Util`.
+
+<a name="multiplatform-projects"></a>
+
+<!-- #### Multiplatform projects -->
+#### Multiplatform-проекты
+
+<!-- In multiplatform projects, files with top-level declarations in platform-specific source sets should have a suffix
+associated with the name of the source set. For example: -->
+В multiplatform-проектах файлы с объявлениями верхнего уровня в платформенно-специфичных наборах исходного кода должны иметь суффикс,
+связанный с именем source set. Например:
+
+* **jvm**Main/kotlin/Platform.**jvm**.kt
+* **android**Main/kotlin/Platform.**android**.kt
+* **ios**Main/kotlin/Platform.**ios**.kt
+
+<!-- As for the common source set, files with top-level declarations should not have a suffix. For example, `commonMain/kotlin/Platform.kt`. -->
+В общем source set файлы с объявлениями верхнего уровня не должны иметь суффикс.
+Например, `commonMain/kotlin/Platform.kt`.
+
+<a name="technical-details"></a>
+
+<!-- ##### Technical details -->
+##### Технические детали
+
+<!-- We recommend following this file naming scheme in multiplatform projects due to JVM limitations: it doesn't allow
+top-level members (functions, properties). -->
+Мы рекомендуем следовать этой схеме именования файлов в multiplatform-проектах из-за ограничений JVM:
+она не допускает участников верхнего уровня (функций и свойств).
+
+<!-- To work around this, the Kotlin JVM compiler creates wrapper classes (so-called "file facades") that contain top-level
+member declarations. File facades have an internal name derived from the file name. -->
+Чтобы обойти это ограничение, компилятор Kotlin/JVM создает классы-обертки, так называемые фасады файлов,
+которые содержат объявления участников верхнего уровня. Внутреннее имя фасада файла образуется из имени файла.
+
+<!-- In turn, JVM doesn't allow several classes with the same fully qualified name (FQN). This might lead to situations when
+a Kotlin project cannot be compiled to JVM: -->
+В свою очередь, JVM не допускает несколько классов с одинаковым полным именем (FQN).
+Это может привести к ситуациям, когда Kotlin-проект нельзя скомпилировать в JVM:
+
+```none
+root
+|- commonMain/kotlin/myPackage/Platform.kt // contains 'fun count() { }'
+|- jvmMain/kotlin/myPackage/Platform.kt // contains 'fun multiply() { }'
+```
+
+<!-- Here both `Platform.kt` files are in the same package, so the Kotlin JVM compiler produces two file facades, both of which
+have FQN `myPackage.PlatformKt`. This produces the "Duplicate JVM classes" error. -->
+Здесь оба файла `Platform.kt` находятся в одном пакете, поэтому компилятор Kotlin/JVM создает два фасада файлов,
+оба с FQN `myPackage.PlatformKt`. В результате возникает ошибка "Duplicate JVM classes".
+
+<!-- The simplest way to avoid that is renaming one of the files according to the guideline above. This naming scheme helps
+avoid clashes while retaining code readability. -->
+Самый простой способ избежать этого - переименовать один из файлов в соответствии с рекомендацией выше.
+Такая схема именования помогает избежать конфликтов и сохранить читаемость кода.
+
+<!-- There are two scenarios where these recommendations may seem redundant, but we still advise to follow them: -->
+> Есть два сценария, где эти рекомендации могут казаться избыточными, но мы все равно советуем им следовать:
+>
+> * На платформах, отличных от JVM, нет проблем с дублированием фасадов файлов. Однако такая схема помогает поддерживать
+> единообразные имена файлов.
+> * На JVM, если исходные файлы не содержат объявлений верхнего уровня, фасады файлов не генерируются и конфликта имен не будет.
+>
+>   Тем не менее такая схема помогает избежать ситуаций, когда простой рефакторинг или добавление функции верхнего уровня
+> может привести к той же ошибке "Duplicate JVM classes".
 
 <a name="source-file-organization"></a>
 
@@ -183,8 +251,8 @@ or use camel case (`org.example.myProject`). -->
 Использование имен, состоящих из нескольких слов, обычно не рекомендуется, но, если вы не можете их не использовать,
 либо просто объедините их вместе, либо используйте при этом lowerCamelCase (`org.example.myProject`).
 
-<!-- * Names of classes and objects start with an uppercase letter and use camel case: -->
-* Имена классов и объектов начинаются с заглавной буквы и используют UpperCamelCase.
+<!-- * Names of classes and objects use upper camel case: -->
+* Имена классов и объектов используют UpperCamelCase.
 
 ```kotlin
 open class DeclarationProcessor { /*...*/ }
@@ -197,7 +265,7 @@ object EmptyDeclarationProcessor : DeclarationProcessor() { /*...*/ }
 <!-- ### Function names -->
 ### Имена функций
 
-<!-- Names of functions, properties and local variables start with a lowercase letter and use camel case and no underscores: -->
+<!-- Names of functions, properties and local variables start with a lowercase letter and use camel case with no underscores: -->
 Имена функций, свойств и локальных переменных начинаются со строчной буквы и используют lowerCamelCase без нижнего подчеркивания.
 
 ```kotlin
@@ -222,17 +290,17 @@ fun Foo(): Foo { return FooImpl() }
 ### Имена тестовых методов
 
 <!-- In tests (and **only** in tests), you can use method names with spaces enclosed in backticks.
-Note that such method names are currently not supported by the Android runtime. Underscores in method names are
-also allowed in test code. -->
+Note that such method names are only supported by Android runtime from API level 30. Underscores
+in method names are also allowed in test code. -->
 В тестах (и **только** в тестах) вы можете использовать имена методов с пробелами, заключенными в обратный апостроф.
-Обратите внимание, что такие имена методов в настоящее время не поддерживаются средой Android.
+Обратите внимание, что такие имена методов поддерживаются Android runtime только начиная с API level 30.
 Подчеркивания в именах методов также разрешены в тестовом коде.
 
 ```kotlin
 class MyTestCase {
-     @Test fun `ensure everything works`() { /*...*/ }
-     
-     @Test fun ensureEverythingWorks_onAndroid() { /*...*/ }
+    @Test fun `ensure everything works`() { /*...*/ }
+
+    @Test fun ensureEverythingWorks_onAndroid() { /*...*/ }
 }
 ```
 
@@ -242,10 +310,11 @@ class MyTestCase {
 ### Имена свойств
 
 <!-- Names of constants (properties marked with `const`, or top-level or object `val` properties with no custom `get` function
-that hold deeply immutable data) should use uppercase underscore-separated ([screaming snake case](https://en.wikipedia.org/wiki/Snake_case))
-names: -->
-Имена констант (свойства, помеченные `const`, свойства верхнего уровня или объект `val` без функции `get`) должны использовать имена,
-разделенные подчеркиванием и написанные в верхнем регистре ([SCREAMING_SNAKE_CASE](https://en.wikipedia.org/wiki/Snake_case)).
+that hold deeply immutable data) should use all uppercase, underscore-separated names following the [screaming snake case](https://en.wikipedia.org/wiki/Snake_case)
+convention: -->
+Имена констант (свойства, помеченные `const`, или свойства `val` верхнего уровня либо объекта без пользовательской функции `get`,
+которые содержат глубоко неизменяемые данные) должны использовать имена, написанные в верхнем регистре и разделенные подчеркиванием,
+по соглашению [SCREAMING_SNAKE_CASE](https://en.wikipedia.org/wiki/Snake_case).
 
 ```kotlin
 const val MAX_COUNT = 8
@@ -266,11 +335,11 @@ val mutableCollection: MutableSet<String> = HashSet()
 val PersonComparator: Comparator<Person> = /*...*/
 ```
 
-<!-- For enum constants, it's OK to use either uppercase underscore-separated names ([screaming snake case](https://en.wikipedia.org/wiki/Snake_case))
-(`enum class Color { RED, GREEN }`) or upper camel case names, depending on the usage.  -->
+<!-- For enum constants, it's OK to use either all uppercase, underscore-separated ([screaming snake case](https://en.wikipedia.org/wiki/Snake_case)) names
+(`enum class Color { RED, GREEN }`) or upper camel case names, depending on the usage. -->
 Для констант перечисления можно использовать и имена, разделенные нижним подчеркиванием в верхнем регистре
 ([SCREAMING_SNAKE_CASE](https://en.wikipedia.org/wiki/Snake_case)) (`enum class Color { RED, GREEN }`),
-и имена с использованием UpperCamelCase.
+и имена с использованием UpperCamelCase, в зависимости от сценария.
 
 <a name="names-for-backing-properties"></a>
 
@@ -311,10 +380,14 @@ sorting a collection in place, while `sorted` is returning a sorted copy of the 
 Имена должны прояснять, какова цель того или иного элемента, поэтому лучше избегать использования бессмысленных слов
 (`Manager`, `Wrapper`) в именах.
 
-<!-- When using an acronym as part of a declaration name, capitalize it if it consists of two letters (`IOStream`);
-capitalize only the first letter if it is longer (`XmlFormatter`, `HttpInputStream`). -->
-При использовании аббревиатуры в качестве части имени объявления, пишите её в верхнем регистре, если она состоит из двух букв (`IOStream`);
-если аббревиатура длиннее, заглавной следует оставить только первую букву (`XmlFormatter`, `HttpInputStream`).
+<!-- When using an acronym as part of a declaration name, follow these rules:
+
+* For two-letter acronyms, use uppercase for both letters. For example, `IOStream`.
+* For acronyms longer than two letters, capitalize only the first letter. For example, `XmlFormatter` or `HttpInputStream`. -->
+При использовании аббревиатуры в качестве части имени объявления следуйте таким правилам:
+
+* Для аббревиатур из двух букв используйте верхний регистр для обеих букв. Например, `IOStream`.
+* Для аббревиатур длиннее двух букв пишите с заглавной только первую букву. Например, `XmlFormatter` или `HttpInputStream`.
 
 <a name="formatting"></a>
 
@@ -359,7 +432,7 @@ if (elements != null) {
 * Не ставьте пробелы вокруг унарных операторов (`a++`).
 
 <!-- * Put spaces between control flow keywords (`if`, `when`, `for`, and `while`) and the corresponding opening parenthesis. -->
-* Ставьте пробелы между ключевыми словами (`if`, `when`, `for`, and `while`) и соответствующей открывающей скобкой.
+* Ставьте пробелы между ключевыми словами (`if`, `when`, `for` и `while`) и соответствующей открывающей скобкой.
 
 <!-- * Do not put a space before an opening parenthesis in a primary constructor declaration, method declaration or method call. -->
 * Не ставьте пробел перед открывающей скобкой в объявлении основного конструктора, объявлении метода или вызове метода.
@@ -433,7 +506,7 @@ class FooImpl : Foo() {
 <a name="class-headers"></a>
 
 <!-- ### Class headers -->
-## Заголовки классов
+### Заголовки классов
 
 <!-- Classes with a few primary constructor parameters can be written in a single line: -->
 Классы с небольшим количеством параметрами конструктора можно писать на одной строчке.
@@ -776,7 +849,7 @@ val anchor = owner
 <a name="lambdas"></a>
 
 <!-- ### Lambdas -->
-## Лямбда-выражения
+### Лямбда-выражения
 
 <!-- In lambda expressions, spaces should be used around the curly braces, as well as around the arrow which separates the parameters
 from the body. If a call takes a single lambda, pass it outside of parentheses whenever possible. -->
@@ -812,10 +885,10 @@ appendCommaSeparated(properties) { prop ->
 
 ```kotlin
 foo {
-   context: Context,
-   environment: Env
-   ->
-   context.configureEnv(environment)
+    context: Context,
+    environment: Env
+    ->
+    context.configureEnv(environment)
 }
 ```
 
@@ -824,7 +897,7 @@ foo {
 <!-- ### Trailing commas -->
 ### Завершающие запятые
 
-<!-- A trailing comma is a comma symbol after the last item of a series of elements: -->
+<!-- A trailing comma is a comma symbol after the last item in a series of elements: -->
 Завершающая запятая - это символ запятой после последнего элемента ряда элементов.
 
 ```kotlin
@@ -1005,7 +1078,8 @@ fun run() {}
 
 <a name="type-arguments"></a>
 
-#### Type arguments
+<!-- #### Type arguments -->
+#### Аргументы типа
 
 ```kotlin
 fun <T1, T2> foo() {}
@@ -1019,7 +1093,8 @@ fun main() {
 
 <a name="type-parameters"></a>
 
-#### Type parameters
+<!-- #### Type parameters -->
+#### Параметры типа
 
 ```kotlin
 class MyMap<
@@ -1030,7 +1105,8 @@ class MyMap<
 
 <a name="destructuring-declarations"></a>
 
-#### Destructuring declarations
+<!-- #### Destructuring declarations -->
+#### Деструктурирующие объявления
 
 ```kotlin
 data class Car(val manufacturer: String, val model: String, val year: Int)
@@ -1038,7 +1114,7 @@ val myCar = Car("Tesla", "Y", 2019)
 val (
     manufacturer,
     model,
-    year, // trailing comma
+    year, // завершающая запятая
 ) = myCar
 val cars = listOf<Car>()
 fun printMeanValue() {
@@ -1046,7 +1122,7 @@ fun printMeanValue() {
     for ((
         _,
         _,
-        year, // trailing comma
+        year, // завершающая запятая
     ) in cars) {
         meanValue += year
     }
@@ -1146,6 +1222,24 @@ fun foo() { // ": Unit" опущено
 
 ```kotlin
 println("У $name уже ${children.size} детей")
+```
+
+<!-- Use [multi-dollar string interpolation](strings.md#multi-dollar-string-interpolation)
+to treat the dollar sign chars `$` as string literals: -->
+Используйте [много-долларовую интерполяцию строк](https://kotlinlang.org/docs/strings.html#multi-dollar-string-interpolation),
+чтобы обрабатывать символы доллара `$` как строковые литералы:
+
+```kotlin
+val KClass<*>.jsonSchema : String
+    get() = $$"""
+        {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://example.com/product.schema.json",
+            "$dynamicAnchor": "meta",
+            "title": "$${simpleName ?: qualifiedName ?: "unknown"}",
+            "type": "object"
+        }
+        """
 ```
 
 <a name="idiomatic-use-of-language-features"></a>
@@ -1290,7 +1384,7 @@ else
 when(x) {
     0 -> return "zero"
     else -> return "nonzero"
-}    
+}
 ```
 
 <a name="if-versus-when"></a>
@@ -1318,6 +1412,30 @@ when (x) {
 
 <!-- Prefer using `when` if there are three or more options. -->
 Предпочтительнее использовать `when`, если есть три и более варианта.
+
+<a name="guard-conditions-in-when-expression"></a>
+
+<!-- ### Guard conditions in when expression -->
+### Guard conditions в выражении when
+
+<!-- Use parentheses when combining multiple boolean expressions in `when` expressions or statements with [guard conditions](control-flow.md#guard-conditions-in-when-expressions): -->
+Используйте скобки при объединении нескольких логических выражений в выражениях или операторах `when` с
+[guard conditions](control-flow.html#guard-conditions-in-when-expressions):
+
+```kotlin
+when (status) {
+    is Status.Ok if (status.info.isEmpty() || status.info.id == null) -> "no information"
+}
+```
+
+<!-- Instead of: -->
+Вместо:
+
+```kotlin
+when (status) {
+    is Status.Ok if status.info.isEmpty() || status.info.id == null -> "no information"
+}
+```
 
 <a name="nullable-boolean-values-in-conditions"></a>
 
@@ -1349,12 +1467,12 @@ of the operations being performed in each case and keep performance consideratio
 <!-- ### Loops on ranges -->
 ### Циклы для диапазонов
 
-<!-- Use the `until` function to loop over an open range: -->
-Используйте функцию `until`, чтобы использовать открытый диапазон в цикле.
+<!-- Use the `..<` operator to loop over an open-ended range: -->
+Используйте оператор `..<`, чтобы выполнить цикл по открытому справа диапазону.
 
 ```kotlin
 for (i in 0..n - 1) { /*...*/ }  // плохо
-for (i in 0 until n) { /*...*/ }  // хорошо
+for (i in 0..<n) { /*...*/ }  // хорошо
 ```
 
 <a name="strings"></a>
@@ -1374,31 +1492,37 @@ indentation, or `trimMargin` when internal indentation is required: -->
 и `trimMargin`, когда требуется внутренний отступ.
 
 ```kotlin
-println("""
-    Not
-    trimmed
-    text
-    """
-       )
+fun main() {
+//sampleStart
+    println("""
+     Not
+     trimmed
+     text
+     """
+    )
 
-println("""
-    Trimmed
-    text
-    """.trimIndent()
-       )
+    println("""
+     Trimmed
+     text
+     """.trimIndent()
+    )
 
-println()
+    println()
 
-val a = """Trimmed to margin text:
-          |if(a > 1) {
-          |    return a
-          |}""".trimMargin()
+    val a = """Trimmed to margin text:
+            |if(a > 1) {
+            |    return a
+            |}""".trimMargin()
 
-println(a)
+   println(a)
+//sampleEnd
+}
 ```
+{kotlin-runnable="true"}
 
 <!-- Learn the difference between [Java and Kotlin multiline strings](java-to-kotlin-idioms-strings.md#use-multiline-strings). -->
-См. [Многострочные строки Java и Kotlin](java-to-kotlin-idioms-strings.html#use-multiline-strings), чтобы узнать разницу между ними в Java и Kotlin.
+См. [Многострочные строки Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-idioms-strings.html#use-multiline-strings),
+чтобы узнать разницу между ними в Java и Kotlin.
 
 <a name="functions-vs-properties"></a>
 
@@ -1413,14 +1537,14 @@ Although the semantics are similar, there are some stylistic conventions on when
 <!-- Prefer a property over a function when the underlying algorithm: -->
 Предпочтительно использовать свойства вместо функций, если лежащий в основе алгоритм:
 
-<!--does not throw
-has a `O(1)` complexity
-is cheap to calculate (or caсhed on the first run)
-returns the same result over invocations -->
-* не выбрасывает исключений
-* имеет `O(1)` сложность
-* не требует больших затрат на выполнение (или результат вычислений кэшируется при первом вызове)
-* возвращает одинаковый результат
+<!--
+* Does not throw.
+* Is cheap to calculate (or cached on the first run).
+* Returns the same result over invocations if the object state hasn't changed.
+-->
+* не выбрасывает исключений;
+* не требует больших затрат на выполнение (или результат вычислений кэшируется при первом вызове);
+* возвращает одинаковый результат при повторных вызовах, если состояние объекта не изменилось.
 
 <a name="extension-functions"></a>
 
@@ -1470,10 +1594,10 @@ class Point(val x: Double, val y: Double) {
 ```
 
 <!-- If you have an object with multiple overloaded constructors that don't call different superclass constructors and
-can't be reduced to a single constructor with default argument values, prefer to replace the overloaded constructors with
+can't be reduced to a single constructor including parameters with default values, prefer to replace the overloaded constructors with
 factory functions. -->
 Если у вас есть объект с несколькими перегруженными конструкторами, которые не вызывают разные конструкторы суперкласса
-и не могут быть сведены к одному конструктору со значениями аргументов по умолчанию,
+и не могут быть сведены к одному конструктору с параметрами со значениями по умолчанию,
 предпочтительнее заменить перегруженные конструкторы фабричными функциями.
 
 <a name="platform-types"></a>
@@ -1525,11 +1649,15 @@ Kotlin предоставляет набор функций для выполн�
 <!-- When writing libraries, it's recommended to follow an additional set of rules to ensure API stability: -->
 При написании библиотек рекомендуется следовать дополнительному набору правил для обеспечения стабильности API:
 
-<!--  * Always explicitly specify member visibility (to avoid accidentally exposing declarations as public API)
+<!--  * Always explicitly specify member visibility (to avoid accidentally exposing declarations as public API).
  * Always explicitly specify function return types and property types (to avoid accidentally changing the return type
-   when the implementation changes)
- * Provide [KDoc](kotlin-doc.md) comments for all public members, with the exception of overrides that do not require any new documentation
+   when the implementation changes).
+ * Provide [KDoc](kotlin-doc.md) comments for all public members, except for overrides that do not require any new documentation
    (to support generating documentation for the library) -->
-* Всегда явно указывайте видимость участников (чтобы избежать случайного раскрытия объявлений в качестве общедоступного API)
-* Всегда явно указывайте типы возвращаемых функций и типы свойств (чтобы избежать случайного изменения типа возвращаемого значения при изменении реализации)
-* Предоставьте комментарии [KDoc](kotlin-doc.html) для всех общедоступных участников, за исключением переопределений, для которых не требуется никакой новой документации (для поддержки создания документации для библиотеки)
+* Всегда явно указывайте видимость участников (чтобы избежать случайного раскрытия объявлений как общедоступного API).
+* Всегда явно указывайте типы возвращаемых значений функций и типы свойств (чтобы избежать случайного изменения возвращаемого типа при изменении реализации).
+* Предоставьте комментарии [KDoc](kotlin-doc.html) для всех общедоступных участников, за исключением переопределений, для которых не требуется новая документация (для поддержки создания документации для библиотеки).
+
+<!-- Learn more about best practices and ideas to consider when writing an API for your library in the [Library authors' guidelines](api-guidelines-introduction.md). -->
+Подробнее о лучших практиках и идеях, которые стоит учитывать при написании API для библиотеки, см. в
+[Library authors' guidelines](https://kotlinlang.org/docs/api-guidelines-introduction.html).

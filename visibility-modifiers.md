@@ -6,13 +6,13 @@ title: "Модификаторы доступа"
 url: https://kotlinlang.ru/docs/visibility-modifiers.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 14 September 2021 -->
+<!-- При переводе статьи оригинальная версия была от 13 November 2025 -->
 
 <!-- # Visibility modifiers -->
 # Модификаторы доступа
 
 <!-- Classes, objects, interfaces, constructors, and functions, as well as properties and their setters, can have *visibility modifiers*.
-Getters always have the same visibility as their properties. --> 
+Getters always have the same visibility as their properties. -->
 Классы, объекты, интерфейсы, конструкторы, функции, свойства и их сеттеры могут иметь *модификаторы доступа*.
 Геттеры всегда имеют ту же видимость, что и свойства, к которым они относятся.
 
@@ -142,6 +142,10 @@ visible within the same module). -->
 В этом примере конструктор помечен `private`. По умолчанию все конструкторы имеют модификатор доступа `public`,
 то есть видны везде, где виден сам класс (а вот конструктор `internal` класса видно только в том же модуле).
 
+<!-- For sealed classes, constructors are `protected` by default. For more information, see [Sealed classes](sealed-classes.md). -->
+Для изолированных классов конструкторы по умолчанию имеют модификатор `protected`. Подробнее см. в разделе
+[Изолированные классы](sealed-classes.html).
+
 <a name="local-declarations"></a>
 <!-- ### Local declarations -->
 ### Локальные объявления
@@ -160,9 +164,7 @@ a module is a set of Kotlin files compiled together, for example: -->
 
 <!-- * An IntelliJ IDEA module.
 * A Maven project.
-* A Gradle source set (with the exception that the `test` source set can access the internal declarations of `main`).
-* A set of files compiled with one invocation of the `<kotlinc>` Ant task. -->
+* A Gradle source set (with the exception that the `test` source set can access the internal declarations of `main`). -->
 * модуль IntelliJ IDEA;
 * Maven проект;
-* исходный набор Gradle (за исключением того, что исходный набор `test` может получить доступ к внутренним объявлениям `main`);
-* набор скомпилированных вместе файлов с одним способом вызова `<kotlinc>` задачи в Ant.
+* исходный набор Gradle (за исключением того, что исходный набор `test` может получить доступ к внутренним объявлениям `main`).

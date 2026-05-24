@@ -1,110 +1,71 @@
 ---
 type: doc
 layout: reference
-title: "Начало работы с Kotlin Multiplatform Mobile"
+title: "Начало работы с Kotlin Multiplatform"
 url: https://kotlinlang.ru/docs/multiplatform-mobile-getting-started.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 25 February 2022 -->
+<!-- Статья актуализирована по What is Kotlin Multiplatform от 18 November 2025 и Kotlin Multiplatform quickstart от 15 May 2026. -->
 
-<!-- Get started with Kotlin Multiplatform Mobile -->
-# Начало работы с Kotlin Multiplatform Mobile
+<!-- Get started with Kotlin Multiplatform -->
+# Начало работы с Kotlin Multiplatform
 
-<!-- > Kotlin Multiplatform Mobile is in [Alpha](components-stability.md). Language features and tooling may change in future
-> Kotlin versions.
-> 
-> Beta is expected in spring 2022. Check out [Kotlin Multiplatform Mobile Beta Roadmap Video Highlights](https://blog.jetbrains.com/kotlin/2021/10/kmm-beta-roadmap-video-highlights/)
-> to learn about upcoming features. You can also see how [different companies](https://kotlinlang.org/lp/mobile/case-studies/)
-> already use Kotlin for cross-platform app development. -->
-> Kotlin Multiplatform Mobile находится в [стадии альфа-тестирования](components-stability.html). Особенности языка и
-> инструментарий могут быть изменены в будущих версиях Kotlin.
->
-> Бета версия ожидается весной 2022 г. Посмотрите ["Ключевые моменты видео Kotlin Multiplatform Mobile Beta Roadmap"](https://blog.jetbrains.com/kotlin/2021/10/kmm-beta-roadmap-video-highlights/),
-> чтобы узнать о планируемом функционале. Также вы можете изучить, как [разные компании](https://kotlinlang.org/lp/mobile/case-studies/)
-> уже используют Kotlin для разработки кроссплатформенного программного обеспечения.
+Kotlin Multiplatform (KMP) - это технология JetBrains с открытым исходным кодом, которая позволяет разделять код между
+Android, iOS, desktop, web и server, сохраняя преимущества нативной разработки.
 
-<!-- Kotlin Multiplatform Mobile (KMM) is an SDK designed to simplify the development of cross-platform mobile applications.
-You can share common code between iOS and Android apps and write platform-specific code only where it's necessary.
-For example, to implement a native UI or when working with platform-specific APIs. -->
-Kotlin Multiplatform Mobile (KMM) - это средства разработки ПО, предназначенные для упрощения разработки
-кроссплатформенных приложений для мобильных устройств. Вы можете использовать общий код в программах для iOS и Android и
-писать код, специфичный для каждой из платформ, только там, где это необходимо. Например, при реализации нативного UI
-или при работе с API, которые ограничены конкретной платформой.
-
-<!-- Watch the introductory [video](https://www.youtube.com/watch?v=mdN6P6RI__k), in which Kotlin Product Marketing Manager Ekaterina 
-Petrova explains what Kotlin Multiplatform Mobile is and how to use it in your project. With Ekaterina,
-you'll set up an environment and prepare to create your first cross-platform mobile application: -->
-Посмотрите вводное [видео](https://www.youtube.com/watch?v=mdN6P6RI__k), в котором менеджер по продуктовому маркетингу
-Kotlin Екатерина Петрова объясняет, что такое Kotlin Multiplatform Mobile и как использовать его в вашем проекте. Вместе
-с ней вы настроите среду разработки и подготовитесь к созданию вашего первого кроссплатформенного мобильного приложения.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mdN6P6RI__k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<!-- You can also check out other videos about [Kotlin Multiplatform Multiverse](https://www.youtube.com/playlist?list=PLlFc5cFwUnmy_oVc9YQzjasSNoAk4hk_C) on YouTube. -->
-Также вы можете посмотреть другие видео о [Kotlin Multiplatform Multiverse](https://www.youtube.com/playlist?list=PLlFc5cFwUnmy_oVc9YQzjasSNoAk4hk_C)
-на YouTube.
-
-<a name="supported-platforms"></a>
-
-<!-- ## Supported platforms -->
-## Поддерживаемые платформы
-
-<!-- * Android applications and libraries
-* [Android NDK](https://developer.android.com/ndk) (ARM64 and ARM32)
-* Apple iOS devices (ARM64 and ARM32) and simulators
-* Apple watchOS devices (ARM64 and ARM32) and simulators -->
-
-* Приложения и библиотеки для Android,
-* [Android NDK](https://developer.android.com/ndk) (ARM64 и ARM32),
-* Устройства Apple iOS (ARM64 и ARM32) и симуляторы,
-* Устройства Apple watchOS (ARM64 и ARM32) и симуляторы.
-
-<!-- [Kotlin Multiplatform](multiplatform.md) technology also supports [other platforms](multiplatform-dsl-reference.md#targets), including
-JavaScript, Linux, Windows, and WebAssembly. -->
-Технология [Kotlin Multiplatform](multiplatform.html) также поддерживает [другие платформы](multiplatform-dsl-reference.html#targets),
-включая JavaScript, Linux, Windows, и WebAssembly.
+С помощью Compose Multiplatform можно разделять и UI-код, если проекту нужен максимальный уровень переиспользования.
+При этом вы можете выбрать подход постепенно: разделять отдельные модули, например networking или storage, вынести всю
+бизнес-логику в общий код и оставить UI нативным или постепенно переносить UI на Compose Multiplatform.
 
 <a name="start-from-scratch"></a>
 
-<!-- ## Start from scratch -->
 ## Начало с нуля
 
-<!-- * [Set up the environment for cross-platform mobile development](multiplatform-mobile-setup.md)
-* [Create your first app that works both on Android and iOS with IDE](multiplatform-mobile-create-first-app.md)
-* [Check out the list of sample projects](multiplatform-mobile-samples.md)
-* [Introduce cross-platform mobile development to your team](multiplatform-mobile-introduce-your-team.md) -->
+Чтобы быстро увидеть KMP в работе, начните с [quickstart](https://kotlinlang.org/docs/multiplatform/quickstart.html).
+В нём вы настроите окружение, создадите проект и запустите пример на разных платформах.
 
-* [Настройте окружение для кроссплатформенной мобильной разработки](multiplatform-mobile-setup.html),
-* [Создайте в IDE ваше первое приложение, работающее и на Android, и на iOS](multiplatform-mobile-create-first-app.html),
-* [Изучите примеры проектов](multiplatform-mobile-samples.html),
-* [Познакомьте свою команду с кроссплатформенной мобильной разработкой](multiplatform-mobile-introduce-your-team.html).
+Для мобильной разработки обычно выбирают один из двух путей:
 
-<a name="make-your-android-application-work-on-ios"></a>
+* Если вы хотите разделять и бизнес-логику, и UI между платформами, используйте руководство по
+  [созданию Compose Multiplatform-приложения](https://kotlinlang.org/docs/multiplatform/compose-multiplatform-create-first-app.html).
+* Если вам нужна общая логика, но UI должен оставаться нативным, используйте руководство по
+  [созданию приложения с общей логикой и нативным UI](https://kotlinlang.org/docs/multiplatform/multiplatform-create-first-app.html).
 
-<!-- ## Make your Android application work on iOS -->
-## Настройте ваше Android приложение для работы на iOS
+<a name="supported-platforms"></a>
 
-<!-- If you already have an Android mobile application and want to make it cross-platform, here are some resources to help
-you get started: -->
-Если у вас уже есть мобильное Android приложение и вы хотите сделать его кроссплатформенным, то вот что вам может помочь
-начать:
+## Поддерживаемые платформы
 
-<!-- * [Set up the environment for cross-platform development](multiplatform-mobile-setup.md)
-* [Make a sample Android application work well on iOS](multiplatform-mobile-integrate-in-existing-app.md) -->
+Kotlin Multiplatform поддерживает Android, iOS, desktop, web и server-сценарии. Для подробностей о целевых платформах и
+их статусе см. [стабильность поддерживаемых платформ](https://kotlinlang.org/docs/components-stability.html#stability-levels-explained)
+и [документацию по Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform/kmp-overview.html).
 
-* [Настройте окружение для кроссплатформенной мобильной разработки](multiplatform-mobile-setup.html),
-* [Сделайте так, чтобы пример Android приложения, хорошо работал под iOS](multiplatform-mobile-integrate-in-existing-app.html).
+<a name="setup"></a>
+
+## Настройка окружения
+
+Для работы с KMP установите IntelliJ IDEA или Android Studio и
+[Kotlin Multiplatform IDE plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform). Для iOS-целей
+понадобится macOS с Xcode, потому что сборка iOS-фреймворков выполняется через инструменты Apple.
+
+Подробные шаги см. в разделе [Настройка среды](multiplatform-mobile-setup.html).
+
+<a name="learn-the-basics"></a>
+
+## Изучение основ
+
+После первого запуска проекта можно перейти к техническим разделам:
+
+* [структура проекта](https://kotlinlang.org/docs/multiplatform/multiplatform-discover-project.html);
+* [механизмы разделения кода](https://kotlinlang.org/docs/multiplatform/multiplatform-share-on-platforms.html);
+* [зависимости в KMP-проекте](https://kotlinlang.org/docs/multiplatform/multiplatform-add-dependencies.html);
+* [методы интеграции с iOS](https://kotlinlang.org/docs/multiplatform/multiplatform-ios-integration-overview.html);
+* [сборка бинарных файлов](https://kotlinlang.org/docs/multiplatform/multiplatform-build-native-binaries.html).
 
 <a name="get-help"></a>
 
-<!-- ## Get help -->
 ## Получить помощь
 
-<!-- * **Kotlin Slack**: Get an [invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) and join the [#multiplatform](https://kotlinlang.slack.com/archives/C3PQML5NU) channel
-* **StackOverflow**: Subscribe to the [“kotlin-multiplatform” tag](https://stackoverflow.com/questions/tagged/kotlin-multiplatform)
-* **Kotlin issue tracker**: [Report a new issue](https://youtrack.jetbrains.com/newIssue?project=KT) -->
-
 * **Kotlin Slack**: получите [приглашение](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) и присоединитесь к
-каналу [#multiplatform](https://kotlinlang.slack.com/archives/C3PQML5NU);
-* **StackOverflow**: подпишитесь на [метку «kotlin-multiplatform»](https://stackoverflow.com/questions/tagged/kotlin-multiplatform);
-* **Kotlin issue tracker**: [сообщите о новой проблеме](https://youtrack.jetbrains.com/newIssue?project=KT).
+  каналу [#multiplatform](https://kotlinlang.slack.com/archives/C3PQML5NU).
+* **Kotlin Multiplatform Tooling issue tracker**:
+  [сообщите о новой проблеме](https://youtrack.jetbrains.com/newIssue?project=KT).

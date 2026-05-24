@@ -6,17 +6,35 @@ title: "Функции"
 url: https://kotlinlang.ru/docs/functions.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 10 November 2021 -->
+<!-- При переводе статьи оригинальная версия была от 16 December 2025 -->
 
 <!-- # Functions -->
 # Функции
 
-<!-- Kotlin functions are declared using the `fun` keyword: -->
-В Kotlin функции объявляются с помощью ключевого слова `fun`.
+<!-- To declare a function in Kotlin:
+* Use the `fun` keyword.
+* Specify the parameters in parentheses `()`.
+* Include the [return type](#return-types) if needed. -->
+Чтобы объявить функцию в Kotlin:
+
+* используйте ключевое слово `fun`;
+* укажите параметры в круглых скобках `()`;
+* добавьте [тип возвращаемого значения](#return-types), если он нужен.
+
+<!-- For example: -->
+Например:
 
 ```kotlin
+// 'double' - имя функции
+// 'x' - параметр типа Int
+// ожидаемый тип возвращаемого значения тоже Int
 fun double(x: Int): Int {
     return 2 * x
+}
+
+fun main() {
+    println(double(5))
+    // 10
 }
 ```
 
@@ -32,11 +50,13 @@ fun double(x: Int): Int {
 val result = double(2)
 ```
 
-<!-- Calling member functions uses dot notation: -->
-Для вызова вложенной функции используется знак точки.
+<!-- To call a member or extension function, use a period `.`: -->
+Чтобы вызвать [функцию-член](classes.html) или [функцию-расширение](extensions.html#extension-functions), используйте
+точку `.`:
 
 ```kotlin
-Stream().read() //создаёт экземпляр класса Stream и вызывает read()
+// Создаёт экземпляр класса Stream и вызывает read()
+Stream().read()
 ```
 
 <a name="parameters"></a>
@@ -44,17 +64,26 @@ Stream().read() //создаёт экземпляр класса Stream и вы�
 <!-- ### Parameters -->
 ### Параметры
 
-<!-- Function parameters are defined using Pascal notation - *name*: *type*. Parameters are separated using commas, and each
-parameter must be explicitly typed: -->
-Параметры функции записываются аналогично системе обозначений в языке Pascal - *имя*: *тип*. Параметры разделены
-запятыми. Каждый параметр должен быть явно указан.
+<!-- Declare function parameters using Pascal notation: `name: Type`.
+You must separate parameters using commas and give each parameter a type explicitly: -->
+Параметры функции объявляются с помощью Pascal-нотации: `имя: Тип`. Параметры разделяются запятыми, и тип каждого
+параметра должен быть указан явно:
 
 ```kotlin
 fun powerOf(number: Int, exponent: Int): Int { /*...*/ }
 ```
 
-<!-- You can use a [trailing comma](coding-conventions.md#trailing-commas) when you declare function parameters: -->
-Вы можете использовать [завершающую запятую](coding-conventions.html#trailing-commas) при объявлении параметров функции.
+<!-- Inside the body of a function, received arguments are read-only (implicitly declared as `val`): -->
+Внутри тела функции полученные аргументы доступны только для чтения (они неявно объявлены как `val`):
+
+```kotlin
+fun powerOf(number: Int, exponent: Int): Int {
+    number = 2 // Ошибка: 'val' нельзя переназначить
+}
+```
+
+<!-- You can use a [trailing comma](coding-conventions.md#trailing-commas) when declaring function parameters: -->
+Вы можете использовать [завершающую запятую](coding-conventions.html#trailing-commas) при объявлении параметров функции:
 
 ```kotlin
 fun powerOf(
@@ -63,15 +92,119 @@ fun powerOf(
 ) { /*...*/ }
 ```
 
+<!-- Trailing commas help with refactorings and code maintenance:
+you can move parameters within the declaration without worrying about which is going to be the last one. -->
+Завершающие запятые помогают при рефакторинге и сопровождении кода: вы можете перемещать параметры внутри объявления и
+не думать о том, какой из них окажется последним.
+
+<!-- Kotlin functions can receive other functions as parameters — and be passed as arguments.
+For more information, see Higher-order functions and lambdas. -->
+> Функции Kotlin могут принимать другие функции в качестве параметров, а также передаваться как аргументы. Подробнее см.
+> [Функции высшего порядка и лямбды](lambdas.html).
+
 <a name="default-arguments"></a>
+<a name="parameters-with-default-values"></a>
 
-<!-- ### Default arguments -->
-### Аргументы по умолчанию
+<!-- ### Parameters with default values -->
+### Параметры со значениями по умолчанию
 
-<!-- Function parameters can have default values, which are used when you skip the corresponding argument. This reduces the number
-of overloads: -->
-Параметры функции могут иметь значения по умолчанию, которые используются в случае, если аргумент функции не указан при
-её вызове. Это позволяет снизить уровень перегруженности кода.
+<!-- You can make a function parameter optional by specifying a default value for it.
+Kotlin uses the default value when you call the function without providing an argument that corresponds to that parameter.
+Parameters with default values are also known as optional parameters. -->
+Параметр функции можно сделать необязательным, указав для него значение по умолчанию. Kotlin использует значение по
+умолчанию, когда вы вызываете функцию без аргумента, соответствующего этому параметру. Параметры со значениями по
+умолчанию также называют опциональными параметрами.
+
+<!-- Optional parameters reduce the need for multiple overloads, since you don't have to declare different versions of a function
+just to allow skipping a parameter with a reasonable default. -->
+Опциональные параметры уменьшают потребность в перегрузках: вам не нужно объявлять несколько версий одной функции только
+для того, чтобы разрешить пропуск параметра с разумным значением по умолчанию.
+
+<!-- Set a default value by appending `=` to the parameter declaration: -->
+Чтобы задать значение по умолчанию, добавьте `=` к объявлению параметра:
+
+```kotlin
+fun read(
+    b: ByteArray,
+    // Значение 'off' по умолчанию равно 0
+    off: Int = 0,
+    // Значение 'len' по умолчанию вычисляется
+    // как размер массива 'b'
+    len: Int = b.size,
+) { /*...*/ }
+```
+
+<!-- When you declare a parameter with a default value before a parameter without a default value,
+you can only use the default value by naming the argument: -->
+Когда параметр **со** значением по умолчанию объявлен перед параметром **без** значения по умолчанию, использовать это
+значение можно только через [именованный аргумент](#named-arguments):
+
+```kotlin
+fun greeting(
+    userId: Int = 0,
+    message: String,
+) { /*...*/ }
+
+fun main() {
+    // Используется значение 0 по умолчанию для 'userId'
+    greeting(message = "Hello!")
+
+    // Ошибка: для параметра 'userId' не передано значение
+    greeting("Hello!")
+}
+```
+
+<!-- Trailing lambdas are an exception to this rule, since the last parameter must correspond to the passed function: -->
+[Завершающие лямбды](lambdas.html#passing-trailing-lambdas) являются исключением из этого правила, поскольку последний
+параметр должен соответствовать переданной функции:
+
+```kotlin
+fun main() {
+    fun greeting(
+        userId: Int = 0,
+        message: () -> Unit,
+    ) {
+        println(userId)
+        message()
+    }
+
+    // Используется значение по умолчанию для 'userId'
+    greeting() { println("Hello!") }
+    // 0
+    // Hello!
+}
+```
+
+<!-- Overriding methods always use the base method's default parameter values.
+When you override a method that has default parameter values, you must omit the default parameter values from the signature: -->
+[Переопределённые методы](inheritance.html#overriding-methods) всегда используют значения параметров по умолчанию из
+базового метода. При переопределении метода, у которого есть значения параметров по умолчанию, эти значения должны быть
+опущены из сигнатуры:
+
+```kotlin
+open class Shape {
+    open fun draw(width: Int = 10, height: Int = 5) { /*...*/ }
+}
+
+class Rectangle : Shape() {
+    // Здесь нельзя указывать значения по умолчанию,
+    // но эта функция всё равно по умолчанию использует
+    // 10 для 'width' и 5 для 'height'.
+    override fun draw(width: Int, height: Int) { /*...*/ }
+}
+```
+
+<a name="non-constant-expressions-as-default-values"></a>
+
+<!-- #### Non-constant expressions as default values -->
+#### Неконстантные выражения как значения по умолчанию
+
+<!-- You can assign a parameter a default value that isn't constant.
+For example, the default can be the result of a function call or a calculation that uses the values of other arguments,
+like the `len` parameter in this example: -->
+Параметру можно назначить значение по умолчанию, которое не является константой. Например, значением по умолчанию может
+быть результат вызова функции или вычисления, использующего значения других аргументов, как параметр `len` в этом
+примере:
 
 ```kotlin
 fun read(
@@ -81,53 +214,62 @@ fun read(
 ) { /*...*/ }
 ```
 
-<!-- A default value is defined using `=` after the type. -->
-Значения по умолчанию указываются после типа знаком `=`.
+<!-- Parameters that refer to the values of other parameters must be declared later in the order.
+In this example, `len` must be declared after `b`. -->
+Параметры, которые ссылаются на значения других параметров, должны быть объявлены позже них. В этом примере `len` должен
+быть объявлен после `b`.
 
-<!-- Overriding methods always use the same default parameter values as the base method.
-When overriding a method that has default parameter values, the default parameter values must be omitted from the signature: -->
-Переопределённые методы всегда используют те же самые значения по умолчанию, что и их базовые методы. При
-переопределении методов со значениями по умолчанию в сигнатуре эти параметры должны быть опущены.
+<!-- In general, you can assign any expression as the default value of a parameter.
+However, default values are only evaluated when the function is called without the corresponding parameter
+and a default value needs to be assigned.
+For example, this function prints out a line only when it is called without the `print` parameter: -->
+В общем случае значением параметра по умолчанию может быть любое выражение. Однако значения по умолчанию вычисляются
+только тогда, когда функция вызывается без соответствующего параметра и нужно подставить значение по умолчанию. Например,
+эта функция выводит строку только при вызове без параметра `print`:
 
 ```kotlin
-open class A {
-    open fun foo(i: Int = 10) { /*...*/ }
-}
+fun main() {
+    fun read(
+        b: Int,
+        print: Unit? = println("Аргумент 'print' не передан")
+    ) {
+        println(b)
+    }
 
-class B : A() {
-    override fun foo(i: Int) { /*...*/ } // значение по умолчанию указать нельзя
+    // Выводит "Аргумент 'print' не передан", затем "1"
+    read(1)
+    // Выводит только "1"
+    read(1, null)
 }
 ```
 
-<!-- If a default parameter precedes a parameter with no default value, the default value can only be used by calling
-the function with [named arguments](#named-arguments): -->
-Если параметр по умолчанию предшествует параметру без значения по умолчанию, значение по умолчанию можно использовать
-только при вызове функции с [именованными аргументами](#named-arguments).
+<!-- If the last parameter in a function declaration has a functional type,
+you can pass the corresponding lambda argument either as a named argument or outside the parentheses: -->
+Если последний параметр в объявлении функции имеет функциональный тип, соответствующий
+[лямбда-аргумент](lambdas.html#lambda-expression-syntax) можно передать либо как именованный аргумент, либо
+[за скобками](lambdas.html#passing-trailing-lambdas):
 
 ```kotlin
-fun foo(
-    bar: Int = 0,
-    baz: Int,
-) { /*...*/ }
+fun main() {
+    fun log(
+        level: Int = 0,
+        code: Int = 1,
+        action: () -> Unit,
+    ) {
+        println(level)
+        println(code)
+        action()
+    }
 
-foo(baz = 1) // Используется значение по умолчанию bar = 0
-```
+    // Передаёт 1 для 'level' и использует значение 1 по умолчанию для 'code'
+    log(1) { println("Connection established") }
 
-<!-- If the last argument after default parameters is a [lambda](lambdas.md#lambda-expression-syntax),
-you can pass it either as a named argument or [outside the parentheses](lambdas.md#passing-trailing-lambdas): -->
-Но если последний аргумент после параметров по умолчанию - [лямбда](lambdas.md#lambda-expression-syntax), вы можете
-передать её либо как именованный аргумент, либо [за скобками](lambdas.md#passing-trailing-lambdas).
+    // Использует оба значения по умолчанию: 0 для 'level' и 1 для 'code'
+    log(action = { println("Connection established") })
 
-```kotlin
-fun foo(
-    bar: Int = 0,
-    baz: Int = 1,
-    qux: () -> Unit,
-) { /*...*/ }
-
-foo(1) { println("hello") }     // Используется значение по умолчанию baz = 1 
-foo(qux = { println("hello") }) // Используется оба значения по умолчанию: bar = 0 и baz = 1
-foo { println("hello") }        // Используется оба значения по умолчанию: bar = 0 и baz = 1
+    // Эквивалентно предыдущему вызову, использует оба значения по умолчанию
+    log { println("Connection established") }
+}
 ```
 
 <a name="named-arguments"></a>
@@ -135,18 +277,18 @@ foo { println("hello") }        // Используется оба значен�
 <!-- ### Named arguments -->
 ### Именованные аргументы
 
-<!-- When calling a function, you can name one or more of its arguments. This can be helpful when a function has many
-arguments and it's difficult to associate a value with an argument, especially if it's a boolean or `null` value. -->
-При вызове функции вы можете явно указать имена одного или нескольких аргументов. Это может быть полезно, когда у функции
-большой список аргументов, и сложно связать значение с аргументом, особенно если это логическое или `null` значение.
+<!-- You can name one or more of a function's arguments when calling it.
+This can be helpful when a function call has many arguments.
+In such cases, it's difficult to associate a value with an argument, especially if it's `null` or a boolean value. -->
+При вызове функции вы можете явно указать имена одного или нескольких аргументов. Это может быть полезно, когда у вызова
+функции много аргументов. В таких случаях сложно связать значение с конкретным аргументом, особенно если это `null` или
+логическое значение.
 
-<!-- When you use named arguments in a function call, you can freely change the order they are listed in, and if you want to
-use their default values, you can just leave these arguments out altogether. -->
-При явном указывании имен аргументов в вызове функции, вы можете свободно изменять порядок их перечисления, и, если вы
-хотите использовать их значения по умолчанию, вы можете просто пропустить эти аргументы.
+<!-- When you use named arguments in a function call, you can list them in any order. -->
+При использовании именованных аргументов в вызове функции их можно перечислять в любом порядке.
 
-<!--Consider the following function, `reformat()`, which has 4 arguments with default values.-->
-Рассмотрим следующую функцию `reformat()`, которая имеет 4 аргумента со значениями по умолчанию:
+<!-- Consider the `reformat()` function, which has 4 arguments with default values: -->
+Рассмотрим функцию `reformat()`, у которой есть четыре аргумента со значениями по умолчанию:
 
 ```kotlin
 fun reformat(
@@ -158,170 +300,274 @@ fun reformat(
 ) { /*...*/ }
 ```
 
-<!--When calling this function, you don’t have to name all its arguments:-->
-При её вызове, вам не нужно явно указывать все имена аргументов.
+<!-- When calling this function, you can name some of the arguments: -->
+При вызове этой функции можно явно указать имена некоторых аргументов:
 
 ```kotlin
 reformat(
     "String!",
-    false,
+    normalizeCase = false,
     upperCaseFirstLetter = false,
     divideByCamelHumps = true,
     '_'
 )
 ```
 
-<!-- You can skip all the ones with default values: -->
-Вы можете пропустить все аргументы со значением по умолчанию.
+<!-- You can skip all the arguments with default values: -->
+Вы можете пропустить все аргументы со значениями по умолчанию:
 
 ```kotlin
 reformat("This is a long String!")
 ```
 
-<!-- You are also able to skip specific arguments with default values, rather than omitting them all. However, after the first
-skipped argument, you must name all subsequent arguments: -->
-Вы также можете пропустить не только *все* аргументы со значениями по умолчанию, но и лишь некоторые из них. Однако после
-первого пропущенного аргумента вы должны указывать имена всех последующих аргументов.
+<!-- You can also skip some arguments with default values, rather than omitting them all.
+However, after the first skipped argument, you must name all subsequent arguments: -->
+Вы также можете пропустить только *некоторые* аргументы со значениями по умолчанию, а не все сразу. Однако после первого
+пропущенного аргумента вы должны указывать имена всех последующих аргументов:
 
 ```kotlin
-reformat("This is a short String!", upperCaseFirstLetter = false, wordSeparator = '_')
+reformat(
+    "This is a short String!",
+    upperCaseFirstLetter = false,
+    wordSeparator = '_'
+)
 ```
 
-<!-- You can pass a [variable number of arguments (`vararg`)](#variable-number-of-arguments-varargs) with names using the
-`spread` operator: -->
-Вы можете передать [переменное количество аргументов (`vararg`)](#variable-number-of-arguments-varargs) с именами,
-используя оператор `spread`.
+<!-- You can pass a variable number of arguments (`vararg`) by naming the corresponding argument.
+In this example, it's an array: -->
+Вы можете передать [переменное количество аргументов](#variable-number-of-arguments-varargs) (`vararg`), указав имя
+соответствующего аргумента. В этом примере передаётся массив:
 
 ```kotlin
-fun foo(vararg strings: String) { /*...*/ }
+fun mergeStrings(vararg strings: String) { /*...*/ }
 
-foo(strings = *arrayOf("a", "b", "c"))
+mergeStrings(strings = arrayOf("a", "b", "c"))
 ```
 
-<!-- > On the JVM: You can't use the named argument syntax when calling Java functions because Java bytecode does not
-> always preserve the names of function parameters. -->
-> В JVM: синтаксис именованных аргументов не может быть использован при вызове Java функций, потому как байт-код Java не
-> всегда сохраняет имена параметров функции.
+<!-- When calling Java functions on the JVM, you can't use the named argument syntax because Java bytecode does not
+always preserve the names of function parameters. -->
+> При вызове Java-функций на JVM нельзя использовать синтаксис именованных аргументов, потому что байт-код Java не всегда
+> сохраняет имена параметров функции.
 
-<a name="unit-returning-functions"></a>
+<a name="return-types"></a>
+<a name="explicit-return-types"></a>
 
-<!-- ### Unit-returning functions -->
-### Функции с возвращаемым типом Unit
+<!-- ### Return types -->
+### Типы возвращаемых значений
 
-<!-- If a function does not return a useful value, its return type is `Unit`. `Unit` is a type with only one value - `Unit`.
-This value does not have to be returned explicitly: -->
-Если функция не возвращает никакого полезного значения, её возвращаемый тип - `Unit`. `Unit` - тип только с одним
-значением - `Unit`. Это значение не нуждается в явном указании возвращения функции.
+<!-- When you declare a function with a block body (by putting instructions within curly braces `{}`),
+you must always specify a return type explicitly.
+The only exception is when they return `Unit`, in which case specifying the return type is optional. -->
+Когда вы объявляете функцию с блочным телом (инструкциями в фигурных скобках `{}`), тип возвращаемого значения всегда
+нужно указывать явно. Единственное исключение - функции, возвращающие `Unit`: [в этом случае тип можно не указывать](#unit-returning-functions).
 
-```kotlin
-fun printHello(name: String?): Unit {
-    if (name != null)
-        println("Hello $name")
-    else
-        println("Hi there!")
-    // `return Unit` или `return` необязательны
-}
-```
-
-<!-- The `Unit` return type declaration is also optional. The above code is equivalent to: -->
-Указание типа `Unit` в качестве возвращаемого значения тоже не является обязательным. Код, написанный выше, и следующий
-код совершенно идентичны:
-
-```kotlin
-fun printHello(name: String?) { /*...*/ }
-```
+<!-- Kotlin doesn't infer return types for functions with block bodies.
+Their control flow can be complex, which makes the return type unclear to the reader and sometimes even to the compiler.
+However, Kotlin can infer the return type for single-expression functions if you don't specify it. -->
+Kotlin не выводит типы возвращаемых значений для функций с блочным телом. Их поток управления может быть сложным, из-за
+чего тип возвращаемого значения становится неочевидным для читателя, а иногда даже для компилятора. Однако Kotlin может
+вывести тип для [функций с одним выражением](#single-expression-functions), если вы не указали его явно.
 
 <a name="single-expression-functions"></a>
 
 <!-- ### Single-expression functions -->
 ### Функции с одним выражением
 
-<!-- When a function returns a single expression, the curly braces can be omitted and the body is specified after a `=` symbol: -->
-Когда функция возвращает одно единственное выражение, фигурные скобки `{ }` могут быть опущены, и тело функции может
-быть описано после знака `=`.
+<!-- When the function body consists of a single expression, you can omit the curly braces and specify the body after an `=` symbol: -->
+Когда тело функции состоит из одного выражения, фигурные скобки `{}` можно опустить, а тело указать после символа `=`:
 
 ```kotlin
 fun double(x: Int): Int = x * 2
 ```
 
-<!-- Explicitly declaring the return type is [optional](#explicit-return-types) when this can be inferred by the compiler: -->
-Явное объявление возвращаемого типа является [необязательным](#explicit-return-types), когда он может быть определен
-компилятором.
+<!-- Most of the time you don't have to explicitly declare the return type: -->
+В большинстве случаев [тип возвращаемого значения](#return-types) не нужно объявлять явно:
 
 ```kotlin
+// Компилятор выводит, что функция возвращает Int
 fun double(x: Int) = x * 2
 ```
 
-<a name="explicit-return-types"></a>
+<!-- The compiler can sometimes run into problems when inferring return types from single expressions.
+In such cases, you should add the return type explicitly.
+For example, functions that are recursive or mutually recursive (calling each other)
+and functions with typeless expressions like `fun empty() = null` always require a return type. -->
+Иногда компилятор может столкнуться с проблемами при выводе типа возвращаемого значения из одного выражения. В таких
+случаях тип следует добавить явно. Например, функции, которые являются рекурсивными или взаимно рекурсивными (вызывают
+друг друга), а также функции с нетипизированными выражениями вроде `fun empty() = null`, всегда требуют явного типа
+возвращаемого значения.
 
-<!-- ### Explicit return types -->
-### Явные типы возвращаемых значений
+<!-- When you do use an inferred return type,
+make sure to check the actual result because the compiler may infer a type that is less useful to you.
+In the example above, if you want the `double()` function to return `Number` instead of `Int`,
+you have to declare this explicitly. -->
+Когда вы используете выведенный тип возвращаемого значения, проверяйте фактический результат: компилятор может вывести
+тип, который окажется менее полезным для вас. В примере выше, если вы хотите, чтобы функция `double()` возвращала
+`Number`, а не `Int`, это нужно указать явно.
 
-<!-- Functions with block body must always specify return types explicitly, unless it's intended for them to return `Unit`,
-[in which case specifying the return type is optional](#unit-returning-functions). -->
-Функции с блочным телом всегда должны иметь явно указанный возвращаемый ими тип данных, если только они не предназначены
-для возврата `Unit`, [тогда указание типа возвращаемого значения необязательно](#unit-returning-functions).
+<a name="unit-returning-functions"></a>
 
-<!-- Kotlin does not infer return types for functions with block bodies because such functions may have complex control flow
-in the body, and the return type will be non-obvious to the reader (and sometimes even for the compiler). -->
-Kotlin самостоятельно не вычисляет тип возвращаемого значения для функций с блочным телом, потому что подобные функции
-могут иметь сложную структуру, и возвращаемый тип будет неочевидным для читающего этот код человека (иногда даже для
-компилятора).
+<!-- ### Unit-returning functions -->
+### Функции с возвращаемым типом Unit
+
+<!-- If a function has a block body (instructions within curly braces `{}`) and does not return a useful value,
+the compiler assumes its return type is `Unit`.
+`Unit` is a type that has only one value, also called `Unit`. -->
+Если у функции есть блочное тело (инструкции в фигурных скобках `{}`), и она не возвращает полезного значения, компилятор
+считает, что её тип возвращаемого значения - `Unit`. `Unit` - это тип, у которого есть только одно значение, также
+называемое `Unit`.
+
+<!-- You don't have to specify `Unit` as a return type, except for functional type parameters.
+You never have to return `Unit` explicitly. -->
+Указывать `Unit` как возвращаемый тип самой функции не нужно. Исключение - параметры функционального типа, например
+`() -> Unit`. Возвращать `Unit` явно никогда не требуется.
+
+<!-- For example, you can declare a `printHello()` function without returning `Unit`: -->
+Например, функцию `printHello()` можно объявить без возвращения `Unit`:
+
+```kotlin
+// В объявлении параметра функционального типа ('action')
+// всё равно нужен явный возвращаемый тип
+fun printHello(name: String?, action: () -> Unit) {
+    if (name != null)
+        println("Hello $name")
+    else
+        println("Hi there!")
+
+    action()
+}
+
+fun main() {
+    printHello("Kodee") {
+        println("This runs after the greeting.")
+    }
+    // Hello Kodee
+    // This runs after the greeting.
+
+    printHello(null) {
+        println("No name provided, but action still runs.")
+    }
+    // No name provided, but action still runs
+}
+```
+
+<!-- Which is equivalent to this verbose declaration: -->
+Это эквивалентно следующему более подробному объявлению:
+
+```kotlin
+fun printHello(name: String?, action: () -> Unit): Unit {
+    if (name != null)
+        println("Hello $name")
+    else
+        println("Hi there!")
+
+    action()
+    return Unit
+}
+
+fun main() {
+    printHello("Kodee") {
+        println("This runs after the greeting.")
+    }
+    // Hello Kodee
+    // This runs after the greeting.
+
+    printHello(null) {
+        println("No name provided, but action still runs.")
+    }
+    // No name provided, but action still runs
+}
+```
+
+<!-- You can use a `return` statement inside an expression body if the function's return type is specified explicitly: -->
+В теле-выражении можно использовать оператор `return`, если тип возвращаемого значения функции указан явно:
+
+```kotlin
+fun getDisplayNameOrDefault(userId: String?): String =
+    getDisplayName(userId ?: return "default")
+```
 
 <a name="variable-number-of-arguments-varargs"></a>
 
 <!-- ### Variable number of arguments (varargs) -->
 ### Нефиксированное число аргументов (varargs)
 
-<!-- You can mark a parameter of a function (usually the last one) with the `vararg` modifier: -->
-Параметр функции (обычно для этого используется последний) может быть помечен модификатором `vararg`.
+<!-- To pass a variable number of arguments to a function, you can mark one of its parameters
+(usually the last one) with the `vararg` modifier.
+Inside a function, you can use a `vararg`-parameter of type `T` as an array of `T`: -->
+Чтобы передать в функцию переменное количество аргументов, один из её параметров (обычно последний) можно пометить
+модификатором `vararg`. Внутри функции `vararg`-параметр типа `T` можно использовать как массив элементов `T`:
 
 ```kotlin
 fun <T> asList(vararg ts: T): List<T> {
     val result = ArrayList<T>()
-    for (t in ts) // ts - это массив (Array)
+    for (t in ts) // ts - это массив
         result.add(t)
     return result
 }
 ```
 
-<!-- In this case, you can pass a variable number of arguments to the function: -->
-Это позволит указать несколько значений в качестве аргументов функции.
+<!-- Then you can pass a variable number of arguments to the function: -->
+После этого в функцию можно передать переменное количество аргументов:
 
 ```kotlin
-val list = asList(1, 2, 3)
+fun <T> asList(vararg ts: T): List<T> {
+    val result = ArrayList<T>()
+    for (t in ts) // ts - это массив
+        result.add(t)
+    return result
+}
+
+fun main() {
+    val list = asList(1, 2, 3)
+    println(list)
+    // [1, 2, 3]
+}
 ```
 
-<!-- Inside a function, a `vararg`-parameter of type `T` is visible as an array of `T`, as in the example above, where the `ts`
-variable has type `Array<out T>`. -->
-Внутри функции параметр с меткой `vararg` и типом `T` виден как массив элементов `T`, таким образом переменная `ts` в
-вышеуказанном примере имеет тип `Array<out T>`.
+<!-- Only one parameter can be marked as `vararg`.
+If you declare a `vararg` parameter anywhere other than last in the parameter list, you must pass values for the following
+parameters using named arguments.
+If a parameter has a function type, you can also pass its value by placing a lambda outside the parentheses. -->
+Только один параметр может быть помечен как `vararg`. Если `vararg`-параметр объявлен не последним в списке параметров,
+значения для следующих параметров нужно передавать с помощью именованных аргументов. Если параметр имеет функциональный
+тип, его значение также можно передать, поместив лямбду за скобками.
 
-<!-- Only one parameter can be marked as `vararg`. If a `vararg` parameter is not the last one in the list, values for the
-subsequent parameters can be passed using named argument syntax, or, if the parameter has a function type, by passing
-a lambda outside the parentheses. -->
-Только один параметр может быть помечен как `vararg`. Если параметр с именем `vararg` не стоит на последнем месте в
-списке аргументов, значения для последующих параметров могут быть переданы только с использованием синтаксиса именованных
-аргументов. В случае, если параметр является функцией, для этих целей можно вынести лямбду за фигурные скобки.
-
-<!-- When you call a `vararg`-function, you can pass arguments individually, for example `asList(1, 2, 3)`. If you already have
-an array and want to pass its contents to the function, use the *spread* operator (prefix the array with `*`): -->
-При вызове `vararg`-функции вы можете передать аргументы один за другим, например `asList(1, 2, 3)`, или, если у нас уже
-есть необходимый массив элементов и вы хотите передать его содержимое в функцию, используйте оператор `spread`
-(необходимо пометить массив знаком `*`).
+<!-- When you call a `vararg`-function, you can pass arguments individually, as in the example of `asList(1, 2, 3)`.
+If you already have an array and want to pass its contents to a function as a `vararg` parameter or as a part of it,
+use the spread operator by prefixing the array name with `*`: -->
+При вызове `vararg`-функции можно передавать аргументы по отдельности, как в примере `asList(1, 2, 3)`. Если у вас уже
+есть массив и вы хотите передать его содержимое в функцию как `vararg`-параметр или его часть, используйте оператор
+`spread`, добавив `*` перед именем массива:
 
 ```kotlin
-val a = arrayOf(1, 2, 3)
-val list = asList(-1, 0, *a, 4)
+fun <T> asList(vararg ts: T): List<T> {
+    val result = ArrayList<T>()
+    for (t in ts)
+        result.add(t)
+    return result
+}
+
+fun main() {
+    val a = arrayOf(1, 2, 3)
+
+    // Функция получает массив [-1, 0, 1, 2, 3, 4]
+    val list = asList(-1, 0, *a, 4)
+
+    println(list)
+    // [-1, 0, 1, 2, 3, 4]
+}
 ```
 
-<!-- If you want to pass a [primitive type array](https://kotlinlang.org/docs/basic-types.html#primitive-type-arrays)
-into `vararg`, you need to convert it to a regular (typed) array using the `toTypedArray()` function: -->
-Если вы хотите передать [массив примитивного типа](basic-types.html#primitive-type-arrays) в `vararg`, вам необходимо
-преобразовать его в обычный (типизированный) массив с помощью функции `toTypedArray()`.
+<!-- If you want to pass a primitive type array as `vararg`, you need to convert it to a regular (typed) array
+using the `.toTypedArray()` function: -->
+Если вы хотите передать [массив примитивного типа](basic-types.html#primitive-type-arrays) как `vararg`, его нужно
+преобразовать в обычный (типизированный) массив с помощью функции
+[`toTypedArray()`](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/to-typed-array.html):
 
 ```kotlin
-val a = intArrayOf(1, 2, 3) // IntArray - массив примитивного типа
+// 'a' - это IntArray, массив примитивного типа
+val a = intArrayOf(1, 2, 3)
 val list = asList(-1, 0, *a.toTypedArray(), 4)
 ```
 
@@ -330,41 +576,42 @@ val list = asList(-1, 0, *a.toTypedArray(), 4)
 <!-- ### Infix notation -->
 ### Инфиксная запись
 
-<!-- Functions marked with the `infix` keyword can also be called using the infix notation (omitting the dot and the parentheses
-for the call). Infix functions must meet the following requirements: -->
-Функции, помеченные ключевым словом `infix`, могут вызываться с использованием инфиксной записи (без точки и
-скобок для вызова). Инфиксные функции должны соответствовать следующим требованиям:
-
-<!-- * They must be member functions or [extension functions](extensions.md).
-* They must have a single parameter.
-* The parameter must not [accept variable number of arguments](#variable-number-of-arguments-varargs) and must have
-no [default value](#default-arguments). -->
-
-* Они должны являться функцией-членом класса или [функцией расширения](extensions.html);
-* В них должен использоваться только один параметр;
-* Параметр не должен принимать [переменное количество аргументов](#variable-number-of-arguments-varargs) и не должен
-иметь [значения по умолчанию](#default-arguments).
+<!-- You can declare functions that can be called without parentheses or the period by using the `infix` keyword.
+This can help make simple function calls in your code easier to read. -->
+С помощью ключевого слова `infix` можно объявлять функции, которые вызываются без круглых скобок и точки. Это может
+сделать простые вызовы функций в коде более читаемыми.
 
 ```kotlin
 infix fun Int.shl(x: Int): Int { /*...*/ }
 
-// вызов функции, с использованием инфиксной записи
-1 shl 2
-
-// то же самое, что
+// Вызов функции с помощью обычной записи
 1.shl(2)
+
+// Вызов функции с помощью инфиксной записи
+1 shl 2
 ```
 
-<!-- > Infix function calls have lower precedence than arithmetic operators, type casts, and the `rangeTo` operator.
-> The following expressions are equivalent:
-> * `1 shl 2 + 3` is equivalent to `1 shl (2 + 3)`
-> * `0 until n * 2` is equivalent to `0 until (n * 2)`
-> * `xs union ys as Set<*>` is equivalent to `xs union (ys as Set<*>)`
->
-> On the other hand, an infix function call's precedence is higher than that of the boolean operators `&&` and `||`, `is`-
-> and `in`-checks, and some other operators. These expressions are equivalent as well:
-> * `a && b xor c` is equivalent to `a && (b xor c)`
-> * `a xor b in c` is equivalent to `(a xor b) in c` -->
+<!-- Infix functions must meet the following requirements: -->
+Инфиксные функции должны соответствовать следующим требованиям:
+
+<!-- * They must be member functions of a class or extension functions.
+* They must have a single parameter.
+* The parameter must not accept a variable number of arguments (`vararg`) and must have no default value. -->
+* они должны быть функциями-членами класса или [функциями-расширениями](extensions.html);
+* они должны иметь только один параметр;
+* параметр не должен принимать [переменное количество аргументов](#variable-number-of-arguments-varargs) (`vararg`) и
+  не должен иметь [значения по умолчанию](#parameters-with-default-values).
+
+<!-- Infix function calls have lower precedence than arithmetic operators, type casts, and the `rangeTo` operator.
+The following expressions are equivalent:
+* `1 shl 2 + 3` is equivalent to `1 shl (2 + 3)`
+* `0 until n * 2` is equivalent to `0 until (n * 2)`
+* `xs union ys as Set<*>` is equivalent to `xs union (ys as Set<*>)`
+
+On the other hand, an infix function call's precedence is higher than that of the boolean operators `&&` and `||`, `is`-
+and `in`-checks, and some other operators. These expressions are equivalent as well:
+* `a && b xor c` is equivalent to `a && (b xor c)`
+* `a xor b in c` is equivalent to `(a xor b) in c` -->
 > Вызовы инфиксных функций имеют более низкий приоритет, чем арифметические операторы, приведение типов и оператор
 > `rangeTo`. Следующие выражения эквивалентны:
 >
@@ -378,22 +625,40 @@ infix fun Int.shl(x: Int): Int { /*...*/ }
 > * `a && b xor c` эквивалентно `a && (b xor c)`,
 > * `a xor b in c` эквивалентно `(a xor b) in c`.
 
-<!-- Note that infix functions always require both the receiver and the parameter to be specified. When you're
-calling a method on the current receiver using the infix notation, use `this` explicitly. This is required to ensure
-unambiguous parsing. -->
-Обратите внимание, что инфиксные функции всегда требуют указания как получателя, так и параметра. Когда вы вызываете
-метод на текущем приемнике, используя инфиксную запись, явно используйте `this`. Это необходимо для обеспечения
-однозначного синтаксического анализа.
+<!-- Note that infix functions always require both the receiver and the parameter to be specified.
+When you call a method on the current receiver using the infix notation, use `this` explicitly.
+This ensures unambiguous parsing. -->
+Обратите внимание, что инфиксные функции всегда требуют указания и получателя, и параметра. Когда вы вызываете метод на
+текущем получателе с помощью инфиксной записи, явно используйте `this`. Это обеспечивает однозначный синтаксический
+разбор.
 
 ```kotlin
 class MyStringCollection {
-    infix fun add(s: String) { /*...*/ }
+    val items = mutableListOf<String>()
+
+    infix fun add(s: String) {
+        println("Adding: $s")
+        items += s
+    }
 
     fun build() {
-        this add "abc" // Верно
-        add("abc")     // Верно
-        //add "abc"    // Не верно: получатель должен быть указан
+        add("first")      // Верно: обычный вызов функции
+        this add "second" // Верно: инфиксный вызов с явным получателем
+        // add "third"    // Ошибка компиляции: нужен явный получатель
     }
+
+    fun printAll() = println("Items = $items")
+}
+
+fun main() {
+    val myStrings = MyStringCollection()
+    // Добавляет "first" и "second" в список
+    myStrings.build()
+
+    myStrings.printAll()
+    // Adding: first
+    // Adding: second
+    // Items = [first, second]
 }
 ```
 
@@ -402,47 +667,84 @@ class MyStringCollection {
 <!-- ## Function scope -->
 ## Область видимости функций
 
-<!-- Kotlin functions can be declared at the top level in a file, meaning you do not need to create a class to hold a function,
-which you are required to do in languages such as Java, C#, and Scala. In addition
-to top level functions, Kotlin functions can also be declared locally as member functions and extension functions. -->
-В Kotlin функции могут быть объявлены в самом начале файла, что значит, что вам необязательно создавать класс, чтобы
-воспользоваться его функцией (как в Java, C# или Scala). В дополнение к этому, функции в Kotlin могут быть объявлены
-локально, как функции-члены и функции-расширения.
+<!-- You can declare Kotlin functions at the top level in a file, meaning you do not need to create a class to hold a function.
+Functions can also be declared locally as member functions or extension functions. -->
+Функции Kotlin можно объявлять на верхнем уровне файла: вам не нужно создавать класс только для того, чтобы поместить в
+него функцию. Функции также можно объявлять локально, как функции-члены или функции-расширения.
 
 <a name="local-functions"></a>
 
 <!-- ### Local functions -->
 ### Локальные функции
 
-<!-- Kotlin supports local functions, which are functions inside other functions: -->
-Kotlin поддерживает локальные функции, т.е. функции, вложенные в другие функции.
+<!-- Kotlin supports local functions, which are functions declared inside other functions.
+For example, the following code implements the Depth-first search algorithm for a given graph.
+The local `dfs()` function inside the outer `dfs()` function hides the implementation and handles recursive calls: -->
+Kotlin поддерживает локальные функции, то есть функции, объявленные внутри других функций. Например, следующий код
+реализует алгоритм поиска в глубину для заданного графа. Локальная функция `dfs()` внутри внешней функции `dfs()`
+скрывает реализацию и обрабатывает рекурсивные вызовы:
 
 ```kotlin
-fun dfs(graph: Graph) {
-    fun dfs(current: Vertex, visited: MutableSet<Vertex>) {
-        if (!visited.add(current)) return
-        for (v in current.neighbors)
-            dfs(v, visited)
-    }
+class Person(val name: String) {
+    val friends = mutableListOf<Person>()
+}
 
-    dfs(graph.vertices[0], HashSet())
+class SocialGraph(val people: List<Person>)
+
+fun dfs(graph: SocialGraph) {
+    fun dfs(current: Person, visited: MutableSet<Person>) {
+        if (!visited.add(current)) return
+        println("Visited ${current.name}")
+        for (friend in current.friends)
+            dfs(friend, visited)
+    }
+    dfs(graph.people[0], HashSet())
+}
+
+fun main() {
+    val alice = Person("Alice")
+    val bob = Person("Bob")
+    val charlie = Person("Charlie")
+    alice.friends += bob
+    bob.friends += charlie
+    charlie.friends += alice
+    val network = SocialGraph(listOf(alice, bob, charlie))
+    dfs(network)
 }
 ```
 
-<!-- A local function can access local variables of outer functions (the closure). In the case above, `visited` can be a local variable: -->
-Локальная функция может иметь доступ к локальным переменным внешних по отношению к ним функций (типа *closure*). Таким
-образом, в примере, приведённом выше, `visited` может быть локальной переменной.
+<!-- A local function can access local variables of outer functions (the closure).
+In the case above, the `visited` function parameter can be a local variable: -->
+Локальная функция может получать доступ к локальным переменным внешних функций (замыкание). В примере выше параметр
+функции `visited` может быть локальной переменной:
 
 ```kotlin
-fun dfs(graph: Graph) {
-    val visited = HashSet<Vertex>()
-    fun dfs(current: Vertex) {
-        if (!visited.add(current)) return
-        for (v in current.neighbors)
-            dfs(v)
-    }
+class Person(val name: String) {
+    val friends = mutableListOf<Person>()
+}
 
-    dfs(graph.vertices[0])
+class SocialGraph(val people: List<Person>)
+
+fun dfs(graph: SocialGraph) {
+    val visited = HashSet<Person>()
+    fun dfs(current: Person) {
+        if (!visited.add(current)) return
+        println("Visited ${current.name}")
+        for (friend in current.friends)
+            dfs(friend)
+    }
+    dfs(graph.people[0])
+}
+
+fun main() {
+    val alice = Person("Alice")
+    val bob = Person("Bob")
+    val charlie = Person("Charlie")
+    alice.friends += bob
+    bob.friends += charlie
+    charlie.friends += alice
+    val network = SocialGraph(listOf(alice, bob, charlie))
+    dfs(network)
 }
 ```
 
@@ -451,8 +753,8 @@ fun dfs(graph: Graph) {
 <!-- ### Member functions -->
 ### Функции-члены
 
-<!--A member function is a function that is defined inside a class or object:-->
-Функции-члены - это функции, объявленные внутри классов или объектов.
+<!-- A member function is a function that is defined inside a class or object: -->
+Функция-член - это функция, объявленная внутри класса или объекта:
 
 ```kotlin
 class Sample {
@@ -460,79 +762,89 @@ class Sample {
 }
 ```
 
-<!-- Member functions are called with dot notation: -->
-Функции-члены вызываются с использованием точки.
+<!-- To call member functions, write the instance or object name, then add a `.` and write the function name: -->
+Чтобы вызвать функцию-член, напишите имя экземпляра или объекта, затем добавьте `.` и имя функции:
 
 ```kotlin
-Sample().foo() // создаёт инстанс класса Sample и вызывает его функцию foo
+// Создаёт экземпляр класса Stream и вызывает read()
+Stream().read()
 ```
 
-<!-- For more information on classes and overriding members see [Classes](classes.md) and [Inheritance](classes.md#inheritance). -->
-Для более подробной информации о классах и их элементах см. [Классы](classes.html) и [Наследование](classes.html#inheritance).
+<!-- For more information on classes and overriding members see Classes and Inheritance. -->
+Для более подробной информации о классах и переопределении членов см. [Классы](classes.html) и
+[Наследование](classes.html#inheritance).
 
 <a name="generic-functions"></a>
 
 <!-- ## Generic functions -->
 ## Функции-обобщения
 
-<!-- Functions can have generic parameters, which are specified using angle brackets before the function name: -->
-Функции могут иметь обобщённые параметры, которые задаются треугольными скобками и помещаются перед именем функции.
+<!-- You can specify generic parameters for a function by using angle brackets `<>` before the function name: -->
+Обобщённые параметры функции можно указать с помощью угловых скобок `<>` перед именем функции:
 
 ```kotlin
 fun <T> singletonList(item: T): List<T> { /*...*/ }
 ```
 
-<!-- For more information on generic functions, see [Generics](generics.md). -->
-Для более подробной информации см. [Обобщения](generics.html).
+<!-- For more information on generic functions, see Generics. -->
+Для более подробной информации об обобщённых функциях см. [Обобщения](generics.html).
 
 <a name="tail-recursive-functions"></a>
 
 <!-- ## Tail recursive functions -->
 ## Функции с хвостовой рекурсией
 
-<!-- Kotlin supports a style of functional programming known as [tail recursion](https://en.wikipedia.org/wiki/Tail_call).
+<!-- Kotlin supports a style of functional programming known as tail recursion.
 For some algorithms that would normally use loops, you can use a recursive function instead without the risk of stack overflow.
 When a function is marked with the `tailrec` modifier and meets the required formal conditions, the compiler optimizes out
 the recursion, leaving behind a fast and efficient loop based version instead: -->
-Kotlin поддерживает стиль функционального программирования, известный как ["хвостовая рекурсия"](https://ru.wikipedia.org/wiki/%D0%A5%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D1%80%D0%B5%D0%BA%D1%83%D1%80%D1%81%D0%B8%D1%8F).
-Это позволяет использовать циклические алгоритмы вместо рекурсивных функции, но без риска переполнения стэка. Когда
-функция помечена модификатором `tailrec` и её форма отвечает требованиям компилятора, он оптимизирует рекурсию, оставляя
-вместо неё быстрое и эффективное решение этой задачи, основанное на циклах.
+Kotlin поддерживает стиль функционального программирования, известный как [хвостовая рекурсия](https://ru.wikipedia.org/wiki/%D0%A5%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D1%80%D0%B5%D0%BA%D1%83%D1%80%D1%81%D0%B8%D1%8F).
+Для некоторых алгоритмов, которые обычно реализуют с помощью циклов, можно использовать рекурсивную функцию без риска
+переполнения стека. Когда функция помечена модификатором `tailrec` и соответствует формальным требованиям, компилятор
+оптимизирует рекурсию, оставляя вместо неё быструю и эффективную версию на основе цикла:
 
 ```kotlin
-val eps = 1E-10 // этого достаточно, может быть 10^-15
+import kotlin.math.cos
+import kotlin.math.abs
+
+// Произвольная "достаточно хорошая" точность
+val eps = 1E-10
 
 tailrec fun findFixPoint(x: Double = 1.0): Double =
-    if (Math.abs(x - Math.cos(x)) < eps) x else findFixPoint(Math.cos(x))
+    if (abs(x - cos(x)) < eps) x else findFixPoint(cos(x))
 ```
 
-<!-- This code calculates the `fixpoint` of cosine, which is a mathematical constant. It simply calls `Math.cos` repeatedly
-starting at `1.0` until the result no longer changes, yielding a result of `0.7390851332151611` for the specified
-`eps` precision. The resulting code is equivalent to this more traditional style: -->
-Этот код высчитывает `fixpoint` косинуса, который является математической константой. Он просто-напросто постоянно
-вызывает `Math.cos`, начиная с `1.0` до тех пор, пока результат не изменится, приняв значение `0.7390851332151611` для
-заданной точности `eps`. Получившийся код эквивалентен вот этому более традиционному стилю:
+<!-- This code calculates the fixed point of cosine (a mathematical constant).
+The function calls `cos()` repeatedly starting at `1.0` until the result no longer changes,
+yielding a result of `0.7390851332151611` for the specified `eps` precision.
+The code is equivalent to this more traditional style: -->
+Этот код вычисляет неподвижную точку косинуса (математическую константу). Функция многократно вызывает `cos()`, начиная с
+`1.0`, пока результат не перестанет изменяться, и для указанной точности `eps` получает значение `0.7390851332151611`.
+Код эквивалентен следующей более традиционной форме:
 
 ```kotlin
-val eps = 1E-10 // этого достаточно, может быть 10^-15
+import kotlin.math.cos
+import kotlin.math.abs
+
+// Произвольная "достаточно хорошая" точность
+val eps = 1E-10
 
 private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {
-        val y = Math.cos(x)
-        if (Math.abs(x - y) < eps) return x
-        x = Math.cos(x)
+        val y = cos(x)
+        if (abs(x - y) < eps) return x
+        x = cos(x)
     }
 }
 ```
 
-<!-- To be eligible for the `tailrec` modifier, a function must call itself as the last operation it performs. You cannot use
-tail recursion when there is more code after the recursive call, within `try`/`catch`/`finally` blocks, or on open functions.
-Currently, tail recursion is supported by Kotlin for the JVM and Kotlin/Native. -->
-Для соответствия требованиям модификатора `tailrec`, функция должна вызывать сама себя в качестве последней операции,
-которую она предпринимает. Вы не можете использовать хвостовую рекурсию, когда существует ещё какой-то код после вызова
-этой самой рекурсии. Также нельзя использовать её внутри блоков `try`/`catch`/`finally` или в `open` функциях. На данный
-момент хвостовая рекурсия поддерживается только в backend виртуальной машины Java (JVM) и в Kotlin/Native.
+<!-- You can apply the `tailrec` modifier to a function only when it calls itself as its final operation.
+You cannot use tail recursion when there is more code after the recursive call,
+within `try`/`catch`/`finally` blocks, or when the function is open. -->
+Модификатор `tailrec` можно применять к функции только тогда, когда она вызывает саму себя в качестве последней
+операции. Хвостовую рекурсию нельзя использовать, если после рекурсивного вызова есть другой код, внутри блоков
+[`try`/`catch`/`finally`](exceptions.html) или когда функция является [open](inheritance.html).
 
 <!-- **See also**: -->
 **См. также:**
@@ -540,7 +852,6 @@ Currently, tail recursion is supported by Kotlin for the JVM and Kotlin/Native. 
 <!-- * [Inline functions](inline-functions.md)
 * [Extension functions](extensions.md)
 * [Higher-order functions and lambdas](lambdas.md) -->
-
-* [Встроенные функции](inline-functions.html),
-* [Функции-расширения](extensions.html),
-* [Высокоуровневые функции и лямбды](lambdas.html).
+* [Встроенные функции](inline-functions.html)
+* [Функции-расширения](extensions.html)
+* [Функции высшего порядка и лямбды](lambdas.html)

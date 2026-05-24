@@ -2,25 +2,27 @@
 type: doc
 layout: reference
 title: "Функциональные (SAM) интерфейсы"
-url: https://kotlinlang.ru/docs/basic-types.html
+url: https://kotlinlang.ru/docs/fun-interfaces.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 02 June 2021 -->
+<!-- При переводе статьи оригинальная версия была от 24 October 2025 -->
 
 <!-- Functional (SAM) interfaces -->
 # Функциональные (SAM) интерфейсы
 
-<!-- An interface with only one abstract method is called a _functional interface_, or a _Single Abstract
-Method (SAM) interface_. The functional interface can have several non-abstract members but only one abstract member. -->
-Интерфейсы только с одним абстрактным методом называются *функциональными интерфейсами* или *Single Abstract
-Method (SAM) интерфейсами*. Функциональный интерфейс может иметь несколько неабстрактных членов, но только один абстрактный.
+<!-- An interface with only one abstract member function is called a _functional interface_, or a _Single Abstract
+Method (SAM) interface_. The functional interface can have several non-abstract member functions but only one abstract
+member function. -->
+Интерфейс только с одной абстрактной функцией-членом называется *функциональным интерфейсом*, или *Single Abstract
+Method (SAM) интерфейсом*. Функциональный интерфейс может иметь несколько неабстрактных функций-членов, но только одну
+абстрактную функцию-член.
 
 <!-- To declare a functional interface in Kotlin, use the `fun` modifier. -->
 Чтобы объявить функциональный интерфейс, используйте модификатор `fun`.
 
 ```kotlin
 fun interface KRunnable {
-   fun invoke()
+    fun invoke()
 }
 ```
 
@@ -45,7 +47,7 @@ the signature of the interface's single method into the code, which dynamically 
 
 ```kotlin
 fun interface IntPredicate {
-   fun accept(i: Int): Boolean
+    fun accept(i: Int): Boolean
 }
 ```
 
@@ -55,9 +57,9 @@ fun interface IntPredicate {
 ```kotlin
 // Создание экземпляра класса
 val isEven = object : IntPredicate {
-   override fun accept(i: Int): Boolean {
-       return i % 2 == 0
-   }
+    override fun accept(i: Int): Boolean {
+        return i % 2 == 0
+    }
 }
 ```
 
@@ -74,33 +76,98 @@ val isEven = IntPredicate { it % 2 == 0 }
 
 ```kotlin
 fun interface IntPredicate {
-   fun accept(i: Int): Boolean
+    fun accept(i: Int): Boolean
 }
 
 val isEven = IntPredicate { it % 2 == 0 }
 
 fun main() {
-   println("Is 7 even? - ${isEven.accept(7)}")
+    println("Is 7 even? - ${isEven.accept(7)}")
 }
 ```
+{kotlin-runnable="true" kotlin-min-compiler-version="1.4"}
 
 <!-- You can also use [SAM conversions for Java interfaces](java-interop.md#sam-conversions). -->
 Вы можете использовать [SAM преобразования для Java интерфейсов](java-interop.html#sam-conversions).
+
+<a name="migration-from-an-interface-with-constructor-function-to-a-functional-interface"></a>
+<!-- ## Migration from an interface with constructor function to a functional interface -->
+## Миграция с интерфейса с функцией-конструктором на функциональный интерфейс
+
+<!-- Starting from 1.6.20, Kotlin supports [callable references](reflection.md#callable-references) to functional interface constructors, which
+adds a source-compatible way to migrate from an interface with a constructor function to a functional interface.
+Consider the following code: -->
+Начиная с версии 1.6.20 Kotlin поддерживает [вызываемые ссылки](reflection.html#callable-references) на конструкторы
+функциональных интерфейсов. Это добавляет способ миграции с интерфейса с функцией-конструктором на функциональный
+интерфейс с сохранением совместимости исходного кода. Рассмотрим следующий код:
+
+```kotlin
+interface Printer {
+    fun print()
+}
+
+fun Printer(block: () -> Unit): Printer = object : Printer {
+    override fun print() = block()
+}
+```
+
+<!-- With callable references to functional interface constructors enabled, this code can be replaced with just a functional interface declaration: -->
+При поддержке вызываемых ссылок на конструкторы функциональных интерфейсов этот код можно заменить только объявлением
+функционального интерфейса:
+
+```kotlin
+fun interface Printer {
+    fun print()
+}
+```
+
+<!-- Its constructor will be created implicitly, and any code using the `::Printer` function reference will compile. For example: -->
+Его конструктор будет создан неявно, и любой код, использующий ссылку на функцию `::Printer`, будет компилироваться.
+Например:
+
+```kotlin
+documentsStorage.addPrinter(::Printer)
+```
+
+<!-- Preserve the binary compatibility by marking the legacy function `Printer` with the [`@Deprecated`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-deprecated/)
+annotation with `DeprecationLevel.HIDDEN`: -->
+Сохраните бинарную совместимость, пометив устаревшую функцию `Printer` аннотацией
+[`@Deprecated`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-deprecated/) с `DeprecationLevel.HIDDEN`:
+
+```kotlin
+@Deprecated(message = "Your message about the deprecation", level = DeprecationLevel.HIDDEN)
+fun Printer(...) {...}
+```
 
 <a name="functional-interfaces-vs-type-aliases"></a>
 <!-- ## Functional interfaces vs. type aliases -->
 ## Функциональные интерфейсы vs псевдонимы типов
 
-<!-- Functional interfaces and [type aliases](type-aliases.md) serve different purposes.
+<!-- You can also simply rewrite the above using a [type alias](type-aliases.md) for a functional type: -->
+Вы также можете просто переписать приведённый выше пример, используя [псевдоним типа](type-aliases.html) для
+функционального типа:
+
+```kotlin
+typealias IntPredicate = (i: Int) -> Boolean
+
+val isEven: IntPredicate = { it % 2 == 0 }
+
+fun main() {
+    println("Is 7 even? - ${isEven(7)}")
+}
+```
+
+<!-- However, functional interfaces and [type aliases](type-aliases.md) serve different purposes.
 Type aliases are just names for existing types – they don't create a new type, while functional interfaces do.
 You can provide extensions that are specific to a particular functional interface to be inapplicable for plain functions or their type aliases. -->
-Функциональные интерфейсы и [псевдонимы типов](type-aliases.html) служат разным целям.
+Однако функциональные интерфейсы и [псевдонимы типов](type-aliases.html) служат разным целям.
 Псевдонимы типов – это просто имена существующих типов, они не создают новый тип, в то время как функциональные интерфейсы делают это.
 Вы можете предоставить расширения, специфичные для конкретного функционального интерфейса, которые будут неприменимы для простых функций или их псевдонимов типов.
 
-<!-- Type aliases can have only one member, while functional interfaces can have multiple non-abstract members and one abstract member.
+<!-- Type aliases can have only one member, while functional interfaces can have multiple non-abstract member functions and one abstract member function.
 Functional interfaces can also implement and extend other interfaces. -->
-Псевдонимы типов могут иметь только один элемент, в то время как функциональные интерфейсы могут иметь несколько неабстрактных элементов и один абстрактный элемент.
+Псевдонимы типов могут иметь только один элемент, в то время как функциональные интерфейсы могут иметь несколько
+неабстрактных функций-членов и одну абстрактную функцию-член.
 Функциональные интерфейсы также могут реализовывать и расширять другие интерфейсы.
 
 <!-- Functional interfaces are more flexible and provide more capabilities than type aliases, but they can be more costly both syntactically and at runtime because they can require conversions to a specific interface.

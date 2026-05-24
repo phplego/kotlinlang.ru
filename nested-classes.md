@@ -6,7 +6,7 @@ title: "Вложенные и внутренние классы"
 url: https://kotlinlang.ru/docs/nested-classes.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 11 February 2021 -->
+<!-- При переводе статьи оригинальная версия была от 25 September 2024 -->
 
 <!-- Nested and inner classes -->
 # Вложенные и внутренние классы
@@ -47,7 +47,7 @@ class OuterClass {
 ## Внутренние классы
 
 <!-- A nested class marked as `inner` can access the members of its outer class. Inner classes carry a reference to an object of an outer class: -->
-Класс, отмеченный как внутренний с помощью слова `inner`, может иметь доступ к членам внешнего класса. Внутренние классы
+Вложенный класс, помеченный как `inner`, может иметь доступ к членам внешнего класса. Внутренние классы
 содержат ссылку на объект внешнего класса.
 
 ```kotlin
@@ -69,7 +69,7 @@ val demo = Outer().Inner().foo() // == 1
 ## Анонимные внутренние классы
 
 <!-- Anonymous inner class instances are created using an [object expression](object-declarations.md#object-expressions): -->
-Экземпляры анонимного внутреннего класса создаются с помощью [объектов-выражений](object-declarations.html#object-expressions).
+Экземпляры анонимных внутренних классов создаются с помощью [объектов-выражений](object-declarations.html#object-expressions).
 
 ```kotlin
 window.addMouseListener(object : MouseAdapter() {
@@ -85,10 +85,13 @@ window.addMouseListener(object : MouseAdapter() {
 >
 >```kotlin
 > val listener = ActionListener { println("clicked") }
-> ``` -->
-> В JVM если объект является экземпляром функционального Java-интерфейса (т.е. Java-интерфейса с единственным
-> абстрактным методом), вы можете создать его с помощью лямбда-выражения с префиксом — типом интерфейса.
+> ```
+>
+{style="note"} -->
+> На JVM, если объект является экземпляром функционального Java-интерфейса (т.е. Java-интерфейса с единственным
+> абстрактным методом), вы можете создать его с помощью лямбда-выражения с префиксом в виде типа интерфейса:
 >
 > ```kotlin
 > val listener = ActionListener { println("clicked") }
 > ```
+{:.note}

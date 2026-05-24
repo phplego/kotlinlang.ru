@@ -1,238 +1,162 @@
 ---
 type: doc
 layout: reference
-title: "Kotlin для Data Science"
+title: "Kotlin для анализа данных"
 url: https://kotlinlang.ru/docs/data-science-overview.html
 ---
-      
-<!-- При переводе статьи оригинальная версия была от 06 December 2021 -->
-
-<!-- # Kotlin for data science -->
-# Kotlin для Data Science
-
-<!-- From building data pipelines to productionizing machine learning models, Kotlin can be a great choice for 
-working with data: -->
-Начиная с построения конвейеров данных и заканчивая разработкой моделей машинного обучения, Kotlin может стать отличным
-выбором для работы с данными:
-
-<!-- * Kotlin is concise, readable, and easy to learn.
-* Static typing and null safety help create reliable, maintainable code that is easy to troubleshoot. 
-* Being a JVM language, Kotlin gives you great performance and an ability to leverage an entire ecosystem 
-of tried and true Java libraries. -->
 
-* Kotlin лаконичен, удобочитаем и прост в освоении;
-* Статическая типизация и null-безопасность помогают создавать надежный код, который легко поддерживать и улучшать;
-* Будучи JVM языком, Kotlin обеспечивает отличную производительность и возможность использовать целую экосистему
-проверенных и надежных Java библиотек.
-
-<a name="interactive-editors"></a>
-
-<!-- ## Interactive editors -->
-## Интерактивные редакторы
-
-<!-- Notebooks such as [Jupyter Notebook](https://jupyter.org/) and [Apache Zeppelin](https://zeppelin.apache.org/) provide 
-convenient tools for data visualization and exploratory research.
-Kotlin integrates with these tools to help you explore data, share your findings with 
-colleagues, or build up your data science and machine learning skills. -->
-Блокноты, такие как [Jupyter Notebook](https://jupyter.org/) и [Apache Zeppelin](https://zeppelin.apache.org/),
-предоставляют удобные инструменты для визуализации данных и исследовательских исследований. Kotlin интегрируется с этими
-инструментами, чтобы помочь вам изучать данные, делиться своими выводами с коллегами или развивать свои навыки в области
-Data Science и машинного обучения.
-
-<a name="jupyter-kotlin-kernel"></a>
-
-<!-- ### Jupyter Kotlin kernel -->
-### Kotlin ядро для Jupyter
-
-<!-- The Jupyter Notebook is an open-source web application that allows you to create and share documents 
-(aka "notebooks") that can contain code, visualizations, and Markdown text. 
-[Kotlin-jupyter](https://github.com/Kotlin/kotlin-jupyter) is an open source project that brings Kotlin 
-support to Jupyter Notebook. -->
-Jupyter Notebook - это веб-приложение с открытым исходным кодом, позволяющее создавать и обмениваться документами
-(также известными как "ноутбуки"), которые могут содержать код, визуализации и Markdown разметку.
-[Kotlin-jupyter](https://github.com/Kotlin/kotlin-jupyter) - это проект с открытым исходным кодом, который обеспечивает
-поддержку Kotlin для Jupyter Notebook.
-
-<img src="https://kotlinlang.org/docs/images/kotlin-jupyter-kernel.png" alt="Kotlin в Jupyter-ноутбуке" title="Kotlin в Jupyter-ноутбуке">
-
-<!-- Check out Kotlin kernel's [GitHub repo](https://github.com/Kotlin/kotlin-jupyter) for installation 
-instructions, documentation, and examples. -->
-Ознакомьтесь с [GitHub репозиторием](https://github.com/Kotlin/kotlin-jupyter) ядра Kotlin для получения инструкций по
-установке, документации и примеров.
-
-<a name="zeppelin-kotlin-interpreter"></a>
-
-<!-- ### Zeppelin Kotlin interpreter -->
-### Kotlin интерпретатор для Zeppelin
-
-<!-- Apache Zeppelin is a popular web-based solution for interactive data analytics. It provides strong support 
-for the Apache Spark cluster computing system, which is particularly useful for data engineering. 
-Starting from [version 0.9.0](https://zeppelin.apache.org/docs/0.9.0-preview1/), Apache Zeppelin comes with 
-bundled Kotlin interpreter. -->
-Apache Zeppelin - популярное веб-решение для интерактивного анализа данных. Оно обеспечивает мощную поддержку кластерной
-вычислительной системы Apache Spark, которая особенно полезна для дата-инжиниринга. Начиная с [версии 0.9.0](https://zeppelin.apache.org/docs/0.9.0-preview1/),
-в Apache Zeppelin есть встроенный Kotlin интерпретатор.
-
-<img src="https://kotlinlang.org/docs/images/kotlin-zeppelin-interpreter.png" alt="Kotlin в Zeppelin-ноутбуке" title="Kotlin в Zeppelin-ноутбуке">
-
-<a name="libraries"></a>
-
-<!-- ## Libraries -->
-## Библиотеки
-
-<!-- The ecosystem of libraries for data-related tasks created by the Kotlin community is rapidly expanding. 
-Here are some libraries that you may find useful: -->
-Экосистема библиотек для задач, связанных с данными, созданная сообществом Kotlin, быстро расширяется. Вот некоторые
-библиотеки, которые могут быть полезными:
-
-<a name="kotlin-libraries"></a>
-
-<!-- ### Kotlin libraries -->
-### Kotlin библиотеки
-
-<!-- * [Multik](https://github.com/Kotlin/multik): multidimensional arrays in Kotlin. The library provides Kotlin-idiomatic, 
-  type- and dimension-safe API for mathematical operations over multidimensional arrays. Multik offers swappable 
-  JVM and native computational engines, and a combination of the two for optimal performance.
-
-* [KotlinDL](https://github.com/jetbrains/kotlindl) is a high-level Deep Learning API written in Kotlin and inspired
-  by Keras. It offers simple APIs for training deep learning models from scratch, importing existing Keras models
-  for inference, and leveraging transfer learning for tweaking existing pre-trained models to your tasks.
-
-* [Kotlin for Apache Spark](https://github.com/JetBrains/kotlin-spark-api) adds a missing layer of compatibility between
-  Kotlin and Apache Spark. It allows Kotlin developers to use familiar language features such as data classes, and
-  lambda expressions as simple expressions in curly braces or method references.
-
-* [kotlin-statistics](https://github.com/thomasnield/kotlin-statistics) is a library providing extension functions for 
-exploratory and production statistics. It supports basic numeric list/sequence/array functions (from `sum` to `skewness`),
-slicing operators (such as `countBy`, `simpleRegressionBy`), binning operations, discrete PDF sampling,
-naive bayes classifier, clustering, linear regression, and much more.
-
-* [kmath](https://github.com/mipt-npm/kmath) is a library inspired by [NumPy](https://numpy.org/).
-This library supports algebraic structures and operations, array-like structures, math expressions, histograms,
-streaming operations, a wrapper around [commons-math](https://commons.apache.org/proper/commons-math/) and
-[koma](https://github.com/kyonifer/koma), and more.
-
-* [krangl](https://github.com/holgerbrandl/krangl) is a library inspired by R's [dplyr](https://dplyr.tidyverse.org/)
-and Python's [pandas](https://pandas.pydata.org/). This library provides functionality for data manipulation using
-a functional-style API; it also includes functions for filtering, transforming, aggregating, and reshaping tabular data.
-
-* [lets-plot](https://github.com/JetBrains/lets-plot) is a plotting library for statistical data written in Kotlin.
-Lets-Plot is multiplatform and can be used not only with JVM, but also with JS and Python. 
-
-* [kravis](https://github.com/holgerbrandl/kravis) is another library for the visualization of tabular data inspired by
-R's [ggplot](https://ggplot2.tidyverse.org/).
-
-* [londogard-nlp-toolkit](https://github.com/londogard/londogard-nlp-toolkit/) is a library that provides utilities when working with natural language processing such as word/subword/sentence embeddings, word-frequencies, stopwords, stemming, and much more. -->
-
-* [Multik](https://github.com/Kotlin/multik): многомерные массивы в Kotlin. Библиотека предоставляет
-Kotlin-идиоматический, типо- и размерно-безопасный API для математических операций над многомерными массивами. Multik
-дает возможность работы как с реализацией на JVM, так и с оберткой нативного оптимизированного кода, а также позволяет
-автоматически переключаться между реализациями для оптимизации производительности;
-
-* [KotlinDL](https://github.com/jetbrains/kotlindl) - это высокоуровневый API глубокого обучения, написанный на Kotlin
-и вдохновленный Keras. Он предлагает простые API для обучения моделей глубокого обучения с нуля, импорта существующих
-моделей Keras для вывода и использования обучения передаче для настройки существующих предварительно обученных моделей
-для ваших задач;
-
-* [Kotlin для Apache Spark](https://github.com/JetBrains/kotlin-spark-api) увеличивает уровень совместимости между
-Kotlin и Apache Spark. Это позволяет разработчикам Kotlin использовать знакомые особенности языка, такие как классы
-данных и лямбда-выражения, в виде простых выражений в фигурных скобках или ссылок на методы;
-
-* [kotlin-statistics](https://github.com/thomasnield/kotlin-statistics) - это библиотека, которая предоставляет
-функции-расширения для статистического анализа. Она поддерживает основные функции для обработки числовых списков,
-последовательностей, массивов (от `sum` до `skewness`), операциями группировки (ориг.: *slicing operators*) (такие как
-`countBy`, `simpleRegressionBy`), операции группировки, выборки дискретной плотности вероятности, наивный байесовский
-классификатор, кластеризацию, линейную регрессию и многое другое;
-
-* [kmath](https://github.com/mipt-npm/kmath) - это библиотека, вдохновленная [NumPy](https://numpy.org/). Эта библиотека
-поддерживает алгебраические структуры и операции, структуры, подобные массивам, математические выражения, гистограммы,
-потоковые операции, обертку вокруг [commons-math](https://commons.apache.org/proper/commons-math/) и [koma](https://github.com/kyonifer/koma)
-и многое другое;
-
-* [krangl](https://github.com/holgerbrandl/krangl) - это библиотека, вдохновленная [dplyr](https://dplyr.tidyverse.org/)
-в R и [pandas](https://pandas.pydata.org/) из Python. Эта библиотека предоставляет инструментарий для обработки данных с
-использованием API функционального стиля; она также включает функции фильтрации, преобразования, агрегирования и
-изменения формы табличных данных;
-
-* [lets-plot](https://github.com/JetBrains/lets-plot) - это библиотека построения графиков для статистических данных.
-Она мультиплатформенная и может использоваться не только с JVM, но также с JS и Python;
-
-* [kravis](https://github.com/holgerbrandl/kravis) - это еще одна библиотека для визуализации табличных данных,
-вдохновленная [ggplot](https://ggplot2.tidyverse.org/) в R;
-
-* [londogard-nlp-toolkit](https://github.com/londogard/londogard-nlp-toolkit/) - это библиотека, которая предоставляет инструменты для обработки естественных языков, например для работы со словами/частями слов/предложениями, частоты использования слов, стоп-слов, поиском основы слова и многим другим.
-
-<a name="java-libraries"></a>
-
-<!-- ### Java libraries -->
-### Java библиотеки
-
-<!-- Since Kotlin provides first-class interop with Java, you can also use Java libraries for data science in your Kotlin code.
-Here are some examples of such libraries: -->
-Поскольку Kotlin полностью совместим с Java, вы также можете использовать Java-библиотеки для Data Science в своем
-Kotlin-коде. Вот несколько примеров таких библиотек:
-
-<!-- * [DeepLearning4J](https://deeplearning4j.org/) - a deep learning library for Java
-
-* [ND4J](https://github.com/deeplearning4j/nd4j) - an efficient matrix math library for JVM
-
-* [Dex](https://github.com/PatMartin/Dex) - a Java-based data visualization tool
-
-* [Smile](https://github.com/haifengl/smile) - a comprehensive machine learning, natural language processing,
-linear algebra, graph, interpolation, and visualization system. Besides Java API, Smile also provides a functional
-[Kotlin API](https://haifengl.github.io/api/kotlin/smile-kotlin/index.html) along with Scala and Clojure API.
-  * [Smile-NLP-kt](https://github.com/londogard/smile-nlp-kt) - a Kotlin rewrite of the Scala implicits for the natural
-    language processing part of Smile in the format of extension functions and interfaces.
-
-* [Apache Commons Math](https://commons.apache.org/proper/commons-math/) - a general math, statistics, and machine learning
-library for Java
-
-* [NM Dev](https://nm.dev/) - a Java mathematical library that covers all of classical mathematics.
-
-* [OptaPlanner](https://www.optaplanner.org/) - a solver utility for optimization planning problems
-
-* [Charts](https://github.com/HanSolo/charts) - a scientific JavaFX charting library in development
-
-* [CoreNLP](https://stanfordnlp.github.io/CoreNLP/) - a natural language processing toolkit
-
-* [Apache Mahout](https://mahout.apache.org/) - a distributed framework for regression, clustering and recommendation
-
-* [Weka](https://www.cs.waikato.ac.nz/ml/index.html) - a collection of machine learning algorithms for data mining tasks
-
-* [Tablesaw](https://github.com/jtablesaw/tablesaw) - a Java dataframe. It includes a visualization library based on Plot.ly -->
-
-* [DeepLearning4J](https://deeplearning4j.org/) - библиотека глубокого обучения для Java;
-
-* [ND4J](https://github.com/deeplearning4j/nd4j) - эффективная матричная математическая библиотека для JVM;
-
-* [Dex](https://github.com/PatMartin/Dex) - инструмент на основе Java для визуализации данных;
-
-* [Smile](https://github.com/haifengl/smile) - комплексная система машинного обучения, обработки естественного языка,
-линейной алгебры, графики, интерполяции и визуализации. Помимо Java API, Smile также предоставляет функциональный
-[Kotlin API](https://haifengl.github.io/api/kotlin/smile-kotlin/index.html), а также Scala и Clojure API.;
-  * [Smile-NLP-kt](https://github.com/londogard/smile-nlp-kt) - переписанные на Kotlin Scala имплициты для части Smile, отвечающей за обработку естественного языка, в виде функций-расширений и интерфейсов;
-
-* [Apache Commons Math](https://commons.apache.org/proper/commons-math/) - библиотека общей математики, статистики и
-машинного обучения для Java;
-
-* [NM Dev](https://nm.dev/) - математическая библиотека Java, охватывающая всю классическую математику;
-
-* [OptaPlanner](https://www.optaplanner.org/) - инструмент поиска решения для проблем оптимизации планирования;
-
-* [Charts](https://github.com/HanSolo/charts) - библиотека JavaFX для научных графиков (в разработке);
-
-* [CoreNLP](https://stanfordnlp.github.io/CoreNLP/) - инструментарий для обработки естественного языка;
-
-* [Apache Mahout](https://mahout.apache.org/) - распределённая программная среда для регрессии, кластеризации и рекомендаций;
-
-* [Weka](https://www.cs.waikato.ac.nz/ml/index.html) - набор алгоритмов машинного обучения для решения задач сбора данных;
-
-* [Tablesaw](https://github.com/jtablesaw/tablesaw) - Java датафрейм (инструменты для загрузки, преобразования,
-фильтрации и суммирования данных), включающий в себя основанную на Plot.ly библиотеку
-для визуализации данных.
-
-<!-- If this list doesn’t cover your needs, you can find more options in the 
-**[Kotlin Machine Learning Demos](https://github.com/thomasnield/kotlin-machine-learning-demos)** GitHub repository with showcases from Thomas Nield. -->
-Если в этом списке нет того, что вам нужно, вы можете найти дополнительные варианты в GitHub репозитории
-**[Kotlin Machine Learning Demos](https://github.com/thomasnield/kotlin-machine-learning-demos)** с демонстрационными
-материалами от Томаса Нилда.
+<!-- При переводе статьи оригинальная версия была от 13 May 2026 -->
+
+<!-- # Kotlin for data analysis -->
+# Kotlin для анализа данных
+
+<!-- Exploring and analyzing data is something you may not do every day, but it's a crucial skill you need as a software developer. -->
+Исследовать и анализировать данные приходится не каждый день, но это важный навык для разработчика.
+
+<!-- Let's think about software development duties where data analysis is key: analyzing what's actually inside collections when debugging,
+digging into memory dumps or databases, or receiving JSON files with large amounts of data when working with REST APIs, to mention some. -->
+В разработке программного обеспечения анализ данных нужен во многих задачах: например, чтобы разобраться,
+что на самом деле находится внутри коллекций во время отладки, изучить дампы памяти или базы данных,
+или обработать JSON-файлы с большим объемом данных при работе с REST API.
+
+<!-- With Kotlin's Exploratory Data Analysis (EDA) tools, such as [Kotlin notebooks](#notebooks), [Kotlin DataFrame](#kotlin-dataframe), and [Kandy](#kandy), you
+have at your disposal a rich set of capabilities to enhance your analytics skills and support you across different scenarios: -->
+Инструменты Kotlin для исследовательского анализа данных (Exploratory Data Analysis, EDA), такие как
+[Kotlin notebooks](#notebooks), [Kotlin DataFrame](#kotlin-dataframe) и [Kandy](#kandy), дают богатый набор
+возможностей, которые помогают развивать аналитические навыки и решать разные задачи:
+
+<!-- * **Load, transform, and visualize data in various formats:** with our Kotlin EDA tools, you can perform tasks like filtering, sorting, and aggregating data. Our tools can seamlessly
+read data right in the IDE from different data sources, such as CSV, JSON, SQL Databases, or Parquet files.
+See all supported formats in the [DataFrame documentation](https://kotlin.github.io/dataframe/data-sources.html). -->
+* **Загружать, преобразовывать и визуализировать данные в разных форматах:** с инструментами Kotlin EDA можно
+  фильтровать, сортировать и агрегировать данные. Эти инструменты позволяют читать данные прямо в IDE из разных
+  источников, таких как CSV, JSON, SQL-базы данных или файлы Parquet. Все поддерживаемые форматы перечислены в
+  [документации DataFrame](https://kotlin.github.io/dataframe/data-sources.html).
+
+  <!-- Kandy, our plotting tool, allows you to create a wide range of charts to visualize and gain insights from the dataset. -->
+  Kandy, инструмент для построения графиков, позволяет создавать широкий набор диаграмм, визуализировать данные
+  и находить закономерности в датасетах.
+
+<!-- * **Efficiently analyze data stored in relational databases:** Kotlin DataFrame seamlessly integrates with databases and provides capabilities similar to SQL queries.
+You can retrieve, manipulate, and visualize data directly from various databases. -->
+* **Эффективно анализировать данные, хранящиеся в реляционных базах данных:** Kotlin DataFrame легко интегрируется
+  с базами данных и предоставляет возможности, похожие на SQL-запросы. Вы можете получать, обрабатывать
+  и визуализировать данные напрямую из разных баз данных.
+
+<!-- * **Fetch and analyze real-time and dynamic datasets from web APIs:** the EDA tools' flexibility allows integration with external APIs via protocols like OpenAPI.
+This feature helps you fetch data from web APIs, to then clean and transform the data to your needs. -->
+* **Получать и анализировать динамические наборы данных и данные в реальном времени из веб-API:** гибкость
+  инструментов EDA позволяет интегрироваться с внешними API через протоколы вроде OpenAPI. Так можно получать
+  данные из веб-API, а затем очищать и преобразовывать их под свои задачи.
+
+<!-- Our Kotlin data analysis tools let you smoothly handle your data from start to finish. Effortlessly
+retrieve your data with simple drag-and-drop functionality in our Kotlin Notebook. Clean, transform, and visualize it with just a few lines of code.
+Additionally, export your output charts in a matter of clicks. -->
+Инструменты Kotlin для анализа данных помогают работать с данными на всех этапах. В Kotlin Notebook можно легко
+загрузить данные простым перетаскиванием. Очистка, преобразование и визуализация выполняются всего несколькими
+строками кода, а готовые графики можно экспортировать в несколько кликов.
+
+![Kotlin Notebook](https://kotlinlang.org/docs/images/data-analysis-notebook.gif){width=700}
+
+<!-- ## Notebooks -->
+## Ноутбуки
+
+<!-- A _notebook_ is an interactive document where you can mix executable Kotlin code with text, visualizations, and results.
+Think of it as a Kotlin REPL extended with the ability to organize your code into cells, document it with Markdown,
+and immediately display outputs (from text to plots) alongside the code that produced them. -->
+_Ноутбук_ - это интерактивный документ, в котором можно сочетать исполняемый Kotlin-код с текстом, визуализациями
+и результатами. Его можно представить как Kotlin REPL, дополненный возможностью разбивать код на ячейки,
+документировать его с помощью Markdown и сразу показывать результаты - от текста до графиков - рядом с кодом,
+который их создал.
+
+<!-- Kotlin offers different notebook solutions, such as [Kotlin Notebook](#kotlin-notebook), [Datalore](#kotlin-notebooks-in-datalore),
+and [Kotlin-Jupyter Notebook](#jupyter-notebook-with-kotlin-kernel), providing convenient features for data retrieving, transformation, exploration, modeling, and more.
+These Kotlin notebook solutions are based on our [Kotlin Kernel](https://github.com/Kotlin/kotlin-jupyter). -->
+Kotlin предлагает разные решения для ноутбуков: [Kotlin Notebook](#kotlin-notebook),
+[Datalore](#kotlin-notebooks-in-datalore) и [Kotlin-Jupyter Notebook](#jupyter-notebook-with-kotlin-kernel).
+Они предоставляют удобные возможности для получения, преобразования, исследования и моделирования данных.
+Эти решения основаны на [Kotlin Kernel](https://github.com/Kotlin/kotlin-jupyter).
+
+<!-- You can seamlessly share your code among Kotlin Notebook, Datalore, and Kotlin-Jupyter Notebook. Create a project in one of our Kotlin notebooks
+and continue working in another notebook without compatibility issues. -->
+Код можно без проблем переносить между Kotlin Notebook, Datalore и Kotlin-Jupyter Notebook. Создайте проект
+в одном из Kotlin-ноутбуков и продолжайте работу в другом без проблем совместимости.
+
+![Kotlin Notebook](https://kotlinlang.org/docs/images/kotlin-notebook.png){width=700}
+
+<!-- ### Kotlin Notebook -->
+### Kotlin Notebook
+
+<!-- The [Kotlin Notebook](kotlin-notebook-overview.md) is a plugin for IntelliJ IDEA that allows you to create notebooks in Kotlin. It provides our IDE experience with all common IDE features,
+offering real-time code insights and project integration. -->
+[Kotlin Notebook](https://kotlinlang.org/docs/kotlin-notebook-overview.html) - это плагин для IntelliJ IDEA,
+который позволяет создавать ноутбуки на Kotlin. Он переносит привычные возможности IDE в работу с ноутбуками:
+подсказки и анализ кода в реальном времени, а также интеграцию с проектами.
+
+<!-- ### Kotlin notebooks in Datalore -->
+### Kotlin-ноутбуки в Datalore
+
+<!-- With [Datalore](https://datalore.jetbrains.com/), you can use Kotlin in the browser straight out of the box without additional installation.
+You can also share your notebooks and run them remotely, collaborate with other Kotlin notebooks in real-time,
+receive smart coding assistance as you write code, and export results through interactive or static reports. -->
+С [Datalore](https://datalore.jetbrains.com/) можно использовать Kotlin в браузере сразу, без дополнительной установки.
+Также можно делиться ноутбуками и запускать их удаленно, совместно работать с другими Kotlin-ноутбуками в реальном
+времени, получать умные подсказки при написании кода и экспортировать результаты в виде интерактивных или статических
+отчетов.
+
+<!-- ### Jupyter Notebook with Kotlin Kernel -->
+### Jupyter Notebook с Kotlin Kernel
+
+<!-- [Jupyter Notebook](https://jupyter.org/) is an open-source web application
+that allows you to create and share documents containing code,
+visualizations, and Markdown text.
+[Kotlin-Jupyter](https://github.com/Kotlin/kotlin-jupyter) is an open-source project that brings Kotlin
+support to Jupyter Notebook to harness Kotlin's power within the Jupyter environment. -->
+[Jupyter Notebook](https://jupyter.org/) - это веб-приложение с открытым исходным кодом, которое позволяет создавать
+документы с кодом, визуализациями и Markdown-текстом, а также делиться ими.
+[Kotlin-Jupyter](https://github.com/Kotlin/kotlin-jupyter) - это проект с открытым исходным кодом, который добавляет
+поддержку Kotlin в Jupyter Notebook и позволяет использовать возможности Kotlin в среде Jupyter.
+
+<!-- ## Kotlin DataFrame -->
+## Kotlin DataFrame
+
+<!-- The [Kotlin DataFrame](https://kotlin.github.io/dataframe/overview.html) library lets you manipulate structured data in your Kotlin projects. From data creation and
+cleaning to in-depth analysis and feature engineering, this library has you covered. -->
+Библиотека [Kotlin DataFrame](https://kotlin.github.io/dataframe/overview.html) позволяет работать со структурированными
+данными в Kotlin-проектах. Она подходит для разных этапов: от создания и очистки данных до глубокого анализа
+и подготовки признаков.
+
+<!-- With the Kotlin DataFrame library, you can work with different file formats, including CSV, JSON, XLS, and XLSX. This library also facilitates the data retrieval process
+with its ability to connect with SQL databases or APIs.
+See all supported formats in the [DataFrame documentation](https://kotlin.github.io/dataframe/data-sources.html). -->
+С Kotlin DataFrame можно работать с разными файловыми форматами, включая CSV, JSON, XLS и XLSX. Библиотека также
+упрощает получение данных благодаря возможности подключаться к SQL-базам данных и API. Все поддерживаемые форматы
+перечислены в [документации DataFrame](https://kotlin.github.io/dataframe/data-sources.html).
+
+![Kotlin DataFrame](https://kotlinlang.org/docs/images/data-analysis-dataframe-example.png){width=700}
+
+<!-- ## Kandy -->
+## Kandy
+
+<!-- [Kandy](https://kotlin.github.io/kandy/welcome.html) is an open-source Kotlin library that provides a powerful and flexible DSL for plotting charts of various types.
+This library is a simple, idiomatic, readable, and type-safe tool to visualize data. -->
+[Kandy](https://kotlin.github.io/kandy/welcome.html) - это Kotlin-библиотека с открытым исходным кодом, которая
+предоставляет мощный и гибкий DSL для построения диаграмм разных типов. Это простой, идиоматичный, читаемый
+и типобезопасный инструмент для визуализации данных.
+
+<!-- Kandy has seamless integration with Kotlin Notebook, Datalore, and Kotlin-Jupyter Notebook. You can also easily combine the Kandy and
+Kotlin DataFrame libraries to complete different data-related tasks. -->
+Kandy легко интегрируется с Kotlin Notebook, Datalore и Kotlin-Jupyter Notebook. Кроме того, Kandy удобно сочетать
+с Kotlin DataFrame для решения разных задач, связанных с данными.
+
+![Kandy](https://kotlinlang.org/docs/images/data-analysis-kandy-example.png){width=700}
+
+<!-- ## What's next -->
+## Что дальше
+
+<!-- * [Retrieve and transform data using the Kotlin DataFrame library](data-analysis-work-with-data-sources.md)
+* [Visualize data using the Kandy library](data-analysis-visualization.md)
+* [Learn more about Kotlin and Java libraries for data analysis](data-analysis-libraries.md) -->
+* [Получение и преобразование данных с помощью библиотеки Kotlin DataFrame](https://kotlinlang.org/docs/data-analysis-work-with-data-sources.html)
+* [Визуализация данных с помощью библиотеки Kandy](https://kotlinlang.org/docs/data-analysis-visualization.html)
+* [Подробнее о библиотеках Kotlin и Java для анализа данных](https://kotlinlang.org/docs/data-analysis-libraries.html)

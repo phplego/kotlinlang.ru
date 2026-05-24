@@ -6,165 +6,322 @@ title: "Свойства"
 url: https://kotlinlang.ru/docs/properties.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 25 January 2022 -->
+<!-- При переводе статьи оригинальная версия была от 10 September 2025 -->
 
 <!-- # Properties -->
 # Свойства
+
+<!-- In Kotlin, properties let you store and manage data without writing functions to access or change the data.
+You can use properties in [classes](classes.md), [interfaces](interfaces.md), [objects](object-declarations.md), [companion objects](object-declarations.md#companion-objects),
+and even outside these structures as top-level properties. -->
+В Kotlin свойства позволяют хранить данные и управлять ими без написания функций для доступа к этим данным или их изменения.
+Вы можете использовать свойства в [классах](classes.html), [интерфейсах](interfaces.html), [объектах](object-declarations.html),
+[объектах-компаньонах](object-declarations.html#companion-objects) и даже вне этих структур — как свойства верхнего уровня.
+
+<!-- Every property has a name, a type, and an automatically generated `get()` function called a getter. You can use the getter
+to read the property's value. If the property is mutable, it also has a `set()` function called a setter, which allows
+you to change the property's value. -->
+У каждого свойства есть имя, тип и автоматически сгенерированная функция `get()`, которая называется геттером.
+С помощью геттера можно прочитать значение свойства. Если свойство изменяемое, у него также есть функция `set()`,
+которая называется сеттером и позволяет изменить значение свойства.
+
+<!-- > Getters and setters are called _accessors_. -->
+> Геттеры и сеттеры называются *методами доступа*.
 
 <a name="declaring-properties"></a>
 
 <!-- ## Declaring properties -->
 ## Объявление свойств
 
-<!-- Properties in Kotlin classes can be declared either as mutable, using the `var` keyword, or as read-only, using the `val` keyword. -->
-Свойства в классах Kotlin могут быть объявлены либо как изменяемые (mutable) и неизменяемые (read-only) — `var` и `val` соответственно.
+<!-- Properties can be mutable (`var`) or read-only (`val`).
+You can declare them as a top-level property in a `.kt` file. Think of a top-level property as a global variable
+that belongs to a package: -->
+Свойства могут быть изменяемыми (`var`) или доступными только для чтения (`val`).
+Их можно объявлять как свойства верхнего уровня в файле `.kt`. Свойство верхнего уровня можно считать глобальной переменной,
+которая принадлежит пакету:
+
+```kotlin
+// Файл: Constants.kt
+package my.app
+
+val pi = 3.14159
+var counter = 0
+```
+
+<!-- You can also declare properties inside a class, interface, or object: -->
+Вы также можете объявлять свойства внутри класса, интерфейса или объекта:
+
+```kotlin
+// Класс со свойствами
+class Address {
+    var name: String = "Holmes, Sherlock"
+    var street: String = "Baker"
+    var city: String = "London"
+}
+
+// Интерфейс со свойством
+interface ContactInfo {
+    val email: String
+}
+
+// Объект со свойствами
+object Company {
+    var name: String = "Detective Inc."
+    val country: String = "UK"
+}
+
+// Класс, реализующий интерфейс
+class PersonContact : ContactInfo {
+    override val email: String = "sherlock@example.com"
+}
+```
+
+<!-- To use a property, refer to it by its name: -->
+Чтобы использовать свойство, обратитесь к нему по имени:
 
 ```kotlin
 class Address {
     var name: String = "Holmes, Sherlock"
     var street: String = "Baker"
     var city: String = "London"
-    var state: String? = null
-    var zip: String = "123456"
 }
-```
 
-<!-- To use a property, simply refer to it by its name: -->
-Для того чтобы воспользоваться свойством, просто обратитесь к нему по имени.
+interface ContactInfo {
+    val email: String
+}
 
-```kotlin
+object Company {
+    var name: String = "Detective Inc."
+    val country: String = "UK"
+}
+
+class PersonContact : ContactInfo {
+    override val email: String = "sherlock@example.com"
+}
+
 fun copyAddress(address: Address): Address {
-    val result = Address() // в Kotlin нет никакого слова `new`
-    result.name = address.name // вызов методов доступа
+    val result = Address()
+    // Обращается к свойствам экземпляра result
+    result.name = address.name
     result.street = address.street
-    // ...
+    result.city = address.city
     return result
 }
+
+fun main() {
+    val sherlockAddress = Address()
+    val copy = copyAddress(sherlockAddress)
+    // Обращается к свойствам экземпляра copy
+    println("Copied address: ${copy.name}, ${copy.street}, ${copy.city}")
+    // Copied address: Holmes, Sherlock, Baker, London
+
+    // Обращается к свойствам объекта Company
+    println("Company: ${Company.name} in ${Company.country}")
+    // Company: Detective Inc. in UK
+
+    val contact = PersonContact()
+    // Обращается к свойствам экземпляра contact
+    println("Email: ${contact.email}")
+    // Email: sherlock@email.com
+}
 ```
 
-<a name="getters-and-setters"></a>
+<!-- In Kotlin, we recommend initializing properties when you declare them to keep your code safe and easy to read. However,
+you can [initialize them later](#late-initialized-properties-and-variables) in special cases. -->
+В Kotlin рекомендуется инициализировать свойства при объявлении, чтобы код оставался безопасным и простым для чтения.
+Однако в особых случаях свойства можно [инициализировать позже](#late-initialized-properties-and-variables).
 
-<!-- ## Getters and setters -->
-## Геттеры и сеттеры
-
-<!-- The full syntax for declaring a property is as follows: -->
-Полный синтаксис объявления свойства выглядит так:
+<!-- Declaring the property type is optional if the compiler can infer it from the initializer or the getter's return type: -->
+Указывать тип свойства необязательно, если компилятор может вывести его из инициализатора или из возвращаемого типа геттера:
 
 ```kotlin
-var <propertyName>[: <PropertyType>] [= <property_initializer>]
-    [<getter>]
-    [<setter>]
+var initialized = 1 // выведенный тип — Int
+var allByDefault    // ошибка: свойство должно быть инициализировано
 ```
 
-<!-- The initializer, getter, and setter are optional. The property type is optional if it can be inferred from the initializer
-or the getter’s return type, as shown below: -->
-Инициализатор `property_initializer`, геттер и сеттер можно не указывать. Также необязательно указывать тип свойства,
-если он может быть выведен из инициализатора или из возвращаемого типа геттера.
+<a name="custom-getters-and-setters"></a>
 
-```kotlin
-var initialized = 1 // имеет тип Int, стандартный геттер и сеттер
-// var allByDefault // ошибка: необходима явная инициализация, 
-                    // предусмотрены стандартные геттер и сеттер
-```
+<!-- ## Custom getters and setters -->
+## Пользовательские геттеры и сеттеры
 
-<!--The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with `val` instead
-of `var` and does not allow a setter:-->
-Синтаксис объявления констант имеет два отличия от синтаксиса объявления изменяемых переменных:
-во-первых, объявление константы начинается с ключевого слова `val` вместо `var`, а во-вторых, объявление сеттера запрещено.
+<!-- By default, Kotlin automatically generates getters and setters. You can define your own custom accessors when
+you need extra logic, such as validation, formatting, or calculations based on other properties. -->
+По умолчанию Kotlin автоматически генерирует геттеры и сеттеры.
+Вы можете определить собственные методы доступа, когда нужна дополнительная логика: например, валидация, форматирование
+или вычисления на основе других свойств.
 
-```kotlin
-val simple: Int? // имеет тип Int, стандартный геттер, 
-                 // должен быть инициализирован в конструкторе
-val inferredType = 1 // имеет тип Int и стандартный геттер
-```
-
-<!-- You can define custom accessors for a property. If you define a custom getter, it will be called every time you access
-the property (this way you can implement a computed property). Here's an example of a custom getter: -->
-Вы можете самостоятельно определить методы доступа для свойства.
-Если вы определяете пользовательский геттер, он будет вызываться каждый раз,
-когда вы обращаетесь к свойству (таким образом, вы можете реализовать вычисляемое свойство). Вот пример пользовательского геттера:
+<!-- A custom getter runs every time the property is accessed: -->
+Пользовательский геттер выполняется при каждом обращении к свойству:
 
 ```kotlin
 class Rectangle(val width: Int, val height: Int) {
     val area: Int
-        get() = this.width * this.height // тип свойства необязателен, поскольку он может быть выведен из возвращаемого типа геттера
+        get() = this.width * this.height
+}
+
+fun main() {
+    val rectangle = Rectangle(3, 4)
+    println("Width=${rectangle.width}, height=${rectangle.height}, area=${rectangle.area}")
 }
 ```
 
-<!-- You can omit the property type if it can be inferred from the getter: -->
-Вы можете опустить тип свойства, если его можно определить с помощью геттера.
+<!-- You can omit the type if the compiler can infer it from the getter: -->
+Тип можно опустить, если компилятор может вывести его из геттера:
 
 ```kotlin
 val area get() = this.width * this.height
 ```
 
-<!-- If you define a custom setter, it will be called every time you assign a value to the property, except its initialization.
-A custom setter looks like this: -->
-Если вы определяете пользовательский сеттер, он будет вызываться каждый раз, когда вы присваиваете значение свойству, за исключением его инициализации.
-Пользовательский сеттер выглядит так:
+<!-- A custom setter runs every time you assign a value to the property, except during initialization.
+By convention, the name of the setter parameter is `value`, but you can choose a different name: -->
+Пользовательский сеттер выполняется при каждом присваивании значения свойству, кроме инициализации.
+По соглашению параметр сеттера называется `value`, но вы можете выбрать другое имя:
 
 ```kotlin
-var stringRepresentation: String
-    get() = this.toString()
-    set(value) {
-        setDataFromString(value) // парсит строку и устанавливает 
-                                 // значения для других свойств
+class Point(var x: Int, var y: Int) {
+    var coordinates: String
+        get() = "$x,$y"
+        set(value) {
+            val parts = value.split(",")
+            x = parts[0].toInt()
+            y = parts[1].toInt()
+        }
+}
+
+fun main() {
+    val location = Point(1, 2)
+    println(location.coordinates)
+    // 1,2
+
+    location.coordinates = "10,20"
+    println("${location.x}, ${location.y}")
+    // 10, 20
+}
+```
+
+<a name="changing-visibility-or-adding-annotations"></a>
+
+<!-- ### Changing visibility or adding annotations -->
+### Изменение видимости или добавление аннотаций
+
+<!-- In Kotlin, you can change accessor visibility or add [annotations](annotations.md) without replacing the default implementation.
+You don't have to make these changes within a body `{}`. -->
+В Kotlin можно изменить видимость метода доступа или добавить [аннотации](annotations.html), не заменяя реализацию по умолчанию.
+Для таких изменений не нужно объявлять тело `{}`.
+
+<!-- To change the visibility of an accessor, use the modifier before the `get` or `set` keyword: -->
+Чтобы изменить видимость метода доступа, укажите модификатор перед ключевым словом `get` или `set`:
+
+```kotlin
+class BankAccount(initialBalance: Int) {
+    var balance: Int = initialBalance
+        // Только класс может изменять баланс
+        private set
+
+    fun deposit(amount: Int) {
+        if (amount > 0) balance += amount
     }
+
+    fun withdraw(amount: Int) {
+        if (amount > 0 && amount <= balance) balance -= amount
+    }
+}
+
+fun main() {
+    val account = BankAccount(100)
+    println("Initial balance: ${account.balance}")
+    // 100
+
+    account.deposit(50)
+    println("After deposit: ${account.balance}")
+    // 150
+
+    account.withdraw(70)
+    println("After withdrawal: ${account.balance}")
+    // 80
+
+    // account.balance = 1000
+    // Ошибка: присваивание невозможно, потому что сеттер приватный
+}
 ```
 
-<!-- By convention, the name of the setter parameter is `value`, but you can choose a different name if you prefer. -->
-По договорённости имя параметра сеттера - `value`, но вы можете использовать любое другое.
-
-<!-- If you need to annotate an accessor or change its visibility, but you don't need to change the default implementation,
-you can define the accessor without defining its body: -->
-Если вам нужно изменить область видимости метода доступа или пометить его аннотацией, при этом не внося изменения в реализацию по умолчанию,
-вы можете объявить метод доступа без объявления его тела.
+<!-- To annotate an accessor, use the annotation before the `get` or `set` keyword: -->
+Чтобы аннотировать метод доступа, укажите аннотацию перед ключевым словом `get` или `set`:
 
 ```kotlin
-var setterVisibility: String = "abc"
-    private set // сеттер имеет private доступ и стандартную реализацию
+// Определяет аннотацию, которую можно применить к геттеру
+@Target(AnnotationTarget.PROPERTY_GETTER)
+annotation class Inject
 
-var setterWithAnnotation: Any? = null
-    @Inject set // аннотирование сеттера с помощью Inject
+class Service {
+    var dependency: String = "Default Service"
+        // Аннотирует геттер
+        @Inject get
+}
+
+fun main() {
+    val service = Service()
+    println(service.dependency)
+    // Default service
+    println(service::dependency.getter.annotations)
+    // [@Inject()]
+    println(service::dependency.setter.annotations)
+    // []
+}
 ```
+
+<!-- This example uses [reflection](reflection.md) to show which annotations are present on the getter and setter. -->
+В этом примере используется [рефлексия](reflection.html), чтобы показать, какие аннотации присутствуют у геттера и сеттера.
 
 <a name="backing-fields"></a>
 
 <!-- ### Backing fields -->
 ### Теневые поля
 
-<!-- In Kotlin, a field is only used as a part of a property to hold its value in memory. Fields cannot be declared directly.
-However, when a property needs a backing field, Kotlin provides it automatically. This backing field can be referenced in
-the accessors using the `field` identifier: -->
-В Kotlin поле используется только как часть свойства для хранения его значения в памяти. Поля не могут быть объявлены напрямую.
-Однако, когда свойству требуется теневое поле (backing field), Kotlin предоставляет его автоматически.
-На это теневое поле можно обратиться в методах доступа, используя идентификатор `field`:
+<!-- In Kotlin, accessors use backing fields to store the property's value in memory. Backing fields are useful
+when you want to add extra logic to a getter or setter, or when you want to trigger an additional action whenever the property
+changes. -->
+В Kotlin методы доступа используют теневые поля для хранения значения свойства в памяти.
+Теневые поля полезны, когда нужно добавить дополнительную логику в геттер или сеттер либо выполнить дополнительное действие
+при каждом изменении свойства.
 
-```kotlin
-var counter = 0 // инициализатор назначает резервное поле напрямую
-    set(value) {
-        if (value >= 0)
-            field = value // значение при инициализации записывается 
-                          // прямиком в backing field
+<!-- You can't declare backing fields directly. Kotlin generates them only when necessary. You can reference the backing field
+in accessors using the `field` keyword. -->
+Нельзя объявлять теневые поля напрямую. Kotlin генерирует их только при необходимости.
+В методах доступа можно обратиться к теневому полю с помощью ключевого слова `field`.
 
-            // counter = value // ERROR StackOverflow: Использование 'counter' сделало бы сеттер рекурсивным
-    }
-```
+<!-- Kotlin only generates backing fields if you use the default getter or setter, or if you use `field` in at least one custom accessor. -->
+Kotlin генерирует теневые поля только в том случае, если используется геттер или сеттер по умолчанию
+либо если `field` используется хотя бы в одном пользовательском методе доступа.
 
-<!-- The `field` identifier can only be used in the accessors of the property. -->
-Идентификатор `field` может быть использован только в методах доступа к свойству.
-
-<!-- A backing field will be generated for a property if it uses the default implementation of at least one of the accessors,
-or if a custom accessor references it through the `field` identifier. -->
-Теневое поле будет сгенерировано для свойства, если оно использует стандартную реализацию как минимум одного из методов доступа,
-либо если пользовательский метод доступа ссылается на него через идентификатор `field`.
-
-<!-- For example, there would be no backing field in the following case: -->
-Например, в примере ниже не будет никакого теневого поля:
+<!-- For example, the `isEmpty` property has no backing field because it uses a custom getter without the `field` keyword: -->
+Например, у свойства `isEmpty` нет теневого поля, потому что оно использует пользовательский геттер без ключевого слова `field`:
 
 ```kotlin
 val isEmpty: Boolean
     get() = this.size == 0
+```
+
+<!-- In this example, the `score` property has a backing field because the setter uses the `field` keyword: -->
+В этом примере у свойства `score` есть теневое поле, потому что сеттер использует ключевое слово `field`:
+
+```kotlin
+class Scoreboard {
+    var score: Int = 0
+        set(value) {
+            field = value
+            // Добавляет логирование при обновлении значения
+            println("Score updated to $field")
+        }
+}
+
+fun main() {
+    val board = Scoreboard()
+    board.score = 10
+    // Score updated to 10
+    board.score = 20
+    // Score updated to 20
+}
 ```
 
 <a name="backing-properties"></a>
@@ -172,52 +329,141 @@ val isEmpty: Boolean
 <!-- ### Backing properties -->
 ### Теневые свойства
 
-<!-- If you want to do something that does not fit into this _implicit backing field_ scheme, you can always fall back to having
-a _backing property_: -->
-Если вы хотите предпринять что-то такое, что выходит за рамки вышеуказанной схемы *неявного теневого поля*,
-вы всегда можете использовать *теневое свойство* (backing property).
+<!-- Sometimes you might need more flexibility than using a [backing field](#backing-fields) can provide. For example, if you have an API
+where you want to be able to modify the property internally but not externally. In such cases, you can use a coding pattern
+called a _backing property_. -->
+Иногда может потребоваться больше гибкости, чем может дать [теневое поле](#backing-fields).
+Например, если в API нужно разрешить изменять свойство внутри класса, но запретить изменять его извне.
+В таких случаях можно использовать шаблон кода, который называется *теневым свойством*.
+
+<!-- In the following example, the `ShoppingCart` class has an `items` property that represents everything in the shopping cart.
+You want the `items` property to be read-only outside the class but still allow one "approved" way for the user to modify
+the `items` property directly. To achieve this, you can define a private backing property called `_items` and a public property
+called `items` that delegates to the backing property's value. -->
+В следующем примере у класса `ShoppingCart` есть свойство `items`, которое представляет содержимое корзины покупок.
+Нужно, чтобы свойство `items` было доступно только для чтения вне класса, но при этом оставался один "разрешённый" способ
+напрямую изменять это свойство. Для этого можно определить приватное теневое свойство `_items` и публичное свойство `items`,
+которое делегирует значение теневому свойству.
 
 ```kotlin
-private var _table: Map<String, Int>? = null
-public val table: Map<String, Int>
-    get() {
-        if (_table == null) {
-            _table = HashMap() // параметры типа вычисляются автоматически 
-                               // (ориг.: "Type parameters are inferred")
-        }
-        return _table ?: throw AssertionError("Set to null by another thread")
+class ShoppingCart {
+    // Теневое свойство
+    private val _items = mutableListOf<String>()
+
+    // Публичное представление только для чтения
+    val items: List<String>
+        get() = _items
+
+    fun addItem(item: String) {
+        _items.add(item)
     }
+
+    fun removeItem(item: String) {
+        _items.remove(item)
+    }
+}
+
+fun main() {
+    val cart = ShoppingCart()
+    cart.addItem("Apple")
+    cart.addItem("Banana")
+
+    println(cart.items)
+    // [Apple, Banana]
+
+    cart.removeItem("Apple")
+    println(cart.items)
+    // [Banana]
+}
 ```
 
-<!-- > On the JVM: Access to private properties with default getters and setters is optimized to avoid function call overhead. -->
-> В JVM: доступ к приватным свойствам со стандартными геттерами и сеттерами оптимизируется таким образом,
-> что вызов функции не происходит.
+<!-- In this example, the user can only add items to the cart through the `addItem()` function, but can still access the
+`items` property to see what's inside. -->
+В этом примере пользователь может добавлять элементы в корзину только через функцию `addItem()`, но всё ещё может обращаться
+к свойству `items`, чтобы посмотреть содержимое корзины.
+
+<!-- > Use a leading underscore when naming backing properties to follow Kotlin [coding conventions](coding-conventions.md#names-for-backing-properties). -->
+> Используйте подчёркивание в начале имени теневого свойства, чтобы следовать [соглашениям по оформлению кода](coding-conventions.html#names-for-backing-properties) Kotlin.
+
+<!-- On the JVM, the compiler optimizes access to private properties with default accessors to avoid function call overhead. -->
+На JVM компилятор оптимизирует доступ к приватным свойствам со стандартными методами доступа, чтобы избежать накладных расходов
+на вызов функции.
+
+<!-- Backing properties are also useful when you want more than one public property to share a state. For example: -->
+Теневые свойства также полезны, когда нужно, чтобы несколько публичных свойств разделяли одно состояние. Например:
+
+```kotlin
+class Temperature {
+    // Теневое свойство, которое хранит температуру в градусах Цельсия
+    private var _celsius: Double = 0.0
+
+    var celsius: Double
+        get() = _celsius
+        set(value) { _celsius = value }
+
+    var fahrenheit: Double
+        get() = _celsius * 9 / 5 + 32
+        set(value) { _celsius = (value - 32) * 5 / 9 }
+}
+
+fun main() {
+    val temp = Temperature()
+    temp.celsius = 25.0
+    println("${temp.celsius}°C = ${temp.fahrenheit}°F")
+    // 25.0°C = 77.0°F
+
+    temp.fahrenheit = 212.0
+    println("${temp.celsius}°C = ${temp.fahrenheit}°F")
+    // 100.0°C = 212.0°F
+}
+```
+
+<!-- In this example, the `_celsius` backing property is accessed by both the `celsius` and `fahrenheit` properties. This setup
+provides a single source of truth with two public views. -->
+В этом примере к теневому свойству `_celsius` обращаются оба свойства: `celsius` и `fahrenheit`.
+Такая схема предоставляет единый источник истины с двумя публичными представлениями.
 
 <a name="compile-time-constants"></a>
 
 <!-- ## Compile-time constants -->
 ## Константы времени компиляции
 
-<!-- If the value of a read-only property is known at compile time, mark it as a _compile time constant_ using the `const` modifier.
-Such a property needs to fulfil the following requirements: -->
-Если значение константного (read-only) свойства известно во время компиляции, пометьте его как *константы времени компиляции*,
-используя модификатор `const`. Такие свойства должны соответствовать следующим требованиям:
+<!-- If the value of a read-only property is known at compile time, mark it as a _compile-time constant_ using the `const` modifier.
+Compile-time constants are inlined at compile time, so each reference is replaced with its actual value. They are accessed
+more efficiently because no getter is called: -->
+Если значение свойства, доступного только для чтения, известно во время компиляции, пометьте его как *константу времени компиляции*
+с помощью модификатора `const`. Константы времени компиляции подставляются в код во время компиляции, поэтому каждая ссылка
+заменяется фактическим значением. Доступ к ним эффективнее, потому что геттер не вызывается:
 
-<!-- * It must be a top-level property, or a member of an [`object` declaration](object-declarations.md#object-declarations-overview) or a _[companion object](object-declarations.md#companion-objects)_.
-* It must be initialized with a value of type `String` or a primitive type
-* It cannot be a custom getter -->
-* Находиться на самом высоком уровне или быть членами [объявления `object`](object-declarations.md#object-declarations-overview)
-или [вспомогательного объекта](object-declarations.md#companion-objects);
-* Быть проинициализированными значением типа `String` или значением примитивного типа;
-* Не иметь переопределённого геттера.
+```kotlin
+// Файл: AppConfig.kt
+package com.example
 
-<!-- Such properties can be used in annotations: -->
-Такие свойства могут быть использованы в аннотациях.
+// Константа времени компиляции
+const val MAX_LOGIN_ATTEMPTS = 3
+```
+
+<!-- Compile-time constants must meet the following requirements: -->
+Константы времени компиляции должны соответствовать следующим требованиям:
+
+<!-- * They must be either a top-level property, or a member of an [`object` declaration](object-declarations.md#object-declarations-overview) or a [companion object](object-declarations.md#companion-objects).
+* They must be initialized with a value of type `String` or a [primitive type](types-overview.md).
+* They can't have a custom getter. -->
+* Они должны быть свойством верхнего уровня либо членом [объявления `object`](object-declarations.html#object-declarations-overview)
+или [объекта-компаньона](object-declarations.html#companion-objects).
+* Они должны быть инициализированы значением типа `String` или [примитивного типа](https://kotlinlang.org/docs/basic-types.html).
+* У них не может быть пользовательского геттера.
+
+<!-- Compile-time constants still have a backing field, so you can interact with them using [reflection](reflection.md). -->
+У констант времени компиляции всё равно есть теневое поле, поэтому с ними можно работать с помощью [рефлексии](reflection.html).
+
+<!-- You can also use these properties in annotations: -->
+Такие свойства также можно использовать в аннотациях:
 
 ```kotlin
 const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 
-@Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { ... }
+@Deprecated(SUBSYSTEM_DEPRECATED) fun processLegacyOrders() { ... }
 ```
 
 <a name="late-initialized-properties-and-variables"></a>
@@ -225,61 +471,111 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 <!-- ## Late-initialized properties and variables -->
 ## Свойства и переменные с поздней инициализацией
 
-<!-- Normally, properties declared as having a non-null type must be initialized in the constructor.
-However, it is often the case that doing so is not convenient. For example, properties can be initialized through dependency
-injection, or in the setup method of a unit test. In these cases, you cannot supply a non-null initializer in the constructor,
-but you still want to avoid null checks when referencing the property inside the body of a class. -->
-Обычно, свойства, объявленные non-null типом, должны быть проинициализированы в конструкторе.
-Однако часто бывает так, что делать это неудобно. К примеру, свойства могут быть инициализированы через внедрение зависимостей
-или в установочном методе (ориг.: setup method) юнит-теста. В таком случае вы не можете обеспечить non-null инициализацию в конструкторе,
-но всё равно хотите избежать проверок на null при обращении внутри тела класса к такому свойству.
+<!-- Normally, you must initialize properties in the constructor.
+However, this isn't always convenient. For example, you might initialize properties through dependency
+injection or inside the setup method of a unit test. -->
+Обычно свойства нужно инициализировать в конструкторе.
+Однако это не всегда удобно. Например, свойства можно инициализировать через внедрение зависимостей
+или внутри установочного метода модульного теста.
 
-<!-- To handle such cases, you can mark the property with the `lateinit` modifier: -->
-Для того чтобы справиться с такой задачей, вы можете пометить свойство модификатором `lateinit`.
+<!-- To handle these situations, mark the property with the `lateinit` modifier: -->
+Чтобы обработать такие ситуации, пометьте свойство модификатором `lateinit`:
 
 ```kotlin
-public class MyTest {
-    lateinit var subject: TestSubject
+public class OrderServiceTest {
+    lateinit var orderService: OrderService
 
     @SetUp fun setup() {
-        subject = TestSubject()
+        orderService = OrderService()
     }
 
-    @Test fun test() {
-        subject.method() // объект инициализирован, проверять на null не нужно
+    @Test fun processesOrderSuccessfully() {
+        // Вызывает orderService напрямую, без проверки на null
+        // или порядок инициализации
+        orderService.processOrder()
     }
 }
 ```
-<!-- This modifier can be used on `var` properties declared inside the body of a class (not in the primary constructor,
-and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables.
-The type of the property or variable must be non-null, and it must not be a primitive type. -->
-Такой модификатор может быть использован только с `var` свойствами, объявленными внутри тела класса (не в основном конструкторе,
-и только тогда, когда свойство не имеет пользовательских геттеров и сеттеров), со свойствами верхнего уровня и локальными переменными.
-Тип такого свойства должен быть non-null и не должен быть примитивным.
 
-<!-- Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
-being accessed and the fact that it hasn't been initialized. -->
-Доступ к `lateinit` свойству до того, как оно проинициализировано, выбрасывает специальное исключение, которое чётко обозначает 
-свойство, к которому осуществляется доступ, и тот факт, что оно не было инициализировано.
+<!-- You can use the `lateinit` modifier on `var` properties declared as: -->
+Модификатор `lateinit` можно использовать со свойствами `var`, объявленными как:
 
-<a name="checking-whether-a-lateinit-var-is-initialized"></a>
+<!-- * Top-level properties.
+* Local variables.
+* Properties inside the body of a class. -->
+* Свойства верхнего уровня.
+* Локальные переменные.
+* Свойства внутри тела класса.
 
-<!-- ### Checking whether a `lateinit var` is initialized  -->
-### Проверка инициализации lateinit var
+<!-- For class properties: -->
+Для свойств класса:
 
-<!-- To check whether a `lateinit var` has already been initialized, use `.isInitialized` on the [reference to that property](reflection.md#property-references): -->
-Чтобы проверить, было ли проинициализировано `lateinit var` свойство, используйте `.isInitialized` метод [ссылки на это свойство](reflection.html#property-references).
+<!-- * You can't declare them in the primary constructor.
+* They must not have a custom getter or setter. -->
+* Их нельзя объявлять в основном конструкторе.
+* У них не должно быть пользовательского геттера или сеттера.
+
+<!-- In all cases, the property or variable must be non-nullable and must not be a [primitive type](types-overview.md). -->
+Во всех случаях свойство или переменная должны иметь тип, не допускающий `null`, и не должны быть [примитивного типа](https://kotlinlang.org/docs/basic-types.html).
+
+<!-- If you access a `lateinit` property before initializing it, Kotlin throws a specific exception that identifies the uninitialized
+property being accessed: -->
+Если обратиться к свойству `lateinit` до его инициализации, Kotlin выбросит специальное исключение, которое указывает
+на неинициализированное свойство:
 
 ```kotlin
-if (foo::bar.isInitialized) {
-    println(foo.bar)
+class ReportGenerator {
+    lateinit var report: String
+
+    fun printReport() {
+        // Выбрасывает исключение, потому что свойство используется
+        // до инициализации
+        println(report)
+    }
+}
+
+fun main() {
+    val generator = ReportGenerator()
+    generator.printReport()
+    // Exception in thread "main" kotlin.UninitializedPropertyAccessException: lateinit property report has not been initialized
 }
 ```
 
-<!-- This check is only available for properties that are lexically accessible when declared in the same type, in one of the
-outer types, or at top level in the same file. -->
-Эта проверка возможна только для лексически доступных свойств, то есть объявленных в том же типе, или в одном из внешних типов,
-или глобальных свойств, объявленных в том же файле.
+<!-- To check whether a `lateinit var` has already been initialized, use the [`isInitialized`](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/is-initialized.html)
+property on the [reference to that property](reflection.md#property-references): -->
+Чтобы проверить, было ли свойство `lateinit var` уже инициализировано, используйте свойство
+[`isInitialized`](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/is-initialized.html)
+на [ссылке на это свойство](reflection.html#property-references):
+
+```kotlin
+class WeatherStation {
+    lateinit var latestReading: String
+
+    fun printReading() {
+        // Проверяет, инициализировано ли свойство
+        if (this::latestReading.isInitialized) {
+            println("Latest reading: $latestReading")
+        } else {
+            println("No reading available")
+        }
+    }
+}
+
+fun main() {
+    val station = WeatherStation()
+
+    station.printReading()
+    // No reading available
+    station.latestReading = "22°C, sunny"
+    station.printReading()
+    // Latest reading: 22°C, sunny
+}
+```
+
+<!-- You can only use `isInitialized` on a property if you can already access that property in your code. The property must be declared
+in the same class, in an outer class, or as a top-level property in the same file. -->
+Использовать `isInitialized` для свойства можно только в том случае, если это свойство уже доступно из вашего кода.
+Свойство должно быть объявлено в том же классе, во внешнем классе или как свойство верхнего уровня в том же файле.
 
 <a name="overriding-properties"></a>
 
@@ -287,22 +583,33 @@ outer types, or at top level in the same file. -->
 ## Переопределение свойств
 
 <!-- See [Overriding properties](inheritance.md#overriding-properties). -->
-См. [Переопределение свойств класса](inheritance.html#overriding-properties).
+См. [Переопределение свойств](inheritance.html#overriding-properties).
 
 <a name="delegated-properties"></a>
 
 <!-- ## Delegated properties -->
 ## Делегированные свойства
 
-<!-- The most common kind of property simply reads from (and maybe writes to) a backing field, but custom getters and setters
-allow you to use properties so one can implement any sort of behavior of a property.
-Somewhere in between the simplicity of the first kind and variety of the second, there are common patterns for what properties
-can do. A few examples: lazy values, reading from a map by a given key, accessing a database, notifying a listener on access. -->
-Самый простой тип свойств просто считывает (или записывает) данные из теневого поля.
-Тем не менее с пользовательскими геттерами и сеттерами мы можем реализовать совершенно любое поведение свойства.
-Где-то между простотой первого вида и разнообразием второго существуют общепринятые шаблоны того, что могут делать свойства.
-Несколько примеров: вычисление значения свойства при первом доступе к нему (ленивые значения),
-чтение из ассоциативного списка с помощью заданного ключа, доступ к базе данных, оповещение listener'а в момент доступа.
+<!-- To reuse logic and reduce code duplication, you can delegate the responsibility of getting and setting a property to a
+separate object. -->
+Чтобы переиспользовать логику и уменьшить дублирование кода, можно делегировать ответственность за получение и установку
+значения свойства отдельному объекту.
 
-<!-- Such common behaviors can be implemented as libraries using [delegated properties](delegated-properties.md). -->
-Такие распространённые поведения свойств могут быть реализованы в виде библиотек с помощью [делегированных свойств](delegated-properties.html).
+<!-- Delegating accessor behavior keeps the property's accessor logic centralized, making it easier to reuse. This approach
+is useful when implementing behaviors like: -->
+Делегирование поведения методов доступа централизует логику доступа к свойству, упрощая её переиспользование.
+Такой подход полезен при реализации поведения вроде:
+
+<!-- * Computing a value lazily.
+* Reading from a map by a given key.
+* Accessing a database.
+* Notifying a listener when a property is accessed. -->
+* Ленивого вычисления значения.
+* Чтения из ассоциативного массива по заданному ключу.
+* Доступа к базе данных.
+* Уведомления слушателя при обращении к свойству.
+
+<!-- You can implement these common behaviors in libraries yourself or use existing delegates provided by external libraries.
+For more information, see [delegated properties](delegated-properties.md). -->
+Эти распространённые варианты поведения можно самостоятельно реализовать в библиотеках или использовать существующие делегаты
+из внешних библиотек. Подробнее см. в разделе [делегированные свойства](delegated-properties.html).

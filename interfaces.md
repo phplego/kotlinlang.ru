@@ -6,20 +6,20 @@ title: "Интерфейсы"
 url: https://kotlinlang.ru/docs/interfaces.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 02 September 2021 -->
+<!-- При переводе статьи оригинальная версия была от 23 June 2025 -->
 
 <!-- # Interfaces -->
 # Интерфейсы
 
 <!-- Interfaces in Kotlin can contain declarations of abstract methods, as well as method
-implementations. What makes them different from abstract classes is that interfaces cannot store a state. They can have
+implementations. What makes them different from abstract classes is that interfaces cannot store state. They can have
 properties, but these need to be abstract or provide accessor implementations. -->
 Интерфейсы в Kotlin могут содержать объявления абстрактных методов, а также методы с реализацией.
 Главное отличие интерфейсов от абстрактных классов заключается в том, что они не могут хранить состояние.
-Они могут иметь свойства, но те должны быть либо абстрактными, либо предоставлять реализацию методов доступа. 
+Они могут иметь свойства, но те должны быть либо абстрактными, либо предоставлять реализацию методов доступа.
 
 <!-- An interface is defined using the keyword `interface`: -->
-Интерфейс определяется ключевым словом `interface`.
+Интерфейс определяется ключевым словом `interface`:
 
 ```kotlin
 interface MyInterface {
@@ -35,7 +35,7 @@ interface MyInterface {
 ## Реализация интерфейсов
 
 <!-- A class or object can implement one or more interfaces: -->
-Класс или объект могут реализовать любое количество интерфейсов.
+Класс или объект могут реализовать один или несколько интерфейсов.
 
 ```kotlin
 class Child : MyInterface {
@@ -82,7 +82,7 @@ functions and properties. Quite naturally, classes implementing such an interfac
 the missing implementations: -->
 Интерфейс может быть производным от других интерфейсов, что означает, что он может как предоставлять реализации для их членов,
 так и объявлять новые функции и свойства. Вполне естественно, что классы, реализующие такой интерфейс,
-требуются только для определения отсутствующих реализаций.
+должны определять только недостающие реализации.
 
 ```kotlin
 interface Named {
@@ -92,12 +92,12 @@ interface Named {
 interface Person : Named {
     val firstName: String
     val lastName: String
-    
+
     override val name: String get() = "$firstName $lastName"
 }
 
 data class Employee(
-    // реализация 'name' не требуется
+    // реализовывать 'name' не требуется
     override val firstName: String,
     override val lastName: String,
     val position: Position
@@ -109,7 +109,7 @@ data class Employee(
 ## Устранение противоречий при переопределении
 
 <!-- When you declare many types in your supertype list, you may inherit more than one implementation of the same method: -->
-Когда мы объявляем большое количество типов в списке нашего супертипа, может так выйти, что мы допустим более одной реализации одного и того же метода.
+Когда вы объявляете много типов в списке супертипов, вы можете унаследовать более одной реализации одного и того же метода.
 
 ```kotlin
 interface A {
@@ -131,7 +131,7 @@ class D : A, B {
         super<A>.foo()
         super<B>.foo()
     }
-    
+
     override fun bar() {
         super<B>.bar()
     }
@@ -143,7 +143,7 @@ class D : A, B {
 Now, if you derive a concrete class *C* from *A*, you have to override *bar()* and provide an implementation. -->
 Оба интерфейса *A* и *B* объявляют функции `foo()` и `bar()`. Оба реализуют `foo()`, но только *B* содержит реализацию `bar()`
 (`bar()` не отмечен как абстрактный метод в интерфейсе *A*, потому что в интерфейсах это подразумевается по умолчанию, если у функции нет тела).
-Теперь, если вы унаследуете какой-нибудь класс *C* от интерфейса *A*, вам, очевидно, придётся переопределять метод `bar()`, обеспечивая его реализацию. 
+Теперь, если вы наследуете конкретный класс *C* от интерфейса *A*, вам нужно переопределить `bar()` и предоставить реализацию.
 
 <!-- However, if you derive *D* from *A* and *B*, you need to implement all the methods that you have
 inherited from multiple interfaces, and you need to specify how exactly *D* should implement them. This rule applies
@@ -151,3 +151,30 @@ both to methods for which you've inherited a single implementation (*bar()*) and
 Однако если вы унаследуете класс *D* от интерфейсов *A* и *B*, вам надо будет переопределять все методы, унаследованные от этих интерфейсов,
 и вам нужно указать, как именно *D* должен их реализовать.
 Это правило касается как тех методов, у которых имеется только одна реализация (`bar()`), так и тех, у которых есть несколько реализаций (`foo()`).
+
+<a name="jvm-default-method-generation-for-interface-functions"></a>
+<!-- ## JVM default method generation for interface functions -->
+## Генерация JVM-методов по умолчанию для функций интерфейсов
+
+<!-- On the JVM, functions declared in interfaces are compiled to default methods.
+You can control this behavior using the `-jvm-default` compiler option with the following values: -->
+На JVM функции, объявленные в интерфейсах, компилируются в методы по умолчанию.
+Вы можете управлять этим поведением с помощью параметра компилятора `-jvm-default` со следующими значениями:
+
+<!-- * `enable` (default): generates default implementations in interfaces and includes bridge functions in subclasses and `DefaultImpls` classes. Use this mode to maintain binary compatibility with older Kotlin versions.
+* `no-compatibility`: generates only default implementations in interfaces. This mode skips compatibility bridges and `DefaultImpls` classes, making it suitable for new Kotlin code.
+* `disable`: skips default methods and generates only compatibility bridges and `DefaultImpls` classes. -->
+* `enable` (по умолчанию): генерирует реализации по умолчанию в интерфейсах и включает мостовые функции в подклассах и классах `DefaultImpls`. Используйте этот режим, чтобы сохранить бинарную совместимость со старыми версиями Kotlin.
+* `no-compatibility`: генерирует только реализации по умолчанию в интерфейсах. Этот режим пропускает мосты совместимости и классы `DefaultImpls`, поэтому подходит для нового кода на Kotlin.
+* `disable`: пропускает методы по умолчанию и генерирует только мосты совместимости и классы `DefaultImpls`.
+
+<!-- To configure the `-jvm-default` compiler option, set the `jvmDefault` property in your Gradle Kotlin DSL: -->
+Чтобы настроить параметр компилятора `-jvm-default`, задайте свойство `jvmDefault` в Kotlin DSL для Gradle:
+
+```kotlin
+kotlin {
+    compilerOptions {
+        jvmDefault = JvmDefaultMode.NO_COMPATIBILITY
+    }
+}
+```

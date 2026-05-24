@@ -6,7 +6,7 @@ title: "Мульти-декларации"
 url: https://kotlinlang.ru/docs/destructuring-declarations.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 11 February 2021 -->
+<!-- При обновлении статьи оригинальная версия была от 24 March 2026 -->
 <!-- Переведено с опорой на статью JetBrains: https://habrahabr.ru/company/JetBrains/blog/152126/ -->
 
 <!-- # Destructuring declarations -->
@@ -16,7 +16,7 @@ url: https://kotlinlang.ru/docs/destructuring-declarations.html
 Иногда удобно *деструктуризировать* объект на несколько переменных, например:
 
 ```kotlin
-val (name, age) = person 
+val (name, age) = person
 ```
 
 <!-- This syntax is called a *destructuring declaration*. A destructuring declaration creates multiple variables at once.
@@ -37,14 +37,16 @@ val name = person.component1()
 val age = person.component2()
 ```
 
-<!-- The `component1()` and `component2()` functions are another example of the *principle of conventions* widely used in Kotlin 
-(see operators like `+` and `*`, `for`-loops as an example). 
-Anything can be on the right-hand side of a destructuring declaration, as long as the required number of component 
+<!-- The `component1()` and `component2()` functions are another example of the *principle of conventions* widely used in Kotlin
+(see operators like `+` and `*`, `for`-loops as an example).
+Anything can be on the right-hand side of a destructuring declaration, as long as the required number of component
 functions can be called on it. And, of course, there can be `component3()` and `component4()` and so on. -->
-Как и многое другое в Kotlin, мульти-декларации опираются на конвенцию: функции `componentN()` вызываются по имени,
-то есть могут быть объявлены как в классе person, так и вне его — в качестве [расширений](extensions.html).
+Функции `component1()` и `component2()` — это ещё один пример *принципа конвенций*, широко используемого в Kotlin
+(например, для операторов `+` и `*` или циклов `for`). В правой части деструктурирующей декларации может находиться
+что угодно, если для этого объекта можно вызвать нужное количество функций `componentN()`. Конечно, это могут быть
+`component3()`, `component4()` и так далее.
 
-<!-- > The `componentN()` functions need to be marked with the `operator` keyword to allow using them in a destructuring 
+<!-- > The `componentN()` functions need to be marked with the `operator` keyword to allow using them in a destructuring
 >declaration. -->
 > Функции `componentN()` нужно отмечать ключевым словом `operator`, чтобы позволить их использование в
 > деструктуризирующем присваивании.
@@ -57,8 +59,8 @@ for ((a, b) in collection) { /* ... */ }
 ```
 
 <!-- Variables `a` and `b` get the values returned by `component1()` and `component2()` called on elements of the collection. -->
-В данном примере значения переменных `a` и `b` возращены методами `component1()` и `component2()`, вызванными неявно у
-элементов коллекции.
+В данном примере переменные `a` и `b` получают значения, возвращённые методами `component1()` и `component2()`,
+неявно вызванными для элементов коллекции.
 
 <a name="example-returning-two-values-from-a-function"></a>
 
@@ -74,7 +76,7 @@ A compact way of doing this in Kotlin is to declare a [data class](data-classes.
 data class Result(val result: Int, val status: Status)
 fun function(...): Result {
     // вычисления
-    
+
     return Result(result, status)
 }
 
@@ -86,7 +88,7 @@ val (result, status) = function(...)
 Так как `data`-классы автоматически объявляют `componentN()`-функции, мульти-декларации будут работать с ними "из
 коробки".
 
-<!-- > You could also use the standard class `Pair` and have `function()` return `Pair<Int, Status>`, 
+<!-- > You could also use the standard class `Pair` and have `function()` return `Pair<Int, Status>`,
 > but it's often better to have your data named properly. -->
 > Вы также могли использовать стандартный класс `Pair`, чтобы заставить функцию вернуть `Pair<Int, Status>`, но
 > правильнее будет именовать ваши данные должным образом.
@@ -113,7 +115,7 @@ for ((key, value) in map) {
 
 * представить ассоциативный список как последовательность значений, предоставив функцию `iterator()`,
 * представить каждый элемент как пару с помощью функций `component1()` и `component2()`.
-  
+
 <!-- And indeed, the standard library provides such extensions: -->
 И да, стандартная библиотека предоставляет такие расширения:
 
@@ -122,7 +124,7 @@ operator fun <K, V> Map<K, V>.iterator(): Iterator<Map.Entry<K, V>> = entrySet()
 operator fun <K, V> Map.Entry<K, V>.component1() = getKey()
 operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 ```
-  
+
 <!-- So you can freely use destructuring declarations in `for`-loops with maps (as well as collections of data class instances or similar). -->
 Так что вы можете свободно использовать мульти-декларации в циклах `for` с ассоциативными списками (так же как и с
 коллекциями экземпляров `data`-классов).
@@ -140,7 +142,7 @@ val (_, status) = getResult()
 ```
 
 <!-- The `componentN()` operator functions are not called for the components that are skipped in this way. -->
-Функции оператора `component()` не вызываются для компонентов, которые пропускаются таким образом.
+Операторные функции `componentN()` не вызываются для компонентов, которые пропускаются таким образом.
 
 <a name="destructuring-in-lambdas"></a>
 
@@ -184,4 +186,136 @@ map.mapValues { (_, value) -> "$value!" }
 map.mapValues { (_, value): Map.Entry<Int, String> -> "$value!" }
 
 map.mapValues { (_, value: String) -> "$value!" }
+```
+
+<a name="name-based-destructuring"></a>
+
+<!-- ## Name-based destructuring -->
+## Деструктурирование по именам
+
+<!-- Kotlin supports *name-based destructuring declarations*,
+where variables match properties by name instead of the position defined by `componentN()` functions in *position-based* destructuring. -->
+Kotlin поддерживает *деструктурирующие декларации по именам*, в которых переменные сопоставляются со свойствами по имени,
+а не по позиции, заданной функциями `componentN()` при *позиционном* деструктурировании.
+
+<!-- > For more information about name-based destructuring, see the feature's [KEEP](https://github.com/Kotlin/KEEP/blob/main/proposals/KEEP-0438-name-based-destructuring.md). -->
+> Подробнее о деструктурировании по именам см. в [KEEP этой возможности](https://github.com/Kotlin/KEEP/blob/main/proposals/KEEP-0438-name-based-destructuring.md).
+
+<!-- In position-based destructuring, variables correspond to the order of `componentN()` functions, for example: -->
+При позиционном деструктурировании переменные соответствуют порядку функций `componentN()`, например:
+
+```kotlin
+data class User(val username: String, val email: String)
+
+fun main() {
+    val user = User("alice", "alice@example.com")
+
+    val (email, username) = user
+
+    println(email)
+    // alice
+
+    println(username)
+    // alice@example.com
+}
+```
+
+<!-- In this example, because destructuring relies on the order of `componentN()` functions, `email` receives the value of `username`, and `username` receives the value of `email`. -->
+В этом примере деструктурирование опирается на порядок функций `componentN()`, поэтому `email` получает значение
+`username`, а `username` получает значение `email`.
+
+<!-- With name-based destructuring, property names determine which values are extracted rather than the position of `componentN()` functions: -->
+При деструктурировании по именам извлекаемые значения определяются именами свойств, а не позициями функций
+`componentN()`:
+
+```kotlin
+fun main() {
+    val user = User("alice", "alice@example.com")
+
+    // Используется явная форма деструктурирования по именам
+    (val mail = email, val name = username) = user
+
+    println(name)
+    // alice
+
+    println(mail)
+    // alice@example.com
+}
+```
+
+<!-- Name-based destructuring is [Experimental](components-stability.md#stability-levels-explained).
+When you enable this feature, it also introduces a new syntax for position-based destructuring using square brackets.
+Use this syntax for types where the order of elements matters, such as lists and other ordered collections, as well as unnamed tuples like `Pair` or `Triple`: -->
+Деструктурирование по именам — [экспериментальная](https://kotlinlang.org/docs/components-stability.html#stability-levels-explained) возможность.
+Когда вы включаете её, появляется и новый синтаксис для позиционного деструктурирования с использованием квадратных
+скобок. Используйте этот синтаксис для типов, где важен порядок элементов, например для списков и других упорядоченных
+коллекций, а также для неименованных кортежей вроде `Pair` или `Triple`:
+
+```kotlin
+val point = Pair(10, 20)
+
+// Используется позиционное деструктурирование
+val [x, y] = point
+```
+
+<!-- You can control how the compiler interprets destructuring declarations with the `-Xname-based-destructuring` compiler option. -->
+Вы можете управлять тем, как компилятор интерпретирует деструктурирующие декларации, с помощью параметра компилятора
+`-Xname-based-destructuring`.
+
+<!-- It has the following modes: -->
+У него есть следующие режимы:
+
+<!-- * `only-syntax` enables the explicit form of name-based destructuring without changing the behavior of existing destructuring declarations.
+* `name-mismatch` reports warnings when position-based destructuring in data classes uses variable names that don't match the property names.
+* `complete` enables short-form name-based destructuring with parentheses and continues supporting position-based destructuring with square bracket syntax. -->
+
+* `only-syntax` включает явную форму деструктурирования по именам, не меняя поведение существующих деструктурирующих деклараций.
+* `name-mismatch` сообщает предупреждения, когда при позиционном деструктурировании `data`-классов используются имена переменных,
+  не совпадающие с именами свойств.
+* `complete` включает короткую форму деструктурирования по именам с круглыми скобками и продолжает поддерживать
+  позиционное деструктурирование с синтаксисом квадратных скобок.
+
+<!-- > Before enabling `complete` mode, review and resolve the warnings reported in `name-mismatch` mode.
+> These warnings show which destructuring declarations the compiler interprets differently in `complete` mode and include suggestions for rewriting those declarations accordingly. -->
+> Прежде чем включать режим `complete`, просмотрите и исправьте предупреждения, полученные в режиме `name-mismatch`.
+> Эти предупреждения показывают, какие деструктурирующие декларации компилятор будет интерпретировать иначе в режиме
+> `complete`, и содержат предложения по их переписыванию.
+
+<!-- If you use `complete` mode, the short-form destructuring syntax with parentheses matches variables to property names instead of relying on position: -->
+Если вы используете режим `complete`, короткий синтаксис деструктурирования с круглыми скобками сопоставляет переменные
+с именами свойств, а не опирается на позицию:
+
+```kotlin
+val (email, username) = user
+```
+
+<!-- To enable name-based destructuring in your project, add the compiler option to your build configuration file: -->
+Чтобы включить деструктурирование по именам в проекте, добавьте параметр компилятора в файл конфигурации сборки:
+
+### Gradle
+
+```kotlin
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xname-based-destructuring=only-syntax")
+    }
+}
+```
+
+### Maven
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-plugin</artifactId>
+            <configuration>
+                <args>
+                    <arg>-Xname-based-destructuring=only-syntax</arg>
+                </args>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 ```

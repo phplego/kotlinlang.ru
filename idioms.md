@@ -6,7 +6,7 @@ title: "Идиомы"
 url: https://kotlinlang.ru/docs/idioms.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 04 March 2022 -->
+<!-- При переводе статьи оригинальная версия была от 07 July 2025 -->
 
 <!-- # Idioms -->
 # Идиомы
@@ -66,8 +66,8 @@ val positives = list.filter { x -> x > 0 }
 val positives = list.filter { it > 0 }
 ```
 
-<!-- Learn the difference between [Java and Kotlin filtering](java-to-kotlin-idioms-strings.md#create-a-string-from-collection-items). -->
-Узнайте разницу между [фильтрацией в Java и Kotlin](java-to-kotlin-idioms-strings.html#create-a-string-from-collection-items).
+<!-- Learn the difference between [Java and Kotlin filtering](java-to-kotlin-collections-guide.md#filter-elements). -->
+Узнайте разницу между [фильтрацией элементов в Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-collections-guide.html#filter-elements).
 
 <a name="check-the-presence-of-an-element-in-a-collection"></a>
 
@@ -90,7 +90,27 @@ println("Name $name")
 ```
 
 <!-- Learn the difference between [Java and Kotlin string concatenation](java-to-kotlin-idioms-strings.md#concatenate-strings). -->
-Узнайте разницу между [конкатенацией строк в Java и Kotlin](java-to-kotlin-idioms-strings.html#concatenate-strings).
+Узнайте разницу между [конкатенацией строк в Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-idioms-strings.html#concatenate-strings).
+
+<a name="read-standard-input-safely"></a>
+
+<!-- ## Read standard input safely -->
+## Безопасное чтение стандартного ввода
+
+```kotlin
+// Читает строку и возвращает null, если ввод нельзя преобразовать в целое число. Например: Hi there!
+val wrongInt = readln().toIntOrNull()
+println(wrongInt)
+// null
+
+// Читает строку, которую можно преобразовать в целое число, и возвращает целое число. Например: 13
+val correctInt = readln().toIntOrNull()
+println(correctInt)
+// 13
+```
+
+<!-- For more information, see [Read standard input.](read-standard-input.md) -->
+Подробнее см. в разделе [Чтение стандартного ввода](https://kotlinlang.org/docs/read-standard-input.html).
 
 <a name="instance-checks"></a>
 
@@ -154,7 +174,7 @@ for ((k, v) in map) {
 
 ```kotlin
 for (i in 1..100) { ... }  // закрытый диапазон: включает 100
-for (i in 1 until 100) { ... } // полуоткрытый диапазон: не включает 100
+for (i in 1..<100) { ... } // полуоткрытый диапазон: не включает 100
 for (x in 2..10 step 2) { ... }
 for (x in 10 downTo 1) { ... }
 (1..10).forEach { ... }
@@ -166,8 +186,8 @@ for (x in 10 downTo 1) { ... }
 ## Ленивые свойства
 
 ```kotlin
-val p: String by lazy {
-    // compute the string
+val p: String by lazy { // значение вычисляется только при первом доступе
+    // вычислить строку
 }
 ```
 
@@ -192,6 +212,29 @@ object Resource {
     val name = "Name"
 }
 ```
+
+<a name="use-inline-value-classes-for-type-safe-values"></a>
+
+<!-- ## Use inline value classes for type-safe values -->
+## Использование inline value classes для типобезопасных значений
+
+```kotlin
+@JvmInline
+value class EmployeeId(private val id: String)
+
+@JvmInline
+value class CustomerId(private val id: String)
+```
+
+<!-- If you accidentally mix up `EmployeeId` and `CustomerId`, a compilation error is triggered. -->
+Если случайно перепутать `EmployeeId` и `CustomerId`, возникнет ошибка компиляции.
+
+<!-- > The `@JvmInline` annotation is only needed for JVM backends.
+>
+{style="note"} -->
+> Аннотация `@JvmInline` нужна только для JVM-бэкендов.
+>
+{style="note"}
 
 <a name="instantiate-an-abstract-class"></a>
 
@@ -236,19 +279,20 @@ println(files?.size) // размер выводится, если размер �
 ```kotlin
 val files = File("Test").listFiles()
 
-println(files?.size ?: "empty") // если файл равен null, выводится "empty"
+println(files?.size ?: "empty") // если files равен null, выводится "empty"
 
 // Чтобы вычислить резервное значение в блоке кода, используйте команду `run`
-val filesSize = files?.size ?: run { 
-    return someSize 
+val filesSize = files?.size ?: run {
+    val someSize = getSomeSize()
+    someSize * 2
 }
 println(filesSize)
 ```
 
-<a name="execute-a-statement-if-null"></a>
+<a name="execute-an-expression-if-null"></a>
 
-<!-- ## Execute a statement if null -->
-## Выброс исключения при равенстве null
+<!-- ## Execute an expression if null -->
+## Выполнение выражения при равенстве null
 
 ```kotlin
 val values = ...
@@ -266,7 +310,7 @@ val mainEmail = emails.firstOrNull() ?: ""
 ```
 
 <!-- Learn the difference between [Java and Kotlin first item getting](java-to-kotlin-collections-guide.md#get-the-first-and-the-last-items-of-a-possibly-empty-collection). -->
-Узнайте разницу между [получением первого элемента в Java и Kotlin](java-to-kotlin-collections-guide.html#get-the-first-and-the-last-items-of-a-possibly-empty-collection).
+Узнайте разницу между [получением первого элемента в Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-collections-guide.html#get-the-first-and-the-last-items-of-a-possibly-empty-collection).
 
 <a name="execute-if-not-null"></a>
 
@@ -289,7 +333,7 @@ value?.let {
 ```kotlin
 val value = ...
 
-val mapped = value?.let { transformValue(it) } ?: defaultValue 
+val mapped = value?.let { transformValue(it) } ?: defaultValue
 // возвращается defaultValue, если значение или результат преобразования равны null
 ```
 
@@ -448,20 +492,6 @@ stream.buffered().reader().use { reader ->
 inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
 ```
 
-<a name="nullable-boolean"></a>
-
-<!-- ## Nullable Boolean -->
-## Nullable Boolean
-
-```kotlin
-val b: Boolean? = ...
-if (b == true) {
-    ...
-} else {
-    // `b` is false or null
-}
-```
-
 <a name="swap-two-variables"></a>
 
 <!-- ## Swap two variables -->
@@ -497,8 +527,12 @@ fun calcTaxes(): BigDecimal = TODO("Waiting for feedback from accounting")
 <!-- ## What’s next? -->
 ## Что дальше?
 
-<!-- * Solve [Advent of Code puzzles](advent-of-code.md) using the idiomatic Kotlin style
-* Learn how to perform [typical tasks with strings in Java and Kotlin](java-to-kotlin-idioms-strings.md) -->
+<!-- * Solve [Advent of Code puzzles](advent-of-code.md) using the idiomatic Kotlin style.
+* Learn how to perform [typical tasks with strings in Java and Kotlin](java-to-kotlin-idioms-strings.md).
+* Learn how to perform [typical tasks with collections in Java and Kotlin](java-to-kotlin-collections-guide.md).
+* Learn how to [handle nullability in Java and Kotlin](java-to-kotlin-nullability-guide.md). -->
 
-* Решайте [Advent of Code puzzles](advent-of-code.html), используя идиоматический стиль;
-* Узнайте, как решать [типичные задачи со строками в Java и Kotlin](java-to-kotlin-idioms-strings.html).
+* Решайте [задачи Advent of Code](https://kotlinlang.org/docs/advent-of-code.html), используя идиоматический стиль.
+* Узнайте, как выполнять [типичные задачи со строками в Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-idioms-strings.html).
+* Узнайте, как выполнять [типичные задачи с коллекциями в Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-collections-guide.html).
+* Узнайте, как [работать с nullability в Java и Kotlin](https://kotlinlang.org/docs/java-to-kotlin-nullability-guide.html).

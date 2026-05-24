@@ -5,10 +5,17 @@ title: "Наследование"
 url: https://kotlinlang.ru/docs/inheritance.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 08 July 2021 -->
+<!-- При переводе статьи оригинальная версия была от 15 December 2025 -->
 
 <!-- Inheritance -->
 # Наследование
+
+<!-- Before creating an inheritance hierarchy with classes, consider using [abstract classes](classes.md#abstract-classes) or [interfaces](interfaces.md).
+You can inherit from abstract classes and interfaces by default. They are designed so that other classes can inherit their members and implement them. -->
+> Прежде чем создавать иерархию наследования с классами, рассмотрите возможность использовать
+> [абстрактные классы](classes.html#abstract-classes) или [интерфейсы](interfaces.html).
+> Абстрактные классы и интерфейсы по умолчанию доступны для наследования. Они предназначены для того,
+> чтобы другие классы могли наследовать их члены и реализовывать их.
 
 <!-- All classes in Kotlin have a common superclass, `Any`, which is the default superclass for a class with no supertypes declared: -->
 Для всех классов в Kotlin родительским суперклассом является класс `Any`. Он также является родительским классом для любого класса,
@@ -28,6 +35,9 @@ class Example // Неявно наследуется от Any
 ```kotlin
 open class Base // Класс открыт для наследования
 ```
+
+<!-- [For more information, see Open keyword](#open-keyword). -->
+Дополнительную информацию см. в разделе [«Ключевое слово `open`»](inheritance.html#open-keyword).
 
 <!-- To declare an explicit supertype, place the type after a colon in the class header: -->
 Для явного объявления суперкласса мы помещаем его имя за знаком двоеточия в заголовке класса:
@@ -54,6 +64,65 @@ class MyView : View {
     constructor(ctx: Context) : super(ctx)
 
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
+}
+```
+
+<a name="open-keyword"></a>
+<!-- ## Open keyword -->
+## Ключевое слово `open`
+
+<!-- In Kotlin, the `open` keyword indicates that a class or a member (function or property) can be overridden in subclasses.
+By default, Kotlin classes and their members are _final_, meaning they cannot be inherited from (for classes) or overridden
+(for members) unless you explicitly mark them as `open`: -->
+В Kotlin ключевое слово `open` означает, что от класса можно наследоваться, а его член (функцию или свойство) можно
+переопределить в подклассах. По умолчанию классы Kotlin и их члены являются _final_: от таких классов нельзя наследоваться,
+а такие члены нельзя переопределять, если явно не пометить их как `open`:
+
+```kotlin
+// Базовый класс с ключевым словом open для разрешения наследования
+open class Person(
+    val name: String
+) {
+    // Функция с модификатором open, которую можно переопределить в подклассе
+    open fun introduce() {
+        println("Здравствуйте, меня зовут $name.")
+    }
+}
+
+// Подкласс, который наследуется от Person и переопределяет функцию introduce()
+class Student(
+    name: String,
+    val school: String
+) : Person(name) {
+    override fun introduce() {
+        println("Привет, я $name, я учусь в $school.")
+    }
+}
+```
+
+<!-- If you override a member of a base class, the overriding member
+is also open by default. If you want to change this and forbid the subclasses of your
+class from overriding your implementation, you can explicitly mark the overriding
+member as `final`: -->
+Если вы переопределяете член базового класса, переопределяющий член также становится `open` по умолчанию.
+Если вы хотите изменить это поведение и запретить подклассам вашего класса переопределять вашу реализацию,
+можно явно пометить переопределяющий член как `final`:
+
+```kotlin
+// Базовый класс с ключевым словом open для разрешения наследования
+open class Person(val name: String) {
+    // Функция с модификатором open, которую можно переопределить в подклассе
+    open fun introduce() {
+        println("Здравствуйте, меня зовут $name.")
+    }
+}
+
+// Подкласс, который наследуется от Person и переопределяет функцию introduce()
+class Student(name: String, val school: String) : Person(name) {
+    // Ключевое слово final запрещает дальнейшие переопределения в подклассах
+    final override fun introduce() {
+        println("Привет, я $name, я учусь в $school.")
+    }
 }
 ```
 
@@ -183,7 +252,7 @@ or `init` blocks. -->
 
 <a name="calling-the-superclass-implementation"></a>
 <!-- ## Calling the superclass implementation -->
-### Вызов функций и свойств суперкласса
+## Вызов функций и свойств суперкласса
 
 <!-- Code in a derived class can call its superclass functions and property accessor implementations using the `super` keyword: -->
 Производный класс может вызывать реализацию функций и свойств своего суперкласса, используя ключевое слово `super`.
@@ -209,6 +278,11 @@ outer class name: `super@Outer`: -->
 Во внутреннем классе доступ к суперклассу внешнего класса осуществляется при помощи ключевого слова `super`, за которым следует имя внешнего класса: `super@Outer`.
 
 ```kotlin
+open class Rectangle {
+    open fun draw() { println("Рисование прямоугольника") }
+    val borderColor: String get() = "black"
+}
+
 class FilledRectangle: Rectangle() {
     override fun draw() {
         val filler = Filler()
@@ -216,13 +290,18 @@ class FilledRectangle: Rectangle() {
     }
 
     inner class Filler {
-        fun fill() { println("Filling") }
+        fun fill() { println("Заполнение") }
         fun drawAndFill() {
             super@FilledRectangle.draw() // Вызывает реализацию функции draw() класса Rectangle
             fill()
-            println("Нарисованный прямоугольник заполнен ${super@FilledRectangle.borderColor} цветом") // Используется реализация get()-метода свойства borderColor в классе
+            println("Нарисован заполненный прямоугольник с цветом ${super@FilledRectangle.borderColor}") // Используется реализация get()-метода свойства borderColor из Rectangle
         }
     }
+}
+
+fun main() {
+    val fr = FilledRectangle()
+    fr.draw()
 }
 ```
 

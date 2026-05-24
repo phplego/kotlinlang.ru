@@ -379,29 +379,33 @@ Using kotlin incremental compilation
 
 Обратите внимание, что первая сборка не будет пошаговой.
 
-## Поддержка Coroutines(сопрограммы)
+## Поддержка сопрограмм
 
 <!-- 
-[Coroutines](coroutines.html) support is an experimental feature in Kotlin 1.2, so the Kotlin compiler reports a warning when you use coroutines in your project.
-To turn off the warning, add the following block to your `build.gradle` file:
+The `suspend` keyword is part of the Kotlin language, while most coroutine features are available through the `kotlinx.coroutines` library.
+To use coroutines in a Gradle project, add the `kotlinx-coroutines-core` dependency:
 
 ``` groovy
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2'
 }
 ```
  -->
 
-[Coroutines](coroutines.html) добавлены как экспериментальная функция в Kotlin 1.2, поэтому компилятор Kotlin сообщает об использовании сопрограмм в вашем проекте.
-Чтобы отключить предупреждение, добавьте следующий блок в свой файл `build.gradle`:
+Ключевое слово `suspend` является частью языка Kotlin, а большая часть возможностей для работы с сопрограммами доступна через библиотеку `kotlinx.coroutines`.
+Чтобы использовать сопрограммы в Gradle-проекте, добавьте зависимость `kotlinx-coroutines-core`:
 
 ``` groovy
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2'
 }
 ```
 

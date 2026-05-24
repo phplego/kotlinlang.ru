@@ -6,368 +6,602 @@ title: "Основы корутин"
 url: https://kotlinlang.ru/docs/coroutines-basics.html
 ---
 
-<!-- # Coroutine Basics -->
+<!-- При переводе статьи оригинальная версия была от 12 December 2025 -->
+
 # Основы корутин
 
-<!-- This section covers basic coroutine concepts. -->
-В этом разделе рассматриваются основные концепции корутин.
+Чтобы создавать приложения, которые выполняют несколько задач одновременно, Kotlin использует _корутины_ — механизм конкурентного выполнения.
+Корутина — это приостанавливаемое вычисление, которое позволяет писать конкурентный код в понятном последовательном стиле.
+Корутины могут выполняться одновременно с другими корутинами, а иногда и параллельно.
 
-<!-- ## Your first coroutine -->
-## Ваша первая корутина
+На JVM и в Kotlin/Native весь конкурентный код, включая корутины, выполняется в _потоках_, которыми управляет операционная система.
+Корутины могут приостанавливать своё выполнение, не блокируя поток.
+Благодаря этому одна корутина может приостановиться в ожидании данных, а другая — продолжить работу в том же потоке, что помогает эффективно использовать ресурсы.
 
-<!-- Run the following code: -->
-Запустите следующий код:
+![Сравнение параллельных и конкурентных потоков](https://kotlinlang.org/docs/images/parallelism-and-concurrency.svg)
+
+Подробнее о различиях между корутинами и потоками см. в разделе [Сравнение корутин и JVM-потоков](#comparing-coroutines-and-jvm-threads).
+
+<a name="suspending-functions"></a>
+
+## Функции приостановки
+
+Базовый строительный блок корутин — _функция приостановки_.
+Она позволяет выполняющейся операции приостановиться и возобновиться позже, не меняя структуру вашего кода.
+
+Чтобы объявить функцию приостановки, используйте ключевое слово `suspend`:
 
 ```kotlin
-import kotlinx.coroutines.*
-
-fun main() {
-    GlobalScope.launch { // запуск новой корутины в фоне
-        delay(1000L) // неблокирующая задержка на 1 секунду
-        println("World!") // вывод результата после задержки
-    }
-    println("Hello,") // пока корутина проводит вычисления, основной поток продолжает свою работу
-    Thread.sleep(2000L) // блокировка основного потока на 2 секунды, чтобы корутина успела произвести вычисления
+suspend fun greet() {
+    println("Hello world from a suspending function")
 }
 ```
 
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-01.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-01.kt).
-
-<!-- You will see the following result: -->
-Результат выполнения кода будет следующим:
-
-```text
-Hello,
-World!
-```
-
-<!-- Essentially, coroutines are light-weight threads.
-They are launched with [launch] _coroutine builder_ in a context of some [CoroutineScope].
-Here we are launching a new coroutine in the [GlobalScope], meaning that the lifetime of the new
-coroutine is limited only by the lifetime of the whole application.   -->
-В сущности, корутины — это легковесные потоки.
-Они запускаются с помощью _конструктора корутин_ [launch] в контексте какого-то [CoroutineScope].
-Здесь мы запускаем новую корутину в [GlobalScope], что означает, что время жизни новой корутины ограничено только временем жизни всего приложения.
-
-<!-- You can achieve the same result by replacing
-`GlobalScope.launch { ... }` with `thread { ... }`, and `delay(...)` with `Thread.sleep(...)`.
-Try it (don't forget to import `kotlin.concurrent.thread`). -->
-Вы можете получить тот же результат, заменив `GlobalScope.launch {...}` на `thread {...}`, а `delay(...)` на `Thread.sleep(...)`. Попробуйте (не забудьте импортировать `kotlin.concurrent.thread`).
-
-<!-- If you start by replacing `GlobalScope.launch` with `thread`, the compiler produces the following error: -->
-Если вы начнете с замены `GlobalScope.launch` на `thread`, то компилятор выдаст следующую ошибку:
-
-```
-Error: Kotlin: Suspend functions are only allowed to be called from a coroutine or another suspend function
-```
-
-<!-- That is because [delay] is a special _suspending function_ that does not block a thread, but _suspends_ the
-coroutine, and it can be only used from a coroutine. -->
-Это связано с тем, что [delay] является _функцией приостановки_, которая не блокирует поток, а _приостанавливает_ корутину. Использовать её можно только из корутины.
-
-<!-- ## Bridging blocking and non-blocking worlds -->
-## Связываем блокирующий и неблокирующий миры
-
-<!-- The first example mixes _non-blocking_ `delay(...)` and _blocking_ `Thread.sleep(...)` in the same code.
-It is easy to lose track of which one is blocking and which one is not.
-Let's be explicit about blocking using the [runBlocking] coroutine builder: -->
-В первом примере смешаны две функции: _неблокирующая_ `delay(...)` и _блокирующая_ `Thread.sleep(...)`. Легко забыть, какая из них блокирует основной поток, а какая нет. Давайте подробно рассмотрим блокировку с помощью билдера [runBlocking]:
+Функцию приостановки можно вызвать только из другой функции приостановки.
+Чтобы вызывать функции приостановки из точки входа Kotlin-приложения, пометьте функцию `main()` ключевым словом `suspend`:
 
 ```kotlin
-import kotlinx.coroutines.*
+suspend fun main() {
+    showUserInfo()
+}
 
-fun main() {
-    GlobalScope.launch { // запуск новой корутины в фоне
+suspend fun showUserInfo() {
+    println("Loading user...")
+    greet()
+    println("User: John Smith")
+}
+
+suspend fun greet() {
+    println("Hello world from a suspending function")
+}
+```
+
+В этом примере конкурентного выполнения ещё нет, но, помечая функции ключевым словом `suspend`, вы разрешаете им вызывать другие функции приостановки и запускать внутри конкурентный код.
+
+Хотя ключевое слово `suspend` входит в ядро языка Kotlin, большинство возможностей корутин доступно через библиотеку [`kotlinx.coroutines`](https://github.com/Kotlin/kotlinx.coroutines).
+
+<a name="add-the-kotlinx-coroutines-library-to-your-project"></a>
+
+## Добавление библиотеки kotlinx.coroutines в проект
+
+Чтобы подключить библиотеку `kotlinx.coroutines` к проекту, добавьте соответствующую зависимость для вашего инструмента сборки.
+
+Gradle Kotlin DSL:
+
+```kotlin
+// build.gradle.kts
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+}
+```
+
+Gradle Groovy DSL:
+
+```groovy
+// build.gradle
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2'
+}
+```
+
+Maven:
+
+```xml
+<!-- pom.xml -->
+<project>
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+    </dependencies>
+    ...
+</project>
+```
+
+<a name="create-your-first-coroutines"></a>
+
+## Создание первых корутин
+
+> В примерах на этой странице используется явное выражение `this` с функциями-конструкторами корутин `CoroutineScope.launch()` и `CoroutineScope.async()`.
+> Эти конструкторы корутин являются [функциями-расширениями](extensions.html) для `CoroutineScope`, а выражение `this` указывает на текущий `CoroutineScope` как на приёмник.
+>
+> Практический пример см. в разделе [Извлечение конструкторов корутин из области видимости корутины](#extract-coroutine-builders-from-the-coroutine-scope).
+
+Чтобы создать корутину в Kotlin, вам нужны:
+
+* [функция приостановки](#suspending-functions);
+* [область видимости корутин](#coroutine-scope-and-structured-concurrency), в которой она может выполняться, например внутри функции `withContext()`;
+* [конструктор корутин](#coroutine-builder-functions), например `CoroutineScope.launch()`, чтобы запустить корутину;
+* [диспетчер](#coroutine-dispatchers), который управляет тем, какие потоки будут использоваться.
+
+Рассмотрим пример, в котором несколько корутин используются в многопоточной среде.
+
+1. Импортируйте библиотеку `kotlinx.coroutines`:
+
+    ```kotlin
+    import kotlinx.coroutines.*
+    ```
+
+2. Пометьте функции, которые могут приостанавливаться и возобновляться, ключевым словом `suspend`:
+
+    ```kotlin
+    suspend fun greet() {
+        println("The greet() on the thread: ${Thread.currentThread().name}")
+    }
+
+    suspend fun main() {}
+    ```
+
+    > В некоторых проектах функцию `main()` можно пометить как `suspend`, но при интеграции с существующим кодом или фреймворком это может быть невозможно.
+    > В таком случае проверьте документацию фреймворка: возможно, он поддерживает вызов функций приостановки.
+    > Если нет, используйте [`runBlocking()`](#runblocking), чтобы вызвать их, заблокировав текущий поток.
+
+3. Добавьте функцию [`delay()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html#), чтобы имитировать приостанавливаемую задачу, например получение данных или запись в базу данных:
+
+    ```kotlin
+    suspend fun greet() {
+        println("The greet() on the thread: ${Thread.currentThread().name}")
         delay(1000L)
-        println("World!")
     }
-    println("Hello,") // основной поток продолжает свою работу
-    runBlocking {     // но это выражение блокирует основной поток
-        delay(2000L)  // на 2 секунды
-    }
-}
-```
+    ```
 
+4. Используйте [`withContext(Dispatchers.Default)`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html#), чтобы определить точку входа для многопоточного конкурентного кода, который выполняется в общем пуле потоков:
 
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-02.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-02.kt)
-
-
-<!-- The result is the same, but this code uses only non-blocking [delay].
-The main thread invoking `runBlocking` _blocks_ until the coroutine inside `runBlocking` completes. -->
-Результат выполнения кода будет тот же, но здесь используется только неблокирующая [delay]. Основной поток, вызывающий `runBlocking`, _блокируется_ до завершения корутины внутри `runBlocking`.
-
-<!-- This example can be also rewritten in a more idiomatic way, using `runBlocking` to wrap
-the execution of the main function: -->
-Этот пример можно переписать более идиоматическим способом, используя `runBlocking`, чтобы обернуть выполнение функции `main`:
-
-```kotlin
-import kotlinx.coroutines.*
-
-fun main() = runBlocking<Unit> { // запуск основной корутины
-    GlobalScope.launch { // запуск новой корутины в фоне
-        delay(1000L)
-        println("World!")
-    }
-    println("Hello,") // основная корутина продолжает свою работу
-    delay(2000L)      // задержка на 2 секунды
-}
-```
-
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-03.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-03.kt)
-
-<!-- Here `runBlocking<Unit> { ... }` works as an adaptor that is used to start the top-level main coroutine.
-We explicitly specify its `Unit` return type, because a well-formed `main` function in Kotlin has to return `Unit`. -->
-Здесь `runBlocking<Unit> { ... }` работает как адаптер, который используется для запуска основной корутины верхнего уровня.
-Мы явно указываем возвращаемый тип `Unit`, потому что правильно сформированная функция `main` в Kotlin должна возвращать `Unit`.
-
-<!-- This is also a way to write unit tests for suspending functions: -->
-Таким же образом можно писать модульные тесты для функций приостановки:
-
-```kotlin
-class MyTest {
-    @Test
-    fun testMySuspendingFunction() = runBlocking<Unit> {
-        // здесь мы можем использовать функции приостановки
-    }
-}
-```
-
-<!-- ## Waiting for a job -->
-## Job
-
-<!-- Delaying for a time while another coroutine is working is not a good approach. Let's explicitly
-wait (in a non-blocking way) until the background [Job] that we have launched is complete: -->
-Использование задержки для того, чтобы корутина успела выполнить свою работу - не лучший подход.
-Давайте явно подождем (неблокирующим способом), пока [Job], запущенный в фоне, не будет выполнен.
-
-```kotlin
-import kotlinx.coroutines.*
-
-fun main() = runBlocking {
-    val job = GlobalScope.launch { // запуск новой корутины с сохранением ссылки на нее в Job
-        delay(1000L)
-        println("World!")
-    }
-    println("Hello,")
-    job.join() // ждем завершения вложенной корутины  
-}
-```
-
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-04.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-04.kt).
-
-<!-- Now the result is still the same, but the code of the main coroutine is not tied to the duration of
-the background job in any way. Much better. -->
-Результат прежний, но код основной корутины никак не привязан к длительности фонового задания - `job`.
-
-<!-- ## Structured concurrency -->
-## Структурированный параллелизм
-
-<!-- There is still something to be desired for practical usage of coroutines.
-When we use `GlobalScope.launch`, we create a top-level coroutine. Even though it is light-weight, it still
-consumes some memory resources while it runs. If we forget to keep a reference to the newly launched
-coroutine, it still runs. What if the code in the coroutine hangs (for example, we erroneously
-delay for too long), what if we launched too many coroutines and ran out of memory?
-Having to manually keep references to all the launched coroutines and [join][Job.join] them is error-prone. -->
-Есть еще пара вещей, которые мы бы хотели получить перед тем, как использовать корутины на практике.
-Когда мы используем `GlobalScope.launch`, мы создаем корутину верхнего уровня.
-Несмотря на то, что корутина легковесна, она всё равно потребляет некоторые ресурсы во время своей работы.
-Если мы забудем сохранить ссылку на только что запущенную корутину, она все равно продолжит работать.
-Что делать, если код в корутине зависает (например, мы по ошибке указали слишком большую задержку), что если мы запустили слишком много корутин и исчерпали память?
-Необходимость вручную сохранять ссылки на все запущенные корутины и [присоединяться][Job.join] к ним чревата ошибками.
-
-<!-- There is a better solution. We can use structured concurrency in our code.
-Instead of launching coroutines in the [GlobalScope], just like we usually do with threads (threads are always global),
-we can launch coroutines in the specific scope of the operation we are performing. -->
-Есть более хорошее решение. В нашем коде можно использовать структурированный параллелизм. Вместо запуска корутин в [GlobalScope], как мы обычно делаем с потоками (потоки всегда глобальные), мы можем запускать корутины в области видимости выполняемой нами операции.
-
-<!-- In our example, we have a `main` function that is turned into a coroutine using the [runBlocking] coroutine builder.
-Every coroutine builder, including `runBlocking`, adds an instance of [CoroutineScope] to the scope of its code block.
-We can launch coroutines in this scope without having to `join` them explicitly, because
-an outer coroutine (`runBlocking` in our example) does not complete until all the coroutines launched
-in its scope complete. Thus, we can make our example simpler: -->
-В нашем примере есть функция `main`, которая превращается в корутину с помощью билдера [runBlocking].
-Каждый билдер, включая `runBlocking`, добавляет экземпляр [CoroutineScope] к области видимости своего блока с кодом.
-Мы можем запускать корутины в этой области видимости без явного использования `join`, потому что внешняя корутина (`runBlocking` в нашем примере) не завершится, пока не будут выполнены все корутины, запущенные в ее области видимости.
-Таким образом, мы можем упростить наш пример:
-
-```kotlin
-import kotlinx.coroutines.*
-
-fun main() = runBlocking { // this: CoroutineScope
-    launch { // запуск корутины в области видимости runBlocking
-        delay(1000L)
-        println("World!")
-    }
-    println("Hello,")
-}
-```
-
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-05.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-05.kt).
-
-## Scope builder
-
-<!-- In addition to the coroutine scope provided by different builders, it is possible to declare your own scope using the
-[coroutineScope][_coroutineScope] builder. It creates a coroutine scope and does not complete until all launched children complete. -->
-В дополнение к [CoroutineScope], предоставляемой разными билдерами, можно объявить свою собственную область видимости с помощью билдера [coroutineScope][_coroutineScope]. Он создает область видимости и не завершается, пока не завершатся все запущенные дочерние корутины.
-
-<!-- [runBlocking] and [coroutineScope][_coroutineScope] may look similar because they both wait for their body and all its children to complete.
-The main difference is that the [runBlocking] method _blocks_ the current thread for waiting,
-while [coroutineScope][_coroutineScope] just suspends, releasing the underlying thread for other usages.
-Because of that difference, [runBlocking] is a regular function and [coroutineScope][_coroutineScope] is a suspending function. -->
-[runBlocking] и [coroutineScope][_coroutineScope] могут выглядеть одинаково, потому что они обе ждут завершения всех операций внутри своего блока и завершения всех запущенных дочерних корутин.
-Основное отличие заключается в том, что метод [runBlocking] блокирует текущий поток, в то время как [coroutineScope][_coroutineScope] лишь приостанавливает работу, высвобождая основной поток для других целей.
-Из-за этой разницы [runBlocking] является обычной функцией, а [coroutineScope][_coroutineScope] - функцией приостановки.
-
-<!-- It can be demonstrated by the following example: -->
-Следующий пример это демонстрирует:
-
-```kotlin
-import kotlinx.coroutines.*
-
-fun main() = runBlocking { // this: CoroutineScope
-    launch {
-        delay(200L)
-        println("Task from runBlocking")
-    }
-
-    coroutineScope { // Создание coroutine scope
-        launch {
-            delay(500L)
-            println("Task from nested launch")
+    ```kotlin
+    suspend fun main() {
+        withContext(Dispatchers.Default) {
+            // Здесь будут конструкторы корутин
         }
+    }
+    ```
 
-        delay(100L)
-        println("Task from coroutine scope") // Эта строка будет выведена перед вложенным launch
+    > Приостанавливающая функция `withContext()` обычно используется для [переключения контекста](coroutine-context-and-dispatchers.html#jumping-between-threads), но в этом примере она также определяет неблокирующую точку входа для конкурентного кода.
+    > Она использует [диспетчер `Dispatchers.Default`](#coroutine-dispatchers), чтобы выполнять код в общем пуле потоков для многопоточного выполнения.
+    > По умолчанию этот пул использует до такого количества потоков, сколько ядер CPU доступно во время выполнения, но не меньше двух потоков.
+    >
+    > Корутины, запущенные внутри блока `withContext()`, разделяют одну область видимости корутин, что обеспечивает [структурированную конкурентность](#coroutine-scope-and-structured-concurrency).
+
+5. Используйте [функцию-конструктор корутин](#coroutine-builder-functions), например [`CoroutineScope.launch()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html), чтобы запустить корутину:
+
+    ```kotlin
+    suspend fun main() {
+        withContext(Dispatchers.Default) { // this: CoroutineScope
+            // Запускает корутину внутри области видимости с помощью CoroutineScope.launch()
+            this.launch { greet() }
+            println("The withContext() on the thread: ${Thread.currentThread().name}")
+        }
+    }
+    ```
+
+6. Объедините эти части, чтобы запускать несколько корутин одновременно в общем пуле потоков:
+
+    ```kotlin
+    // Импорт библиотеки корутин
+    import kotlinx.coroutines.*
+
+    // Импорт kotlin.time.Duration для выражения длительности в секундах
+    import kotlin.time.Duration.Companion.seconds
+
+    // Определение функции приостановки
+    suspend fun greet() {
+        println("The greet() on the thread: ${Thread.currentThread().name}")
+        // Приостанавливает выполнение на 1 секунду и освобождает поток
+        delay(1.seconds)
+        // Здесь delay() имитирует вызов приостанавливающего API
+        // Здесь можно добавить приостанавливающие вызовы API, например сетевой запрос
     }
 
-    println("Coroutine scope is over") // Эта строка не будет выведена пока не выполнится вложенный launch
+    suspend fun main() {
+        // Выполняет код внутри этого блока в общем пуле потоков
+        withContext(Dispatchers.Default) { // this: CoroutineScope
+            this.launch() {
+                greet()
+            }
+
+            // Запускает ещё одну корутину
+            this.launch() {
+                println("The CoroutineScope.launch() on the thread: ${Thread.currentThread().name}")
+                delay(1.seconds)
+                // Здесь delay() имитирует вызов приостанавливающего API
+                // Здесь можно добавить приостанавливающие вызовы API, например сетевой запрос
+            }
+
+            println("The withContext() on the thread: ${Thread.currentThread().name}")
+        }
+    }
+    ```
+
+Попробуйте запустить пример несколько раз.
+Вы можете заметить, что порядок вывода и имена потоков меняются от запуска к запуску, потому что операционная система сама решает, когда выполнять потоки.
+
+> Вы можете вывести имена корутин рядом с именами потоков, чтобы получить дополнительную информацию.
+> Для этого передайте VM-опцию `-Dkotlinx.coroutines.debug` в инструменте сборки или конфигурации запуска IDE.
+>
+> Подробнее см. в разделе [Отладка корутин](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/debugging.md).
+
+<a name="coroutine-scope-and-structured-concurrency"></a>
+
+## Область видимости корутин и структурированная конкурентность
+
+Когда в приложении выполняется много корутин, нужен способ управлять ими как группами.
+Корутины Kotlin опираются на принцип _структурированной конкурентности_, который даёт такую структуру.
+
+Согласно этому принципу, корутины образуют древовидную иерархию родительских и дочерних задач со связанными жизненными циклами.
+Жизненный цикл корутины — это последовательность состояний от её создания до завершения, отказа или отмены.
+
+Родительская корутина ждёт завершения своих дочерних корутин перед собственным завершением.
+Если родительская корутина завершается с ошибкой или отменяется, все её дочерние корутины также рекурсивно отменяются.
+Такая связь между корутинами делает отмену и обработку ошибок предсказуемыми и безопасными.
+
+Чтобы сохранять структурированную конкурентность, новые корутины можно запускать только в [`CoroutineScope`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/), который определяет их жизненный цикл и управляет им.
+`CoroutineScope` включает _контекст корутины_, который задаёт диспетчер и другие свойства выполнения.
+Когда вы запускаете корутину внутри другой корутины, она автоматически становится дочерней по отношению к родительской области видимости.
+
+Вызов [функции-конструктора корутин](#coroutine-builder-functions), например `CoroutineScope.launch()` для `CoroutineScope`, запускает дочернюю корутину корутины, связанной с этой областью видимости.
+Внутри блока конструктора [приёмником](lambdas.html#function-literals-with-receiver) является вложенный `CoroutineScope`, поэтому все корутины, которые вы запускаете там, становятся его дочерними корутинами.
+
+<a name="create-a-coroutine-scope-with-the-coroutinescope-function"></a>
+
+### Создание области видимости корутины с помощью функции `coroutineScope()`
+
+Чтобы создать новую область видимости корутин с текущим контекстом корутины, используйте функцию [`coroutineScope()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html).
+Эта функция создаёт корневую корутину поддерева корутин.
+Она становится прямым родителем корутин, запущенных внутри блока, и непрямым родителем любых корутин, которые они запускают.
+`coroutineScope()` выполняет приостанавливающий блок и ждёт завершения самого блока и всех корутин, запущенных в нём.
+
+Пример:
+
+```kotlin
+// Импорт kotlin.time.Duration для выражения длительности в секундах
+import kotlin.time.Duration.Companion.seconds
+
+import kotlinx.coroutines.*
+
+// Если в контексте корутины не указан диспетчер,
+// CoroutineScope.launch() использует Dispatchers.Default
+suspend fun main() {
+    // Корень поддерева корутин
+    coroutineScope { // this: CoroutineScope
+        this.launch {
+            this.launch {
+                delay(2.seconds)
+                println("Child of the enclosing coroutine completed")
+            }
+            println("Child coroutine 1 completed")
+        }
+        this.launch {
+            delay(1.seconds)
+            println("Child coroutine 2 completed")
+        }
+    }
+    // Выполняется только после завершения всех дочерних корутин в coroutineScope
+    println("Coroutine scope completed")
 }
 ```
 
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-06.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-06.kt).
+Поскольку в этом примере [диспетчер](#coroutine-dispatchers) не указан, функции-конструкторы `CoroutineScope.launch()` внутри блока `coroutineScope()` наследуют текущий контекст.
+Если в этом контексте нет заданного диспетчера, `CoroutineScope.launch()` использует `Dispatchers.Default`, который выполняется в общем пуле потоков.
 
-<!-- Note that right after the "Task from coroutine scope" message (while waiting for nested launch)
- "Task from runBlocking" is executed and printed — even though the [coroutineScope][_coroutineScope] is not completed yet. -->
- Обратите внимание, что сразу после сообщения "Task from coroutine scope" (во время ожидания выполнения вложенного launch) выполняется и выдаётся "Task from runBlocking", хотя выполнение [coroutineScope][_coroutineScope] еще не завершилось.
+<a name="extract-coroutine-builders-from-the-coroutine-scope"></a>
 
-<!-- ## Extract function refactoring -->
-## Извлечение функции
+### Извлечение конструкторов корутин из области видимости корутины
 
-<!-- Let's extract the block of code inside `launch { ... }` into a separate function. When you
-perform "Extract function" refactoring on this code, you get a new function with the `suspend` modifier.
-This is your first _suspending function_. Suspending functions can be used inside coroutines
-just like regular functions, but their additional feature is that they can, in turn,
-use other suspending functions (like `delay` in this example) to _suspend_ execution of a coroutine. -->
-Извлечём блок кода внутри `launch { ... }` в отдельную функцию. Когда вы выполните рефакторинг кода внутри `launch { ... }` с помощью пункта "Extract function", то вы получите новую функцию с модификатором `suspend`.
-Это ваша первая _функция приостановки_. Функции приостановки могут использоваться внутри корутин, как обычные функции, но их дополнительная особенность заключается в том, что они, в свою очередь, могут использовать другие функции приостановки (например, функцию `delay`) для _приостановки_ выполнения корутины.
+В некоторых случаях может потребоваться извлечь вызовы конструкторов корутин, например [`CoroutineScope.launch()`](#coroutinescope-launch), в отдельные функции.
+
+Рассмотрим пример:
+
+```kotlin
+suspend fun main() {
+    coroutineScope { // this: CoroutineScope
+        // Вызов CoroutineScope.launch(), где CoroutineScope является приёмником
+        this.launch { println("1") }
+        this.launch { println("2") }
+    }
+}
+```
+
+> `this.launch` также можно записать без явного выражения `this`: `launch`.
+> В этих примерах явное `this` используется, чтобы подчеркнуть, что это функция-расширение для `CoroutineScope`.
+>
+> Подробнее о работе лямбд с приёмником см. в разделе [Литералы функций с приёмником](lambdas.html#function-literals-with-receiver).
+
+Функция `coroutineScope()` принимает лямбду с приёмником `CoroutineScope`.
+Внутри этой лямбды неявным приёмником является `CoroutineScope`, поэтому функции-конструкторы вроде `CoroutineScope.launch()` и [`CoroutineScope.async()`](#coroutinescope-async) разрешаются как [функции-расширения](extensions.html#extension-functions) для этого приёмника.
+
+Чтобы извлечь конструкторы корутин в другую функцию, эта функция должна объявить приёмник `CoroutineScope`; иначе возникнет ошибка компиляции:
 
 ```kotlin
 import kotlinx.coroutines.*
 
-fun main() = runBlocking {
-    launch { doWorld() }
-    println("Hello,")
+suspend fun main() {
+    coroutineScope {
+        launchAll()
+    }
 }
 
-// это ваша первая функция приостановки
-suspend fun doWorld() {
-    delay(1000L)
-    println("World!")
+fun CoroutineScope.launchAll() { // this: CoroutineScope
+    // Вызов .launch() для CoroutineScope
+    this.launch { println("1") }
+    this.launch { println("2") }
+}
+
+/* -- Вызов launch без объявления CoroutineScope приёмником приводит к ошибке компиляции --
+
+fun launchAll() {
+    // Ошибка компиляции: this is not defined
+    this.launch { println("1") }
+    this.launch { println("2") }
+}
+ */
+```
+
+<a name="coroutine-builder-functions"></a>
+
+## Функции-конструкторы корутин
+
+Функция-конструктор корутин — это функция, которая принимает `suspend`-[лямбду](lambdas.html), определяющую корутину для выполнения.
+Примеры:
+
+* [`CoroutineScope.launch()`](#coroutinescope-launch)
+* [`CoroutineScope.async()`](#coroutinescope-async)
+* [`runBlocking()`](#runblocking)
+* [`withContext()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html)
+* [`coroutineScope()`](#create-a-coroutine-scope-with-the-coroutinescope-function)
+
+Для выполнения функций-конструкторов корутин нужен `CoroutineScope`.
+Это может быть существующая область видимости или область, созданная вспомогательными функциями, такими как `coroutineScope()`, [`runBlocking()`](#runblocking) или [`withContext()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html#).
+Каждый конструктор определяет, как запускается корутина и как вы взаимодействуете с её результатом.
+
+<a name="coroutinescope-launch"></a>
+
+### `CoroutineScope.launch()`
+
+Функция-конструктор корутин [`CoroutineScope.launch()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html#) является функцией-расширением для `CoroutineScope`.
+Она запускает новую корутину внутри существующей [области видимости корутин](#coroutine-scope-and-structured-concurrency), не блокируя остальную область видимости.
+
+Используйте `CoroutineScope.launch()`, чтобы выполнять задачу параллельно с другой работой, когда результат не нужен или вы не хотите его ждать:
+
+```kotlin
+// Импорт kotlin.time.Duration для выражения длительности в миллисекундах
+import kotlin.time.Duration.Companion.milliseconds
+
+import kotlinx.coroutines.*
+
+suspend fun main() {
+    withContext(Dispatchers.Default) {
+        performBackgroundWork()
+    }
+}
+
+suspend fun performBackgroundWork() = coroutineScope { // this: CoroutineScope
+    // Запускает корутину, которая выполняется без блокировки области видимости
+    this.launch {
+        // Приостанавливает выполнение, имитируя фоновую работу
+        delay(100.milliseconds)
+        println("Sending notification in background")
+    }
+
+    // Основная корутина продолжает работу, пока предыдущая приостановлена
+    println("Scope continues")
 }
 ```
 
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-07.kt). -->
-> Полный код можно посмотреть [здесь](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-07.kt).
+После запуска этого примера видно, что функция `main()` не блокируется `CoroutineScope.launch()` и продолжает выполнять другой код, пока корутина работает в фоне.
 
-<!-- But what if the extracted function contains a coroutine builder which is invoked on the current scope?
-In this case, the `suspend` modifier on the extracted function is not enough. Making `doWorld` an extension
-method on `CoroutineScope` is one of the solutions, but it may not always be applicable as it does not make the API clearer.
-The idiomatic solution is to have either an explicit `CoroutineScope` as a field in a class containing the target function
-or an implicit one when the outer class implements `CoroutineScope`.
-As a last resort, [CoroutineScope(coroutineContext)][CoroutineScope()] can be used, but such an approach is structurally unsafe
-because you no longer have control on the scope of execution of this method. Only private APIs can use this builder. -->
-Но что, если извлечённая функция содержит билдер корутины, который вызывается в текущей области видимости?
-В этом случае модификатора `suspend` для извлечённой функции недостаточно. Сделать `doWorld` методом расширения на `CoroutineScope` - одно из решений, но оно не всегда может быть применимо, поскольку не делает API более понятным.
-Идиоматическое решение состоит в том, чтобы иметь либо явный `CoroutineScope` в качестве поля в классе, содержащем целевую функцию, либо неявный, когда внешний класс реализует `CoroutineScope`.
-В крайнем случае можно использовать [CoroutineScope(coroutineContext)][CoroutineScope()], но такой подход структурно небезопасен, потому что вы теряете контроль над выполняемой областью видимости этого метода. Только приватные API могут использовать этот конструктор.
+> Функция `CoroutineScope.launch()` возвращает дескриптор [`Job`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/).
+> Используйте этот дескриптор, чтобы дождаться завершения запущенной корутины.
+> Подробнее см. в разделе [Отмена корутин и тайм-ауты](cancellation-and-timeouts.html#cancel-coroutines).
 
-<!-- ## Coroutines ARE light-weight -->
-## Легковесные корутины
+<a name="coroutinescope-async"></a>
 
-<!-- Run the following code: -->
-Запустите следующий код:
+### `CoroutineScope.async()`
+
+Функция-конструктор корутин [`CoroutineScope.async()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) является функцией-расширением для `CoroutineScope`.
+Она запускает конкурентное вычисление внутри существующей [области видимости корутин](#coroutine-scope-and-structured-concurrency) и возвращает дескриптор [`Deferred`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/), представляющий будущий результат.
+Используйте функцию `.await()`, чтобы приостановить код до готовности результата:
 
 ```kotlin
+// Импорт kotlin.time.Duration для выражения длительности в миллисекундах
+import kotlin.time.Duration.Companion.milliseconds
+
 import kotlinx.coroutines.*
 
-fun main() = runBlocking {
-    repeat(100_000) { // запуск большого количества корутин
-        launch {
-            delay(5000L)
+suspend fun main() = withContext(Dispatchers.Default) { // this: CoroutineScope
+    // Начинает загрузку первой страницы
+    val firstPage = this.async {
+        delay(50.milliseconds)
+        "First page"
+    }
+
+    // Начинает параллельную загрузку второй страницы
+    val secondPage = this.async {
+        delay(100.milliseconds)
+        "Second page"
+    }
+
+    // Ожидает оба результата и сравнивает их
+    val pagesAreEqual = firstPage.await() == secondPage.await()
+    println("Pages are equal: $pagesAreEqual")
+}
+```
+
+<a name="runblocking"></a>
+
+### `runBlocking()`
+
+Функция-конструктор корутин [`runBlocking()`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html) создаёт область видимости корутин и блокирует текущий [поток](#comparing-coroutines-and-jvm-threads), пока не завершатся корутины, запущенные в этой области видимости.
+
+Используйте `runBlocking()` только когда нет другого способа вызвать приостанавливающий код из неприостанавливающего:
+
+```kotlin
+import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.coroutines.*
+
+// Сторонний интерфейс, который нельзя изменить
+interface Repository {
+    fun readItem(): Int
+}
+
+object MyRepository : Repository {
+    override fun readItem(): Int {
+        // Мост к функции приостановки
+        return runBlocking {
+            myReadItem()
+        }
+    }
+}
+
+suspend fun myReadItem(): Int {
+    delay(100.milliseconds)
+    return 4
+}
+```
+
+<a name="coroutine-dispatchers"></a>
+
+## Диспетчеры корутин
+
+[_Диспетчер корутин_](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/#) управляет тем, какой поток или пул потоков используют корутины для выполнения.
+Корутины не всегда привязаны к одному потоку.
+Они могут приостановиться в одном потоке и возобновиться в другом, в зависимости от диспетчера.
+Это позволяет выполнять много корутин одновременно, не выделяя отдельный поток для каждой корутины.
+
+> Хотя корутины могут приостанавливаться и возобновляться в разных потоках, значения, записанные перед приостановкой корутины, гарантированно доступны в той же корутине после её возобновления.
+
+Диспетчер работает вместе с [областью видимости корутин](#coroutine-scope-and-structured-concurrency), чтобы определить, когда и где выполняются корутины.
+Область видимости корутин управляет жизненным циклом корутины, а диспетчер — потоками, которые используются для выполнения.
+
+> Вам не нужно указывать диспетчер для каждой корутины.
+> По умолчанию корутины наследуют диспетчер от родительской области видимости.
+> Вы можете указать диспетчер, чтобы выполнить корутину в другом контексте.
+>
+> Если контекст корутины не содержит диспетчер, конструкторы корутин используют `Dispatchers.Default`.
+
+Библиотека `kotlinx.coroutines` включает разные диспетчеры для разных сценариев.
+Например, [`Dispatchers.Default`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html) выполняет корутины в общем пуле потоков, выполняя фоновую работу отдельно от основного потока.
+Это хороший выбор для CPU-интенсивных операций, например обработки данных.
+
+Чтобы указать диспетчер для конструктора корутин вроде `CoroutineScope.launch()`, передайте его как аргумент:
+
+```kotlin
+suspend fun runWithDispatcher() = coroutineScope { // this: CoroutineScope
+    this.launch(Dispatchers.Default) {
+        println("Running on ${Thread.currentThread().name}")
+    }
+}
+```
+
+Также можно использовать блок `withContext()`, чтобы выполнить весь код внутри него с заданным диспетчером:
+
+```kotlin
+// Импорт kotlin.time.Duration для выражения длительности в миллисекундах
+import kotlin.time.Duration.Companion.milliseconds
+
+import kotlinx.coroutines.*
+
+suspend fun main() = withContext(Dispatchers.Default) { // this: CoroutineScope
+    println("Running withContext block on ${Thread.currentThread().name}")
+
+    val one = this.async {
+        println("First calculation starting on ${Thread.currentThread().name}")
+        val sum = (1L..500_000L).sum()
+        delay(200L)
+        println("First calculation done on ${Thread.currentThread().name}")
+        sum
+    }
+
+    val two = this.async {
+        println("Second calculation starting on ${Thread.currentThread().name}")
+        val sum = (500_001L..1_000_000L).sum()
+        println("Second calculation done on ${Thread.currentThread().name}")
+        sum
+    }
+
+    // Ожидает оба вычисления и выводит результат
+    println("Combined total: ${one.await() + two.await()}")
+}
+```
+
+Чтобы узнать больше о диспетчерах корутин и их использовании, включая другие диспетчеры вроде [`Dispatchers.IO`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-i-o.html) и [`Dispatchers.Main`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html), см. [Контекст корутин и диспетчеры](coroutine-context-and-dispatchers.html).
+
+<a name="comparing-coroutines-and-jvm-threads"></a>
+
+## Сравнение корутин и JVM-потоков
+
+Хотя корутины — это приостанавливаемые вычисления, которые выполняют код конкурентно, как потоки на JVM, внутри они работают иначе.
+
+_Потоком_ управляет операционная система.
+Потоки могут выполнять задачи параллельно на нескольких ядрах CPU и являются стандартным подходом к конкурентному выполнению на JVM.
+Когда вы создаёте поток, операционная система выделяет память для его стека и использует ядро для переключения между потоками.
+Это делает потоки мощным, но ресурсоёмким механизмом.
+Каждому потоку обычно нужно несколько мегабайт памяти, поэтому JVM, как правило, может одновременно обслуживать только несколько тысяч потоков.
+
+Корутина, напротив, не привязана к конкретному потоку.
+Она может приостановиться в одном потоке и возобновиться в другом, поэтому множество корутин могут разделять один и тот же пул потоков.
+Когда корутина приостанавливается, поток не блокируется и остаётся свободным для других задач.
+Это делает корутины гораздо легче потоков и позволяет запускать миллионы корутин в одном процессе без исчерпания системных ресурсов.
+
+![Сравнение корутин и потоков](https://kotlinlang.org/docs/images/coroutines-and-threads.svg)
+
+Рассмотрим пример, где 50 000 корутин ждут пять секунд, а затем каждая печатает точку (`.`):
+
+```kotlin
+import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.*
+
+suspend fun main() {
+    withContext(Dispatchers.Default) {
+        // Запускает 50 000 корутин, каждая из которых ждёт пять секунд, а затем печатает точку
+        printPeriods()
+    }
+}
+
+suspend fun printPeriods() = coroutineScope { // this: CoroutineScope
+    // Запускает 50 000 корутин, каждая из которых ждёт пять секунд, а затем печатает точку
+    repeat(50_000) {
+        this.launch {
+            delay(5.seconds)
             print(".")
         }
     }
 }
 ```
 
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-08.kt). -->
-> Полный код можно посмотреть [здесь](https://kotlinx-coroutines-core/jvm/test/guide/example-basic-08.kt).
-
-<!-- It launches 100K coroutines and, after 5 seconds, each coroutine prints a dot. -->
-Данный код запускает 100 тысяч корутин, каждая из которых через 5 секунд печатает точку.
-
-<!-- Now, try that with threads. What would happen? (Most likely your code will produce some sort of out-of-memory error) -->
-А теперь попробуйте сделать то же самое с потоками. Что произойдёт? (Скорее всего это вызовет ошибку, связанную с нехваткой памяти).
-
-<!-- ## Global coroutines are like daemon threads -->
-## Глобальные корутины похожи на демон-потоки
-
-<!-- The following code launches a long-running coroutine in [GlobalScope] that prints "I'm sleeping" twice a second and then
-returns from the main function after some delay: -->
-Нижеприведённый код запускает длительную корутину в [GlobalScope], которая два раза в секунду выводит сообщение "I'm sleeping", а затем, после некоторой задержки, происходит возврат из функции `main`:
+Теперь посмотрим на тот же пример с JVM-потоками:
 
 ```kotlin
-import kotlinx.coroutines.*
+import kotlin.concurrent.thread
 
-fun main() = runBlocking {
-    GlobalScope.launch {
-        repeat(1000) { i ->
-            println("I'm sleeping $i ...")
-            delay(500L)
+fun main() {
+    repeat(50_000) {
+        thread {
+            Thread.sleep(5000L)
+            print(".")
         }
     }
-    delay(1300L) // выход после некоторой задержки
 }
 ```
 
-<!-- > You can get the full code [here](../kotlinx-coroutines-core/jvm/test/guide/example-basic-09.kt). -->
-> Полный код можно посмотреть [здесь](https://kotlinx-coroutines-core/jvm/test/guide/example-basic-09.kt).
+При запуске эта версия использует гораздо больше памяти, потому что каждому потоку нужен собственный стек.
+Для 50 000 потоков это может потребовать до 100 ГБ памяти, тогда как для того же количества корутин нужно примерно 500 МБ.
 
-<!-- You can run and see that it prints three lines and terminates: -->
-Если вы запустите данный код, то увидите, что он трижды выводит сообщение и завершается:
+В зависимости от операционной системы, версии JDK и настроек JVM версия с потоками может выбросить ошибку нехватки памяти или замедлить создание потоков, чтобы не запускать слишком много потоков одновременно.
 
-```text
-I'm sleeping 0 ...
-I'm sleeping 1 ...
-I'm sleeping 2 ...
-```
+<a name="what-s-next"></a>
 
-<!-- Active coroutines that were launched in [GlobalScope] do not keep the process alive. They are like daemon threads. -->
-Активные корутины, запущенные в [GlobalScope], не поддерживают "жизнь" процесса. В этом они похожи на демон-потоки.
+## Что дальше
 
-
-[launch]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html
-[CoroutineScope]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html
-[GlobalScope]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html
-[delay]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html
-[runBlocking]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html
-[Job]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html
-[Job.join]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html
-[_coroutineScope]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html
-[CoroutineScope()]: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html
+* Узнайте больше о комбинировании функций приостановки в разделе [Составление функций приостановки](composing-suspending-functions.html).
+* Узнайте, как отменять корутины и обрабатывать тайм-ауты, в разделе [Отмена корутин и тайм-ауты](cancellation-and-timeouts.html).
+* Глубже изучите выполнение корутин и управление потоками в разделе [Контекст корутин и диспетчеры](coroutine-context-and-dispatchers.html).
+* Узнайте, как возвращать несколько асинхронно вычисляемых значений, в разделе [Асинхронные потоки](https://kotlinlang.org/docs/flow.html).

@@ -6,7 +6,7 @@ title: "Делегированные свойства"
 url: https://kotlinlang.ru/docs/delegated-properties.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 16 November 2021 -->
+<!-- При обновлении перевода использовалась оригинальная версия от 25 September 2024 -->
 <!-- Статья на хабре устарела, но всё равно помогает https://habrahabr.ru/company/JetBrains/blog/183444/-->
 
 <!--# Delegated Properties-->
@@ -41,7 +41,7 @@ because the `get()` (and `set()`) that correspond to the property will be delega
 Property delegates don’t have to implement an interface, but they have to provide a `getValue()` function (and `setValue()` for `var`s). -->
 Их синтаксис выглядит следующим образом: `val/var <имя свойства>: <Тип> by <выражение>`. Выражение после `by` — *делегат*,
 потому что обращения (`get()`, `set()`) к свойству будут делегированы его методам `getValue()` и `setValue()`. Делегат
-не обязан реализовывать какой-то интерфейс, достаточно, чтобы у него были метод `getValue()` (и `setValue()` для
+не обязан реализовывать какой-то интерфейс, достаточно, чтобы у него был метод `getValue()` (и `setValue()` для
 `var`'ов) с определённой сигнатурой.
 
 <!-- For example: -->
@@ -64,8 +64,8 @@ class Delegate {
 <!-- When you read from `p`, which delegates to an instance of `Delegate`, the `getValue()` function from `Delegate` is called.
 Its first parameter is the object you read `p` from, and the second parameter holds a description of `p` itself
 (for example, you can take its name). -->
-Когда вы читаете значение свойства `p`, вызывается метод `getValue()` класса `Delegate`, причем первым параметром ей
-передается тот объект, у которого запрашивается свойство `p`, а вторым — объект-описание самого свойства `p` (у него
+Когда вы читаете значение свойства `p`, вызывается метод `getValue()` класса `Delegate`, причём первым параметром ему
+передаётся тот объект, у которого запрашивается свойство `p`, а вторым — объект-описание самого свойства `p` (у него
 можно, в частности, узнать имя свойства).
 
 ```kotlin
@@ -77,13 +77,13 @@ println(e.p)
 Этот код выведет:
 
 ```
-Example@33a17727, спасибо за делегирование мне 'p'!
+Example@33a17727, thank you for delegating 'p' to me!
 ```
 
 <!-- Similarly, when you assign to `p`, the `setValue()` function is called. The first two parameters are the same, and
 the third holds the value being assigned: -->
-Похожим образом, когда мы обращаемся к `p`, вызывается метод `setValue()`. Два первых параметра — такие же, а третий —
-присваиваемое значение свойства.
+Похожим образом, когда вы присваиваете значение `p`, вызывается метод `setValue()`. Два первых параметра — такие же, а
+третий содержит присваиваемое значение свойства.
 
 ```kotlin
 e.p = "NEW"
@@ -93,15 +93,15 @@ e.p = "NEW"
 Этот код выведет:
 
 ```
-NEW было присвоено значению 'p' в Example@33a17727.
+NEW has been assigned to 'p' in Example@33a17727.
 ```
 
-<!-- The specification of the requirements to the delegated object can be found [below](#property-delegate-requirements). -->
-Спецификация требований к делегированным свойствам может быть найдена [ниже](#property-delegate-requirements).
+<!-- The specification of the requirements for the delegated object can be found [below](#property-delegate-requirements). -->
+Спецификация требований к делегированному объекту приведена [ниже](#property-delegate-requirements).
 
 <!-- You can declare a delegated property inside a function or code block; it doesn’t have to be a member of a class.
 Below you can find [an example](#local-delegated-properties). -->
-Вы можете объявлять делегированные свойства внутри функций или блоков кода, а не только внутри членов классов. Ниже вы
+Вы можете объявлять делегированные свойства внутри функций или блоков кода, а не только как члены классов. Ниже вы
 сможете найти [пример](#local-delegated-properties).
 
 <a name="standard-delegates"></a>
@@ -110,7 +110,7 @@ Below you can find [an example](#local-delegated-properties). -->
 ## Стандартные делегаты
 
 <!-- The Kotlin standard library provides factory methods for several useful kinds of delegates. -->
-Стандартная библиотека Kotlin предоставляет несколько полезных видов делегатов.
+Стандартная библиотека Kotlin предоставляет фабричные методы для нескольких полезных видов делегатов.
 
 <a name="lazy-properties"></a>
 
@@ -135,14 +135,6 @@ fun main() {
     println(lazyValue)
     println(lazyValue)
 }
-```
-
-Этот код выведет:
-
-```
-computed!
-Hello
-Hello
 ```
 
 <!-- By default, the evaluation of lazy properties is *synchronized*: the value is computed only in one thread, but all threads
@@ -170,7 +162,7 @@ takes two arguments: the initial value and a handler for modifications. -->
 
 <!-- The handler is called every time you assign to the property (*after* the assignment has been performed). It has three
 parameters: the property being assigned to, the old value, and the new value: -->
-Обработчик вызывается каждый раз при изменении свойства (*после* выполнения задания). У обработчика три параметра:
+Обработчик вызывается каждый раз при изменении свойства (*после* выполнения присваивания). У обработчика три параметра:
 описание свойства, которое изменяется, старое значение и новое значение.
 
 ```kotlin
@@ -190,37 +182,29 @@ fun main() {
 }
 ```
 
-<!--This example prints:-->
-Этот код выведет:
-
-```
-<no name> -> first
-first -> second
-```
+<!-- If you want to intercept assignments and *veto* them, use [`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) instead of `observable()`.
+The handler passed to `vetoable` will be called *before* the assignment of a new property value. -->
+Если вам нужно перехватывать присваивания и *отклонять* их, используйте функцию
+[`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) вместо `observable()`.
+Обработчик, переданный `vetoable`, будет вызван *до* присвоения нового значения свойства.
 
 <a name="delegating-to-another-property"></a>
 
 <!-- ## Delegating to another property -->
-## Делегирование другому  свойству
-
-<!-- If you want to intercept assignments and *veto* them, use [`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) instead of `observable()`.
-The handler passed to `vetoable` will be called *before* the assignment of a new property value. -->
-Если Вам нужно иметь возможность запретить присваивание некоторых значений, используйте функцию
-[`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) вместо `observable()`.
-Обработчик, переданный `vetoable`, будет вызван перед присвоением нового значения свойства.
+## Делегирование другому свойству
 
 <!-- A property can delegate its getter and setter to another property. Such delegation is available for
 both top-level and class properties (member and extension). The delegate property can be: -->
 Свойство может делегировать свои геттеры и сеттеры другому свойству. Такое делегирование доступно как для свойств
-верхнего уровня, так и для свойств класса (членам и расширениям). Свойство делегата может быть:
+верхнего уровня, так и для свойств класса (свойств-членов и свойств-расширений). Свойство-делегат может быть:
 
 <!-- * A top-level property
 * A member or an extension property of the same class
 * A member or an extension property of another class -->
 
-* свойством высшего уровня,
+* свойством верхнего уровня,
 * членом или свойством расширения того же класса,
-* член или свойством расширения другого класса.
+* членом или свойством расширения другого класса.
 
 <!-- To delegate a property to another property, use the `::` qualifier in the delegate name, for example, `this::delegate` or
 `MyClass::delegate`. -->
@@ -242,8 +226,8 @@ var MyClass.extDelegated: Int by ::topLevelInt
 
 <!-- This may be useful, for example, when you want to rename a property in a backward-compatible way: introduce a new property,
 annotate the old one with the `@Deprecated` annotation, and delegate its implementation. -->
-Это может быть полезно, например, когда вы хотите переименовать свойство обратно совместимым способом: введите новое
-свойство, пометьте старое аннотацией  `@Deprecated` и делегируйте его реализацию.
+Это может быть полезно, например, когда вы хотите переименовать свойство обратно совместимым способом: добавьте новое
+свойство, пометьте старое аннотацией `@Deprecated` и делегируйте его реализацию.
 
 ```kotlin
 class MyClass {
@@ -294,12 +278,25 @@ val user = User(mapOf(
 именами свойств.
 
 ```kotlin
-println(user.name) // Prints "John Doe"
-println(user.age)  // Prints 25
+class User(val map: Map<String, Any?>) {
+    val name: String by map
+    val age: Int     by map
+}
+
+fun main() {
+    val user = User(mapOf(
+        "name" to "John Doe",
+        "age"  to 25
+    ))
+//sampleStart
+    println(user.name) // Prints "John Doe"
+    println(user.age)  // Prints 25
+//sampleEnd
+}
 ```
 
 <!-- This also works for `var`’s properties if you use a `MutableMap` instead of a read-only `Map`: -->
-Также, если вы используете `MutableMap` вместо read-only `Map`, поддерживаются изменяемые свойства `var`.
+Также это работает для свойств `var`, если использовать `MutableMap` вместо `Map`, доступной только для чтения.
 
 ```kotlin
 class MutableUser(val map: MutableMap<String, Any?>) {
@@ -336,21 +333,21 @@ If `someCondition` fails, the variable won't be computed at all. -->
 <a name="property-delegate-requirements"></a>
 
 <!-- ## Property delegate requirements -->
-## Требования к делегированным свойствам
+## Требования к делегатам свойств
 
 <!-- For a *read-only* property (`val`), a delegate should provide an operator function `getValue()` with the following parameters: -->
-Для *read-only* свойства (например `val`), делегат должен предоставлять функцию `getValue`, которая принимает следующие
-параметры:
+Для свойства *только для чтения* (`val`) делегат должен предоставлять операторную функцию `getValue()` со следующими
+параметрами:
 
 <!-- * `thisRef` must be the same type as, or a supertype of, the *property owner* (for extension properties, it should be the type being extended).
 * `property`  must be of type `KProperty<*>` or its supertype. -->
 
-* `thisRef` — должен иметь такой же тип или быть родителем *хозяина свойства* (для расширений — тип, который
-расширяется);
-* `property` — должен быть типа `KProperty<*>` или его родительского типа.
+* `thisRef` — должен иметь тот же тип, что и *владелец свойства*, или быть его супертипом (для свойств-расширений —
+типом, который расширяется);
+* `property` — должен быть типа `KProperty<*>` или его супертипа.
 
 <!-- `getValue()` must return the same type as the property (or its subtype). -->
-`getValue()` должна возвращать значение того же типа, что и свойство (или его родительского типа).
+`getValue()` должна возвращать значение того же типа, что и свойство, или его подтипа.
 
 ```kotlin
 class Resource
@@ -368,17 +365,17 @@ class ResourceDelegate {
 
 <!-- For a *mutable* property (`var`), a delegate has to additionally provide an operator function `setValue()`
 with the following parameters: -->
-Для *изменяемого* свойства (`var`) делегат должен дополнительно предоставлять функцию `setValue`, которая принимает
-следующие параметры:
+Для *изменяемого* свойства (`var`) делегат должен дополнительно предоставлять операторную функцию `setValue()` со
+следующими параметрами:
 
 <!-- * `thisRef` must be the same type as, or a supertype of, the *property owner* (for extension properties, it should be the type being extended).
 * `property` must be of type `KProperty<*>` or its supertype.
 * `value` must be of the same type as the property (or its supertype). -->
 
-* `thisRef` — должен иметь такой же тип или быть родителем *хозяина свойства* (для расширений — тип, который
-расширяется);
-* `property` — должен быть типа `KProperty<*>` или его родительского типа;
-* `value` — должен быть того же типа, что и свойство (или его родительский тип).
+* `thisRef` — должен иметь тот же тип, что и *владелец свойства*, или быть его супертипом (для свойств-расширений —
+типом, который расширяется);
+* `property` — должен быть типа `KProperty<*>` или его супертипа;
+* `value` — должен быть того же типа, что и свойство, или его супертипа.
 
 ```kotlin
 class Resource
@@ -403,7 +400,7 @@ class ResourceDelegate(private var resource: Resource = Resource()) {
 The latter is handy when you need to delegate a property to an object that doesn't originally provide these functions.
 Both of the functions need to be marked with the `operator` keyword. -->
 Функции `getValue()` и/или `setValue()` могут быть предоставлены либо как члены класса-делегата, либо как его расширения.
-Последнее полезно когда вам нужно делегировать свойство объекту, который изначально не имеет этих функций. Обе эти
+Последнее полезно, когда вам нужно делегировать свойство объекту, который изначально не имеет этих функций. Обе эти
 функции должны быть отмечены с помощью ключевого слова `operator`.
 
 <!-- You can create delegates as anonymous objects without creating new classes, by using the interfaces `ReadOnlyProperty` and `ReadWriteProperty` from the Kotlin standard library.
@@ -415,34 +412,40 @@ extends it and adds `setValue()`. This means you can pass a `ReadWriteProperty` 
 `ReadWriteProperty` всякий раз, когда ожидается `ReadOnlyProperty`.
 
 ```kotlin
-fun resourceDelegate(): ReadWriteProperty<Any?, Int> =
-    object : ReadWriteProperty<Any?, Int> {
-        var curValue = 0 
-        override fun getValue(thisRef: Any?, property: KProperty<*>): Int = curValue
-        override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
+fun resourceDelegate(resource: Resource = Resource()): ReadWriteProperty<Any?, Resource> =
+    object : ReadWriteProperty<Any?, Resource> {
+        var curValue = resource
+        override fun getValue(thisRef: Any?, property: KProperty<*>): Resource = curValue
+        override fun setValue(thisRef: Any?, property: KProperty<*>, value: Resource) {
             curValue = value
         }
     }
 
-val readOnly: Int by resourceDelegate()  // ReadWriteProperty неизменяемое
-var readWrite: Int by resourceDelegate()
+val readOnlyResource: Resource by resourceDelegate()  // ReadWriteProperty как val
+var readWriteResource: Resource by resourceDelegate()
 ```
 
 <a name="translation-rules-for-delegated-properties"></a>
 
-<!-- ### Translation rules for delegated properties -->
-### Правила преобразования для делегированных свойств
+<!-- ## Translation rules for delegated properties -->
+## Правила преобразования для делегированных свойств
 
-<!-- Прим. пер.: TODO: рецензировать заголовок у более опытных программистов -->
 Под *правилами преобразования* (ориг.: *translation rules*) здесь понимаются правила, по которым компилируются
 делегированные свойства.
 
-<!-- Under the hood, the Kotlin compiler generates an auxiliary property for every delegated property and then delegates to it.
-For example, for the property `prop` it generates the hidden property `prop$delegate`, and the code of the accessors
+<!-- Under the hood, the Kotlin compiler generates auxiliary properties for some kinds of delegated properties and then delegates to them. -->
+Для некоторых видов делегированных свойств компилятор Kotlin "за кулисами" генерирует вспомогательные свойства, а затем
+делегирует им обращения.
+
+<!-- For optimization purposes, the compiler [_does not_ generate auxiliary properties in several cases](#optimized-cases-for-delegated-properties).
+Learn about the optimization on the example of [delegating to another property](#translation-rules-when-delegating-to-another-property). -->
+> В целях оптимизации компилятор [_не_ генерирует вспомогательные свойства в нескольких случаях](#optimized-cases-for-delegated-properties).
+> Разбор этой оптимизации смотрите на примере [делегирования другому свойству](#translation-rules-when-delegating-to-another-property).
+
+<!-- For example, for the property `prop` it generates the hidden property `prop$delegate`, and the code of the accessors
 simply delegates to this additional property: -->
-Для каждого делегированного свойства компилятор Kotlin "за кулисами" генерирует вспомогательное свойство и делегирует
-его. Например, для свойства `prop` генерируется скрытое свойство `prop$delegate`, и исполнение геттеров и сеттеров
-просто делегируется этому дополнительному свойству.
+Например, для свойства `prop` компилятор генерирует скрытое свойство `prop$delegate`, и код аксессоров просто делегирует
+обращения этому дополнительному свойству.
 
 ```kotlin
 class C {
@@ -462,6 +465,57 @@ class C {
 refers to an instance of the outer class `C`, and `this::prop` is a reflection object of the `KProperty` type describing `prop` itself. -->
 Компилятор Kotlin предоставляет всю необходимую информацию о `prop` в аргументах: первый аргумент `this` ссылается на
 экземпляр внешнего класса `C` и `this::prop` reflection-объект типа `KProperty`, описывающий сам `prop`.
+
+<a name="optimized-cases-for-delegated-properties"></a>
+
+<!-- ### Optimized cases for delegated properties -->
+### Оптимизированные случаи для делегированных свойств
+
+<!-- The `$delegate` field will be omitted if a delegate is: -->
+Поле `$delegate` не создаётся, если делегат — это:
+
+<!-- * A referenced property: -->
+* ссылка на свойство:
+
+  ```kotlin
+  class C<Type> {
+      private var impl: Type = ...
+      var prop: Type by ::impl
+  }
+  ```
+
+<!-- * A named object: -->
+* именованный объект:
+
+  ```kotlin
+  object NamedObject {
+      operator fun getValue(thisRef: Any?, property: KProperty<*>): String = ...
+  }
+
+  val s: String by NamedObject
+  ```
+
+<!-- * A final `val` property with a backing field and a default getter in the same module: -->
+* финальное свойство `val` с backing field и стандартным геттером в том же модуле:
+
+  ```kotlin
+  val impl: ReadOnlyProperty<Any?, String> = ...
+
+  class A {
+      val s: String by impl
+  }
+  ```
+
+<!-- * A constant expression, enum entry, `this`, `null`. The example of `this`: -->
+* константное выражение, элемент enum, `this` или `null`. Пример с `this`:
+
+  ```kotlin
+  class A {
+      operator fun getValue(thisRef: Any?, property: KProperty<*>) ...
+
+      val s by this
+  }
+  ```
 
 <a name="translation-rules-when-delegating-to-another-property"></a>
 
@@ -483,10 +537,10 @@ class C<Type> {
 }
 ```
 
-<!-- Property accessors of the `prop` variable invoke the `impl` variable directly, skipping the delegated property's `getValue`and `setValue` operators, 
+<!-- Property accessors of the `prop` variable invoke the `impl` variable directly, skipping the delegated property's `getValue` and `setValue` operators,
 and thus the `KProperty` reference object is not needed. -->
-Геттеры и сеттеры свойств переменной `prop` напрямую вызывают переменную `impl`, пропуская операторы делегированного
-свойства `getValue` и `setValue`, и, следовательно, ссылочный объект `KProperty` не требуется.
+Геттеры и сеттеры свойства `prop` напрямую обращаются к переменной `impl`, минуя операторы делегированного свойства
+`getValue` и `setValue`. Поэтому ссылочный объект `KProperty` не требуется.
 
 <!-- For the code above, the compiler generates the following code: -->
 Для кода выше компилятор генерирует следующий код:
@@ -500,15 +554,15 @@ class C<Type> {
         set(value) {
             impl = value
         }
-    
+
     fun getProp$delegate(): Type = impl // Этот метод нужен только для рефлексии
 }
 ```
 
 <a name="providing-a-delegate"></a>
 
-<!-- ### Providing a delegate -->
-### Предоставление делегата
+<!-- ## Providing a delegate -->
+## Предоставление делегата
 
 <!-- By defining the `provideDelegate` operator, you can extend the logic for creating the object to which the property implementation
 is delegated. If the object used on the right-hand side of `by` defines `provideDelegate` as a member or extension function,
@@ -555,9 +609,9 @@ class MyUI {
 <!-- * `thisRef` must be the same type as, or a supertype of, the _property owner_ (for extension properties, it should be the type being extended);
 * `property` must be of type `KProperty<*>` or its supertype. -->
 
-* `thisRef` — должен иметь такой же тип, или быть родителем *хозяина свойства* (для расширений — тип, который
-расширяется)
-* `property` — должен быть типа `KProperty<*>` или его родительского типа.
+* `thisRef` — должен иметь тот же тип, что и *владелец свойства*, или быть его супертипом (для свойств-расширений —
+типом, который расширяется);
+* `property` — должен быть типа `KProperty<*>` или его супертипа.
 
 <!-- The `provideDelegate` method is called for each property during the creation of the `MyUI` instance, and it performs
 the necessary validation right away. -->
@@ -566,8 +620,8 @@ the necessary validation right away. -->
 
 <!-- Without this ability to intercept the binding between the property and its delegate, to achieve the same functionality
 you'd have to pass the property name explicitly, which isn't very convenient: -->
-Не будь этой возможности внедрения между свойством и делегатом, для достижения той же функциональности вам бы пришлось
-передавать имя свойства явно, что не очень удобно.
+Без возможности перехватить связывание свойства с делегатом для достижения той же функциональности пришлось бы явно
+передавать имя свойства, что не очень удобно.
 
 ```kotlin
 // Проверяем имя свойства без "provideDelegate"
@@ -597,7 +651,7 @@ class C {
     var prop: Type by MyDelegate()
 }
 
-// этот код будет сгенерирован компилятором 
+// этот код будет сгенерирован компилятором
 // когда функция 'provideDelegate' доступна:
 class C {
     // вызываем "provideDelegate" для создания вспомогательного свойства "delegate"
@@ -614,8 +668,8 @@ generated for the getter or the setter. -->
 генерируемый геттером или сеттером.
 
 <!-- With the `PropertyDelegateProvider` interface from the standard library, you can create delegate providers without creating new classes. -->
-С интерфейсом `PropertyDelegateProvider` из стандартной библиотеки, вы можете создавать делегатов поставщиков делегатов
-без создания новых классов.
+С помощью интерфейса `PropertyDelegateProvider` из стандартной библиотеки можно создавать поставщиков делегатов без
+создания новых классов.
 
 ```kotlin
 val provider = PropertyDelegateProvider { thisRef: Any?, property ->

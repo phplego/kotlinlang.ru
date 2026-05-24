@@ -5,10 +5,10 @@ title: "Лямбды"
 url: https://kotlinlang.ru/docs/lambdas.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 07 October 2021 -->
+<!-- При переводе статьи оригинальная версия была от 18 November 2025 -->
 
-<!-- # High-order functions and lambdas -->
-# Высокоуровневые функции и лямбды
+<!-- # Higher-order functions and lambdas -->
+# Функции высшего порядка и лямбды
 
 <!-- Kotlin functions are [first-class](https://en.wikipedia.org/wiki/First-class_function), which means they can
 be stored in variables and data structures, and can be passed as arguments to and returned from other
@@ -59,14 +59,15 @@ that takes two arguments of types `R` and `T` and returns a value of type `R`.
 It is [invoked](#invoking-a-function-type-instance) inside the `for` loop, and the return value is then assigned to `accumulator`. -->
 В приведённом выше коде параметр `combine` имеет [функциональный тип](#function-types) `(R, T) -> R`, поэтому он
 принимает функцию, которая принимает два аргумента типа `R` и `T` и возвращает значение типа `R`. Он
-[вызывается](#invoking-a-function-type-instance) внутри цикла `for` и присваивает `accumulator` возвращаемое значение.
+[вызывается](#invoking-a-function-type-instance) внутри цикла `for`, а возвращаемое значение затем присваивается
+`accumulator`.
 
 <!-- To call `fold`, you need to pass an [instance of the function type](#instantiating-a-function-type) to it as an argument,
 and lambda expressions ([described in more detail below](#lambda-expressions-and-anonymous-functions)) are widely used for
 this purpose at higher-order function call sites: -->
-Чтобы вызвать `fold`, вы должны передать ему [экземпляр функционального типа](#instantiating-a-function-type) в качестве
-аргумента и лямбда-выражение ([описание ниже](#lambda-expressions-and-anonymous-functions)). Лямбда-выражения часто
-используются в качестве параметра функции высшего порядка.
+Чтобы вызвать `fold`, нужно передать ему [экземпляр функционального типа](#instantiating-a-function-type) в качестве
+аргумента. Для этого в местах вызова функций высшего порядка часто используются лямбда-выражения
+([подробнее о них ниже](#lambda-expressions-and-anonymous-functions)).
 
 ```kotlin
 fun main() {
@@ -100,8 +101,8 @@ fun main() {
 ## Функциональные типы
 
 <!-- Kotlin uses function types, such as `(Int) -> String`, for declarations that deal with functions: `val onClick: () -> Unit = ...`. -->
-Kotlin использует семейство функциональных типов, таких как `(Int) -> String`, для объявлений, которые являются частью
-функций: `val onClick: () -> Unit = ...`.
+Kotlin использует функциональные типы, такие как `(Int) -> String`, для объявлений, которые работают с функциями:
+`val onClick: () -> Unit = ...`.
 
 <!-- These types have a special notation that corresponds to the signatures of the functions - their parameters and return values: -->
 Эти типы имеют специальные обозначения, которые соответствуют сигнатурам функций, то есть их параметрам и возвращаемым значениям:
@@ -111,7 +112,7 @@ Kotlin использует семейство функциональных ти
   The list of parameter types may be empty, as in `() -> A`. The [`Unit` return type](functions.md#unit-returning-functions)
   cannot be omitted. -->
 * У всех функциональных типов есть список с типами параметров, заключенный в скобки, и возвращаемый тип: `(A, B) -> C`
-обозначает тип, который предоставляет функции два принятых аргумента типа `A` и `B`, а также возвращает значение типа `C`.
+обозначает тип, который представляет функции, принимающие два аргумента типа `A` и `B` и возвращающие значение типа `C`.
 Список с типами параметров может быть пустым, как, например, в `() -> A`. Возвращаемый тип
 [`Unit`](functions.html#unit-returning-functions) не может быть опущен;
 
@@ -124,9 +125,9 @@ Kotlin использует семейство функциональных ти
 параметром `B` и возвращаемым значением `C`. [Литералы функций с объектом-приёмником](#function-literals-with-receiver)
 часто используются вместе с этими типами;
 
-<!-- * [Suspending functions](coroutines-basics.md#extract-function-refactoring) belong to a special kind of function type that have
+<!-- * [Suspending functions](coroutines-basics.md) belong to a special kind of function type that have
   a *suspend* modifier in their notation, such as `suspend () -> Unit` or `suspend A.(B) -> C`. -->
-* [Останавливаемые функции](coroutines-basics.html#extract-function-refactoring) (ориг.: *suspending functions*)
+* [Приостанавливаемые функции](coroutines-basics.html) (ориг.: *suspending functions*)
 принадлежат к особому виду функциональных типов, у которых в объявлении присутствует модификатор `suspend`, например,
 `suspend () -> Unit` или `suspend A.(B) -> C`.
 
@@ -135,9 +136,9 @@ These names can be used for documenting the meaning of the parameters. -->
 Объявление функционального типа также может включать именованные параметры: `(x: Int, y: Int) -> Point`.
 Именованные параметры могут быть использованы для описания смысла каждого из параметров.
 
-<!-- To specify that a function type is [nullable](null-safety.md#nullable-types-and-non-null-types), use parentheses as follows:
+<!-- To specify that a function type is [nullable](null-safety.md#nullable-types-and-non-nullable-types), use parentheses as follows:
 `((Int, Int) -> Int)?`. -->
-Чтобы указать, что функциональный тип может быть [nullable](null-safety.html#nullable-types-and-non-null-types),
+Чтобы указать, что функциональный тип может быть [nullable](null-safety.html#nullable-types-and-non-nullable-types),
 используйте круглые скобки: `((Int, Int) -> Int)?`.
 
 <!-- Function types can also be combined using parentheses: `(Int) -> ((Int) -> Unit)`. -->
@@ -273,8 +274,8 @@ fun main() {
 ### Встроенные функции
 
 <!-- Sometimes it is beneficial to use [inline functions](inline-functions.md), which provide flexible control flow, for higher-order functions. -->
-Иногда выгодно улучшить производительность функций высшего порядка, используя
-[встроенные функции](inline-functions.html) (ориг.: *inline functions*).
+Иногда для функций высшего порядка полезно использовать [встроенные функции](inline-functions.html)
+(ориг.: *inline functions*), которые предоставляют гибкое управление потоком выполнения.
 
 <a name="lambda-expressions-and-anonymous-functions"></a>
 
@@ -298,6 +299,16 @@ is an expression that is itself a function, called a function literal, which is 
 
 ```kotlin
 fun compare(a: String, b: String): Boolean = a.length < b.length
+```
+
+<!-- You can also create a _suspending lambda expression_ using the `suspend` keyword.
+A suspending lambda has the function type `suspend () -> Unit` and can call other suspending functions: -->
+Вы также можете создать _приостанавливаемое лямбда-выражение_ с помощью ключевого слова `suspend`.
+Приостанавливаемая лямбда имеет функциональный тип `suspend () -> Unit` и может вызывать другие приостанавливаемые
+функции:
+
+```kotlin
+val suspendingTask = suspend { doSuspendingWork() }
 ```
 
 <a name="lambda-expression-syntax"></a>
@@ -356,7 +367,7 @@ run { println("...") }
 
 <a name="it-implicit-name-of-a-single-parameter"></a>
 
-<!-- ### `it`: implicit name of a single parameter -->
+<!-- ### it: implicit name of a single parameter -->
 ### it: неявное имя единственного параметра
 
 <!-- It's very common for a lambda expression to have only one parameter. -->
@@ -397,9 +408,9 @@ ints.filter {
 ```
 
 <!-- This convention, along with [passing a lambda expression outside of parentheses](#passing-trailing-lambdas), allows for
-[LINQ-style](https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/bb308959(v=msdn.10)) code: -->
+[LINQ-style](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/) code: -->
 Это соглашение, вместе с [передачей лямбда-выражения вне скобок](#passing-trailing-lambdas), позволяет писать код в
-[стиле LINQ](https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/bb308959(v=msdn.10)).
+[стиле LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/).
 
 ```kotlin
 strings.filter { it.length == 5 }.sortedBy { it }.map { it.uppercase() }
@@ -414,7 +425,7 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.uppercase() }
 Если параметр лямбды не используется, то разрешено его имя заменить на символ подчёркивания.
 
 ```kotlin
-map.forEach { _, value -> println("$value!") }
+map.forEach { (_, value) -> println("$value!") }
 ```
 
 <a name="destructuring-in-lambdas"></a>
@@ -473,11 +484,11 @@ functions with a block body. -->
 > Обратите внимание, что параметры анонимных функций всегда заключены в круглые скобки `(...)`. Приём, позволяющий
 > оставлять параметры вне скобок, работает только с лямбда-выражениями.
 
-<!-- Another difference between lambda expressions and anonymous functions is the behavior of [non-local returns](inline-functions.md#non-local-returns).
+<!-- Another difference between lambda expressions and anonymous functions is the behavior of [non-local returns](inline-functions.md#returns).
 A `return`  statement without a label always returns from the function declared with the `fun` keyword. This means that
 a `return` inside a lambda expression will return from the enclosing function, whereas a `return` inside an anonymous
 function will return from the anonymous function itself. -->
-Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](inline-functions.html#non-local-returns)).
+Одним из отличий лямбда-выражений от анонимных функций является поведение оператора `return` ([non-local returns](inline-functions.html#returns)).
 Слово `return`, не имеющее метки (`@`), всегда возвращается из функции, объявленной ключевым словом `fun`. Это означает,
 что `return` внутри лямбда-выражения возвратит выполнение к функции, включающей в себя это лямбда-выражение. Внутри
 анонимных функций оператор `return`, в свою очередь, выйдет, собственно, из анонимной функции.
@@ -509,8 +520,8 @@ print(sum)
 
 <!-- [Function types](#function-types) with receiver, such as `A.(B) -> C`, can be instantiated with a special form of function
 literals – function literals with receiver. -->
-[Функциональные типы](#function-types) с получателем, такие как `A.(B) -> C`, могут быть вызваны с помощью особой
-формы – литералов функций с объектом-приёмником.
+[Функциональные типы](#function-types) с получателем, такие как `A.(B) -> C`, могут быть созданы с помощью особой
+формы - литералов функций с объектом-приёмником.
 
 <!-- As mentioned above, Kotlin provides the ability [to call an instance](#invoking-a-function-type-instance) of a function
 type with receiver while providing the *receiver object*. -->
@@ -538,8 +549,8 @@ val sum: Int.(Int) -> Int = { other -> plus(other) }
 
 <!-- The anonymous function syntax allows you to specify the receiver type of a function literal directly.
 This can be useful if you need to declare a variable of a function type with receiver, and then to use it later. -->
-Синтаксис анонимной функции позволяет вам явно указать тип приёмника. Это может быть полезно в случае, если вам нужно
-объявить переменную типа нашей функции для использования в дальнейшем.
+Синтаксис анонимной функции позволяет явно указать тип приёмника функционального литерала. Это может быть полезно, если
+нужно объявить переменную функционального типа с получателем, а затем использовать её позже.
 
 ```kotlin
 val sum = fun Int.(other: Int): Int = this + other
@@ -548,7 +559,8 @@ val sum = fun Int.(other: Int): Int = this + other
 <!-- Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from the context.
 One of the most important examples of their usage is [type-safe builders](type-safe-builders.md): -->
 Лямбда-выражения могут быть использованы как литералы функций с приёмником, когда тип приёмника может быть выведен из контекста.
-Один из самых важных примеров их использования это [типобезопасные строители](type-safe-builders.html) (ориг.: *type-safe builders*).
+Один из самых важных примеров их использования - [типобезопасные строители](type-safe-builders.html)
+(ориг.: *type-safe builders*).
 
 ```kotlin
 class HTML {

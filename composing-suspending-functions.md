@@ -5,7 +5,7 @@ title: "Составление функций приостановки"
 url: https://kotlinlang.ru/docs/composing-suspending-functions.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 06 July 2021 -->
+<!-- При переводе статьи оригинальная версия была от 27 February 2025 -->
 
 <!-- [//]: # "title: Composing suspending functions" -->
 
@@ -76,7 +76,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
-<!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-compose-01.kt). -->
+<!-- > You can get the full code [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-01.kt). -->
 
 > Полный код находится [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-01.kt).
 
@@ -98,7 +98,7 @@ Completed in 2017 ms
 <!-- What if there are no dependencies between invocations of `doSomethingUsefulOne` and `doSomethingUsefulTwo` and
 we want to get the answer faster, by doing both _concurrently_? This is where [async] comes to help. -->
 
-Что, если между вызовами `doSomethingUsefulOne` и `doSomethingUsefulTwo` нет зависимостей, и мы хотим получить ответ быстрее, выполняя оба одновременно? Здесь на помощь приходит [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html).
+Что, если между вызовами `doSomethingUsefulOne` и `doSomethingUsefulTwo` нет зависимостей, и мы хотим получить ответ быстрее, выполняя оба одновременно? Здесь на помощь приходит [async](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html).
 
 <!-- Conceptually, [async] is just like [launch]. It starts a separate coroutine which is a light-weight thread
 that works concurrently with all the other coroutines. The difference is that `launch` returns a [Job] and
@@ -106,7 +106,7 @@ does not carry any resulting value, while `async` returns a [Deferred] &mdash; a
 that represents a promise to provide a result later. You can use `.await()` on a deferred value to get its eventual result,
 but `Deferred` is also a `Job`, so you can cancel it if needed. -->
 
-Концептуально [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) аналогична [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html). Она запускает отдельную корутину, представляющую собой облегченный поток, который работает одновременно со всеми другими корутинами. Разница в том, что `launch` возвращает [Job](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html) и не несет никакого результирующего значения, тогда как `async` возвращает [Deferred](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/index.html) — облегченное неблокирующее будущее значение, которое представляет собой обещание предоставить результат позже. Вы можете использовать `.await()` для отложенного значения, чтобы получить его окончательный результат, но `Deferred` также является `Job`, поэтому при необходимости вы можете отменить его.
+Концептуально [async](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) аналогична [launch](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html). Она запускает отдельную корутину, представляющую собой облегченный поток, который работает одновременно со всеми другими корутинами. Разница в том, что `launch` возвращает [Job](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html) и не несет никакого результирующего значения, тогда как `async` возвращает [Deferred](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/index.html) — облегченное неблокирующее будущее значение, которое представляет собой обещание предоставить результат позже. Вы можете использовать `.await()` для отложенного значения, чтобы получить его окончательный результат, но `Deferred` также является `Job`, поэтому при необходимости вы можете отменить его.
 
 ```kotlin
 import kotlinx.coroutines.*
@@ -132,7 +132,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
-<!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-compose-02.kt). -->
+<!-- > You can get the full code [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-02.kt). -->
 
 > Полный код находится [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-02.kt).
 
@@ -158,10 +158,10 @@ Note that concurrency with coroutines is always explicit. -->
 
 <!-- Optionally, [async] can be made lazy by setting its `start` parameter to [CoroutineStart.LAZY].
 In this mode it only starts the coroutine when its result is required by
-[await][deferred.await], or if its `Job`'s [start][job.start] function
+[await][Deferred.await], or if its `Job`'s [start][Job.start] function
 is invoked. Run the following example: -->
 
-При желании [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) можно сделать ленивой, установив для параметра `start` значение [CoroutineStart.LAZY](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y/index.html). В этом режиме он запускает корутину только тогда, когда ее результат требуется для [await](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html) или если вызывается функция [start](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html) его `Job`. Запустите следующий пример:
+При желании [async](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) можно сделать ленивой, установив для параметра `start` значение [CoroutineStart.LAZY](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y/index.html). В этом режиме корутина запускается только тогда, когда ее результат требуется для [await](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html) или если вызывается функция [start](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html) у соответствующего `Job`. Запустите следующий пример:
 
 ```kotlin
 import kotlinx.coroutines.*
@@ -190,7 +190,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
-<!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-compose-03.kt). -->
+<!-- > You can get the full code [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-03.kt). -->
 
 > Полный код находится [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-03.kt).
 
@@ -204,24 +204,31 @@ Completed in 1017 ms
 ```
 
 <!-- So, here the two coroutines are defined but not executed as in the previous example, but the control is given to
-the programmer on when exactly to start the execution by calling [start][job.start]. We first
+the programmer on when exactly to start the execution by calling [start][Job.start]. We first
 start `one`, then start `two`, and then await for the individual coroutines to finish. -->
 
-Итак, здесь две корутины определены, но не выполняются, как в предыдущем примере, а программист получает контроль над тем, когда именно начинать выполнение, вызывая [start](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html). Сначала мы запускаем `one`, затем `two`, а затем ждем завершения отдельных корутин.
+Итак, здесь две корутины определены, но не выполняются, как в предыдущем примере, а программист получает контроль над тем, когда именно начинать выполнение, вызывая [start](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html). Сначала мы запускаем `one`, затем `two`, а затем ждем завершения отдельных корутин.
 
-<!-- Note that if we just call [await][deferred.await] in `println` without first calling [start][job.start] on individual
-coroutines, this will lead to sequential behavior, since [await][deferred.await] starts the coroutine
+<!-- Note that if we just call [await][Deferred.await] in `println` without first calling [start][Job.start] on individual
+coroutines, this will lead to sequential behavior, since [await][Deferred.await] starts the coroutine
 execution and waits for its finish, which is not the intended use-case for laziness.
 The use-case for `async(start = CoroutineStart.LAZY)` is a replacement for the
-standard `lazy` function in cases when computation of the value involves suspending functions. -->
+standard [lazy](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/lazy.html) function in cases
+when computation of the value involves suspending functions. -->
 
-Обратите внимание, что если мы просто вызовем [await](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html) в `println` без предварительного вызова [start](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html) для отдельных корутин, это приведет к последовательному поведению, поскольку [await](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html) запускает выполнение корутины и ожидает ее завершения, что не является предполагаемым "ленивым" вариантом использования. Вариант использования для `async(start = CoroutineStart.LAZY)` — это замена стандартной функции `lazy` в случаях, когда вычисление значения включает приостановку функций.
+Обратите внимание, что если мы просто вызовем [await](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html) в `println` без предварительного вызова [start](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html) для отдельных корутин, это приведет к последовательному поведению, поскольку [await](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html) запускает выполнение корутины и ожидает ее завершения, что не является предполагаемым "ленивым" вариантом использования. Вариант использования для `async(start = CoroutineStart.LAZY)` — это замена стандартной функции [lazy](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/lazy.html) в случаях, когда вычисление значения включает приостановку функций.
 
 <a name="async-style-functions"></a>
 
 <!-- ## Async-style functions -->
 
 ## Функции в асинхронном стиле
+
+<!-- > This programming style with async functions is provided here only for illustration, because it is a popular style
+> in other programming languages. Using this style with Kotlin coroutines is **strongly discouraged** for the
+> reasons explained below. -->
+
+> Этот стиль программирования с асинхронными функциями приведен здесь только для иллюстрации, так как он популярен в других языках программирования. Использование этого стиля с корутинами Kotlin **настоятельно не рекомендуется** по причинам, описанным ниже.
 
 <!-- We can define async-style functions that invoke `doSomethingUsefulOne` and `doSomethingUsefulTwo`
 _asynchronously_ using the [async] coroutine builder using a [GlobalScope] reference to
@@ -230,12 +237,12 @@ We name such functions with the
 "...Async" suffix to highlight the fact that they only start asynchronous computation and one needs
 to use the resulting deferred value to get the result. -->
 
-Мы можем определить функции в асинхронном стиле, которые вызывают `doSomethingUsefulOne` и `doSomethingUsefulTwo` _асинхронно_, используя построитель [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) корутины с использованием ссылки на [GlobalScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html) для отказа от структурированного параллелизма. Мы называем такие функции суффиксом «...Async», чтобы подчеркнуть тот факт, что они только запускают асинхронные вычисления, и для получения результата необходимо использовать полученное отложенное значение.
+Мы можем определить функции в асинхронном стиле, которые вызывают `doSomethingUsefulOne` и `doSomethingUsefulTwo` _асинхронно_, используя построитель корутин [async](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) и ссылку на [GlobalScope](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html), чтобы отказаться от структурированного параллелизма. Мы называем такие функции суффиксом «...Async», чтобы подчеркнуть тот факт, что они только запускают асинхронные вычисления, и для получения результата необходимо использовать полученное отложенное значение.
 
 <!-- > [GlobalScope] is a delicate API that can backfire in non-trivial ways, one of which will be explained
 > below, so you must explicitly opt-in into using `GlobalScope` with `@OptIn(DelicateCoroutinesApi::class)`. -->
 
-> [GlobalScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html) — это деликатный API, который может иметь нетривиальные последствия, одно из которых будет объяснено ниже, поэтому вы должны явным образом согласиться на использование `GlobalScope` с помощью `@OptIn(DelicateCoroutinesApi::class)`.
+> [GlobalScope](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html) — это деликатный API, который может иметь нетривиальные последствия, одно из которых будет объяснено ниже, поэтому вы должны явным образом согласиться на использование `GlobalScope` с помощью `@OptIn(DelicateCoroutinesApi::class)`.
 
 ```kotlin
 // The result type of somethingUsefulOneAsync is Deferred<Int>
@@ -301,15 +308,9 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
-<!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-compose-04.kt). -->
+<!-- > You can get the full code [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-04.kt). -->
 
 > Полный код находится [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-04.kt).
-
-<!-- > This programming style with async functions is provided here only for illustration, because it is a popular style
-> in other programming languages. Using this style with Kotlin coroutines is **strongly discouraged** for the
-> reasons explained below. -->
-
-> Этот стиль программирования с асинхронными функциями приведен здесь только для иллюстрации, так как он популярен в других языках программирования. Использование этого стиля с корутинами Kotlin **настоятельно не рекомендуется** по причинам, описанным ниже.
 
 <!-- Consider what happens if between the `val one = somethingUsefulOneAsync()` line and `one.await()` expression there is some logic
 error in the code, and the program throws an exception, and the operation that was being performed by the program aborts.
@@ -326,9 +327,12 @@ concurrency, as shown in the section below. -->
 
 ## Структурированный параллелизм с async
 
-<!-- Let us take the [Concurrent using async](#concurrent-using-async) example and extract a function that concurrently performs `doSomethingUsefulOne` and `doSomethingUsefulTwo` and returns the sum of their results. Because the [async] coroutine builder is defined as an extension on [CoroutineScope], we need to have it in the scope and that is what the [coroutineScope][_coroutinescope] function provides: -->
+<!-- Let's refactor the [Concurrent using async](#concurrent-using-async) example into a function that runs
+`doSomethingUsefulOne` and `doSomethingUsefulTwo` concurrently and returns their combined results.
+Since [async] is a [CoroutineScope] extension,
+we'll use the [coroutineScope][_coroutineScope] function to provide the necessary scope: -->
 
-Давайте возьмем пример [Параллельное использование async](#concurrent-using-async) и извлечем функцию, которая одновременно выполняет `doSomethingUsefulOne` и `doSomethingUsefulTwo` и возвращает сумму их результатов. Поскольку построитель [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) корутин определен как расширение [CoroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html), нам нужно иметь его в области действия, и это то, что предоставляет функция [coroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html):
+Давайте преобразуем пример [Параллельное использование async](#concurrent-using-async) в функцию, которая запускает `doSomethingUsefulOne` и `doSomethingUsefulTwo` параллельно и возвращает их суммарный результат. Поскольку [async](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) является расширением [CoroutineScope](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html), мы используем функцию [coroutineScope](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html) для предоставления необходимой области действия:
 
 ```kotlin
 suspend fun concurrentSum(): Int = coroutineScope {
@@ -370,7 +374,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
-<!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-compose-05.kt). -->
+<!-- > You can get the full code [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-05.kt). -->
 
 > Полный код находится [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-05.kt).
 
@@ -415,7 +419,7 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
 }
 ```
 
-<!-- > You can get the full code [here](../../kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt). -->
+<!-- > You can get the full code [here](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt). -->
 
 > Полный код находится [здесь](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt).
 

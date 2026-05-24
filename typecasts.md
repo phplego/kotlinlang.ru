@@ -6,284 +6,574 @@ title: "Приведение и проверка типов"
 url: https://kotlinlang.ru/docs/typecasts.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 13 January 2022 -->
+<!-- При переводе статьи оригинальная версия была от 25 November 2025 -->
 
 <!-- Type checks and casts -->
 # Приведение и проверка типов
 
-<!-- ## is and !is operators -->
-## Операторы is и !is
+В Kotlin во время выполнения можно делать с типами две вещи: проверять, относится ли объект к определённому типу,
+или преобразовывать его в другой тип. **Проверки** типов помогают понять, с каким объектом вы работаете,
+а **приведения** типов пытаются преобразовать объект к другому типу.
 
-<!-- Use the `is` operator or its negated form `!is` to perform a runtime check that identifies whether an object conforms to a given type: -->
+> О проверках и приведениях именно **обобщённых** типов, например `List<T>` или `Map<K, V>`, читайте в разделе
+> [Проверки и приведения обобщённых типов](generics.html#generics-type-checks-and-casts).
+
+<a name="is-and-is-operators"></a>
+
+<!-- ## Checks with `is` and `!is` operators -->
+## Проверки с операторами `is` и `!is`
+
 Используйте оператор `is` или его отрицание `!is`, чтобы проверить, соответствует ли объект заданному типу
-во время исполнения.
+во время выполнения:
 
 ```kotlin
-if (obj is String) {
-    print(obj.length)
-}
+fun main() {
+    val input: Any = "Hello, Kotlin"
 
-if (obj !is String) { // то же самое, что и !(obj is String)
-    print("Not a String")
-}
-else {
-    print(obj.length)
+    if (input is String) {
+        println("Длина сообщения: ${input.length}")
+        // Длина сообщения: 13
+    }
+
+    if (input !is String) { // то же самое, что и !(input is String)
+        println("Ввод не является допустимым сообщением")
+    } else {
+        println("Обработка сообщения: ${input.length} символов")
+        // Обработка сообщения: 13 символов
+    }
 }
 ```
+
+Операторы `is` и `!is` также можно использовать, чтобы проверить, соответствует ли объект подтипу:
+
+```kotlin
+interface Animal {
+    val name: String
+    fun speak()
+}
+
+class Dog(override val name: String) : Animal {
+    override fun speak() = println("$name говорит: Гав!")
+}
+
+class Cat(override val name: String) : Animal {
+    override fun speak() = println("$name говорит: Мяу!")
+}
+//sampleStart
+fun handleAnimal(animal: Animal) {
+    println("Обработка животного: ${animal.name}")
+    animal.speak()
+
+    // Используйте оператор is для проверки подтипов
+    if (animal is Dog) {
+        println("Особые указания по уходу: это собака.")
+    } else if (animal is Cat) {
+        println("Особые указания по уходу: это кошка.")
+    }
+}
+//sampleEnd
+fun main() {
+    val pets: List<Animal> = listOf(
+        Dog("Buddy"),
+        Cat("Whiskers"),
+        Dog("Rex")
+    )
+
+    for (pet in pets) {
+        handleAnimal(pet)
+        println("---")
+    }
+    // Обработка животного: Buddy
+    // Buddy говорит: Гав!
+    // Особые указания по уходу: это собака.
+    // ---
+    // Обработка животного: Whiskers
+    // Whiskers говорит: Мяу!
+    // Особые указания по уходу: это кошка.
+    // ---
+    // Обработка животного: Rex
+    // Rex говорит: Гав!
+    // Особые указания по уходу: это собака.
+    // ---
+}
+```
+
+В этом примере оператор `is` используется, чтобы проверить, имеет ли экземпляр класса `Animal` подтип `Dog` или `Cat`,
+и вывести соответствующие указания по уходу.
+
+Можно проверить, является ли объект супертипом своего объявленного типа, но в этом нет смысла: ответ всегда будет
+положительным. Экземпляр каждого класса уже является экземпляром своих супертипов.
+
+> О том, как определить тип объекта во время выполнения, читайте в разделе [Рефлексия](reflection.html).
+
+<!-- ## Type casts -->
+## Приведения типов
+
+Преобразование типа объекта в Kotlin к другому типу называется **приведением типов**.
+
+В некоторых случаях компилятор автоматически приводит объекты за вас. Это называется умным приведением.
+
+Если тип нужно привести явно, используйте операторы приведения `as?` или `as`
+([подробнее ниже](#unsafe-cast-operator)).
 
 <a name="smart-casts"></a>
 
 <!-- ## Smart casts -->
 ## Умные приведения
 
-<!-- In most cases, you don't need to use explicit cast operators in Kotlin because the compiler tracks the
-`is`-checks and [explicit casts](#unsafe-cast-operator) for immutable values and inserts (safe) casts automatically when necessary: -->
-В большинстве случаев вам не нужно использовать явные приведения в Kotlin,
-потому что компилятор отслеживает `is`-проверки и [явные преобразования](#unsafe-cast-operator)
-для неизменяемых значений и вставляет (безопасно) приведения автоматически, там, где они нужны.
+Компилятор отслеживает проверки типов и [явные приведения](#unsafe-cast-operator) для неизменяемых значений
+и автоматически вставляет неявные безопасные приведения:
 
 ```kotlin
-fun demo(x: Any) {
-    if (x is String) {
-        print(x.length) // x автоматически преобразовывается в String
+fun logMessage(data: Any) {
+    // data автоматически приводится к String
+    if (data is String) {
+        println("Получен текст: ${data.length} символов")
+    }
+}
+
+fun main() {
+    logMessage("Server started")
+    // Получен текст: 14 символов
+    logMessage(404)
+}
+```
+
+Компилятор достаточно умён, чтобы понимать, что приведение безопасно, если отрицательная проверка приводит к выходу
+из функции:
+
+```kotlin
+fun logMessage(data: Any) {
+    // data автоматически приводится к String
+    if (data !is String) return
+
+    println("Получен текст: ${data.length} символов")
+}
+
+fun main() {
+    logMessage("User signed in")
+    // Получен текст: 14 символов
+    logMessage(true)
+}
+```
+
+<!-- ### Control flow -->
+### Поток управления
+
+Умные приведения работают не только в условных выражениях `if`, но и в
+[`when`-выражениях](control-flow.html#when-expressions-and-statements):
+
+```kotlin
+fun processInput(data: Any) {
+    when (data) {
+        // data автоматически приводится к Int
+        is Int -> println("Log: назначен новый ID ${data + 1}")
+        // data автоматически приводится к String
+        is String -> println("Log: получено сообщение \"$data\"")
+        // data автоматически приводится к IntArray
+        is IntArray -> println("Log: обработаны баллы, сумма = ${data.sum()}")
+    }
+}
+
+fun main() {
+    processInput(1001)
+    // Log: назначен новый ID 1002
+    processInput("System rebooted")
+    // Log: получено сообщение "System rebooted"
+    processInput(intArrayOf(10, 20, 30))
+    // Log: обработаны баллы, сумма = 60
+}
+```
+
+Они также работают в [циклах `while`](control-flow.html#while-loops):
+
+```kotlin
+sealed interface Status
+data class Ok(val currentRoom: String) : Status
+data object Error : Status
+
+class RobotVacuum(val rooms: List<String>) {
+    var index = 0
+
+    fun status(): Status =
+        if (index < rooms.size) Ok(rooms[index])
+        else Error
+
+    fun clean(): Status {
+        println("Завершена уборка: ${rooms[index]}")
+        index++
+        return status()
+    }
+}
+
+fun main() {
+    //sampleStart
+    val robo = RobotVacuum(listOf("Living Room", "Kitchen", "Hallway"))
+
+    var status: Status = robo.status()
+    while (status is Ok) {
+        // Компилятор умно приводит status к типу Ok,
+        // поэтому свойство currentRoom доступно.
+        println("Уборка комнаты ${status.currentRoom}...")
+        status = robo.clean()
+    }
+    // Уборка комнаты Living Room...
+    // Завершена уборка: Living Room
+    // Уборка комнаты Kitchen...
+    // Завершена уборка: Kitchen
+    // Уборка комнаты Hallway...
+    // Завершена уборка: Hallway
+    //sampleEnd
+}
+```
+
+В этом примере запечатанный интерфейс `Status` имеет две реализации: data-класс `Ok` и data-объект `Error`.
+Только у data-класса `Ok` есть свойство `currentRoom`. Когда условие цикла `while` истинно, компилятор умно приводит
+переменную `status` к типу `Ok`, делая свойство `currentRoom` доступным в теле цикла.
+
+Если перед использованием в условии `if`, `when` или `while` объявить переменную типа `Boolean`, вся информация,
+которую компилятор собрал об этой переменной, будет доступна в соответствующем блоке для умного приведения.
+
+Это полезно, например, когда вы хотите вынести булевы условия в переменные. Тогда переменной можно дать осмысленное имя,
+что улучшает читаемость кода и позволяет повторно использовать переменную позже:
+
+```kotlin
+class Cat {
+    fun purr() {
+        println("Мур-мур")
+    }
+}
+//sampleStart
+fun petAnimal(animal: Any) {
+    val isCat = animal is Cat
+    if (isCat) {
+        // Компилятор может использовать информацию об isCat,
+        // поэтому он знает, что animal был умно приведён
+        // к типу Cat.
+        // Следовательно, можно вызвать функцию purr().
+        animal.purr()
+    }
+}
+
+fun main() {
+    val kitty = Cat()
+    petAnimal(kitty)
+    // Мур-мур
+}
+//sampleEnd
+```
+
+<!-- ### Logical operators -->
+### Логические операторы
+
+Компилятор может выполнять умные приведения справа от операторов `&&` или `||`, если слева находится проверка типа
+(обычная или отрицательная):
+
+```kotlin
+// x автоматически приводится к String справа от `||`
+if (x !is String || x.length == 0) return
+
+// x автоматически приводится к String справа от `&&`
+if (x is String && x.length > 0) {
+    print(x.length) // x автоматически приводится к String
+}
+```
+
+Если объединить проверки типов для объектов с помощью оператора «или» (`||`), умное приведение будет выполнено
+к их ближайшему общему супертипу:
+
+```kotlin
+interface Status {
+    fun signal() {}
+}
+
+interface Ok : Status
+interface Postponed : Status
+interface Declined : Status
+
+fun signalCheck(signalStatus: Any) {
+    if (signalStatus is Postponed || signalStatus is Declined) {
+        // signalStatus умно приводится к общему супертипу Status
+        signalStatus.signal()
     }
 }
 ```
 
-<!-- The compiler is smart enough to know that a cast is safe if a negative check leads to a return: -->
-Компилятор достаточно умён для того, чтобы понимать, что приведения безопасны в случаях,
-когда проверка на несоответствие типу (`!is`) приводит к выходу из функции:
+> Общий супертип — это **аппроксимация** [объединённого типа](https://en.wikipedia.org/wiki/Union_type).
+> Объединённые типы [сейчас не поддерживаются в Kotlin](https://youtrack.jetbrains.com/issue/KT-13108/Denotable-union-and-intersection-types).
+
+<!-- ### Inline functions -->
+### Inline-функции
+
+Компилятор может умно приводить переменные, захваченные в лямбда-функциях, которые передаются в
+[inline-функции](inline-functions.html).
+
+Inline-функции считаются имеющими неявный контракт
+[`callsInPlace`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.contracts/-contract-builder/calls-in-place.html).
+Это означает, что любые лямбда-функции, переданные в inline-функцию, вызываются на месте. Так как лямбда-функции
+вызываются на месте, компилятор знает, что лямбда-функция не может утечь со ссылками на переменные,
+которые находятся в её теле.
+
+Компилятор использует это знание вместе с другими видами анализа, чтобы решить, безопасно ли умно приводить
+захваченные переменные. Например:
 
 ```kotlin
-if (x !is String) return
+interface Processor {
+    fun process()
+}
 
-print(x.length) // x автоматически преобразовывается в String
-```
+inline fun inlineAction(f: () -> Unit) = f()
 
-<!-- or if it is on the right-hand side of `&&` or `||` and the proper check (regular or negative) is on the left-hand side: -->
-или в случаях, когда приводимая переменная находится справа от оператора `&&` или `||`, а соответствующая проверка
-(обычная или отрицательная) находится слева:
+fun nextProcessor(): Processor? = null
 
-```kotlin
-// x автоматически преобразовывается в String справа от `||`
-if (x !is String || x.length == 0) return
+fun runProcessor(): Processor? {
+    var processor: Processor? = null
+    inlineAction {
+        // Компилятор знает, что processor — локальная переменная,
+        // а inlineAction() — inline-функция, поэтому ссылки на processor
+        // не могут утечь. Следовательно, умное приведение processor безопасно.
 
-// x автоматически преобразовывается в String справа от `&&`
-if (x is String && x.length > 0) {
-    print(x.length) // x автоматически преобразовывается в String
+        // Если processor не равен null, он умно приводится
+        if (processor != null) {
+            // Компилятор знает, что processor не равен null,
+            // поэтому безопасный вызов не нужен.
+            processor.process()
+        }
+
+        processor = nextProcessor()
+    }
+
+    return processor
 }
 ```
 
-<!-- Smart casts work for [`when` expressions](control-flow.md#when-expression)
-and [`while` loops](control-flow.md#while-loops) as well: -->
-Умные приведения работают вместе с [`when`-выражениями](control-flow.html#when-expression)
-и [циклами `while`](control-flow.html#while-loops):
+<!-- ### Exception handling -->
+### Обработка исключений
+
+Информация об умном приведении передаётся в блоки `catch` и `finally`. Это делает код безопаснее, потому что
+компилятор отслеживает, имеет ли объект nullable-тип. Например:
 
 ```kotlin
-when (x) {
-    is Int -> print(x + 1)
-    is String -> print(x.length + 1)
-    is IntArray -> print(x.sum())
+//sampleStart
+fun testString() {
+    var stringInput: String? = null
+    // stringInput умно приводится к типу String
+    stringInput = ""
+    try {
+        // Компилятор знает, что stringInput не равен null
+        println(stringInput.length)
+        // 0
+
+        // Компилятор отбрасывает прежнюю информацию об умном приведении
+        // для stringInput. Теперь stringInput имеет тип String?.
+        stringInput = null
+
+        // Вызвать исключение
+        if (2 > 1) throw Exception()
+        stringInput = ""
+    } catch (exception: Exception) {
+        // Компилятор знает, что stringInput может быть null,
+        // поэтому stringInput остаётся nullable.
+        println(stringInput?.length)
+        // null
+    }
+}
+//sampleEnd
+fun main() {
+    testString()
 }
 ```
 
-<!-- Note that smart casts work only when the compiler can guarantee that the variable won't change between the check and the usage.
-More specifically, smart casts can be used under the following conditions: -->
-Заметьте, что умные приведения работают только тогда, когда компилятор может гарантировать,
-что переменная не изменится между проверкой и использованием.
-Точнее говоря, умные приведения будут работать:
+<!-- ### Smart cast prerequisites -->
+### Предварительные условия для умных приведений
 
-<!-- * `val` local variables - always, with the exception of [local delegated properties](delegated-properties.md).
-* `val` properties - if the property is private or internal or if the check is performed in the same [module](visibility-modifiers.md#modules) where the property is declared. Smart casts cannot be used on open properties or properties that have custom getters.
-* `var` local variables - if the variable is not modified between the check and the usage, is not captured in a lambda that modifies it, and is not a local delegated property.
-* `var` properties - never, because the variable can be modified at any time by other code. -->
+Умные приведения работают только тогда, когда компилятор может гарантировать, что переменная не изменится между
+проверкой и использованием. Их можно применять в следующих условиях:
 
-* с локальными `val` переменными - всегда за исключением [локальных делегированных свойств](delegated-properties.md).;
-* с `val` свойствами - если поле имеет модификатор доступа `private` или `internal`, или проверка происходит в том же
-[модуле](visibility-modifiers.html#modules), в котором объявлено это свойство.
-Умные приведения неприменимы к публичным свойствам или свойствам, которые имеют переопределённые getter'ы;
-* с локальными `var` переменными - если переменная не изменяется между проверкой и использованием,
-не захватывается лямбдой, которая её модифицирует и не является локальным делегированным свойством;
-* с `var` свойствами - никогда, потому что переменная может быть изменена в любое время другим кодом.
+* локальные переменные `val` — всегда, за исключением [локальных делегированных свойств](delegated-properties.html);
+* свойства `val` — если свойство имеет модификатор `private` или `internal`, либо если проверка выполняется
+в том же [модуле](visibility-modifiers.html#modules), где объявлено это свойство. Умные приведения нельзя использовать
+для свойств `open` или свойств с пользовательскими getter'ами;
+* локальные переменные `var` — если переменная не изменяется между проверкой и использованием, не захватывается
+лямбдой, которая её изменяет, и не является локальным делегированным свойством;
+* свойства `var` — никогда, потому что переменная может быть изменена другим кодом в любой момент.
 
 <a name="unsafe-cast-operator"></a>
 
-<!-- ## "Unsafe" cast operator -->
-## Оператор "небезопасного" приведения
+<!-- ## `as` and `as?` cast operators -->
+## Операторы приведения `as` и `as?`
 
-<!-- Usually, the cast operator throws an exception if the cast isn't possible. And so, it's called *unsafe*.
-The unsafe cast in Kotlin is done by the infix operator `as`. -->
-Обычно оператор приведения выбрасывает исключение, если приведение невозможно, поэтому мы называем его *небезопасным*.
-Небезопасное приведение в Kotlin выполняется с помощью инфиксного оператора `as`:
+В Kotlin есть два оператора приведения: `as` и `as?`. Оба можно использовать для приведения типов, но их поведение
+отличается.
 
-```kotlin
-val x: String = y as String
-```
-
-<!-- Note that `null` cannot be cast to `String`, as this type is not [nullable](null-safety.md).
-If `y` is null, the code above throws an exception.
-To make code like this correct for null values, use the nullable type on the right-hand side of the cast: -->
-Заметьте, что `null` не может быть приведен к `String`, так как `String` не является [nullable](null-safety.html),
-т.е. если `y` - null, код выше выбросит исключение. Чтобы сделать этот код корректным для null-значений,
-используйте nullable-тип в правой части приведения.
+Если приведение с помощью оператора `as` завершается неудачно, во время выполнения выбрасывается `ClassCastException`.
+Поэтому этот оператор также называют **небезопасным**. `as` можно использовать при приведении к non-null типу:
 
 ```kotlin
-val x: String? = y as String?
+fun main() {
+    val rawInput: Any = "user-1234"
+
+    // Успешно приводит к String
+    val userId = rawInput as String
+    println("Вход пользователя с ID: $userId")
+    // Вход пользователя с ID: user-1234
+
+    // Вызывает ClassCastException
+    val wrongCast = rawInput as Int
+    println("wrongCast содержит: $wrongCast")
+    // Exception in thread "main" java.lang.ClassCastException
+}
 ```
 
 <a name="safe-nullable-cast-operator"></a>
 
-<!-- ## "Safe" (nullable) cast operator -->
-## Оператор "безопасного" (nullable) приведения
-
-<!-- To avoid exceptions, use the *safe* cast operator `as?`, which returns `null` on failure. -->
-Чтобы избежать исключения, вы можете использовать оператор *безопасного* приведения `as?`, который возвращает `null` в
-случае неудачи.
+Если вместо этого использовать оператор `as?`, и приведение завершится неудачно, оператор вернёт `null`.
+Поэтому его также называют **безопасным** оператором:
 
 ```kotlin
-val x: String? = y as? String
-```
+fun main() {
+    val rawInput: Any = "user-1234"
 
-<!-- Note that despite the fact that the right-hand side of `as?` is a non-null type `String`, the result of the cast is nullable. -->
-Заметьте, что несмотря на то, что справа от `as?` стоит non-null тип `String`, результат приведения является nullable.
+    // Успешно приводит к String
+    val userId = rawInput as? String
+    println("Вход пользователя с ID: $userId")
+    // Вход пользователя с ID: user-1234
 
-<a name="type-erasure-and-generic-type-checks"></a>
-
-<!-- ## Type erasure and generic type checks -->
-## Стирание и проверка типов у Обобщений (Generics)
-
-<!-- Kotlin ensures type safety for operations involving [generics](generics.md) at compile time,
-while, at runtime, instances of generic types don't hold information about their actual type arguments. For example,
-`List<Foo>` is erased to just `List<*>`. In general, there is no way to check whether an instance belongs to a generic
-type with certain type arguments at runtime. -->
-Котлин обеспечивает типобезопасность операций, связанных с [обобщениями](generics.html) на этапе компиляции,
-в то время как информация о типе аргумента обобщения недоступна во время выполнения программы.
-Например, для `List<Foo>` происходит стирание типа, что превращает его в `List<*>`. В связи с чем,
-нет способа проверить, принадлежит ли объект конкретному типу во время выполнения программы.
-
-<!-- Because of that, the compiler prohibits `is`-checks that cannot be performed at runtime due to type erasure, such as
-`ints is List<Int>` or `list is T` (type parameter). You can, however, check an instance against a [star-projected type](generics.md#star-projections): -->
-Учитывая это, компилятор запрещает `is`-проверки, которые не могут быть выполнены во время выполнения программы
-из-за стирания типов, например `ints is List<Int>` или `list is T` (параметризированный тип).
-Однако у вас есть возможность произвести проверку со ["звёздными" проекциями](generics.html#star-projections).
-
-```kotlin
-if (something is List<*>) {
-    something.forEach { println(it) } // Элементы типа `Any?`
+    // Присваивает wrongCast значение null
+    val wrongCast = rawInput as? Int
+    println("wrongCast содержит: $wrongCast")
+    // wrongCast содержит: null
 }
 ```
 
-<!-- Similarly, when you already have the type arguments of an instance checked statically (at compile time),
-you can make an `is`-check or a cast that involves the non-generic part of the type. Note that
-angle brackets are omitted in this case: -->
-Таким же образом, когда у вас есть статически определенный тип аргумента, вы можете произвести `is`-проверку
-или приведение с необобщенной частью типа. Заметьте, что в данном случае угловые скобки пропущены:
+Чтобы безопасно привести nullable-тип, используйте оператор `as?`: он не вызовет `ClassCastException`, если приведение
+завершится неудачно.
+
+Оператор `as` _можно_ использовать с nullable-типом. Это позволяет результату быть `null`, но всё равно вызывает
+`ClassCastException`, если приведение неуспешно. Поэтому `as?` — более безопасный вариант:
 
 ```kotlin
-fun handleStrings(list: List<String>) {
-    if (list is ArrayList) {
-        // `list` приводится к `ArrayList<String>` путём "умного приведения"
+fun main() {
+    val config: Map<String, Any?> = mapOf(
+        "username" to "kodee",
+        "alias" to null,
+        "loginAttempts" to 3
+    )
+
+    // Небезопасно приводит к nullable String
+    val username: String? = config["username"] as String?
+    println("Username: $username")
+    // Username: kodee
+
+    // Небезопасно приводит null-значение к nullable String
+    val alias: String? = config["alias"] as String?
+    println("Alias: $alias")
+    // Alias: null
+
+    // Не может привести к nullable String и выбрасывает ClassCastException
+    // val unsafeAttempts: String? = config["loginAttempts"] as String?
+    // println("Login attempts (unsafe): $unsafeAttempts")
+    // Exception in thread "main" java.lang.ClassCastException
+
+    // Не может привести к nullable String и возвращает null
+    val safeAttempts: String? = config["loginAttempts"] as? String
+    println("Login attempts (safe): $safeAttempts")
+    // Login attempts (safe): null
+}
+```
+
+<!-- ### Up and downcasting -->
+### Восходящее и нисходящее приведение
+
+В Kotlin можно приводить объекты к супертипам и подтипам.
+
+Приведение объекта к экземпляру его суперкласса называется **восходящим приведением**. Для восходящего приведения
+не нужен специальный синтаксис или операторы приведения. Например:
+
+```kotlin
+interface Animal {
+    fun makeSound()
+}
+
+class Dog : Animal {
+    // Реализует поведение makeSound()
+    override fun makeSound() {
+        println("Собака говорит: гав!")
     }
 }
-```
 
-<!-- The same syntax but with the type arguments omitted can be used for casts that do not take type arguments into account: `list as ArrayList`.  -->
-Аналогичный синтаксис, но с пропущенным типом аргумента может использоваться для приведений,
-которые не принимают типы аргументы: `list as ArrayList`.
-
-<!-- Inline functions with [reified type parameters](inline-functions.md#reified-type-parameters) have their actual type arguments
-inlined at each call site. This enables `arg is T` checks for the type parameters, but if `arg` is an instance of a
-generic type itself, *its* type arguments are still erased. -->
-Встроенные (inline) функции с [параметрами вещественного типа](inline-functions.html#reified-type-parameters) имеют свои
-аргументы типа, встроенные на каждый момент вызова, что позволяет `arg is T` проверять параметризованный тип, но если
-`arg` является объектом обобщенного типа, его аргумент типа по-прежнему стираются.
-
-```kotlin
-inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
-    if (first !is A || second !is B) return null
-    return first as A to second as B
+fun printAnimalInfo(animal: Animal) {
+    animal.makeSound()
 }
-
-val somePair: Pair<Any?, Any?> = "items" to listOf(1, 2, 3)
-
-val stringToSomething = somePair.asPairOf<String, Any>()
-val stringToInt = somePair.asPairOf<String, Int>()
-val stringToList = somePair.asPairOf<String, List<*>>()
-val stringToStringList = somePair.asPairOf<String, List<String>>() // Нарушает типобезопасность!
 
 fun main() {
-    println("stringToSomething = " + stringToSomething)
-    println("stringToInt = " + stringToInt)
-    println("stringToList = " + stringToList)
-    println("stringToStringList = " + stringToStringList)
-    //println(stringToStringList?.second?.forEach() {it.length}) // Это вызовет исключение ClassCastException, так как элементы списка не являются строками
+    val dog = Dog()
+    // Приводит экземпляр Dog к Animal
+    printAnimalInfo(dog)
+    // Собака говорит: гав!
 }
 ```
 
-<a name="unchecked-casts"></a>
+В этом примере, когда функция `printAnimalInfo()` вызывается с экземпляром `Dog`, компилятор приводит его к `Animal`,
+потому что именно этот тип ожидается в параметре. Фактический объект всё ещё остаётся экземпляром `Dog`, поэтому
+компилятор динамически разрешает функцию `makeSound()` из класса `Dog` и выводит `"Собака говорит: гав!"`.
 
-<!-- ## Unchecked casts -->
-## Непроверяемые (Unchecked) приведения
-
-<!-- As established above, type erasure makes checking the actual type arguments of a generic type instance impossible at runtime.
-Additionally, generic types in the code might not be connected to each other closely enough for the compiler to ensure
-type safety. -->
-Как упоминалось выше, стирание типов делает невозможным проверку типа аргумента обобщения на этапе выполнения, и
-обобщенные типы в коде могут быть недостаточно связаны друг с другом, чтобы компилятор обеспечил типобезопасность.
-
-<!-- Even so, sometimes we have high-level program logic that implies type safety instead. For example: -->
-Тем не менее иногда мы имеем программную логику высокого уровня, которая подразумевает типобезопасность.
+Явное восходящее приведение часто встречается в API Kotlin, где поведение зависит от абстрактного типа. Это также
+распространено в Jetpack Compose и UI-инструментариях, которые обычно рассматривают все UI-элементы как супертипы,
+а затем работают с конкретными подклассами:
 
 ```kotlin
-fun readDictionary(file: File): Map<String, *> = file.inputStream().use {
-    TODO("Прочитать сопоставление строк с произвольными элементами.")
+val textView = TextView(this)
+textView.text = "Hello, View!"
+
+// Восходящее приведение от TextView к View
+val view: View = textView
+
+// Использование функций View
+view.setPadding(20, 20, 20, 20)
+// Activity ожидает тип View
+setContentView(view)
+```
+
+Приведение объекта к экземпляру подкласса называется **нисходящим приведением**. Поскольку нисходящее приведение
+может быть небезопасным, нужно использовать явные операторы приведения. Чтобы не выбрасывать исключения при
+неудачном приведении, рекомендуется использовать безопасный оператор приведения `as?`, который возвращает `null`,
+если приведение не удалось:
+
+```kotlin
+interface Animal {
+    fun makeSound()
 }
 
-// Мы сохранили словарь (map) `Int`ов в файл
-val intsFile = File("ints.dictionary")
+class Dog : Animal {
+    override fun makeSound() {
+        println("Собака говорит: гав!")
+    }
 
-// Warning: Unchecked cast: `Map<String, *>` to `Map<String, Int>`
-val intsDictionary: Map<String, Int> = readDictionary(intsFile) as Map<String, Int>
+    fun bark() {
+        println("ГАВ!")
+    }
+}
+
+fun main() {
+    // Создаёт animal как экземпляр Dog
+    // с типом Animal
+    val animal: Animal = Dog()
+
+    // Безопасно приводит animal к типу Dog
+    val dog: Dog? = animal as? Dog
+
+    // Использует безопасный вызов, чтобы вызвать bark(),
+    // если dog не равен null
+    dog?.bark()
+    // "ГАВ!"
+}
 ```
 
-<!-- A warning appears for the cast in the last line. The compiler can't fully check it at runtime and provides
-no guarantee that the values in the map are `Int`. -->
-Компилятор выдает предупреждение для приведения в последней строке. Приведение не может быть полностью проверено во
-время выполнения и нет дает гарантии, что значения в словаре (map) являются `Int`.
+В этом примере `animal` объявлен с типом `Animal`, но содержит экземпляр `Dog`. Код безопасно приводит `animal`
+к типу `Dog` и использует [безопасный вызов](null-safety.html#safe-call-operator) (`?.`), чтобы обратиться
+к функции `bark()`.
 
-<!-- To avoid unchecked casts, you can redesign the program structure. In the example above, you could use the
-`DictionaryReader<T>` and `DictionaryWriter<T>` interfaces with type-safe implementations for different types.
-You can introduce reasonable abstractions to move unchecked casts from the call site to the implementation details.
-Proper use of [generic variance](generics.md#variance) can also help. -->
-Чтобы избежать непроверяемые приведения, вы можете изменить структуру программы: в примере выше
-возможно объявить интерфейсы `DictionaryReader<T>` и `DictionaryWriter<T>`
-с типобезопасными имплементациями для различных типов. Правильное использование
-[вариативности обобщений](generics.html#variance) также может помочь.
-
-<!-- For generic functions, using [reified type parameters](inline-functions.md#reified-type-parameters) makes casts
-like `arg as T` checked, unless `arg`'s type has *its own* type arguments that are erased. -->
-Для обобщенных функций, используемых встроенные (inline) функции с
-[параметрами вещественного типа](inline-functions.html#reified-type-parameters) приведение типа `arg as T` является
-проверяемым, до тех пор, пока тип `arg` не имеет *свои* аргументы типа, которые были стерты.
-
-<!-- An unchecked cast warning can be suppressed by [annotating](annotations.md) the statement or the
-declaration where it occurs with `@Suppress("UNCHECKED_CAST")`: -->
-Предупреждение о непроверяемом приведении можно убрать используя [аннотации](annotations.html) `@Suppress("UNCHECKED_CAST")`.
-
-```kotlin
-inline fun <reified T> List<*>.asListOfType(): List<T>? =
-    if (all { it is T })
-        @Suppress("UNCHECKED_CAST")
-        this as List<T> else
-        null
-```
-
-<!-- >**On the JVM**: [array types](basic-types.md#arrays) (`Array<Foo>`) retain information about the erased type of
->their elements, and type casts to an array type are partially checked: the
->nullability and actual type arguments of the element type are still erased. For example,
->the cast `foo as Array<List<String>?>` will succeed if `foo` is an array holding any `List<*>`, whether it is nullable or not. -->
-> В JVM, [массивы](basic-types.html#arrays) (`Array<Foo>`) сохраняют информацию о стираемом типе их элементов,
-> и приведение типов к массиву частично проверяется: nullability и фактические аргументы
-> для параметризированных элементов массива все еще стираются.
-> Например, приведение `foo as Array <List <String>?>` будет успешным, если `foo` является массивом `List <*>`,
-> независимо от того, является ли он nullable или нет.
+Нисходящее приведение используется в сериализации при десериализации базового класса в конкретный подтип.
+Оно также распространено при работе с Java-библиотеками, которые возвращают объекты супертипов: в Kotlin их может
+потребоваться привести к нужному подтипу.

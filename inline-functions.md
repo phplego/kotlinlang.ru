@@ -7,7 +7,7 @@ menuLabel: "Встроенные функции"
 url: https://kotlinlang.ru/docs/inline-functions.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 07 October 2021 -->
+<!-- При переводе статьи оригинальная версия была от 23 June 2025 -->
 
 <!-- # Inline functions -->
 # Встроенные (inline) функции
@@ -46,7 +46,7 @@ try {
 Чтобы заставить компилятор поступить именно так, отметьте функцию `lock` модификатором `inline`.
 
 ```kotlin
-inline fun <T> lock(lock: Lock, body: () -> T): T { /*...*/ }
+inline fun <T> lock(lock: Lock, body: () -> T): T { ... }
 ```
 
 <!-- The `inline` modifier affects both the function itself and the lambdas passed to it: all of those will be inlined
@@ -69,7 +69,7 @@ parameters with the `noinline` modifier: -->
 вам необходимо отметить модификатором `noinline` те функции-параметры, которые встроены не будут.
 
 ```kotlin
-inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) { /*...*/ }
+inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) { ... }
 ```
 
 <!-- Inlinable lambdas can only be called inside inline functions or passed as inlinable arguments. `noinline` lambdas,
@@ -81,14 +81,18 @@ however, can be manipulated in any way you like, including being stored in field
 > [reified type parameters](#reified-type-parameters), the compiler will issue a warning, since inlining such functions
 > is very unlikely to be beneficial (you can use the `@Suppress("NOTHING_TO_INLINE")` annotation to suppress the warning
 > if you are sure the inlining is needed). -->
-> Заметьте, что если inline-функция не имеет ни inline параметров, ни [параметров вещественного типа](#reified-type-parameters),
+> Заметьте, что если inline-функция не имеет ни встраиваемых функциональных параметров, ни [параметров вещественного типа](#reified-type-parameters),
 > компилятор выдаст предупреждение, так как встраивание такой функции вряд ли принесёт пользу (используйте
 > `@Suppress("NOTHING_TO_INLINE")` для скрытия предупреждения, если вы уверены, что встраивание необходимо).
 
+<a name="non-local-jump-expressions"></a>
 <a name="non-local-returns"></a>
 
-<!-- ## Non-local returns -->
-## Нелокальные return
+<!-- ## Non-local jump expressions -->
+## Нелокальные операторы перехода
+
+<!-- ### Returns -->
+### Оператор return
 
 <!-- In Kotlin, you can only use a normal, unqualified `return` to exit a named function or an anonymous function.
 To exit a lambda, use a [label](returns.md#return-to-labels). A bare `return` is forbidden
@@ -98,10 +102,18 @@ inside a lambda because a lambda cannot make the enclosing function `return`: --
 Обычный `return` запрещён внутри лямбды, потому что она не может заставить внешнюю функцию завершиться.
 
 ```kotlin
+fun ordinaryFunction(block: () -> Unit) {
+    println("hi!")
+}
+//sampleStart
 fun foo() {
     ordinaryFunction {
         return // ERROR: нельзя заставить `foo` завершиться здесь
     }
+}
+//sampleEnd
+fun main() {
+    foo()
 }
 ```
 
@@ -109,22 +121,31 @@ fun foo() {
 Но если функция, в которую передана лямбда, встроена, то `return` также будет встроен, поэтому так делать можно:
 
 ```kotlin
+inline fun inlined(block: () -> Unit) {
+    println("hi!")
+}
+//sampleStart
 fun foo() {
     inlined {
         return // OK: лямбда встроена
     }
 }
+//sampleEnd
+fun main() {
+    foo()
+}
 ```
 
 <!-- Such returns (located in a lambda, but exiting the enclosing function) are called *non-local* returns. This sort of
 construct usually occurs in loops, which inline functions often enclose: -->
-Такие return (находящиеся внутри лямбд, но завершающие внешнюю функцию) называются нелокальными (ориг.: *non-local*).
-Такие конструкции обычно используются в циклах, которые являются inline-функциями:
+Такие операторы `return` (находящиеся внутри лямбд, но завершающие внешнюю функцию) называются нелокальными возвратами
+(ориг.: *non-local returns*). Такие конструкции обычно используются в циклах, которые часто находятся внутри
+inline-функций:
 
 ```kotlin
 fun hasZeros(ints: List<Int>): Boolean {
     ints.forEach {
-        if (it == 0) return true // return из hasZeros
+        if (it == 0) return true // возвращает из hasZeros
     }
     return false
 }
@@ -135,8 +156,9 @@ but from another execution context, such as a local object or a nested function.
 is also not allowed in the lambdas. To indicate that the lambda parameter of the inline function cannot use non-local
 returns, mark the lambda parameter with the `crossinline` modifier: -->
 Заметьте, что некоторые inline-функции могут вызывать переданные им лямбды не напрямую в теле функции, а из иного
-контекста, такого как локальный объект или вложенная функция. В таких случаях, нелокальное управление потоком выполнения
-также запрещено в лямбдах. Чтобы указать это, параметр лямбды необходимо отметить модификатором `crossinline`.
+контекста, такого как локальный объект или вложенная функция. В таких случаях нелокальное управление потоком выполнения
+также запрещено в лямбдах. Чтобы указать, что параметр-лямбда inline-функции не может использовать нелокальные `return`,
+пометьте этот параметр модификатором `crossinline`.
 
 ```kotlin
 inline fun f(crossinline body: () -> Unit) {
@@ -147,9 +169,26 @@ inline fun f(crossinline body: () -> Unit) {
 }
 ```
 
+<!-- ### Break and continue -->
+### Операторы break и continue
 
-<!-- > `break` and `continue` are not yet available in inlined lambdas, but we are planning to support them, too. -->
-> `break` и `continue` пока что недоступны во встроенных лямбдах, но мы планируем добавить их поддержку.
+<!-- Similar to non-local `return`, you can apply `break` and `continue` [jump expressions](returns.md) in lambdas passed
+as arguments to an inline function that encloses a loop: -->
+Как и нелокальный `return`, вы можете использовать [операторы перехода](returns.html) `break` и `continue` в лямбдах,
+переданных как аргументы inline-функции, если вызов этой inline-функции находится внутри цикла:
+
+```kotlin
+fun processList(elements: List<Int>): Boolean {
+    for (element in elements) {
+        val variable = element.nullableMethod() ?: run {
+            log.warning("Элемент равен null или недопустим, продолжаем...")
+            continue
+        }
+        if (variable == 0) return true
+    }
+    return false
+}
+```
 
 <a name="reified-type-parameters"></a>
 
@@ -223,7 +262,7 @@ A type that does not have a run-time representation (for example, a non-reified 
 `Nothing`) cannot be used as an argument for a reified type parameter.-->
 
 Обычная функция (не отмеченная как встроенная) не может иметь параметры вещественного типа. Тип, который не имеет
-представление во времени исполнения (например, параметр невещественного или фиктивного типа вроде `Nothing`), не может
+представления во времени исполнения (например, параметр невещественного или фиктивного типа вроде `Nothing`), не может
 использоваться в качестве аргумента для параметра вещественного типа.
 
 <a name="inline-properties"></a>
@@ -231,10 +270,10 @@ A type that does not have a run-time representation (for example, a non-reified 
 <!-- ## Inline properties -->
 ## Встроенные свойства
 
-<!-- The `inline` modifier can be used on accessors of properties that don't have backing fields.
+<!-- The `inline` modifier can be used on accessors of properties that don't have [backing fields](properties.md#backing-fields).
 You can annotate individual property accessors: -->
-Модификатор `inline` можно применять к методам доступа свойств, у которых нет теневых полей. Вы можете аннотировать
-отдельные методы доступа.
+Модификатор `inline` можно применять к методам доступа свойств, у которых нет [теневых полей](properties.html#backing-fields).
+Вы можете аннотировать отдельные методы доступа.
 
 ```kotlin
 val foo: Foo
@@ -267,18 +306,19 @@ it is considered a [module](visibility-modifiers.md#modules)'s public API. It ca
 inlined at such call sites as well. -->
 Если у встроенной функции модификатор доступа `public` или `protected`, при этом она не является частью объявления с
 модификаторами доступа `private` или `internal`, то она считается public API [модуля](visibility-modifiers.html#modules).
-Её можно вызывать в других модулях и где она встраивается в месте вызова.
+Её можно вызывать в других модулях, и там она также встраивается в месте вызова.
 
 <!-- This imposes certain risks of binary incompatibility caused by changes in the module that declares an inline function in
 case the calling module is not re-compiled after the change. -->
-Это может привести к появлению двоичной несовместимости, если модуль, который объявляет встроенную функцию, был изменён,
-но не перекомпилировался после внесения этих изменений.
+Это создаёт риск двоичной несовместимости из-за изменений в модуле, который объявляет встроенную функцию, если вызывающий
+модуль не был перекомпилирован после этих изменений.
 
 <!-- To eliminate the risk of such incompatibility being introduced by a change in a *non*-public API of a module, public
 API inline functions are not allowed to use non-public-API declarations, i.e. `private` and `internal` declarations and
 their parts, in their bodies. -->
 Чтобы исключить риск двоичной несовместимости, вызванной изменением *non*-public API модуля, public API inline-функциям
-не разрешается использовать объявления non-public-API, т.е. `private` и `internal`.
+не разрешается использовать в своих телах объявления non-public-API, т.е. объявления `private` и `internal`, а также их
+части.
 
 <!-- An `internal` declaration can be annotated with `@PublishedApi`, which allows its use in public API inline functions.
 When an `internal` inline function is marked as `@PublishedApi`, its body is checked too, as if it were public. -->

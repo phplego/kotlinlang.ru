@@ -163,13 +163,17 @@ Artifact ID для Kotlin reflection - `kotlin-reflect`, `kotlin-test` и `kotli
 
 ## Поддержка сопрограмм
 
-[Сопрограммы](https://kotlinlang.ru/docs/reference/coroutines.html) экспериментально поддерживаются в Kotlin 1.2, поэтому компилятор Kotlin выдает предупреждения, когда находит использование корутинов в вашем проекте.
-Чтобы отключить предупреждения, добавьте следующий тег в ваш файл `pom.xml`:
+Ключевое слово `suspend` является частью языка Kotlin, а большая часть возможностей для работы с сопрограммами доступна через библиотеку `kotlinx.coroutines`.
+Чтобы использовать сопрограммы в Maven-проекте, добавьте зависимость `kotlinx-coroutines-core` в файл `pom.xml`:
 
 ``` xml
-<configuration>
-    <experimentalCoroutines>enable</experimentalCoroutines>
-</configuration>
+<dependencies>
+    <dependency>
+        <groupId>org.jetbrains.kotlinx</groupId>
+        <artifactId>kotlinx-coroutines-core</artifactId>
+        <version>1.10.2</version>
+    </dependency>
+</dependencies>
 ```
 
 ## Jar файлы

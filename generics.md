@@ -7,7 +7,7 @@ menuLabel: "Обобщения: in, out, where"
 url: https://kotlinlang.ru/docs/generics.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 08 September 2021 -->
+<!-- При обновлении перевода использована оригинальная версия от 17 December 2024 -->
 
 <!-- # Generics: in, out, where -->
 # Обобщения (Generics): in, out, where
@@ -47,29 +47,35 @@ Kotlin doesn't have these. Instead, Kotlin has declaration-site variance and typ
 (см. [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)). А в Kotlin их нет.
 Вместо этого, в Kotlin есть вариативность на уровне объявления и проекции типов.
 
+<a name="variance-and-wildcards-in-java"></a>
+<!-- ### Variance and wildcards in Java -->
+### Вариантность и маски в Java
 
-<!-- Let's think about why Java needs these mysterious wildcards. The problem is explained well in 
-[Effective Java, 3rd Edition](http://www.oracle.com/technetwork/java/effectivejava-136174.html), 
-Item 31: _Use bounded wildcards to increase API flexibility_.
-First, generic types in Java are _invariant_, meaning that `List<String>` is _not_ a subtype of `List<Object>`.
-If `List` were not _invariant_, it would have been no better than Java's arrays, as the following code would have 
-compiled but caused an exception at runtime: -->
-Давайте подумаем, зачем Java нужны эти загадочные маски. Проблема хорошо описана в книге
-[Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),
-Item 28: *Use bounded wildcards to increase API flexibility*.
-Прежде всего, обобщённые типы в Java являются *инвариантными* (ориг. *invariant*). Это означает,
-что `List<String>` *не является* подтипом `List<Object>`. Если бы `List` был изменяемым,
-он был бы ничем не лучше массива в Java, потому что после компиляции данный код вызвал бы ошибку во время выполнения.
+<!-- Let's think about why Java needs these mysterious wildcards. First, generic types in Java are _invariant_,
+meaning that `List<String>` is _not_ a subtype of `List<Object>`. If `List` were not _invariant_, it would
+have been no better than Java's arrays, as the following code would have compiled but caused an exception at runtime: -->
+Давайте подумаем, зачем Java нужны эти загадочные маски. Прежде всего, обобщённые типы в Java являются
+*инвариантными* (ориг. *invariant*). Это означает, что `List<String>` *не является* подтипом `List<Object>`.
+Если бы `List` не был *инвариантным*, он был бы ничем не лучше массивов Java: следующий код компилировался бы,
+но вызывал исключение во время выполнения.
 
 ```java
 // Java
 List<String> strs = new ArrayList<String>();
-List<Object> objs = strs; // !!! Причина вышеуказанной проблемы заключена здесь, Java запрещает так делать
-objs.add(1); // Тут мы помещаем Integer в список String'ов
-String s = strs.get(0); // !!! ClassCastException: не можем кастовать Integer к String
+
+// Java сообщает о несоответствии типов здесь, во время компиляции.
+List<Object> objs = strs;
+
+// Что было бы, если бы Java этого не делала?
+// Мы могли бы положить Integer в список строк.
+objs.add(1);
+
+// А затем во время выполнения Java выбросила бы
+// ClassCastException: Integer cannot be cast to String
+String s = strs.get(0);
 ```
 
-<!-- Java prohibits such things in order to guarantee run-time safety. But this has implications. For example,
+<!-- Java prohibits such things to guarantee runtime safety. But this has implications. For example,
 consider the `addAll()` method from the `Collection` interface. What's the signature of this method? Intuitively,
 you'd write it this way: -->
 Java запрещает подобные вещи, гарантируя тем самым безопасность выполнения кода.
@@ -88,17 +94,13 @@ interface Collection<E> ... {
 
 ```java
 // Java
+
+// Следующий код не скомпилировался бы с наивным объявлением addAll:
+// Collection<String> не является подтипом Collection<Object>
 void copyAll(Collection<Object> to, Collection<String> from) {
     to.addAll(from);
-    // !!! Не скомпилируется с наивным объявлением метода addAll:
-    // Collection<String> не является подтипом Collection<Object>
 }
 ```
-
-<!-- (In Java, you probably learned this the hard way, see [Effective Java, 3rd Edition](http://www.oracle.com/technetwork/java/effectivejava-136174.html), 
-Item 28: _Prefer lists to arrays_) -->
-(В Java вы, вероятно, познали это на своём горьком опыте,
-см. [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 25: *Prefer lists to arrays*)
 
 <!-- That's why the actual signature of `addAll()` is the following: -->
 Вот почему сигнатура `addAll()` на самом деле такая:
@@ -126,34 +128,36 @@ In other words, the wildcard with an _extends_\-bound (_upper_ bound) makes the 
 <!-- The key to understanding why this works is rather simple: if you can only _take_ items from a collection,
 then using a collection of `String`s and reading `Object`s from it is fine. Conversely, if you can only _put_ items
 into the collection, it's okay to take a collection of `Object`s and put `String`s into it: in Java there is
-`List<? super String>`, a _supertype_ of `List<Object>`. -->
+`List<? super String>`, which accepts `String`s or any of its supertypes. -->
 Ключом к пониманию, почему этот трюк работает, является довольно простая мысль: использование коллекции `String`'ов и
-чтение из неё `Object` нормально только в случае, если  вы только *берёте* элементы из коллекции. Наоборот, если вы
+чтение из неё `Object` нормально только в случае, если вы только *берёте* элементы из коллекции. Наоборот, если вы
 только *вносите* элементы в коллекцию, то нормально брать коллекцию `Object`'ов и помещать в неё `String`'и:
-в Java есть `List<? super String>`, *супертип* `List<Object>`.
+в Java есть `List<? super String>`, который принимает `String` или любой его супертип.
 
 <!-- The latter is called _contravariance_, and you can only call methods that take `String` as an argument on `List<? super String>`
 (for example, you can call `add(String)` or `set(int, String)`).  If you call something that returns `T` in `List<T>`,
 you don't get a `String`, but rather an `Object`. -->
 Это называется *контрвариантностью* (ориг.: *contravariance*). Вы можете вызвать только те методы, которые принимают
-`String` в качестве аргумента в `List<? super String>` (например, вы можете вызвать `add(String)` или`set(int, String)`).
+`String` в качестве аргумента в `List<? super String>` (например, вы можете вызвать `add(String)` или `set(int, String)`).
 В случае, если вы вызываете из `List<T>` что-то с возвращаемым значением `T`, вы получаете не `String`, а `Object`.
 
-<!-- Joshua Bloch gives the name _Producers_ to objects you only _read from_ and _Consumers_ to those you only _write to_. He recommends: -->
-Джошуа Блох (Joshua Bloch) называет объекты:
+<!-- Joshua Bloch, in his book [Effective Java, 3rd Edition](http://www.oracle.com/technetwork/java/effectivejava-136174.html), explains the problem well
+(Item 31: "Use bounded wildcards to increase API flexibility"). He gives the name _Producers_ to objects you only
+_read from_ and _Consumers_ to those you only _write to_. He recommends: -->
+Джошуа Блох (Joshua Bloch) хорошо объясняет эту проблему в книге
+[Effective Java, 3rd Edition](http://www.oracle.com/technetwork/java/effectivejava-136174.html)
+(Item 31: "Use bounded wildcards to increase API flexibility"). Он называет объекты:
 - *Производителями* (ориг.: *producers*), если вы только *читаете* из них,
 - *Потребителями* (ориг.: *consumers*), если вы только *записываете* в них.
 
 Он рекомендует:
 
-<!-- >"For maximum flexibility, use wildcard types on input parameters that represent producers or consumers",
-> and proposes the following mnemonic:
->
->_PECS stands for Producer-Extends, Consumer-Super._ -->
-> Для максимальной гибкости используйте маски на входных параметрах, которые представляют производителей или потребителей,
-> и предлагает следующую мнемонику:
-> 
-> *PECS обозначает Producer-Extends, Consumer-Super.*
+<!-- >"For maximum flexibility, use wildcard types on input parameters that represent producers or consumers." -->
+> "Для максимальной гибкости используйте типы-маски во входных параметрах, которые представляют производителей
+> или потребителей."
+
+<!-- He then proposes the following mnemonic: _PECS_ stands for _Producer-Extends, Consumer-Super._ -->
+Затем он предлагает следующую мнемонику: *PECS* означает *Producer-Extends, Consumer-Super*.
 
 <!-- > If you use a producer-object, say, `List<? extends Foo>`, you are not allowed to call `add()` or `set()` on this object,
 > but this does not mean that it is _immutable_: for example, nothing prevents you from calling `clear()`
@@ -338,10 +342,10 @@ This is our approach to _use-site variance_, and it corresponds to Java's `Array
 fun fill(dest: Array<in String>, value: String) { ... }
 ```
 
-<!-- `Array<in String>` corresponds to Java's `Array<? super String>`. This means that you can pass an array of `CharSequence`
-or an array of `Object` to the `fill()` function. -->
-`Array<in String>` соответствует `Array<? super String>` из Java, то есть мы можем передать массив `CharSequence`
-или массив `Object` в функцию `fill()`.
+<!-- `Array<in String>` corresponds to Java's `Array<? super String>`. This means that you can pass an array of `String`, `CharSequence`,
+or `Object` to the `fill()` function. -->
+`Array<in String>` соответствует `Array<? super String>` из Java, то есть мы можем передать массив `String`, `CharSequence`
+или `Object` в функцию `fill()`.
 
 <a name="star-projections"></a>
 <!-- ### Star-projections -->
@@ -461,40 +465,239 @@ must implement _both_ `CharSequence` and `Comparable`. -->
 Переданный тип должен одновременно удовлетворять всем условиям `where`. В приведенном выше примере тип `T` должен
 реализовывать и `CharSequence`, и `Comparable`.
 
+<a name="definitely-non-nullable-types"></a>
+<!-- ## Definitely non-nullable types -->
+## Определённо ненулевые типы
+
+<!-- To make interoperability with generic Java classes and interfaces easier, Kotlin supports declaring a generic type parameter
+as **definitely non-nullable**. -->
+Чтобы упростить взаимодействие с обобщёнными Java-классами и интерфейсами, Kotlin поддерживает объявление обобщённого
+параметра типа как **определённо ненулевого**.
+
+<!-- To declare a generic type `T` as definitely non-nullable, declare the type with `& Any`. For example: `T & Any`. -->
+Чтобы объявить обобщённый тип `T` определённо ненулевым, укажите его с `& Any`. Например: `T & Any`.
+
+<!-- A definitely non-nullable type must have a nullable [upper bound](#upper-bounds). -->
+У определённо ненулевого типа должна быть [верхняя граница](#upper-bounds), допускающая `null`.
+
+<!-- The most common use case for declaring definitely non-nullable types is when you want to override a Java method that
+contains `@NotNull` as an argument. For example, consider the `load()` method: -->
+Чаще всего определённо ненулевые типы объявляют, когда нужно переопределить Java-метод, аргумент которого содержит
+`@NotNull`. Например, рассмотрим метод `load()`:
+
+```java
+import org.jetbrains.annotations.*;
+
+public interface Game<T> {
+    public T save(T x) {}
+    @NotNull
+    public T load(@NotNull T x) {}
+}
+```
+
+<!-- To override the `load()` method in Kotlin successfully, you need `T1` to be declared as definitely non-nullable: -->
+Чтобы успешно переопределить метод `load()` в Kotlin, нужно объявить `T1` как определённо ненулевой:
+
+```kotlin
+interface ArcadeGame<T1> : Game<T1> {
+    override fun save(x: T1): T1
+    // T1 является определённо ненулевым
+    override fun load(x: T1 & Any): T1 & Any
+}
+```
+
+<!-- When working only with Kotlin, it's unlikely that you will need to declare definitely non-nullable types explicitly because
+Kotlin's type inference takes care of this for you. -->
+Если вы работаете только с Kotlin, вам вряд ли потребуется объявлять определённо ненулевые типы явно: за это отвечает
+вывод типов Kotlin.
+
 <a name="type-erasure"></a>
 <!-- ## Type erasure -->
-## Удаление типа
+## Стирание типов
 
 <!-- The type safety checks that Kotlin performs for generic declaration usages are done at compile time.
 At runtime, the instances of generic types do not hold any information about their actual type arguments.
 The type information is said to be _erased_. For example, the instances of `Foo<Bar>` and `Foo<Baz?>` are erased to
 just `Foo<*>`. -->
-Проверки безопасности типов, выполняемые Kotlin для использования общих объявлений, выполняются во время компиляции.
-Во время выполнения экземпляры общих типов не содержат никакой информации об их фактических аргументах типа.
-Говорят, информация о типе будет удалена.  Например, экземпляры `Foo<Bar>` и `Foo<Baz?>` удаляются до `Foo<*>`.
+Проверки безопасности типов, которые Kotlin выполняет при использовании обобщённых объявлений, происходят во время компиляции.
+Во время выполнения экземпляры обобщённых типов не содержат информации о своих фактических аргументах типа.
+Говорят, что информация о типе *стирается*. Например, экземпляры `Foo<Bar>` и `Foo<Baz?>` стираются просто до `Foo<*>`.
 
-<!-- Therefore, there is no general way to check whether an instance of a generic type was created with certain type
-arguments at runtime, and the compiler [prohibits such `is`-checks](typecasts.md#type-erasure-and-generic-type-checks). -->
-Поэтому нет общего способа проверить, был ли создан экземпляр общего типа с определенными аргументами типа во время выполнения,
-и компилятор [запрещает такие `is`-проверки](typecasts.html#type-erasure-and-generic-type-checks).
+<a name="generics-type-checks-and-casts"></a>
+<!-- ### Generics type checks and casts -->
+### Проверки и приведения обобщённых типов
 
-<!-- Type casts to generic types with concrete type arguments, for example, `foo as List<String>`, cannot be checked at runtime.
-These [unchecked casts](typecasts.md#unchecked-casts) can be used when type safety is implied by high-level
-program logic but cannot be inferred directly by the compiler. The compiler issues a warning on unchecked casts, and at
-runtime, only the non-generic part is checked (equivalent to `foo as List<*>`). -->
-Приведение типов к обобщенным типам с конкретными аргументами типа, например `foo as List<String>`,
-не может быть проверено во время выполнения. Эти [непроверенные приведения](typecasts.html#unchecked-casts)
-могут использоваться, когда безопасность типов подразумевается программной логикой высокого уровня,
-но не может быть выведена непосредственно компилятором. Компилятор выдает предупреждение о непроверенных приведениях,
-и во время выполнения проверяется только необобщенная часть (эквивалентно `foo as List<*>`).
+<!-- Due to the type erasure, there is no general way to check whether an instance of a generic type was created with certain type
+arguments at runtime, and the compiler prohibits such `is`-checks such as
+`ints is List<Int>` or `list is T` (type parameter). However, you can check an instance against a star-projected type: -->
+Из-за стирания типов нет общего способа во время выполнения проверить, был ли экземпляр обобщённого типа создан
+с определёнными аргументами типа. Поэтому компилятор запрещает такие `is`-проверки, как `ints is List<Int>`
+или `list is T` (параметр типа). Однако можно проверить экземпляр на соответствие типу со звёздной проекцией:
+
+```kotlin
+if (something is List<*>) {
+    something.forEach { println(it) } // Элементы имеют тип `Any?`
+}
+```
+
+<!-- Similarly, when you already have the type arguments of an instance checked statically (at compile time),
+you can make an `is`-check or a cast that involves the non-generic part of the type. Note that
+angle brackets are omitted in this case: -->
+Аналогично, если аргументы типа экземпляра уже проверены статически (во время компиляции), можно выполнить `is`-проверку
+или приведение, которое затрагивает необобщённую часть типа. Обратите внимание, что угловые скобки в этом случае опускаются:
+
+```kotlin
+fun handleStrings(list: MutableList<String>) {
+    if (list is ArrayList) {
+        // `list` умно приведён к `ArrayList<String>`
+    }
+}
+```
+
+<!-- The same syntax but with the type arguments omitted can be used for casts that do not take type arguments into account: `list as ArrayList`. -->
+Тот же синтаксис с опущенными аргументами типа можно использовать для приведений, которые не учитывают аргументы типа:
+`list as ArrayList`.
 
 <!-- The type arguments of generic function calls are also only checked at compile time. Inside the function bodies,
-the type parameters cannot be used for type checks, and type casts to type parameters (`foo as T`) are unchecked. However,
-[reified type parameters](inline-functions.md#reified-type-parameters) of inline functions are substituted by the actual
-type arguments in the inlined function body at the call sites and so can be used for type checks and casts,
-with the same restrictions for instances of generic types as described above. -->
-Типовые аргументы вызовов обобщенных функций также проверяются только во время компиляции.
-Внутри тел функций параметры типа нельзя использовать для проверки типов, а приведение типов к параметрам типа (`foo as T`)
-не проверено. Однако [параметры вещественного типа](inline-functions.html#reified-type-parameters) встроенных функций
-заменяются фактическими аргументами типа в теле встроенной функции на стороне вызовов и поэтому могут использоваться
-для проверки и приведения типов с теми же ограничениями для экземпляров обобщенных типов, как описано выше.
+the type parameters cannot be used for type checks, and type casts to type parameters (`foo as T`) are unchecked.
+The only exclusion is inline functions with [reified type parameters](inline-functions.html#reified-type-parameters),
+which have their actual type arguments inlined at each call site. This enables type checks and casts for the type parameters.
+However, the restrictions described above still apply for instances of generic types used inside checks or casts.
+For example, in the type check `arg is T`, if `arg` is an instance of a generic type itself, its type arguments are still erased. -->
+Аргументы типа при вызове обобщённых функций также проверяются только во время компиляции. Внутри тел функций параметры
+типа нельзя использовать для проверок типов, а приведения к параметрам типа (`foo as T`) являются непроверенными.
+Единственное исключение — inline-функции с [овеществлёнными параметрами типа](inline-functions.html#reified-type-parameters):
+их фактические аргументы типа встраиваются в каждом месте вызова. Это позволяет выполнять проверки типов и приведения
+для параметров типа. Однако для экземпляров обобщённых типов, используемых в проверках или приведениях, всё равно действуют
+описанные выше ограничения. Например, в проверке типа `arg is T`, если `arg` сам является экземпляром обобщённого типа,
+его аргументы типа всё равно стираются.
+
+```kotlin
+//sampleStart
+inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
+    if (first !is A || second !is B) return null
+    return first as A to second as B
+}
+
+val somePair: Pair<Any?, Any?> = "items" to listOf(1, 2, 3)
+
+val stringToSomething = somePair.asPairOf<String, Any>()
+val stringToInt = somePair.asPairOf<String, Int>()
+val stringToList = somePair.asPairOf<String, List<*>>()
+val stringToStringList = somePair.asPairOf<String, List<String>>() // Компилируется, но нарушает безопасность типов!
+// Подробности см. в main ниже
+
+//sampleEnd
+
+fun main() {
+    println("stringToSomething = " + stringToSomething)
+    println("stringToInt = " + stringToInt)
+    println("stringToList = " + stringToList)
+    println("stringToStringList = " + stringToStringList)
+    //println(stringToStringList?.second?.forEach() {it.length}) // Выбросит ClassCastException, так как элементы списка не String
+}
+```
+
+<a name="unchecked-casts"></a>
+<!-- ### Unchecked casts -->
+### Непроверенные приведения
+
+<!-- Type casts to generic types with concrete type arguments such as `foo as List<String>` cannot be checked at runtime.
+These unchecked casts can be used when type safety is implied by the high-level program logic but cannot be inferred
+directly by the compiler. See the example below. -->
+Приведения к обобщённым типам с конкретными аргументами типа, например `foo as List<String>`, нельзя проверить во время
+выполнения. Такие непроверенные приведения можно использовать, когда безопасность типов следует из высокоуровневой логики
+программы, но компилятор не может вывести её напрямую. См. пример ниже.
+
+```kotlin
+fun readDictionary(file: File): Map<String, *> = file.inputStream().use {
+    TODO("Read a mapping of strings to arbitrary elements.")
+}
+
+// В этот файл мы сохранили отображение с `Int`
+val intsFile = File("ints.dictionary")
+
+// Предупреждение: Unchecked cast: `Map<String, *>` to `Map<String, Int>`
+val intsDictionary: Map<String, Int> = readDictionary(intsFile) as Map<String, Int>
+```
+
+<!-- A warning appears for the cast in the last line. The compiler can't fully check it at runtime and provides
+no guarantee that the values in the map are `Int`. -->
+Для приведения в последней строке появляется предупреждение. Компилятор не может полностью проверить его во время
+выполнения и не гарантирует, что значения в map имеют тип `Int`.
+
+<!-- To avoid unchecked casts, you can redesign the program structure. In the example above, you could use the
+`DictionaryReader<T>` and `DictionaryWriter<T>` interfaces with type-safe implementations for different types.
+You can introduce reasonable abstractions to move unchecked casts from the call site to the implementation details.
+Proper use of [generic variance](#variance) can also help. -->
+Чтобы избежать непроверенных приведений, можно пересмотреть структуру программы. В примере выше можно было бы использовать
+интерфейсы `DictionaryReader<T>` и `DictionaryWriter<T>` с типобезопасными реализациями для разных типов. Можно ввести
+разумные абстракции и перенести непроверенные приведения из места вызова в детали реализации. Правильное использование
+[вариантности обобщений](#variance) также может помочь.
+
+<!-- For generic functions, using [reified type parameters](inline-functions.html#reified-type-parameters) makes casts
+like `arg as T` checked, unless `arg`'s type has *its own* type arguments that are erased. -->
+Для обобщённых функций использование [овеществлённых параметров типа](inline-functions.html#reified-type-parameters)
+делает приведения вроде `arg as T` проверяемыми, если только тип `arg` не имеет *собственных* аргументов типа,
+которые стираются.
+
+<!-- An unchecked cast warning can be suppressed by [annotating](annotations.html) the statement or the
+declaration where it occurs with `@Suppress("UNCHECKED_CAST")`: -->
+Предупреждение о непроверенном приведении можно подавить, [аннотировав](annotations.html) инструкцию или объявление,
+где оно возникает, с помощью `@Suppress("UNCHECKED_CAST")`:
+
+```kotlin
+inline fun <reified T> List<*>.asListOfType(): List<T>? =
+    if (all { it is T })
+        @Suppress("UNCHECKED_CAST")
+        this as List<T>
+    else
+        null
+```
+
+<!-- >**On the JVM**: [array types](arrays.html) (`Array<Foo>`) retain information about the erased type of
+>their elements, and type casts to an array type are partially checked: the
+>nullability and actual type arguments of the element type are still erased. For example,
+>the cast `foo as Array<List<String>?>` will succeed if `foo` is an array holding any `List<*>`, whether it is nullable or not. -->
+> **На JVM**: [типы массивов](https://kotlinlang.org/docs/arrays.html) (`Array<Foo>`) сохраняют информацию о стёртом типе своих элементов,
+> и приведения к типу массива проверяются частично: допустимость `null` и фактические аргументы типа элемента
+> всё равно стираются. Например, приведение `foo as Array<List<String>?>` завершится успешно, если `foo` —
+> массив, содержащий любой `List<*>`, независимо от того, допускает он `null` или нет.
+
+<a name="underscore-operator-for-type-arguments"></a>
+<!-- ## Underscore operator for type arguments -->
+## Оператор подчёркивания для аргументов типа
+
+<!-- The underscore operator `_` can be used for type arguments. Use it to automatically infer a type of the argument when other types are explicitly specified: -->
+Оператор подчёркивания `_` можно использовать для аргументов типа. Он позволяет автоматически вывести тип аргумента,
+когда остальные типы указаны явно:
+
+```kotlin
+abstract class SomeClass<T> {
+    abstract fun execute() : T
+}
+
+class SomeImplementation : SomeClass<String>() {
+    override fun execute(): String = "Test"
+}
+
+class OtherImplementation : SomeClass<Int>() {
+    override fun execute(): Int = 42
+}
+
+object Runner {
+    inline fun <reified S: SomeClass<T>, T> run() : T {
+        return S::class.java.getDeclaredConstructor().newInstance().execute()
+    }
+}
+
+fun main() {
+    // T выводится как String, потому что SomeImplementation наследуется от SomeClass<String>
+    val s = Runner.run<SomeImplementation, _>()
+    assert(s == "Test")
+
+    // T выводится как Int, потому что OtherImplementation наследуется от SomeClass<Int>
+    val n = Runner.run<OtherImplementation, _>()
+    assert(n == 42)
+}
+```

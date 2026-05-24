@@ -6,7 +6,7 @@ title: "Пакеты и импорты"
 url: https://kotlinlang.ru/docs/packages.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 01 June 2021 -->
+<!-- При переводе статьи оригинальная версия была от 26 January 2023 -->
 
 <!-- Packages and imports -->
 # Пакеты и импорты
@@ -75,7 +75,8 @@ and the full name of `Message` is `org.example.Message`. -->
 import org.example.Message // теперь Message можно использовать без указания пакета
 ```
 
-Можете импортировать всё доступное содержимое пространства имён (пакет, класс, объект и т.д.):
+<!-- or all the accessible contents of a scope: package, class, object, and so on: -->
+Также можно импортировать всё доступное содержимое области видимости: пакет, класс, объект и так далее:
 
 ```kotlin
 import org.example.* // всё в 'org.example' становится доступно без указания пакета
@@ -86,7 +87,7 @@ import org.example.* // всё в 'org.example' становится досту�
 
 ```kotlin
 import org.example.Message // Message доступен
-import org.test.Message as testMessage // testMessage заменяет имя 'org.test.Message'
+import org.test.Message as TestMessage // TestMessage заменяет имя 'org.test.Message'
 ```
 
 <!-- The `import` keyword is not restricted to importing classes; you can also use it to import other declarations: -->
@@ -98,7 +99,7 @@ import org.test.Message as testMessage // testMessage заменяет имя 'o
 
 * функции и свойства верхнего уровня;
 * функции и свойства, объявленные в [объявлениях объектов](object-declarations.html#object-declarations-overview);
-* [перечислениях](enum-classes.html).
+* [константы перечислений](enum-classes.html).
 
 <a name="visibility-of-top-level-declarations"></a>
 

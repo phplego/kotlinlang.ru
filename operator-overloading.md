@@ -6,7 +6,7 @@ category: "Syntax"
 url: https://kotlinlang.ru/docs/operator-overloading.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 25 August 2021 -->
+<!-- При переводе статьи оригинальная версия была от 01 April 2025 -->
 
 <!-- # Operator overloading -->
 # Перегрузка операторов
@@ -21,7 +21,7 @@ Kotlin позволяет реализовывать предопределён�
 соответствующим типом, т. е. левосторонним типом для бинарных операций или типом аргумента для унарных операций.
 
 <!-- To overload an operator, mark the corresponding function with the `operator` modifier: -->
-Функции, которые перегружают операторы, должны быть отмечены модификатором `operator`.
+Чтобы перегрузить оператор, отметьте соответствующую функцию модификатором `operator`:
 
 ```kotlin
 interface IndexedContainer {
@@ -34,7 +34,7 @@ interface IndexedContainer {
 
 ```kotlin
 class OrdersList: IndexedContainer {
-    override fun get(index: Int) { /*...*/ }   
+    override fun get(index: Int) { /*...*/ }
 }
 ```
 
@@ -62,7 +62,7 @@ class OrdersList: IndexedContainer {
 Эта таблица демонстрирует, что компилятор при обрабатывании, к примеру, выражения `+a`, осуществляет следующие действия:
 
 <!-- * Determines the type of `a`, let it be `T`.
-* Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, that means a member 
+* Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, that means a member
 function or an extension function.
 * If the function is absent or ambiguous, it is a compilation error.
 * If the function is present and its return type is `R`, the expression `+a` has type `R`. -->
@@ -72,7 +72,7 @@ function or an extension function.
 * Если функция отсутствует или неоднозначная, возвращается ошибка компиляции;
 * Если функция присутствует и `R` - её возвращаемый тип, выражение `+a` имеет Тип `R`.
 
-<!-- > These operations, as well as all the others, are optimized for [basic types](basic-types.md) and do not introduce 
+<!-- > These operations, as well as all the others, are optimized for [basic types](types-overview.md) and do not introduce
 > overhead of function calls for them. -->
 > Эти операции, как и все остальные, оптимизированы для [основных типов](basic-types.html) и не требуют дополнительных
 > затрат на вызовы этих функций для них.
@@ -85,11 +85,13 @@ data class Point(val x: Int, val y: Int)
 
 operator fun Point.unaryMinus() = Point(-x, -y)
 
+val point = Point(10, 20)
+
 fun main() {
-   val point = Point(10, 20) 
    println(-point)  // выведет "Point(x=-10, y=-20)"
 }
 ```
+{kotlin-runnable="true"}
 
 <a name="increments-and-decrements"></a>
 
@@ -158,6 +160,7 @@ fun main() {
 | `a / b`   | `a.div(b)`      |
 | `a % b`   | `a.rem(b)`      |
 | `a..b`    | `a.rangeTo(b)`  |
+| `a..<b`   | `a.rangeUntil(b)` |
 
 <!-- For the operations in this table, the compiler just resolves the expression in the *Translated to* column. -->
 Для перечисленных в таблице операций компилятор всего лишь решает выражение из колонки *Транслируется в*.
@@ -185,7 +188,7 @@ data class Counter(val dayIndex: Int) {
 | `a !in b` | `!b.contains(a)` |
 
 <!-- For `in` and `!in` the procedure is the same, but the order of arguments is reversed. -->
-Для `in` и `!in` используется одна и та же процедура, только возвращаемый результат инвертируется.
+Для `in` и `!in` используется одна и та же процедура, но порядок аргументов меняется на обратный.
 
 <a name="indexed-access-operator"></a>
 
@@ -196,10 +199,10 @@ data class Counter(val dayIndex: Int) {
 |-------------------------|---------------------------|
 | `a[i]`                  | `a.get(i)`                |
 | `a[i, j]`               | `a.get(i, j)`             |
-| `a[i_1, ...,  i_n]`     | `a.get(i_1, ...,  i_n)`   |
+| `a[i_1, ..., i_n]`      | `a.get(i_1, ..., i_n)`    |
 | `a[i] = b`              | `a.set(i, b)`             |
 | `a[i, j] = b`           | `a.set(i, j, b)`          |
-| `a[i_1, ...,  i_n] = b` | `a.set(i_1, ..., i_n, b)` |
+| `a[i_1, ..., i_n] = b`  | `a.set(i_1, ..., i_n, b)` |
 
 <!-- Square brackets are translated to calls to `get` and `set` with appropriate numbers of arguments. -->
 Квадратные скобки транслируются в вызов `get` или `set` с соответствующим числом аргументов.
@@ -214,7 +217,7 @@ data class Counter(val dayIndex: Int) {
 | `a()`               | `a.invoke()`               |
 | `a(i)`              | `a.invoke(i)`              |
 | `a(i, j)`           | `a.invoke(i, j)`           |
-| `a(i_1, ...,  i_n)` | `a.invoke(i_1, ...,  i_n)` |
+| `a(i_1, ..., i_n)`  | `a.invoke(i_1, ..., i_n)`  |
 
 <!-- Parentheses are translated to calls to `invoke` with appropriate number of arguments. -->
 Оператор вызова (функции, метода) в круглых скобках транслируется в `invoke` с соответствующим числом аргументов.
@@ -230,7 +233,7 @@ data class Counter(val dayIndex: Int) {
 | `a -= b`   | `a.minusAssign(b)` |
 | `a *= b`   | `a.timesAssign(b)` |
 | `a /= b`   | `a.divAssign(b)`   |
-| `a %= b`   | `a.modAssign(b)`   |
+| `a %= b`   | `a.remAssign(b)`   |
 
 <!-- For the assignment operations, for example `a += b`, the compiler performs the following steps: -->
 Для присваивающих операций, таких как `a += b`, компилятор осуществляет следующие шаги:
@@ -260,19 +263,20 @@ data class Counter(val dayIndex: Int) {
 | `a == b`  | `a?.equals(b) ?: (b === null)`    |
 | `a != b`  | `!(a?.equals(b) ?: (b === null))` |
 
-<!-- These operators only work with the function [`equals(other: Any?): Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html), 
-which can be overridden to provide custom equality check implementation. Any other function with the same name (like `equals(other: Foo)`) will not be called. -->
+<!-- These operators only work with the function [`equals(other: Any?): Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html),
+which you can override to provide a custom equality check implementation.
+Any other function with the same name (like `equals(other: Foo)`) is ignored. -->
 Эти операторы работают только с функцией [`equals(other: Any?): Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html),
-которая может быть переопределена для обеспечения пользовательской реализации проверки равенства. Любая другая функция с
-тем же именем (например, `equals(other: Foo)`) вызываться не будет.
+которую можно переопределить, чтобы предоставить собственную реализацию проверки равенства. Любая другая функция с
+тем же именем (например, `equals(other: Foo)`) игнорируется.
 
-<!-- > `===` and `!==` (identity checks) are not overloadable, so no conventions exist for them. -->
-> Операции `===` и `!==` (проверка идентичности) являются неперегружаемыми, поэтому никакие соглашения для них не приводятся.
+<!-- Kotlin calls `.equals()` when neither operand compares directly to `null` in the `==` expression and the comparison isn't between two floating-point types.
+Otherwise, Kotlin uses `===` for direct `null` comparisons and compares non-null floating-point values by numeric value. -->
+Kotlin вызывает `.equals()`, когда в выражении `==` ни один из операндов не сравнивается напрямую с `null`, а само сравнение не выполняется между двумя типами с плавающей точкой.
+В остальных случаях Kotlin использует `===` для прямых сравнений с `null` и сравнивает ненулевые значения с плавающей точкой по числовому значению.
 
-<!-- The `==` operation is special: it is translated to a complex expression that screens for `null`'s.
-`null == null` is always true, and `x == null` for a non-null `x` is always false and won't invoke `x.equals()`. -->
-Операция `==` имеет специальный смысл: она транслируется в составное выражение, в котором экранируются значения `null`.
-`null == null` - это всегда истина, а `x == null` для non-null значений `x` - всегда ложь, и не будет расширяться в `x.equals()`.
+<!-- > `===` and `!==` (identity checks) aren't overloadable, so no conventions exist for them. -->
+> Операции `===` и `!==` (проверка идентичности) нельзя перегрузить, поэтому для них нет соглашений.
 
 <a name="comparison-operators"></a>
 
@@ -296,7 +300,7 @@ which can be overridden to provide custom equality check implementation. Any oth
 
 <!-- `provideDelegate`, `getValue` and `setValue` operator functions are described
 in [Delegated properties](delegated-properties.md). -->
-Операторы `provideDelegate`, `getValue` и `setValue` описаны в [Делегированные свойства](delegated-properties.md).
+Операторы `provideDelegate`, `getValue` и `setValue` описаны в статье [Делегированные свойства](delegated-properties.html).
 
 <a name="infix-calls-for-named-functions"></a>
 

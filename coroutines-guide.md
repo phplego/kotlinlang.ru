@@ -5,29 +5,29 @@ title: "Руководство по корутинам"
 url: https://kotlinlang.ru/docs/coroutines-guide.html
 ---
 
-<!-- При переводе статьи оригинальная версия была от 26 August 2021 -->
+<!-- При переводе статьи оригинальная версия была от 22 April 2025 -->
 
 <!-- # Coroutines guide -->
 # Руководство по корутинам
 
-<!-- Kotlin, as a language, provides only minimal low-level APIs in its standard library to enable various other 
+<!-- Kotlin provides only minimal low-level APIs in its standard library to enable other
 libraries to utilize coroutines. Unlike many other languages with similar capabilities, `async` and `await`
 are not keywords in Kotlin and are not even part of its standard library. Moreover, Kotlin's concept
 of _suspending function_ provides a safer and less error-prone abstraction for asynchronous 
 operations than futures and promises. -->
-Kotlin, как язык, предоставляет только минимальные низкоуровневые API в своей стандартной библиотеке, чтобы другие
+Kotlin предоставляет только минимальные низкоуровневые API в своей стандартной библиотеке, чтобы другие
 библиотеки могли использовать корутины. В отличие от многих других языков с аналогичными возможностями, `async` и
 `await` не являются ключевыми словами в Kotlin и даже не входят в его стандартную библиотеку. Более того, концепция
-корутинных функций (suspending functions) Kotlin обеспечивает более безопасную и менее подверженную ошибкам абстракцию для асинхронных операций,
+_suspending function_ в Kotlin обеспечивает более безопасную и менее подверженную ошибкам абстракцию для асинхронных операций,
 чем промисы и фьючерсы.
 
 <!-- `kotlinx.coroutines` is a rich library for coroutines developed by JetBrains. It contains a number of high-level 
-coroutine-enabled primitives that this guide covers, including `launch`, `async` and others. -->
+coroutine-enabled primitives that this guide covers, including `launch`, `async`, and others. -->
 `kotlinx.coroutines` — это развитая библиотека для корутин от JetBrains. Она содержит ряд высокоуровневых
 примитивов, поддерживающих корутины, которые рассматриваются в этом руководстве, включая `launch`, `async` и другие.
 
-<!-- This is a guide on core features of `kotlinx.coroutines` with a series of examples, divided up into different topics. -->
-Это руководство по ключевым функциям `kotlinx.coroutines` с серией примеров, разделённых по различным темам.
+<!-- This is a guide about the core features of `kotlinx.coroutines` with a series of examples, divided up into different topics. -->
+Это руководство о ключевых функциях `kotlinx.coroutines` с серией примеров, разделённых по различным темам.
 
 <!-- In order to use coroutines as well as follow the examples in this guide, you need to add a dependency on the `kotlinx-coroutines-core` module as explained
 [in the project README](https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects). -->
@@ -39,7 +39,7 @@ coroutine-enabled primitives that this guide covers, including `launch`, `async`
 ## Содержание
 <!-- 
 * [Coroutines basics](coroutines-basics.md)
-* [Tutorial: Coroutines and channels](https://kotlinlang.org/docs/coroutines-and-channels.html)
+* [Tutorial: Intro to coroutines and channels](coroutines-and-channels.md)
 * [Cancellation and timeouts](cancellation-and-timeouts.md)
 * [Composing suspending functions](composing-suspending-functions.md)
 * [Coroutine context and dispatchers](coroutine-context-and-dispatchers.md)
@@ -53,17 +53,17 @@ coroutine-enabled primitives that this guide covers, including `launch`, `async`
 -->
 
 * [Основы корутин](coroutines-basics.html)
-* [Туториал: Корутины и каналы](https://kotlinlang.org/docs/coroutines-and-channels.html)
+* [Туториал: введение в корутины и каналы](https://kotlinlang.org/docs/coroutines-and-channels.html)
 * [Отмена корутин и тайм-ауты](cancellation-and-timeouts.html)
 * [Создание suspending-функций](composing-suspending-functions.html)
 * [Контекст корутин и диспатчеры](coroutine-context-and-dispatchers.html)
-* [Асинхронный Flow](flow.html)
-* [Каналы](channels.html)
-* [Обработка исключений в корутинах](exception-handling.html)
-* [Общее изменяемое состояние и параллелизм](shared-mutable-state-and-concurrency.html)
-* [Select-выражение (экспериментальное)](select-expression.html)
-* [Туториал: Дебаггинг корутин с использованием IntelliJ IDEA](debug-coroutines-with-idea.html)
-* [Туториал: Дебаггинг Flow с использованием IntelliJ IDEA](debug-flow-with-idea.html)
+* [Асинхронный Flow](https://kotlinlang.org/docs/flow.html)
+* [Каналы](https://kotlinlang.org/docs/channels.html)
+* [Обработка исключений в корутинах](https://kotlinlang.org/docs/exception-handling.html)
+* [Общее изменяемое состояние и параллелизм](https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html)
+* [Select-выражение (экспериментальное)](https://kotlinlang.org/docs/select-expression.html)
+* [Туториал: Дебаггинг корутин с использованием IntelliJ IDEA](https://kotlinlang.org/docs/debug-coroutines-with-idea.html)
+* [Туториал: Дебаггинг Flow с использованием IntelliJ IDEA](https://kotlinlang.org/docs/debug-flow-with-idea.html)
 
 <a name="additional-references"></a>
 
@@ -73,13 +73,13 @@ coroutine-enabled primitives that this guide covers, including `launch`, `async`
 <!-- 
 * [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
 * [Coroutines design document (KEEP)](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
-* [Full kotlinx.coroutines API reference](https://kotlin.github.io/kotlinx.coroutines)
+* [Full kotlinx.coroutines API reference](https://kotlinlang.org/api/kotlinx.coroutines/)
 * [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
 * [Additional Android resources for Kotlin coroutines and flow](https://developer.android.com/kotlin/coroutines/additional-resources)
 -->
 
 * [Руководство по программированию UI с корутинами](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
 * [Документ по дизайну корутин (KEEP)](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
-* [Полная справка по API kotlinx.coroutines](https://kotlin.github.io/kotlinx.coroutines)
+* [Полная справка по API kotlinx.coroutines](https://kotlinlang.org/api/kotlinx.coroutines/)
 * [Практика использования корутин в Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
 * [Дополнительные ресурсы по Android с использованием корутин и flow](https://developer.android.com/kotlin/coroutines/additional-resources)
